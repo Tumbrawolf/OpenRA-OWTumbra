@@ -537,6 +537,7 @@ UpgradeHandlerBot:
 	-FreeActor@harderbot:
 	-FreeActor@resources:
 	-FreeActor@colony:
+	-FreeActor@pipe:
 	ProductionQueue@Upgrade:
 		Type: Upgrade
 		Group: Upgrade
@@ -652,6 +653,9 @@ FreeUpgrades:
 	ProductionTimeMultiplier@lobbyprodspeed3:
 		Prerequisites: prodspeed.fastest
 		Multiplier: 55
+	ProductionCostMultiplier@boss:
+		Prerequisites: ai.boss
+		Multiplier: 10
 
 
 #use for the non-standard stat upgrades ie. medieval elemental weapons

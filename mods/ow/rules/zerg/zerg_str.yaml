@@ -98,7 +98,7 @@ ZMCV:
 	Inherits@selection: ^SelectableSupportUnit
 	Buildable:
 		Queue: Tech
-		Prerequisites: ~mcv, ~techlevel.medium, ~infantry.zerg, ~ai.all
+		Prerequisites: zchamber, ~techlevel.medium, ~infantry.zerg, ~ai.all
 		Icon: icon-hatchery
 	Transforms:
 		IntoActor: zhatchery
@@ -135,7 +135,7 @@ ZMCV.2:
 	Buildable:
 		BuildPaletteOrder: 90
 		BuildDurationModifier: 35
-		Prerequisites: ~!mcv, ~techlevel.medium, ~infantry.zerg, ~ai.all
+		Prerequisites: ~!mcv, ~techlevel.medium, ~infantry.zerg, ~ai.all, ~disabled
 	Valued:
 		Cost: 3000
 
@@ -1221,6 +1221,9 @@ ZCHAMBER:
 		Actor: MediumZergBuildingComplete
 		SpawnOffset: 1,1
 		RequiresCondition: !build-incomplete
+	ProvidesPrerequisite@factory:
+		Prerequisite: factory
+		RequiresPrerequisites: techlevel.deathbox
 
 ZSPIRE:
 	Inherits: ^ZergBuilding

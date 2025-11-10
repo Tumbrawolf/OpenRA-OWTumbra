@@ -43,6 +43,8 @@ raynor.tier2.costcut:
 		Prerequisite: infantry.prodcost
 	ProvidesPrerequisite@upgradename2:
 		Prerequisite: infantry.prodtime
+	RenderSprites:
+		Image: raynor.supplychain
 
 # Mercenary Munitions
 raynor.tier2.firespeed:
@@ -55,6 +57,8 @@ raynor.tier2.firespeed:
 	ProvidesPrerequisite@buildingname:
 	ProvidesPrerequisite@upgradename:
 		Prerequisite: infantry.firespeed1
+	RenderSprites:
+		Image: raynor.mercmunitions
 
 # Enhanced Training Regime II
 raynor.tier3.fastupgrade1:
@@ -66,11 +70,8 @@ raynor.tier3.fastupgrade1:
 		Prerequisites: ~active.raynor, ~!structures.terran
 	RenderSprites:
 		Image: upgrade.inffirepower2
-	ProvidesPrerequisite@buildingname:
 	ProvidesPrerequisite@upgradename:
-		Prerequisite: upgrade.inffirepower1
-	ProvidesPrerequisite@upgradename1:
-		Prerequisite: upgrade.inffirepower2
+		Prerequisite: raynor.training
 	ProvidesPrerequisite@upgradename2:
 		Prerequisite: barracks.upgraded
 
@@ -83,12 +84,7 @@ raynor.tier3.fastupgrade2:
 		Description: actor-raynor-tier3-fastupgrade2.description
 		Prerequisites: ~active.raynor, ~!structures.terran
 	RenderSprites:
-		Image: upgrade.infarmor2
-	ProvidesPrerequisite@buildingname:
-	ProvidesPrerequisite@upgradename:
-		Prerequisite: upgrade.infarmor1
-	ProvidesPrerequisite@upgradename1:
-		Prerequisite: upgrade.infarmor2
+		Image: hosp
 	ProvidesPrerequisite@upgradename2:
 		Prerequisite: raynor.hospital
 
@@ -107,13 +103,11 @@ raynor.tier3.range:
 	ProvidesPrerequisite@upgradename2:
 		Prerequisite: upgrade.infarmor1
 	ProvidesPrerequisite@upgradename3:
-		Prerequisite: upgrade.inffirepower2
-	ProvidesPrerequisite@upgradename4:
-		Prerequisite: upgrade.infarmor2
-	ProvidesPrerequisite@upgradename5:
 		Prerequisite: barracks.upgraded
-	ProvidesPrerequisite@upgradename6:
+	ProvidesPrerequisite@upgradename4:
 		Prerequisite: raynor.hospitalacademy
+	ProvidesPrerequisite@upgradename5:
+		Prerequisite: raynor.training
 
 # Orbital Bomb
 raynor.tier4.support1:
@@ -151,18 +145,6 @@ raynor.tier5.hyperion1:
 	RenderSprites:
 		Image: icon
 
-# Hypercharge
-raynor.tier5.hyperion2:
-	Inherits: ^HeroUpgradeBaseTier5
-	Tooltip:
-		Name: actor-raynor-tier5-hyperion2.name
-	Buildable:
-		Description: actor-raynor-tier5-hyperion2.description
-		Prerequisites: ~active.raynor, ~disabled
-		Icon: chrono
-	RenderSprites:
-		Image: icon
-
 # Enhanced Training Regime III
 raynor.tier5.fastupgrade1:
 	Inherits: ^HeroUpgradeBaseTier5
@@ -170,14 +152,11 @@ raynor.tier5.fastupgrade1:
 		Name: actor-raynor-tier5-fastupgrade1.name
 	Buildable:
 		Description: actor-raynor-tier5-fastupgrade1.description
-		Prerequisites: ~active.raynor, upgrade.inffirepower2
-	RenderSprites:
-		Image: upgrade.inffirepower3
-	ProvidesPrerequisite@buildingname:
-	ProvidesPrerequisite@upgradename:
-		Prerequisite: upgrade.inffirepower3
+		Prerequisites: ~active.raynor
 	ProvidesPrerequisite@upgradename2:
 		Prerequisite: infantry.firespeed2
+	RenderSprites:
+		Image: raynor.firespeed
 
 # Vanadium Plating III
 raynor.tier5.fastupgrade2:
@@ -186,12 +165,10 @@ raynor.tier5.fastupgrade2:
 		Name: actor-raynor-tier5-fastupgrade2.name
 	Buildable:
 		Description: actor-raynor-tier5-fastupgrade2.description
-		Prerequisites: ~active.raynor, upgrade.infarmor2, ~!techlevel.shields
+		Prerequisites: ~active.raynor, ~!techlevel.shields
+		Icon: protossshields
 	RenderSprites:
-		Image: upgrade.infarmor3
-	ProvidesPrerequisite@buildingname:
-	ProvidesPrerequisite@upgradename:
-		Prerequisite: upgrade.infarmor3
+		Image: icon
 	ProvidesPrerequisite@upgradename2:
 		Prerequisite: infantry.shields
 	ProvidesPrerequisite@upgradename3:
@@ -204,12 +181,9 @@ raynor.tier5.fastupgrade2a:
 		Name: actor-raynor-tier5-fastupgrade2a.name
 	Buildable:
 		Description: actor-raynor-tier5-fastupgrade2a.description
-		Prerequisites: ~active.raynor, upgrade.infarmor2, ~techlevel.shields
+		Prerequisites: ~active.raynor, ~techlevel.shields
 	RenderSprites:
 		Image: upgrade.infarmor3
-	ProvidesPrerequisite@buildingname:
-	ProvidesPrerequisite@upgradename:
-		Prerequisite: upgrade.infarmor3
 	ProvidesPrerequisite@upgradename2:
 		Prerequisite: infantry.shields
 	ProvidesPrerequisite@upgradename3:

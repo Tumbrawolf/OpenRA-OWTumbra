@@ -413,7 +413,7 @@ BTRAE.Hero0:
 		Count: 10
 	ReloadAmmoPool@nuke:
 		AmmoPool: nuke
-		Delay: 750
+		Delay: 575
 	GrantConditionOnAttack@heat1:
 		ArmamentNames: primary1, primary2, primary3, upg_largelaser, upg_ppc, upg_nuke
 		Condition: mech_heat
@@ -626,7 +626,7 @@ BTRAE.Hero0:
 		Modifier: 80
 	RevealsShroudMultiplier@cloaked: # but she can see farther!
 		RequiresCondition: cloaked
-		Modifier: 110
+		Modifier: 120
 	WithDecoration@cloaked: # indicator that she is stealthed
 		Position: Top
 		Margin: 0, -6

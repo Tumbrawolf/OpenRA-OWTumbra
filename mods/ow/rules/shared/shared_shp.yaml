@@ -201,7 +201,6 @@ LST.HARV:
 	Buildable:
 		Queue: Ship
 		BuildPaletteOrder: 10
-		Prerequisites: refinery
 		Description: actor-lstharv.description
 		Icon: icon-oil
 	Valued:
@@ -251,3 +250,5 @@ LST.HARV:
 		Weapon: OilExplosion
 	RenderSprites:
 		Image: lst
+	ProvidesPrerequisite@ref:
+		Prerequisite: refinery

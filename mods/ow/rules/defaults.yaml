@@ -102,7 +102,7 @@
 		CloakType: gpsscrambler
 		CloakedCondition: cloaked
 	Targetable@gpsscrambler:
-		RequiresCondition: gpsscrambler
+		RequiresCondition: gpsscrambler && cloaked
 		TargetTypes: NoAITarget
 	ExternalCondition@arbiterstealth:
 		Condition: arbiterstealth
@@ -126,6 +126,9 @@
 	ReloadDelayMultiplier@ensnare:
 		RequiresCondition: queen_ensnare && !gdi_suits
 		Modifier: 133
+	ReloadAmmoDelayMultiplier@ensnare:
+		RequiresCondition: queen_ensnare && !gdi_suits
+		Modifier: 133
 	WithColoredOverlay@parasite:
 		RequiresCondition: queen_parasite
 		Color: 99AA0025
@@ -144,9 +147,28 @@
 	ReloadDelayMultiplier@timestop:
 		RequiresCondition: timestop
 		Modifier: 1000
+	ReloadAmmoDelayMultiplier@timestop:
+		RequiresCondition: timestop
+		Modifier: 1000
 	WithColoredOverlay@timestop:
 		RequiresCondition: timestop
 		Color: 806D005A
+	ExternalCondition@treecloak:
+		Condition: treecloak
+	Cloak@treecloak:
+		CloakSound: gstealof.aud
+		UncloakOn: Attack, Damage, Move
+		RequiresCondition: treecloak && (!gpsscrambler && !stealthgen)
+		CloakedAlpha: 0.75
+		InitialDelay: 100
+		CloakDelay: 100
+		CloakedCondition: cloaked
+	RangeMultiplier@treecloak: # When hiding behind a tree and cloaked, attack range is reduced
+		RequiresCondition: treecloak && cloaked
+		Modifier: 80
+	RevealsShroudMultiplier@treecloak: # but these units can see further!
+		RequiresCondition: treecloak && cloaked
+		Modifier: 110
 
 # Applies to infantry, vehicles, aircraft and structures. This was primarily used add a damage resistance debuff caused by toxin weapons
 # GDI Suits upgrade grants immunity to some of these debuffs.
@@ -200,6 +222,9 @@
 	ReloadDelayMultiplier@fanatics:
 		RequiresCondition: nod_fanatics
 		Modifier: 90
+	ReloadAmmoDelayMultiplier@fanatics:
+		RequiresCondition: nod_fanatics
+		Modifier: 90
 	ExternalCondition@irradiate:
 		Condition: irradiate
 	WithIdleOverlay@irradiate:
@@ -209,10 +234,10 @@
 	Targetable@irradiated: # prevents stacking of the effect
 		RequiresCondition: irradiate
 		TargetTypes: Irradiated
-#	FireWarheads@irradiate:
-#		RequiresCondition: irradiate
-#		Weapons: IrradiateAreaDamage
-#		Interval: 50
+	#FireWarheads@irradiate:
+	#	RequiresCondition: irradiate
+	#	Weapons: IrradiateAreaDamage
+	#	Interval: 50
 	ExternalCondition@dominatrix:
 		Condition: dominatrix
 	DamageMultiplier@dominatrix:
@@ -266,17 +291,17 @@
 		Color: 80000040
 	DamageMultiplier@ironshroud:
 		RequiresCondition: ironshroud
-		Modifier: 40
+		Modifier: 20
 	ExternalCondition@ironshroud:
 		Condition: ironshroud
 	GrantConditionOnAttack@ai_consideration_iron:
 		Condition: ironable
 		RevokeDelay: 100
 	GrantConditionOnDamage@ai_consideration_iron:
-		Condition: ironable
+		Condition: ironable_combat
 		Duration: 100
 	Targetable@ai_consideration_iron:
-		RequiresCondition: ironable
+		RequiresCondition: ironable && ironable_combat
 		TargetTypes: IronCurtainMe
 
 # Inherited and changed from mods/ra to make ranked up actors give more experience when killed.
@@ -327,6 +352,10 @@
 	-ReloadDelayMultiplier@RANK-2:
 	-ReloadDelayMultiplier@RANK-3:
 	-ReloadDelayMultiplier@RANK-ELITE:
+	-ReloadAmmoDelayMultiplier@RANK-1:
+	-ReloadAmmoDelayMultiplier@RANK-2:
+	-ReloadAmmoDelayMultiplier@RANK-3:
+	-ReloadAmmoDelayMultiplier@RANK-ELITE:
 	-ChangesHealth@ELITE:
 	-WithDecoration@RANK-1:
 	-WithDecoration@RANK-2:
@@ -427,6 +456,9 @@
 		RequiresCondition: aeiouboost
 		Modifier: 110
 	ReloadDelayMultiplier@aeiouboost:
+		RequiresCondition: aeiouboost
+		Modifier: 90
+	ReloadAmmoDelayMultiplier@aeiouboost:
 		RequiresCondition: aeiouboost
 		Modifier: 90
 	WithDecoration@aeiouboost:
@@ -631,7 +663,7 @@
 		Modifier: 250
 	ResourceValueMultiplier@harderAI:
 		RequiresCondition: ai.harder
-		Modifier: 400
+		Modifier: 350
 	GrantConditionOnPrerequisite@processing:
 		Prerequisites: nod.tiberium
 		Condition: processing
@@ -696,6 +728,58 @@
 	Building:
 		BuildSounds: constru2.aud, hvydoor1.aud
 
+^WeaponsFactory:
+	Inherits: ^FactoryPrereqs
+	GrantConditionOnPrerequisite@botowner:
+		Prerequisites: ai.all
+		Condition: botowner
+	GrantConditionOnPrerequisite@nomcv:
+		Prerequisites: !mcv
+		Condition: nomcv
+	GrantPeriodicCondition@nomcv:
+		RequiresCondition: nomcv && botowner
+		Condition: build_mcv
+		CooldownDuration: 2750, 3250
+	GrantConditionOnPrerequisite@mcv1:
+		Prerequisites: vehicles.mcvprereq
+		Condition: mcv1
+	GrantConditionOnPrerequisite@mcv2:
+		Prerequisites: vehicles.mcvdprereq
+		Condition: mcv2
+	GrantConditionOnPrerequisite@mcv3:
+		Prerequisites: vehicles.gla
+		Condition: mcv3
+	GrantConditionOnPrerequisite@mcv4:
+		Prerequisites: vehicles.protoss
+		Condition: mcv4
+	GrantConditionOnPrerequisite@mcv5:
+		Prerequisites: vehicles.avalon
+		Condition: mcv5
+	PeriodicProducer@nomcv1:
+		RequiresCondition: build_mcv && mcv1
+		Type: Vehicle
+		ChargeDuration: 99
+		Actors: MCV
+	PeriodicProducer@nomcv2:
+		RequiresCondition: build_mcv && mcv2
+		Type: Vehicle
+		ChargeDuration: 99
+		Actors: MCVD
+	PeriodicProducer@nomcv3:
+		RequiresCondition: build_mcv && mcv3
+		Type: Vehicle
+		ChargeDuration: 99
+		Actors: GMCV
+	PeriodicProducer@nomcv4:
+		RequiresCondition: build_mcv && mcv4
+		Type: Vehicle
+		ChargeDuration: 99
+		Actors: PMCV
+	PeriodicProducer@nomcv5:
+		RequiresCondition: build_mcv && mcv5
+		Type: Vehicle
+		ChargeDuration: 99
+		Actors: AVMCV
 
 # Inherited and changed from mods/ra to add upgrade modifiers and numerous other buff/debuff modifiers from support powers
 ^Infantry:
@@ -782,6 +866,12 @@
 	ReloadDelayMultiplier@firespeed2:
 		RequiresCondition: infantry.firespeed2
 		Modifier: 80
+	ReloadAmmoDelayMultiplier@firespeed1:
+		RequiresCondition: infantry.firespeed1 && !infantry.firespeed2
+		Modifier: 90
+	ReloadAmmoDelayMultiplier@firespeed2:
+		RequiresCondition: infantry.firespeed2
+		Modifier: 80
 	GrantConditionOnPrerequisite@range1:
 		Prerequisites: infantry.range1
 		Condition: infantry.range1
@@ -858,6 +948,9 @@
 		RequiresCondition: demoralise
 		Modifier: 90
 	ReloadDelayMultiplier@demoralise:
+		RequiresCondition: demoralise
+		Modifier: 115
+	ReloadAmmoDelayMultiplier@demoralise:
 		RequiresCondition: demoralise
 		Modifier: 115
 	WithDecoration@demoralise:
@@ -1008,6 +1101,36 @@
 	GrantConditionOnOwnerName@creeps:
 		PlayerName: Creeps
 		Condition: creepowner
+	ExternalCondition@INVULNERABILITY:
+		Condition: invuln_kill
+	ExternalCondition@INVULNERABILITY2:
+		Condition: invulnerability
+	GrantCondition@INVULNERABILITY:
+		Condition: invuln_kill
+		RequiresCondition: invulnerability
+	ChangesHealth@INVULNERABILITY:
+		RequiresCondition: invuln_kill && shielded
+		DamageTypes: FireDeath, BypassShield
+		PercentageStep: -200
+		Delay: 1
+		StartIfBelow: 101
+	ChangesHealth@INVULNERABILITY_noshield:
+		RequiresCondition: invuln_kill && !shielded
+		DamageTypes: FireDeath
+		PercentageStep: -2
+		Delay: 1
+		StartIfBelow: 101
+	WithColoredOverlay@IRONCURTAIN:
+		RequiresCondition: invulnerability
+	Chronoshiftable:
+		ExplodeInstead: true
+		DamageTypes: BulletDeath
+	GrantConditionOnPrerequisite@raynortraining:
+		Condition: raynortraining
+		Prerequisites: raynor.training
+	GainsExperienceMultiplier@raynortraining:
+		RequiresCondition: raynortraining
+		Modifier: 125
 
 ^Cyborg:
 	Inherits: ^Infantry
@@ -1318,6 +1441,7 @@
 	Inherits@jshield: ^JapanBaseShield
 	Inherits@holdtheline: ^USAHoldTheLine
 	Inherits@japanbuffs_refinery: ^japanbuffs_refinery
+	Inherits@frost: ^GenerateFrost
 	OwnerLostAction:
 		Action: ChangeOwner
 	Capturable:
@@ -1437,9 +1561,9 @@
 	GrantConditionOnPrerequisite@gapgen2:
 		Prerequisites: ulttech.heydrich
 		Condition: ulttech.france
-#	CreatesShroud: removed until resolved in engine
-#		Range: 5c0
-#		RequiresCondition: !disabled && (ulttech.france || nearbygap)
+	#CreatesShroud: removed until resolved in engine
+	#	Range: 5c0
+	#	RequiresCondition: !disabled && (ulttech.france || nearbygap)
 	ExternalCondition@nearbygap:
 		Condition: nearbygap
 	ProximityExternalCondition@nearbygap:
@@ -1644,6 +1768,11 @@
 	GrantConditionOnPrerequisite@botowner:
 		Condition: botowner
 		Prerequisites: ai.harder
+	-GrantConditionOnPrerequisite@frost:
+	-SeedsResource@frost:
+	-FireWarheadsOnDeath@frost:
+	-FireWarheads@frost:
+	-ProximityExternalCondition@frost:
 
 ^BuildingPlug:
 	Interactable:
@@ -2461,6 +2590,14 @@
 		Modifier: 93
 	ReloadDelayMultiplier@RANK-ELITE:
 		Modifier: 90
+	ReloadAmmoDelayMultiplier@RANK-1:
+		Modifier: 98
+	ReloadAmmoDelayMultiplier@RANK-2:
+		Modifier: 96
+	ReloadAmmoDelayMultiplier@RANK-3:
+		Modifier: 93
+	ReloadAmmoDelayMultiplier@RANK-ELITE:
+		Modifier: 90
 	ChangesHealth@ELITE:
 		PercentageStep: 1
 		Delay: 125
@@ -2703,27 +2840,6 @@
 	Targetable:
 		TargetTypes: GroundActor, DetonateAttack, Wall
 
-# Inherited and changed from mods/ra for new target type Cyborg and auto-attack walls (AI)
-^AutoTargetGround:
-	AutoTargetPriority@DEFAULT:
-		ValidTargets: Infantry, Cyborg, Vehicle, Water, Ship, Underwater, Defense, Mine
-	AutoTargetPriority@ATTACKANYTHING:
-		ValidTargets: Infantry, Cyborg, Vehicle, Water, Ship, Underwater, Structure, Defense, Mine, Wall
-
-^AutoTargetAll:
-	AutoTargetPriority@DEFAULT:
-		ValidTargets: Infantry, Cyborg, Vehicle, Water, Ship, Underwater, AirborneActor, Defense, Mine
-	AutoTargetPriority@ATTACKANYTHING:
-		ValidTargets: Infantry, Cyborg, Vehicle, Water, Ship, Underwater, AirborneActor, Structure, Defense, Mine, Wall
-
-^AutoTargetAirAssaultMove:
-	Inherits: ^AutoTargetAir
-	AutoTargetPriority@DEFAULT:
-		RequiresCondition: !stance-attackanything && !assault-move
-	AutoTargetPriority@ATTACKANYTHING:
-		RequiresCondition: stance-attackanything || assault-move
-	AttackMove:
-		AssaultMoveCondition: assault-move
 
 # Inherited and changed from mods/ra to increase lifetime and allowed terrain types
 ^Husk:
@@ -2865,6 +2981,9 @@
 	ReloadDelayMultiplier@propagandaboost:
 		RequiresCondition: propaganda
 		Modifier: 90
+	ReloadAmmoDelayMultiplier@propagandaboost:
+		RequiresCondition: propaganda
+		Modifier: 90
 	WithIdleOverlay@propagandaboost:
 		Image: propagandaboost-overlay
 		Sequence: vehicle
@@ -2881,6 +3000,9 @@
 		DamageCooldown: 125
 		RequiresCondition: propagandaupgrade
 	ReloadDelayMultiplier@propagandaboostupgrade:
+		RequiresCondition: propagandaupgrade
+		Modifier: 80
+	ReloadAmmoDelayMultiplier@propagandaboostupgrade:
 		RequiresCondition: propagandaupgrade
 		Modifier: 80
 	WithIdleOverlay@propagandaboostupgrade:
@@ -2906,6 +3028,9 @@
 		Modifier: 75
 		RequiresCondition: JapanBerserkerCondition
 	ReloadDelayMultiplier@JapanBerserkerPower:
+		Modifier: 120
+		RequiresCondition: JapanBerserkerCondition
+	ReloadAmmoDelayMultiplier@JapanBerserkerPower:
 		Modifier: 120
 		RequiresCondition: JapanBerserkerCondition
 	RejectsOrders@JapanBerserkerPower:
@@ -2951,6 +3076,9 @@
 		Modifier: 75
 		RequiresCondition: JapanBerserkerCondition
 	ReloadDelayMultiplier@JapanBerserkerPower:
+		Modifier: 120
+		RequiresCondition: JapanBerserkerCondition
+	ReloadAmmoDelayMultiplier@JapanBerserkerPower:
 		Modifier: 120
 		RequiresCondition: JapanBerserkerCondition
 	RejectsOrders@JapanBerserkerPower:
@@ -3139,6 +3267,9 @@
 	ReloadDelayMultiplier@cyrostrike:
 		RequiresCondition: cyrostrikeeffect
 		Modifier: 150
+	ReloadAmmoDelayMultiplier@cyrostrike:
+		RequiresCondition: cyrostrikeeffect
+		Modifier: 150
 	WithColoredOverlay@cyrostrike:
 		RequiresCondition: cyrostrikeeffect
 		Color: 00fbff40
@@ -3241,26 +3372,62 @@
 		ValidRelationships: None,Neutral,Enemy,Ally
 		RequiresCondition: tscv
 
+# Inherited and changed from mods/ra for new target type Cyborg and auto-attack walls (AI)
+^AutoTargetGround:
+	AutoTargetPriority@DEFAULT:
+		ValidTargets: Infantry, Cyborg, Vehicle, Water, Ship, Underwater, Defense, Mine
+		InvalidTargets: NoAutoTarget, UpgradeThing, Ground, OreMine
+		Priority: 1
+	AutoTargetPriority@ATTACKANYTHING:
+		ValidTargets: Infantry, Cyborg, Vehicle, Water, Ship, Underwater, Structure, Defense, Mine, Wall
+		InvalidTargets: NoAutoTarget, UpgradeThing, Ground, OreMine
+		Priority: 1
+
+^AutoTargetAll:
+	AutoTargetPriority@DEFAULT:
+		ValidTargets: Infantry, Cyborg, Vehicle, Water, Ship, Underwater, AirborneActor, Defense, Mine
+		InvalidTargets: NoAutoTarget, UpgradeThing, Ground, OreMine
+		Priority: 1
+	AutoTargetPriority@ATTACKANYTHING:
+		ValidTargets: Infantry, Cyborg, Vehicle, Water, Ship, Underwater, AirborneActor, Structure, Defense, Mine, Wall
+		InvalidTargets: NoAutoTarget, UpgradeThing, Ground, OreMine
+		Priority: 1
+
+^AutoTargetAirAssaultMove:
+	Inherits: ^AutoTargetAir
+	AutoTargetPriority@DEFAULT:
+		RequiresCondition: !stance-attackanything && !assault-move
+	AutoTargetPriority@ATTACKANYTHING:
+		RequiresCondition: stance-attackanything || assault-move
+	AttackMove:
+		AssaultMoveCondition: assault-move
+
+^AutoTargetAir:
+	AutoTarget:
+	AutoTargetPriority@DEFAULT:
+		ValidTargets: AirborneActor
+		InvalidTargets: NoAutoTarget, UpgradeThing, Ground, OreMine
+
+^AutoTargetAllAssaultMove:
+	Inherits: ^AutoTargetAll
+	AutoTargetPriority@DEFAULT:
+		RequiresCondition: !stance-attackanything && !assault-move
+	AutoTargetPriority@ATTACKANYTHING:
+		RequiresCondition: stance-attackanything || assault-move
+	AttackMove:
+		AssaultMoveCondition: assault-move
 
 ^AutoTargetInfantryPriority:
 	AutoTargetPriority@Infantry:
 		ValidTargets: Infantry
-		InvalidTargets: NoAutoTarget
-		Priority: 2
-	AutoTargetPriority@Vehicle:
-		ValidTargets: Vehicle
-		InvalidTargets: NoAutoTarget
-		Priority: 1
+		InvalidTargets: NoAutoTarget, UpgradeThing, Ground, OreMine
+		Priority: 3
 
 ^AutoTargetVehiclePriority:
-	AutoTargetPriority@Infantry:
-		ValidTargets: Infantry
-		InvalidTargets: NoAutoTarget
-		Priority: 2
 	AutoTargetPriority@Vehicle:
 		ValidTargets: Vehicle
-		InvalidTargets: NoAutoTarget
-		Priority: 1
+		InvalidTargets: NoAutoTarget, UpgradeThing, Ground, OreMine
+		Priority: 3
 
 # Default actor type for Blossom trees and monoliths
 ^TibTree:
@@ -3319,6 +3486,13 @@
 
 # Inherited and changed from mods/ra so that the tree can be removed with an external condition, and targeted as a normal GroundActor
 ^Tree:
+	Building:
+		TerrainTypes: Clear,ClearSnow,Road,Creep,ClearSnow
+		AllowPlacementOnResources: true
+	HitShape:
+		UseTargetableCellsOffsets: false
+		Type: Circle
+			Radius: 426
 	ExternalCondition@remove:
 		Condition: remove_tree
 	KillsSelf@remove:
@@ -3326,10 +3500,20 @@
 		Delay: 5
 	Targetable:
 		TargetTypes: Trees, GroundActor
+	ProximityExternalCondition@treecloak:
+		Condition: neartreecloak
+		Range: 2c512
+	SoundOnDamageTransition:
+		DamageTypes: TreePunch
+		DamagedSounds: wooddig1.ogg, wooddig2.ogg, wooddig3.ogg, wooddig4.ogg
+		DestroyedSounds: wooddig1.ogg, wooddig2.ogg, wooddig3.ogg, wooddig4.ogg
 
 # Inherited and changed from mods/ra so that trees can be 100% destroyed.
 ^TreeHusk:
-	Inherits@shape: ^1x1Shape
+	HitShape:
+	Building:
+		TerrainTypes: Clear,ClearSnow,Road,Creep,ClearSnow
+		AllowPlacementOnResources: true
 	Health:
 		HP: 50000
 	Armor:
@@ -3342,6 +3526,10 @@
 		RequiresCondition: remove_tree
 		RemoveInstead: true
 		Delay: 100
+	SoundOnDamageTransition:
+		DamageTypes: TreePunch
+		DamagedSounds: wooddig1.ogg, wooddig2.ogg, wooddig3.ogg, wooddig4.ogg
+		DestroyedSounds: wooddig1.ogg, wooddig2.ogg, wooddig3.ogg, wooddig4.ogg
 
 # Default actor type for all the tree actor types that can be infected by tiberium
 ^InfectableTree:
@@ -3382,7 +3570,7 @@
 		SoundFiles: ambtibe2.wav
 		Delay: 250, 3000
 		Interval: 1500, 3000
-	FreeActor@1:
+	FreeActor@tibtree:
 		RequiresCondition: dotransform
 		Actor: split3.cr
 		SpawnOffset: 0,0
@@ -4004,3 +4192,29 @@
 	Selectable:
 		Priority: 9
 		PriorityModifiers: Ctrl
+
+# Attached to structures, Avali upgrade makes all non-Zerg buildings generate snow.
+^GenerateFrost:
+	GrantConditionOnPrerequisite@frost:
+		Prerequisites: avalon.terra
+		Condition: enable_snow
+	SeedsResource@frost:
+		ResourceType: AvaliSnow
+		Interval: 25
+		MaxRange: 9
+		RequiresCondition: !disabled && enable_snow
+	FireWarheadsOnDeath@frost:
+		Weapon: FrostRemoveMed
+		RequiresCondition: enable_snow
+	ToggleConditionOnOrder@sell:
+		OrderName: Sell
+		Condition: selling
+	FireWarheads@frost:
+		RequiresCondition: selling && enable_snow
+		Weapons: FrostRemoveMed
+		Interval: 50
+	ProximityExternalCondition@frost:
+		RequiresCondition: enable_snow
+		Condition: creepgen
+		Range: 9c0
+		ValidRelationships: Neutral, Ally, Enemy
