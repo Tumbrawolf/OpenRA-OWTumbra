@@ -229,7 +229,7 @@ AnimalDen:
 
 ##Vehicles and Defence Balista
 ##Dwarfsettlement
-Dwarfsettlement:
+dwarfsettlement:
 	Inherits: WEAP
 	Buildable:
 		Prerequisites: barracks, ~structures.medi, ~!ai.hard, ~techlevel.low
@@ -291,7 +291,7 @@ Drydock:
 
 ##Aircraft
 ##Dragons Lair produces Aircraft
-Lair:
+dragonlair:
 	Inherits: AFLD
 	Buildable:
 		Prerequisites: techcenter, ~structures.medi, ~techlevel.low
@@ -402,7 +402,7 @@ techcenterblacksmith:
 
 ##Advanced Tech
 ##alchlab
-Library:
+advtechcenterlibrary:
 	Inherits: ADVTECH
 	Buildable:
 		Queue: Tech
@@ -438,7 +438,7 @@ Library:
 	Targetable:
 		TargetTypes: GroundActor, C4, DetonateAttack, Structure, SpyInfiltrate
 	RenderSprites:
-		Image: advtechcenter-library
+		Image: advtechcenterlibrary
 	## Neutral Powers
 	## Cult Powers
 	## Holy Powers
@@ -671,7 +671,7 @@ Archertower:
 		QuantizedFacings: 8
 
 ##Garrison structure
-MediGarrisonTower:
+guardhouse:
 	Inherits: ^Defense
 	Inherits@AUTOTARGET: ^AutoTargetAll
 	Inherits@shape: ^2x2Shape

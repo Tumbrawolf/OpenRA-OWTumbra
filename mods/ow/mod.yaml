@@ -69,7 +69,7 @@ FileSystem: ContentInstallerFileSystem
 		ow|bits/gfx/fed
 		ow|bits/gfx/medi
 		ow|bits/gfx/medi/leftovers
-		ow|bits/gfx/medi/leftovers/updated
+		ow|bits/gfx/medi/updated
 		ow|bits/gfx/tsbits
 		ow|bits/gfx/voxels
 		ow|bits/gfx/starcraft
