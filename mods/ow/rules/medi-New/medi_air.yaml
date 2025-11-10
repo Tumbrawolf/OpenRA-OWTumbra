@@ -3,6 +3,10 @@
 ################################   Aircraft   #################################
 ###############################################################################
 
+###############################################################################
+##################################   Shared   #################################
+###############################################################################
+
 ##burns through infantry, weak against armor
 ##gyro
 gyro:
@@ -160,6 +164,201 @@ gryphon:
 	RenderSprites:
 		Image: medigryphonrider
 
+###############################################################################
+##################################   Holy   ###################################
+###############################################################################
+
+##Melee's infantry, weak against armor and buildings
+##GiantEagle
+GiantEagle:
+	Inherits: ^Helicopter
+	Inherits@MediLowPower: ^MediLowPower
+	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
+	Buildable:
+		Queue: Aircraft
+		BuildAtProductionType: Helicopter
+		BuildPaletteOrder: 20
+		Prerequisites: ~aircraft.medi
+		Description: Giant Eagle
+	Valued:
+		Cost: 1500
+	Tooltip:
+		Name: Giant Eagle
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Health:
+		HP: 10000
+	RevealsShroud:
+		MinRange: 8c0
+		Range: 10c0
+		MoveRecalculationThreshold: 0
+		Type: GroundPosition
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 8c0
+		MoveRecalculationThreshold: 0
+		Type: GroundPosition
+	Armament@PRIMARY:
+		Weapon: GiantEagle
+		LocalOffset: 85,-213,-85, 85,213,-85
+	AttackAircraft:
+		FacingTolerance: 80
+		PersistentTargeting: false
+		AttackType: Hover
+		OpportunityFire: False
+	Aircraft:
+		TurnSpeed: 16
+		Speed: 112
+	AutoTarget:
+		InitialStance: Defend
+		InitialStanceAI: Defend
+	WithIdleOverlay@ROTORAIR:
+		Sequence: rotor
+		RequiresCondition: airborne
+	WithIdleOverlay@ROTORGROUND:
+		Sequence: slow-rotor
+		RequiresCondition: !airborne
+	SelectionDecorations:
+	WithMuzzleOverlay:
+	WithDamageOverlay:
+		Offset: -427,0,0
+	ProducibleWithLevel:
+		Prerequisites: aircraft.upgraded
+	Selectable:
+		DecorationBounds: 1621, 1365
+	SpawnActorOnDeath:
+		Actor: gyro.Husk
+	WithAmmoPipsDecoration:
+		Position: BottomLeft
+		RequiresSelection: true
+		PipCount: 6
+	RenderSprites:
+		Image: mgeagle
+
+###############################################################################
+##################################   Cult   ###################################
+###############################################################################
+
+##magic for destroying vehicles, hard time damaging infantry (replaces gryphon)
+##Harpy
+Harpy:
+	Inherits: gryphon
+	Inherits@MediLowPower: ^MediLowPower
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	Buildable:
+		Queue: Aircraft
+		BuildAtProductionType: Helicopter
+		BuildPaletteOrder: 20
+		BuildDuration: 1000
+		Prerequisites: ~aircraft.medi
+		Description: Magical Attack beast. \n Regenerates Ammo \n Strong vs Tanks \n  Weak vs Infantry Light armor, Aircraft
+	Valued:
+		Cost: 2000
+	Tooltip:
+		Name: Harpy
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Health:
+		HP: 15000
+	RevealsShroud:
+		MinRange: 8c0
+		Range: 10c0
+		MoveRecalculationThreshold: 0
+		Type: GroundPosition
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 8c0
+		MoveRecalculationThreshold: 0
+		Type: GroundPosition
+	Armament@PRIMARY:
+		Weapon: HarpyGround
+	Armament@SECONDARY:
+		Name: secondary
+		Weapon: HarpyGroundburst
+	SpawnActorOnDeath:
+		Actor: medigryphonrider.Husk
+	RenderSprites:
+		Image: mharpy
+
+##Elite flying tank
+##Vendral
+Vendral:
+	Inherits: ^Plane
+	Inherits@MediLowPower: ^MediLowPower
+	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
+	Buildable:
+		Queue: Aircraft
+		BuildAtProductionType: Helicopter
+		BuildPaletteOrder: 65
+		Prerequisites: ~aircraft.medi
+		BuildLimit: 1
+		Description: Airborn beast who rules the sky, \n  Strong vs All
+	Valued:
+		Cost: 2500
+	Tooltip:
+		Name: Vendral
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	RenderSprites:
+		Image: mvendral
+	Health:
+		HP: 13000
+	Armament@PRIMARY:
+		Name: primary
+		Weapon: VendralGround
+		RequiresCondition: !lowpower
+		PauseOnCondition: !ammo
+	Armament@SECONDARY:
+		Name: secondary
+		Weapon: VendralAir
+		RequiresCondition: !lowpower
+	AttackAircraft:
+		Armaments: primary, secondary
+		FacingTolerance: 250
+		PersistentTargeting: True
+		AttackType: Strafe
+		OpportunityFire: False
+	Aircraft:
+		TurnSpeed: 15
+		Speed: 130
+	RevealsShroud:
+		MinRange: 6c0
+		Range: 11c0
+		MoveRecalculationThreshold: 0
+		Type: GroundPosition
+		RevealGeneratedShroud: False
+	AutoTarget:
+		InitialStance: Defend
+		InitialStanceAI: Defend
+	AmmoPool:
+		Armaments: primary
+		Ammo: 10
+		ReloadDelay: 1
+		AmmoCondition: ammo
+	RevealsShroud@GAPGEN:
+		Range: 11c0
+		MoveRecalculationThreshold: 0
+		Type: GroundPosition
+	Selectable:
+		Bounds: 1536, 1194, 0, 85
+		DecorationBounds: 1706, 1237, 0, 42
+	SelectionDecorations:
+	ProducibleWithLevel:
+		Prerequisites: aircraft.upgraded
+	SpawnActorOnDeath:
+		Actor: MediDragon.Husk
+	Rearmable:
+	WithAmmoPipsDecoration:
+		Position: BottomLeft
+		RequiresSelection: true
+		PipCount: 6
+	-EjectOnDeath:
+
+
+###############################################################################
+################################   Wizards   ##################################
+###############################################################################
+
 ##anti armor flying tank
 ##dragon
 MediDragon:
@@ -180,7 +379,7 @@ MediDragon:
 	UpdatesPlayerStatistics:
 		AddToArmyValue: true
 	RenderSprites:
-		Image: medidragon
+		Image: mdragon
 	Health:
 		HP: 13000
 	Armament@PRIMARY:
@@ -233,6 +432,10 @@ MediDragon:
 		RequiresSelection: true
 		PipCount: 6
 	-EjectOnDeath:
+
+###############################################################################
+##################################   Other   ###################################
+###############################################################################
 
 ##Medi Airstrikes
 MediDragonBomber:
@@ -295,8 +498,113 @@ MediDragonBomberZoomies:
 	-Targetable@AIRBORNE:
 
 
-##flying siege unit
+##flying siege unit with AOE slow
 ##wyvern
+wyvern:
+	Inherits: ^Helicopter
+	Inherits@MediLowPower: ^MediLowPower
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	Buildable:
+		Queue: Aircraft
+		BuildAtProductionType: Helicopter
+		BuildPaletteOrder: 20
+		BuildDuration: 1000
+		Prerequisites: ~aircraft.medi
+		Description: Magical Attack beast. \n Regenerates Ammo \n Strong vs Tanks \n  Weak vs Infantry Light armor, Aircraft
+	Valued:
+		Cost: 2000
+	Tooltip:
+		Name: Harpy
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Health:
+		HP: 15000
+	RevealsShroud:
+		MinRange: 8c0
+		Range: 10c0
+		MoveRecalculationThreshold: 0
+		Type: GroundPosition
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 8c0
+		MoveRecalculationThreshold: 0
+		Type: GroundPosition
+	Armament@PRIMARY:
+		Weapon: wyvernbomb
+		LocalOffset: 85,-213,-85, 85,213,-85
+	AttackAircraft:
+		FacingTolerance: 80
+		PersistentTargeting: false
+		AttackType: Hover
+		OpportunityFire: False
+	Aircraft:
+		TurnSpeed: 16
+		Speed: 112
+	AutoTarget:
+		InitialStance: Defend
+		InitialStanceAI: Defend
+	SpawnActorOnDeath:
+		Actor: medigryphonrider.Husk
+	SelectionDecorations:
+	WithMuzzleOverlay:
+	WithDamageOverlay:
+		Offset: -427,0,0
+	ProducibleWithLevel:
+		Prerequisites: aircraft.upgraded
+	Selectable:
+		DecorationBounds: 1621, 1365
+	-EjectOnDeath:
+	RenderSprites:
+		Image: mediicewyvern
 
 ##air transport unit
 ##zeplin
+medizeplin:
+	Inherits: ^Helicopter
+	Inherits@CARGOPIPS: ^CargoPips
+	Buildable:
+		Queue: Aircraft
+		BuildAtProductionType: Helicopter
+		BuildPaletteOrder: 10
+		Prerequisites: ~aircraft.medi
+		Description: actor-medizeplin.description
+	Valued:
+		Cost: 1500
+	Tooltip:
+		Name: actor-medizeplin.name
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Health:
+		HP: 60000
+	RevealsShroud:
+		MinRange: 6c0
+		Range: 10c0
+		Type: GroundPosition
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 6c0
+		Type: GroundPosition
+	Aircraft:
+		TurnSpeed: 5
+		Speed: 80
+		AltitudeVelocity: 0c58
+	WithIdleOverlay@ROTOR1AIR:
+		Offset: 260,0,343
+		Sequence: rotor
+		RequiresCondition: airborne
+	WithIdleOverlay@ROTOR1GROUND:
+		Offset: 260,0,343
+		Sequence: slow-rotor
+		RequiresCondition: !airborne
+	Cargo:
+		Types: Infantry
+		MaxWeight: 20
+		AfterUnloadDelay: 40
+		EjectOnDeath: true
+	SpawnActorOnDeath:
+		Actor: medizeplinhusk.Husk
+	Selectable:
+		DecorationBounds: 1706, 1536
+	RenderSprites:
+		Image: mblimp
+	-Voiced:

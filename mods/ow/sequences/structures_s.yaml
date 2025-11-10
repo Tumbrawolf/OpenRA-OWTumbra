@@ -2286,6 +2286,175 @@ gpal:
 	icon:
 		Filename: gpalicon.shp
 
+###############################################
+######################Medi#####################
+###############################################
+
+outpostmedi:
+	Defaults:
+		Filename: outpostmedi.shp
+	place:
+		Start: 1
+	idle:
+		Start: 1
+	damaged-idle:
+		Start: 2
+	dead:
+		Start: 2
+		Tick: 800
+	make:
+		Start: 1
+	build-top:
+		Start: 1
+	bib:
+		TilesetFilenames:
+			SNOW: bib3.sno
+			INTERIOR: bib3.int
+			TEMPERAT: bib3.tem
+			DESERT: bib3.des
+		Length: *
+	icon:
+		Filename: farmmediicon.shp
+
+slavecampgc:
+	Defaults:
+		Filename: slavecampgc.shp
+	place:
+		Scale: 0.29
+		Start: 1
+		Length: 2
+	idle:
+		Scale: 0.29
+		Start: 1
+		Length: 2
+	idle-top:
+		Scale: 0.29
+		Start: 1
+		Length: 2
+	idle-uac:
+		Scale: 0.29
+		Start: 1
+		Length: 2
+	damaged-idle:
+		Scale: 0.29
+		Start: 3
+	dead:
+		Scale: 0.29
+		Start: 3
+		Tick: 800
+	make:
+		Scale: 0.29
+		Start: 1
+	bib:
+		TilesetFilenames:
+			SNOW: bib3.sno
+			INTERIOR: bib3.int
+			TEMPERAT: bib3.tem
+			DESERT: bib3.des
+		Length: *
+	icon:
+		Filename: laborcampmediicon.shp
+
+refinarymarket:
+	Defaults:
+		Filename: refinarymarket.shp
+	place:
+		Scale: 0.29
+		Start: 1
+		Length: 9
+	idle:
+		Scale: 0.29
+		Start: 9
+	idle-top:
+		Scale: 0.29
+		Start: 9
+	idle-uac:
+		Scale: 0.29
+		Start: 9
+	damaged-idle:
+		Scale: 0.29
+		Start: 11
+	dead:
+		Scale: 0.29
+		Start: 12
+		Tick: 800
+	make:
+		Scale: 0.29
+		Start: 9
+	bib:
+		TilesetFilenames:
+			SNOW: bib3.sno
+			INTERIOR: bib3.int
+			TEMPERAT: bib3.tem
+			DESERT: bib3.des
+		Length: *
+	icon:
+		Filename: laborcampmediicon.shp
+
+barrackswg:
+	Defaults:
+		Filename: barrackswg.shp
+	place:
+		Scale: 0.23
+		Start: 1
+		Length: 5
+	idle:
+		Scale: 0.23
+		Start: 5
+		Length: 2
+	damaged-idle:
+		Scale: 0.23
+		Start: 7
+		Length: 3
+	dead:
+		Scale: 0.23
+		Start: 9
+		Tick: 800
+	make:
+		Scale: 0.23
+		Start: 5
+	bib:
+		TilesetFilenames:
+			SNOW: bib3.sno
+			INTERIOR: bib3.int
+			TEMPERAT: bib3.tem
+			DESERT: bib3.des
+		Length: *
+	icon:
+		Filename: tentmediicon.shp
+
+AnimalDen:
+	Defaults:
+		Filename: AnimalDen.shp
+	place:
+		Scale: 0.23
+		Start: 1
+	idle:
+		Scale: 0.23
+		Start: 1
+	damaged-idle:
+		Scale: 0.23
+		Start: 2
+	dead:
+		Scale: 0.23
+		Start: 2
+		Tick: 800
+	make:
+		Scale: 0.23
+		Start: 1
+	bib:
+		TilesetFilenames:
+			SNOW: bib3.sno
+			INTERIOR: bib3.int
+			TEMPERAT: bib3.tem
+			DESERT: bib3.des
+		Length: *
+	icon:
+		Filename: tentmediicon.shp
+
+
+###############################################
+
 factm:
 	Defaults:
 		Filename: factm.shp
@@ -2359,41 +2528,6 @@ tentmedi:
 	icon:
 		Filename: tentmediicon.shp
 
-laborcampmedi:
-	Defaults:
-		Filename: laborcampmedi.shp
-	place:
-		Scale: 0.29
-		Start: 1
-	idle:
-		Scale: 0.29
-		Start: 1
-	idle-top:
-		Scale: 0.29
-		Start: 1
-	idle-uac:
-		Scale: 0.29
-		Start: 1
-	damaged-idle:
-		Scale: 0.29
-		Start: 2
-	dead:
-		Scale: 0.29
-		Start: 2
-		Tick: 800
-	make:
-		Scale: 0.29
-		Start: 1
-	bib:
-		TilesetFilenames:
-			SNOW: bib3.sno
-			INTERIOR: bib3.int
-			TEMPERAT: bib3.tem
-			DESERT: bib3.des
-		Length: *
-	icon:
-		Filename: laborcampmediicon.shp
-
 farmmedi:
 	Defaults:
 		Filename: farmmedi.shp
@@ -2449,32 +2583,6 @@ stablemedi:
 		Length: *
 	icon:
 		Filename: stablemediicon.shp
-
-outpostmedi:
-	Defaults:
-		Filename: outpostmedi.shp
-	place:
-		Start: 1
-	idle:
-		Start: 1
-	damaged-idle:
-		Start: 2
-	dead:
-		Start: 2
-		Tick: 800
-	make:
-		Start: 1
-	build-top:
-		Start: 1
-	bib:
-		TilesetFilenames:
-			SNOW: bib3.sno
-			INTERIOR: bib3.int
-			TEMPERAT: bib3.tem
-			DESERT: bib3.des
-		Length: *
-	icon:
-		Filename: farmmediicon.shp
 
 medicastle:
 	Defaults:

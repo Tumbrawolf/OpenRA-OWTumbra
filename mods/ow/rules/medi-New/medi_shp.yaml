@@ -5,18 +5,25 @@
 
 ##Balista on a boat
 ##medibattleship
+#medibattleship:
+#	RenderSprites:
+#		Image: medibattleship
 
 ##AOE siege ship
 ##medijuggernaut
-
-##magic torpeedoes and shit
-##medisub
+#medijuggernaut:
+#	RenderSprites:
+#		Image: medijuggernaut
 
 ##Flame thrower on a boat
 ##elvendestroyer
+#medielvendestroyer:
+#	RenderSprites:
+#		Image: medielvendestroyer
 
-##Armored suicide bomber
-##tanker
 
 ##Infantry transport, units can attack from within
 ##meditransport
+#medicanoe:
+#	RenderSprites:
+#		Image: medicanoe

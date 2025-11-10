@@ -20,12 +20,24 @@
 	Armor:
 		Type: Light
 
+^Medibeast:
+	Inherits: ^Vehicle
+	Mobile:
+		Speed: 100
+		Locomotor: foot
+
 ###############################################################################
 ###################################   MCV   ###################################
 ###############################################################################
 
 ##main construction vehicle
 ##mcvm
+MCVM:
+	Inherits: MCV
+	Inherits@GLAVehicle: ^GLAVehicle
+	Inherits@selection: ^SelectableSupportUnit
+	RenderSprites:
+		Image: mcvcravan
 
 ###############################################################################
 ##############################   Utility and Misc   ###########################
@@ -66,77 +78,11 @@ TRUKMedi:
 	RenderSprites:
 		Image: medicarriage
 
-##medical wagon for healing infantry, high hp and armor
-##carriage
-Carriage:
-	Inherits: ^TrackedVehicle
-	Inherits: ^Horse
-	Inherits@GAINSEXPERIENCE: ^GainsExperience
-	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
-	Buildable:
-		Queue: Vehicle
-		BuildPaletteOrder: 120
-		Prerequisites: ~vehicles.mediwizards, ulttechcenter
-		Description: medical wagon for healing infantry, high hp and armor, Holds a Monument for blessing your army
-	Valued:
-		Cost: 9000
-	Tooltip:
-		Name: Monument Wagon
-	UpdatesPlayerStatistics:
-		AddToArmyValue: true
-	Health:
-		HP: 200000
-	Armor:
-		Type: Heavy
-	WithMoveAnimation:
-		MoveSequence: run
-	AutoTarget:
-		InitialStance: Defend
-		ScanRadius: 7
-	RevealsShroud:
-		MinRange: 8c0
-		Range: 9c0
-		RevealGeneratedShroud: False
-	RevealsShroud@GAPGEN:
-		Range: 4c0
-	Armament:
-		Weapon: Healmedi
-		Cursor: heal
-		OutsideRangeCursor: heal
-		TargetRelationships: Ally
-		ForceTargetRelationships: None
-	ClassicFacingBodyOrientation:
-		QuantizedFacings: 32
-	AttackFrontal:
-		FacingTolerance: 0
-	WithMuzzleOverlay:
-	Selectable:
-		Bounds: 1280, 1280
-		DecorationBounds: 1280, 1280
-	ProducibleWithLevel:
-		Prerequisites: vehicles.upgraded
-	RenderSprites:
-		Image: medicarriage
-	Voiced:
-		VoiceSet: ScoutVoice
-	ProximityExternalCondition@MonumentWagonBoost:
-		RequiresCondition: !disabled
-		Condition: MonumentWagonBoost
-		Range: 11c512
-
-
-###############################################################################
-##############################   Horse Units   ################################
-###############################################################################
-
-##load infantry to change type, steal code from japan
-##horse
-
 ###############################################################################
 ###############################   Artilary Units   ############################
 ###############################################################################
 
-##short range spread shot
+##short range spread shot, Fires explosive magic against vehicles
 ##catapult
 catapult:
 	Inherits: ^TrackedVehicle
@@ -203,7 +149,7 @@ catapult:
 		VoiceSet: SiegeWeaponVoice
 
 
-##long range, needs to deploy
+##long range, Needs to deploy
 ##trebuchet
 Trebuchet:
 	Inherits: ^TrackedVehicle
@@ -253,7 +199,7 @@ Trebuchet:
 		VoiceSet: SiegeWeaponVoice
 
 
-##long range, large aoe, very low damage to armor
+##long range, large aoe, no damage to armor
 ##hwacha
 Hwacha:
 	Inherits: ^TrackedVehicle
@@ -308,7 +254,7 @@ Hwacha:
 		VoiceSet: SiegeWeaponVoice
 
 
-##railgun like attack 
+##railgun like attack, Needs to deploy
 ##ballista
 Ballista:
 	Inherits: ^TrackedVehicle
@@ -493,70 +439,475 @@ SiegeTower:
 		Condition: demoralise
 
 ###############################################################################
-#################################   Elemental Units  ##########################
+#################################   Shared Units   ##############################
 ###############################################################################
 
-##Anti Air elemental
-##airelement
-
-##Applies a slow on hit, hover craft locamotor
-##waterelement
-
-##Siege unit slow melee golem
-##earthelement
-earthelement:
-	Inherits@MediSoldier: ^MediSoldier
-	Inherits@Msiege: ^MediSiege
+##Werewolf
+werewolf:
+	Inherits@Medibeast: ^Medibeast
+	Inherits@GAINSEXPERIENCE: ^GainsExperience
 	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
-	-Cloneable:
-	ChangesHealth:
-		PercentageStep: 10
-		Delay: 40
-		StartIfBelow: 80
-		DamageCooldown: 70
-		RequiresCondition: lowpower
+	Buildable:
+		Prerequisites: ~vehicles.medi
+		Description: Berserkers Wish they were him. \n Strong vs infantry
+		Queue: Vehicle
+		BuildPaletteOrder: 409
+		BuildDuration: 150
+	Valued:
+		Cost: 800
+	Tooltip:
+		Name: Berserker
+	Armor:
+		Type: Light
+	Health:
+		HP: 50000
+	GrantConditionOnHealth@Move:
+		Condition: BerLowHPM
+		MaxHP: 30000
+	GrantConditionOnHealth@Attack:
+		Condition: BerLowHPA
+		MaxHP: 20000
+	SpeedMultiplier:
+		RequiresCondition: BerLowHPM
+		Modifier: 200
+	FirepowerMultiplier:
+		RequiresCondition: BerLowHPA
+		Modifier: 120
+	AttackFrontal:
+		Armaments: primary, primary1
+		FacingTolerance: 0
+	Armament:
+		Name: primary
+		Weapon: GiantbearBite
+		FireDelay: 3
+	Armament@2:
+		Name: primary1
+		Weapon: GiantbearBite
+		FireDelay: 2
+		RequiresCondition: BerLowHPA
+	RenderSprites:
+		Image: werewolf
+	Voiced:
+		VoiceSet: GiantbearVoice
+	ConvertsDamageToHealth:
+		DamagePercentConverted: 15
+
+###############################################################################
+#################################   Holy Units   ##############################
+###############################################################################
+##Giant Bear: Vehicle version of beserker
+giantbear:
+	Inherits@Medibeast: ^Medibeast
+	Inherits@GAINSEXPERIENCE: ^GainsExperience
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	Buildable:
+		Prerequisites: ~vehicles.medi
+		Description: Berserkers Wish they were him. \n Strong vs infantry
+		Queue: Vehicle
+		BuildPaletteOrder: 409
+		BuildDuration: 150
+	Valued:
+		Cost: 800
+	Tooltip:
+		Name: Berserker
+	Armor:
+		Type: Light
+	Health:
+		HP: 50000
+	GrantConditionOnHealth@Move:
+		Condition: BerLowHPM
+		MaxHP: 30000
+	GrantConditionOnHealth@Attack:
+		Condition: BerLowHPA
+		MaxHP: 20000
+	SpeedMultiplier:
+		RequiresCondition: BerLowHPM
+		Modifier: 200
+	FirepowerMultiplier:
+		RequiresCondition: BerLowHPA
+		Modifier: 120
+	AttackFrontal:
+		Armaments: primary, primary1
+		FacingTolerance: 0
+	Armament:
+		Name: primary
+		Weapon: GiantbearBite
+		FireDelay: 3
+	Armament@2:
+		Name: primary1
+		Weapon: GiantbearBite
+		FireDelay: 2
+		RequiresCondition: BerLowHPA
+	RenderSprites:
+		Image: giantbear
+	Voiced:
+		VoiceSet: GiantbearVoice
+	ConvertsDamageToHealth:
+		DamagePercentConverted: 15
+
+##Giant Wolf, Attack dog with more HP
+giantwolf:
+	Inherits@Medibeast: ^Medibeast
+	RenderSprites:
+		Image: giantwolf
+
+
+###############################################################################
+#################################   Cult Units   ##############################
+###############################################################################
+
+##Dirgo, Regens HP, Slower attack speed more HP, more damage per hit
+dirgo:
+	Inherits@TrackedVehicle: ^TrackedVehicle
+	RenderSprites:
+		Image: dirgo
+
+##Giant Spider, Corrosive and stealth, slow
+giantspider:
+	Inherits@TrackedVehicle: ^TrackedVehicle
+	RenderSprites:
+		Image: giantspider
+
+##Medusa, Stuns infantry on death
+medusa:
+	Inherits@Medibeast: ^Medibeast
+	RenderSprites:
+		Image: medusa
+
+##Minotaur, Vehicle version of beserker
+minotaur:
+	Inherits@TrackedVehicle: ^TrackedVehicle
+	RenderSprites:
+		Image: minotaur
+
+##Rrongol, Fast, Can Crit
+rrongol:
+	Inherits@TrackedVehicle: ^TrackedVehicle
+	RenderSprites:
+		Image: rrongol
+
+##Troll, Regens HP
+troll:
+	Inherits@TrackedVehicle: ^TrackedVehicle
+	RenderSprites:
+		Image: troll
+
+###############################################################################
+#################################   Wizard Units   ############################
+###############################################################################
+
+
+##Daemonwood, Tanky Regen
+daemonwood:
+	Inherits: ^TrackedVehicle
+	Inherits@Msiege: ^MediSiege
+	Inherits@GAINSEXPERIENCE: ^GainsExperience
+	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
+	Buildable:
+		Queue: Vehicle
+		Prerequisites: ~vehicles.medi, advtechcenter
+		BuildPaletteOrder: 401
+		Description: Long-range artillery.\n  Strong vs Vehicles, Buildings\n  Weak vs Infantry
+	Valued:
+		Cost: 900
+	Tooltip:
+		Name: Cannon
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Health:
+		HP: 20000
+	Armor:
+		Type: Heavy
+	WithMoveAnimation:
+		MoveSequence: run
+	AutoTarget:
+		InitialStance: Defend
+		ScanRadius: 11
+	RevealsShroud:
+		MinRange: 4c0
+		Range: 5c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 4c0
+	Armament:
+		Weapon: CannonShot
+		LocalOffset: 624,0,208
+	WithAttackAnimation:
+		Sequence: shoot
+	WithDeathAnimation:
+		DeathSequence: die
+	AttackFrontal:
+		Armaments: primary
+		FacingTolerance: 0
+	ProducibleWithLevel:
+		Prerequisites: vehicles.upgraded
+	RenderSprites:
+		Image: daemonwood
+	Voiced:
+		VoiceSet: SiegeWeaponVoice
+
+
+##Rock Golem, Splits on death cluster, Slow huge HP
+rockgolem:
+	Inherits: ^TrackedVehicle
+	Inherits@Msiege: ^MediSiege
+	Inherits@GAINSEXPERIENCE: ^GainsExperience
+	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
+	Buildable:
+		Queue: Vehicle
+		Prerequisites: ~vehicles.medi, advtechcenter
+		BuildPaletteOrder: 401
+		Description: Long-range artillery.\n  Strong vs Vehicles, Buildings\n  Weak vs Infantry
+	Valued:
+		Cost: 900
+	Tooltip:
+		Name: Cannon
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Health:
+		HP: 20000
+	Armor:
+		Type: Heavy
+	WithMoveAnimation:
+		MoveSequence: run
+	AutoTarget:
+		InitialStance: Defend
+		ScanRadius: 11
+	RevealsShroud:
+		MinRange: 4c0
+		Range: 5c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 4c0
+	Armament:
+		Weapon: GolemBig
+		LocalOffset: 624,0,208
+	WithAttackAnimation:
+		Sequence: shoot
+	WithDeathAnimation:
+		DeathSequence: die
+	AttackFrontal:
+		Armaments: primary
+		FacingTolerance: 0
+	ProducibleWithLevel:
+		Prerequisites: vehicles.upgraded
+	RenderSprites:
+		Image: rockgolem
+	Voiced:
+		VoiceSet: SiegeWeaponVoice
+	FireWarheadsOnDeath@Golem:
+		Weapon: GolemSplit
+
+#Damages self to half HP on spawn, can explode only once full healed.#
+splitgolem:
+	Inherits: rockgolem
+	GrantConditionOnHealth@BrokenGolem:
+		Condition: BrokenGolem
+		MaxHP: 20000
+		GrantPermanently: True
+	ChangesHealth@GolemBreak:
+		PercentageStep: 50
+		Delay: 500
+		DamageCooldown: 500
+		StartIfBelow: 100
+		RequiresCondition: !BrokenGolem
+	FireWarheadsOnDeath@Golem:
+		Weapon: GolemSplit
+		RequiresCondition: FullGolem
+	GrantConditionOnHealth@FullGolem:
+		Condition: FullGolem
+		MinHP: 19000
+		GrantPermanently: True
+	RenderSprites:
+		Image: medigolem
+
+
+##Rust Spitter, Corrosive, strong AA
+tustspitter:
+	Inherits: ^Medibeast
+	Inherits@GAINSEXPERIENCE: ^GainsExperience
+	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
+	Buildable:
+		Queue: Vehicle
+		Prerequisites: ~vehicles.medi, advtechcenter
+		BuildPaletteOrder: 401
+		Description: Long-range artillery.\n  Strong vs Vehicles, Buildings\n  Weak vs Infantry
+	Valued:
+		Cost: 900
+	Tooltip:
+		Name: Cannon
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Health:
+		HP: 20000
+	Armor:
+		Type: Heavy
+	WithMoveAnimation:
+		MoveSequence: run
+	AutoTarget:
+		InitialStance: Defend
+		ScanRadius: 11
+	RevealsShroud:
+		MinRange: 4c0
+		Range: 5c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 4c0
+	Armament:
+		Weapon: CannonShot
+		LocalOffset: 624,0,208
+	WithAttackAnimation:
+		Sequence: shoot
+	WithDeathAnimation:
+		DeathSequence: die
+	AttackFrontal:
+		Armaments: primary
+		FacingTolerance: 0
+	ProducibleWithLevel:
+		Prerequisites: vehicles.upgraded
+	RenderSprites:
+		Image: tustspitter
+	Voiced:
+		VoiceSet: SiegeWeaponVoice
+
+
+##Url Shekk, Ranged Elite, Attacks change on cycle, Anti Tank, Anti Infantry, Anti Structure
+urlshekk:
+	Inherits: ^TrackedVehicle
+	Inherits@Msiege: ^MediSiege
+	Inherits@GAINSEXPERIENCE: ^GainsExperience
+	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
+	Buildable:
+		Queue: Vehicle
+		Prerequisites: ~vehicles.medi, advtechcenter
+		BuildPaletteOrder: 401
+		Description: Ranged Elite, Attacks change on cycle, Anti Tank, Anti Infantry, Anti Structure
+	Valued:
+		Cost: 1200
+	Tooltip:
+		Name: Url Shekk
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Health:
+		HP: 20000
+	Armor:
+		Type: Heavy
+	WithMoveAnimation:
+		MoveSequence: run
+	AutoTarget:
+		InitialStance: Defend
+		ScanRadius: 11
+	RevealsShroud:
+		MinRange: 4c0
+		Range: 5c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 4c0
+	GrantConditionOnAttack:
+		Condition: AttackCycle
+		ArmamentNames: ShrekInf
+		MaximumInstances: 3
+		IsCyclic: True
+	Armament@1:
+		Weapon: ShrekInfantry
+		Name: primary
+		RequiresCondition: AttackCycle == 0
+	Armament@2:
+		Weapon: ShrekVehicle
+		Name: Secondary
+		RequiresCondition: AttackCycle == 1
+	Armament@3:
+		Weapon: ShrekBuild
+		Name: Tetiary
+		RequiresCondition: AttackCycle == 2
+	WithAttackAnimation:
+		Sequence: shoot
+	WithDeathAnimation:
+		DeathSequence: die
+	AttackFrontal:
+		Armaments: primary, Secondary, Tetiary
+		FacingTolerance: 0
+	ProducibleWithLevel:
+		Prerequisites: vehicles.upgraded
+	RenderSprites:
+		Image: urlshekk
+	Voiced:
+		VoiceSet: SiegeWeaponVoice
+
+
+##Death knight Super Unit
+moculus:
+	Inherits@MediSoldier: ^MediSoldier
+	Inherits@NoExp: ^NoExp
+	Inherits@EPIC: ^EpicUnit
+	Inherits@EPIC2: ^EpicInfantryNerf
+	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
+	Inherits@InfPro: ^AutoTargetVehiclePriority
+	Buildable:
+		Prerequisites: ~vehicles.medi
+		Description: Beholder of magic
+		Queue: Infantry
+		BuildLimit: 1
+		BuildAtProductionType: Soldier
+		BuildPaletteOrder: 419
 	-Passenger:
 	-Crushable:
+	-TakeCover:
 	Valued:
-		Cost: 3000
+		Cost: 12000
 	UpdatesPlayerStatistics:
 		AddToArmyValue: true
 	Tooltip:
-		Name: Abomination
+		Name: Beholder of magic
 	Armor:
 		Type: Heavy
 	Health:
-		HP: 106969
+		HP: 400000
 	Mobile:
-		Speed: 50
+		Speed: 60
 		Locomotor: foot2
 	Selectable:
-		Bounds: 1450, 1877, 0, -768
-		DecorationBounds: 1450, 1877, 0, -768
+		Bounds: 2133, 4266, 0, -1493
+		DecorationBounds: 2133, 4266, 0, -1493
 	SelectionDecorations:
 	RevealsShroud:
-		Range: 5c512
+		Range: 7c512
+	GrantConditionOnAttack@sword:
+		Condition: SwordSwing
+		RevokeDelay: 800
+	Armament@SECONDARY:
+		Name: secondary
+		Weapon: MediDeathKnightAttack1
+		RequiresCondition: SwordSwing
 	Armament:
-		Weapon: Abominationsmash
-	AutoTarget:
-		InitialStance: AttackAnything
-		ScanRadius: 6
-	AutoTargetPriority@DEFAULT:
-		ValidTargets: GroundActor, Infantry
+		Weapon: MediDeathKnightAttack2
+		LocalOffset: 400,60,2200, 400,-60,2200
 	WithInfantryBody:
 		DefaultAttackSequence: shoot
+		StandSequences: stand
+	AutoTarget:
+		InitialStance: AttackAnything
+		ScanRadius: 10
+	AutoTargetPriority@DEFAULT:
+		ValidTargets: GroundActor, Infantry
 	Targetable:
-		TargetTypes: GroundActor, Vehicle
+		TargetTypes: GroundActor, Infantry, Disguise
 	RenderSprites:
-		Image: mediabomination
+		Image: moculus
+	FireWarheadsOnDeath:
+		Weapon: MediDeathKnightAttack2
+		EmptyWeapon: MediDeathKnightAttack2
 	ExternalCondition@PRODUCED:
 		Condition: produced
 	VoiceAnnouncement:
 		RequiresCondition: produced
 		Voice: Build
+	ProximityExternalCondition@DeathKnightAura:
+		Condition: DeathKnightAura
+		Range: 7c512
+		ValidRelationships: Enemy, Neutral
+	AnnounceOnKill:
 	Voiced:
-		VoiceSet: AbominationVoice
-
-
-##causes a damage over time on enemies, high damage low HP, spawns swarmlings on death
-##rotelement
+		VoiceSet: MediDeathKnightVoice
+	ConvertsDamageToHealth:
+		DamagePercentConverted: 20

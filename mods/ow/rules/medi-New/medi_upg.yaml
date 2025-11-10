@@ -7,7 +7,7 @@
 
 ##Archer Tower T1 (2nd Archer)
 ##tower1up
-upgrade.mediarrowt1:
+upgrade.mediarrow:
 	Inherits: ^UpgradeBaseExt
 	Tooltip:
 		Name: Archer Defence
@@ -16,57 +16,6 @@ upgrade.mediarrowt1:
 		BuildPaletteOrder: 10007
 		BuildDuration: 1000
 		Prerequisites: ~structures.medi, ~!upgrade.mediarrowt1, ~techcenter
-	ProductionCostMultiplier@upgrade:
-		Multiplier: 2000
-	ProvidesPrerequisite@upgradename:
-	ExternalCondition@PRODUCED:
-		Condition: produced
-
-##Archer Tower T2 (Adds Healer)
-##tower2up
-upgrade.mediarrowt2:
-	Inherits: ^UpgradeBaseExt
-	Tooltip:
-		Name: Tower Upgrade (Healer)
-	Buildable:
-		Description: Unlocks plug to upgrade Archer towers with Healer
-		BuildPaletteOrder: 10007
-		BuildDuration: 1000
-		Prerequisites: ~structures.medi, ~!upgrade.mediarrowt2, upgrade.mediarrowt1, ~techcenter
-	ProductionCostMultiplier@upgrade:
-		Multiplier: 2000
-	ProvidesPrerequisite@upgradename:
-	ExternalCondition@PRODUCED:
-		Condition: produced
-
-##Archer Tower T3 (Adds Mage)
-##tower3up
-upgrade.mediarrowt3:
-	Inherits: ^UpgradeBaseExt
-	Tooltip:
-		Name: Tower Upgrade (Mage)
-	Buildable:
-		Description: Unlocks plug to upgrade Archer towers with a Mage
-		BuildPaletteOrder: 10007
-		BuildDuration: 1000
-		Prerequisites: ~structures.medi, ~!upgrade.mediarrowt3, upgrade.mediarrowt2, ~techcenter
-	ProductionCostMultiplier@upgrade:
-		Multiplier: 2000
-	ProvidesPrerequisite@upgradename:
-	ExternalCondition@PRODUCED:
-		Condition: produced
-
-##Archer Tower T4 (Adds Musket)
-##tower4up
-upgrade.mediarrowt4:
-	Inherits: ^UpgradeBaseExt
-	Tooltip:
-		Name: Tower Upgrade (Musket)
-	Buildable:
-		Description: Unlocks plug to upgrade Archer towers with a Musketeer
-		BuildPaletteOrder: 10007
-		BuildDuration: 1000
-		Prerequisites: ~structures.medi, ~!upgrade.mediarrowt4, upgrade.mediarrowt3, ~techcenter
 	ProductionCostMultiplier@upgrade:
 		Multiplier: 2000
 	ProvidesPrerequisite@upgradename:
@@ -124,6 +73,23 @@ upgrade.medimagiclogs:
 	ExternalCondition@PRODUCED:
 		Condition: produced
 
+##Faster Vision cooldown
+##medi vision
+upgrade.medivision:
+	Inherits: ^UpgradeBaseExt
+	Tooltip:
+		Name: Magic Logs
+	Buildable:
+		Description: Enchant your Buildings for bonus Shields and slow regen while shields are up
+		BuildPaletteOrder: 10007
+		BuildDuration: 1000
+		Prerequisites: ~structures.medi, ~!upgrade.medivision, ~techcenter
+	ProductionCostMultiplier@upgrade:
+		Multiplier: 5000
+	ProvidesPrerequisite@upgradename:
+	ExternalCondition@PRODUCED:
+		Condition: produced
+
 ###############################################################################
 ###################################   Holy   ##################################
 ###############################################################################
@@ -135,7 +101,7 @@ upgrade.medibless:
 	Tooltip:
 		Name: Holy Blessing
 	Buildable:
-		Description: Protect your units from stealth, see invisable from further away
+		Description: Protect your units from stealth, see invisable from further away, Vehicles can spot stealth
 		BuildPaletteOrder: 10007
 		BuildDuration: 1000
 		Prerequisites: ~structures.mediholy, ~!upgrade.medibless, ~techcenter
@@ -202,15 +168,15 @@ upgrade.medipure:
 
 ##shields for magic units
 ##magearmor
-upgrade.medivision:
+upgrade.medimagearmor:
 	Inherits: ^UpgradeBaseExt
 	Tooltip:
-		Name: clairvoyance
+		Name: Mage Armor
 	Buildable:
 		Description: Provides longer duration and faster cooldown on vision ability of the eye
 		BuildPaletteOrder: 10007
 		BuildDuration: 1000
-		Prerequisites: ~structures.medimages, ~!upgrade.medivision, ~techcenter
+		Prerequisites: ~structures.medimages, ~!upgrade.medimagearmor, ~techcenter
 	ProductionCostMultiplier@upgrade:
 		Multiplier: 2000
 	ProvidesPrerequisite@upgradename:
@@ -228,6 +194,63 @@ upgrade.mediwiztow:
 		BuildPaletteOrder: 10007
 		BuildDuration: 1000
 		Prerequisites: ~structures.medimages, ~!upgrade.mediwiztow, ~techcenter
+	ProductionCostMultiplier@upgrade:
+		Multiplier: 2000
+	ProvidesPrerequisite@upgradename:
+	ExternalCondition@PRODUCED:
+		Condition: produced
+
+
+###############################################################################
+###################################   Cult   ##################################
+###############################################################################
+
+
+##Slaves carry more
+##Slavedrive
+upgrade.slavedrive:
+	Inherits: ^UpgradeBaseExt
+	Tooltip:
+		Name: Slave Drive
+	Buildable:
+		Description: Slaves carry more.
+		BuildPaletteOrder: 10007
+		BuildDuration: 1000
+		Prerequisites: ~structures.cult, ~!upgrade.Slavedrive, ~techcenter
+	ProductionCostMultiplier@upgrade:
+		Multiplier: 2000
+	ProvidesPrerequisite@upgradename:
+	ExternalCondition@PRODUCED:
+		Condition: produced
+
+##Creatures take less damage and regen missing HP
+##BlackBlood
+upgrade.blackblood:
+	Inherits: ^UpgradeBaseExt
+	Tooltip:
+		Name: Black Blood
+	Buildable:
+		Description: Black Blood grants your reatures damage reduction and regen missing HP 
+		BuildPaletteOrder: 10007
+		BuildDuration: 1000
+		Prerequisites: ~structures.cult, ~!upgrade.BlackBlood, ~techcenter
+	ProductionCostMultiplier@upgrade:
+		Multiplier: 2000
+	ProvidesPrerequisite@upgradename:
+	ExternalCondition@PRODUCED:
+		Condition: produced
+
+##Undead units may respawn
+##Necromancy
+upgrade.necromancy:
+	Inherits: ^UpgradeBaseExt
+	Tooltip:
+		Name: Necromancy
+	Buildable:
+		Description: Undead units may respawn.
+		BuildPaletteOrder: 10007
+		BuildDuration: 1000
+		Prerequisites: ~structures.cult, ~!upgrade.Necromancy, ~techcenter
 	ProductionCostMultiplier@upgrade:
 		Multiplier: 2000
 	ProvidesPrerequisite@upgradename:
