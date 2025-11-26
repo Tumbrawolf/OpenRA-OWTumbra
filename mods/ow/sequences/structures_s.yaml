@@ -2423,7 +2423,7 @@ barrackswg:
 	icon:
 		Filename: tentmediicon.shp
 
-AnimalDen:
+animalden:
 	Defaults:
 		Filename: AnimalDen.shp
 	place:
@@ -2456,6 +2456,10 @@ AnimalDen:
 dwarfsettlement:
 	Defaults:
 		Filename: dwarfsettlement.shp
+	build-top:
+		Scale: 0.23
+		Start: 0
+		Length: 4
 	place:
 		Scale: 0.23
 		Start: 0
@@ -2467,7 +2471,7 @@ dwarfsettlement:
 	damaged-idle:
 		Scale: 0.23
 		Start: 10
-		Length: 0
+		Length: 1
 	dead:
 		Scale: 0.23
 		Start: 11
@@ -2511,18 +2515,18 @@ techcenterblacksmith:
 	idle:
 		Scale: 0.2
 		Start: 7
-		Length: 7
+		Length: 6
 	damaged-idle:
 		Scale: 0.2
-		Start: 11
+		Start: 10
 	dead:
 		Scale: 0.2
-		Start: 12
+		Start: 11
 		Tick: 800
 	make:
 		Scale: 0.2
 		Start: 7
-		Length: 7
+		Length: 6
 	bib:
 		TilesetFilenames:
 			SNOW: bib3.sno
@@ -2560,7 +2564,7 @@ advtechcenterlibrary:
 	icon:
 		Filename: medicastleicon.shp
 
-Brashnards:
+brashnards:
 	Defaults:
 		Filename: Brashnards.shp
 	place:
@@ -2665,25 +2669,27 @@ guardhouse:
 		Start: 0
 	idle:
 		Scale: 0.2
-		Start: 0
+		Start: 5
+		Length: 7
 		Offset: 0,-50,0
 	damaged-idle:
 		Scale: 0.2
-		Start: 0
+		Start: 11
 		Offset: 0,-50,0
 	dead:
 		Scale: 0.2
-		Start: 0
+		Start: 12
 		Tick: 800
 		Offset: 0,-50,0
 	make:
 		Scale: 0.2
 		Start: 0
-		Start: 5
+		Length: 5
 		Offset: 0,-50,0
 	build-top:
 		Scale: 0.2
 		Start: 0
+		Length: 5
 	bib:
 		TilesetFilenames:
 			SNOW: bib3.sno
@@ -2695,6 +2701,376 @@ guardhouse:
 		Filename: mediarrowtowericon.shp
 	icon-gun:
 		Filename: mediarrowtowericon.shp
+
+wizardtower:
+	Defaults:
+		Filename: wizardtower.shp
+	place:
+		Start: 6
+	idle:
+		Start: 6
+	damaged-idle:
+		Start: 7
+	dead:
+		Start: 7
+		Tick: 800
+	make:
+		Start: 1
+	build-top:
+		Start: 0
+		Length: 5
+	bib:
+		TilesetFilenames:
+			SNOW: bib3.sno
+			INTERIOR: bib3.int
+			TEMPERAT: bib3.tem
+			DESERT: bib3.des
+		Length: *
+	icon:
+		Filename: mediarcanetowericon.shp
+
+balistatower:
+	Defaults:
+		Filename: balistatower.shp
+	place:
+		Scale: 0.2
+		Start: 1
+	idle:
+		Scale: 0.2
+		Start: 1
+		Offset: 0,-50,0
+	damaged-idle:
+		Scale: 0.2
+		Start: 2
+		Offset: 0,-50,0
+	dead:
+		Scale: 0.2
+		Start: 2
+		Tick: 800
+		Offset: 0,-50,0
+	make:
+		Scale: 0.2
+		Start: 1
+		Offset: 0,-50,0
+	build-top:
+		Scale: 0.2
+		Start: 1
+	bib:
+		TilesetFilenames:
+			SNOW: bib3.sno
+			INTERIOR: bib3.int
+			TEMPERAT: bib3.tem
+			DESERT: bib3.des
+		Length: *
+	icon:
+		Filename: medibalistatowericon.shp
+	icon-gun:
+		Filename: medibalistatowericon.shp
+
+
+#TempleofLunord
+creaturestl:
+	Inherits: animalden
+	Defaults:
+		Filename: CreaturesTL.shp
+		
+#TempleofLunord
+creaturestok:
+	Inherits: animalden
+	Defaults:
+		Filename: creaturestok.shp
+
+#Templeofkrypta
+creaturestk:
+	Inherits: animalden
+	Defaults:
+		Filename: creaturestk.shp
+
+#GoblinCamp
+barracksgc:
+	Inherits: barrackswg
+	Defaults:
+		Filename: barracksgc.shp
+	place:
+		Scale: 0.23
+		Start: 0
+		Length: 1
+	idle:
+		Scale: 0.23
+		Start: 0
+		Length: 1
+	damaged-idle:
+		Scale: 0.23
+		Start: 1
+		Length: 1
+	dead:
+		Scale: 0.23
+		Start: 2
+		Tick: 800
+	make:
+		Scale: 0.23
+		Start: 0
+	bib:
+		TilesetFilenames:
+			SNOW: bib3.sno
+			INTERIOR: bib3.int
+			TEMPERAT: bib3.tem
+			DESERT: bib3.des
+		Length: *
+	icon:
+		Filename: tentmediicon.shp
+
+#Goblin Hovel
+slavecampgh:
+	Inherits: slavecampgc
+	Defaults:
+		Filename: slavecampgh.shp
+
+#Graveyard
+medigraveyard:
+	Defaults:
+		Filename: medigraveyard.shp
+
+nuketod:
+	Defaults:
+		Filename: medigateofbabylon.shp
+	place:
+		Start: 0
+	idle:
+		Start: 0
+		Length: 3
+		Tick: 300
+	damaged-idle:
+		Start: 0
+		Length: 3
+		Tick: 300
+	dead:
+		Start: 0
+		Tick: 800
+	make:
+		Start: 0
+		Length: 3
+		Tick: 300
+	active:
+		Start: 0
+		Length: 3
+		Tick: 80
+	bib:
+		TilesetFilenames:
+			SNOW: bib3.sno
+			INTERIOR: bib3.int
+			TEMPERAT: bib3.tem
+			DESERT: bib3.des
+		Length: *
+	icon:
+		Filename: medigateofbabylonicon.shp
+
+nukesp:
+	Defaults:
+		Filename: medidarkcrystal.shp
+	place:
+		Start: 0
+	idle:
+		Start: 0
+		Length: 3
+		Tick: 300
+	damaged-idle:
+		Start: 0
+		Length: 3
+		Tick: 300
+	make:
+		Start: 0
+		Length: 3
+		Tick: 300
+	active:
+		Start: 0
+		Length: 3
+		Tick: 80
+	bib:
+		TilesetFilenames:
+			SNOW: bib3.sno
+			INTERIOR: bib3.int
+			TEMPERAT: bib3.tem
+			DESERT: bib3.des
+		Length: *
+	icon:
+		Filename: medidarkcrystalicon.shp
+
+nuketoh:
+	Defaults:
+		Filename: medifirestorm.shp
+	place:
+		Start: 0
+	idle:
+		Start: 0
+		Length: 3
+		Tick: 300
+	damaged-idle:
+		Start: 0
+		Length: 3
+		Tick: 300
+	dead:
+		Start: 0
+		Tick: 800
+	make:
+		Start: 0
+		Length: 3
+		Tick: 300
+	active:
+		Start: 0
+		Length: 3
+		Tick: 80
+	bib:
+		TilesetFilenames:
+			SNOW: bib3.sno
+			INTERIOR: bib3.int
+			TEMPERAT: bib3.tem
+			DESERT: bib3.des
+		Length: *
+	icon:
+		Filename: medifirestormicon.shp
+
+
+monumentgazebo:
+	Defaults:
+		Filename: monumentgazebo.shp
+	place:
+		Scale: 0.2
+		Start: 0
+		Length: 1
+	idle:
+		Scale: 0.2
+		Start: 0
+		Length: 1
+	damaged-idle:
+		Scale: 0.2
+		Start: 1
+	dead:
+		Scale: 0.2
+		Start: 2
+		Tick: 800
+	bib:
+		TilesetFilenames:
+			SNOW: bib3.sno
+			INTERIOR: bib3.int
+			TEMPERAT: bib3.tem
+			DESERT: bib3.des
+		Length: *
+	icon:
+		Filename: medicastleicon.shp
+
+spittervine:
+	Defaults:
+		Filename: spittervine.shp
+	place:
+		Scale: 0.2
+		Start: 0
+		Length: 1
+	idle:
+		Scale: 0.2
+		Start: 0
+		Length: 1
+	damaged-idle:
+		Scale: 0.2
+		Start: 1
+	dead:
+		Scale: 0.2
+		Start: 2
+		Tick: 800
+	bib:
+		TilesetFilenames:
+			SNOW: bib3.sno
+			INTERIOR: bib3.int
+			TEMPERAT: bib3.tem
+			DESERT: bib3.des
+		Length: *
+	icon:
+		Filename: medicastleicon.shp
+
+elvenhideout:
+	Defaults:
+		Filename: elvenhideout.shp
+	place:
+		Scale: 0.2
+		Start: 0
+		Length: 1
+	idle:
+		Scale: 0.2
+		Start: 0
+		Length: 1
+	damaged-idle:
+		Scale: 0.2
+		Start: 1
+	dead:
+		Scale: 0.2
+		Start: 2
+		Tick: 800
+	bib:
+		TilesetFilenames:
+			SNOW: bib3.sno
+			INTERIOR: bib3.int
+			TEMPERAT: bib3.tem
+			DESERT: bib3.des
+		Length: *
+	icon:
+		Filename: medicastleicon.shp
+
+fairgrounds:
+	Defaults:
+		Filename: fairgrounds.shp
+	place:
+		Scale: 0.2
+		Start: 0
+		Length: 1
+	idle:
+		Scale: 0.2
+		Start: 0
+		Length: 1
+	damaged-idle:
+		Scale: 0.2
+		Start: 1
+	dead:
+		Scale: 0.2
+		Start: 2
+		Tick: 800
+	bib:
+		TilesetFilenames:
+			SNOW: bib3.sno
+			INTERIOR: bib3.int
+			TEMPERAT: bib3.tem
+			DESERT: bib3.des
+		Length: *
+	icon:
+		Filename: medicastleicon.shp
+
+gamblinghall:
+	Defaults:
+		Filename: gamblinghall.shp
+	place:
+		Scale: 0.2
+		Start: 0
+		Length: 1
+	idle:
+		Scale: 0.2
+		Start: 0
+		Length: 1
+	damaged-idle:
+		Scale: 0.2
+		Start: 1
+	dead:
+		Scale: 0.2
+		Start: 2
+		Tick: 800
+	bib:
+		TilesetFilenames:
+			SNOW: bib3.sno
+			INTERIOR: bib3.int
+			TEMPERAT: bib3.tem
+			DESERT: bib3.des
+		Length: *
+	icon:
+		Filename: medicastleicon.shp
+
 
 ###############################################
 
@@ -2837,44 +3213,6 @@ mediarrowtower3:
 		Filename: mediarrowtowericon.shp
 	icon-gun:
 		Filename: mediarrowtowericon.shp
-
-medibalistatower:
-	Defaults:
-		Filename: medibalistatower.shp
-	place:
-		Scale: 0.2
-		Start: 1
-	idle:
-		Scale: 0.2
-		Start: 1
-		Offset: 0,-50,0
-	damaged-idle:
-		Scale: 0.2
-		Start: 2
-		Offset: 0,-50,0
-	dead:
-		Scale: 0.2
-		Start: 2
-		Tick: 800
-		Offset: 0,-50,0
-	make:
-		Scale: 0.2
-		Start: 1
-		Offset: 0,-50,0
-	build-top:
-		Scale: 0.2
-		Start: 1
-	bib:
-		TilesetFilenames:
-			SNOW: bib3.sno
-			INTERIOR: bib3.int
-			TEMPERAT: bib3.tem
-			DESERT: bib3.des
-		Length: *
-	icon:
-		Filename: medibalistatowericon.shp
-	icon-gun:
-		Filename: medibalistatowericon.shp
 
 medicannontower:
 	Defaults:

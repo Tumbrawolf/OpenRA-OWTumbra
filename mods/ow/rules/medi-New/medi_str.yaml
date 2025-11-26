@@ -446,7 +446,7 @@ advtechcenterlibrary:
 
 ##Super Tech
 ##Brashnards (Super Tech)
-Brashnards:
+brashnards:
 	Inherits: ^ScienceBuilding
 	Inherits@shape: ^3x3Shape
 	Inherits@BIB: ^3xBuildingBib
@@ -727,7 +727,7 @@ guardhouse:
 		RequiresSelection: true
 
 ##Anti Air
-ArcaneTower:
+wizardtower:
 	Inherits: ^Defense
 	Inherits@IDISABLE: ^DisableOnLowPowerOrPowerDown
 	Inherits@AUTOTARGET: ^AutoTargetAll
@@ -880,8 +880,8 @@ ArcaneTower:
 		Image: wizardtower
 
 ##Anti Tank
-BalistaTower:
-	Inherits: ArcaneTower
+balistatower:
+	Inherits: wizardtower
 	-Power:
 	-DetectCloaked:
 		ProvidesPrerequisite@buildingname:
@@ -1244,3 +1244,11 @@ gamblinghall:
 	RenderSprites:
 		Image: gamblinghall
 
+
+
+
+## Redundant ##
+
+
+medigarrisontower:
+	Inherits: guardhouse
