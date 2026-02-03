@@ -354,7 +354,6 @@ Vendral:
 		PipCount: 6
 	-EjectOnDeath:
 
-
 ###############################################################################
 ################################   Wizards   ##################################
 ###############################################################################
@@ -496,7 +495,6 @@ MediDragonBomberZoomies:
 	Cargo:
 		MaxWeight: 20
 	-Targetable@AIRBORNE:
-
 
 ##flying siege unit with AOE slow
 ##wyvern

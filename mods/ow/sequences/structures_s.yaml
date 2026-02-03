@@ -2399,18 +2399,18 @@ barrackswg:
 	place:
 		Scale: 0.23
 		Start: 0
-		Length: 5
+		Length: 4
 	idle:
 		Scale: 0.23
-		Start: 4
-		Length: 2
+		Start: 3
+		Length: 1
 	damaged-idle:
 		Scale: 0.23
 		Start: 6
-		Length: 3
+		Length: 1
 	dead:
 		Scale: 0.23
-		Start: 8
+		Start: 7
 		Tick: 800
 	make:
 		Scale: 0.23
@@ -2457,31 +2457,31 @@ animalden:
 
 dwarfsettlement:
 	Defaults:
-		Filename: dwarfsettlement.shp
-	build-top:
-		Scale: 0.23
-		Start: 0
-		Length: 4
+		Filename: DwarfSettlement.shp
 	place:
-		Scale: 0.23
-		Start: 0
-		Length: 4
+		Scale: 0.25
+		Start: 1
+		Length: 1
 	idle:
-		Scale: 0.23
-		Start: 4
-		Length: 5
+		Scale: 0.25
+		Start: 1
+		Length: 6
+	build-top:
+		Scale: 0.25
+		Start: 1
+		Length: 6
 	damaged-idle:
-		Scale: 0.23
-		Start: 10
+		Scale: 0.25
+		Start: 8
 		Length: 1
 	dead:
-		Scale: 0.23
-		Start: 11
+		Scale: 0.25
+		Start: 9
 		Tick: 800
 	make:
-		Scale: 0.23
-		Start: 4
-		Length: 5
+		Scale: 0.25
+		Start: 1
+		Length: 7
 	icon:
 		Filename: tentmediicon.shp
 
@@ -2506,6 +2506,19 @@ dragonlair:
 		Start: 1
 	icon:
 		Filename: tentmediicon.shp
+
+
+###############################################################################################################
+###############################################################################################################
+###############################################################################################################
+###############################################################################################################
+###############################################################################################################
+###############################################################################################################
+###############################################################################################################
+###############################################################################################################
+###############################################################################################################
+###############################################################################################################
+###############################################################################################################
 
 techcenterblacksmith:
 	Defaults:
@@ -2548,7 +2561,7 @@ advtechcenterlibrary:
 	idle:
 		Scale: 0.2
 		Start: 1
-		Length: 7
+		Length: 6
 	damaged-idle:
 		Scale: 0.2
 		Start: 7
@@ -2556,6 +2569,10 @@ advtechcenterlibrary:
 		Scale: 0.2
 		Start: 7
 		Tick: 800
+	make:
+		Scale: 0.2
+		Start: 1
+		Length: 6
 	bib:
 		TilesetFilenames:
 			SNOW: bib3.sno
@@ -2582,6 +2599,9 @@ brashnards:
 		Scale: 0.2
 		Start: 2
 		Tick: 800
+	make:
+		Scale: 0.2
+		Start: 0
 	bib:
 		TilesetFilenames:
 			SNOW: bib3.sno

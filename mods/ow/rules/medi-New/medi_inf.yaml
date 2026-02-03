@@ -41,6 +41,8 @@
 		SpeedModifier: 140
 		Duration: 75
 		DamageTriggers: TriggerProne
+	Power:
+		Amount: 10
 
 ^Wizards:
 	Inherits: ^MediSoldier
@@ -54,12 +56,16 @@
 	GrantConditionOnPrerequisite@mediwiztow:
 		Prerequisites: upgrade.mediwiztow
 		Condition: mediwiztow
+	Power:
+		Amount: 50
 
 ^Undead:
 	##magic units get bonus damage
 	GrantConditionOnPrerequisite@Necromancy:
 		Prerequisites: upgrade.Necromancy
 		Condition: Necromancy
+	Power:
+		Amount: -10
 
 ###############################################################################
 ##########################   Harvesters and Utility   #########################
@@ -114,6 +120,8 @@ SLAVE:
 	GrantConditionOnPrerequisite@mediworkboot:
 		Prerequisites: upgrade.mediworkboot
 		Condition: shoes
+	Power:
+		Amount: 5
 
 ##upgraded harvester
 ##worker
@@ -153,6 +161,8 @@ MEDIWORKER:
 		Step: -30
 	StoresResources:
 		Capacity: 10
+	Power:
+		Amount: 10
 
 ##medislave
 SLAVESpawn:
@@ -167,6 +177,8 @@ MEDIWORKER2:
 		BuildDuration: 250
 	Valued:
 		Cost: 400
+	RenderSprites:
+		Image: mworker2
 
 ##long vision scout unit, stealth when stationary
 ##scout
@@ -340,6 +352,24 @@ Knight:
 	Voiced:
 		VoiceSet: SwordmanVoice
 	BlocksProjectiles:
+
+##basic melee unit
+##Guard
+guardhouseguard:
+	Inherits@Knight: Knight
+	Tooltip:
+		Name: Guard for the Guard House
+	-Buildable:
+	Health:
+		HP: 30000
+	Mobile:
+		Speed: 80
+		PauseOnCondition: attack-cooldown
+	KillsSelf:
+		RemoveInstead: True
+		Delay: 500
+	RenderSprites:
+		Image: mknight
 
 ##gets stronger as hp gets lower
 ##berserker
@@ -638,6 +668,80 @@ TankBuster:
 		Range: 10c512
 	WithRangeCircle@PallyBoost:
 		Range: 10c512
+
+
+##Holy Super Unit currently just using as base need to replace sprites and attacks
+ShieldHero:
+	Inherits@MediSoldier: ^MediSoldier
+	Inherits@sprite: ^TSMedi
+	Inherits@NoExp: ^NoExp
+	Inherits@EPIC: ^EpicUnit
+	Inherits@EPIC2: ^EpicInfantryNerf
+	Inherits@InfPro: ^AutoTargetVehiclePriority
+	-Crushable:
+	Buildable:
+		Prerequisites: ~infantry.holy, advtechcenter, library
+		Description: He carries a holy sword and gods Protection. \n Provides a Healing Empowering aura to nearby troops.\n Strong vs infantry, Light armor \n Weak vs Air, Tanks, Buildings
+		Queue: Infantry
+		BuildLimit: 1
+		BuildAtProductionType: Soldier
+		BuildPaletteOrder: 420
+	Selectable:
+		Bounds: 1280, 1450, 0, -768
+		DecorationBounds: 1280, 1450, 0, -768
+	Valued:
+		Cost: 10000
+	Tooltip:
+		Name: Divine Protection
+	Health:
+		HP: 300000
+	Mobile:
+		Speed: 60
+		Locomotor: foot2
+	RevealsShroud:
+		Range: 10c0
+	DetectCloaked:
+		Range: 5c0
+	FireWarheadsOnDeath:
+		Weapon: SmitePowerWep
+		EmptyWeapon: SmitePowerWep
+	AttackFrontal:
+		Armaments: HealPally, SmitePally, PallySword
+	GrantConditionOnAttack@PallyHealEnabled:
+		Condition: PallyHealEnabled
+		ArmamentNames: HealPally, SmitePally, PallySword
+		RevokeDelay: 1000
+		RequiredShotsPerInstance: 5
+	Armament@HealPally:
+		Name: HealPally
+		Weapon: PaladinHealWep
+		TargetRelationships: Ally
+		RequiresCondition: PallyHealEnabled
+	Armament@SmitePally:
+		Name: SmitePally
+		Weapon: SmitePaladinWep
+		RequiresCondition: PallyHealEnabled
+	Armament@PallySword:
+		Name: PallySword
+		Weapon: PaladinSword
+	WithInfantryBody:
+		DefaultAttackSequence: shoot
+		StandSequences: stand
+	AutoTarget:
+		InitialStance: AttackAnything
+		ScanRadius: 6
+	AutoTargetPriority@DEFAULT:
+		ValidTargets: GroundActor, Infantry
+	Targetable:
+		TargetTypes: GroundActor, Infantry, Disguise
+	IgnoresDisguise:
+	WithRangeCircle:
+		Range: 11c0
+	RenderSprites:
+		Image: medipaladin
+	Voiced:
+		VoiceSet: PaladinVoiceMedi
+
 ###############################################################################
 ################################# Cult Units ##################################
 ###############################################################################
@@ -853,7 +957,6 @@ SummonedZombie:
 	RenderSprites:
 		Image: mzombie
 
-
 ##Death knight Super Unit
 MEDIDEATHKNIGHT:
 	Inherits@MediSoldier: ^MediSoldier
@@ -997,6 +1100,8 @@ lightningwizard:
 		CargoCondition: lightningwizard
 	RenderSprites:
 		Image: mlwizard
+	Power:
+		Amount: 75
 
 ##AOE anti infantry and buildings
 ##firewizard

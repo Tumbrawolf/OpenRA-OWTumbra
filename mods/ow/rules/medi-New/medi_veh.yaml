@@ -19,13 +19,16 @@
 		Locomotor: heavywheeled
 	Armor:
 		Type: Light
+	Power:
+		Amount: 20
 
 ^Medibeast:
 	Inherits: ^Vehicle
 	Mobile:
 		Speed: 100
 		Locomotor: foot
-
+	Power:
+		Amount: 30
 ###############################################################################
 ###################################   MCV   ###################################
 ###############################################################################
@@ -362,6 +365,7 @@ Cannon:
 ##Slow Armored Transport
 SiegeTower:
 	Inherits: ^TrackedVehicle
+	Inherits@Msiege: ^MediSiege
 	Inherits@GAINSEXPERIENCE: ^GainsExperience
 	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
 	Inherits@CARGOPIPS: ^CargoPips
@@ -558,13 +562,13 @@ giantwolf:
 
 ##Dirgo, Regens HP, Slower attack speed more HP, more damage per hit
 dirgo:
-	Inherits@TrackedVehicle: ^TrackedVehicle
+	Inherits@Medibeast: ^Medibeast
 	RenderSprites:
 		Image: dirgo
 
 ##Giant Spider, Corrosive and stealth, slow
 giantspider:
-	Inherits@TrackedVehicle: ^TrackedVehicle
+	Inherits@Medibeast: ^Medibeast
 	RenderSprites:
 		Image: giantspider
 
@@ -576,19 +580,19 @@ medusa:
 
 ##Minotaur, Vehicle version of beserker
 minotaur:
-	Inherits@TrackedVehicle: ^TrackedVehicle
+	Inherits@Medibeast: ^Medibeast
 	RenderSprites:
 		Image: minotaur
 
 ##Rrongol, Fast, Can Crit
 rrongol:
-	Inherits@TrackedVehicle: ^TrackedVehicle
+	Inherits@Medibeast: ^Medibeast
 	RenderSprites:
 		Image: rrongol
 
 ##Troll, Regens HP
 troll:
-	Inherits@TrackedVehicle: ^TrackedVehicle
+	Inherits@Medibeast: ^Medibeast
 	RenderSprites:
 		Image: troll
 
@@ -599,8 +603,7 @@ troll:
 
 ##Daemonwood, Tanky Regen
 daemonwood:
-	Inherits: ^TrackedVehicle
-	Inherits@Msiege: ^MediSiege
+	Inherits@Medibeast: ^Medibeast
 	Inherits@GAINSEXPERIENCE: ^GainsExperience
 	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
 	Buildable:
@@ -649,8 +652,7 @@ daemonwood:
 
 ##Rock Golem, Splits on death cluster, Slow huge HP
 rockgolem:
-	Inherits: ^TrackedVehicle
-	Inherits@Msiege: ^MediSiege
+	Inherits@Medibeast: ^Medibeast
 	Inherits@GAINSEXPERIENCE: ^GainsExperience
 	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
 	Buildable:
@@ -773,8 +775,7 @@ tustspitter:
 
 ##Url Shekk, Ranged Elite, Attacks change on cycle, Anti Tank, Anti Infantry, Anti Structure
 urlshekk:
-	Inherits: ^TrackedVehicle
-	Inherits@Msiege: ^MediSiege
+	Inherits@Medibeast: ^Medibeast
 	Inherits@GAINSEXPERIENCE: ^GainsExperience
 	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
 	Buildable:

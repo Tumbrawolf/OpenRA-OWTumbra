@@ -81,7 +81,8 @@ outpostmedi:
 slavecampgc:
 	Inherits: GPROC
 	Inherits@BIB: ^2xBuildingBib
-	-Power:
+	Power:
+		Amount: 0
 	-WithIdleOverlay@TOP:
 	-WithIdleOverlay@uac:
 	-WithDeathAnimation:
@@ -91,7 +92,7 @@ slavecampgc:
 	-SpawnActorOnDeath:
 	Buildable:
 		Queue: Building
-		Prerequisites: ~structures.medi, ~laborcamp, ~!ai.boss, ~techlevel.infonly
+		Prerequisites: ~structures.medi, ~refinarymarket, ~!ai.boss, ~techlevel.infonly
 		Description: Produces Slaves.\nAlso acts as a Silo to allow more credits to be held.
 		BuildPaletteOrder: 3
 		BuildDuration: 500
@@ -179,7 +180,7 @@ refinarymarket:
 	Valued:
 		Cost: 1600
 	Power:
-		Amount: 0
+		Amount: 50
 	Targetable:
 		TargetTypes: GroundActor, C4, DetonateAttack, Structure
 	ProvidesPrerequisite@buildingname:
@@ -206,6 +207,7 @@ barrackswg:
 		Amount: 0
 	RenderSprites:
 		Image: barrackswg
+		PlayerPalette: tsunit
 	ProvidesPrerequisite@medi:
 		RequiresPrerequisites: structures.medi
 		Prerequisite: Vehicles.medi
@@ -219,11 +221,12 @@ barrackswg:
 		RequiresPrerequisites: structures.medimages
 		Prerequisite: Vehicles.medimages
 
+
 ##Medieval creatures
 AnimalDen:
 	Inherits: KENN
 	Power:
-		Amount: 0
+		Amount: -50
 	RenderSprites:
 		Image: animalden
 
@@ -242,7 +245,7 @@ dwarfsettlement:
 	Building:
 		BuildSounds: medibuild1.aud, medibuildjobdone1.aud, medibuildplace1.aud
 	Power:
-		Amount: 0
+		Amount: -50
 	RenderSprites:
 		Image: dwarfsettlement
 	ProvidesPrerequisite@medi:
@@ -275,7 +278,7 @@ Drydock:
 	RenderSprites:
 		Image: syrd
 	Power:
-		Amount: 0
+		Amount: -50
 	ProvidesPrerequisite@medi:
 		RequiresPrerequisites: structures.medi
 		Prerequisite: ships.medi
@@ -294,7 +297,7 @@ Drydock:
 dragonlair:
 	Inherits: AFLD
 	Buildable:
-		Prerequisites: techcenter, ~structures.medi, ~techlevel.low
+		Prerequisites: Vehicles.medi, ~structures.medi, ~techlevel.low
 		Description: Allows production of air units.
 		BuildPaletteOrder: 7
 	Valued:
@@ -319,8 +322,9 @@ dragonlair:
 		Prerequisite: aircraft.medimages
 	RenderSprites:
 		Image: dragonlair
+		PlayerPalette: tsunit
 	Power:
-		Amount: 0
+		Amount: -50
 	RallyPoint:
 		ForceSetType: Helicopter
 	CommandBarBlacklist:
@@ -331,7 +335,7 @@ dragonlair:
 	ProductionBar:
 		ProductionType: Aircraft
 
-##Mix of Tech building and a strong defense structure
+##Tech building
 ##techcenterblacksmith
 techcenterblacksmith:
 	Inherits: ^ScienceBuilding
@@ -341,12 +345,12 @@ techcenterblacksmith:
 		Bounds: 3072, 3072
 	Buildable:
 		Queue: Building
-		Prerequisites: ~structures.medi, stables, ~!ai.hard, ~techlevel.infonly
+		Prerequisites: ~structures.medi, Vehicles.medi, ~!ai.hard, ~techlevel.infonly
 		Description: Mix of a Tech Center and Defense structure
 		BuildPaletteOrder: 5
 		BuildLimit: 4
 	Tooltip:
-		Name: Medieval techcenterblacksmith (Techcenter)
+		Name: Medieval techcenter (Techcenter)
 	Building:
 		Footprint: xxx xxx x=x
 		Dimensions: 3,3
@@ -370,7 +374,7 @@ techcenterblacksmith:
 	RenderSprites:
 		Image: techcenterblacksmith
 	Power:
-		Amount: 0
+		Amount: -100
 	DetectCloaked:
 		Range: 6c0
 		RequiresCondition: !disabled
@@ -406,7 +410,7 @@ advtechcenterlibrary:
 	Inherits: ADVTECH
 	Buildable:
 		Queue: Tech
-		Prerequisites: ~structures.medi, techcenter, ~techlevel.high, anypower
+		Prerequisites: ~structures.medi, techcenter, ~techlevel.high
 		BuildLimit: 1
 		Description: Unlocks spells and provides passive income.\nConsumes lots of power.
 		BuildPaletteOrder: 9
@@ -425,7 +429,7 @@ advtechcenterlibrary:
 	RevealsShroud:
 		Range: 4c0
 	Power:
-		Amount: 0
+		Amount: -200
 	CashTrickler:
 		Interval: 50
 		Amount: 25
@@ -439,6 +443,7 @@ advtechcenterlibrary:
 		TargetTypes: GroundActor, C4, DetonateAttack, Structure, SpyInfiltrate
 	RenderSprites:
 		Image: advtechcenterlibrary
+		PlayerPalette: tsunit
 	## Neutral Powers
 	## Cult Powers
 	## Holy Powers
@@ -455,7 +460,7 @@ brashnards:
 	Buildable:
 		Queue: Tech
 		BuildDuration: 4500
-		Prerequisites: ~structures.medi, advtechcenter, ~techlevel.unrestricted, ~!ai.boss, anypower
+		Prerequisites: ~structures.medi, advtechcenter, ~techlevel.unrestricted, ~!ai.boss
 		Description: Super Tech Center\nclones infantry units\nUnlocks Super Units
 		BuildLimit: 1
 		BuildPaletteOrder: 11
@@ -527,6 +532,8 @@ brashnards:
 		Type: CenterPosition
 		Weapon: EMPExplosion
 		EmptyWeapon: EMPExplosion
+	Power:
+		Amount: -300
 
 ##radar structure
 ##medi radar
@@ -540,7 +547,7 @@ radarwg:
 		Name: Wizard Guild
 	Buildable:
 		Queue: Tech
-		Prerequisites: ~structures.medi, advtechcenter, ~techlevel.medium, anypower, ~!structures.medicult
+		Prerequisites: ~structures.medi, techcenter, ~techlevel.medium, ~!structures.medicult
 		Description: Provides radar
 		BuildLimit: 2
 		BuildPaletteOrder: 6
@@ -576,7 +583,7 @@ radarwg:
 		Prerequisite: radar
 	ProvidesPrerequisite@buildingname:
 	Power:
-		Amount: 0
+		Amount: -150
 	ProvidesRadar:
 		RequiresCondition: !jammed && !disabled
 	ExternalCondition@JAMMED:
@@ -635,7 +642,7 @@ Archertower:
 	Buildable:
 		Queue: Defense
 		Prerequisites: ~structures.medi, ~techlevel.low
-		Description: Tower that fires arrows is Upgradable\nStrong vs Infantry
+		Description: Tower that fires arrows \nStrong vs Infantry
 		BuildPaletteOrder: 2
 	Selectable:
 		Bounds: 1024, 1024
@@ -669,7 +676,8 @@ Archertower:
 	-BodyOrientation:
 	ClassicFacingBodyOrientation:
 		QuantizedFacings: 8
-
+	Power:
+		Amount: -25
 ##Garrison structure
 guardhouse:
 	Inherits: ^Defense
@@ -725,6 +733,13 @@ guardhouse:
 	WithCargoPipsDecoration:
 		Position: BottomLeft
 		RequiresSelection: true
+	GrantPeriodicCondition@Guardhousespawner:
+		Condition: Guardhousespawner
+		CooldownDuration: 300, 500
+	FreeActor@Guardhousespawner:
+		Actor: guardhouseguard
+		AllowRespawn: True
+		RequiresCondition: Guardhousespawner
 
 ##Anti Air
 wizardtower:
@@ -871,7 +886,7 @@ wizardtower:
 	ClassicFacingBodyOrientation:
 		QuantizedFacings: 8
 	Power:
-		Amount: 0
+		Amount: -100
 	DetectCloaked:
 		Range: 6c0
 		RequiresCondition: !disabled
@@ -879,10 +894,14 @@ wizardtower:
 	RenderSprites:
 		Image: wizardtower
 
+arcanetower:
+	Inherits: ^Defense
+
 ##Anti Tank
 balistatower:
 	Inherits: wizardtower
-	-Power:
+	Power:
+		Amount: -50
 	-DetectCloaked:
 		ProvidesPrerequisite@buildingname:
 	Buildable:
@@ -905,6 +924,19 @@ balistatower:
 		LocalYaw: -100,100
 	RenderSprites:
 		Image: balistatower
+		PlayerPalette: tsunit
+
+
+##Grants radar but also provides a smaller circle of dark shroud, fragile, high mana cost
+TheEye:
+	Inherits: GAP3
+	Tooltip:
+		Name: The Eye
+	Buildable:
+		Queue: Tech
+		Prerequisites: ~structures.medi, advtechcenter, ~techlevel.medium
+		Description: Grants Vision in large area
+		BuildPaletteOrder: 6
 
 ###############################################################################
 #################################   Holy   ###############################
@@ -926,25 +958,26 @@ Templeofkrypta:
 	RenderSprites:
 		Image: creaturestk
 
-##Medieval creatures
+##Barracks
 GoblinCamp:
 	Inherits: barrackswg
 	RenderSprites:
 		Image: barracksgc
+		PlayerPalette: tsunit
 
-##Medieval creatures
+##Slave Generation
 Goblin Hovel:
 	Inherits: slavecampgc
 	RenderSprites:
 		Image: slavecampgh
 
-##Graveyard
+##Graveyard, Spawns uncontrolled Skeletons in area, attacks targeted units in large area
 Graveyard:
 	Inherits: ^ScienceBuilding
 	Inherits@shape: ^2x2Shape
 	Inherits@BIB: ^2xBuildingBib
 	Power:
-		Amount: 0
+		Amount: -300
 	RenderSprites:
 		Image: medigraveyard
 
@@ -979,7 +1012,7 @@ GATEOFLIGHT:
 		Name: Gate of Light
 	Buildable:
 		Queue: Tech
-		Prerequisites: ~structures.medi, anypower, ~structures.mediholy, ~techlevel.unrestricted, techcenter
+		Prerequisites: ~structures.medi, ~structures.mediholy, ~techlevel.unrestricted, techcenter
 		BuildLimit: 1
 		Description: Provides the Gate of Babylon Super Weapon \nRains down swords that destroy an area.
 		BuildPaletteOrder: 10
@@ -1033,7 +1066,7 @@ GATEOFLIGHT:
 		MissileImage: mediholyweapon
 	SupportPowerChargeBar:
 	Power:
-		Amount: 0
+		Amount: 500
 	MustBeDestroyed:
 		RequiredForShortGame: false
 	WithSupportPowerActivationAnimation:
@@ -1060,7 +1093,7 @@ MediDarkCrystal:
 		Name: Void Crystal
 	Buildable:
 		Queue: Tech
-		Prerequisites: ~structures.medi, anypower, ~structures.medicult, ~techlevel.unrestricted, techcenter
+		Prerequisites: ~structures.medi, ~structures.medicult, ~techlevel.unrestricted, techcenter
 		BuildLimit: 1
 		Description: Provides the Void Rain Super Weapon\nDark energy rains from above to destroy an area
 		BuildPaletteOrder: 10
@@ -1114,7 +1147,7 @@ MediDarkCrystal:
 		MissileImage: medivoidweapon
 	SupportPowerChargeBar:
 	Power:
-		Amount: 0
+		Amount: 500
 	MustBeDestroyed:
 		RequiredForShortGame: false
 	WithSupportPowerActivationAnimation:
@@ -1140,7 +1173,7 @@ FireStormMedi:
 		Name: Natures Will
 	Buildable:
 		Queue: Tech
-		Prerequisites: ~structures.medi, anypower, ~structures.elementalists, ~techlevel.unrestricted, techcenter
+		Prerequisites: ~structures.medi, ~structures.elementalists, ~techlevel.unrestricted, techcenter
 		BuildLimit: 1
 		Description: Provides the Natures Will Super Weapon\nDevestates an area with explosive magic
 		BuildPaletteOrder: 10
@@ -1194,7 +1227,7 @@ FireStormMedi:
 		MissileImage: MageSuperWeapon
 	SupportPowerChargeBar:
 	Power:
-		Amount: 0
+		Amount: 500
 	MustBeDestroyed:
 		RequiredForShortGame: false
 	WithSupportPowerActivationAnimation:
@@ -1209,35 +1242,35 @@ FireStormMedi:
 ###################################  Other   ##################################
 ###############################################################################
 
-## Tech building, map placed
+## cannot be captured or destroyed, Heals all units, friend or foe in area
 monumentgazebo:
 	Power:
-		Amount: 0
+		Amount: 300
 	RenderSprites:
 		Image: monumentgazebo
 
-## Defense strucure, map placed
+## Cannot be captured, acts as regenerating defense area, cannot be fully killed.
 spittervine:
 	Power:
-		Amount: 0
+		Amount: 10
 	RenderSprites:
 		Image: spittervine
 
-## Tech building, map placed
+##  Spawns Void archers for owner, gives powers.
 elvenhideout:
 	Power:
-		Amount: 0
+		Amount: 200
 	RenderSprites:
 		Image: elvenhideout
 
-## Tech building, map placed
+## Proximity capture, cannont be killed, gives exp to neerby units
 fairgrounds:
 	Power:
 		Amount: 0
 	RenderSprites:
 		Image: fairgrounds
 
-## Tech building, map placed
+## proximity capture, generates random money and losses.
 gamblinghall:
 	Power:
 		Amount: 0
@@ -1248,7 +1281,6 @@ gamblinghall:
 
 
 ## Redundant ##
-
 
 medigarrisontower:
 	Inherits: guardhouse

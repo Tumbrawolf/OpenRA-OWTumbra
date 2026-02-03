@@ -123,6 +123,70 @@ upgrade.glashoes:
 	icon:
 		Filename: gshoesicon.shp
 
+################################################################################
+##############################   Medi    #######################################
+################################################################################
+upgrade.mediarrow:
+	icon:
+		Filename: meditowerupgradearchericon.shp
+
+upgrade.mediworkboot:
+	icon:
+		Filename: meditowerupgradearchericon.shp
+
+upgrade.medimagicwep:
+	icon:
+		Filename: meditowerupgradearchericon.shp
+
+upgrade.medimagiclogs:
+	icon:
+		Filename: meditowerupgradearchericon.shp
+
+upgrade.medivision:
+	icon:
+		Filename: meditowerupgradearchericon.shp
+	
+upgrade.medibless:
+	icon:
+		Filename: meditowerupgradearchericon.shp
+	
+upgrade.medishield:
+	icon:
+		Filename: meditowerupgradearchericon.shp
+	
+upgrade.mediabolish:
+	icon:
+		Filename: meditowerupgradearchericon.shp
+	
+upgrade.medipure:
+	icon:
+		Filename: meditowerupgradearchericon.shp
+	
+upgrade.medimagearmor:
+	icon:
+		Filename: meditowerupgradearchericon.shp
+	
+upgrade.mediwiztow:
+	icon:
+		Filename: meditowerupgradearchericon.shp
+	
+upgrade.slavedrive:
+	icon:
+		Filename: meditowerupgradearchericon.shp
+	
+upgrade.blackblood:
+	icon:
+		Filename: meditowerupgradearchericon.shp
+	
+upgrade.necromancy:
+	icon:
+		Filename: meditowerupgradearchericon.shp
+
+
+################################################################################
+##############################   Medi    #######################################
+################################################################################
+
 upgrade.mediarrowt1: #Tier 1#
 	icon:
 		Filename: meditowerupgradearchericon.shp
