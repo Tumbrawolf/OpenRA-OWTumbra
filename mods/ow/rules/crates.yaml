@@ -3745,6 +3745,29 @@ RMBO.Left:
 		Name: bus
 		Weapon: CommandoSniperLeft
 		MuzzleSequence: garrison-muzzle
+	Armament@killall:
+		Name: secondary
+		RequiresCondition: use_bs_weapon && use_bs_weapon2
+		Weapon: CommandoSniperChain
+	GrantConditionOnAttack@killself:
+		ArmamentNames: secondary
+		Condition: killme
+		RevokeDelay: 9000
+	KillsSelf@killself:
+		RequiresCondition: killme
+		DamageTypes: ElectricityDeath
+		Delay: 1500
+	GrantRandomPeriodicCondition@killall:
+		Conditions: use_bs_weapon,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x
+		ActiveDuration: 75
+		CooldownDuration: 75
+		StartsGranted: true
+	GrantRandomPeriodicCondition@killall2:
+		Conditions: use_bs_weapon2,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x
+		ActiveDuration: 75
+		CooldownDuration: 75
+		StartsGranted: true
+		ShowSelectionBar: true
 	WithInfantryBody:
 		DefaultAttackSequence: shoot
 		StandSequences: stand,stand2
@@ -3756,15 +3779,9 @@ RMBO.Left:
 	VoiceAnnouncement:
 		RequiresCondition: announce
 		Voice: Build
-	GrantDelayedCondition@left:
-		RequiresCondition: attacking
-		Condition: announcehit
-		Delay: 4
-		RevokeOnDisabled: true
-		RevokeOnPaused: true
-	VoiceAnnouncement@left:
-		RequiresCondition: announcehit
+	AnnounceOnKill:
 		Voice: Kill2
+		Interval: 10
 	Voiced:
 		VoiceSet: CommandoVoice
 	ProducibleWithLevel:

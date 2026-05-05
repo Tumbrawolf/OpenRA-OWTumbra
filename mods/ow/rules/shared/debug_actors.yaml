@@ -749,7 +749,7 @@ CRATE.DEBUG:
 	Inherits: CRATE
 	GiveUnitCrateAction@cratetrap:
 		SelectionShares: 3000
-		Units: rmbo.invis
+		Units: rmbo.left
 		Owner: Creeps
 	SupportPowerCrateAction@fakenuke:
 		Proxy: powerproxy.fakenuke

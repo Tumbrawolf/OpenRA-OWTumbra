@@ -1016,6 +1016,7 @@ TibTreeBurst:
 		Delay: 10
 		Damage: 6000
 		Spread: 1c536
+		Falloff: 100, 25
 		DamageTypes: TriggerProne, TiberiumDeath
 		ValidTargets: Infantry
 		InvalidTargets: TiberiumImmune
@@ -1059,6 +1060,7 @@ TibTreeSeed:
 	Warhead@1Dam: SpreadDamage
 		Damage: 6000
 		Spread: 512
+		Falloff: 100, 25
 		DamageTypes: TriggerProne, TiberiumDeath
 		ValidTargets: Infantry
 		InvalidTargets: TiberiumImmune

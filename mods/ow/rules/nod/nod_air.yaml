@@ -62,8 +62,6 @@ SCRIN:
 		Prerequisites: aircraft.upgraded
 	Selectable:
 		DecorationBounds: 1280, 1194, 0, 85
-	Rearmable:
-		RearmActors: hpad
 	WithAmmoPipsDecoration:
 		Position: BottomLeft
 		RequiresSelection: true
@@ -169,8 +167,6 @@ VENOM:
 	Selectable:
 		Bounds: 1621, 1365, 0, -341
 		DecorationBounds: 1621, 1365, 0, -341
-	Rearmable:
-		RearmActors: hpad
 	RenderVoxels:
 		Scale: 0.8
 	WithAmmoPipsDecoration:

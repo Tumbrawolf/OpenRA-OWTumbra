@@ -465,7 +465,7 @@ TRAYNOR.Hero2:
 		Margin: 4, 3
 		RequiresSelection: true
 	Rearmable:
-		RearmActors: fix, gfix, tshop
+		RearmActors: fix, gfix, tshop, unscrepairpad
 	ReloadAmmoPool:
 		Delay: 750
 

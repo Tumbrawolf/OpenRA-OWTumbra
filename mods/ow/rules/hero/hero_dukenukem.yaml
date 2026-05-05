@@ -350,7 +350,7 @@ dukenukem.Hero2:
 	AttackFrontal:
 		Armaments: primary, item
 	Rearmable:
-		RearmActors: fix, gfix, tshop
+		RearmActors: fix, gfix, tshop, unscrepairpad
 	GrantRandomPeriodicCondition:
 		Conditions: gun2, gun3
 		CooldownDuration: 1

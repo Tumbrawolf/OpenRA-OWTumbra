@@ -26,21 +26,21 @@ FACT:
 		RequiresCondition: !build-incomplete
 		Sequence: flag
 	Transforms:
-		RequiresCondition: factundeploy && !bot_undeploy_block
+		RequiresCondition: (factundeploy && !bot_undeploy_block) || (bot_undeploy_block && capture_undeploy_override)
 		PauseOnCondition: chrono-vortex || being-captured || being-demolished || build-incomplete
 		IntoActor: mcv
 		Offset: 1,1
 		Facing: 384
 	TransformsIntoMobile:
-		RequiresCondition: factundeploy && !bot_undeploy_block
+		RequiresCondition: (factundeploy && !bot_undeploy_block) || (bot_undeploy_block && capture_undeploy_override)
 		Locomotor: heavywheeled
 		RequiresForceMove: true
 	TransformsIntoPassenger:
-		RequiresCondition: factundeploy && !bot_undeploy_block
+		RequiresCondition: (factundeploy && !bot_undeploy_block) || (bot_undeploy_block && capture_undeploy_override)
 		CargoType: Vehicle
 		RequiresForceMove: true
 	TransformsIntoRepairable:
-		RequiresCondition: factundeploy && !bot_undeploy_block
+		RequiresCondition: (factundeploy && !bot_undeploy_block) || (bot_undeploy_block && capture_undeploy_override)
 		RepairActors: fix, gfix, gfix.boss, tshop, weapgarage, unscrepairpad
 		RequiresForceMove: true
 	TransformsIntoTransforms:
@@ -108,21 +108,21 @@ FACTD:
 		ActorTypes: e1,e1,e1,tecn,tecn,e6
 	BaseBuilding:
 	Transforms:
-		RequiresCondition: factundeploy && !bot_undeploy_block
+		RequiresCondition: (factundeploy && !bot_undeploy_block) || (bot_undeploy_block && capture_undeploy_override)
 		PauseOnCondition: chrono-vortex || being-captured || being-demolished || build-incomplete
 		IntoActor: mcvd
 		Offset: 1,1
 		Facing: 384
 	TransformsIntoMobile:
-		RequiresCondition: factundeploy && !bot_undeploy_block
+		RequiresCondition: (factundeploy && !bot_undeploy_block) || (bot_undeploy_block && capture_undeploy_override)
 		Locomotor: heavywheeled
 		RequiresForceMove: true
 	TransformsIntoPassenger:
-		RequiresCondition: factundeploy && !bot_undeploy_block
+		RequiresCondition: (factundeploy && !bot_undeploy_block) || (bot_undeploy_block && capture_undeploy_override)
 		CargoType: Vehicle
 		RequiresForceMove: true
 	TransformsIntoRepairable:
-		RequiresCondition: factundeploy && !bot_undeploy_block
+		RequiresCondition: (factundeploy && !bot_undeploy_block) || (bot_undeploy_block && capture_undeploy_override)
 		RepairActors: fix, gfix, gfix.boss, tshop, weapgarage
 		RequiresForceMove: true
 	Sellable:

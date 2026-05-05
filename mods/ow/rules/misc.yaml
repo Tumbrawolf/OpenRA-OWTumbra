@@ -260,9 +260,10 @@ SPLIT3.CR:
 		Condition: growth
 	ExternalCondition@dotransform:
 		Condition: dotransform
-	ExplodeWeapon@burst:
+	FireWarheads@burst:
 		RequiresCondition: burst
-		Weapon: TibTreeBurst
+		Weapons: TibTreeBurst
+		Interval: 100
 	GrantRandomCondition@infectable:
 		Conditions: infectable,lessinfectable,moreinfectable
 	SpawnActorOnDeath:
@@ -328,9 +329,10 @@ SPLIT4.CR:
 		StartSequence: make
 	GrantTimedCondition:
 		Condition: making
-	ExplodeWeapon@burst:
+	FireWarheads@burst:
 		RequiresCondition: burst
-		Weapon: TibTreeBlueBurst
+		Weapons: TibTreeBlueBurst
+		Interval: 100
 	RenderSprites:
 		Image: split3
 		PlayerPalette: dawn
@@ -391,9 +393,10 @@ TMONOLITH:
 		Triggers: Damage
 		CooldownDuration: 100
 		ActiveDuration: 50
-	ExplodeWeapon@burst:
+	FireWarheads@burst:
 		RequiresCondition: burst
-		Weapon: TibTreeBurst
+		Weapons: TibTreeBurst
+		Interval: 100
 	GrantPeriodicCondition@form:
 		RequiresCondition: making
 		Condition: form_fire
@@ -449,8 +452,8 @@ TMONOLITH.BLUE:
 		ResourceType: BlueTiberium
 	ExplodeWeapon@form:
 		Weapon: MonolithShakeBlue
-	ExplodeWeapon@burst:
-		Weapon: TibTreeBlueBurst
+	FireWarheads@burst:
+		Weapons: TibTreeBlueBurst
 	-SpawnActorOnDeath@spread:
 	-GrantCondition@growth:
 	-ExternalCondition@growth:

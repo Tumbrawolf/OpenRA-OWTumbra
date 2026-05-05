@@ -220,8 +220,6 @@ unschornet:
 		Name: laser
 		Weapon: PointDefenseLaser
 		RequiresCondition: chaffpod
-	Rearmable:
-		RearmActors: chinaairfield, usaairfield, hpad, usaairstriplandingspot, japanairfield, japanairfieldnavy, unscairpad
 
 unscsparrowhawk:
 	Inherits: ^Helicopter
@@ -319,9 +317,6 @@ unscsparrowhawk:
 		MaxWeight: 8
 		AfterUnloadDelay: 40
 		EjectOnDeath: true
-	Rearmable:
-		RearmActors: chinaairfield, usaairfield, hpad, usaairstriplandingspot, japanairfield, japanairfieldnavy, unscairpad
-
 
 unscvulture:
 	Inherits: ^Helicopter
@@ -433,8 +428,6 @@ unscvulture:
 	GrantConditionOnPrerequisite@phoenix:
 		Condition: phoenix
 		Prerequisites: unsc.phoenix
-	Rearmable:
-		RearmActors: chinaairfield, usaairfield, hpad, usaairstriplandingspot, japanairfield, japanairfieldnavy, unscairpad
 
 unscpelican:
 	Inherits: BADR

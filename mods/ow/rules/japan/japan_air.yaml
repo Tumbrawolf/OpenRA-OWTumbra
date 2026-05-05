@@ -77,8 +77,6 @@ japanchoppervx:
 		Prerequisites: aircraft.upgraded
 	Selectable:
 		DecorationBounds: 1621, 1365
-	Rearmable:
-		RearmActors: chinaairfield, usaairfield, hpad, usaairstriplandingspot, japanairfield, japanairfieldnavy
 	WithAmmoPipsDecoration:
 		Position: BottomLeft
 		Margin: 4, 3
@@ -180,8 +178,6 @@ japanjettengu:
 		RequiresCondition: enable-smoke
 	ProducibleWithLevel:
 		Prerequisites: aircraft.upgraded
-	Rearmable:
-		RearmActors: chinaairfield, usaairfield, afld, afld.ukraine, usaairstriplandingspot, japanairfield, japanairfieldnavy
 	WithAmmoPipsDecoration:
 		Position: BottomLeft
 		Margin: 4, 3
@@ -282,8 +278,6 @@ japankitsune:
 		RequiresCondition: enable-smoke
 	ProducibleWithLevel:
 		Prerequisites: aircraft.upgraded
-	Rearmable:
-		RearmActors: usaairfield, afld, afld.ukraine, usaairstriplandingspot, japanairfield, japanairfieldnavy
 	WithAmmoPipsDecoration:
 		Position: BottomLeft
 		Margin: 4, 3
@@ -373,8 +367,6 @@ japanyousei:
 		RequiresCondition: enable-smoke
 	ProducibleWithLevel:
 		Prerequisites: aircraft.upgraded
-	Rearmable:
-		RearmActors: usaairfield, afld, afld.ukraine, usaairstriplandingspot, japanairfield, japanairfieldnavy
 	WithAmmoPipsDecoration:
 		Position: BottomLeft
 		Margin: 4, 3
@@ -468,8 +460,6 @@ japankaminari:
 		RequiresCondition: enable-smoke
 	ProducibleWithLevel:
 		Prerequisites: aircraft.upgraded
-	Rearmable:
-		RearmActors: usaairfield, afld, afld.ukraine, usaairstriplandingspot, japanairfield, japanairfieldnavy
 	WithAmmoPipsDecoration:
 		Position: BottomLeft
 		Margin: 4, 3
@@ -862,8 +852,6 @@ japanswarmdrone:
 		RequiresCondition: enable-smoke
 	ProducibleWithLevel:
 		Prerequisites: aircraft.upgraded
-	Rearmable:
-		RearmActors: usaairfield, afld, afld.ukraine, usaairstriplandingspot, japanairfield, japanairfieldnavy
 	WithAmmoPipsDecoration:
 		Position: BottomLeft
 		Margin: 4, 3
@@ -1068,8 +1056,6 @@ japanharuna:
 		RequiresCondition: enable-smoke
 	ProducibleWithLevel:
 		Prerequisites: aircraft.upgraded
-	Rearmable:
-		RearmActors: usaairfield, afld, afld.ukraine, usaairstriplandingspot, japanairfield, japanairfieldnavy
 	GrantConditionOnDamageState@SmokeTrail:
 		Condition: enable-smoke
 	WithProductionIconOverlay:

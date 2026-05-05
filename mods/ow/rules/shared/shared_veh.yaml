@@ -251,7 +251,7 @@ MNLY:
 		Prerequisites: fix, ~techlevel.medium, ~vehicles.all
 		Description: actor-mnly-description
 	Rearmable:
-		RearmActors: fix, gfix
+		RearmActors: fix, gfix, tshop, unscrepairpad
 	AmmoPool:
 		Ammo: 3
 	Minelayer:

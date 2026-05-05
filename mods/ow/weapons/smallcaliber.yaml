@@ -944,6 +944,56 @@ CommandoSniperLeftHit:
 	Report: baud.aud
 	ValidTargets: Infantry, Cyborg
 
+CommandoSniperChain:
+	Inherits: CommandoSniper
+	ReloadDelay: 500
+	Range: 25c0
+	Projectile: LaserZap
+		Color: FFFFFF
+		Width: 12
+		Duration: 10
+	-Warhead@2Eff:
+	Warhead@1Dam: SpreadDamage
+		Damage: 1
+	Warhead@HighHP: SpreadDamage
+		Damage: 1
+	Warhead@2cluster: FireShrapnel
+		Delay: 1
+		Amount: 1
+		Weapon: CommandoSniperChainHit
+		AimTargetStances: Neutral, Enemy, Ally
+		AimChance: 100
+		AllowDirectHit: true
+		AffectsParent: true
+		TargetActorCenter: true
+		ValidTargets: GroundActor, WaterActor, AirborneActor, Ground, Water
+
+CommandoSniperChainHit:
+	Inherits: CommandoSniper
+	Range: 128c0
+	Report: baud.aud
+	Projectile: LaserZap
+		Color: FFFFFF
+		Width: 12
+		Duration: 10
+	ValidTargets: Infantry, Cyborg
+	Warhead@1Dam: SpreadDamage
+		Damage: 100000
+	Warhead@2cluster: FireShrapnel
+		Delay: 1
+		Amount: 1
+		Weapon: CommandoSniperChainHit
+		AimTargetStances: Neutral, Enemy, Ally
+		AimChance: 100
+		AllowDirectHit: true
+		TargetActorCenter: true
+		ValidTargets: GroundActor, WaterActor, AirborneActor, Ground, Water
+		AffectsParent: true
+	Warhead@3hit: CreateEffect
+		Explosions: hitmarker
+		ImpactSounds: HITSOUND.wav
+		ValidTargets: Infantry
+
 DeadeyeSniper:
 	Inherits: ^SnipeWeapon
 	ReloadDelay: 80

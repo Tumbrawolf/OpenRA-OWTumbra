@@ -721,6 +721,9 @@
 	GrantCondition@bot_undeploy_block:
 		RequiresCondition: !surveyor_near_base && botowner
 		Condition: bot_undeploy_block
+	GrantConditionOnCapture@allowundeploy:
+		RequiresCondition: botowner
+		Condition: capture_undeploy_override
 	Exit:
 	ProductionBar@Building:
 		ProductionType: Building
@@ -2598,7 +2601,7 @@
 		Modifier: 75
 	-SpeedMultiplier@creep:
 	Rearmable:
-		RearmActors: hpad, hpad.bot, afld, afld.ukraine, usaairfield, usaairstriplandingspot, chinaairfield, japanairfield, japanairfieldnavy, pstarg, tsport, tsport.landed, zspire, zspire.spot, avpad, barr.hero
+		RearmActors: hpad, hpad.bot, afld, afld.ukraine, usaairfield, usaairstriplandingspot, chinaairfield, japanairfield, japanairfieldnavy, pstarg, tsport, tsport.landed, zspire, zspire.spot, avpad, barr.hero, unscairpad
 	Cloneable:
 		Types: Plane
 	Cloak@stealthgen:
@@ -3953,10 +3956,10 @@
 		Condition: creeps
 	Targetable@tree:
 		RequiresCondition: !creeps
-		TargetTypes: TibTree, Ground, UpgradeThing, OreMine, NoAITarget, NoAutoTarget
+		TargetTypes: TibTree, Ground, UpgradeThing, OreMine, NoAITarget, NoAutoTarget, TiberiumImmune
 	Targetable@creeps:
 		RequiresCondition: creeps
-		TargetTypes: TibTree, Defense, Structure, GroundActor
+		TargetTypes: TibTree, Defense, Structure, GroundActor, TiberiumImmune
 	DamageMultiplier@creeps:
 		RequiresCondition: creeps
 		Modifier: 150

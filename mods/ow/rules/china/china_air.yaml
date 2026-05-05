@@ -161,8 +161,6 @@ chinanukemig:
 		RequiresCondition: enable-smoke
 	ProducibleWithLevel:
 		Prerequisites: aircraft.upgraded
-	Rearmable:
-		RearmActors: chinaairfield, usaairfield, afld, afld.ukraine, usaairstriplandingspot
 	WithAmmoPipsDecoration:
 		Position: BottomLeft
 		Margin: 4, 3

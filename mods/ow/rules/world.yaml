@@ -764,6 +764,11 @@
 		InternalName: mediwizards
 		Side: Medieval [WIP]
 		Description: player-factions.mediwizards
+	Faction@unsc:
+		Name: UNSC Marine Corps
+		InternalName: unsc
+		Side: Halo
+		Description: player-factions.unsc
 	Faction@btsphere:
 		Name: Successor States [WIP]
 		InternalName: btsphere
@@ -781,11 +786,6 @@
 		Side: BattleTech [WIP]
 		Selectable: false
 		Description: player-factions.btmerc
-	Faction@unsc:
-		Name: UNSC Marine Corps
-		InternalName: unsc
-		Side: Halo
-		Description: player-factions.unsc
 	Faction@civ:
 		Name: Civilians [WIP]
 		InternalName: civ

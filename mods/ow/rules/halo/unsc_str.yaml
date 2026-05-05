@@ -57,25 +57,25 @@ unsccommandcenter:
 		Condition: chrono-vortex
 		Damage: 1500
 	Transforms:
-		RequiresCondition: factundeploy && !bot_undeploy_block
+		RequiresCondition: (factundeploy && !bot_undeploy_block) || (bot_undeploy_block && capture_undeploy_override)
 		PauseOnCondition: chrono-vortex || being-captured || being-demolished || build-incomplete
 		IntoActor: unscmcv
 		Offset: 1,1
 		Facing: 384
 	TransformsIntoMobile:
-		RequiresCondition: factundeploy && !bot_undeploy_block
+		RequiresCondition: (factundeploy && !bot_undeploy_block) || (bot_undeploy_block && capture_undeploy_override)
 		Locomotor: heavywheeled
 		RequiresForceMove: true
 	TransformsIntoPassenger:
-		RequiresCondition: factundeploy && !bot_undeploy_block
+		RequiresCondition: (factundeploy && !bot_undeploy_block) || (bot_undeploy_block && capture_undeploy_override)
 		CargoType: Vehicle
 		RequiresForceMove: true
 	TransformsIntoRepairable:
-		RequiresCondition: factundeploy && !bot_undeploy_block
+		RequiresCondition: (factundeploy && !bot_undeploy_block) || (bot_undeploy_block && capture_undeploy_override)
 		RepairActors: fix, gfix, gfix.boss, tshop, weapgarage, unscrepairpad
 		RequiresForceMove: true
 	TransformsIntoTransforms:
-		RequiresCondition: factundeploy && build-incomplete && !bot_undeploy_block
+		RequiresCondition: ((factundeploy && !bot_undeploy_block) || (bot_undeploy_block && capture_undeploy_override)) && build-incomplete
 	Health:
 		HP: 80000
 	Armor:

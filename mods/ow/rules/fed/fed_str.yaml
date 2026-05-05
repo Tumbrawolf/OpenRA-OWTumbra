@@ -172,6 +172,8 @@ OREGEN:
 		Amount: 10
 		RequiresCondition: !disabled
 	-AcceptsDeliveredCash:
+	-GrantConditionOnPrerequisite@frost:
+	-SeedsResource@frost:
 
 GEMGEN:
 	Inherits: OREGEN

@@ -424,7 +424,7 @@ MNLY.G:
 	RenderSprites:
 		Image: MNLY
 	Rearmable:
-		RearmActors: fix, gfix
+		RearmActors: fix, gfix, tshop, unscrepairpad
 	WithAmmoPipsDecoration:
 		Position: BottomLeft
 		RequiresSelection: true
