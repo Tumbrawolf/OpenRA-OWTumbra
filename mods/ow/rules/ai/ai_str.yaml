@@ -2493,7 +2493,7 @@ bossfaction.battletech:
 		Queue: ConYardPerimeter
 		Description: actor-perimeterupgrade.desc
 		BuildDuration: 1500
-		Prerequisites: ~upgrade.buildrepair1
+		Prerequisites: ~upgrade.buildrepair1, ~disabled
 		IconPaletteIsPlayerPalette: false
 		IconPalette: chrome
 	Valued:
