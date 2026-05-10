@@ -5975,3 +5975,65 @@ unscfoundry:
 	icon:
 		Filename: unscfoundryicon.shp
 		Offset: 0,0
+
+covenantcitadel:
+	Defaults:
+		Filename: covenantcitadel.shp
+		Offset: 0,0
+	idle:
+		Start: 0
+	damaged-idle:
+		Start: 0
+	make:
+		Start: 0
+	bib:
+		Filename: bib1.tem
+		TilesetFilenames:
+			SNOW: bib1.sno
+			DESERT: bib1.des
+		Length: *
+	icon:
+		Filename: unscradartowericon.shp
+		Offset: 0,0
+
+covenantfoundation:
+	Defaults:
+		Filename: covenantfoundation.shp
+		Offset: 0,-12
+	idle:
+		Start: 0
+	damaged-idle:
+		Start: 0
+	make:
+		Start: 0
+	bib:
+		Filename: bib2.tem
+		TilesetFilenames:
+			SNOW: bib2.sno
+			DESERT: bib2.des
+		Length: *
+	icon:
+		Filename: covenantfoundationicon.shp
+		Offset: 0,0
+
+covenanthall:
+	Defaults:
+		Filename: covenanthall.shp
+		Offset: 0,-12
+	make:
+		Filename: covenanthall.shp
+		Tick: 40
+		Length: *
+	idle:
+		Start: 0
+	damaged-idle:
+		Start: 0
+	bib:
+		Filename: bib2.tem
+		TilesetFilenames:
+			SNOW: bib2.sno
+			DESERT: bib2.des
+		Length: *
+	icon:
+		Filename: covenanthallicon.shp
+		Offset: 0,0

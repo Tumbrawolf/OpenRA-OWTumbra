@@ -44,6 +44,7 @@ GenericVoice:
 		btmerc: .r01,.r03,.v01,.v03,.ts1,.ts2
 		btclan: .ts1,.ts2
 		unsc: .d01,.d03
+		covenant: .ts1,.ts2
 	Voices:
 		Select: await1,ready,report1,yessir1
 		Action: ackno,affirm1,noprob,overout,ritaway,roger,ugotit
@@ -102,6 +103,7 @@ VehicleVoice:
 		btmerc: .r00,.r02,.v00,.v02,.ts3,.ts4
 		btclan: .ts3,.ts4
 		unsc: .d00,.d02
+		covenant: .ts3,.ts4
 	Voices:
 		Select: vehic1,yessir1,report1,await1
 		Action: ackno,affirm1
@@ -154,6 +156,7 @@ AircraftVoice:
 		japan: .v00,.v02
 		avalon: .av1
 		unsc: .d01,.d03
+		covenant: .ts5
 	Voices:
 		Select: await1,ready,report1,yessir1
 		Action: ackno,affirm1,noprob,overout,ritaway,roger
@@ -2292,3 +2295,15 @@ UNSCMarine5:
 		Die: UNSCMarine5Death01.aud, UNSCMarine5Death02.aud, UNSCMarine5Death03.aud, UNSCMarine5Death04.aud, UNSCMarine5Death05.aud, UNSCMarine5Death06.aud, UNSCMarine5Death07.aud, UNSCMarine5Death08.aud, UNSCMarine5Death09.aud, UNSCMarine5Death10.aud, UNSCMarine5Death11.aud
 		Burned: UNSCMarine5Death01.aud, UNSCMarine5Death02.aud, UNSCMarine5Death03.aud, UNSCMarine5Death04.aud, UNSCMarine5Death05.aud, UNSCMarine5Death06.aud, UNSCMarine5Death07.aud, UNSCMarine5Death08.aud, UNSCMarine5Death09.aud, UNSCMarine5Death10.aud, UNSCMarine5Death11.aud
 		Zapped: UNSCMarine5Death01.aud, UNSCMarine5Death02.aud, UNSCMarine5Death03.aud, UNSCMarine5Death04.aud, UNSCMarine5Death05.aud, UNSCMarine5Death06.aud, UNSCMarine5Death07.aud, UNSCMarine5Death08.aud, UNSCMarine5Death09.aud, UNSCMarine5Death10.aud, UNSCMarine5Death11.aud
+
+CovenantGrunt:
+	DefaultVariant: 
+	Voices:
+		Attack: covenantgruntattack1.ogg, covenantgruntattack2.ogg, covenantgruntattack3.ogg, covenantgruntattack4.ogg, covenantgruntattack5.ogg, covenantgruntattack6.ogg, covenantgruntattack7.ogg. covenantgruntattack8.ogg, covenantgruntattack9.ogg
+		Select: covenantgruntselect1.ogg, covenantgruntselect2.ogg, covenantgruntselect3.ogg, covenantgruntselect4.ogg, covenantgruntselect5.ogg
+		Move: covenantgruntmove1.ogg, covenantgruntmove2.ogg, covenantgruntmove3.ogg, covenantgruntmove4.ogg, covenantgruntmove5.ogg, covenantgruntmove6.ogg
+		Action: covenantgruntmove1.ogg, covenantgruntmove2.ogg, covenantgruntmove3.ogg, covenantgruntmove4.ogg, covenantgruntmove5.ogg, covenantgruntmove6.ogg
+		Die: covenantgruntdie1.ogg, covenantgruntdie2.ogg, covenantgruntdie3.ogg, covenantgruntdie4.ogg, covenantgruntdie5.ogg, covenantgruntdie6.ogg, covenantgruntdie7.ogg, covenantgruntdie8.ogg, covenantgruntdie9.ogg, covenantgruntdie10.ogg, covenantgruntdie11.ogg, covenantgruntdie12.ogg, covenantgruntdie13.ogg, covenantgruntdie14.ogg
+		Burned: covenantgruntdie1.ogg, covenantgruntdie2.ogg, covenantgruntdie3.ogg, covenantgruntdie4.ogg, covenantgruntdie5.ogg, covenantgruntdie6.ogg, covenantgruntdie7.ogg, covenantgruntdie8.ogg, covenantgruntdie9.ogg, covenantgruntdie10.ogg, covenantgruntdie11.ogg, covenantgruntdie12.ogg, covenantgruntdie13.ogg, covenantgruntdie14.ogg
+		Zapped: covenantgruntdie1.ogg, covenantgruntdie2.ogg, covenantgruntdie3.ogg, covenantgruntdie4.ogg, covenantgruntdie5.ogg, covenantgruntdie6.ogg, covenantgruntdie7.ogg, covenantgruntdie8.ogg, covenantgruntdie9.ogg, covenantgruntdie10.ogg, covenantgruntdie11.ogg, covenantgruntdie12.ogg, covenantgruntdie13.ogg, covenantgruntdie14.ogg
+        Kill: covenantgruntkill1.ogg, covenantgruntkill2.ogg, covenantgruntkill3.ogg, covenantgruntkill4.ogg, covenantgruntkill5.ogg, covenantgruntkill6.ogg, covenantgruntkill7.ogg, covenantgruntkill8.ogg, covenantgruntkill9.ogg

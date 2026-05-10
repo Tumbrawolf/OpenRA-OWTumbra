@@ -1,0 +1,250 @@
+^covenantbuilding:
+	GrantConditionOnDamageState@fire1:
+		Condition: damaged_light
+		ValidDamageStates: Medium, Heavy, Critical
+	GrantConditionOnDamageState@fire2:
+		Condition: damaged_heavy
+		ValidDamageStates: Heavy, Critical
+	GrantConditionOnDamageState@fire3:
+		Condition: damaged_critical
+		ValidDamageStates: Critical
+	WithIdleOverlay@fire1:
+		RequiresCondition: damaged_light
+		Image: fire
+		Sequence: 4
+		IsDecoration: true
+		Offset: -512,512,0
+		Palette: effect
+	WithIdleOverlay@fire2:
+		RequiresCondition: damaged_heavy
+		Image: fire
+		Sequence: 3
+		IsDecoration: true
+		Offset: -128,-256,0
+		Palette: effect
+	WithIdleOverlay@fire3:
+		RequiresCondition: damaged_critical
+		Image: fire
+		Sequence: 2
+		IsDecoration: true
+		Offset: 512,128,0
+		Palette: effect
+
+covenantcitadel:
+	Inherits: ^Building
+	Inherits@con: ^ConYard
+	Inherits@prereqs: ^ConYardPrereqs
+	Inherits@BIB: ^4xBuildingBib
+	Inherits@botblocker: ^3x4BotBlockerChoose
+	Inherits@unscbuilding: ^covenantbuilding
+	-Building:
+	Tooltip:
+		Name: actor-covenantcitadel.name
+	D2kBuilding:
+		Footprint: xxX= xxxx XxXX ====
+		Dimensions: 4,4
+		TerrainTypes: Clear,ClearSnow,Road,Creep
+		RequiresBaseProvider: True
+		BuildSounds: placbldg.aud, build5.aud
+		UndeploySounds: cashturn.aud
+		LocalCenterOffset: 0,-512,0
+		ConcreteTemplate: 1024
+		ConcretePrerequisites: techlevel.pavement
+	Buildable:
+		BuildPaletteOrder: 7500
+	ConyardChronoReturn:
+		ReturnOriginalActorOnCondition: build-incomplete
+		Condition: chrono-vortex
+		Damage: 1500
+	Transforms:
+		RequiresCondition: (factundeploy && !bot_undeploy_block) || (bot_undeploy_block && capture_undeploy_override)
+		PauseOnCondition: chrono-vortex || being-captured || being-demolished || build-incomplete
+		IntoActor: covenantmcv
+		Offset: 1,1
+		Facing: 384
+	TransformsIntoMobile:
+		RequiresCondition: (factundeploy && !bot_undeploy_block) || (bot_undeploy_block && capture_undeploy_override)
+		Locomotor: heavywheeled
+		RequiresForceMove: true
+	TransformsIntoPassenger:
+		RequiresCondition: (factundeploy && !bot_undeploy_block) || (bot_undeploy_block && capture_undeploy_override)
+		CargoType: Vehicle
+		RequiresForceMove: true
+	TransformsIntoRepairable:
+		RequiresCondition: (factundeploy && !bot_undeploy_block) || (bot_undeploy_block && capture_undeploy_override)
+		RepairActors: fix, gfix, gfix.boss, tshop, weapgarage, unscrepairpad
+		RequiresForceMove: true
+	TransformsIntoTransforms:
+		RequiresCondition: ((factundeploy && !bot_undeploy_block) || (bot_undeploy_block && capture_undeploy_override)) && build-incomplete
+	Health:
+		HP: 80000
+	Armor:
+		Type: Wood
+	RevealsShroud:
+		MinRange: 4c0
+		Range: 5c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 4c0
+
+covenantfoundation:
+	Inherits: ^Building
+	Inherits@SHAPE: ^3x3Shape
+	Inherits@BIB: ^3xBuildingBib
+	Inherits@unscbuilding: ^covenantbuilding
+	Buildable:
+		Queue: Building
+		Prerequisites: ~structures.covenant
+		BuildPaletteOrder: 1
+		Description: actor-covenantfoundation.description
+	Valued:
+		Cost: 300
+	Tooltip:
+		Name: actor-covenantfoundation.name
+	Building:
+		Footprint: xxx xxx ===
+		Dimensions: 3,3
+	Selectable:
+		Bounds: 3072, 3072
+		DecorationBounds: 3072, 3072
+	Health:
+		HP: 80000
+	Armor:
+		Type: Wood
+	Power:
+		Amount: 0
+	GrantTimedCondition@invul:
+		Duration: 66
+		Condition: invince
+	DamageMultiplier@invul:
+		RequiresCondition: invince
+		Modifier: 15
+	ProvidesPrerequisite@buildingname:
+	RevealsShroud@GAPGEN:
+		Range: 3c0
+	ProductionQueue@foundation:
+		Type: Foundation
+		Group: Building
+		BlockedAudio: NoBuild
+		LimitedAudio: BuildingInProgress
+		QueuedAudio: Building
+		OnHoldAudio: OnHold
+		CancelledAudio: Cancelled
+		QueueLimit: 1
+	Production@foundation:
+		Produces: Foundation
+	ProductionBar@foundation:
+		ProductionType: Foundation
+	GrantConditionOnProduction@hall:
+		Condition: hall
+		Actors: covenantfoundation.hall
+	TransformOnCondition@reactor:
+		IntoActor: covenanthall
+		RequiresCondition: hall
+
+covenanthall:
+	Inherits: ^DawnBuilding
+	Inherits@prereqs: ^BarracksPrereqs
+	Inherits@shape: ^3x3Shape
+	Inherits@BIB: ^3xBuildingBib
+	Inherits@unscbuilding: ^covenantbuilding
+	Selectable:
+		Bounds: 3072, 4096
+		DecorationBounds: 3072, 4096
+	HitShape:
+		UseTargetableCellsOffsets: false
+		TargetableOffsets: 0,0,0, 630,-512,0, 355,512,0, -281,-512,0, -630,512,0
+	Valued:
+		Cost: 200
+	Tooltip:
+		Name: actor-covenanthall.name
+	Building:
+		Footprint: xxx xxx ===
+		Dimensions: 3,3
+	Health:
+		HP: 90000
+	Armor:
+		Type: Wood
+	RevealsShroud:
+		MinRange: 4c0
+		Range: 5c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 4c0
+	ActorPreviewPlaceBuildingPreview:
+	Cloak@stealthgen:
+		Palette: dawncloak
+	RallyPoint:
+	Exit@1:
+		RequiresCondition: !being-captured
+		SpawnOffset: -42,810,0
+		ExitCell: 1,2
+		ProductionTypes: Soldier, Infantry
+	Exit@2:
+		RequiresCondition: !being-captured
+		SpawnOffset: -725,640,0
+		ExitCell: 0,2
+		ProductionTypes: Soldier, Infantry
+	Production:
+		Produces: Infantry, Soldier
+	GrantExternalConditionToProduced:
+		Condition: produced
+	PrimaryBuilding:
+		PrimaryCondition: primary
+		SelectionNotification: PrimaryBuildingSelected
+	ProductionBar:
+		ProductionType: Infantry
+	ProvidesPrerequisite@buildingname:
+	InfiltrateForSupportPower:
+		Proxy: barracks.upgraded
+		Types: SpyInfiltrate
+	Targetable:
+		TargetTypes: GroundActor, C4, DetonateAttack, Structure, SpyInfiltrate
+	WithDecoration@primary:
+		RequiresSelection: true
+		Image: pips
+		Sequence: tag-primary
+		Position: Top
+		RequiresCondition: primary
+	ProvidesPrerequisite@zocomupgrade:
+		RequiresPrerequisites: structures.zocom
+		Prerequisite: barracks.upgraded
+	ProvidesPrerequisite@phobosupgrade:
+		RequiresPrerequisites: structures.phobos
+		Prerequisite: barracks.upgraded
+	ToggleConditionOnOrder@sell:
+		OrderName: Sell
+		Condition: sell_me
+	TransformOnCondition@sell:
+		RequiresCondition: sell_me
+		IntoActor: covenantfoundation
+	SpawnActorOnDeath@firebase:
+		Actor: covenantfoundation
+
+^covenantfoundation:
+	Buildable:
+		Queue: Foundation
+		BuildDurationModifier: 60
+		IconPalette: player-icon
+		IconPaletteIsPlayerPalette: true
+	Interactable:
+	ScriptTriggers:
+	KillsSelf:
+		RemoveInstead: true
+
+covenantfoundation.hall:
+	Inherits: ^covenantfoundation
+	Tooltip:
+		Name: actor-covenanthall.name
+	Buildable:
+		Queue: Foundation
+		BuildAtProductionType: Foundation
+		Description: actor-covenanthall.description
+		Prerequisites: ~structures.covenant
+		IconPalette: player-icon
+		BuildPaletteOrder: 1
+		IconPaletteIsPlayerPalette: true
+	Valued:
+		Cost: 400
+	RenderSprites:
+		Image: covenanthall

@@ -1,0 +1,33 @@
+covenantmcv:
+	Inherits: MCV
+	Inherits: ^Vehicle
+	Inherits@selection: ^SelectableSupportUnit
+	Inherits@MCV: ^MCVBehaviour
+	Buildable:
+		Queue: Vehicle
+		BuildPaletteOrder: 90
+		Prerequisites: unscrepairpad, ~mcv, ~techlevel.medium, ~vehicles.covenant
+		BuildDurationModifier: 50
+		Description: actor-mcv-description
+	Valued:
+		Cost: 5000
+	ProvidesPrerequisite:
+		Prerequisite: mcv
+	Health:
+		HP: 60000
+	Armor:
+		Type: Light
+	Transforms:
+		IntoActor: covenantcitadel
+
+covenantmcv.2:
+	Inherits: covenantmcv
+	Buildable:
+		Queue: Vehicle
+		BuildPaletteOrder: 90
+		BuildDurationModifier: 35
+		Prerequisites: ~!mcv, ~techlevel.medium, ~vehicles.covenant
+	Valued:
+		Cost: 3000
+	RenderSprites:
+		Image: covenantmcv

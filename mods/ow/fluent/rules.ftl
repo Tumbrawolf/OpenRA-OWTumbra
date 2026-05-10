@@ -7567,15 +7567,28 @@ player-factions =
       Special units: 'Mech Lances
      
       Drawbacks: Resource intensive, but many options.
-    .unsc = UNSC Marine Corps [WIP]
+    .unsc = UNSC Marine Corps
       "Provide combined arms expeditionary forces and security detachments."
 
       The UNSC Marine Corps is a branch of the United Nations Space Command responsible
       for conducting land-based expeditionary amphibious and airborne combat operations,
       using the mobility provided by the UNSC Navy to rapidly deliver forces.
 
+      Speciality: Infantry & Aircraft
+      Superweapon: MAC
+      Special units: Sgt Johnson & Colony Ship
+      Abilities: ODST Drop
+
+    .covenant = Covenant Empire [WIP]
+      "Creatures of the Covenant: the path is broad, and we shall walk it side by side!"
+      — The High Prophet of Truth
+
+      The Covenant is a massive religious hegemony of multiple alien species that completely controls a large portion of the Orion Arm in the Milky Way Galaxy.
+      Originally a mutual alliance between the San'Shyuum and the Sangheili, the Covenant expanded to include six other species (Huragok, Mgalekgolo, Unggoy, Kig-Yar, Yanme'e, and Jiralhanae)
+      united in the worship of the mythified Forerunners and the Halo Array.
+
       Speciality: Multipurpose
-      Superweapon: ??? 
+      Superweapon: ???
       Special units: ???
       Abilities: ???
 

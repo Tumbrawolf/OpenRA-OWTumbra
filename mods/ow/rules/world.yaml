@@ -769,6 +769,11 @@
 		InternalName: unsc
 		Side: Halo
 		Description: player-factions.unsc
+	Faction@covenant:
+		Name: Covenant Empire
+		InternalName: covenant
+		Side: Halo
+		Description: player-factions.covenant
 	Faction@btsphere:
 		Name: Successor States [WIP]
 		InternalName: btsphere
@@ -1022,17 +1027,17 @@ World:
 			demo: Mohmar, Deathstrike, Omar bin Chazali, Jarmen Kell, Demo, Rodall Juhziz, Aladdin, Osama bin Laden, Saddam, Big Bada Boom, BOOM, EXPLOSIONS, Freddie Wong, Isis
 			thrax: Mohmar, Deathstrike, Omar bin Chazali, Jarmen Kell, Dr. Thrax, Methhead, BreakingBadGuy
 			kassad: Mohmar, Deathstrike, Omar bin Chazali, Jarmen Kell, Prince Kassad, Kassad, KassantSeeMe
-			usa: Howard T. Ackerman, Ackerman, Michael Dugan, Dugan, AMERICA FUCK YEAH, Team America, MAGA, Help Us, So Cal!, Texas Holdem, Chevvy, Dodge Ram, Mustang, Obama bin Laden, JoeBidenDeezNuts, JoeMama, Snoop Dogg, Hank Hill, Boomhauer, Dale, Bill, Seabury, POCKET SAND, Burton
-			townes: Howard T. Ackerman, Ackerman, Michael Dugan, Dugan, Townes, Pinpoint, PewPew, LaserGoPew, Lasers in your EYES
-			granger: Howard T. Ackerman, Ackerman, Michael Dugan, Dugan, Granger, Ace, Maverick, Tom Cruise, Nyoom, Credible Defense, I<3Aeromorphs, Aeroplane Jelly, Boeing, Black Hawk, Sparky
-			alexander: Howard T. Ackerman, Ackerman, Michael Dugan, Dugan, Alexis Alexander, TomaFuckyou
+			usa: Howard T. Ackerman, Ackerman, Michael Dugan, Dugan, AMERICA FUCK YEAH, Team America, MAGA, Help Us, So Cal!, Texas Holdem, Chevvy, Dodge Ram, Mustang, Obama bin Laden, JoeBidenDeezNuts, JoeMama, Snoop Dogg, Hank Hill, Boomhauer, Dale, Bill, Seabury, POCKET SAND, Burton, Barack Obama
+			townes: Howard T. Ackerman, Ackerman, Michael Dugan, Dugan, Townes, Pinpoint, PewPew, LaserGoPew, Lasers in your EYES, im firin ma laser
+			granger: Howard T. Ackerman, Ackerman, Michael Dugan, Dugan, Granger, Ace, Maverick, Tom Cruise, Nyoom, Credible Defense, I<3Aeromorphs, Aeroplane Jelly, Boeing, Black Hawk, Sparky, planes n shit
+			alexander: Howard T. Ackerman, Ackerman, Michael Dugan, Dugan, Alexis Alexander, TomaFuckyou, bigUNITUSA
 			japan: Sony, Mitsubishi, Toyota, Nissan, Skyline, Godzilla, Gojira, Ghidora, King Ghidora, Sasuke, Naruto, Boruto's dad, Goku, Vegeta, Jotaro, Josuke, Nippon, Niho, Naomi Shirada, Shinzo Nagama, Suki Toyama, Tatsu, Kenji Tenzai, Yuriko, Toei, Bandai, Bandai-Namco, Dragon Ball Z, My Hero Academia, Deku, Tokoyami Towa, Hoshimachi Suisei, Sakura Miko, Eren Yeager, Hatsune Miku
 			mecha: Sony, Mitsubishi, Toyota, Nissan, Skyline, Godzilla, Gojira, Ghidora, King Ghidora, Sasuke, Naruto, Boruto's dad, Goku, Vegeta, Jotaro, Josuke, Nippon, Niho, Naomi Shirada, Shinzo Nagama, Suki Toyama, Tatsu, Kenji Tenzai, Yuriko, Toei, Bandai, Bandai-Namco, Rae Ven, Gauss, Sparky, EvilPheebs, MechsMechsMechs, I<3ChickenWalkers, Hatsune Miku
 			economic: Sony, Mitsubishi, Toyota, Nissan, Skyline, Godzilla, Gojira, Ghidora, King Ghidora, Sasuke, Naruto, Boruto's dad, Goku, Vegeta, Jotaro, Josuke, Nippon, Niho, Naomi Shirada, Shinzo Nagama, Suki Toyama, Tatsu, Kenji Tenzai, Yuriko, Toei, Bandai, Bandai-Namco, MONEY, Capitalism101, Axel Syrios, Hatsune Miku
 			navy: Sony, Mitsubishi, Toyota, Nissan, Skyline, Godzilla, Gojira, Ghidora, King Ghidora, Sasuke, Naruto, Boruto's dad, Goku, Vegeta, Jotaro, Josuke, Nippon, Niho, Naomi Shirada, Shinzo Nagama, Suki Toyama, Tatsu, Kenji Tenzai, Yuriko, Toei, Bandai, Bandai-Namco, BOATS, Houshou Marine, Hatsune Miku
-			phobos: Carmack, Romero, Doom Guy, Quake Guy, Ranger, Phobos, Slayer, RIP AND TEAR, Soulsphere, Health Bonus, Megasphere, Arnold, The Rock, Dwayne, Sarge, Flynn Taggart, Taggart, Fly, Flynn, Berserker, Doom Slayer, Deag Loric, Loric, Deag, Kreed, Kreed Maykr, Maykr, King Novik, Serrat, Thira, Valen, Marok
-			deimos: Carmack, Romero, Doom Guy, Quake Guy, Ranger, Phobos, Slayer, RIP AND TEAR, Soulsphere, Health Bonus, Megasphere, Mastermind, Spids, Icon of Sin, Cyberdemon, Baron of Hell, Spidermastermind, The Mastermind, M4ST3RM1ND, Hail Satan, Baphomet, Lucifer, Charlie, Blitz, I.M.P
-			mars: Carmack, Romero, Doom Guy, Quake Guy, Ranger, Phobos, Slayer, RIP AND TEAR, Soulsphere, Health Bonus, Megasphere, Arnold, Flynn Taggart, Taggart, Fly, Flynn, Berserker, Doom Slayer, Deag Loric, Loric, Deag, Kreed, Kreed Maykr, Maykr, King Novik, Serrat, Thira, Valen, Marok, UAC Armor Division
+			phobos: Carmack, Romero, Doom Guy, Quake Guy, Ranger, Phobos, Slayer, RIP AND TEAR, Soulsphere, Health Bonus, Megasphere, Arnold, The Rock, Dwayne, Sarge, Flynn Taggart, Taggart, Fly, Flynn, Berserker, Doom Slayer, Deag Loric, Loric, Deag, Kreed, Kreed Maykr, Maykr, King Novik, Serrat, Thira, Valen, Marok, Wolfenstein 3D
+			deimos: Carmack, Romero, Doom Guy, Quake Guy, Ranger, Phobos, Slayer, RIP AND TEAR, Soulsphere, Health Bonus, Megasphere, Mastermind, Spids, Icon of Sin, Cyberdemon, Baron of Hell, Spidermastermind, The Mastermind, M4ST3RM1ND, Hail Satan, Baphomet, Lucifer, Charlie, Blitz, I.M.P, Wolfenstein 3D
+			mars: Carmack, Romero, Doom Guy, Quake Guy, Ranger, Phobos, Slayer, RIP AND TEAR, Soulsphere, Health Bonus, Megasphere, Arnold, Flynn Taggart, Taggart, Fly, Flynn, Berserker, Doom Slayer, Deag Loric, Loric, Deag, Kreed, Kreed Maykr, Maykr, King Novik, Serrat, Thira, Valen, Marok, UAC Armor Division, Wolfenstein 3D
 			hitler: Adolf, Adolfy99, Hitler, xXH1tl3rXx, Stormtrooper, Gas Gas Gas, Hans Grosse, Gretel Grosse, Barnacle Wilhelm, Angel of Death, Otto Giftmacher, Professor Quarkblitz, Staatmeister, Trans Grosse, Hans von Schlieffen, Braun, Doctor Schabbs, Fettgesicht
 			heydrich: Reinhard, Heydrich, Stormtrooper, Gas Gas Gas, Hans Grosse, Gretel Grosse, Barnacle Wilhelm, Angel of Death, Otto Giftmacher, Professor Quarkblitz, Staatmeister, Trans Grosse, Hans von Schlieffen, Braun, Doctor Schabbs, Fettgesicht
 			himmler: Heimlich Himmler, Stormtrooper, Gas Gas Gas, Hans Grosse, Gretel Grosse, Barnacle Wilhelm, Angel of Death, Otto Giftmacher, Professor Quarkblitz, Staatmeister, Trans Grosse, Hans von Schlieffen, Braun, Doctor Schabbs, Fettgesicht
@@ -1049,7 +1054,7 @@ World:
 			silver: MinBot, EvilMin
 			angels: MinBot, EvilMin
 			sword: MinBot, EvilMin
-			unsc: John Chief
+			unsc: John Chief, John Queef
 	ProductionQueueFromSelection:
 		ProductionPaletteWidget: PRODUCTION_PALETTE
 		ProductionTabsWidget: PRODUCTION_TABS
@@ -1180,6 +1185,12 @@ World:
 		ClassName: actor-world.startingunits-mcvonly-class-name
 		Factions: unsc
 		BaseActor: unscmcv
+		SupportActors: upgrade.spawn
+	StartingUnits@mcvonlycovenant:
+		Class: none
+		ClassName: actor-world.startingunits-mcvonly-class-name
+		Factions: covenant
+		BaseActor: covenantmcv
 		SupportActors: upgrade.spawn
 	StartingUnits@lightallies:
 		Class: light
@@ -1344,7 +1355,7 @@ World:
 	StartingUnits@lightavalon:
 		Class: light
 		ClassName: actor-world.startingunits-lightavalon-class-name
-		Factions: avalon
+		Factions: avalon, covenant
 		BaseActor: avmcv
 		SupportActors: avinf1,avinf1,avinf1,avinf1,avinf1,avinf1,avinf1,avinf1,upgrade.spawn
 		InnerSupportRadius: 3
@@ -1464,7 +1475,7 @@ World:
 	StartingUnits@heavyusa:
 		Class: heavy
 		ClassName: actor-world.startingunits-heavyusa-class-name
-		Factions: usa, alexander, unsc
+		Factions: usa, alexander, unsc, covenant
 		BaseActor: mcv
 		SupportActors: usaranger,usaranger,usaranger,usaranger,usadefender,usadefender,usahumvee,usaambulance,usacrusader,usacrusader,upgrade.spawn
 		InnerSupportRadius: 3

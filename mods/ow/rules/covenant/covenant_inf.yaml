@@ -1,0 +1,76 @@
+covenantgrunt:
+	Inherits: ^Soldier
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	Buildable:
+		Queue: Infantry
+		BuildAtProductionType: Soldier
+		BuildPaletteOrder: 4
+		Prerequisites: ~infantry.covenant
+		Description: actor-covenantgrunt.description
+	Tooltip:
+		Name: actor-covenantgrunt.name
+	Valued:
+		Cost: 100
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Health:
+		HP: 10000
+	Mobile:
+		Voice: Move
+		Speed: 70
+	Guard:
+		Voice: Move
+	Passenger:
+		Voice: Move
+	GrantRandomPeriodicCondition:
+		Conditions: fake, needler
+		CooldownDuration: 1
+		ActiveDuration: 90000
+	Armament@plasmagrenade:
+		Weapon: unscplasmagrenade
+		LocalOffset: 0,0,250
+	Armament@PRIMARY:
+		Weapon: unscplasmapistol
+		PauseOnCondition: needler
+	Armament@GARRISONED:
+		Name: garrisoned
+		Weapon: unscplasmapistol
+		MuzzleSequence: garrison-muzzle
+		PauseOnCondition: needler
+	Armament@BUS:
+		Name: bus
+		Weapon: unscplasmapistol
+		MuzzleSequence: garrison-muzzle
+		PauseOnCondition: needler
+	Armament@PRIMARYneedler:
+		Weapon: masterchiefneedler
+		LocalOffset: 0,0,250
+		RequiresCondition: needler
+	Armament@GARRISONEDneedler:
+		Name: garrisoned
+		Weapon: masterchiefneedler
+		MuzzleSequence: garrison-muzzle
+		RequiresCondition: needler
+	Armament@BUSneedler:
+		Name: bus
+		Weapon: masterchiefneedler
+		RequiresCondition: needler
+	WithInfantryBody:
+		DefaultAttackSequence: shoot
+		RequiresCondition: !parachute
+	WithInfantryBody@PARACHUTE:
+		StandSequences: parachute
+		RequiresCondition: parachute
+	ProducibleWithLevel:
+		Prerequisites: barracks.upgraded
+	RevealsShroud:
+		Range: 5c0
+	Selectable:
+		Bounds: 768, 853, 0, -256
+		DecorationBounds: 640, 896, 0, -426
+	RenderSprites:
+		Image: usaranger 
+	Voiced:
+		VoiceSet: CovenantGrunt
+	AnnounceOnKill:
+		Interval: 50000

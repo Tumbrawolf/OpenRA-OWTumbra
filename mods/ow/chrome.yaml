@@ -89,6 +89,7 @@ flags:
 		btmerc: 90, 203, 30, 15
 		heroonly: 60, 112, 30, 15
 		unsc: 180, 67, 30, 15
+		covenant: 180, 52, 30, 15
 
 ^Dialog:
 	Image: dialog.png
@@ -1893,6 +1894,76 @@ command-button-unsc-highlighted-disabled:
 
 sidebar-unsc:
 	Image: sidebar_unsc.png
+	Regions:
+		radar: 290, 67, 222, 222
+		background-top: 0, 185, 238, 262
+		background-moneybin: 0, 85, 238, 28
+		background-iconbg: 12, 227, 190, 47
+		background-iconrow: 0, 116, 238, 47
+		background-bottom: 0, 166, 238, 8
+		background-supportoverlay: 12, 324, 64, 48
+
+
+sidebar-covenant:
+	Image: sidebar_covenant.png
+	Regions:
+		radar: 290, 67, 222, 222
+		background-top: 0, 185, 238, 262
+		background-moneybin: 0, 85, 238, 28
+		background-iconbg: 12, 227, 190, 47
+		background-iconrow: 0, 116, 238, 47
+		background-bottom: 0, 166, 238, 8
+		background-supportoverlay: 12, 324, 64, 48
+
+sidebar-button-covenant:
+	Image: sidebar_covenant.png
+	PanelRegion: 260, 281, 5, 5, 18, 18, 5, 5
+sidebar-button-covenant-hover:
+	Image: sidebar_covenant.png
+	PanelRegion: 260, 252, 5, 5, 18, 18, 5, 5
+sidebar-button-covenant-pressed:
+	Inherits: sidebar-button-covenant
+sidebar-button-covenant-highlighted:
+	Image: sidebar_covenant.png
+	PanelRegion: 260, 339, 5, 5, 18, 18, 5, 5
+sidebar-button-covenant-highlighted-hover:
+	Image: sidebar_covenant.png
+	PanelRegion: 260, 310, 5, 5, 18, 18, 5, 5
+sidebar-button-covenant-highlighted-pressed:
+	Inherits: sidebar-button-covenant-highlighted
+sidebar-button-covenant-disabled:
+	Image: sidebar_covenant.png
+	PanelRegion: 260, 484, 5, 5, 18, 18, 5, 5
+sidebar-button-covenant-highlighted-disabled:
+	Inherits: sidebar-button-covenant-disabled
+
+command-button-covenant:
+	Image: sidebar_covenant.png
+	PanelRegion: 260, 281, 3, 3, 22, 22, 3, 3
+	PanelSides: Center
+command-button-covenant-hover:
+	Image: sidebar_covenant.png
+	PanelRegion: 260, 252, 3, 3, 22, 22, 3, 3
+	PanelSides: Center
+command-button-covenant-pressed:
+	Inherits: command-button-covenant
+command-button-covenant-highlighted:
+	Image: sidebar_covenant.png
+	PanelRegion: 260, 339, 3, 3, 22, 22, 3, 3
+	PanelSides: Center
+command-button-covenant-highlighted-hover:
+	Image: sidebar_covenant.png
+	PanelRegion: 260, 310, 3, 3, 22, 22, 3, 3
+	PanelSides: Center
+command-button-covenant-highlighted-pressed:
+	Inherits: command-button-covenant-highlighted
+command-button-covenant-disabled:
+	Inherits: command-button-covenant
+command-button-covenant-highlighted-disabled:
+	Inherits: command-button-covenant-highlighted
+
+sidebar-covenant:
+	Image: sidebar_covenant.png
 	Regions:
 		radar: 290, 67, 222, 222
 		background-top: 0, 185, 238, 262

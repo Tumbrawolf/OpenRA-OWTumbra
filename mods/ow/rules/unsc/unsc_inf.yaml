@@ -6,7 +6,7 @@
 		Condition: covenantweapons
 		Prerequisites: unsc.covenantweapons
 	GrantRandomCondition:
-		Conditions: Voice1, Voice2
+		Conditions: Voice1, Voice2, Voice3, Voice4, Voice5
 	Voiced:
 		VoiceSet: UNSCMarine1
 		RequiresCondition: Voice1
@@ -203,12 +203,11 @@ unscfrontrunner:
 		HP: 12000
 	Mobile:
 		Voice: Move
+		Speed: 70
 	Guard:
 		Voice: Move
 	Passenger:
 		Voice: Move
-	Mobile:
-		Speed: 70
 	GrantRandomPeriodicCondition@humanweapons:
 		Conditions: shotgun, smg, fake1
 		CooldownDuration: 1

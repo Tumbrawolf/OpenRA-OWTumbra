@@ -181,6 +181,7 @@ FACTD:
 			mecha: factd.japan
 			economic: factd.japan
 			unsc: factd.gdi
+			covenant: factd.gdi
 	GrantConditionOnPrerequisite@baseshields:
 		Condition: external_shield
 		Prerequisites: upgrade.baseshields

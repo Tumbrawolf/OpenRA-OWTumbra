@@ -1,10 +1,10 @@
 ^ConYardPrereqs:
 	ProvidesPrerequisite@oreext: # Buildable by all bar GLA
-		Factions: allies, england, france, germany, soviet, russia, ukraine, estonia, phobos, deimos, mars, hitler, himmler, heydrich, nod, bhand, marked, nod3, gdi, steel, zocom, gdi3, sword, angels, silver, civ, usa, protoss, artanis, vorazun, terran, raynor, mengsk, china, townes, alexander, granger, tank, infantry, nuke, japan, mecha, navy, avalon, btsphere, btclan, btmerc, unsc
+		Factions: allies, england, france, germany, soviet, russia, ukraine, estonia, phobos, deimos, mars, hitler, himmler, heydrich, nod, bhand, marked, nod3, gdi, steel, zocom, gdi3, sword, angels, silver, civ, usa, protoss, artanis, vorazun, terran, raynor, mengsk, china, townes, alexander, granger, tank, infantry, nuke, japan, mecha, navy, avalon, btsphere, btclan, btmerc, unsc, covenant
 		Prerequisite: structures.oreextprereq
 		RequiresPrerequisites: !techlevel.gems
 	ProvidesPrerequisite@generator: # Buildable by all bar GLA
-		Factions: allies, england, france, germany, soviet, russia, ukraine, estonia, phobos, deimos, mars, hitler, himmler, heydrich, nod, bhand, marked, nod3, gdi, steel, zocom, gdi3, sword, angels, silver, civ, usa, protoss, artanis, vorazun, terran, raynor, mengsk, china, townes, alexander, granger, tank, infantry, nuke, japan, mecha, navy, avalon, forgotten, btsphere, btclan, btmerc, unsc
+		Factions: allies, england, france, germany, soviet, russia, ukraine, estonia, phobos, deimos, mars, hitler, himmler, heydrich, nod, bhand, marked, nod3, gdi, steel, zocom, gdi3, sword, angels, silver, civ, usa, protoss, artanis, vorazun, terran, raynor, mengsk, china, townes, alexander, granger, tank, infantry, nuke, japan, mecha, navy, avalon, forgotten, btsphere, btclan, btmerc, unsc, covenant
 		Prerequisite: structures.generatorprereq
 	ProvidesPrerequisite@oreextnopower: # Zerg / GLA
 		Factions: demo, kassad, thrax, zerg, zagara, kerrigan, evil
@@ -375,6 +375,9 @@
 	ProvidesPrerequisite@unsc:
 		Factions: unsc
 		Prerequisite: structures.unsc
+	ProvidesPrerequisite@covenant:
+		Factions: covenant
+		Prerequisite: structures.covenant
 	ProvidesPrerequisite@noboats_navy:
 		Factions: navy
 		Prerequisite: faction.mechageneral
@@ -395,7 +398,7 @@
 	ProvidesPrerequisite:
 		Prerequisite: barracks
 	ProvidesPrerequisite@surv: # Surveyor (all but civ/medi)
-		Factions: allies, england, france, germany, soviet, ukraine, russia, estonia, nod, marked, bhand, nod3, gdi, zocom, steel, gdi3, hitler, himmler, heydrich, thrax, demo, kassad, angels, silver, sword, phobos, deimos, mars, usa, china, townes, alexander, granger, tank, infantry, nuke, japan, economic, mecha, navy, avalon, btsphere, btclan, btmerc, unsc
+		Factions: allies, england, france, germany, soviet, ukraine, russia, estonia, nod, marked, bhand, nod3, gdi, zocom, steel, gdi3, hitler, himmler, heydrich, thrax, demo, kassad, angels, silver, sword, phobos, deimos, mars, usa, china, townes, alexander, granger, tank, infantry, nuke, japan, economic, mecha, navy, avalon, btsphere, btclan, btmerc, unsc, covenant
 		Prerequisite: infantry.surveyorprereq
 	ProvidesPrerequisite@e1of: # Officer
 		Factions: allies, england, france, germany, soviet, ukraine, russia, estonia, nod, marked, bhand, nod3, gdi, zocom, steel, gdi3, hitler, himmler, heydrich, civ
@@ -410,7 +413,7 @@
 		Factions: soviet, ukraine, russia, estonia, nod, marked, bhand, nod3, civ
 		Prerequisite: infantry.e4prereq
 	ProvidesPrerequisite@e6: # Engineer
-		Factions: allies, england, france, germany, soviet, ukraine, russia, estonia, nod, marked, bhand, nod3, gdi, zocom, steel, gdi3, phobos, deimos, mars, hitler, himmler, heydrich, usa, china, townes, alexander, granger, tank, infantry, nuke, japan, mengsk, economic, mecha, navy, btsphere, btclan, btmerc, unsc
+		Factions: allies, england, france, germany, soviet, ukraine, russia, estonia, nod, marked, bhand, nod3, gdi, zocom, steel, gdi3, phobos, deimos, mars, hitler, himmler, heydrich, usa, china, townes, alexander, granger, tank, infantry, nuke, japan, mengsk, economic, mecha, navy, btsphere, btclan, btmerc, unsc, covenant
 		Prerequisite: infantry.e6prereq
 	ProvidesPrerequisite@e6bot: # Engineer for GLA and Terran bot
 		Factions: kassad, thrax, demo, terran, raynor, mengsk
@@ -754,6 +757,9 @@
 	ProvidesPrerequisite@unsc:
 		Factions: unsc
 		Prerequisite: infantry.unsc
+	ProvidesPrerequisite@covenant:
+		Factions: covenant
+		Prerequisite: infantry.covenant
 	ProvidesPrerequisite@forgottenstructures:
 		RequiresPrerequisites: structures.forgotten
 		Prerequisite: infantry.forgotten
@@ -1162,6 +1168,9 @@
 	ProvidesPrerequisite@unsc:
 		Factions: unsc
 		Prerequisite: vehicles.unsc
+	ProvidesPrerequisite@covenant:
+		Factions: covenant
+		Prerequisite: vehicles.covenant
 	ProvidesPrerequisite@forgottenstructures:
 		RequiresPrerequisites: vehicles.forgotten
 		Prerequisite: vehicles.forgotten
@@ -1472,6 +1481,9 @@
 	ProvidesPrerequisite@unsc:
 		Factions: unsc
 		Prerequisite: ships.unsc
+	ProvidesPrerequisite@covenant:
+		Factions: covenant
+		Prerequisite: ships.covenant
 	ProvidesPrerequisite@botonly:
 		Prerequisite: ships.botonly
 		RequiresPrerequisites: ai.all
@@ -1803,6 +1815,9 @@
 	ProvidesPrerequisite@unsc:
 		Factions: unsc
 		Prerequisite: aircraft.unsc
+	ProvidesPrerequisite@covenant:
+		Factions: covenant
+		Prerequisite: aircraft.covenant
 	ProvidesPrerequisite@botonly:
 		Prerequisite: aircraft.botonly
 		RequiresPrerequisites: ai.all
