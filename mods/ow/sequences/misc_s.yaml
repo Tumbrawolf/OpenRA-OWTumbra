@@ -1529,6 +1529,17 @@ explosion:
 		Scale: 1.5
 		BlendMode: Additive
 		ZOffset: 512
+	wtfboom:
+		Filename: wtfboom.shp
+		Tick: 2000
+	wtfboomcrate:
+		Filename: scrate.shp
+		Start: 1
+		Length: 1
+		Tick: 7500
+	morshubombs:
+		Filename: morshubombs.shp
+		Tick: 334
 
 pips:
 	Defaults:

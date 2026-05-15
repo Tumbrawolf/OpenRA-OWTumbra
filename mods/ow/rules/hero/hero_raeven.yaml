@@ -669,6 +669,7 @@ BTRAE.Hero0:
 		DamageCooldown: 50
 		PercentageStep: 1
 		Delay: 25
+		DamageTypes: BypassShield
 	GrantConditionOnPrerequisite@heatsinks:
 		Prerequisites: btrae.tier4.heat
 		Condition: rae_heatsinks
@@ -783,6 +784,7 @@ BTRAE.Hero0:
 	WithMuzzleOverlay:
 	ChangesHealth@service:
 		DamageCooldown: 125
+		DamageTypes: BypassShield
 	Voiced: # Tanya voice is a placeholder
 		VoiceSet: TanyaEliteVoice
 	SoundOnDamageTransition:

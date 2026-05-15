@@ -382,7 +382,6 @@ BBUS.Husk:
 		IsDecoration: True
 	ChangesHealth:
 		Step: -500
-		StartIfBelow: 101
 		Delay: 8
 
 FBUS.Husk:

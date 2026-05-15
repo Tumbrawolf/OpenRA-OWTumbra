@@ -2876,7 +2876,7 @@
 		DamageTypes: TiberiumDeath
 		Step: 100
 		Delay: 4
-		StartIfBelow: 101
+		StartIfBelow: 100
 	GrantConditionOnTerrain@tiberium:
 		Condition: standing_in_tiberium
 		TerrainTypes: Tiberium, BlueTiberium, Radiation
@@ -4210,7 +4210,7 @@
 	ChangesHealth@MediBlessCondition:
 		Step: 250
 		Delay: 15
-		StartIfBelow: 101
+		StartIfBelow: 100
 		RequiresCondition: MediBlessCondition
 		DamageTypes: BypassShield
 	WithIdleOverlay@Mediblesscondition:
@@ -4229,7 +4229,7 @@
 	ChangesHealth@MonumentBoost:
 		Step: 250
 		Delay: 50
-		StartIfBelow: 101
+		StartIfBelow: 100
 		RequiresCondition: MonumentBoost
 		DamageTypes: BypassShield
 	WithIdleOverlay@MonumentBoost:
@@ -4254,7 +4254,7 @@
 	ChangesHealth@MonumentWagonBoost:
 		Step: 300
 		Delay: 50
-		StartIfBelow: 101
+		StartIfBelow: 100
 		RequiresCondition: MonumentWagonBoost
 		DamageTypes: BypassShield
 	WithIdleOverlay@MonumentWagonBoost:
@@ -4267,7 +4267,7 @@
 	ChangesHealth@martyhot:
 		Step: 600
 		Delay: 15
-		StartIfBelow: 101
+		StartIfBelow: 100
 		RequiresCondition: martyhot
 		DamageTypes: BypassShield
 	###Curse Debuff, reduce damage done and damage taken up
@@ -4361,7 +4361,7 @@
 	ChangesHealth@PallyBoost:
 		Step: 150
 		Delay: 50
-		StartIfBelow: 101
+		StartIfBelow: 100
 		RequiresCondition: PallyBoost
 		DamageTypes: BypassShield
 	WithIdleOverlay@PallyBoost:
@@ -4390,7 +4390,7 @@
 	ChangesHealth@MediBlessCondition:
 		Step: 250
 		Delay: 15
-		StartIfBelow: 101
+		StartIfBelow: 100
 		RequiresCondition: MediBlessCondition
 		DamageTypes: BypassShield
 	WithIdleOverlay@Mediblesscondition:
@@ -4409,7 +4409,7 @@
 	ChangesHealth@MonumentBoost:
 		Step: 250
 		Delay: 50
-		StartIfBelow: 101
+		StartIfBelow: 100
 		RequiresCondition: MonumentBoost
 		DamageTypes: BypassShield
 	WithIdleOverlay@MonumentBoost:
@@ -4434,7 +4434,7 @@
 	ChangesHealth@MonumentWagonBoost:
 		Step: 300
 		Delay: 50
-		StartIfBelow: 101
+		StartIfBelow: 100
 		RequiresCondition: MonumentWagonBoost
 		DamageTypes: BypassShield
 	WithIdleOverlay@MonumentWagonBoost:
@@ -4541,7 +4541,7 @@
 	ChangesHealth@PallyBoost:
 		Step: 150
 		Delay: 15
-		StartIfBelow: 101
+		StartIfBelow: 100
 		RequiresCondition: PallyBoost
 		DamageTypes: BypassShield
 	WithIdleOverlay@PallyBoost:
@@ -4562,7 +4562,7 @@
 	ChangesHealth@MediBlessCondition:
 		Step: 250
 		Delay: 15
-		StartIfBelow: 101
+		StartIfBelow: 100
 		RequiresCondition: MediBlessCondition
 		DamageTypes: BypassShield
 	WithIdleOverlay@Mediblesscondition:
@@ -4578,7 +4578,7 @@
 	ChangesHealth@MonumentBoost:
 		Step: 500
 		Delay: 50
-		StartIfBelow: 101
+		StartIfBelow: 100
 		RequiresCondition: MonumentBoost
 		DamageTypes: BypassShield
 	WithIdleOverlay@MonumentBoost:
@@ -4594,7 +4594,7 @@
 	ChangesHealth@MonumentWagonBoost:
 		Step: 800
 		Delay: 50
-		StartIfBelow: 101
+		StartIfBelow: 100
 		RequiresCondition: MonumentWagonBoost
 		DamageTypes: BypassShield
 	WithIdleOverlay@MonumentWagonBoost:

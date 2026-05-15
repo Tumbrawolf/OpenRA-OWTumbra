@@ -648,8 +648,9 @@ maverick.Hero0:
 	ChangesHealth@default:
 		PercentageStep: 1
 		Delay: 75
-		StartIfBelow: 101
+		StartIfBelow: 100
 		DamageCooldown: 75
+		DamageTypes: BypassShield
 	GrantConditionOnPrerequisite@maverickmachinegun1:
 		Prerequisites: maverick.tier1.machinegun1
 		Condition: maverickmachinegun1

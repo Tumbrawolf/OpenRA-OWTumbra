@@ -183,6 +183,17 @@ TSCV:
 	GrantConditionOnPrerequisite@mengsokkk:
 		Prerequisites: infantry.mengsk
 		Condition: no_stims
+	ChangesHealth@stimpack:
+		RequiresCondition: active_stimpack && health_stimpack && !shielded
+		DamageTypes: BypassShield
+		StartIfBelow: 101
+		Delay: 22
+	ChangesHealth@stimpackshield:
+		RequiresCondition: active_stimpack && health_stimpack && shielded
+		DamageTypes: BypassShield
+		StartIfBelow: 101
+		Delay: 22
+		Step: -17500
 
 TMARINE:
 	Inherits: ^DoomSoldier
@@ -288,10 +299,7 @@ TMARINE:
 		Interval: 300,750
 		RequiresCondition: active_stimpack && (talkative || nothing2)
 	ChangesHealth@stimpack:
-		RequiresCondition: active_stimpack && health_stimpack
 		Step: -175
-		Delay: 22
-		StartIfBelow: 101
 	GrantConditionOnHealth@stimpack:
 		MinHP: 4500
 		Condition: health_stimpack
@@ -494,10 +502,7 @@ TFIREBAT:
 		Interval: 300,750
 		RequiresCondition: active_stimpack && (talkative || nothing2)
 	ChangesHealth@stimpack:
-		RequiresCondition: active_stimpack && health_stimpack
 		Step: -243
-		Delay: 22
-		StartIfBelow: 101
 	GrantConditionOnHealth@stimpack:
 		MinHP: 6250
 		Condition: health_stimpack
@@ -1035,10 +1040,8 @@ TRAYNOR:
 		Interval: 300,750
 		RequiresCondition: active_stimpack
 	ChangesHealth@stimpack:
-		RequiresCondition: active_stimpack && health_stimpack
 		Step: -175
 		Delay: 25
-		StartIfBelow: 101
 	GrantConditionOnHealth@stimpack:
 		MinHP: 28000
 		Condition: health_stimpack

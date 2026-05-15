@@ -367,8 +367,9 @@ TRAYNOR.Hero0:
 	ChangesHealth@default:
 		PercentageStep: 1
 		Delay: 50
-		StartIfBelow: 101
+		StartIfBelow: 100
 		DamageCooldown: 125
+		DamageTypes: BypassShield
 	ExternalCondition@PRODUCED:
 		Condition: produced
 	VoiceAnnouncement:

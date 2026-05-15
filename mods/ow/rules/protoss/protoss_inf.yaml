@@ -416,7 +416,7 @@ PARCHON:
 	ChangesHealth@forming:
 		PercentageStep: 1
 		Delay: 5
-		StartIfBelow: 101
+		StartIfBelow: 100
 		DamageCooldown: 0
 		RequiresCondition: forming
 	VoiceAnnouncement:
@@ -670,7 +670,7 @@ PDARCHON:
 	ChangesHealth@forming:
 		PercentageStep: 1
 		Delay: 5
-		StartIfBelow: 101
+		StartIfBelow: 100
 		DamageCooldown: 0
 		RequiresCondition: forming
 	ChangesHealth@shield:

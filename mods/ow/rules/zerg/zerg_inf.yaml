@@ -807,7 +807,7 @@ ZTORRASQUE.Corpse:
 		Condition: currenthp
 	ChangesHealth@health2:
 		PercentageStep: 10
-		StartIfBelow: 101
+		StartIfBelow: 100
 		Delay: 25
 		DamageCooldown: 25
 

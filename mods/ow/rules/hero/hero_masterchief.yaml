@@ -601,23 +601,28 @@ masterchief.Hero0:
 	ChangesHealth@default:
 		PercentageStep: 1
 		Delay: 75
-		StartIfBelow: 101
+		StartIfBelow: 100
 		DamageCooldown: 75
+		DamageTypes: BypassShield
+		RequiresCondition: shielded && !damaged_shield
 	SoundOnDamageTransition:
 		DamagedSounds: MasterChiefPain1.wav, MasterChiefPain2.wav, MasterChiefPain3.wav, MasterChiefPain4.wav
 	Shielded:
 		MaxStrength: 60000
-		RegenDelay: 100
-		RegenAmount: 0
-		RegenInterval: 10
+		RegenAmount: 6000
+		RegenInterval: 9
+		RegenDelay: 200
 		RequiresCondition: !emp_shields && !defense_matrix
 		HideBarWhenFull: false
+	ShieldRegenMultiplier@healup:
+		Modifier: 5
+		RequiresCondition: heal_up
 	AmbientSound@Shields:
 		SoundFiles: masterchiefshieldempty.wav
 		RequiresCondition: !shielded
 		Interval: 57
 	AmbientSound@ShieldsDamaged:
-		Delay: 150
+		Delay: 200
 		SoundFiles: masterchiefshieldcharge.wav
 		RequiresCondition: shielded && damaged_shield
 		Interval: 300
@@ -865,11 +870,7 @@ masterchief.Hero1:
 	-ExperienceTrickler:
 	Shielded:
 		MaxStrength: 80000
-		RegenDelay: 100
 		RegenAmount: 8000
-		RegenInterval: 10
-		RequiresCondition: !emp_shields && !defense_matrix
-		HideBarWhenFull: false
 
 masterchief.Hero2:
 	Inherits: masterchief.Hero1
@@ -886,11 +887,7 @@ masterchief.Hero2:
 		Modifier: 120
 	Shielded:
 		MaxStrength: 100000
-		RegenDelay: 100
 		RegenAmount: 10000
-		RegenInterval: 10
-		RequiresCondition: !emp_shields && !defense_matrix
-		HideBarWhenFull: false
 
 masterchief.Hero3:
 	Inherits: masterchief.Hero2
@@ -909,11 +906,7 @@ masterchief.Hero3:
 		Modifier: 120
 	Shielded:
 		MaxStrength: 125000
-		RegenDelay: 100
 		RegenAmount: 12000
-		RegenInterval: 10
-		RequiresCondition: !emp_shields && !defense_matrix
-		HideBarWhenFull: false
 
 masterchief.Hero4:
 	Inherits: masterchief.Hero3
@@ -931,11 +924,7 @@ masterchief.Hero4:
 		Modifier: 140
 	Shielded:
 		MaxStrength: 150000
-		RegenDelay: 100
 		RegenAmount: 15000
-		RegenInterval: 10
-		RequiresCondition: !emp_shields && !defense_matrix
-		HideBarWhenFull: false
 	ParatroopersPower:
 		OrderName: MasterChiefParadrop
 		Icon: paratroopers
@@ -978,11 +967,7 @@ masterchief.Hero5:
 	-DamageMultiplier@tierup:
 	Shielded:
 		MaxStrength: 200000
-		RegenDelay: 100
 		RegenAmount: 20000
-		RegenInterval: 10
-		RequiresCondition: !emp_shields && !defense_matrix
-		HideBarWhenFull: false
 
 masterchief.weapon.pistol:
 	Inherits@1: ^SpriteActor

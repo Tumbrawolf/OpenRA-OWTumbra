@@ -252,8 +252,9 @@ corvus.Hero0:
 	ChangesHealth@default:
 		PercentageStep: 1
 		Delay: 75
-		StartIfBelow: 101
+		StartIfBelow: 100
 		DamageCooldown: 75
+		DamageTypes: BypassShield
 	GrantConditionOnPrerequisite@scroll:
 		Prerequisites: corvus.tier1.scroll
 		Condition: scroll
@@ -276,7 +277,7 @@ corvus.Hero0:
 	ChangesHealth@crystalvial:
 		PercentageStep: 1
 		Delay: 75
-		StartIfBelow: 101
+		StartIfBelow: 100
 		DamageCooldown: 125
 		RequiresCondition: crystalvial
 	GrantConditionOnPrerequisite@silvershield:
@@ -288,7 +289,7 @@ corvus.Hero0:
 	ChangesHealth@quartzflask:
 		PercentageStep: 1
 		Delay: 75
-		StartIfBelow: 101
+		StartIfBelow: 100
 		DamageCooldown: 125
 		RequiresCondition: quartzflask
 	GrantConditionOnPrerequisite@magicshield:

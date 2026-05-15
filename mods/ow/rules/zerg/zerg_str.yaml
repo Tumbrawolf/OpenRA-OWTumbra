@@ -4,17 +4,20 @@
 		Delay: 125
 		StartIfBelow: 100
 		DamageCooldown: 250
+		DamageTypes: BypassShield
 	ChangesHealth@regen2:
 		PercentageStep: 1
 		Delay: 75
 		StartIfBelow: 40
 		DamageCooldown: 250
+		DamageTypes: BypassShield
 	ChangesHealth@regen_zagara:
 		PercentageStep: 1
 		Delay: 75
 		StartIfBelow: 100
 		DamageCooldown: 75
 		RequiresCondition: zagara_regen
+		DamageTypes: BypassShield
 	GrantConditionOnPrerequisite@zagararegen:
 		Condition: zagara_regen
 		Prerequisites: zagara.tier4.regen

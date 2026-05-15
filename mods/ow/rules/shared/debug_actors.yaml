@@ -748,7 +748,7 @@ AVCARRIER.TEST:
 CRATE.DEBUG:
 	Inherits: CRATE
 	GiveUnitCrateAction@cratetrap:
-		SelectionShares: 3000
+		SelectionShares: 1
 		Units: rmbo.left
 		Owner: Creeps
 	SupportPowerCrateAction@fakenuke:
@@ -769,16 +769,15 @@ CRATE.DEBUG:
 		SelectionShares: 1
 		Units: 1tnk.huntercrate
 		Sequence: dollar
-	SupportPowerCrateAction@iondrop:
-		Proxy: powerproxy.iondrop
-		Sequence: speed
-		SelectionShares: 1
-	SupportPowerCrateAction@ioncannon:
-		Proxy: powerproxy.emp
-		Sequence: speed
-		SelectionShares: 1
-	ExplodeCrateAction@fartbomb:
-		Weapon: FartExplosion
+	SupportPowerCrateAction@morshubombs:
+		Proxy: powerproxy.morshubombs
+		Image: explosion
+		Sequence: morshubombs
+		Sound: morshubombs.ogg
+		SelectionShares: 6000
+	ExplodeSupportPowerCrateAction@fartbomb:
+		Proxy: powerproxy.morshubombs
+		Weapon: MorshuBombs
 		SelectionShares: 1
 	ExplodeCrateAction@tyler:
 		Weapon: DisappearExplosion

@@ -340,6 +340,7 @@
 		Delay: 2
 		Step: 0
 		StartIfBelow: 100
+		DamageTypes: BypassShield
 	FirepowerMultiplier@healup:
 		Modifier: 25
 		RequiresCondition: heal_up
@@ -452,6 +453,7 @@
 		PercentageStep: 5
 		Delay: 25
 		DamageCooldown: 250
+		DamageTypes: BypassShield
 	TransferTimedExternalConditionOnTransformOW@1:
 		Condition: frenzyboost
 	TransferTimedExternalConditionOnTransformOW@2:
@@ -693,6 +695,7 @@
 		DamageCooldown: 50
 		Delay: 25
 		PercentageStep: 2
+		DamageTypes: BypassShield
 	SpeedMultiplier@level7:
 		RequiresCondition: hero-level >= 7
 		Modifier: 110

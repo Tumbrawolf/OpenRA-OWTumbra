@@ -342,6 +342,12 @@ CRATE:
 		Sequence: speed
 		SelectionShares: 3
 		Prerequisites: !environment.nomemes
+	SupportPowerCrateAction@morshubombs:
+		Proxy: powerproxy.morshubombs
+		Sound: morshubombs.ogg
+		Image: explosion
+		Sequence: morshubombs
+		SelectionShares: 3
 	Crate:
 		Duration: 6000
 
@@ -617,7 +623,7 @@ CRATE.FuckYou:
 	ExplodeCrateAction@nggyu:
 		SelectionShares: 2
 		Weapon: RedeemerNukeDelayed
-		Sound: nggyu.wav
+		Sound: nggyu.ogg
 		TimeDelay: 6000
 	GiveUnitCrateAction@ae86:
 		SelectionShares: 2
@@ -626,6 +632,15 @@ CRATE.FuckYou:
 		Owner: Creeps
 	ExplodeCrateAction@MinecraftNuke:
 		Weapon: MinecraftNuke
+		TimeDelay: 6000
+		SelectionShares: 2
+	ExplodeCrateAction@wtfboom:
+		Weapon: WTFBoom
+		TimeDelay: 9000
+		SelectionShares: 2
+	ExplodeSupportPowerCrateAction@morshubombs:
+		Proxy: powerproxy.morshubombs
+		Weapon: MorshuBombs
 		TimeDelay: 6000
 		SelectionShares: 2
 	GiveUnitCrateAction@bitconnect:
@@ -4474,3 +4489,32 @@ bananabomb:
 		Range: 2c0, 5c0
 	-EjectOnDeath:
 	Interactable:
+
+powerproxy.morshubombs:
+	DropPodsPowerOW:
+		Icon: artillerybarrageicon
+		Name: Morshu's Bombs
+		OrderName: artillerybarrage3
+		Description: Launches an artillery strike on the targeted area.
+		UnitTypes: chinaartillerypower, chinaartillerypower1, chinaartillerypower2, chinaartillerypower3, chinaartillerypower4, chinaartillerypower5, chinaartillerypower6, chinaartillerypower7, chinaartillerypower8
+		Cursor: chrono-target
+		Drops: 16,16
+		PodScatter: 9
+		PodFacing: 704
+		PauseOnCondition: disabled
+		CameraActor: camera
+		CameraRemoveDelay: 300
+		Weapon: ArtilleryPowerMarker
+		WeaponDelay: 5
+		ChargeInterval: 4500
+		EntryEffect: explosion
+		EntryEffectSequence: bunkerbustersring
+		LaunchSound: sartweaa.wav
+		IncomingSpeechNotification: ArtilleryBarrageSound
+		SelectTargetSpeechNotification: SelectTarget
+		SelectTargetTextNotification: actor-t-miss.droppodspower-artillery-select-target-text-notification
+		DisplayRadarPing: true
+		DisplayTimerRelationships: Ally, Enemy, Neutral
+		BeaconPoster: artillerybarragebeacon
+		OneShot: true
+		AllowMultiple: true
