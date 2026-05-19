@@ -9,8 +9,6 @@
 		ValidPowerStates: Low, Critical
 
 ^TSMedi:
-	RenderSprites:
-		PlayerPalette: tsunit
 	WithInfantryBody:
 		IdleSequences: idle1, idle2
 	WithDeathAnimation:
@@ -110,6 +108,7 @@ SLAVE:
 		TargetTypes: TiberiumImmune
 	RenderSprites:
 		Image: mslave
+		PlayerPalette: tsunit
 	WithStoresResourcesPipsDecoration:
 		Position: BottomLeft
 		RequiresSelection: true
@@ -148,6 +147,7 @@ MEDIWORKER:
 		VoiceSet: WorkerVoice
 	RenderSprites:
 		Image: mworker
+		PlayerPalette: tsunit
 	WithStoresResourcesPipsDecoration:
 		PipCount: 2
 	Passenger:
@@ -266,7 +266,7 @@ TaxCollector:
 	Inherits@sprite: ^TSMedi
 	Inherits@InfPro: ^AutoTargetInfantryPriority
 		Prerequisites: ~infantry.medi
-		Description: Mediaval knight. \n Strong vs infantry\n Weak vs anything else
+		Description: Tax Collector!
 		Queue: Infantry
 		BuildAtProductionType: Soldier
 		BuildPaletteOrder: 409
@@ -274,7 +274,7 @@ TaxCollector:
 	Valued:
 		Cost: 1000
 	Tooltip:
-		Name: Mediaval conscript. \n Strong vs infantry\n Weak vs anything else
+		Name: Tax Collector!
 	Health:
 		HP: 30000
 	Mobile:
@@ -288,7 +288,7 @@ TaxCollector:
 		DefaultAttackSequence: shoot
 	AutoTarget:
 		InitialStance: AttackAnything
-		ScanRadius: 6
+		ScanRadius: 7
 	AutoTargetPriority@DEFAULT:
 		ValidTargets: Buildings
 	Targetable:
@@ -349,6 +349,7 @@ Knight:
 		Weapon: Sword
 	RenderSprites:
 		Image: mknight
+		PlayerPalette: ra2
 	Voiced:
 		VoiceSet: SwordmanVoice
 	BlocksProjectiles:
@@ -418,6 +419,7 @@ BERSERKER:
 		RequiresCondition: BerLowHPA
 	RenderSprites:
 		Image: mberserk
+		PlayerPalette: tsunit
 	Voiced:
 		VoiceSet: BerserkerVoice
 	ConvertsDamageToHealth:
@@ -460,6 +462,7 @@ arcanewizard:
 		Weapon: WizBall
 	RenderSprites:
 		Image: mwizard
+		PlayerPalette: tsunit
 	Voiced:
 		VoiceSet: SwordmanVoice
 	Passenger:
@@ -612,6 +615,7 @@ MEDIPALADIN:
 		StandSequences: stand
 	RenderSprites:
 		Image: mpaladin
+		PlayerPalette: tsunit
 	Voiced:
 		VoiceSet: PaladinVoiceMedi
 	-Crushable:
@@ -654,12 +658,13 @@ TankBuster:
 		StartIfBelow: 50
 		DamageCooldown: 100
 	Armament:
-		Weapon: PaladinSword
+		Weapon: Tankbustersword
 		ReloadingCondition: attack-cooldown
 	WithInfantryBody:
 		StandSequences: stand
 	RenderSprites:
 		Image: mdwarf
+		PlayerPalette: tsunit
 	Voiced:
 		VoiceSet: PaladinVoiceMedi
 	-Crushable:
@@ -739,6 +744,7 @@ ShieldHero:
 		Range: 11c0
 	RenderSprites:
 		Image: medipaladin
+		PlayerPalette: tsunit
 	Voiced:
 		VoiceSet: PaladinVoiceMedi
 
@@ -749,10 +755,9 @@ ShieldHero:
 ##BlackPhantom - Reskin slave
 BlackPhantom:
 	Inherits@SLAVE: SLAVE
-	Voiced:
-		VoiceSet: PhantomSlaveVoice
 	RenderSprites:
 		Image: mblackphantom
+		PlayerPalette: tsunit
 
 ##Ratman
 Ratman:
@@ -766,7 +771,7 @@ Ratman:
 	Valued:
 		Cost: 300
 	Tooltip:
-		Name: Mediaval conscript. \n Strong vs infantry\n Weak vs anything else
+		Name: Ratman. \n Strong vs infantry\n Weak vs anything else
 	Health:
 		HP: 20000
 	Mobile:
@@ -774,33 +779,21 @@ Ratman:
 		PauseOnCondition: attack-cooldown
 	Armament@1:
 		Weapon: RatSword
-	Voiced:
-		VoiceSet: RatmanVoice
 	RenderSprites:
 		Image: mratman
+		PlayerPalette: player
 
 ##GiantRat
 Giantrat:
 	Inherits@Dog: DOG
 	Buildable:
 		Prerequisites: ~infantry.medi, advtechcenter
-		Description: Toxic ratman from the sewers.\n Strong vs infantry \n Weak vs Air, Snipers, Buildings, Vehicles
+		Description: Toxic Rat from the sewers.\n Strong vs infantry \n Weak vs Air, Snipers, Buildings, Vehicles
 		Queue: Infantry
 		BuildAtProductionType: Soldier
 		BuildPaletteOrder: 412
-	Valued:
-		Cost: 200
 	Tooltip:
 		Name: Rat. \n Strong vs infantry\n Weak vs anything else
-	Health:
-		HP: 3000
-	Mobile:
-		Speed: 60
-		PauseOnCondition: attack-cooldown
-	Armament@1:
-		Weapon: GiantRatBite
-	Voiced:
-		VoiceSet: GiantRatVoice
 	RenderSprites:
 		Image: mgrat
 
@@ -817,10 +810,9 @@ GoblinWarrior:
 		Name: Goblin Warrior. \n Strong vs infantry\n Weak vs anything else
 	Armament@1:
 		Weapon: GoblinSword
-	Voiced:
-		VoiceSet: GoblinVoice
 	RenderSprites:
 		Image: mgoblinwarrior
+		PlayerPalette: player
 
 ##GoblinChampion
 GoblinChampion:
@@ -835,10 +827,9 @@ GoblinChampion:
 		Name: Goblin Champion. \n Strong vs infantry\n Weak vs anything else
 	Armament@1:
 		Weapon: ChampionGoblinSword
-	Voiced:
-		VoiceSet: ChampionGoblinVoice
 	RenderSprites:
 		Image: mgoblinchamp
+		PlayerPalette: player
 
 
 ##GoblinPriest
@@ -852,10 +843,9 @@ GoblinPriest:
 		BuildPaletteOrder: 412
 	Tooltip:
 		Name: Goblin Priest. \n Strong vs infantry\n Weak vs anything else
-	Voiced:
-		VoiceSet: GoblinPriestVoice
 	RenderSprites:
 		Image: mgoblinpriest
+		PlayerPalette: player
 
 
 ##GoblinArcher
@@ -871,10 +861,9 @@ GoblinArcher:
 		Name: Goblin Archer. \n Strong vs infantry\n Weak vs anything else
 	Armament@1:
 		Weapon: GoblinArcher
-	Voiced:
-		VoiceSet: GoblinVoice
 	RenderSprites:
 		Image: mgoblinarcher
+		PlayerPalette: player
 
 
 ##Witchking
@@ -922,6 +911,7 @@ Witchking:
 		RequiresCondition: SummonUndead && Zombiespawn
 	RenderSprites:
 		Image: mwitchking
+		PlayerPalette: tsunit
 
 ##Skeleton
 Skeleton:
@@ -935,10 +925,9 @@ Skeleton:
 		Modifier: 120
 	Armament@1:
 		Weapon: SkeletonSword
-	Voiced:
-		VoiceSet: SkeletonVoice
 	RenderSprites:
 		Image: mskeleton
+		PlayerPalette: tsunit
 
 ##Zombie
 SummonedZombie:
@@ -952,10 +941,9 @@ SummonedZombie:
 		Modifier: 110
 	Armament@1:
 		Weapon: SummonedZombieBite
-	Voiced:
-		VoiceSet: SummonedZombieVoice
 	RenderSprites:
 		Image: mzombie
+		PlayerPalette: tsunit
 
 ##Death knight Super Unit
 MEDIDEATHKNIGHT:
@@ -1066,9 +1054,8 @@ VOIDARCHER:
 		Name: bus
 		Weapon: Voidarchershot3
 	RenderSprites:
-		Image: mmvoidarcher
-	Voiced:
-		VoiceSet: VoidArcherVoice
+		Image: mvoidarcher
+		PlayerPalette: tsunit
 
 ##Chain high damage to Vehicles, chance to EMP on stacks
 ##lightningwizard
@@ -1100,6 +1087,7 @@ lightningwizard:
 		CargoCondition: lightningwizard
 	RenderSprites:
 		Image: mlwizard
+		PlayerPalette: tsunit
 	Power:
 		Amount: 75
 
@@ -1133,6 +1121,7 @@ firewizard:
 		CargoCondition: firewizard
 	RenderSprites:
 		Image: mfwizard
+		PlayerPalette: tsunit
 
 ##Healer - Monk
 Monk:
@@ -1145,8 +1134,6 @@ Monk:
 		BuildPaletteOrder: 412
 	Tooltip:
 		Name: Healing Monk. \n Strong vs infantry\n Weak vs anything else
-	Voiced:
-		VoiceSet: MonkVoice
 	RenderSprites:
 		Image: mmonk
 
@@ -1165,7 +1152,7 @@ Dryad:
 		BuildAtProductionType: Soldier
 		BuildPaletteOrder: 404
 		Prerequisites: ~infantry.mediholy, techcenter
-		Description: Repairs structures.
+		Description: Dryad Repairs structures.
 	Valued:
 		Cost: 1500
 	Tooltip:
@@ -1198,13 +1185,12 @@ Dryad:
 	WithInfantryBody:
 		IdleSequences: idle1
 		StandSequences: stand
-	Voiced:
-		VoiceSet: DryadVoice
 	AutoTarget:
 	AutoTargetPriority@DEFAULT:
 		ValidTargets: Structure, GroundActor
 	RenderSprites:
 		Image: mdryad
+		PlayerPalette: tsunit
 
 ##Vampire : Lifesteal goes up as HP gets lower, Regen goes down as HP gets lower
 Vampire:
@@ -1228,8 +1214,7 @@ Vampire:
 		StandSequences: stand
 	RenderSprites:
 		Image: mvampire
-	Voiced:
-		VoiceSet: VampireVoice
+		PlayerPalette: tsunit
 	GrantConditionOnAttack:
 		Condition: InCombat
 		RevokeDelay: 50

@@ -894,7 +894,405 @@ mcvmedi:
 		Tick: 100
 	icon:
 		Filename: mcvmediicon.shp
+#################################################################################################################
+#################################################################################################################
+#################################################################################################################
 
+werewolf:
+	Defaults:
+		Filename: werewolf.shp
+	idle:
+		Start: 0
+		Facings: 8
+		Scale: 0.3
+	run:
+		Start: 0
+		Length: 8
+		Facings: 8
+		Tick: 100
+		Scale: 0.3
+	shoot:
+		Start: 104
+		Length: 4
+		Facings: 8
+		Tick: 100
+		Scale: 0.3
+	die:
+		Start: 168
+		Length: 4
+		Scale: 0.3
+	icon:
+		Filename: catapulticon.shp
+
+giantbear:
+	Defaults:
+		Filename: giantbear.shp
+	idle:
+		Start: 0
+		Facings: 8
+		Scale: 0.3
+	run:
+		Start: 0
+		Length: 8
+		Facings: 8
+		Tick: 100
+		Scale: 0.3
+	shoot:
+		Start: 104
+		Length: 4
+		Facings: 8
+		Tick: 100
+		Scale: 0.3
+	die:
+		Start: 168
+		Length: 4
+		Scale: 0.3
+	icon:
+		Filename: catapulticon.shp
+
+giantwolf:
+	Defaults:
+		Filename: giantwolf.shp
+	idle:
+		Start: 72
+		Length: 4
+		Facings: 8
+		Scale: 0.3
+	run:
+		Start: 0
+		Length: 8
+		Facings: 8
+		Tick: 100
+		Scale: 0.3
+	shoot:
+		Start: 104
+		Length: 4
+		Facings: 8
+		Tick: 100
+		Scale: 0.3
+	die:
+		Start: 136
+		Length: 4
+		Scale: 0.3
+	icon:
+		Filename: catapulticon.shp
+
+dirgo:
+	Defaults:
+		Filename: dirgo.shp
+	idle:
+		Start: 0
+		Facings: 8
+		Scale: 0.3
+	run:
+		Start: 0
+		Length: 8
+		Facings: 8
+		Tick: 100
+		Scale: 0.3
+	shoot:
+		Start: 104
+		Length: 4
+		Facings: 8
+		Tick: 100
+		Scale: 0.3
+	die:
+		Start: 168
+		Length: 4
+		Scale: 0.3
+	icon:
+		Filename: catapulticon.shp
+
+giantspider:
+	Defaults:
+		Filename: giantspider.shp
+	idle:
+		Start: 72
+		Length: 4
+		Facings: 8
+		Scale: 0.3
+	run:
+		Start: 0
+		Length: 8
+		Facings: 8
+		Tick: 100
+		Scale: 0.3
+	shoot:
+		Start: 104
+		Length: 4
+		Facings: 8
+		Tick: 100
+		Scale: 0.3
+	die:
+		Start: 136
+		Length: 4
+		Scale: 0.3
+	icon:
+		Filename: catapulticon.shp
+
+medusa:
+	Defaults:
+		Filename: medusa.shp
+	idle:
+		Start: 0
+		Facings: 8
+		Scale: 0.3
+	run:
+		Start: 0
+		Length: 8
+		Facings: 8
+		Tick: 100
+		Scale: 0.3
+	shoot:
+		Start: 104
+		Length: 4
+		Facings: 8
+		Tick: 100
+		Scale: 0.3
+	die:
+		Start: 168
+		Length: 4
+		Scale: 0.3
+	icon:
+		Filename: catapulticon.shp
+
+minotaur:
+	Defaults:
+		Filename: minotaur.shp
+	idle:
+		Start: 0
+		Facings: 8
+		Scale: 0.3
+	run:
+		Start: 0
+		Length: 8
+		Facings: 8
+		Tick: 100
+		Scale: 0.3
+	shoot:
+		Start: 104
+		Length: 4
+		Facings: 8
+		Tick: 100
+		Scale: 0.3
+	die:
+		Start: 168
+		Length: 4
+		Scale: 0.3
+	icon:
+		Filename: catapulticon.shp
+
+rrongol:
+	Defaults:
+		Filename: rrongol.shp
+	idle:
+		Start: 0
+		Facings: 8
+		Scale: 0.3
+	run:
+		Start: 0
+		Length: 8
+		Facings: 8
+		Tick: 100
+		Scale: 0.3
+	shoot:
+		Start: 104
+		Length: 4
+		Facings: 8
+		Tick: 100
+		Scale: 0.3
+	die:
+		Start: 168
+		Length: 4
+		Scale: 0.3
+	icon:
+		Filename: catapulticon.shp
+
+troll:
+	Defaults:
+		Filename: troll.shp
+	idle:
+		Start: 0
+		Facings: 8
+		Scale: 0.3
+	run:
+		Start: 0
+		Length: 8
+		Facings: 8
+		Tick: 100
+		Scale: 0.3
+	shoot:
+		Start: 104
+		Length: 4
+		Facings: 8
+		Tick: 100
+		Scale: 0.3
+	die:
+		Start: 168
+		Length: 4
+		Scale: 0.3
+	icon:
+		Filename: catapulticon.shp
+
+daemonwood:
+	Defaults:
+		Filename: daemonwood.shp
+	idle:
+		Start: 0
+		Facings: 8
+		Scale: 0.3
+	run:
+		Start: 0
+		Length: 8
+		Facings: 8
+		Tick: 100
+		Scale: 0.3
+	shoot:
+		Start: 104
+		Length: 4
+		Facings: 8
+		Tick: 100
+		Scale: 0.3
+	die:
+		Start: 168
+		Length: 4
+		Scale: 0.3
+	icon:
+		Filename: catapulticon.shp
+
+rockgolem:
+	Defaults:
+		Filename: rockgolem.shp
+	idle:
+		Start: 72
+		Length: 4
+		Facings: 8
+		Scale: 0.3
+	run:
+		Start: 0
+		Length: 8
+		Facings: 8
+		Tick: 100
+		Scale: 0.3
+	shoot:
+		Start: 104
+		Length: 4
+		Facings: 8
+		Tick: 100
+		Scale: 0.3
+	die:
+		Start: 136
+		Length: 4
+		Scale: 0.3
+	icon:
+		Filename: catapulticon.shp
+
+splitgolem:
+	Defaults:
+		Filename: rockgolem.shp
+	idle:
+		Start: 72
+		Length: 4
+		Facings: 8
+		Scale: 0.2
+	run:
+		Start: 0
+		Length: 8
+		Facings: 8
+		Tick: 100
+		Scale: 0.2
+	shoot:
+		Start: 104
+		Length: 4
+		Facings: 8
+		Tick: 100
+		Scale: 0.2
+	die:
+		Start: 136
+		Length: 4
+		Scale: 0.2
+	icon:
+		Filename: catapulticon.shp
+
+rustspitter:
+	Defaults:
+		Filename: rustspitter.shp
+	idle:
+		Start: 72
+		Length: 4
+		Facings: 8
+		Scale: 0.3
+	run:
+		Start: 0
+		Length: 8
+		Facings: 8
+		Tick: 100
+		Scale: 0.3
+	shoot:
+		Start: 104
+		Length: 4
+		Facings: 8
+		Tick: 100
+		Scale: 0.3
+	die:
+		Start: 136
+		Length: 1
+		Scale: 0.3
+	icon:
+		Filename: catapulticon.shp
+
+urlshekk:
+	Defaults:
+		Filename: urlshekk.shp
+	idle:
+		Start: 0
+		Facings: 8
+		Scale: 0.3
+	run:
+		Start: 0
+		Length: 8
+		Facings: 8
+		Tick: 100
+		Scale: 0.3
+	shoot:
+		Start: 104
+		Length: 4
+		Facings: 8
+		Tick: 100
+		Scale: 0.3
+	die:
+		Start: 168
+		Length: 4
+		Scale: 0.3
+	icon:
+		Filename: catapulticon.shp
+
+moculus:
+	Defaults:
+		Filename: moculus.shp
+	idle:
+		Start: 0
+		Facings: 8
+	run:
+		Start: 0
+		Length: 8
+		Facings: 8
+		Tick: 100
+	shoot:
+		Start: 104
+		Length: 4
+		Facings: 8
+		Tick: 100
+	die:
+		Start: 168
+		Length: 4
+	icon:
+		Filename: catapulticon.shp
+
+
+#################################################################################################################
+#################################################################################################################
+#################################################################################################################
 catapult:
 	Defaults:
 		Filename: catapult.shp

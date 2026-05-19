@@ -431,6 +431,63 @@ PaladinSword:
 			Concrete: 50
 		DamageTypes: DefaultDeath
 ##
+#Used by Shield Hero
+##
+PaladinHealWep:
+	ReloadDelay: 209
+	Range: 3c0
+	Report: tesla1.aud
+	ValidTargets: Ground, Water, GroundActor, WaterActor, Air, AirborneActor
+	Projectile: InstantHit
+	Warhead@1heala: HealthPercentageDamage
+		Spread: 2c0
+		Damage: -3
+		ValidTargets: Heal
+		ValidRelationships: Ally
+	Warhead@1Dam: SpreadDamage
+		Damage: -2000
+		Spread: 2c0 
+		ValidTargets: Heal
+		ValidRelationships: Ally
+	Warhead@1healb: CreateEffect
+		Explosions: medihealeffect
+		ImpactSounds: mediholyheal.aud
+		ImpactActors: false
+##
+#Used by Shield Hero
+##
+SmitePaladinWep:
+	ReloadDelay: 303
+	Range: 3c0
+	Report: tesla1.aud
+	ValidTargets: Ground, Water, GroundActor, WaterActor, Air, AirborneActor
+	Projectile: InstantHit
+	Warhead@: HealthPercentageDamage
+		Delay: 0
+		Spread: 2c512
+		ValidTargets: Infantry
+		Damage: 5
+		ValidRelationships: Enemy, Neutral
+		DamageTypes: Prone50Percent, TriggerProne, ElectricityDeath
+	Warhead@Eff: CreateEffect
+		Explosions: medigryphonriderattack
+		Image: explosion
+		Delay: 0
+	Warhead@friend: HealthPercentageDamage
+		Delay: 0
+		Spread: 2c0
+		ValidTargets: Infantry
+		Damage: 1
+		ValidRelationships: Ally
+		DamageTypes: Prone50Percent, TriggerProne, ElectricityDeath
+	Warhead@SmiteDam_impact: SpreadDamage
+		Delay: 0
+		Spread: 2c0
+		Damage: 7000
+		ValidTargets: Infantry
+		ValidRelationships: Enemy, Neutral
+		DamageTypes: Prone50Percent, TriggerProne, ElectricityDeath
+##
 #Used by Berserker
 ##
 BerserkerSword:
@@ -497,6 +554,15 @@ giantbearbite:
 ##
 #Used by Giant Bear
 ##
+werewolfclaw:
+	Inherits: GiantRatBite
+	ReloadDelay: 35
+	Report: swordmanattack1.aud,swordmanattack2.aud,swordmanattack3.aud,swordmanattack4.aud,swordmanattack5.aud,swordmanattack6.aud,swordmanattack7.aud,swordmanattack8.aud,swordmanattack9.aud,swordmanattack10.aud,swordmanattack11.aud,swordmanattack12.aud
+	Warhead@1Dam: SpreadDamage
+		Damage: 3000
+##
+#Used by Giant Bear
+##
 golembig:
 	Inherits: GiantRatBite
 	ReloadDelay: 35
@@ -511,7 +577,7 @@ GolemSplit:
 	ReloadDelay: 35
 	Report: swordmanattack1.aud,swordmanattack2.aud,swordmanattack3.aud,swordmanattack4.aud,swordmanattack5.aud,swordmanattack6.aud,swordmanattack7.aud,swordmanattack8.aud,swordmanattack9.aud,swordmanattack10.aud,swordmanattack11.aud,swordmanattack12.aud
 	Warhead@1Dam: SpreadDamage
-		Damage: 3000
+		Damage: 1000
 ##
 #Used by Skeleton
 ##

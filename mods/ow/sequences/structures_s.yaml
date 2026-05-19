@@ -2322,31 +2322,37 @@ slavecampgc:
 	Defaults:
 		Filename: slavecampgc.shp
 	place:
-		Scale: 0.29
+		Scale: 0.4
 		Start: 0
 		Length: 2
+		Tick: 1200
 	idle:
-		Scale: 0.29
+		Scale: 0.4
 		Start: 0
 		Length: 2
+		Tick: 1200
 	idle-top:
-		Scale: 0.29
+		Scale: 0.4
 		Start: 0
 		Length: 2
+		Tick: 1200
 	idle-uac:
-		Scale: 0.29
+		Scale: 0.4
 		Start: 0
 		Length: 2
+		Tick: 1200
 	damaged-idle:
-		Scale: 0.29
+		Scale: 0.4
 		Start: 2
+		Tick: 1200
 	dead:
-		Scale: 0.29
+		Scale: 0.4
 		Start: 2
 		Tick: 800
 	make:
-		Scale: 0.29
+		Scale: 0.4
 		Start: 0
+		Tick: 1200
 	bib:
 		TilesetFilenames:
 			SNOW: bib3.sno
@@ -2397,23 +2403,23 @@ barrackswg:
 	Defaults:
 		Filename: barrackswg.shp
 	place:
-		Scale: 0.23
+		Scale: 0.3
 		Start: 0
 		Length: 4
 	idle:
-		Scale: 0.23
+		Scale: 0.3
 		Start: 3
 		Length: 1
 	damaged-idle:
-		Scale: 0.23
+		Scale: 0.3
 		Start: 6
 		Length: 1
 	dead:
-		Scale: 0.23
+		Scale: 0.3
 		Start: 7
 		Tick: 800
 	make:
-		Scale: 0.23
+		Scale: 0.3
 		Start: 4
 	bib:
 		TilesetFilenames:
@@ -2462,18 +2468,22 @@ dwarfsettlement:
 		Scale: 0.25
 		Start: 1
 		Length: 1
+		Tick: 300
 	idle:
 		Scale: 0.25
 		Start: 1
 		Length: 6
+		Tick: 300
 	build-top:
 		Scale: 0.25
 		Start: 1
 		Length: 6
+		Tick: 300
 	damaged-idle:
 		Scale: 0.25
 		Start: 8
 		Length: 1
+		Tick: 300
 	dead:
 		Scale: 0.25
 		Start: 9
@@ -2482,6 +2492,7 @@ dwarfsettlement:
 		Scale: 0.25
 		Start: 1
 		Length: 7
+		Tick: 300
 	icon:
 		Filename: tentmediicon.shp
 
@@ -2489,20 +2500,20 @@ dragonlair:
 	Defaults:
 		Filename: dragonlair.shp
 	place:
-		Scale: 0.23
+		Scale: 0.5
 		Start: 0
 	idle:
-		Scale: 0.23
+		Scale: 0.5
 		Start: 0
 	damaged-idle:
-		Scale: 0.23
+		Scale: 0.5
 		Start: 0
 	dead:
-		Scale: 0.23
+		Scale: 0.5
 		Start: 0
 		Tick: 800
 	make:
-		Scale: 0.23
+		Scale: 0.5
 		Start: 1
 	icon:
 		Filename: tentmediicon.shp
@@ -2524,24 +2535,28 @@ techcenterblacksmith:
 	Defaults:
 		Filename: techcenterblacksmith.shp
 	place:
-		Scale: 0.2
+		Scale: 0.4
 		Start: 0
 		Length: 7
+		Tick: 500
 	idle:
-		Scale: 0.2
+		Scale: 0.4
 		Start: 7
-		Length: 6
+		Length: 4
+		Tick: 500
 	damaged-idle:
-		Scale: 0.2
+		Scale: 0.4
 		Start: 10
+		Tick: 500
 	dead:
-		Scale: 0.2
+		Scale: 0.4
 		Start: 11
-		Tick: 800
+		Tick: 500
 	make:
-		Scale: 0.2
+		Scale: 0.4
 		Start: 7
-		Length: 6
+		Length: 4
+		Tick: 500
 	bib:
 		TilesetFilenames:
 			SNOW: bib3.sno
@@ -2665,23 +2680,23 @@ barracksgc:
 	Defaults:
 		Filename: barracksgc.shp
 	place:
-		Scale: 0.23
+		Scale: 0.3
 		Start: 0
 		Length: 1
 	idle:
-		Scale: 0.23
+		Scale: 0.3
 		Start: 0
 		Length: 1
 	damaged-idle:
-		Scale: 0.23
+		Scale: 0.3
 		Start: 1
 		Length: 1
 	dead:
-		Scale: 0.23
+		Scale: 0.3
 		Start: 2
 		Tick: 800
 	make:
-		Scale: 0.23
+		Scale: 0.3
 		Start: 0
 	bib:
 		TilesetFilenames:
@@ -2781,6 +2796,38 @@ elvenhideout:
 #Goblin Hovel
 slavecampgh:
 	Inherits: slavecampgc
+	place:
+		Scale: 0.4
+		Start: 0
+		Length: 1
+		Tick: 1200
+	idle:
+		Scale: 0.4
+		Start: 0
+		Length: 1
+		Tick: 1200
+	idle-top:
+		Scale: 0.4
+		Start: 0
+		Length: 1
+		Tick: 1200
+	idle-uac:
+		Scale: 0.4
+		Start: 0
+		Length: 1
+		Tick: 1200
+	damaged-idle:
+		Scale: 0.4
+		Start: 1
+		Tick: 1200
+	dead:
+		Scale: 0.4
+		Start: 1
+		Tick: 800
+	make:
+		Scale: 0.4
+		Start: 0
+		Tick: 1200
 	Defaults:
 		Filename: slavecampgh.shp
 
@@ -2925,31 +2972,34 @@ monumentgazebo:
 mediarrowtower:
 	Inherits: Archertower
 
+Archertower4:
+	Inherits: Archertower
+
 Archertower:
 	Defaults:
 		Filename: mediarrowtower.shp
 	place:
-		Scale: 0.2
+		Scale: 0.15
 		Start: 1
 	idle:
-		Scale: 0.2
+		Scale: 0.15
 		Start: 1
 		Offset: 0,-50,0
 	damaged-idle:
-		Scale: 0.2
+		Scale: 0.15
 		Start: 2
 		Offset: 0,-50,0
 	dead:
-		Scale: 0.2
+		Scale: 0.15
 		Start: 2
 		Tick: 800
 		Offset: 0,-50,0
 	make:
-		Scale: 0.2
+		Scale: 0.15
 		Start: 1
 		Offset: 0,-50,0
 	build-top:
-		Scale: 0.2
+		Scale: 0.15
 		Start: 1
 	bib:
 		TilesetFilenames:
@@ -3009,18 +3059,30 @@ wizardtower:
 		Filename: wizardtower.shp
 	place:
 		Start: 6
+		Scale: 0.75
+		Offset: -20,-12,0
 	idle:
 		Start: 6
+		Scale: 0.75
+		Offset: -20,-12,0
 	damaged-idle:
 		Start: 7
+		Scale: 0.75
+		Offset: -20,-12,0
 	dead:
 		Start: 7
 		Tick: 800
+		Scale: 0.75
+		Offset: -20,-12,0
 	make:
 		Start: 1
+		Scale: 0.75
+		Offset: -20,-12,0
 	build-top:
 		Start: 0
 		Length: 5
+		Scale: 0.75
+		Offset: -20,-12,0
 	bib:
 		TilesetFilenames:
 			SNOW: bib3.sno

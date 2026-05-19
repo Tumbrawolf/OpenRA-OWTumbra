@@ -482,7 +482,7 @@ werewolf:
 		FacingTolerance: 0
 	Armament:
 		Name: primary
-		Weapon: GiantbearBite
+		Weapon: werewolfclaw
 		FireDelay: 3
 	Armament@2:
 		Name: primary1
@@ -518,18 +518,6 @@ giantbear:
 		Type: Light
 	Health:
 		HP: 50000
-	GrantConditionOnHealth@Move:
-		Condition: BerLowHPM
-		MaxHP: 30000
-	GrantConditionOnHealth@Attack:
-		Condition: BerLowHPA
-		MaxHP: 20000
-	SpeedMultiplier:
-		RequiresCondition: BerLowHPM
-		Modifier: 200
-	FirepowerMultiplier:
-		RequiresCondition: BerLowHPA
-		Modifier: 120
 	AttackFrontal:
 		Armaments: primary, primary1
 		FacingTolerance: 0
@@ -552,6 +540,9 @@ giantbear:
 ##Giant Wolf, Attack dog with more HP
 giantwolf:
 	Inherits@Medibeast: ^Medibeast
+	Inherits@DOG: DOG
+	Health:
+		HP: 6000
 	RenderSprites:
 		Image: giantwolf
 
@@ -563,36 +554,216 @@ giantwolf:
 ##Dirgo, Regens HP, Slower attack speed more HP, more damage per hit
 dirgo:
 	Inherits@Medibeast: ^Medibeast
+	Inherits@GAINSEXPERIENCE: ^GainsExperience
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	Buildable:
+		Prerequisites: ~vehicles.medi
+		Description: Berserkers Wish they were him. \n Strong vs infantry
+		Queue: Vehicle
+		BuildPaletteOrder: 409
+		BuildDuration: 150
+	Valued:
+		Cost: 800
+	Tooltip:
+		Name: Berserker
+	Armor:
+		Type: Light
+	Health:
+		HP: 50000
+	AttackFrontal:
+		Armaments: primary, primary1
+		FacingTolerance: 0
+	Armament:
+		Name: primary
+		Weapon: GiantbearBite
+		FireDelay: 3
+	Armament@2:
+		Name: primary1
+		Weapon: GiantbearBite
+		FireDelay: 2
+		RequiresCondition: BerLowHPA
+	ConvertsDamageToHealth:
+		DamagePercentConverted: 15
 	RenderSprites:
 		Image: dirgo
 
 ##Giant Spider, Corrosive and stealth, slow
 giantspider:
 	Inherits@Medibeast: ^Medibeast
+	Inherits@GAINSEXPERIENCE: ^GainsExperience
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	Buildable:
+		Prerequisites: ~vehicles.medi
+		Description: Berserkers Wish they were him. \n Strong vs infantry
+		Queue: Vehicle
+		BuildPaletteOrder: 409
+		BuildDuration: 150
+	Valued:
+		Cost: 800
+	Tooltip:
+		Name: Berserker
+	Armor:
+		Type: Light
+	Health:
+		HP: 50000
+	AttackFrontal:
+		Armaments: primary, primary1
+		FacingTolerance: 0
+	Armament:
+		Name: primary
+		Weapon: GiantbearBite
+		FireDelay: 3
+	Armament@2:
+		Name: primary1
+		Weapon: GiantbearBite
+		FireDelay: 2
+		RequiresCondition: BerLowHPA
+	ConvertsDamageToHealth:
+		DamagePercentConverted: 15
 	RenderSprites:
 		Image: giantspider
 
 ##Medusa, Stuns infantry on death
 medusa:
 	Inherits@Medibeast: ^Medibeast
+	Inherits@GAINSEXPERIENCE: ^GainsExperience
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	Buildable:
+		Prerequisites: ~vehicles.medi
+		Description: Berserkers Wish they were him. \n Strong vs infantry
+		Queue: Vehicle
+		BuildPaletteOrder: 409
+		BuildDuration: 150
+	Valued:
+		Cost: 800
+	Tooltip:
+		Name: Berserker
+	Armor:
+		Type: Light
+	Health:
+		HP: 50000
+	AttackFrontal:
+		Armaments: primary, primary1
+		FacingTolerance: 0
+	Armament:
+		Name: primary
+		Weapon: GiantbearBite
+		FireDelay: 3
+	Armament@2:
+		Name: primary1
+		Weapon: GiantbearBite
+		FireDelay: 2
+		RequiresCondition: BerLowHPA
+	ConvertsDamageToHealth:
+		DamagePercentConverted: 15
 	RenderSprites:
 		Image: medusa
 
 ##Minotaur, Vehicle version of beserker
 minotaur:
 	Inherits@Medibeast: ^Medibeast
+	Inherits@GAINSEXPERIENCE: ^GainsExperience
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	Buildable:
+		Prerequisites: ~vehicles.medi
+		Description: Berserkers Wish they were him. \n Strong vs infantry
+		Queue: Vehicle
+		BuildPaletteOrder: 409
+		BuildDuration: 150
+	Valued:
+		Cost: 800
+	Tooltip:
+		Name: Berserker
+	Armor:
+		Type: Light
+	Health:
+		HP: 50000
+	AttackFrontal:
+		Armaments: primary, primary1
+		FacingTolerance: 0
+	Armament:
+		Name: primary
+		Weapon: GiantbearBite
+		FireDelay: 3
+	Armament@2:
+		Name: primary1
+		Weapon: GiantbearBite
+		FireDelay: 2
+		RequiresCondition: BerLowHPA
+	ConvertsDamageToHealth:
+		DamagePercentConverted: 15
 	RenderSprites:
 		Image: minotaur
 
 ##Rrongol, Fast, Can Crit
 rrongol:
 	Inherits@Medibeast: ^Medibeast
+	Inherits@GAINSEXPERIENCE: ^GainsExperience
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	Buildable:
+		Prerequisites: ~vehicles.medi
+		Description: Berserkers Wish they were him. \n Strong vs infantry
+		Queue: Vehicle
+		BuildPaletteOrder: 409
+		BuildDuration: 150
+	Valued:
+		Cost: 800
+	Tooltip:
+		Name: Berserker
+	Armor:
+		Type: Light
+	Health:
+		HP: 50000
+	AttackFrontal:
+		Armaments: primary, primary1
+		FacingTolerance: 0
+	Armament:
+		Name: primary
+		Weapon: GiantbearBite
+		FireDelay: 3
+	Armament@2:
+		Name: primary1
+		Weapon: GiantbearBite
+		FireDelay: 2
+		RequiresCondition: BerLowHPA
+	ConvertsDamageToHealth:
+		DamagePercentConverted: 15
 	RenderSprites:
 		Image: rrongol
 
 ##Troll, Regens HP
 troll:
 	Inherits@Medibeast: ^Medibeast
+	Inherits@GAINSEXPERIENCE: ^GainsExperience
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	Buildable:
+		Prerequisites: ~vehicles.medi
+		Description: Berserkers Wish they were him. \n Strong vs infantry
+		Queue: Vehicle
+		BuildPaletteOrder: 409
+		BuildDuration: 150
+	Valued:
+		Cost: 800
+	Tooltip:
+		Name: Berserker
+	Armor:
+		Type: Light
+	Health:
+		HP: 50000
+	AttackFrontal:
+		Armaments: primary, primary1
+		FacingTolerance: 0
+	Armament:
+		Name: primary
+		Weapon: GiantbearBite
+		FireDelay: 3
+	Armament@2:
+		Name: primary1
+		Weapon: GiantbearBite
+		FireDelay: 2
+		RequiresCondition: BerLowHPA
+	ConvertsDamageToHealth:
+		DamagePercentConverted: 15
 	RenderSprites:
 		Image: troll
 
@@ -721,11 +892,11 @@ splitgolem:
 		MinHP: 19000
 		GrantPermanently: True
 	RenderSprites:
-		Image: medigolem
+		Image: splitgolem
 
 
 ##Rust Spitter, Corrosive, strong AA
-tustspitter:
+rustspitter:
 	Inherits: ^Medibeast
 	Inherits@GAINSEXPERIENCE: ^GainsExperience
 	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
@@ -768,7 +939,7 @@ tustspitter:
 	ProducibleWithLevel:
 		Prerequisites: vehicles.upgraded
 	RenderSprites:
-		Image: tustspitter
+		Image: rustspitter
 	Voiced:
 		VoiceSet: SiegeWeaponVoice
 
@@ -836,7 +1007,7 @@ urlshekk:
 		VoiceSet: SiegeWeaponVoice
 
 
-##Death knight Super Unit
+Beholder
 moculus:
 	Inherits@MediSoldier: ^MediSoldier
 	Inherits@NoExp: ^NoExp
@@ -847,13 +1018,10 @@ moculus:
 	Buildable:
 		Prerequisites: ~vehicles.medi
 		Description: Beholder of magic
-		Queue: Infantry
+		Queue: Vehicle
 		BuildLimit: 1
 		BuildAtProductionType: Soldier
 		BuildPaletteOrder: 419
-	-Passenger:
-	-Crushable:
-	-TakeCover:
 	Valued:
 		Cost: 12000
 	UpdatesPlayerStatistics:
@@ -873,9 +1041,6 @@ moculus:
 	SelectionDecorations:
 	RevealsShroud:
 		Range: 7c512
-	GrantConditionOnAttack@sword:
-		Condition: SwordSwing
-		RevokeDelay: 800
 	Armament@SECONDARY:
 		Name: secondary
 		Weapon: MediDeathKnightAttack1
@@ -903,10 +1068,6 @@ moculus:
 	VoiceAnnouncement:
 		RequiresCondition: produced
 		Voice: Build
-	ProximityExternalCondition@DeathKnightAura:
-		Condition: DeathKnightAura
-		Range: 7c512
-		ValidRelationships: Enemy, Neutral
 	AnnounceOnKill:
 	Voiced:
 		VoiceSet: MediDeathKnightVoice

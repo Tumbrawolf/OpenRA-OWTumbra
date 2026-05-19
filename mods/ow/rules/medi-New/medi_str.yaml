@@ -626,7 +626,8 @@ radarwg:
 	RenderSprites:
 		Image: radarwg
 
-##Archer Tower
+
+	##Archer Tower
 Archertower:
 	ProvidesPrerequisite@AT:
 		Prerequisite: ArchTower
@@ -678,6 +679,12 @@ Archertower:
 		QuantizedFacings: 8
 	Power:
 		Amount: -25
+
+##Archer Tower
+Archertower4:
+	Inherits: Archertower
+	-Buildable
+
 ##Garrison structure
 guardhouse:
 	Inherits: ^Defense
@@ -895,15 +902,14 @@ wizardtower:
 		Image: wizardtower
 
 arcanetower:
-	Inherits: ^Defense
+	Inherits: wizardtower
+	-Buildable
 
 ##Anti Tank
-balistatower:
-	Inherits: wizardtower
+balistatower2:
+	Inherits: ^Defense
 	Power:
 		Amount: -50
-	-DetectCloaked:
-		ProvidesPrerequisite@buildingname:
 	Buildable:
 		Queue: Defense
 		Prerequisites: ~structures.medi, techcenter
@@ -917,6 +923,7 @@ balistatower:
 		HP: 35000
 	AttackTurreted:
 		Armaments: PRIMARY
+		Turrets: PRIMARY
 	Armament@PRIMARY:
 		Name: PRIMARY
 		Weapon: Ballistatowershot
@@ -925,6 +932,30 @@ balistatower:
 	RenderSprites:
 		Image: balistatower
 		PlayerPalette: tsunit
+	-SpawnActorsOnSell:
+	Inherits@AUTOTARGET: ^AutoTargetAll
+	Building:
+		BuildSounds: medibuild1.aud, medibuildjobdone1.aud, medibuildplace1.aud
+	Selectable:
+		Bounds: 1024, 1024
+		DecorationBounds: 1024, 1024, 0, 0
+	SelectionDecorations:
+	Armor:
+		Type: Wood
+	RevealsShroud:
+		Range: 8c0
+	WithBuildingBib:
+		HasMinibib: true
+	Turreted@T1:
+		Turret:	T1
+		TurnSpeed: 1023
+		Offset: 128,128,384
+		HasMinibib: true
+	DetectCloaked:
+		Range: 6c0
+	-BodyOrientation:
+	ClassicFacingBodyOrientation:
+		QuantizedFacings: 8
 
 
 ##Grants radar but also provides a smaller circle of dark shroud, fragile, high mana cost
@@ -970,6 +1001,7 @@ Goblin Hovel:
 	Inherits: slavecampgc
 	RenderSprites:
 		Image: slavecampgh
+		PlayerPalette: tsunit
 
 ##Graveyard, Spawns uncontrolled Skeletons in area, attacks targeted units in large area
 Graveyard:
@@ -1263,13 +1295,6 @@ elvenhideout:
 	RenderSprites:
 		Image: elvenhideout
 
-## Proximity capture, cannont be killed, gives exp to neerby units
-fairgrounds:
-	Power:
-		Amount: 0
-	RenderSprites:
-		Image: fairgrounds
-
 ## proximity capture, generates random money and losses.
 gamblinghall:
 	Power:
@@ -1284,3 +1309,4 @@ gamblinghall:
 
 medigarrisontower:
 	Inherits: guardhouse
+	-Buildable
