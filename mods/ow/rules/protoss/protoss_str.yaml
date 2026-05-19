@@ -676,6 +676,8 @@ PASSIM:
 	ProvidesPrerequisite@buildingname:
 	ProvidesPrerequisite:
 		Prerequisite: refinery
+	ProvidesPrerequisite@silo:
+		Prerequisite: silo
 	WithResourceStoragePipsDecoration:
 		Position: BottomLeft
 		Margin: 4, 3

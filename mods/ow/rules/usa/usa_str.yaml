@@ -429,6 +429,7 @@ usaairstriplandingspot:
 usastrategycenter:
 	Inherits: ^ScienceBuilding
 	Inherits@shape: ^3x3Shape
+	Inherits@IDISABLE: ^DisableOnLowPowerOrPowerDown
 	Inherits@AUTOTARGET: ^AutoTargetGround
 	Selectable:
 		Bounds: 3072, 3072
@@ -462,14 +463,16 @@ usastrategycenter:
 		TargetTypes: GroundActor, C4, DetonateAttack, Structure, SpyInfiltrate
 	ProvidesPrerequisite@buildingname:
 	ProvidesPrerequisite:
-		Prerequisite: techcenter
-	ProvidesPrerequisite@radar:
 		RequiresPrerequisites: techlevel.high
+		Prerequisite: techcenter
+		RequiresCondition: !powerdown
+	ProvidesPrerequisite@radar:
 		Prerequisite: radar
 	RenderSprites:
 		Image: usastrategycenter
 	SpawnActorPower@spydrone:
 		OrderName: SpyDrone
+		PauseOnCondition: disabled
 		Name: Spy Drone
 		Actor: USASPYDRONE
 		LifeTime: -1
@@ -481,6 +484,7 @@ usastrategycenter:
 		SelectTargetSpeechNotification: SelectTarget
 		Prerequisites: ~structures.usa
 	ParatroopersPower@usarangers:
+		PauseOnCondition: disabled
 		OrderName: usarangers
 		Prerequisites: ~structures.usa, ~aircraft.usa
 		Icon: paratroopers

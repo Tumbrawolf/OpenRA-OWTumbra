@@ -180,6 +180,7 @@ chinawarfactory:
 
 chinapropagandacenter:
 	Inherits: ^ScienceBuilding
+	Inherits@IDISABLE: ^DisableOnLowPowerOrPowerDown
 	Inherits@shape: ^3x3Shape
 	Selectable:
 		Bounds: 3072, 3072
@@ -191,7 +192,7 @@ chinapropagandacenter:
 	Tooltip:
 		Name: actor-chinapropagandacenter.name
 	ProvidesRadar:
-		RequiresCondition: !lowpower
+		RequiresCondition: !disabled
 	Building:
 		Footprint: xxx xxx x=x
 		Dimensions: 3,3
@@ -215,6 +216,7 @@ chinapropagandacenter:
 	ProvidesPrerequisite:
 		Prerequisite: techcenter
 		RequiresPrerequisites: techlevel.high
+		RequiresCondition: !powerdown
 	ProvidesPrerequisite@radar:
 		Prerequisite: radar
 	RenderSprites:
@@ -222,6 +224,7 @@ chinapropagandacenter:
 		PlayerPalette: dawn
 	AirstrikePower@spyplane:
 		OrderName: ChinaSpyPlane
+		PauseOnCondition: disabled
 		Icon: spyplane
 		ChargeInterval: 3750
 		Name: Spy Plane
@@ -244,6 +247,7 @@ chinapropagandacenter:
 		SupportPowerPaletteOrder: 60
 	ParatroopersPower@chinadrop:
 		OrderName: chinadrop
+		PauseOnCondition: disabled
 		Prerequisites: ~structures.china, ~aircraft.china, upgrade.infantrygeneral
 		Icon: paratroopers
 		ChargeInterval: 18000
@@ -284,6 +288,7 @@ chinapropagandacenter:
 		DisplayTimerRelationships: Ally
 	ParatroopersPower@chinatanks:
 		OrderName: chinatanks
+		PauseOnCondition: disabled
 		Prerequisites: ~structures.china, ~aircraft.china, upgrade.tankgeneral
 		Icon: paratank
 		ChargeInterval: 12500

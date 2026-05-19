@@ -3053,6 +3053,27 @@ Player:
 					Attractiveness: -5
 					TargetMetric: None
 					CheckRadius: 8c0
+			MorshuArtillery:
+				OrderName: artillerybarrage3
+				MinimumAttractiveness: 1000
+				Consideration@0:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 2
+					TargetMetric: None
+					CheckRadius: 8c0
+				Consideration@1:
+					Against: Enemy
+					Types: Vehicle, Infantry, Defense
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 8c0
+				Consideration@2:
+					Against: Enemy
+					Types: Water
+					Attractiveness: -5
+					TargetMetric: None
+					CheckRadius: 8c0
 			tomahawkstorm:
 				OrderName: tomahawkstorm
 				MinimumAttractiveness: 5
