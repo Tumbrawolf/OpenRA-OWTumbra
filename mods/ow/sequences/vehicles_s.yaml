@@ -2800,10 +2800,6 @@ unscwolverine:
 		Filename: unscwolverineturret.shp
 		Start: 0
 		Facings: 32
-	pod:
-		Filename: unscwolverineturret.shp
-		Start: 0
-		Facings: 32
 	muzzle:
 		Filename: minigun.shp
 		Length: 6
@@ -2829,3 +2825,54 @@ covenantmcv:
 		Offset: 0,-8
 	icon:
 		Filename: unscmcvicon.shp
+
+covenantghost:
+	Defaults:
+		Filename: invis.shp
+	idle:
+		Filename: invis.shp
+	turret:
+		Filename: covenantghost.shp
+		Offset: 0,-10
+		Facings: 32
+	turretdamaged:
+		Filename: covenantghostdamaged.shp
+		Offset: 0,-10
+		Facings: 32
+	fire1:
+		Filename: bluefire1.shp
+		Length: *
+		ZOffset: 1023
+	fire2:
+		Filename: bluefire2.shp
+		Length: *
+		ZOffset: 1023
+	muzzle:
+		Filename: gunfire2.shp
+		Length: 2
+	muzzle2:
+		Filename: minigun.shp
+		Length: 6
+		Facings: 8
+		Tick: 25
+	icon:
+		Filename: covenantghosticon.shp
+		Offset: 0,0
+
+covenantghostdamaged:
+	Defaults:
+		Filename: covenantghostdamaged.shp
+	idle:
+		Filename: covenantghostdamaged.shp
+		Offset: 0,-10
+		Facings: 32
+	turret:
+		Filename: invis.shp
+	fire1:
+		Filename: bluefire1.shp
+		Length: *
+		ZOffset: 1023
+	fire2:
+		Filename: bluefire2.shp
+		Length: *
+		ZOffset: 1023

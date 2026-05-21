@@ -394,6 +394,7 @@ Weapons:
 	ow|weapons/mediweap.yaml
 	ow|weapons/heroes.yaml
 	ow|weapons/unsc_weap.yaml
+	ow|weapons/covenant_weap.yaml
 	ow|rules/medi-New/medi_weapons.yaml
 
 Voices:

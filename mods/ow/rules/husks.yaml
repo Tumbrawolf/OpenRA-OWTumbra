@@ -2006,7 +2006,7 @@ unscvulture.Husk:
 	-RevealOnDeath:
 
 unscscorpion.Husk:
-	Inherits: ^Husk
+	Inherits: ^BotCapturableHusk
 	Tooltip:
 		Name: actor-unscscorpion-husk-name
 	ThrowsParticle@turret:
@@ -2017,7 +2017,7 @@ unscscorpion.Husk:
 		IntoActor: unscscorpion
 
 unscgrizzly.Husk:
-	Inherits: ^Husk
+	Inherits: ^BotCapturableHusk
 	Tooltip:
 		Name: actor-unscgrizzly-husk-name
 	ThrowsParticle@turret:
@@ -2050,3 +2050,33 @@ unsccolonyship.Husk:
 	RenderSprites:
 		Image: unsccolonyship
 	-RevealOnDeath:
+
+covenantghost.Husk:
+	Inherits: ^BotCapturableHusk
+	WithIdleOverlay@Burns:
+		Image: covenantghostdamaged
+		Sequence: fire1
+		Offset: -256,512,0
+	Tooltip:
+		Name: actor-covenantghost-husk-name
+	TransformOnCapture:
+		IntoActor: covenantghost
+	InfiltrateForTransform:
+		IntoActor: covenantghost
+	TransformOnCondition:
+		IntoActor: covenantghost
+	RenderSprites:
+		Image: covenantghostdamaged
+	KillsSelf:
+		Delay: 340
+	AmbientSound:
+		SoundFiles: covenantghostdeath.aud
+		Delay: 150
+		Interval: 500
+	FireProjectilesOnDeath@2:
+		Weapons: covenantghostdeathproj
+		Pieces: 1,1
+		Range: 3c0, 5c0
+	FireWarheadsOnDeath:
+		Weapon: covenantghostdeathexplosion
+		EmptyWeapon: covenantghostdeathexplosion

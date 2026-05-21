@@ -31,3 +31,102 @@ covenantmcv.2:
 		Cost: 3000
 	RenderSprites:
 		Image: covenantmcv
+
+covenantghost:
+	Inherits: ^Vehicle
+	Inherits@GAINSEXPERIENCE: ^GainsExperience
+	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
+	Buildable:
+		Queue: Vehicle
+		BuildPaletteOrder: 30
+		Prerequisites: ~vehicles.covenant, ~techlevel.low
+		Description: actor-unscwarthog.description
+	Tooltip:
+		Name: actor-covenantghost.name
+	Valued:
+		Cost: 600
+	Armor:
+		Type: Light
+	Mobile:
+		Locomotor: hover
+		TurnSpeed: 512
+		Speed: 135
+	Hovers:
+		InitialHeight: 128
+	RevealsShroud:
+		MinRange: 5c0
+		Range: 8c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 5c0
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Health:
+		HP: 18000
+	Turreted:
+		TurnSpeed: 40
+		Offset: -298,0,212
+	Armament:
+		Weapon: covenantghostplasma
+		LocalOffset: 171,-64,0, 171,64,0
+	GrantConditionOnAttack:
+		Condition: slowfire
+		RevokeDelay: 35
+	SpeedMultiplier:
+		Modifier: 50
+		RequiresCondition: slowfire
+	Contrail@1:
+		Offset: -384,256,0
+		TrailLength: 25
+		StartWidth: 64
+		EndWidth: 32
+		StartColor: 94bdff
+		StartColorUsePlayerColor: False
+		EndColor: 4974ba
+		RequiresCondition: !slowfire
+	Contrail@2:
+		Offset: -384,-256,0
+		TrailLength: 25
+		StartWidth: 64
+		EndWidth: 32
+		StartColor: 94bdff
+		StartColorUsePlayerColor: False
+		EndColor: 4974ba
+		RequiresCondition: !slowfire
+	AttackTurreted:
+		PauseOnCondition: disabled 
+	FireProjectilesOnDeath@1:
+		Weapons: TechnicalTurret
+		Pieces: 1,1
+		Range: 1c0, 3c0
+	SpawnActorOnDeath:
+		Actor: covenantghost.Husk
+	FireWarheadsOnDeath:
+		Weapon: covenantghostdeathexplosion
+		EmptyWeapon: covenantghostdeathexplosion
+	WithMuzzleOverlay:
+	WithSpriteTurret:
+		Sequence: turret
+		RequiresCondition: !damaged_heavy || !damaged_critical
+	WithSpriteTurret@2:
+		Sequence: turretdamaged
+		RequiresCondition: damaged_heavy || damaged_critical
+	WithShadow:
+		Offset: 5, 64, 0
+		ZOffset: -129
+	RenderSprites:
+		Image: covenantghost
+	GrantConditionOnDamageState@fire2:
+		Condition: damaged_heavy
+		ValidDamageStates: Heavy, Critical
+	GrantConditionOnDamageState@fire3:
+		Condition: damaged_critical
+		ValidDamageStates: Critical
+	WithIdleOverlay@damage2:
+		RequiresCondition: damaged_heavy
+		Sequence: fire2
+		Offset: 128,128,0
+	WithIdleOverlay@damage3:
+		RequiresCondition: damaged_critical
+		Sequence: fire1
+		Offset: -128,-128,0

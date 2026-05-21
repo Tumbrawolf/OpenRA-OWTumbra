@@ -409,7 +409,7 @@ unscheavyweaponsmarine:
 
 unscsniper:
 	Inherits: ^Soldier
-	Inherits: ^unscinfantry
+	Inherits@unsc: ^unscinfantry
 	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
 	Buildable:
 		Queue: Infantry, ColonyShip
@@ -436,9 +436,9 @@ unscsniper:
 		InvalidTargets: NoAutoTarget
 		RequiresCondition: !carbine
 	AutoTargetPriority@carbine:
-		ValidTargets: Infantry, Vehicle
+		ValidTargets: Infantry, Vehicle, Aircraft, Plane
 		InvalidTargets: NoAutoTarget
-		RequiresCondition: carbine
+		RequiresCondition: carbine || beamrifle
 	GrantRandomPeriodicCondition@covenantweapons:
 		Conditions: carbine, fake1, beamrifle
 		CooldownDuration: 1
@@ -519,7 +519,7 @@ unscsniper:
 
 unschellbringer:
 	Inherits: ^Soldier
-	Inherits: ^unscinfantry
+	Inherits@unsc: ^unscinfantry
 	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
 	Buildable:
 		Queue: Infantry, ColonyShip

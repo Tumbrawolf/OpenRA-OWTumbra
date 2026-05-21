@@ -8,27 +8,22 @@
 	GrantConditionOnDamageState@fire3:
 		Condition: damaged_critical
 		ValidDamageStates: Critical
-	WithIdleOverlay@fire1:
+	WithIdleOverlay@damage:
 		RequiresCondition: damaged_light
-		Image: fire
-		Sequence: 4
-		IsDecoration: true
-		Offset: -512,512,0
-		Palette: effect
-	WithIdleOverlay@fire2:
+		Sequence: fire1
+		Offset: -256,512,0
+	WithIdleOverlay@damage2:
 		RequiresCondition: damaged_heavy
-		Image: fire
-		Sequence: 3
-		IsDecoration: true
-		Offset: -128,-256,0
-		Palette: effect
-	WithIdleOverlay@fire3:
+		Sequence: fire2
+		Offset: 128,128,0
+	WithIdleOverlay@damage3:
 		RequiresCondition: damaged_critical
-		Image: fire
-		Sequence: 2
-		IsDecoration: true
-		Offset: 512,128,0
-		Palette: effect
+		Sequence: fire1
+		Offset: -512,-512,0
+	WithIdleOverlay@damage4:
+		RequiresCondition: damaged_critical
+		Sequence: fire2
+		Offset: 512,512,0
 
 covenantcitadel:
 	Inherits: ^Building
@@ -91,14 +86,14 @@ covenantfoundation:
 	Inherits: ^Building
 	Inherits@SHAPE: ^3x3Shape
 	Inherits@BIB: ^3xBuildingBib
-	Inherits@unscbuilding: ^covenantbuilding
+	Inherits@covenantbuilding: ^covenantbuilding
 	Buildable:
 		Queue: Building
 		Prerequisites: ~structures.covenant
 		BuildPaletteOrder: 1
 		Description: actor-covenantfoundation.description
 	Valued:
-		Cost: 300
+		Cost: 400
 	Tooltip:
 		Name: actor-covenantfoundation.name
 	Building:
@@ -138,24 +133,93 @@ covenantfoundation:
 	GrantConditionOnProduction@hall:
 		Condition: hall
 		Actors: covenantfoundation.hall
-	TransformOnCondition@reactor:
+	TransformOnCondition@hall:
 		IntoActor: covenanthall
 		RequiresCondition: hall
+	GrantConditionOnProduction@warehouse:
+		Condition: warehouse
+		Actors: covenantfoundation.warehouse
+	TransformOnCondition@warehouse:
+		IntoActor: covenantwarehouse
+		RequiresCondition: warehouse
+	GrantConditionOnProduction@factory:
+		Condition: factory
+		Actors: covenantfoundation.factory
+	TransformOnCondition@factory:
+		IntoActor: covenantfactory
+		RequiresCondition: factory
+	GrantConditionOnProduction@summit:
+		Condition: summit
+		Actors: covenantfoundation.summit
+	TransformOnCondition@summit:
+		IntoActor: covenantsummit
+		RequiresCondition: summit
+	GrantConditionOnProduction@temple:
+		Condition: temple
+		Actors: covenantfoundation.temple
+	TransformOnCondition@temple:
+		IntoActor: covenanttemple
+		RequiresCondition: temple
+	GrantConditionOnProduction@theeye:
+		Condition: theeye
+		Actors: covenantfoundation.theeye
+	TransformOnCondition@theeye:
+		IntoActor: covenanttheeye
+		RequiresCondition: theeye
+	GrantConditionOnProduction@repairpad:
+		Condition: repairpad
+		Actors: covenantfoundation.repairpad
+	TransformOnCondition@repairpad:
+		IntoActor: covenantrepairpad
+		RequiresCondition: repairpad
+	GrantConditionOnProduction@projector:
+		Condition: projector
+		Actors: covenantfoundation.projector
+	TransformOnCondition@projector:
+		IntoActor: covenantprojector
+		RequiresCondition: projector
+	GrantConditionOnProduction@silo:
+		Condition: silo
+		Actors: covenantfoundation.silo
+	TransformOnCondition@silo:
+		IntoActor: covenantsilo
+		RequiresCondition: silo
+	GrantConditionOnProduction@advtech:
+		Condition: advtech
+		Actors: covenantfoundation.advtech
+	TransformOnCondition@advtech:
+		IntoActor: covenantadvtech
+		RequiresCondition: advtech
+	GrantConditionOnProduction@ulttech:
+		Condition: ulttech
+		Actors: covenantfoundation.ulttech
+	TransformOnCondition@ulttech:
+		IntoActor: covenantulttech
+		RequiresCondition: ulttech
+	GrantConditionOnProduction@foundry:
+		Condition: foundry
+		Actors: covenantfoundation.foundry
+	TransformOnCondition@foundry:
+		IntoActor: covenantfoundry
+		RequiresCondition: foundry
+
 
 covenanthall:
 	Inherits: ^DawnBuilding
 	Inherits@prereqs: ^BarracksPrereqs
 	Inherits@shape: ^3x3Shape
 	Inherits@BIB: ^3xBuildingBib
-	Inherits@unscbuilding: ^covenantbuilding
+	Inherits@covenantbuilding: ^covenantbuilding
 	Selectable:
 		Bounds: 3072, 4096
 		DecorationBounds: 3072, 4096
 	HitShape:
 		UseTargetableCellsOffsets: false
 		TargetableOffsets: 0,0,0, 630,-512,0, 355,512,0, -281,-512,0, -630,512,0
+	Power:
+		Amount: 0
 	Valued:
-		Cost: 200
+		Cost: 400
 	Tooltip:
 		Name: actor-covenanthall.name
 	Building:
@@ -221,6 +285,673 @@ covenanthall:
 	SpawnActorOnDeath@firebase:
 		Actor: covenantfoundation
 
+covenantfactory:
+	Inherits: ^Building
+	Inherits@prereqs: ^WeaponsFactory
+	Inherits@shape: ^3x3Shape
+	Inherits@BIB: ^3xBuildingBib
+	Inherits@covenantbuilding: ^covenantbuilding
+	Selectable:
+		Bounds: 3072, 4096
+		DecorationBounds: 3072, 4096
+	Valued:
+		Cost: 1900
+	Tooltip:
+		Name: actor-covenantfactory.name
+	Building:
+		Footprint: xxx x== ===
+		Dimensions: 3,3
+	Health:
+		HP: 175000
+	Armor:
+		Type: Wood
+	RevealsShroud:
+		MinRange: 4c0
+		Range: 5c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 4c0
+	RallyPoint:
+	Exit@1:
+		RequiresCondition: !being-captured
+		SpawnOffset: 213,-128,0
+		ExitCell: 1,2
+	PrimaryBuilding:
+		PrimaryCondition: primary
+		SelectionNotification: PrimaryBuildingSelected
+	Production:
+		Produces: Vehicle
+	GrantExternalConditionToProduced:
+		Condition: produced
+	ProductionBar:
+		ProductionType: Vehicle
+	Power:
+		Amount: 0
+	ProvidesPrerequisite@buildingname:
+	Targetable:
+		TargetTypes: GroundActor, C4, DetonateAttack, Structure, SpyInfiltrate
+	InfiltrateForSupportPower:
+		Proxy: vehicles.upgraded
+		Types: SpyInfiltrate
+	ToggleConditionOnOrder@sell:
+		OrderName: Sell
+		Condition: sell_me
+	TransformOnCondition@sell:
+		RequiresCondition: sell_me
+		IntoActor: covenantfoundation
+		SkipMakeAnims: false
+	SpawnActorOnDeath@firebase:
+		Actor: covenantfoundation
+
+covenantwarehouse:
+	Inherits: ^Building
+	Inherits@ref: ^Refinery
+	Inherits@shape: ^3x3Shape
+	Inherits@BIB: ^3xBuildingBib
+	Inherits@botblocker: ^3x4BotBlockerChoose
+	Inherits@covenantbuilding: ^covenantbuilding
+	Building:
+		Footprint: xxx +x+ ===
+		Dimensions: 3,3
+	Selectable:
+		Bounds: 3072, 4096
+		DecorationBounds: 3072, 4096
+	Valued:
+		Cost: 1300
+	Health:
+		HP: 80000
+	RevealsShroud:
+		MinRange: 4c0
+		Range: 5c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 4c0
+	Power:
+		Amount: 0
+	Tooltip:
+		Name: actor-covenantwarehouse.name
+	Refinery:
+	DrawLineToTarget:
+	WithResourceStoragePipsDecoration:
+		Position: BottomLeft
+		Margin: 4, 3
+		RequiresSelection: true
+		PipCount: 20
+		FullSequence: pip-yellow
+	CustomSellValue:
+		Value: 300
+	FreeActor:
+		Actor: unscdarter
+		SpawnOffset: 1,2
+		Facing: 256
+		RequiresCondition: !build-incomplete
+	DockHost:
+		Type: Unload
+		DockAngle: 448
+		IsDragRequired: false
+		DragOffset: -554,512,0
+		DragLength: 0
+		DockOffset: 0,1024,0
+	InfiltrateForCash:
+		Percentage: 50
+		Types: SpyInfiltrate, ThiefInfiltrate
+		InfiltratedNotification: CreditsStolen
+		Maximum: 5000
+	ProvidesPrerequisite@buildingname:
+	ToggleConditionOnOrder@sell:
+		OrderName: Sell
+		Condition: sell_me
+	TransformOnCondition@sell:
+		RequiresCondition: sell_me
+		IntoActor: covenantfoundation
+		SkipMakeAnims: false
+	SpawnActorOnDeath@firebase:
+		Actor: covenantfoundation
+
+covenantsummit:
+	Inherits: ^Building
+	Inherits@prereqs: ^AircraftPrereqs
+	Inherits@shape: ^3x3Shape
+	Inherits@BIB: ^3xBuildingBib
+	Inherits@covenantbuilding: ^covenantbuilding
+	Tooltip:
+		Name: actor-covenantsummit.name
+	Building:
+		TerrainTypes: Clear, ClearSnow, Road, Creep
+		Footprint: xxx xxx ===
+		Dimensions: 3,3
+	Selectable:
+		Bounds: 3072, 4096
+		DecorationBounds: 3072, 4096
+	Production:
+		Produces: Aircraft, Plane, Helicopter
+	ProductionBar:
+		ProductionType: Aircraft
+	Exit:
+		ProductionTypes: Aircraft, Plane, Helicopter
+	Valued:
+		Cost: 1600
+	Health:
+		HP: 80000
+	Armor:
+		Type: Wood
+	Power:
+		Amount: 0
+	RevealsShroud:
+		MinRange: 4c0
+		Range: 5c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 4c0
+	GrantExternalConditionToProduced:
+		Condition: produced
+	RallyPoint:
+	PrimaryBuilding:
+		PrimaryCondition: primary
+		SelectionNotification: PrimaryBuildingSelected
+	Sellable:
+		RequiresCondition: !being-captured && !being-demolished
+	ToggleConditionOnOrder@sell:
+		OrderName: Sell
+		Condition: sell_me
+	TransformOnCondition@sell:
+		RequiresCondition: sell_me
+		SkipMakeAnims: false
+		IntoActor: covenantfoundation
+	SpawnActorOnDeath@firebase:
+		Actor: covenantfoundation
+
+covenanttemple:
+	Inherits: ^ScienceBuilding
+	Inherits@shape: ^3x3Shape
+	Inherits@BIB: ^3xBuildingBib
+	Inherits@covenantbuilding: ^covenantbuilding
+	Tooltip:
+		Name: actor-covenanttemple.name
+	Building:
+		Footprint: xxx xxx ===
+		Dimensions: 3,3
+	Selectable:
+		Bounds: 3072, 4096
+		DecorationBounds: 3072, 4096
+	Valued:
+		Cost: 1700
+	Health:
+		HP: 100000
+	Armor:
+		Type: Heavy
+	Power:
+		Amount: 0
+	RevealsShroud:
+		MinRange: 5c0
+		Range: 7c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 5c0
+	Targetable:
+		TargetTypes: GroundActor, C4, DetonateAttack, Structure, SpyInfiltrate
+	ProvidesPrerequisite@buildingname:
+	ProvidesPrerequisite:
+		Prerequisite: techcenter
+		RequiresPrerequisites: techlevel.high
+	ToggleConditionOnOrder@sell:
+		OrderName: Sell
+		Condition: sell_me
+	TransformOnCondition@sell:
+		RequiresCondition: sell_me
+		IntoActor: covenantfoundation
+		SkipMakeAnims: false
+	SpawnActorOnDeath@firebase:
+		Actor: covenantfoundation
+
+covenanttheeye:
+	Inherits: ^Building
+	Inherits@shape: ^3x3Shape
+	Inherits@BIB: ^3xBuildingBib
+	Inherits@covenantbuilding: ^covenantbuilding
+	Tooltip:
+		Name: actor-unscradartower.name
+	ProvidesRadar:
+		RequiresCondition: !lowpower
+	Building:
+		Footprint: xxx xxx ===
+		Dimensions: 3,3
+	Selectable:
+		Bounds: 3072, 4096
+		DecorationBounds: 3072, 4096
+	Valued:
+		Cost: 1200
+	Health:
+		HP: 100000
+	Armor:
+		Type: Heavy
+	Power:
+		Amount: 0
+	RevealsShroud:
+		MinRange: 5c0
+		Range: 7c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 5c0
+	Targetable:
+		TargetTypes: GroundActor, C4, DetonateAttack, Structure, SpyInfiltrate
+	ProvidesPrerequisite@buildingname:
+	ProvidesRadar:
+		RequiresCondition: !jammed && !disabled
+	ProvidesPrerequisite:
+		Prerequisite: radar
+		RequiresPrerequisites: techlevel.high
+	InfiltrateForExploration:
+		Types: SpyInfiltrate
+	ParatroopersPower:
+		OrderName: UNSCParadrop
+		Icon: paratroopers
+		ChargeInterval: 15000
+		Name: UNSC Marine Paradrop
+		Description: 3 D75 Pelicans drops a squad of UNSC Marine anywhere on the map.
+		UnitType: unscpelican
+		DropItems: unscmarine, unscfrontrunner, unscfrontrunner, unscfrontrunner, UNSCMarine, UNSCMarine, unscfrontrunner, unscfrontrunner, unscfrontrunner, UNSCMarine, UNSCMarine, unscfrontrunner, unscfrontrunner, unscfrontrunner, UNSCMarine
+		SquadSize: 3
+		Cordon: 256
+		ReinforcementsArrivedSpeechNotification: ReinforcementsArrived
+		SelectTargetSpeechNotification: SelectTarget
+		AllowImpassableCells: false
+		QuantizedFacings: 8
+		CameraActor: camera.paradrop
+		DisplayBeacon: true
+		BeaconPoster: pinficon
+		ArrowSequence: arrow
+		ClockSequence: clock
+		CircleSequence: circles
+		UseDirectionalTarget: True
+		DirectionArrowAnimation: paradirection
+		SupportPowerPaletteOrder: 50
+		Prerequisites: techcenter
+	SpawnActorPower@Clairvoyance:
+		PauseOnCondition: disabled
+		OrderName: clairvoyance
+		Cursor: chrono-target
+		Icon: clairvoyanceicon
+		ChargeInterval: 2250
+		LifeTime: 125
+		Name: Clairvoyance
+		Description: Reveal an area on the map for 5 seconds. \nReveals cloaked units.
+		Actor: camera.spyplane
+		SelectTargetSpeechNotification: SelectTarget
+		DisplayRadarPing: True
+		DeploySound: JapanPsychicReveal.aud
+		EffectSequence: idle
+	ToggleConditionOnOrder@sell:
+		OrderName: Sell
+		Condition: sell_me
+	TransformOnCondition@sell:
+		RequiresCondition: sell_me
+		SkipMakeAnims: false
+		IntoActor: covenantfoundation
+	SpawnActorOnDeath@firebase:
+		Actor: covenantfoundation
+	WithIdleOverlay@eye:
+		Sequence: eye
+		Offset: 0,0,0
+
+covenantrepairpad:
+	Inherits: ^Building
+	Inherits@SHAPE: ^3x3Shape
+	Inherits@BIB: ^3xBuildingBib
+	Inherits@covenantbuilding: ^covenantbuilding
+	Valued:
+		Cost: 1200
+	Tooltip:
+		Name: actor-fix.name
+	Building:
+		Footprint: x++ +++ ===
+		Dimensions: 3,3
+	Selectable:
+		Bounds: 3072, 3072
+		DecorationBounds: 3072, 3072
+	HitShape:
+		TargetableOffsets: 840,0,0, 598,-640,0, 598,640,0, -1060,0,0, -768,-640,0, -768,640,0
+		Type: Polygon
+			Points: -1536,-300, -640,-811, 640,-811, 1536,-300, 1536,555, 640,1110, -640,1110, -1536,555
+	Health:
+		HP: 100000
+	Armor:
+		Type: Wood
+	RevealsShroud:
+		MinRange: 4c0
+		Range: 5c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 4c0
+	Reservable:
+	RallyPoint:
+	CommandBarBlacklist:
+		DisableStop: false
+	RepairsUnits:
+		HpPerStep: 1000
+		Interval: 7
+		StartRepairingNotification: Repairing
+		StartRepairingTextNotification: notification-repairing
+		FinishRepairingNotification: UnitRepaired
+		FinishRepairingTextNotification: notification-unit-repaired
+		PlayerExperience: 5
+	WithResupplyAnimation:
+		Sequence: idle
+		RequiresCondition: !build-incomplete
+	Power:
+		Amount: 0
+	ProvidesPrerequisite@buildingname:
+	ProvidesPrerequisite:
+		Prerequisite: fix
+	ToggleConditionOnOrder@sell:
+		OrderName: Sell
+		Condition: sell_me
+	TransformOnCondition@sell:
+		RequiresCondition: sell_me
+		IntoActor: covenantrepairpad
+		SkipMakeAnims: false
+	SpawnActorOnDeath@firebase:
+		Actor: covenantrepairpad
+
+covenantprojector:
+	Inherits: ^Building
+	Inherits@superweapon: ^Superweapon
+	Inherits@SHAPE: ^3x3Shape
+	Inherits@BIB: ^3xBuildingBib
+	Inherits@IDISABLE: ^DisableOnLowPowerOrPowerDown
+	Inherits@covenantbuilding: ^covenantbuilding
+	Valued:
+		Cost: 4900
+	Tooltip:
+		Name: actor-covenantprojector.name
+	Building:
+		Footprint: xxx xxx ===
+		Dimensions: 3,3
+	Selectable:
+		Bounds: 3072, 4096
+		DecorationBounds: 3072, 4096
+	WithIdleOverlay@POWER:
+		Offset: -20,-70,0
+		Sequence: power
+	Health:
+		HP: 150000
+	Armor:
+		Type: Wood
+	RevealsShroud:
+		Range: 4c0
+	IonCannonPower:
+		OrderName: MagneticAcceleratorCannon
+		PauseOnCondition: disabled
+		Icon: magneticacceleratorcannonicon
+		Cursor: chrono-target
+		ChargeInterval: 22500
+		Name: Magnetic Accelerator Cannon
+		Description: actor-eyed.illumdesc
+		BeginChargeSpeechNotification: IonCannonCharge
+		EndChargeSpeechNotification: IonCannonReady
+		SelectTargetSpeechNotification: DawnSelectTarget
+		InsufficientPowerSpeechNotification: InsufficientPower
+		OnFireSound: magneticacceleratorcannonfire1.aud
+		DisplayRadarPing: True
+		CameraActor: camera.small
+		SupportPowerPaletteOrder: 19
+		WeaponDelay: 0
+		CameraRemoveDelay: 100
+		Effect: explosion
+		EffectSequence: piff
+		Weapon: MagneticAcceleratorCannonBombardment
+		DisplayTimerRelationships: Ally, Neutral, Enemy
+	SupportPowerChargeBar:
+	Power:
+		Amount: 0
+	MustBeDestroyed:
+		RequiredForShortGame: false
+	ProvidesPrerequisite@superweapon:
+		Prerequisite: superweapon
+	ToggleConditionOnOrder@sell:
+		OrderName: Sell
+		Condition: sell_me
+	TransformOnCondition@sell:
+		RequiresCondition: sell_me
+		IntoActor: covenantfoundation
+		SkipMakeAnims: false
+	SpawnActorOnDeath@firebase:
+		Actor: covenantfoundation
+
+covenantsilo:
+	Inherits: ^Building
+	Inherits@SHAPE: ^3x3Shape
+	Inherits@BIB: ^3xBuildingBib
+	Inherits@unscbuilding: ^covenantbuilding
+	Inherits@silo: ^Silo
+	Valued:
+		Cost: 700
+	Tooltip:
+		Name: actor-covenantsilo.name
+	Building:
+		Footprint: xxx xxx ===
+		Dimensions: 3,3
+	Selectable:
+		Bounds: 3072, 4096
+		DecorationBounds: 3072, 4096
+	Health:
+		HP: 80000
+	Armor:
+		Type: Wood
+	RevealsShroud:
+		Range: 4c0
+	Power:
+		Amount: 0
+	ToggleConditionOnOrder@sell:
+		OrderName: Sell
+		Condition: sell_me
+	TransformOnCondition@sell:
+		RequiresCondition: sell_me
+		IntoActor: covenantfoundation
+		SkipMakeAnims: false
+	SpawnActorOnDeath@firebase:
+		Actor: covenantfoundation
+	WithResourceStoragePipsDecoration:
+		Position: BottomLeft
+		Margin: 4, 3
+		RequiresSelection: true
+		PipCount: 20
+		FullSequence: pip-yellow
+	StoresPlayerResources:
+		Capacity: 13500
+	CashTrickler@interest:
+        RequiresCondition: interest
+        InitialDelay: 250
+        Interval: 750
+        Amount: 225
+	InfiltrateForCash:
+		Percentage: 50
+		Types: ThiefInfiltrate
+		InfiltratedNotification: CreditsStolen
+		InfiltratedTextNotification: actor-unscsilo.infiltrateforcash-infiltrated-text-notification
+
+covenantadvtech:
+	Inherits: ADVTECH
+	Inherits@SHAPE: ^3x3Shape
+	Inherits@BIB: ^3xBuildingBib
+	Inherits@IDISABLE: ^DisableOnLowPower
+	Inherits@covenantbuilding: ^covenantbuilding
+	-Buildable:
+	Tooltip:
+		Name: actor-covenantadvtech.name
+	Building:
+		Footprint: xxx xxx ===
+		Dimensions: 3,3
+		LocalCenterOffset: 0,0,0
+	Selectable:
+		Bounds: 3072, 4096
+		DecorationBounds: 3072, 4096
+	ProvidesPrerequisite:
+		Prerequisite: advtechcenter
+	ToggleConditionOnOrder@sell:
+		OrderName: Sell
+		Condition: sell_me
+	TransformOnCondition@sell:
+		RequiresCondition: sell_me
+		IntoActor: covenantfoundation
+		SkipMakeAnims: false
+	SpawnActorOnDeath@firebase:
+		Actor: covenantfoundation
+	RenderSprites:
+		Image: covenantadvtech
+	Power:
+		Amount: 0
+
+covenantulttech:
+	Inherits: T.MISS
+	Inherits@SHAPE: ^3x3Shape
+	Inherits@BIB: ^3xBuildingBib
+	Inherits@IDISABLE: ^DisableOnLowPower
+	Inherits@covenantbuilding: ^covenantbuilding
+	Inherits@supertech: ^SuperTechPowers
+	-Buildable:
+	Tooltip:
+		Name: actor-covenantulttech.name
+	Building:
+		Footprint: xxx xxx ===
+		Dimensions: 3,3
+		LocalCenterOffset: 0,0,0
+		TerrainTypes: Clear, ClearSnow, Road, Creep
+	Selectable:
+		Bounds: 3072, 4096
+		DecorationBounds: 3072, 4096
+	ProvidesPrerequisite:
+		Prerequisite: ulttechcenter
+	ToggleConditionOnOrder@sell:
+		OrderName: Sell
+		Condition: sell_me
+	TransformOnCondition@sell:
+		RequiresCondition: sell_me
+		IntoActor: covenantfoundation
+		SkipMakeAnims: false
+	SpawnActorOnDeath@firebase:
+		Actor: covenantfoundation
+	RenderSprites:
+		Image: covenantulttech
+	TransformOnCondition@vehicle:
+		RequiresCondition: miss_veh
+		IntoActor: T.MISSVEHcovenant
+	TransformOnCondition@inf:
+		RequiresCondition: miss_inf
+		IntoActor: T.MISSINFcovenant
+	TransformOnCondition@air:
+		RequiresCondition: miss_air
+		IntoActor: T.MISSAIRcovenant
+	TransformOnCondition@navy:
+		RequiresCondition: miss_navy
+		IntoActor: T.MISSNAVYcovenant
+	TransformOnCondition@str:
+		RequiresCondition: miss_str
+		IntoActor: T.MISSSTRcovenant
+	Power:
+		Amount: 0
+
+covenantfoundry:
+	Inherits: FOUNDRY
+	Inherits: ^Building
+	Inherits@SHAPE: ^3x3Shape
+	Inherits@BIB: ^3xBuildingBib
+	Inherits@covenantbuilding: ^covenantbuilding
+	-Buildable:
+	Building:
+		Footprint: xxx xxx ===
+		Dimensions: 3,3
+		LocalCenterOffset: 0,0,0
+		TerrainTypes: Clear, ClearSnow, Road, Creep
+	Selectable:
+		Bounds: 3072, 4096
+		DecorationBounds: 3072, 4096
+	Production@2:
+		Produces: Building,Defense
+		RequiresCondition: conyard
+	ToggleConditionOnOrder@sell:
+		OrderName: Sell
+		Condition: sell_me
+	TransformOnCondition@sell:
+		RequiresCondition: sell_me
+		IntoActor: covenantfoundation
+		SkipMakeAnims: false
+	SpawnActorOnDeath@firebase:
+		Actor: covenantfoundation
+	Power:
+		Amount: 0
+
+^SuperTechRevertcovenant:
+	TooltipDescription:
+		Description: actor-t-miss.sell
+		ValidRelationships: None, Ally
+	ToggleConditionOnOrder@sell:
+		OrderName: Sell
+		Condition: sell_me
+	TransformOnCondition@sell:
+		RequiresCondition: sell_me
+		IntoActor: covenantulttech
+	GrantConditionOnPrerequisite@botowner:
+		Prerequisites: ai.all
+		Condition: botowner
+	GrantDelayedCondition@botreset:
+		RequiresCondition: botowner
+		Delay: 9000, 15000
+		Condition: sell_me
+
+T.MISSVEHcovenant:
+	Inherits: T.MISSVEH
+	Inherits@Sell: ^SuperTechRevertcovenant
+	Building:
+		Footprint: xxx xxx ===
+		Dimensions: 3,3
+		LocalCenterOffset: 0,0,0
+	Selectable:
+		Bounds: 3072, 4096
+		DecorationBounds: 3072, 4096
+	RenderSprites:
+		Image: covenantulttech
+
+T.MISSINFcovenant:
+	Inherits: T.MISSINF
+	Inherits@Sell: ^SuperTechRevertcovenant
+	Building:
+		Footprint: xxx xxx ===
+		Dimensions: 3,3
+		LocalCenterOffset: 0,0,0
+	Selectable:
+		Bounds: 3072, 4096
+		DecorationBounds: 3072, 4096
+	RenderSprites:
+		Image: covenantulttech
+
+T.MISSAIRcovenant:
+	Inherits: T.MISSAIR
+	Inherits@Sell: ^SuperTechRevertcovenant
+	Building:
+		Footprint: xxx xxx ===
+		Dimensions: 3,3
+		LocalCenterOffset: 0,0,0
+	Selectable:
+		Bounds: 3072, 4096
+		DecorationBounds: 3072, 4096
+	RenderSprites:
+		Image: covenantulttech
+
+T.MISSSTRcovenant:
+	Inherits: T.MISSSTR
+	Inherits@Sell: ^SuperTechRevertcovenant
+	Building:
+		Footprint: xxx xxx ===
+		Dimensions: 3,3
+		LocalCenterOffset: 0,0,0
+	Selectable:
+		Bounds: 3072, 4096
+		DecorationBounds: 3072, 4096
+	RenderSprites:
+		Image: covenantulttech
+
+
 ^covenantfoundation:
 	Buildable:
 		Queue: Foundation
@@ -245,6 +976,193 @@ covenantfoundation.hall:
 		BuildPaletteOrder: 1
 		IconPaletteIsPlayerPalette: true
 	Valued:
-		Cost: 400
+		Cost: 500
 	RenderSprites:
 		Image: covenanthall
+
+covenantfoundation.warehouse:
+	Inherits: ^covenantfoundation
+	Tooltip:
+		Name: actor-covenantwarehouse.name
+	Buildable:
+		Queue: Foundation
+		BuildAtProductionType: Foundation
+		Description: actor-covenantwarehouse.description
+		Prerequisites: ~structures.covenant
+		IconPalette: player-icon
+		BuildPaletteOrder: 2
+		IconPaletteIsPlayerPalette: true
+	Valued:
+		Cost: 1400
+	RenderSprites:
+		Image: covenantwarehouse
+
+covenantfoundation.factory:
+	Inherits: ^covenantfoundation
+	Tooltip:
+		Name: actor-covenantfactory.name
+	Buildable:
+		Queue: Foundation
+		BuildAtProductionType: Foundation
+		Description: actor-covenantfactory.description
+		Prerequisites: refinery, barracks, ~techlevel.low, ~!structures.bothard
+		IconPalette: player-icon
+		BuildPaletteOrder: 3
+		IconPaletteIsPlayerPalette: true
+	Valued:
+		Cost: 1900
+	RenderSprites:
+		Image: covenantfactory
+
+covenantfoundation.summit:
+	Inherits: ^covenantfoundation
+	Tooltip:
+		Name: actor-covenantsummit.name
+	Buildable:
+		Queue: Foundation
+		BuildAtProductionType: Foundation
+		Description: actor-covenantsummit.description
+		Prerequisites: refinery
+		IconPalette: player-icon
+		BuildPaletteOrder: 4
+		IconPaletteIsPlayerPalette: true
+	Valued:
+		Cost: 900
+	RenderSprites:
+		Image: covenantsummit
+
+covenantfoundation.temple:
+	Inherits: ^covenantfoundation
+	Tooltip:
+		Name: actor-covenanttemple.name
+	Buildable:
+		Queue: Foundation
+		BuildAtProductionType: Foundation
+		Description: actor-covenanttemple.description
+		Prerequisites: refinery, factory
+		IconPalette: player-icon
+		BuildPaletteOrder: 5
+		IconPaletteIsPlayerPalette: true
+	Valued:
+		Cost: 1400
+	RenderSprites:
+		Image: covenanttemple
+
+covenantfoundation.theeye:
+	Inherits: ^covenantfoundation
+	Tooltip:
+		Name: actor-covenanttheeye.name
+	Buildable:
+		Queue: Foundation
+		BuildAtProductionType: Foundation
+		Description: actor-covenanttheeye.description
+		Prerequisites: factory
+		IconPalette: player-icon
+		BuildPaletteOrder: 6
+		IconPaletteIsPlayerPalette: true
+	Valued:
+		Cost: 900
+	RenderSprites:
+		Image: covenanttheeye
+
+covenantfoundation.repairpad:
+	Inherits: ^covenantfoundation
+	Tooltip:
+		Name: actor-covenantrepairpad.name
+	Buildable:
+		Queue: Foundation
+		BuildAtProductionType: Foundation
+		Description: actor-covenantrepairpad.description
+		Prerequisites: refinery, factory
+		IconPalette: player-icon
+		BuildPaletteOrder: 7
+		IconPaletteIsPlayerPalette: true
+	Valued:
+		Cost: 1100
+	RenderSprites:
+		Image: covenantrepairpad
+
+covenantfoundation.projector:
+	Inherits: ^covenantfoundation
+	Tooltip:
+		Name: actor-covenantprojector.name
+	Buildable:
+		Queue: Foundation
+		BuildAtProductionType: Foundation
+		Description: actor-covenantprojector.description
+		Prerequisites: techcenter, ~techlevel.low, ~!structures.bothard
+		IconPalette: player-icon
+		BuildPaletteOrder: 8
+		IconPaletteIsPlayerPalette: true
+	Valued:
+		Cost: 4900
+	RenderSprites:
+		Image: covenantprojector
+
+covenantfoundation.silo:
+	Inherits: ^covenantfoundation
+	Tooltip:
+		Name: actor-covenantsilo.name
+	Buildable:
+		Queue: Foundation
+		BuildAtProductionType: Foundation
+		Description: actor-covenantsilo.description
+		Prerequisites: refinery
+		IconPalette: player-icon
+		BuildPaletteOrder: 9
+		IconPaletteIsPlayerPalette: true
+	Valued:
+		Cost: 700
+	RenderSprites:
+		Image: covenantsilo
+
+covenantfoundation.advtech:
+	Inherits: ^covenantfoundation
+	Tooltip:
+		Name: actor-covenantadvtech.name
+	Buildable:
+		Queue: Foundation
+		BuildAtProductionType: Foundation
+		Description: actor-covenantadvtech.description
+		Prerequisites: techcenter
+		IconPalette: player-icon
+		BuildPaletteOrder: 10
+		IconPaletteIsPlayerPalette: true
+	Valued:
+		Cost: 2900
+	RenderSprites:
+		Image: covenantadvtech
+
+covenantfoundation.ulttech:
+	Inherits: ^covenantfoundation
+	Tooltip:
+		Name: actor-covenantulttech.name
+	Buildable:
+		Queue: Foundation
+		BuildAtProductionType: Foundation
+		Description: actor-covenantulttech.description
+		Prerequisites: techcenter
+		IconPalette: player-icon
+		BuildPaletteOrder: 11
+		IconPaletteIsPlayerPalette: true
+	Valued:
+		Cost: 4900
+	RenderSprites:
+		Image: covenantulttech
+
+covenantfoundation.foundry:
+	Inherits: ^covenantfoundation
+	Tooltip:
+		Name: actor-covenantfoundry.name
+	Buildable:
+		Queue: Foundation
+		BuildAtProductionType: Foundation
+		Description: actor-covenantfoundry.description
+		Prerequisites: techcenter
+		IconPalette: player-icon
+		BuildPaletteOrder: 11
+		IconPaletteIsPlayerPalette: true
+	Valued:
+		Cost: 1900
+	RenderSprites:
+		Image: covenantfoundry

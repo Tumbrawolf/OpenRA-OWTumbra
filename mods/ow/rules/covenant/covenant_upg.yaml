@@ -1,0 +1,17 @@
+covenant.armament:
+	Inherits: ^UpgradeBaseExt
+	Tooltip:
+		Name: actor-covenant-armament.name
+	Buildable:
+		Description: actor-covenant-armament.description
+		BuildPaletteOrder: 10014
+		Prerequisites: ~structures.covenant, techcenter
+		BuildDuration: 2500
+	ProductionCostMultiplier@upgrade:
+		Multiplier: 5000
+	ProvidesPrerequisite@upgradename:
+	ExternalCondition@PRODUCED:
+		Condition: produced
+	WithProductionIconOverlay:
+		Types: UpgradeComplete
+		Prerequisites: covenant.armament

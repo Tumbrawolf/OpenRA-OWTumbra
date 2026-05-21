@@ -3748,7 +3748,15 @@
 		Color: 93009e40
 	ExplodeWeapon@needler:
 		RequiresCondition: needlereffect >= 15
-		Weapon: NeedlerExplosion
+		Weapon: NeedlerExplosionweak
+	ExternalCondition@needlerweak:
+		Condition: needlereffectweak
+	WithColoredOverlay@needler:
+		RequiresCondition: needlereffectweak
+		Color: 93009e40
+	ExplodeWeapon@needler:
+		RequiresCondition: needlereffectweak >= 15
+		Weapon: NeedlerExplosionweak
 
 ^FrenzyBoostInfantry:
 	Inherits: ^FrenzyBoost

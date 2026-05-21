@@ -1313,6 +1313,13 @@ explosion:
 		Tick: 75
 		BlendMode: Additive
 		ZOffset: 512
+	needlerexplosionweak:
+		Filename: needlerexplosion.shp
+		Length: *
+		Tick: 75
+		BlendMode: Additive
+		ZOffset: 512
+		Scale: 0.75
 	fuelrodtrail:
 		Filename: fuelrodtrail.shp
 		Length: *
@@ -1540,6 +1547,13 @@ explosion:
 	morshubombs:
 		Filename: morshubombs.shp
 		Tick: 334
+	covenantplasmaexplosion:
+		Filename: mediicewyvernexplosion.shp
+		Offset: 0, -30, 30
+		ZRamp: 1
+		Tick: 120
+		Scale: 0.3
+		BlendMode: Additive
 
 pips:
 	Defaults:
@@ -3907,3 +3921,14 @@ unscdroppod:
 		Filename: unscdroppod.shp
 		Scale: 0.35
 		ZOffset: 1024
+
+covenantghostdeathproj:
+	idle:
+		Filename: covenantghostdamaged.shp
+		Facings: 32
+		ZOffset: 1024
+		Offset: 0,-10
+	fire1:
+		Filename: bluefire1.shp
+		Length: *
+		ZOffset: 1023

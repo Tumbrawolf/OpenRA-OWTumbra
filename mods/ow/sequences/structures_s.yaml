@@ -5977,6 +5977,7 @@ unscfoundry:
 		Offset: 0,0
 
 covenantcitadel:
+	Inherits: ^ProtossFire
 	Defaults:
 		Filename: covenantcitadel.shp
 		Offset: 0,0
@@ -5997,6 +5998,7 @@ covenantcitadel:
 		Offset: 0,0
 
 covenantfoundation:
+	Inherits: ^ProtossFire
 	Defaults:
 		Filename: covenantfoundation.shp
 		Offset: 0,-12
@@ -6017,6 +6019,7 @@ covenantfoundation:
 		Offset: 0,0
 
 covenanthall:
+	Inherits: ^ProtossFire
 	Defaults:
 		Filename: covenanthall.shp
 		Offset: 0,-12
@@ -6036,4 +6039,269 @@ covenanthall:
 		Length: *
 	icon:
 		Filename: covenanthallicon.shp
+		Offset: 0,0
+
+covenantwarehouse:
+	Inherits: ^ProtossFire
+	Defaults:
+		Filename: covenantwarehouse.shp
+		Offset: 0,-12
+	make:
+		Filename: covenantwarehouse.shp
+		Tick: 40
+		Length: *
+	idle:
+		Start: 0
+	damaged-idle:
+		Start: 0
+	bib:
+		Filename: bib2.tem
+		TilesetFilenames:
+			SNOW: bib2.sno
+			DESERT: bib2.des
+		Length: *
+	icon:
+		Filename: covenantwarehouseicon.shp
+		Offset: 0,0
+
+covenantfactory:
+	Inherits: ^ProtossFire
+	Defaults:
+		Filename: covenantfactory.shp
+		Offset: 0,-12
+	make:
+		Filename: covenantfactory.shp
+		Tick: 40
+		Length: *
+	idle:
+		Start: 0
+	damaged-idle:
+		Start: 0
+	bib:
+		Filename: bib2.tem
+		TilesetFilenames:
+			SNOW: bib2.sno
+			DESERT: bib2.des
+		Length: *
+	icon:
+		Filename: covenantfactoryicon.shp
+		Offset: 0,0
+
+covenantsummit:
+	Inherits: ^ProtossFire
+	Defaults:
+		Filename: covenantsummit.shp
+		Offset: 0,-12
+	make:
+		Filename: covenantsummit.shp
+		Tick: 40
+		Length: *
+	idle:
+		Start: 0
+	damaged-idle:
+		Start: 0
+	bib:
+		Filename: bib2.tem
+		TilesetFilenames:
+			SNOW: bib2.sno
+			DESERT: bib2.des
+		Length: *
+	icon:
+		Filename: covenantsummiticon.shp
+		Offset: 0,0
+
+covenanttemple:
+	Inherits: ^ProtossFire
+	Defaults:
+		Filename: covenanttemple.shp
+		Offset: 0,-12
+	make:
+		Filename: covenanttemple.shp
+		Tick: 40
+		Length: *
+	idle:
+		Start: 0
+	damaged-idle:
+		Start: 0
+	bib:
+		Filename: bib2.tem
+		TilesetFilenames:
+			SNOW: bib2.sno
+			DESERT: bib2.des
+		Length: *
+	icon:
+		Filename: covenanttempleicon.shp
+		Offset: 0,0
+
+covenanttheeye:
+	Inherits: ^ProtossFire
+	Defaults:
+		Filename: covenantfoundation.shp
+		Offset: 0,-12
+	eye:
+		Filename: covenanttheeye.shp
+		Frames: 0,1,2,3,2,1
+		Tick: 120
+		Length: *
+		Offset: 0,-12
+	make:
+		Filename: covenantfoundation.shp
+		Tick: 40
+		Length: *
+	idle:
+		Start: 0
+	damaged-idle:
+		Start: 0
+	bib:
+		Filename: bib2.tem
+		TilesetFilenames:
+			SNOW: bib2.sno
+			DESERT: bib2.des
+		Length: *
+	icon:
+		Filename: covenanttheeyeicon.shp
+		Offset: 0,0
+
+covenantrepairpad:
+	Inherits: ^ProtossFire
+	Defaults:
+		Filename: covenantrepairpad.shp
+		Offset: 0,-12
+	make:
+		Filename: covenantrepairpad.shp
+		Tick: 40
+		Length: *
+	idle:
+		Start: 0
+	damaged-idle:
+		Start: 0
+	bib:
+		Filename: bib2.tem
+		TilesetFilenames:
+			SNOW: bib2.sno
+			DESERT: bib2.des
+		Length: *
+	icon:
+		Filename: covenantrepairpadicon.shp
+		Offset: 0,0
+
+covenantprojector:
+	Inherits: ^ProtossFire
+	Defaults:
+		Filename: covenantprojector.shp
+		Offset: 0,-12
+	idle:
+		Start: 0
+	damaged-idle:
+		Start: 0
+	make:
+		Filename: covenantprojector.shp
+		Tick: 40
+		Length: *
+	power:
+		Filename: invis.shp
+	active:
+		Filename: invis.shp
+	damaged-active:
+		Filename: invis.shp
+	bib:
+		Filename: bib2.tem
+		TilesetFilenames:
+			SNOW: bib2.sno
+			DESERT: bib2.des
+		Length: *
+	icon:
+		Filename: covenantprojectoricon.shp
+		Offset: 0,0
+
+covenantsilo:
+	Inherits: ^ProtossFire
+	Defaults:
+		Filename: covenantsilo.shp
+		Offset: 0,-12
+	make:
+		Filename: covenantsilo.shp
+		Tick: 40
+		Length: *
+	idle:
+		Start: 0
+	damaged-idle:
+		Start: 0
+	bib:
+		Filename: bib2.tem
+		TilesetFilenames:
+			SNOW: bib2.sno
+			DESERT: bib2.des
+		Length: *
+	icon:
+		Filename: covenantsiloicon.shp
+		Offset: 0,0
+
+covenantadvtech:
+	Inherits: ^ProtossFire
+	Defaults:
+		Filename: covenantadvtech.shp
+		Offset: 0,-12
+	make:
+		Filename: covenantadvtech.shp
+		Tick: 40
+		Length: *
+	idle:
+		Start: 0
+	damaged-idle:
+		Start: 0
+	bib:
+		Filename: bib2.tem
+		TilesetFilenames:
+			SNOW: bib2.sno
+			DESERT: bib2.des
+		Length: *
+	icon:
+		Filename: covenantadvtechicon.shp
+		Offset: 0,0
+
+covenantulttech:
+	Inherits: ^ProtossFire
+	Defaults:
+		Filename: covenantulttech.shp
+		Offset: 0,-12
+	make:
+		Filename: covenantulttech.shp
+		Tick: 40
+		Length: *
+	idle:
+		Start: 0
+	damaged-idle:
+		Start: 0
+	bib:
+		Filename: bib2.tem
+		TilesetFilenames:
+			SNOW: bib2.sno
+			DESERT: bib2.des
+		Length: *
+	icon:
+		Filename: covenantulttechicon.shp
+		Offset: 0,0
+
+covenantfoundry:
+	Inherits: ^ProtossFire
+	Defaults:
+		Filename: covenantfoundry.shp
+		Offset: 0,-12
+	make:
+		Filename: covenantfoundry.shp
+		Tick: 40
+		Length: *
+	idle:
+		Start: 0
+	damaged-idle:
+		Start: 0
+	bib:
+		Filename: bib2.tem
+		TilesetFilenames:
+			SNOW: bib2.sno
+			DESERT: bib2.des
+		Length: *
+	icon:
+		Filename: covenantfoundryicon.shp
 		Offset: 0,0
