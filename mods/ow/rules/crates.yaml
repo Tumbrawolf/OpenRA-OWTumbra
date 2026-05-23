@@ -348,13 +348,18 @@ CRATE:
 		Image: explosion
 		Sequence: morshubombs
 		SelectionShares: 3
-	Crate:
-		Duration: 6000
 	SupportPowerCrateAction@Chromazones:
 		Proxy: powerproxy.Chromazones
 		Sound: ironcur9.aud
 		Sequence: speed
 		SelectionShares: 4
+	SupportPowerCrateAction@Chronoshifty:
+		Proxy: powerproxy.Chronoshifty
+		Sound: ironcur9.aud
+		Sequence: speed
+		SelectionShares: 4
+	Crate:
+		Duration: 6000
 
 MONEYCRATE2:
 	Inherits: MONEYCRATE
@@ -4542,6 +4547,30 @@ powerproxy.Chromazones:
 		BeginChargeTextNotification: notification-chronosphere-charging
 		EndChargeTextNotification: notification-chronosphere-charging
 		Duration: 1
+		KillCargo: true
+		DisplayRadarPing: True
+		SupportPowerPaletteOrder: 30
+		Dimensions: 5, 5
+		Footprint: __x__ _xxx_ xxxxx _xxx_ __x__
+
+powerproxy.Chronoshifty:
+	ChronoshiftPower@Chronoshifty:
+		OrderName: Chronoshifty
+		Icon: chrono
+		ChargeInterval: 2000
+		AllowMultiple: True
+		OneShot: True
+		Name: actor-pdox.chronoshiftpower-advancedchronoshift-name
+		Description: Chronoshift Crate
+		SelectTargetSpeechNotification: SelectTarget
+		InsufficientPowerSpeechNotification: InsufficientPower
+		BeginChargeSpeechNotification: ChronosphereCharging
+		EndChargeSpeechNotification: ChronosphereReady
+		SelectTargetTextNotification: notification-select-target
+		InsufficientPowerTextNotification: notification-insufficient-power
+		BeginChargeTextNotification: notification-chronosphere-charging
+		EndChargeTextNotification: notification-chronosphere-charging
+		Duration: 2000
 		KillCargo: true
 		DisplayRadarPing: True
 		SupportPowerPaletteOrder: 30
