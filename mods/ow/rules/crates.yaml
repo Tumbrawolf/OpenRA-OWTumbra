@@ -348,8 +348,8 @@ CRATE:
 		Image: explosion
 		Sequence: morshubombs
 		SelectionShares: 3
-	SupportPowerCrateAction@Chromazones:
-		Proxy: powerproxy.Chromazones
+	SupportPowerCrateAction@Chromoshift:
+		Proxy: powerproxy.Chromoshift
 		Sound: ironcur9.aud
 		Sequence: speed
 		SelectionShares: 4
@@ -4529,9 +4529,9 @@ powerproxy.morshubombs:
 		OneShot: true
 		AllowMultiple: true
 
-powerproxy.Chromazones:
-	ChronoshiftPower@Chromazones:
-		OrderName: Chromazones
+powerproxy.Chromoshift:
+	ChronoshiftPower@Chromoshift:
+		OrderName: Chromoshift
 		Icon: chrono
 		ChargeInterval: 2000
 		AllowMultiple: True
