@@ -340,24 +340,24 @@ CRATE:
 		Proxy: powerproxy.bananabomb
 		Sound: bananaimpact.wav
 		Sequence: speed
-		SelectionShares: 3
+		SelectionShares: 2
 		Prerequisites: !environment.nomemes
 	SupportPowerCrateAction@morshubombs:
 		Proxy: powerproxy.morshubombs
 		Sound: morshubombs.ogg
 		Image: explosion
 		Sequence: morshubombs
-		SelectionShares: 3
+		SelectionShares: 2
 	SupportPowerCrateAction@Chromoshift:
 		Proxy: powerproxy.Chromoshift
 		Sound: ironcur9.aud
 		Sequence: speed
-		SelectionShares: 4
+		SelectionShares: 2
 	SupportPowerCrateAction@Chronoshifty:
 		Proxy: powerproxy.Chronoshifty
 		Sound: ironcur9.aud
 		Sequence: speed
-		SelectionShares: 4
+		SelectionShares: 2
 	Crate:
 		Duration: 6000
 
