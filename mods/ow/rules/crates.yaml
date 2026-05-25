@@ -356,6 +356,10 @@ CRATE:
 	SupportPowerCrateAction@Chronoshifty:
 		Proxy: powerproxy.Chronoshifty
 		Sound: ironcur9.aud
+		SelectionShares: 3
+	SupportPowerCrateAction@starfox:
+		Proxy: powerproxy.starfox
+		Sound: starfoxpickup.aud
 		Sequence: speed
 		SelectionShares: 2
 	Crate:
@@ -4576,3 +4580,199 @@ powerproxy.Chronoshifty:
 		SupportPowerPaletteOrder: 30
 		Dimensions: 5, 5
 		Footprint: __x__ _xxx_ xxxxx _xxx_ __x__
+
+starfoxarwingfox:
+	Inherits: ^Plane
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	Valued:
+		Cost: 2250
+	Tooltip:
+		Name: actor-starfoxarwingfox.name
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Health:
+		HP: 100000
+	RevealsShroud:
+		MinRange: 11c0
+		Range: 13c0
+		Type: GroundPosition
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 11c0
+		Type: GroundPosition
+	GrantDelayedCondition@1:
+		Delay: 375
+		Condition: weaponup1
+	GrantDelayedCondition@2:
+		Delay: 750
+		Condition: weaponup2
+	Armament@1:
+		Weapon: ArwingShot1
+		LocalOffset: 0,-640,0, 0,640,0
+		LocalYaw: -40, 24
+		PauseOnCondition: weaponup1
+	Armament@2a:
+		Weapon: ArwingShot1
+		LocalOffset: 0,-640,0
+		LocalYaw: -40, 24
+		PauseOnCondition: weaponup2
+		RequiresCondition: weaponup1
+	Armament@2b:
+		Weapon: ArwingShot1
+		LocalOffset: 0,640,0
+		LocalYaw: -40, 24
+		PauseOnCondition: weaponup2
+		RequiresCondition: weaponup1
+	Armament@3a:
+		Weapon: ArwingShot2
+		LocalOffset: 0,-640,0
+		LocalYaw: -40, 24
+		RequiresCondition: weaponup2
+	Armament@3b:
+		Weapon: ArwingShot2
+		LocalOffset: 0,640,0
+		LocalYaw: -40, 24
+		RequiresCondition: weaponup2
+	AttackAircraft:
+		FacingTolerance: 20
+		PersistentTargeting: false
+		OpportunityFire: false
+	Aircraft:
+		CruiseAltitude: 2560
+		InitialFacing: 192
+		TurnSpeed: 16
+		Speed: 223
+		RepulsionSpeed: 40
+		MaximumPitch: 56
+		CanHover: false
+		CanSlide: false
+		IdleBehavior: None
+	Guard:
+	AutoTarget:
+		InitialStance: AttackAnything
+		MinimumScanTimeInterval: 1
+		MaximumScanTimeInterval: 1
+	Selectable:
+		Bounds: 1536, 1194, 0, 85
+		DecorationBounds: 1706, 1237, 0, 42
+	Contrail@1:
+		Offset: -598,-383,0
+		StartColorAlpha: 128
+	Contrail@2:
+		Offset: -598,383,0
+		StartColorAlpha: 128
+	SpawnActorOnDeath:
+		RequiresCondition: !active
+		Actor: starfox.Husk
+	LeavesTrails:
+		Offsets: -853,0,171
+		MovingInterval: 2
+		Image: smokey
+		SpawnAtLastPosition: False
+		Type: CenterPosition
+		RequiresCondition: enable-smoke
+	ProducibleWithLevel:
+		Prerequisites: aircraft.upgraded
+	GrantConditionOnDamageState@SmokeTrail:
+		Condition: enable-smoke
+	WithProductionIconOverlay:
+		Types: Veterancy
+		Prerequisites: aircraft.upgraded
+	RenderSprites:
+		Image: starfoxarwing
+	GrantPeriodicCondition:
+		RequiresCondition: !extend_time
+		Condition: active
+		CooldownDuration: 1125
+		ActiveDuration: 26
+		ShowSelectionBar: true
+		CooldownColor: 97FFFC
+	GrantPeriodicCondition@extended:
+		RequiresCondition: extend_time
+		Condition: active
+		CooldownDuration: 1500
+		ActiveDuration: 26
+		ShowSelectionBar: true
+		CooldownColor: 97FFFC
+	GrantCondition:
+		RequiresCondition: active
+		Condition: remove_me
+	KillsSelf@active:
+		RequiresCondition: remove_me
+		Delay: 25
+		DamageTypes: RemoveHyperion
+	SpawnActorOnDeath@flyaway:
+		RequiresCondition: remove_me
+		Actor: starfoxarwingfox.Leave
+		DeathType: RemoveHyperion
+
+starfoxarwingfox.Leave:
+	Inherits: starfoxarwingfox
+	RenderSprites:
+		Image: starfoxarwing
+	RejectsOrders:
+	Aircraft:
+		Speed: 256
+		CruiseAltitude: 8c0
+		LandableTerrainTypes: Clear, ClearSnow, Road, Creep
+		IdleBehavior: LeaveMap
+		AltitudeVelocity: 72
+	-Berserkable@JapanBerserkerPower:
+	-GrantPeriodicCondition:
+	-GrantPeriodicCondition@extended:
+	-KillsSelf@active:
+	KillsSelf:
+		Delay: 500
+		RemoveInstead: true
+
+starfoxarwingfox.Spawn:
+	Inherits: starfoxarwingfox.Leave
+	-AttackAircraft:
+	AttackBomber:
+	Aircraft:
+		Speed: 223
+		CruiseAltitude: 2c512
+		IdleBehavior: None
+	AmmoPool:
+		Ammo: 10
+		InitialAmmo: 10
+	GrantConditionOnAttack:
+		Condition: attack
+		RevokeDelay: 9000
+	KillsSelf:
+		Delay: 0
+		RequiresCondition: attack
+		RemoveInstead: false
+	SpawnActorOnDeath:
+		Actor: starfoxarwingfox
+	GrantCondition@produce:
+		Condition: produced
+
+powerproxy.starfox:
+	AirstrikePower:
+		OrderName: Starfox
+		Icon: starfoxarwingicon
+		ChargeInterval: 1500
+		Name: Starfox Team
+		Description: Call upon the Starfox Team to fight for 45 seconds. \n\n Strong vs Everything
+		SelectTargetSpeechNotification: SelectTarget
+		SelectTargetTextNotification: actor-t-miss.airstrikepower-hyperion-select-target-text-notification
+		CameraActor: camera
+		CameraRemoveDelay: 25
+		UnitType: starfoxarwingfox.spawn
+		QuantizedFacings: 8
+		DisplayBeacon: true
+		BeaconPoster: hyperion
+		SquadSize: 4
+		SquadOffset: 1792,1792,0
+		ArrowSequence: arrow
+		ClockSequence: clock
+		CircleSequence: circles
+		UseDirectionalTarget: True
+		DirectionArrowAnimation: paradirection
+		SupportPowerPaletteOrder: 5
+		DisplayTimerRelationships: Ally, Enemy, Neutral
+		PauseOnCondition: disabled
+		OneShot: true
+		AllowMultiple: true
+		LaunchSound: starfoxenter.aud

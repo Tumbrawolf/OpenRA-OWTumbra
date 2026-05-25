@@ -1,7 +1,7 @@
 covenantgrunt:
 	Inherits: ^Soldier
 	Inherits: ^AcceptsShields
-	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
 	Buildable:
 		Queue: Infantry
 		BuildAtProductionType: Soldier
@@ -67,6 +67,10 @@ covenantgrunt:
 		Weapon: covenantfuelrodcannon
 		LocalOffset: 0,0,250
 		RequiresCondition: fuelrod
+	Armament@PRIMARYfuelrodAA:
+		Weapon: covenantfuelrodcannonAA
+		LocalOffset: 0,0,250
+		RequiresCondition: fuelrod
 	Armament@GARRISONEDfuelrod:
 		Name: garrisoned
 		Weapon: covenantfuelrodcannon
@@ -119,7 +123,7 @@ covenantgrunt:
 covenantelite:
 	Inherits: ^Soldier
 	Inherits: ^AcceptsShields
-	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
 	Buildable:
 		Queue: Infantry
 		BuildAtProductionType: Soldier
@@ -146,22 +150,22 @@ covenantelite:
 	Passenger:
 		Voice: Move
 	GrantRandomPeriodicCondition@normal:
-		Conditions: fake, needler, plasmalauncher, energysword, carbine
+		Conditions: fake, needler, plasmalauncher, energysword, carbine, concussionrifle
 		CooldownDuration: 1
 		ActiveDuration: 90000
 	Armament@PRIMARY:
 		Weapon: covenantplasmarifle
 		LocalOffset: 0,0,250
-		PauseOnCondition: needler || plasmalauncher || energysword || carbine
+		PauseOnCondition: needler || plasmalauncher || energysword || carbine || concussionrifle
 	Armament@GARRISONED:
 		Name: garrisoned
 		Weapon: covenantplasmarifle
 		MuzzleSequence: garrison-muzzle
-		PauseOnCondition: needler || plasmalauncher || energysword || carbine
+		PauseOnCondition: needler || plasmalauncher || energysword || carbine || concussionrifle
 	Armament@BUS:
 		Name: bus
 		Weapon: covenantplasmarifle
-		PauseOnCondition: needler || plasmalauncher || energysword || carbine
+		PauseOnCondition: needler || plasmalauncher || energysword || carbine || concussionrifle
 	Armament@PRIMARYneedler:
 		Weapon: covenantneedler
 		LocalOffset: 0,0,250
@@ -193,12 +197,7 @@ covenantelite:
 		Weapon: covenantplasmalauncher
 		RequiresCondition: plasmalauncher
 	Armament@PRIMARYEnergySword:
-		Weapon: masterchiefenergysword
-		ReloadingCondition: attack-cooldown
-		RequiresCondition: energysword
-	AttackLeap:
-		Voice: Attack
-		PauseOnCondition: attack-cooldown
+		Weapon: covenantenergysword
 		RequiresCondition: energysword
 	AmbientSound@EnergySword:
 		SoundFiles: masterchiefenergyswordloop.aud
@@ -223,6 +222,19 @@ covenantelite:
 		Name: bus
 		Weapon: covenantplasmacarbine
 		RequiresCondition: carbine
+	Armament@PRIMARYconcussionrifle:
+		Weapon: covenantconcussionrifle
+		LocalOffset: 0,0,250
+		RequiresCondition: concussionrifle
+	Armament@GARRISONEDconcussionrifle:
+		Name: garrisoned
+		Weapon: covenantconcussionrifle
+		MuzzleSequence: garrison-muzzle
+		RequiresCondition: concussionrifle
+	Armament@BUSconcussionrifle:
+		Name: bus
+		Weapon: covenantconcussionrifle
+		RequiresCondition: concussionrifle
 	WithInfantryBody:
 		DefaultAttackSequence: shoot
 		RequiresCondition: !parachute
@@ -354,3 +366,181 @@ covenantjackal:
 		Image: usapathfinder
 	Voiced:
 		VoiceSet: CovenantJackal
+
+covenantbrute:
+	Inherits: ^Soldier
+	Inherits: ^AcceptsShields
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	Buildable:
+		Queue: Infantry
+		BuildAtProductionType: Soldier
+		BuildPaletteOrder: 5
+		Prerequisites: ~infantry.covenant, techcenter
+		Description: actor-covenantbrute.description
+	Tooltip:
+		Name: actor-covenantbrute.name
+	Valued:
+		Cost: 600
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Health:
+		HP: 35000
+	Mobile:
+		Voice: Move
+		Speed: 60
+	Guard:
+		Voice: Move
+	Passenger:
+		Voice: Move
+	GrantRandomPeriodicCondition@normal:
+		Conditions: fake, bruteshot, mauler, bruteplasma, gravityhammer
+		CooldownDuration: 1
+		ActiveDuration: 90000
+	Armament@PRIMARY:
+		Weapon: covenantspiker
+		LocalOffset: 0,0,250
+		PauseOnCondition: bruteshot || mauler || bruteplasma || gravityhammer
+	Armament@GARRISONED:
+		Name: garrisoned
+		Weapon: covenantspiker
+		MuzzleSequence: garrison-muzzle
+		PauseOnCondition: bruteshot || mauler || bruteplasma || gravityhammer
+	Armament@BUS:
+		Name: bus
+		Weapon: covenantspiker
+		PauseOnCondition: bruteshot || mauler || bruteplasma || gravityhammer
+	Armament@PRIMARYneedler:
+		Weapon: covenantbruteshot
+		LocalOffset: 0,0,250
+		RequiresCondition: bruteshot
+	Armament@GARRISONEDneedler:
+		Name: garrisoned
+		Weapon: covenantbruteshot
+		MuzzleSequence: garrison-muzzle
+		RequiresCondition: bruteshot
+	Armament@BUSneedler:
+		Name: bus
+		Weapon: covenantbruteshot
+		RequiresCondition: bruteshot
+	Armament@PRIMARYmauler:
+		Weapon: covenantmauler
+		LocalOffset: 0,0,250
+		RequiresCondition: mauler
+	Armament@PRIMARYmauler2:
+		Weapon: covenantmaulertracer
+		LocalOffset: 0,0,250
+		RequiresCondition: mauler
+	Armament@GARRISONEDmauler:
+		Name: garrisoned
+		Weapon: covenantmauler
+		MuzzleSequence: garrison-muzzle
+		RequiresCondition: mauler
+	Armament@BUSmauler:
+		Name: bus
+		Weapon: covenantmauler
+		RequiresCondition: mauler
+	Armament@PRIMARYbruteplasma:
+		Weapon: covenantbruteplasmarifle
+		LocalOffset: 0,0,250
+		RequiresCondition: bruteplasma
+	Armament@GARRISONEDbruteplasma:
+		Name: garrisoned
+		Weapon: covenantbruteplasmarifle
+		MuzzleSequence: garrison-muzzle
+		RequiresCondition: bruteplasma
+	Armament@BUSbruteplasma:
+		Name: bus
+		Weapon: covenantbruteplasmarifle
+		RequiresCondition: bruteplasma
+	Armament@PRIMARYgravityhammer:
+		Weapon: covenantgravityhammer
+		RequiresCondition: gravityhammer
+	DamageMultiplier@gravityhammer:
+		Modifier: 80
+		RequiresCondition: gravityhammer
+	SpeedMultiplier@gravityhammer:
+		Modifier: 140
+		RequiresCondition: gravityhammer
+	WithInfantryBody:
+		DefaultAttackSequence: shoot
+		RequiresCondition: !parachute
+	WithInfantryBody@PARACHUTE:
+		StandSequences: parachute
+		RequiresCondition: parachute
+	ProducibleWithLevel:
+		Prerequisites: barracks.upgraded
+	RevealsShroud:
+		Range: 5c0
+	Selectable:
+		Bounds: 768, 853, 0, -256
+		DecorationBounds: 640, 896, 0, -426
+	RenderSprites:
+		Image: usadefender
+	Voiced:
+		VoiceSet: CovenantBrute
+
+covenanthunter:
+	Inherits: ^Soldier
+	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
+	Buildable:
+		Queue: Infantry
+		BuildAtProductionType: Soldier
+		BuildPaletteOrder: 42
+		Prerequisites: ~infantry.covenant, advtechcenter
+		Description: actor-covenanthunter.description
+		Icon: icon-ecm
+	Tooltip:
+		Name: actor-covenanthunter.name
+	Valued:
+		Cost: 1200
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Health:
+		HP: 45000
+	Armor:
+		Type: Heavy
+	Mobile:
+		Voice: Move
+		Speed: 50
+	Guard:
+		Voice: Move
+	Passenger:
+		Voice: Move
+	GrantRandomPeriodicCondition@normal:
+		Conditions: fake, beam
+		CooldownDuration: 1
+		ActiveDuration: 90000
+	Armament@PRIMARY:
+		Weapon: covenantfuelrodcannonhunter
+		LocalOffset: 0,0,555
+		PauseOnCondition: beam
+	Armament@PRIMARYA:
+		Weapon: covenantfuelrodcannonbeam
+		LocalOffset: 0,0,555
+		RequiresCondition: beam
+	Armament@AA:
+		Weapon: covenantfuelrodcannonhunterAA
+		LocalOffset: 0,0,555
+	Armament@GARRISONED:
+		Name: garrisoned
+		Weapon: covenantfuelrodcannonhunter
+	Armament@BUS:
+		Name: bus
+		Weapon: covenantfuelrodcannonhunter
+	WithInfantryBody:
+		DefaultAttackSequence: shoot
+		RequiresCondition: !parachute
+	WithInfantryBody@PARACHUTE:
+		StandSequences: parachute
+		RequiresCondition: parachute
+	ProducibleWithLevel:
+		Prerequisites: barracks.upgraded
+	RevealsShroud:
+		Range: 5c0
+	Selectable:
+		Bounds: 768, 853, 0, -256
+		DecorationBounds: 640, 896, 0, -426
+	RenderSprites:
+		Image: judgedredd
+	Voiced:
+		VoiceSet: CovenantBrute

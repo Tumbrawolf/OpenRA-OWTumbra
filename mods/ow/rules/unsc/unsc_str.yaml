@@ -93,6 +93,9 @@ unscreactor:
 	Inherits@shape: ^3x3Shape
 	Inherits@BIB: ^3xBuildingBib
 	Inherits@unscbuilding: ^unscbuilding
+	Buildable:
+		Queue: Bot
+		Prerequisites: ~structures.unsc, ~techlevel.medium, ~ai.all
 	Valued:
 		Cost: 500
 	Tooltip:
@@ -186,6 +189,9 @@ unscbarracks:
 	Inherits@shape: ^3x3Shape
 	Inherits@BIB: ^3xBuildingBib
 	Inherits@unscbuilding: ^unscbuilding
+	Buildable:
+		Queue: Bot
+		Prerequisites: ~structures.unsc, ~anypower, ~techlevel.medium, ~ai.all
 	Selectable:
 		Bounds: 3072, 4096
 		DecorationBounds: 3072, 4096
@@ -268,6 +274,9 @@ unscgarage:
 	Inherits@shape: ^3x3Shape
 	Inherits@BIB: ^3xBuildingBib
 	Inherits@unscbuilding: ^unscbuilding
+	Buildable:
+		Queue: Bot
+		Prerequisites: ~structures.unsc, ~refinery, ~techlevel.medium, ~ai.all
 	Selectable:
 		Bounds: 3072, 4096
 		DecorationBounds: 3072, 4096
@@ -327,6 +336,9 @@ unscsupplypad:
 	Inherits@BIB: ^3xBuildingBib
 	Inherits@botblocker: ^3x4BotBlockerChoose
 	Inherits@unscbuilding: ^unscbuilding
+	Buildable:
+		Queue: Bot
+		Prerequisites: ~structures.unsc, ~anypower, ~techlevel.medium, ~ai.all
 	Building:
 		Footprint: xxx +x+ ===
 		Dimensions: 3,3

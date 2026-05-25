@@ -2876,3 +2876,182 @@ covenantghostdamaged:
 		Filename: bluefire2.shp
 		Length: *
 		ZOffset: 1023
+
+covenantchopper:
+	Defaults:
+		Filename: covenantchopper.shp
+	idle:
+		Filename: covenantchopper.shp
+		Facings: 32
+	turret:
+		Filename: invis.shp
+	muzzle:
+		Filename: gunfire2.shp
+		Length: 2
+	muzzle2:
+		Filename: minigun.shp
+		Length: 6
+		Facings: 8
+		Tick: 25
+	icon:
+		Filename: covenantchoppericon.shp
+		Offset: 0,0
+
+covenantwraith:
+	Defaults:
+		Filename: invis.shp
+		Scale: 0.85
+	idle:
+		Filename: invis.shp
+	turret:
+		Filename: covenantwraith.shp
+		Facings: 32
+	turretdamaged:
+		Filename: covenantwraithdamaged.shp
+		Facings: 32
+	fire1:
+		Filename: bluefire1.shp
+		Length: *
+		ZOffset: 1023
+		Scale: 1.0
+	fire2:
+		Filename: bluefire2.shp
+		Length: *
+		ZOffset: 1023
+		Scale: 1.0
+	muzzle:
+		Filename: gunfire2.shp
+		Length: 2
+	muzzle2:
+		Filename: minigun.shp
+		Length: 6
+		Facings: 8
+		Tick: 25
+	icon:
+		Filename: covenantwraithicon.shp
+		Offset: 0,0
+		Scale: 1.0
+
+covenantwraithdamaged:
+	Defaults:
+		Scale: 0.85
+		Filename: covenantwraithdamaged.shp
+	idle:
+		Filename: covenantwraithdamaged.shp
+		Facings: 32
+	turret:
+		Filename: invis.shp
+	fire1:
+		Filename: bluefire1.shp
+		Length: *
+		ZOffset: 1023
+	fire2:
+		Filename: bluefire2.shp
+		Length: *
+		ZOffset: 1023
+
+covenantskyhunter:
+	Defaults:
+		Filename: invis.shp
+		Scale: 0.85
+	idle:
+		Filename: invis.shp
+	turret:
+		Filename: covenantskyhunter.shp
+		Facings: 32
+	turretdamaged:
+		Filename: covenantskyhunterdamaged.shp
+		Facings: 32
+	fire1:
+		Filename: bluefire1.shp
+		Length: *
+		ZOffset: 1023
+		Scale: 1.0
+	fire2:
+		Filename: bluefire2.shp
+		Length: *
+		ZOffset: 1023
+		Scale: 1.0
+	muzzle:
+		Filename: gunfire2.shp
+		Length: 2
+	muzzle2:
+		Filename: minigun.shp
+		Length: 6
+		Facings: 8
+		Tick: 25
+	icon:
+		Filename: covenantskyhuntericon.shp
+		Offset: 0,0
+		Scale: 1.0
+
+covenantskyhunterdamaged:
+	Defaults:
+		Scale: 0.85
+		Filename: covenantskyhunterdamaged.shp
+	idle:
+		Filename: covenantskyhunterdamaged.shp
+		Facings: 32
+	turret:
+		Filename: invis.shp
+	fire1:
+		Filename: bluefire1.shp
+		Length: *
+		ZOffset: 1023
+	fire2:
+		Filename: bluefire2.shp
+		Length: *
+		ZOffset: 1023
+
+covenantrevenant:
+	Defaults:
+		Filename: invis.shp
+		Scale: 0.85
+	idle:
+		Filename: invis.shp
+	turret:
+		Filename: covenantrevenant.shp
+		Facings: 32
+	turretdamaged:
+		Filename: covenantrevenantdamaged.shp
+		Facings: 32
+	fire1:
+		Filename: bluefire1.shp
+		Length: *
+		ZOffset: 1023
+		Scale: 1.0
+	fire2:
+		Filename: bluefire2.shp
+		Length: *
+		ZOffset: 1023
+		Scale: 1.0
+	muzzle:
+		Filename: gunfire2.shp
+		Length: 2
+	muzzle2:
+		Filename: minigun.shp
+		Length: 6
+		Facings: 8
+		Tick: 25
+	icon:
+		Filename: covenantrevenanticon.shp
+		Offset: 0,0
+		Scale: 1.0
+
+covenantrevenantdamaged:
+	Defaults:
+		Scale: 0.85
+		Filename: covenantrevenantdamaged.shp
+	idle:
+		Filename: covenantrevenantdamaged.shp
+		Facings: 32
+	turret:
+		Filename: invis.shp
+	fire1:
+		Filename: bluefire1.shp
+		Length: *
+		ZOffset: 1023
+	fire2:
+		Filename: bluefire2.shp
+		Length: *
+		ZOffset: 1023

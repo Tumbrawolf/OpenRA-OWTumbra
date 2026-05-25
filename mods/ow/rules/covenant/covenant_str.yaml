@@ -648,10 +648,10 @@ covenantrepairpad:
 		Condition: sell_me
 	TransformOnCondition@sell:
 		RequiresCondition: sell_me
-		IntoActor: covenantrepairpad
+		IntoActor: covenantfoundation
 		SkipMakeAnims: false
 	SpawnActorOnDeath@firebase:
-		Actor: covenantrepairpad
+		Actor: covenantfoundation
 
 covenantprojector:
 	Inherits: ^Building
@@ -898,6 +898,8 @@ covenantfoundry:
 		RequiresCondition: botowner
 		Delay: 9000, 15000
 		Condition: sell_me
+	Power:
+		Amount: 0
 
 T.MISSVEHcovenant:
 	Inherits: T.MISSVEH
@@ -911,6 +913,8 @@ T.MISSVEHcovenant:
 		DecorationBounds: 3072, 4096
 	RenderSprites:
 		Image: covenantulttech
+	Power:
+		Amount: 0
 
 T.MISSINFcovenant:
 	Inherits: T.MISSINF
@@ -924,6 +928,8 @@ T.MISSINFcovenant:
 		DecorationBounds: 3072, 4096
 	RenderSprites:
 		Image: covenantulttech
+	Power:
+		Amount: 0
 
 T.MISSAIRcovenant:
 	Inherits: T.MISSAIR
@@ -937,6 +943,8 @@ T.MISSAIRcovenant:
 		DecorationBounds: 3072, 4096
 	RenderSprites:
 		Image: covenantulttech
+	Power:
+		Amount: 0
 
 T.MISSSTRcovenant:
 	Inherits: T.MISSSTR
@@ -950,6 +958,8 @@ T.MISSSTRcovenant:
 		DecorationBounds: 3072, 4096
 	RenderSprites:
 		Image: covenantulttech
+	Power:
+		Amount: 0
 
 
 ^covenantfoundation:
@@ -1141,7 +1151,7 @@ covenantfoundation.ulttech:
 		Queue: Foundation
 		BuildAtProductionType: Foundation
 		Description: actor-covenantulttech.description
-		Prerequisites: techcenter
+		Prerequisites: advtechcenter
 		IconPalette: player-icon
 		BuildPaletteOrder: 11
 		IconPaletteIsPlayerPalette: true

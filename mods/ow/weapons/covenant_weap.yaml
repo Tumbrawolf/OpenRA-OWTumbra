@@ -37,7 +37,7 @@ covenantplasmagrenade:
 covenantplasmapistol:
 	ReloadDelay: 50
 	Burst: 3
-	BurstDelay: 5
+	BurstDelays: 5
 	Range: 4c0
 	Report: masterchiefplasmapistolfire1.aud, masterchiefplasmapistolfire2.aud, masterchiefplasmapistolfire3.aud, masterchiefplasmapistolfire4.aud, masterchiefplasmapistolfire5.aud
 	ValidTargets: Ground, Water, GroundActor, WaterActor
@@ -181,6 +181,9 @@ covenantghostdeathproj:
 	Warhead@3Eff: CreateEffect
 		Explosions: covenantplasmaexplosion
 		ImpactSounds: covenantsmallvehicleexplosion1.aud, covenantsmallvehicleexplosion2.aud, covenantsmallvehicleexplosion3.aud, covenantsmallvehicleexplosion4.aud, covenantsmallvehicleexplosion5.aud, covenantsmallvehicleexplosion6.aud, covenantsmallvehicleexplosion7.aud, covenantsmallvehicleexplosion8.aud, covenantsmallvehicleexplosion9.aud, covenantsmallvehicleexplosion10.
+	Warhead@4Eff_impact: CreateEffect
+		Explosions: japanplasmaring
+		ValidTargets: Ground, Water, GroundActor, WaterActor
 
 covenantghostdeathexplosion:
 	Inherits: ^Explosion
@@ -191,11 +194,14 @@ covenantghostdeathexplosion:
 	Warhead@2Eff: CreateEffect
 		Explosions: covenantplasmaexplosion
 		ImpactSounds: covenantsmallvehicleexplosion1.aud, covenantsmallvehicleexplosion2.aud, covenantsmallvehicleexplosion3.aud, covenantsmallvehicleexplosion4.aud, covenantsmallvehicleexplosion5.aud, covenantsmallvehicleexplosion6.aud, covenantsmallvehicleexplosion7.aud, covenantsmallvehicleexplosion8.aud, covenantsmallvehicleexplosion9.aud, covenantsmallvehicleexplosion10.
+	Warhead@4Eff_impact: CreateEffect
+		Explosions: japanplasmaring
+		ValidTargets: Ground, Water, GroundActor, WaterActor
 
 covenantneedler:
 	ReloadDelay: 50
 	Burst: 30
-	BurstDelay: 1
+	BurstDelays: 4
 	Range: 6c0
 	Report: masterchiefneedlerfire1.aud, masterchiefneedlerfire2.aud, masterchiefneedlerfire3.aud
 	ValidTargets: Ground, Water, GroundActor, WaterActor
@@ -303,12 +309,34 @@ covenantfuelrodcannon:
 	Warhead@3Eff: CreateEffect
 		Explosions: fuelrodexplosion
 		ImpactSounds: MasterChiefFuelRodCannonExplosion1.aud, MasterChiefFuelRodCannonExplosion2.aud
-		ValidTargets: Ground, Water, GroundActor, WaterActor
+		ValidTargets: Ground, Water, GroundActor, WaterActor , AirborneActor, Air
 	Warhead@zap: FireCluster
 		Weapon: FuelRodCannonClusterSmall
 		RandomClusterCount: 2
 		Dimensions: 2,2
 		Footprint: xx xx
+		ValidTargets: Ground, Water, GroundActor, WaterActor , AirborneActor, Air
+
+covenantfuelrodcannonAA:
+	Inherits: covenantfuelrodcannon
+	Range: 8c0
+	ValidTargets: AirborneActor
+	Projectile: Missile
+		Speed: 341
+		Inaccuracy: 512
+		HorizontalRateOfTurn: 100
+	Warhead@1Dam: SpreadDamage
+		Spread: 1024
+		Damage: 6000
+		ValidTargets: AirborneActor, Air
+		Versus:
+			None: 80
+			Wood: 75
+			Light: 80
+			Heavy: 80
+			Concrete: 50
+			Shield: 150
+		DamageTypes: Prone50Percent, TriggerProne, ElectricityDeath
 
 
 covenantplasmalauncher:
@@ -316,15 +344,15 @@ covenantplasmalauncher:
 	Report: covenantplasmalauncherfire1.aud, covenantplasmalauncherfire2.aud, covenantplasmalauncherfire3.aud
 	ReloadDelay: 85
 	Burst: 4
-	BurstDelay: 4
+	BurstDelays: 6
 	Range: 6c0
 	Projectile: Missile
 		Speed: 213
 		Inaccuracy: 512
 		RangeLimit: 18c0
 		HorizontalRateOfTurn: 40
-		ContrailLength: 15
-		Image: masterchiefplasmarifleproj
+		ContrailLength: 5
+		Image: covenantplasmalauncherproj
 		ContrailStartColor: 00fbff
 		Shadow: false
 		ContrailStartWidth: 0c32
@@ -370,6 +398,46 @@ covenantplasmalauncherAA:
 	Warhead@4EffWater: CreateEffect
 		Explosions: unscplasmagrenade
 		ValidTargets: AirborneActor, Air
+
+covenantconcussionrifle:
+	Inherits: ^AntiGroundMissile
+	Report: covenantconcussionrifle1.aud, covenantconcussionrifle2.aud, covenantconcussionrifle3.aud, covenantconcussionrifle4.aud, covenantconcussionrifle5.aud, covenantconcussionrifle6.aud
+	ReloadDelay: 25
+	Range: 6c0
+	Projectile: Missile
+		Speed: 213
+		Inaccuracy: 512
+		RangeLimit: 18c0
+		HorizontalRateOfTurn: 40
+		ContrailLength: 15
+		Image: covenantconcussionrifleproj
+		ContrailStartColor: 0c56eb
+		Shadow: false
+		ContrailStartWidth: 0c32
+		LockOnProbability: 75
+		Jammable: false
+	Warhead@1Dam: SpreadDamage
+		Spread: 512
+		Damage: 3500
+		ValidTargets: GroundActor, WaterActor
+		Versus:
+			None: 80
+			Wood: 75
+			Light: 80
+			Heavy: 80
+			Concrete: 50
+			Shield: 150
+		DamageTypes: Prone50Percent, TriggerProne, ElectricityDeath
+	Warhead@2Smu: LeaveSmudge
+		SmudgeType: Scorch
+		InvalidTargets: Structure, Wall, Vehicle
+	Warhead@3Eff: CreateEffect
+		Explosions: laserhitsmall
+		ImpactSounds: covenantconcussionrifleexplode1.aud, covenantconcussionrifleexplode2.aud, covenantconcussionrifleexplode3.aud, covenantconcussionrifleexplode4.aud, covenantconcussionrifleexplode5.aud, covenantconcussionrifleexplode6.aud
+		ValidTargets: Ground, Water, GroundActor, WaterActor
+	Warhead@4EffWater: CreateEffect
+		Explosions: unscplasmagrenade
+		ValidTargets: Ground, Water, GroundActor, WaterActor
 
 covenantplasmacarbine:
 	Inherits: ^SnipeWeapon
@@ -499,4 +567,421 @@ covenantfocusrifle:
 		ValidTargets: Ground, Water, GroundActor, WaterActor
 	Warhead@2Eff: CreateEffect
 		Explosions: laserhitsmall
+		ValidTargets: Ground, Water, GroundActor, WaterActor
+
+covenantenergysword:
+	Inherits: ^ShieldHit
+	ReloadDelay: 15
+	Range: 2c0
+	Report: masterchiefenergyswordmelee1.aud, masterchiefenergyswordmelee2.aud, masterchiefenergyswordmelee3.aud
+	ValidTargets: Ground, Water, GroundActor, WaterActor
+	Projectile: InstantHit
+	Warhead@1Dam: SpreadDamage
+		Spread: 64
+		Damage: 5000
+		Versus:
+			None: 200
+			Wood: 25
+			Light: 70
+			Heavy: 30
+			Concrete: 10
+			Shield: 200
+		DamageTypes: DefaultDeath
+		ValidTargets: GroundActor, WaterActor
+	Warhead@3Eff: CreateEffect
+		Explosions: laserhitsmall
+		ImpactSounds: covenantconcussionrifleexplode1.aud, covenantconcussionrifleexplode2.aud, covenantconcussionrifleexplode3.aud, covenantconcussionrifleexplode4.aud, covenantconcussionrifleexplode5.aud, covenantconcussionrifleexplode6.aud
+		ValidTargets: Ground, Water, GroundActor, WaterActor
+	Warhead@4EffWater: CreateEffect
+		Explosions: unscplasmagrenade
+		ValidTargets: Ground, Water, GroundActor, WaterActor
+
+covenantspiker:
+	ReloadDelay: 50
+	Burst: 7
+	BurstDelays: 5
+	Range: 4c0
+	Report: covenantspikerfire1.aud, covenantspikerfire2.aud, covenantspikerfire3.aud, covenantspikerfire4.aud, covenantspikerfire5.aud, covenantspikerfire6.aud
+	ValidTargets: Ground, Water, GroundActor, WaterActor
+	Projectile: Bullet
+		Speed: 512
+		Blockable: false
+		Image: covenantspikerproj
+		Shadow: false
+	Warhead@1Dam: SpreadDamage
+		Spread: 256
+		Damage: 2500
+		ValidTargets: GroundActor, WaterActor
+		Versus:
+			None: 100
+			Wood: 90
+			Light: 80
+			Heavy: 90
+			Concrete: 50
+			Shield: 100
+		DamageTypes: Prone50Percent, TriggerProne, ElectricityDeath
+	Warhead@2Eff: CreateEffect
+		Explosions: piff
+		ValidTargets: Ground, Water, GroundActor, WaterActor
+
+covenantchopperspiker:
+	Inherits: covenantspiker
+	ReloadDelay: 25
+	Burst: 14
+	BurstDelays: 4
+
+covenantbruteshot:
+	Inherits: ^Artillery
+	ReloadDelay: 75
+	Burst: 4
+	BurstDelays: 12
+	Range: 5c0
+	Report: masterchiefbruteshotfire1.aud, masterchiefbruteshotfire2.aud, masterchiefbruteshotfire3.aud
+	Projectile: Bullet
+		Speed: 256
+		Image: firemaceproj1
+		BounceCount: 1
+		BounceSound: masterchiefbruteshotbounce1.aud, masterchiefbruteshotbounce2.aud, masterchiefbruteshotbounce3.aud
+		Shadow: true
+		BounceRangeModifier: 40
+		LaunchAngle: 130
+		Inaccuracy: 128
+		ContrailLength: 15
+		ContrailStartColor: ff8400
+		ContrailStartWidth: 0c64
+		ContrailEndWidth: 0c32
+	Warhead@1Dam: SpreadDamage
+		Spread: 512
+		Damage: 6000
+		ValidTargets: GroundActor, WaterActor
+		Versus:
+			None: 70
+			Wood: 50
+			Light: 120
+			Heavy: 90
+			Concrete: 50
+		DamageTypes: Prone50Percent, TriggerProne, SmallExplosionDeath
+	Warhead@3Eff: CreateEffect
+		Explosions: large_explosion
+		ImpactSounds: masterchiefbruteshotexplode1.aud, masterchiefbruteshotexplode2.aud, masterchiefbruteshotexplode3.aud
+		ValidTargets: Ground, Air, GroundActor, AirborneActor, WaterActor, Trees
+	Warhead@4EffWater: CreateEffect
+		Explosions: small_splash
+		ImpactSounds: splash9.aud
+		ValidTargets: Water, Underwater
+		InvalidTargets: Bridge
+
+covenantmauler:
+	Inherits: ^LightMG
+	ReloadDelay: 30
+	Range: 4c0
+	Report: covenantmaulerfire1.aud, covenantmaulerfire2.aud, covenantmaulerfire3.aud
+	Warhead@1Dam: SpreadDamage
+		Spread: 512
+		Damage: 5000
+		Versus:
+			None: 100
+			Wood: 25
+			Light: 60
+			Heavy: 50
+			Concrete: 20
+		DamageTypes: Prone50Percent, TriggerProne, BulletDeath
+
+covenantmaulertracer:
+	Inherits: ^TracerRound
+	ReloadDelay: 30
+	Burst: 3
+	BurstDelays: 0
+	Range: 4c0
+	ValidTargets: Ground, Water, GroundActor, WaterActor
+	Projectile: Bullet
+		Speed: 1c0
+		Inaccuracy: 1c0
+
+covenantbruteplasmarifle:
+	ReloadDelay: 50
+	Burst: 6
+	BurstDelays: 3
+	Range: 6c0
+	Report: masterchiefplasmariflefire.aud
+	ValidTargets: Ground, Water, GroundActor, WaterActor
+	Projectile: Bullet
+		Speed: 512
+		Blockable: false
+		ContrailLength: 5
+		ContrailStartColor: ff3d3d
+		Image: covenantbruteplasmarifleproj
+		Shadow: false
+		Inaccuracy: 512
+		ContrailStartWidth: 0c32
+	Warhead@1Dam: SpreadDamage
+		Spread: 256
+		Damage: 3000
+		ValidTargets: GroundActor, WaterActor
+		Versus:
+			None: 50
+			Wood: 75
+			Light: 60
+			Heavy: 75
+			Concrete: 50
+			Shield: 150
+		DamageTypes: Prone50Percent, TriggerProne, ElectricityDeath
+	Warhead@2Smu: LeaveSmudge
+		SmudgeType: Scorch
+		InvalidTargets: Structure, Wall, Vehicle
+	Warhead@3Eff_impact: CreateEffect
+		Explosions: laserhitsmall
+		ImpactSounds: masterchiefplasmahit1.aud, masterchiefplasmahit2.aud, masterchiefplasmahit3.aud
+		ValidTargets: Ground, Water, GroundActor, WaterActor
+
+covenantgravityhammer:
+	Inherits: ^ShieldHit
+	ReloadDelay: 45
+	Range: 2c0
+	Report: covenantgravityhammerfire1.aud, covenantgravityhammerfire2.aud, covenantgravityhammerfire3.aud
+	ValidTargets: Ground, Water, GroundActor, WaterActor
+	Projectile: InstantHit
+	Warhead@1Dam: SpreadDamage
+		Delay: 5
+		Spread: 1024
+		Damage: 8000
+		Versus:
+			None: 110
+			Wood: 25
+			Light: 90
+			Heavy: 70
+			Concrete: 10
+			Shield: 200
+		DamageTypes: DefaultDeath
+		ValidTargets: GroundActor, WaterActor
+	Warhead@2Smu: LeaveSmudge
+		Delay: 5
+		SmudgeType: Scorch
+		InvalidTargets: Structure, Wall, Vehicle
+	Warhead@3Eff_impact: CreateEffect
+		Delay: 5
+		Explosions: laserhitmed
+		ImpactSounds: covenantgravityhammerhit1.aud, covenantgravityhammerhit2.aud, covenantgravityhammerhit3.aud
+		ValidTargets: Ground, Water, GroundActor, WaterActor, AirborneActor, Air
+	Warhead@4Eff_impact: CreateEffect
+		Delay: 5
+		Explosions: japanplasmaring
+		ValidTargets: Ground, Water, GroundActor, WaterActor, AirborneActor, Air
+
+covenantfuelrodcannonhunter:
+	Inherits: covenantfuelrodcannon
+	ReloadDelay: 110
+	Burst: 3
+	BurstDelays: 12
+	Range: 8c0
+	MinRange: 3c0
+	Projectile: Missile
+		Image: starfoxproj1
+
+covenantfuelrodcannonhunterAA:
+	Inherits: covenantfuelrodcannon
+	ReloadDelay: 110
+	Burst: 3
+	BurstDelays: 12
+	Range: 8c0
+	ValidTargets: AirborneActor
+	Projectile: Missile
+		Speed: 341
+		Inaccuracy: 512
+		HorizontalRateOfTurn: 100
+		Image: starfoxproj1
+		LockOnProbability: 100
+	Warhead@1Dam: SpreadDamage
+		Spread: 1024
+		Damage: 6000
+		ValidTargets: AirborneActor, Air
+		Versus:
+			None: 80
+			Wood: 75
+			Light: 80
+			Heavy: 80
+			Concrete: 50
+			Shield: 150
+		DamageTypes: Prone50Percent, TriggerProne, ElectricityDeath
+
+covenantfuelrodcannonbeam:
+	Range: 7c0
+	ReloadDelay: 55
+	Report: covenantfuelrodcannonbeamfire1.aud
+	AfterFireSound: covenantfuelrodcannonbeamend1.aud
+	ValidTargets: Ground, Water, GroundActor, WaterActor
+	Projectile: AreaBeam
+		Speed: 256
+		Duration: 35
+		Shape: Cylindrical
+		Color: 00eb1b60
+		DamageInterval: 10
+		Width: 0c256
+	Warhead@1Dam: SpreadDamage
+		Delay: 5
+		Spread: 1024
+		Damage: 6000
+		Versus:
+			None: 110
+			Wood: 25
+			Light: 90
+			Heavy: 70
+			Concrete: 10
+			Shield: 200
+		DamageTypes: DefaultDeath
+		ValidTargets: GroundActor, WaterActor
+	Warhead@2Smu: LeaveSmudge
+		SmudgeType: Scorch
+		InvalidTargets: Structure, Wall, Vehicle
+
+covenantwraithcannon:
+	Inherits: ^AntiGroundMissile
+	Report: covenantwraithcannonfire.aud
+	MinRange: 2c0
+	Range: 12c0
+	ReloadDelay: 200
+	Projectile: Missile
+		Speed: 200
+		HorizontalRateOfTurn: 20
+		RangeLimit: 15c0
+		Image: covenantwraithproj
+		TrailImage: explosion
+		TrailSequences: unscplasmagrenade
+		ContrailLength: 20
+		ContrailStartColor: 00bbff
+		Gravity: 1
+		MinimumLaunchAngle: 48
+		MinimumLaunchSpeed: 8
+		MaximumLaunchSpeed: 8
+		LockOnProbability: 0
+		Acceleration: 10
+		CruiseAltitude: 3c0
+		Inaccuracy: 2c0
+		Shadow: true
+		ContrailStartWidth: 0c128
+		ContrailEndWidth: 0c64
+		Blockable: false
+	Warhead@1Dam: SpreadDamage
+		Spread: 1c0
+		Damage: 7000
+		ValidTargets: GroundActor, WaterActor
+		Versus:
+			None: 100
+			Wood: 75
+			Light: 80
+			Heavy: 100
+			Concrete: 50
+			Shield: 200
+		DamageTypes: Prone50Percent, TriggerProne, ElectricityDeath
+	Warhead@2Smu: LeaveSmudge
+		SmudgeType: Scorch
+		InvalidTargets: Structure, Wall, Vehicle
+	Warhead@3Eff: CreateEffect
+		Explosions: laserhitmed
+		ImpactSounds: covenantsmallvehicleexplosion1.aud, covenantsmallvehicleexplosion2.aud, covenantsmallvehicleexplosion3.aud, covenantsmallvehicleexplosion4.aud, covenantsmallvehicleexplosion5.aud, covenantsmallvehicleexplosion6.aud, covenantsmallvehicleexplosion7.aud, covenantsmallvehicleexplosion8.aud, covenantsmallvehicleexplosion9.aud, covenantsmallvehicleexplosion10.
+		ValidTargets: Ground, Water, GroundActor, WaterActor
+	Warhead@4Eff_impact: CreateEffect
+		Explosions: japanplasmaring
+		ValidTargets: Ground, Water, GroundActor, WaterActor
+
+covenantskyhunter:
+	Inherits: covenantfuelrodcannon
+	ReloadDelay: 110
+	Burst: 6
+	BurstDelays: 9
+	Range: 10c0
+	ValidTargets: AirborneActor
+	Projectile: Missile
+		Speed: 341
+		Inaccuracy: 512
+		HorizontalRateOfTurn: 100
+		Image: starfoxproj1
+		LockOnProbability: 100
+	Warhead@1Dam: SpreadDamage
+		Spread: 1024
+		Damage: 5000
+		ValidTargets: AirborneActor, Air
+		Versus:
+			None: 80
+			Wood: 75
+			Light: 80
+			Heavy: 80
+			Concrete: 50
+			Shield: 150
+		DamageTypes: Prone50Percent, TriggerProne, ElectricityDeath
+
+covenantbansheeplasma:
+	Inherits: covenantplasmarifle
+	Report: covenantbansheeplasmafire1.aud, covenantbansheeplasmafire2.aud, covenantbansheeplasmafire3.aud
+	ReloadDelay: 50
+	Burst: 10
+	BurstDelay: 2
+	Range: 7c0
+
+covenantbansheeplasmaAA:
+	Inherits: covenantplasmarifle
+	Report: covenantbansheeplasmafire1.aud, covenantbansheeplasmafire2.aud, covenantbansheeplasmafire3.aud
+	ReloadDelay: 50
+	Burst: 10
+	BurstDelay: 2
+	Range: 7c0
+	ValidTargets: AirborneActor, Air
+	Warhead@1Dam: SpreadDamage
+		Spread: 256
+		Damage: 2500
+		ValidTargets: AirborneActor, Air
+		Versus:
+			None: 50
+			Wood: 75
+			Light: 60
+			Heavy: 75
+			Concrete: 50
+			Shield: 150
+		DamageTypes: Prone50Percent, TriggerProne, ElectricityDeath
+	Warhead@2Smu: LeaveSmudge
+		SmudgeType: Scorch
+		ValidTargets: AirborneActor, Air
+	Warhead@3Eff_impact: CreateEffect
+		Explosions: laserhitsmall
+		ImpactSounds: masterchiefplasmahit1.aud, masterchiefplasmahit2.aud, masterchiefplasmahit3.aud
+		ValidTargets: AirborneActor, Air
+
+covenantrevenantcannon:
+	Inherits: ^AntiGroundMissile
+	Report: covenantconcussionrifle1.aud, covenantconcussionrifle2.aud, covenantconcussionrifle3.aud, covenantconcussionrifle4.aud, covenantconcussionrifle5.aud, covenantconcussionrifle6.aud
+	ReloadDelay: 45
+	Range: 9c0
+	Projectile: Missile
+		Speed: 256
+		Inaccuracy: 512
+		RangeLimit: 18c0
+		HorizontalRateOfTurn: 40
+		ContrailLength: 25
+		Image: covenantrevenantproj
+		ContrailStartColor: ff3d3d
+		Shadow: false
+		ContrailStartWidth: 0c32
+		LockOnProbability: 75
+		Jammable: false
+	Warhead@1Dam: SpreadDamage
+		Spread: 512
+		Damage: 5000
+		ValidTargets: GroundActor, WaterActor
+		Versus:
+			None: 80
+			Wood: 75
+			Light: 80
+			Heavy: 80
+			Concrete: 50
+			Shield: 150
+		DamageTypes: Prone50Percent, TriggerProne, ElectricityDeath
+	Warhead@2Smu: LeaveSmudge
+		SmudgeType: Scorch
+		InvalidTargets: Structure, Wall, Vehicle
+	Warhead@3Eff: CreateEffect
+		Explosions: laserhitmed
+		ImpactSounds: covenantconcussionrifleexplode1.aud, covenantconcussionrifleexplode2.aud, covenantconcussionrifleexplode3.aud, covenantconcussionrifleexplode4.aud, covenantconcussionrifleexplode5.aud, covenantconcussionrifleexplode6.aud
+		ValidTargets: Ground, Water, GroundActor, WaterActor
+	Warhead@4EffWater: CreateEffect
+		Explosions: japanplasmaringupgrade
 		ValidTargets: Ground, Water, GroundActor, WaterActor

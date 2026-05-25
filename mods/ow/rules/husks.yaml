@@ -2080,3 +2080,129 @@ covenantghost.Husk:
 	FireWarheadsOnDeath:
 		Weapon: covenantghostdeathexplosion
 		EmptyWeapon: covenantghostdeathexplosion
+
+starfox.Husk:
+	Inherits: ^PlaneHusk
+	Tooltip:
+		Name: actor-starfox-husk-name
+	Aircraft:
+		TurnSpeed: 20
+		Speed: 128
+	WithDamageOverlay:
+		Offset: -853,0,0
+		Interval: 2
+		MinimumDamageState: Undamaged
+	RevealsShroud:
+		MinRange: 7c0
+		Range: 9c0
+		Type: GroundPosition
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 7c0
+		Type: GroundPosition
+	RenderSprites:
+		Image: starfoxarwing
+
+starfoxbluemarine.Husk:
+	Inherits: ^PlaneHusk
+	Tooltip:
+		Name: actor-starfoxbluemarine-husk-name
+	Aircraft:
+		TurnSpeed: 20
+		Speed: 128
+	WithDamageOverlay:
+		Offset: -853,0,0
+		Interval: 2
+		MinimumDamageState: Undamaged
+	RevealsShroud:
+		MinRange: 7c0
+		Range: 9c0
+		Type: GroundPosition
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 7c0
+		Type: GroundPosition
+	RenderSprites:
+		Image: starfoxbluemarine
+
+covenantwraith.Husk:
+	Inherits: ^BotCapturableHusk
+	WithIdleOverlay@Burns:
+		Image: covenantwraith
+		Sequence: fire1
+		Offset: -256,512,0
+	Tooltip:
+		Name: actor-covenantwraith-husk-name
+	TransformOnCapture:
+		IntoActor: covenantwraith
+	InfiltrateForTransform:
+		IntoActor: covenantwraith
+	TransformOnCondition:
+		IntoActor: covenantwraith
+	RenderSprites:
+		Image: covenantwraithdamaged
+	FireWarheadsOnDeath:
+		Weapon: covenantghostdeathexplosion
+		EmptyWeapon: covenantghostdeathexplosion
+
+covenantskyhunter.Husk:
+	Inherits: ^BotCapturableHusk
+	WithIdleOverlay@Burns:
+		Image: covenantskyhunter
+		Sequence: fire1
+		Offset: -256,512,0
+	Tooltip:
+		Name: actor-covenantskyhunter-husk-name
+	TransformOnCapture:
+		IntoActor: covenantskyhunter
+	InfiltrateForTransform:
+		IntoActor: covenantskyhunter
+	TransformOnCondition:
+		IntoActor: covenantskyhunter
+	RenderSprites:
+		Image: covenantskyhunterdamaged
+	FireWarheadsOnDeath:
+		Weapon: covenantghostdeathexplosion
+		EmptyWeapon: covenantghostdeathexplosion
+
+covenantbanshee.Husk:
+	Inherits: ^PlaneHusk
+	Tooltip:
+		Name: actor-covenantbanshee-husk-name
+	Aircraft:
+		TurnSpeed: 20
+		Speed: 128
+	WithDamageOverlay:
+		Offset: -853,0,0
+		Interval: 2
+		MinimumDamageState: Undamaged
+	RevealsShroud:
+		MinRange: 7c0
+		Range: 9c0
+		Type: GroundPosition
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 7c0
+		Type: GroundPosition
+	RenderSprites:
+		Image: covenantbanshee
+
+covenantrevenant.Husk:
+	Inherits: ^BotCapturableHusk
+	WithIdleOverlay@Burns:
+		Image: covenantrevenant
+		Sequence: fire1
+		Offset: -256,512,0
+	Tooltip:
+		Name: actor-covenantrevenant-husk-name
+	TransformOnCapture:
+		IntoActor: covenantrevenant
+	InfiltrateForTransform:
+		IntoActor: covenantrevenant
+	TransformOnCondition:
+		IntoActor: covenantrevenant
+	RenderSprites:
+		Image: covenantrevenantdamaged
+	FireWarheadsOnDeath:
+		Weapon: covenantghostdeathexplosion
+		EmptyWeapon: covenantghostdeathexplosion

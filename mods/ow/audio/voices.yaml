@@ -2324,9 +2324,20 @@ CovenantJackal:
 	DefaultVariant: 
 	Voices:
 		Attack: covenantjackelattack1.ogg. covenantjackelattack2.ogg, covenantjackelattack3.ogg, covenantjackelattack4.ogg, covenantjackelattack5.ogg, covenantjackelattack6.ogg, covenantjackelattack7.ogg, covenantjackelattack8.ogg
-		Select: covenantjackelselect1.ogg, covenantjackelselect2.ogg, covenantjackelselect3.ogg, covenantjackelselect4.ogg, covenantjackelselect5.ogg, covenantjackelselect6.ogg, covenantjackelselect7.ogg, covenantjackelselect8.gg
+		Select: covenantjackelselect1.ogg, covenantjackelselect2.ogg, covenantjackelselect3.ogg, covenantjackelselect4.ogg, covenantjackelselect5.ogg, covenantjackelselect6.ogg, covenantjackelselect7.ogg, covenantjackelselect8.ogg
 		Move: covenantjackelmove1.ogg, covenantjackelmove2.ogg, covenantjackelmove3.ogg, covenantjackelmove4.ohh, covenantjackelmove5.ogg, covenantjackelmove6.ogg, covenantjackelmove7.ogg, covenantjackelmove8.ogg
 		Action: covenantjackelmove1.ogg, covenantjackelmove2.ogg, covenantjackelmove3.ogg, covenantjackelmove4.ohh, covenantjackelmove5.ogg, covenantjackelmove6.ogg, covenantjackelmove7.ogg, covenantjackelmove8.ogg
 		Die: covenantjackeldie1.ogg, covenantjackeldie2.ogg, covenantjackeldie3.ogg, covenantjackeldie4.ogg, covenantjackeldie5.ogg, covenantjackeldie6.ogg, covenantjackeldie7.ogg, covenantjackeldie8.ogg, covenantjackeldie9.ogg
 		Burned: covenantjackeldie1.ogg, covenantjackeldie2.ogg, covenantjackeldie3.ogg, covenantjackeldie4.ogg, covenantjackeldie5.ogg, covenantjackeldie6.ogg, covenantjackeldie7.ogg, covenantjackeldie8.ogg, covenantjackeldie9.ogg
 		Zapped: covenantjackeldie1.ogg, covenantjackeldie2.ogg, covenantjackeldie3.ogg, covenantjackeldie4.ogg, covenantjackeldie5.ogg, covenantjackeldie6.ogg, covenantjackeldie7.ogg, covenantjackeldie8.ogg, covenantjackeldie9.ogg
+
+CovenantBrute:
+	DefaultVariant: 
+	Voices:
+		Attack: covenantbruteattack1.aud, covenantbruteattack2.aud, covenantbruteattack3.aud, covenantbruteattack4.aud, covenantbruteattack5.aud, covenantbruteattack6.aud, covenantbruteattack7.aud
+		Select: covenantbruteselect1.aud, covenantbruteselect2.aud, covenantbruteselect3.aud, covenantbruteselect4.aud, covenantbruteselect5.aud, covenantbruteselect6.aud, covenantbruteselect7.aud, covenantbruteselect8.aud
+		Move: covenantbrutemove1.aud, covenantbrutemove2.aud, covenantbrutemove3.aud, covenantbrutemove4.aud, covenantbrutemove5.aud, covenantbrutemove6.aud, covenantbrutemove7.aud
+		Action: covenantbrutemove1.aud, covenantbrutemove2.aud, covenantbrutemove3.aud, covenantbrutemove4.aud, covenantbrutemove5.aud, covenantbrutemove6.aud, covenantbrutemove7.aud
+		Die: covenantbrutedie1.aud, covenantbrutedie2.aud, covenantbrutedie3.aud, covenantbrutedie4.aud, covenantbrutedie5.aud, covenantbrutedie6.aud, covenantbrutedie7.aud, covenantbrutedie8.aud, covenantbrutedie9.aud, covenantbrutedie10.aud, covenantbrutedie11.aud
+		Burned: covenantbrutedie1.aud, covenantbrutedie2.aud, covenantbrutedie3.aud, covenantbrutedie4.aud, covenantbrutedie5.aud, covenantbrutedie6.aud, covenantbrutedie7.aud, covenantbrutedie8.aud, covenantbrutedie9.aud, covenantbrutedie10.aud, covenantbrutedie11.aud
+		Zapped: covenantbrutedie1.aud, covenantbrutedie2.aud, covenantbrutedie3.aud, covenantbrutedie4.aud, covenantbrutedie5.aud, covenantbrutedie6.aud, covenantbrutedie7.aud, covenantbrutedie8.aud, covenantbrutedie9.aud, covenantbrutedie10.aud, covenantbrutedie11.aud

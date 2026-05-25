@@ -1,0 +1,106 @@
+covenantbanshee:
+	Inherits: ^Plane
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	Buildable:
+		Queue: Aircraft
+		BuildAtProductionType: Plane
+		BuildPaletteOrder: 1
+		Prerequisites: ~aircraft.covenant
+		Description: actor-covenantbanshee.description
+	Valued:
+		Cost: 1200
+	Tooltip:
+		Name: actor-covenantbanshee.name
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Health:
+		HP: 14000
+	RevealsShroud:
+		MinRange: 11c0
+		Range: 13c0
+		Type: GroundPosition
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 11c0
+		Type: GroundPosition
+	Armament@ground:
+		Weapon: covenantbansheeplasma
+		LocalOffset: 0,-640,0, 0,640,0
+		LocalYaw: -40, 24
+		PauseOnCondition: !ammo
+	Armament@air:
+		Weapon: covenantbansheeplasmaAA
+		LocalOffset: 0,-640,0, 0,640,0
+		LocalYaw: -40, 24
+		PauseOnCondition: !ammo
+	AttackAircraft:
+		FacingTolerance: 20
+	Aircraft:
+		CruiseAltitude: 2560
+		InitialFacing: 192
+		TurnSpeed: 16
+		Speed: 170
+		RepulsionSpeed: 40
+		MaximumPitch: 56
+		Voice: Move
+	Guard:
+		Voice: Move
+	AutoTarget:
+		InitialStance: HoldFire
+		InitialStanceAI: HoldFire
+	AmmoPool:
+		Ammo: 50
+		ReloadDelay: 5
+		AmmoCondition: ammo
+	Selectable:
+		Bounds: 1536, 1194, 0, 85
+		DecorationBounds: 1706, 1237, 0, 42
+	Contrail@1:
+		Offset: -398,-483,0
+		StartColorAlpha: 128
+	Contrail@2:
+		Offset: -398,483,0
+		StartColorAlpha: 128
+	SpawnActorOnDeath:
+		Actor: covenantbanshee.Husk
+	LeavesTrails:
+		Offsets: -853,0,171
+		MovingInterval: 2
+		Image: smokey
+		SpawnAtLastPosition: False
+		Type: CenterPosition
+		RequiresCondition: enable-smoke
+	ProducibleWithLevel:
+		Prerequisites: aircraft.upgraded
+	WithAmmoPipsDecoration:
+		Position: BottomLeft
+		Margin: 4, 3
+		RequiresSelection: true
+		PipCount: 5
+	GrantConditionOnDamageState@SmokeTrail:
+		Condition: enable-smoke
+	WithProductionIconOverlay:
+		Types: Veterancy
+		Prerequisites: aircraft.upgraded
+	RenderSprites:
+		Image: covenantbanshee
+	ReloadAmmoPool@reloadnear:
+		RequiresCondition: reloadnear
+		Delay: 500
+		Count: 2
+	Voiced:
+		VoiceSet: CovenantElite
+	GrantConditionOnDamageState@fire2:
+		Condition: damaged_heavy
+		ValidDamageStates: Heavy, Critical
+	GrantConditionOnDamageState@fire3:
+		Condition: damaged_critical
+		ValidDamageStates: Critical
+	WithIdleOverlay@damage2:
+		RequiresCondition: damaged_heavy
+		Sequence: fire2
+		Offset: 128,128,0
+	WithIdleOverlay@damage3:
+		RequiresCondition: damaged_critical
+		Sequence: fire1
+		Offset: -128,-128,0

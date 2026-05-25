@@ -1331,3 +1331,44 @@ unsccolonyship.groundhusk:
 		Facings: 32
 		Scale: 0.8
 		ZOffset: -512
+
+starfoxarwing:
+	idle:
+		Filename: starfoxarwing.shp
+		Scale: 0.8
+		Facings: 32
+	muzzle:
+		Filename: gunfire2.shp
+		Length: *
+	icon:
+		Filename: starfoxarwingicon.shp
+
+
+starfoxbluemarine:
+	idle:
+		Filename: starfoxbluemarine.shp
+		Facings: 32
+	muzzle:
+		Filename: gunfire2.shp
+		Length: *
+	icon:
+		Filename: starfoxarwingicon.shp
+
+covenantbanshee:
+	idle:
+		Filename: covenantbanshee.shp
+		Scale: 0.8
+		Facings: 32
+	muzzle:
+		Filename: gunfire2.shp
+		Length: *
+	icon:
+		Filename: covenantbansheeicon.shp
+	fire1:
+		Filename: bluefire1.shp
+		Length: *
+		ZOffset: 1023
+	fire2:
+		Filename: bluefire2.shp
+		Length: *
+		ZOffset: 1023

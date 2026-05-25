@@ -1268,6 +1268,7 @@ actor-garbageman-name = GARBAGE DAY
 actor-shoopdawhoop-cr-name = SHOOP DA WHOOP
 actor-powerproxy-holyhandgrenade-droppodspower-holyhandgrenade-select-target-text-notification = Select target.
 actor-holyhandgrenade-name = Holy Hand Grenade
+actor-starfoxarwingfox.name = Starfox Arwing
 
 actor-proxynuke-description = Launches a dud atomic bomb
     at the target location to 
@@ -2194,6 +2195,11 @@ actor-avcarrier-husk-name = Illuminate Warpship Carrier
 actor-avcarrier-groundhusk-name = Husk (Carrier)
 actor-unscscorpion-husk-name = Husk (M808B Scorpion)
 actor-unscgrizzly-husk-name = Husk (M850 Grizzly)
+actor-covenantghost-husk-name = Husk (Karo'etba-pattern Ghost)
+actor-covenantwraith-husk-name = Husk (Zurdo-pattern Wraith)
+actor-covenantskyhunter-husk-name = Husk (Ogab'd-pattern anti-aircraft Wraith)
+actor-covenantbanshee-husk-name = Husk (Oghal-pattern Banshee)
+actor-covenantrevenant-husk-name = Husk (Rizvum-pattern Revenant)
 
 ## japan_air.yaml
 actor-japanchoppervx =
@@ -8225,3 +8231,144 @@ actor-unsc-heatoutput =
 actor-unsc-armouredwarthog =
    .name = Armoured Warthog
    .description = Warthogs will now have 20% damage reduction.
+
+## covenant_veh.yaml
+
+actor-covenantghost =
+   .description = The Ghost is a one-man gravity-effect vehicle, primarily used in a reconnaissance and close infantry support or rapid attack role.
+
+   Armed with Two Class-2 directed energy cannons.
+
+   While not firing, the Ghost has increased movement speed.
+
+   If [BLANK] is researched, Ghosts will become shielded.
+
+    Speed: 135 
+      Strong vs Infantry, Vehicles
+      Weak vs Aircraft
+   .name =  Karo'etba-pattern Ghost
+
+actor-covenantchopper =
+   .description = Choppers are light scout and assault vehicles. Their design consists of a set of bladed wheels, behind which a driver’s seat is attached.
+
+   Armed with Two Paegaas Workshop Spikers.
+
+   If [BLANK] is researched, the weapons will be more explosive.
+
+    Speed: 213
+    Strong vs Infantry
+      Weak vs Aircraft
+   .name =  Barukaza Workshop Chopper
+
+actor-covenantwraith =
+   .description = The Zurdo-pattern Wraith is the primary armored ground vehicle used by the Covenant.
+
+   The Covenant deploys Wraiths in tactical ground engagements,
+   where they serve in both anti-infantry and anti-armor roles.
+   The Wraith's firepower also makes it ideal for destroying structures.
+
+   Armed with a Type-26 35cm Directed Energy Mortar & 1 Type-26 Directed Energy Weapon Emplacement
+
+    Speed: 75
+      Strong vs Vehicles, Buildings
+      Weak vs Aircraft, Infantry
+   .name =  Zurdo-pattern Wraith
+
+actor-covenantskyhunter =
+   .description = The Ogab'd-pattern Wraith is an anti-air variant of the Zurdo-pattern Wraith.
+
+   The role of the Ogab'd in the Covenant arsenal fits in below the larger scale sky strikers of the Covenant's heavy artillery loadout.
+   They are typically deployed as an air defence solution in theatres where the limitations of time or environmental factors make the establishment of larger assets
+
+   Armed with 6 rapid-fire heavy flak cannons & 1 Type-26 Directed Energy Weapon Emplacement
+
+    Speed: 75
+      Strong vs Aircraft
+      Weak vs Infantry, Vehicles
+   .name =  Ogab'd-pattern anti-aircraft Wraith
+
+actor-covenantrevenant =
+   .description = The Rizvum is a lightly armored vehicle that is designed to provide artillery support for infantry forces.
+
+   The Revenant is designed to provide fire support rather than direct force deployment.
+   The Revenant is very fast and maneuverable, well armored, and well armed.
+   Like most Covenant vehicles, the Revenant owes its mobility to a boosted gravity propulsion drive
+
+   Armed with a Class-2 medium plasma mortar.
+
+    Speed: 110
+      Strong vs Infantry
+      Weak vs Vehicles, Aircraft
+   .name =  Rizvum-pattern Revenant
+
+## covenant_air.yaml
+
+actor-covenantbanshee =
+   .description = The Oghal-pattern Banshee is commonly employed in Covenant service as a standard aircraft.
+
+   Armed with 2× DEML-AW, Plasma Bolt/Diffused (Class-2)s
+
+   If [BLANK] is researched, the Banshee will also be armed 1× HAAW/M, Heavy Fuel Rod (Class-3)
+
+    Speed: 170
+      Strong vs All
+      Weak vs None
+   .name = Oghal-pattern Banshee
+
+## covenant_inf.yaml
+
+actor-covenantgrunt =
+   .description = The Unggoy (Grunt) are a sapient species of squat bipedal xeno-arthropodal vertebroid lifeforms from the planet Balaho.
+
+   Unggoy are, in general, poor soldiers in terms of skill and combat ability.
+   They are poor shots when not focused, are physically weak, and are tactically inept as a rule.
+
+   Unggoy can be trained with the following weapons:
+
+   Type-25 Plasma Pistol - Higher damage to shields
+   Type-33 Needler - Longer range, Burst damage when needles are stacked onto a single unit
+
+   If the Armament weapons upgrade is researched, Unggoy can also be armed with the following weapons:
+
+   Fuel Rod Cannon - Increased range, longer reload, increased spread damage
+   Kopasa'mada-pattern plasma launcher - 4 bolt semi-automatic burst, can target aircraft
+
+    Speed: 70
+      Strong vs Infantry
+      Weak vs Vehicles, Aircraft
+   .name = Unggoy (Grunt)
+
+actor-covenantelite =
+   .description = The Sangheili (Elite) are a saurian sapient species known for their warrior culture and combat skill.
+
+   Sangheili are intelligent, agile, and extremely strong, and are often characterized by their bravery and honor.
+   Sangheili warriors augment these natural abilities further through use of energy shields integrated into their armor. 
+
+   Sangheili can be trained with the following weapons:
+
+   Okarda'phaa-pattern plasma rifle - Standard range, higher damage to shields
+   Type-33 Needler - Longer range, Burst damage when needles are stacked onto a single unit
+   Kopasa'mada-pattern plasma launcher - 4 bolt semi-automatic burst, can target aircraft
+   Domotos-pattern energy sword - Become melee with damage resistance and speed
+   Vostu-pattern carbine - Longer range battle rifle
+   Elo'Nakada-pattern concussion rifle - Explosive plasma bolts
+
+    Speed: 70
+      Strong vs Infantry, Vehicles
+      Weak vs Aircraft
+   .name = Sangheili (Elite)
+
+actor-covenantelite =
+   .description = The Kig-Yar (Jackal) are a dinosaur-like saurian species, known for their keen aim.
+
+   Kig-Yar can be trained with the following weapons:
+
+   Vostu-pattern carbine - Longer range battle rifle
+   Gadulo-pattern needle rifle - Needle-type Sniper Rifle
+   Sulok-pattern beam rifle - Shorter range, can target vehicles and aircraft
+   M'tara-pattern focus rifle - Long range beam rifle, persistant damage
+
+    Speed: 70
+      Strong vs Infantry, Vehicles
+      Weak vs Aircraft
+   .name = Kig-Yar (Jackal)

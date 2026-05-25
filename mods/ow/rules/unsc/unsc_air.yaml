@@ -1,5 +1,25 @@
+^unscvoice:
+	GrantRandomCondition:
+		Conditions: Voice1, Voice2, Voice3, Voice4, Voice5
+	Voiced:
+		VoiceSet: UNSCMarine1
+		RequiresCondition: Voice1
+	Voiced@2:
+		VoiceSet: UNSCMarine2
+		RequiresCondition: Voice2
+	Voiced@3:
+		VoiceSet: UNSCMarine3
+		RequiresCondition: Voice3
+	Voiced@4:
+		VoiceSet: UNSCMarine4
+		RequiresCondition: Voice4
+	Voiced@5:
+		VoiceSet: UNSCMarine5
+		RequiresCondition: Voice5
+
 unscdarter:
 	Inherits: ^Vehicle
+	Inherits@voice: ^unscvoice
 	Inherits@CARGOPIPS: ^CargoPips
 	Inherits@selection: ^SelectableEconomicUnit
 	-HitShape:
@@ -116,6 +136,7 @@ unscdarter:
 
 unschornet:
 	Inherits: ^Helicopter
+	Inherits@voice: ^unscvoice
 	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
 	Buildable:
 		Queue: Aircraft
@@ -144,12 +165,14 @@ unschornet:
 		Delay: 1
 		LocalOffset: 85,-213,-85, 85,213,-85
 		MuzzleSequence: muzzle
+		PauseOnCondition: !ammo
 		AmmoUsage: 0
 	Armament@SECONDARY:
 		Name: secondary
 		Weapon: unscwarthogminigun
 		LocalOffset: 85,213,-85, 85,-213,-85
 		MuzzleSequence: muzzle
+		PauseOnCondition: !ammo
 		AmmoUsage: 0
 	Armament@TRI:
 		Weapon: unscrocketlauncher
@@ -223,6 +246,7 @@ unschornet:
 
 unscsparrowhawk:
 	Inherits: ^Helicopter
+	Inherits@voice: ^unscvoice
 	Inherits@CARGOPIPS: ^CargoPips
 	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
 	Buildable:
@@ -253,11 +277,13 @@ unscsparrowhawk:
 		LocalOffset: 85,-213,-85, 85,213,-85
 		MuzzleSequence: muzzle
 		PauseOnCondition: !ammo
+		AmmoUsage: 0
 	Armament@SECONDARY:
 		Weapon: unscwarthogminigun
 		LocalOffset: 85,213,-85, 85,-213,-85
 		MuzzleSequence: muzzle
 		PauseOnCondition: !ammo
+		AmmoUsage: 0
 	Armament@TRI:
 		Weapon: unsccobracannon
 		LocalOffset: 85,213,-85, 85,-213,-85
@@ -277,7 +303,7 @@ unscsparrowhawk:
 		InitialStance: HoldFire
 		InitialStanceAI: HoldFire
 	AmmoPool:
-		Ammo: 200
+		Ammo: 5
 		ReloadDelay: 8
 		AmmoCondition: ammo
 	WithMuzzleOverlay:
@@ -320,6 +346,7 @@ unscsparrowhawk:
 
 unscvulture:
 	Inherits: ^Helicopter
+	Inherits@voice: ^unscvoice
 	Inherits@CARGOPIPS: ^CargoPips
 	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
 	Buildable:
@@ -349,37 +376,53 @@ unscvulture:
 		Delay: 1
 		LocalOffset: 85,-213,-85, 85,213,-85
 		MuzzleSequence: muzzle
+		AmmoUsage: 0
+		PauseOnCondition: !ammo
 	Armament@SECONDARY:
 		Weapon: unscwarthogminigun
 		LocalOffset: 85,213,-85, 85,-213,-85
 		MuzzleSequence: muzzle
+		AmmoUsage: 0
+		PauseOnCondition: !ammo
 	Armament@PRIMARY2:
 		Weapon: unscvulturerockets
 		LocalOffset: 85,-213,-85, 85,213,-85
 		MuzzleSequence: muzzle
-		PauseOnCondition: megabarrage
+		PauseOnCondition: megabarrage || !ammo
 	Armament@SECONDARY2:
 		Weapon: unscvulturerockets
 		Delay: 4
 		LocalOffset: 85,213,-85, 85,-213,-85
 		MuzzleSequence: muzzle
-		PauseOnCondition: megabarrage
+		PauseOnCondition: megabarrage || !ammo
 	Armament@PRIMARY2up:
 		Weapon: unscvulturerocketsupgrade
 		LocalOffset: 85,-213,-85, 85,213,-85
 		MuzzleSequence: muzzle
 		RequiresCondition: megabarrage
+		PauseOnCondition: !ammo
 	Armament@SECONDARY2up:
 		Weapon: unscvulturerocketsupgrade
 		Delay: 4
 		LocalOffset: 85,213,-85, 85,-213,-85
 		MuzzleSequence: muzzle
 		RequiresCondition: megabarrage
+		PauseOnCondition: !ammo
 	Armament@phoenix:
 		Weapon: unscphoenixmissile
 		LocalOffset: 85,0,0
 		MuzzleSequence: muzzle
 		RequiresCondition: phoenix
+		PauseOnCondition: !ammo
+	AmmoPool:
+		Ammo: 50
+		ReloadDelay: 8
+		AmmoCondition: ammo
+	WithAmmoPipsDecoration:
+		Position: BottomLeft
+		Margin: 4, 3
+		RequiresSelection: true
+		PipCount: 8
 	AttackAircraft:
 		FacingTolerance: 80
 		PersistentTargeting: false

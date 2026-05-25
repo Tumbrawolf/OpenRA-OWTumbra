@@ -1,5 +1,6 @@
 unscmcv:
 	Inherits: MCV
+	Inherits@voice: ^unscvoice
 	Inherits: ^Vehicle
 	Inherits@selection: ^SelectableSupportUnit
 	Inherits@MCV: ^MCVBehaviour
@@ -34,6 +35,7 @@ unscmcv.2:
 
 unscwarthog:
 	Inherits: ^Vehicle
+	Inherits@voice: ^unscvoice
 	Inherits@GAINSEXPERIENCE: ^GainsExperience
 	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
 	Buildable:
@@ -118,6 +120,7 @@ unscwarthog:
 
 unscmongoose:
 	Inherits: ^Vehicle
+	Inherits@voice: ^unscvoice
 	Inherits@GAINSEXPERIENCE: ^GainsExperience
 	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
 	Buildable:
@@ -162,6 +165,7 @@ unscmongoose:
 
 unscscorpion:
 	Inherits: 2TNK
+	Inherits@voice: ^unscvoice
 	Buildable:
 		BuildPaletteOrder: 31
 		Prerequisites: ~vehicles.unsc
@@ -209,6 +213,7 @@ unscscorpion:
 
 unscgrizzly:
 	Inherits: ^TrackedVehicle
+	Inherits@voice: ^unscvoice
 	Inherits@GAINSEXPERIENCE: ^GainsExperience
 	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
 	Inherits@mindcontrol: ^MindControlResistant
@@ -282,6 +287,7 @@ unscgrizzly:
 
 unsccobra:
 	Inherits: ^TrackedVehicle
+	Inherits@voice: ^unscvoice
 	Inherits@GAINSEXPERIENCE: ^GainsExperience
 	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
 	Buildable:
@@ -377,6 +383,7 @@ unsccobra:
 
 unscwolverine:
 	Inherits: ^Vehicle
+	Inherits@voice: ^unscvoice
 	Inherits@GAINSEXPERIENCE: ^GainsExperience
 	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
 	Buildable:

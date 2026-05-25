@@ -6,7 +6,7 @@ covenantmcv:
 	Buildable:
 		Queue: Vehicle
 		BuildPaletteOrder: 90
-		Prerequisites: unscrepairpad, ~mcv, ~techlevel.medium, ~vehicles.covenant
+		Prerequisites: covenantrepairpad, ~mcv, ~techlevel.medium, ~vehicles.covenant
 		BuildDurationModifier: 50
 		Description: actor-mcv-description
 	Valued:
@@ -40,7 +40,7 @@ covenantghost:
 		Queue: Vehicle
 		BuildPaletteOrder: 30
 		Prerequisites: ~vehicles.covenant, ~techlevel.low
-		Description: actor-unscwarthog.description
+		Description: actor-covenantghost.description
 	Tooltip:
 		Name: actor-covenantghost.name
 	Valued:
@@ -62,7 +62,7 @@ covenantghost:
 	UpdatesPlayerStatistics:
 		AddToArmyValue: true
 	Health:
-		HP: 18000
+		HP: 22000
 	Turreted:
 		TurnSpeed: 40
 		Offset: -298,0,212
@@ -130,3 +130,277 @@ covenantghost:
 		RequiresCondition: damaged_critical
 		Sequence: fire1
 		Offset: -128,-128,0
+
+covenantchopper:
+	Inherits: ^TrackedVehicle
+	Inherits@GAINSEXPERIENCE: ^GainsExperience
+	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
+	Buildable:
+		Queue: Vehicle
+		BuildPaletteOrder: 30
+		Prerequisites: ~vehicles.covenant, ~techlevel.low
+		Description: actor-covenantchopper.description
+	Tooltip:
+		Name: actor-covenantchopper.name
+	Valued:
+		Cost: 500
+	Armor:
+		Type: Light
+	Mobile:
+		TurnSpeed: 40
+		Speed: 213
+		Locomotor: gbike
+	RevealsShroud:
+		MinRange: 5c0
+		Range: 8c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 5c0
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Health:
+		HP: 12000
+	Turreted:
+		TurnSpeed: 40
+		Offset: -298,0,212
+	Armament:
+		Weapon: covenantchopperspiker
+		LocalOffset: 171,-64,0, 171,64,0
+	FireProjectilesOnDeath@1:
+		Weapons: TechnicalTurret
+		Pieces: 1,1
+		Range: 1c0, 3c0
+	WithMuzzleOverlay:
+	AttackFrontal:
+		TargetFrozenActors: True
+		ForceFireIgnoresActors: True
+		FacingTolerance: 32
+	RenderSprites:
+		Image: covenantchopper
+	Voiced:
+		VoiceSet: CovenantBrute
+
+covenantwraith:
+	Inherits: ^Vehicle
+	Inherits@GAINSEXPERIENCE: ^GainsExperience
+	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
+	Buildable:
+		Queue: Vehicle
+		BuildPaletteOrder: 30
+		Prerequisites: ~vehicles.covenant, techcenter, ~techlevel.low
+		Description: actor-covenantwraith.description
+	Tooltip:
+		Name: actor-covenantwraith.name
+	Valued:
+		Cost: 1000
+	Armor:
+		Type: Heavy
+	Mobile:
+		Locomotor: hover
+		TurnSpeed: 32
+		Speed: 75
+	Hovers:
+		InitialHeight: 128
+	RevealsShroud:
+		MinRange: 5c0
+		Range: 8c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 5c0
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Health:
+		HP: 14000
+	Turreted:
+		TurnSpeed: 40
+		Offset: -298,0,212
+	Armament:
+		Weapon: covenantwraithcannon
+		LocalOffset: 171,-64,0, 171,64,0
+	Armament@2:
+		Weapon: covenantghostplasma
+		LocalOffset: 171,0,256
+	AttackTurreted:
+		PauseOnCondition: disabled 
+	SpawnActorOnDeath:
+		Actor: covenantwraith.Husk
+	FireWarheadsOnDeath:
+		Weapon: covenantghostdeathexplosion
+		EmptyWeapon: covenantghostdeathexplosion
+	WithMuzzleOverlay:
+	WithSpriteTurret:
+		Sequence: turret
+		RequiresCondition: !damaged_heavy || !damaged_critical
+	WithSpriteTurret@2:
+		Sequence: turretdamaged
+		RequiresCondition: damaged_heavy || damaged_critical
+	WithShadow:
+		Offset: 5, 64, 0
+		ZOffset: -129
+	RenderSprites:
+		Image: covenantwraith
+	GrantConditionOnDamageState@fire2:
+		Condition: damaged_heavy
+		ValidDamageStates: Heavy, Critical
+	GrantConditionOnDamageState@fire3:
+		Condition: damaged_critical
+		ValidDamageStates: Critical
+	WithIdleOverlay@damage2:
+		RequiresCondition: damaged_heavy
+		Sequence: fire2
+		Offset: 128,128,0
+	WithIdleOverlay@damage3:
+		RequiresCondition: damaged_critical
+		Sequence: fire1
+		Offset: -128,-128,0
+	Voiced:
+		VoiceSet: CovenantElite
+
+covenantskyhunter:
+	Inherits: ^Vehicle
+	Inherits@GAINSEXPERIENCE: ^GainsExperience
+	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
+	Buildable:
+		Queue: Vehicle
+		BuildPaletteOrder: 30
+		Prerequisites: ~vehicles.covenant, techcenter, ~techlevel.low
+		Description: actor-covenantskyhunter.description
+	Tooltip:
+		Name: actor-covenantskyhunter.name
+	Valued:
+		Cost: 1000
+	Armor:
+		Type: Heavy
+	Mobile:
+		Locomotor: hover
+		TurnSpeed: 32
+		Speed: 75
+	Hovers:
+		InitialHeight: 128
+	RevealsShroud:
+		MinRange: 5c0
+		Range: 8c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 5c0
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Health:
+		HP: 14000
+	Turreted:
+		TurnSpeed: 40
+		Offset: -298,0,212
+	Armament:
+		Weapon: covenantskyhunter
+		LocalOffset: 171,-64,0, 171,64,0
+	Armament@2:
+		Weapon: covenantghostplasma
+		LocalOffset: 171,0,256
+	AttackTurreted:
+		PauseOnCondition: disabled 
+	SpawnActorOnDeath:
+		Actor: covenantskyhunter.Husk
+	FireWarheadsOnDeath:
+		Weapon: covenantghostdeathexplosion
+		EmptyWeapon: covenantghostdeathexplosion
+	WithMuzzleOverlay:
+	WithSpriteTurret:
+		Sequence: turret
+		RequiresCondition: !damaged_heavy || !damaged_critical
+	WithSpriteTurret@2:
+		Sequence: turretdamaged
+		RequiresCondition: damaged_heavy || damaged_critical
+	WithShadow:
+		Offset: 5, 64, 0
+		ZOffset: -129
+	RenderSprites:
+		Image: covenantskyhunter
+	GrantConditionOnDamageState@fire2:
+		Condition: damaged_heavy
+		ValidDamageStates: Heavy, Critical
+	GrantConditionOnDamageState@fire3:
+		Condition: damaged_critical
+		ValidDamageStates: Critical
+	WithIdleOverlay@damage2:
+		RequiresCondition: damaged_heavy
+		Sequence: fire2
+		Offset: 128,128,0
+	WithIdleOverlay@damage3:
+		RequiresCondition: damaged_critical
+		Sequence: fire1
+		Offset: -128,-128,0
+	Voiced:
+		VoiceSet: CovenantElite
+
+covenantrevenant:
+	Inherits: ^Vehicle
+	Inherits@GAINSEXPERIENCE: ^GainsExperience
+	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
+	Buildable:
+		Queue: Vehicle
+		BuildPaletteOrder: 30
+		Prerequisites: ~vehicles.covenant, fix, ~techlevel.low
+		Description: actor-covenantrevenant.description
+	Tooltip:
+		Name: actor-covenantrevenant.name
+	Valued:
+		Cost: 800
+	Armor:
+		Type: Light
+	Mobile:
+		Locomotor: hover
+		TurnSpeed: 32
+		Speed: 110
+	Hovers:
+		InitialHeight: 128
+	RevealsShroud:
+		MinRange: 5c0
+		Range: 8c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 5c0
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Health:
+		HP: 14000
+	Turreted:
+		TurnSpeed: 40
+		Offset: -298,0,212
+	Armament:
+		Weapon: covenantrevenantcannon
+		LocalOffset: -256,0,0
+	AttackTurreted:
+		PauseOnCondition: disabled 
+	SpawnActorOnDeath:
+		Actor: covenantrevenant.Husk
+	FireWarheadsOnDeath:
+		Weapon: covenantghostdeathexplosion
+		EmptyWeapon: covenantghostdeathexplosion
+	WithMuzzleOverlay:
+	WithSpriteTurret:
+		Sequence: turret
+		RequiresCondition: !damaged_heavy || !damaged_critical
+	WithSpriteTurret@2:
+		Sequence: turretdamaged
+		RequiresCondition: damaged_heavy || damaged_critical
+	WithShadow:
+		Offset: 5, 64, 0
+		ZOffset: -129
+	RenderSprites:
+		Image: covenantrevenant
+	GrantConditionOnDamageState@fire2:
+		Condition: damaged_heavy
+		ValidDamageStates: Heavy, Critical
+	GrantConditionOnDamageState@fire3:
+		Condition: damaged_critical
+		ValidDamageStates: Critical
+	WithIdleOverlay@damage2:
+		RequiresCondition: damaged_heavy
+		Sequence: fire2
+		Offset: 128,128,0
+	WithIdleOverlay@damage3:
+		RequiresCondition: damaged_critical
+		Sequence: fire1
+		Offset: -128,-128,0
+	Voiced:
+		VoiceSet: CovenantElite

@@ -204,6 +204,16 @@ japanbarracks.bot:
 	ProvidesPrerequisite@buildingname:
 		Prerequisite: japanbarracks
 
+unscbarracks.bot:
+	Inherits: unscbarracks
+	Inherits@BotQueue_Infantry: ^BotQueue_Infantry
+	Buildable:
+		Prerequisites: anypower, ~techlevel.infonly, ~structures.unsc, ~structures.bothard, ~!ai.god
+	ProvidesPrerequisite@buildingname:
+		Prerequisite: unscbarracks
+	RenderSprites:
+		Image: unscbarracks
+
 AVTENT.bot:
 	Inherits: AVTENT
 	Inherits@BotQueue_Infantry: ^BotQueue_Infantry

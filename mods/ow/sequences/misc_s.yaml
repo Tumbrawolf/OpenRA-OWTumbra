@@ -2127,6 +2127,8 @@ icon:
 		Filename: magneticacceleratorcannonicon.shp
 	unscodstdroppodicon:
 		Filename: unscodstdroppodicon.shp
+	starfoxarwingicon:
+		Filename: starfoxarwingicon.shp
 
 beacon:
 	Defaults:
@@ -3932,3 +3934,57 @@ covenantghostdeathproj:
 		Filename: bluefire1.shp
 		Length: *
 		ZOffset: 1023
+
+covenantconcussionrifleproj:
+	idle:
+		Filename: covenantplasmalauncherproj.shp
+		Length: *
+		Tick: 25
+		Scale: 0.75
+
+
+starfoxproj1:
+	idle:
+		Filename: 125mmgreen.shp
+		Facings: 32
+		ZOffset: 1023
+
+starfoxproj2:
+	idle:
+		Filename: 125mmblue.shp
+		Facings: 32
+		ZOffset: 1023
+
+covenantplasmalauncherproj:
+	idle:
+		Filename: 125mmblue.shp
+		Facings: 32
+		ZOffset: 1023
+		Scale: 0.75
+
+covenantspikerproj:
+	idle:
+		Filename: 125mm.shp
+		Facings: 32
+		ZOffset: 1023
+		Scale: 0.75
+
+covenantbruteplasmarifleproj:
+	idle:
+		Filename: covenantbruteplasmarifleproj.shp
+		Length: *
+		Tick: 25
+		Scale: 0.75
+
+covenantwraithproj:
+	idle:
+		Filename: plasmaprojsmall.shp
+		Length: *
+		Tick: 40
+		Scale: 1.1
+
+covenantrevenantproj:
+	idle:
+		Filename: covenantbruteplasmarifleproj.shp
+		Length: *
+		Tick: 40
