@@ -59,7 +59,9 @@ Basicarrow:
 ##
 Archertowershot:
 	Inherits: Basicarrow
-	ReloadDelay: 70
+	ReloadDelay: 50
+	Burst: 5
+	BurstDelays: 0
 	Range: 7c0
 	MinRange: 1c0
 	Projectile: Bullet
@@ -67,7 +69,7 @@ Archertowershot:
 		LaunchAngle: 80, 120
 		Image: DRAGON
 		ContrailLength: 0
-		Inaccuracy: 4c0
+		Inaccuracy: 2c0
 	Warhead@GDam: SpreadDamage
 		Spread: 256
 		InvalidTargets: Structure
@@ -144,6 +146,24 @@ Castlearrowsground:
 ##
 ArcaneZap:
 	ReloadDelay: 5
+	ValidTargets: Ground, Water, GroundActor, WaterActor
+	Projectile: LaserZap
+		Blockable: False
+		Duration: 30
+	Warhead@1Dam: SpreadDamage
+		Spread: 42
+		Damage: 300
+		Versus:
+			Wood: 100
+			Light: 100
+			Heavy: 100
+			Concrete: 100
+		DamageTypes: Prone50Percent, TriggerProne, ElectricityDeath
+		ValidTargets: Ground, Water, GroundActor, WaterActor
+
+
+ArcaneZap2:
+	ReloadDelay: 5
 	ValidTargets: AirborneActor
 	Projectile: LaserZap
 		Blockable: False
@@ -158,10 +178,6 @@ ArcaneZap:
 			Concrete: 100
 		DamageTypes: Prone50Percent, TriggerProne, ElectricityDeath
 		ValidTargets: AirborneActor
-
-
-ArcaneZap2:
-	Inherits: ArcaneZap
 ##
 #Single target anti tank
 ##
@@ -210,6 +226,46 @@ Ballistatowershot:
 Dwarfsettlementshot:
 	Inherits: Ballistatowershot
 	ReloadDelay: 130
+	Range: 7c0
+	Warhead@1Dam: SpreadDamage
+		Damage: 2000
+##
+#Single target corrosive
+##
+Spitterbarb:
+	ValidTargets: Ground, Water, GroundActor, WaterActor, AirborneActor
+	ReloadDelay: 10
+	Range: 7c0
+	Burst: 2
+	BurstDelays: 0
+	Report: crossbowmanshoot1.aud,crossbowmanshoot2.aud,crossbowmanshoot3.aud
+	TargetActorCenter: True
+	Projectile: Bullet
+		Speed: 400
+		HorizontalRateOfTurn: 60
+		RangeLimit: 9c0
+		Image: V2
+		ContrailLength: 7
+		Inaccuracy: 756
+		Blockable: True
+	Warhead@1Dam: SpreadDamage
+		Spread: 50
+		Damage: 300
+		Falloff: 1000, 368, 135, 50, 18, 7, 0
+		ValidTargets: GroundActor, WaterActor, AirborneActor
+		Versus:
+			None: 70
+			Wood: 40
+			Light: 60
+			Heavy: 40
+			Concrete: 80
+		DamageTypes: Prone50Percent, TriggerProne, ExplosionDeath
+	Warhead@poison1: GrantExternalCondition
+		Delay: 1
+		Condition: corrode
+		Range: 1c0
+		Duration: 200
+		ValidTargets: GroundActor, WaterActor, AirborneActor
 ##
 #Wizard attack when in building
 ##
@@ -357,6 +413,22 @@ dryadrepair:
 	Warhead@1Dam: SpreadDamage
 		Damage: -3000
 		ValidTargets: Repair
+##
+#Used by monument
+##
+monumentheal:
+	Inherits: Heal
+	Range: 5c0
+	ReloadDelay: 500
+	Report: fixit1.aud
+	ValidTargets: GroundActor, WaterActor, AirborneActor
+	Warhead@1Eff: FlashTargetsInRadius
+		ValidTargets: GroundActor, WaterActor, AirborneActor
+	Warhead@1Dam: SpreadDamage
+		Spread: 10c0
+		Damage: -5000
+		ValidRelationships: Enemy, Neutral, Ally
+		ValidTargets: GroundActor, WaterActor, AirborneActor
 ##
 #Used by Void archer
 ##

@@ -4493,6 +4493,10 @@ gc1:
 	icon:
 		Filename: ge4icon.shp
 
+
+########################################################
+####################   Old Medi   ######################
+########################################################
 mediknight:
 	Defaults:
 		Filename: new-swordsman.shp
@@ -4545,7 +4549,6 @@ mediknight:
 		Facings: 8
 	icon:
 		Filename: mediknighticon.shp
-
 
 mediswordman:
 	Defaults:
@@ -4991,13 +4994,11 @@ mediabomination:
 	icon:
 		Filename: medigolemicon.shp
 
-###############################################################################################################
-###############################################################################################################
-######################### New Medi ############################################################################
-###############################################################################################################
-###############################################################################################################
-###############################################################################################################
+#################################################################
+######################### New Medi ##############################
+#################################################################
 
+##Medi Slaves
 mslave:
 	Defaults:
 		Filename: mknight.shp
@@ -5077,6 +5078,106 @@ mslave:
 	icon:
 		Filename: mediknighticon.shp
 
+mblackphantom:
+	Defaults:
+		Filename: mblackphantom.shp
+		Tick: 80
+	stand:
+		Facings: 8
+		Scale: 0.4
+		Offset: 0,-20,0
+		FlipX: true
+	run:
+		Start: 0
+		Length: 8
+		Facings: 8
+		Scale: 0.4
+		Offset: 0,-20,0
+		FlipX: true
+	idle1:
+		Start: 64
+		Length: 4
+		Facings: 8
+		Scale: 0.4
+		Offset: 0,-20,0
+		FlipX: true
+	idle2:
+		Start: 64
+		Length: 4
+		Facings: 8
+		Scale: 0.4
+		Offset: 0,-20,0
+		FlipX: true
+	die1:
+		Start: 160
+		Length: 4
+		Facings: 8
+		Scale: 0.4
+		Offset: 0,-20,0
+		FlipX: true
+	die2:
+		Start: 160
+		Length: 4
+		Facings: 8
+		Scale: 0.4
+		Offset: 0,-20,0
+		FlipX: true
+	die3:
+		Start: 160
+		Length: 4
+		Facings: 8
+		Scale: 0.4
+		Offset: 0,-20,0
+		FlipX: true
+	die4:
+		Start: 160
+		Length: 4
+		Facings: 8
+		Scale: 0.4
+		Offset: 0,-20,0
+		FlipX: true
+	die5:
+		Filename: s_bang34.shp
+		Length: *
+	die6:
+		Filename: electro.tem
+		TilesetFilenames:
+			SNOW: electro.sno
+		Frames: 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13
+		Length: *
+	die-crushed:
+		Start: 160
+		Length: 4
+		Facings: 8
+		Tick: 120
+		ZOffset: -511
+		Scale: 0.4
+		Offset: 0,-20,0
+		FlipX: true
+	shoot:
+		Start: 96
+		Length: 8
+		Facings: 8
+		Scale: 0.4
+		Offset: 0,-20,0
+		FlipX: true
+	shoot2:
+		Start: 128
+		Length: 8
+		Facings: 8
+		Scale: 0.4
+		Offset: 0,-20,0
+		FlipX: true
+	garrison-muzzle:
+		Filename: minigun.shp
+		Length: 6
+		Facings: 8
+	icon:
+		Filename: mediknighticon.shp
+	icon-gla:
+		Filename: mediknighticon.shp
+
+##Workers
 mworker:
 	Defaults:
 		Filename: mworker.shp
@@ -5192,12 +5293,17 @@ mworker:
 		Facings: 8
 	icon:
 		Filename: mediknighticon.shp
+	icon-gla:
+		Filename: mediknighticon.shp
 
 mworker2:
 	Inherits: mworker
 	Defaults:
 		Filename: mworker2.shp
+	icon-gla:
+		Filename: mediknighticon.shp
 
+##Scout unit
 mscout:
 	Defaults:
 		Filename: mscout.shp
@@ -5288,6 +5394,7 @@ mscout:
 	icon:
 		Filename: mediknighticon.shp
 
+##Surveyor unit
 msurveyor:
 	Defaults:
 		Filename: msurveyor.shp
@@ -5358,6 +5465,7 @@ msurveyor:
 	icon:
 		Filename: surveyormediicon.shp
 
+##The Tax collector
 mtax:
 	Defaults:
 		Filename: mtax.shp
@@ -5441,6 +5549,7 @@ mtax:
 	icon:
 		Filename: mediknighticon.shp
 
+##Basic Knight
 mknight:
 	Defaults:
 		Filename: mknight.shp
@@ -5521,6 +5630,88 @@ mknight:
 	icon:
 		Filename: mediknighticon.shp
 
+##Guard - Needs implimenting
+mguard:
+	Defaults:
+		Filename: mknight.shp
+		Tick: 80
+	stand:
+		Facings: 8
+		Scale: 0.4
+		Offset: 0,-20,0
+	run:
+		Start: 0
+		Length: 7
+		Facings: 8
+		Scale: 0.4
+		Offset: 0,-20,0
+	idle1:
+		Start: 64
+		Length: 4
+		Facings: 8
+		Scale: 0.4
+		Offset: 0,-20,0
+	idle2:
+		Start: 64
+		Length: 4
+		Facings: 8
+		Scale: 0.4
+		Offset: 0,-20,0
+	die1:
+		Start: 96
+		Length: 4
+		Facings: 8
+		Scale: 0.4
+		Offset: 0,-20,0
+	die2:
+		Start: 96
+		Length: 4
+		Facings: 8
+		Scale: 0.4
+		Offset: 0,-20,0
+	die3:
+		Start: 96
+		Length: 4
+		Facings: 8
+		Scale: 0.4
+		Offset: 0,-20,0
+	die4:
+		Start: 96
+		Length: 4
+		Facings: 8
+		Scale: 0.4
+		Offset: 0,-20,0
+	die5:
+		Filename: s_bang34.shp
+		Length: *
+	die6:
+		Filename: electro.tem
+		TilesetFilenames:
+			SNOW: electro.sno
+		Frames: 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13
+		Length: *
+	die-crushed:
+		Start: 96
+		Length: 4
+		Facings: 8
+		Tick: 120
+		ZOffset: -511
+		Scale: 0.4
+		Offset: 0,-20,0
+	shoot:
+		Start: 128
+		Length: 8
+		Facings: 8
+		Scale: 0.4
+		Offset: 0,-20,0
+	garrison-muzzle:
+		Filename: minigun.shp
+		Length: 6
+		Facings: 8
+	icon:
+		Filename: mediknighticon.shp
+ 
+##Berserker
 mberserk:
 	Defaults:
 		Filename: mberserk.shp
@@ -5618,6 +5809,7 @@ mberserk:
 	icon:
 		Filename: mediknighticon.shp
 
+##Arcane Wizard
 mwizard:
 	Defaults:
 		Filename: mwizard.shp
@@ -5715,6 +5907,207 @@ mwizard:
 	icon:
 		Filename: mediknighticon.shp
 
+##Lightning Wizard
+mlwizard:
+	Defaults:
+		Filename: mlwizard.shp
+		Tick: 80
+	stand:
+		Start: 72
+		Length: 4
+		Facings: 8
+		Scale: 0.4
+		Offset: 0,-20,0
+		FlipX: true
+	run:
+		Start: 0
+		Length: 8
+		Facings: 8
+		Scale: 0.4
+		Offset: 0,-20,0
+		FlipX: true
+	idle1:
+		Start: 72
+		Length: 4
+		Facings: 8
+		Scale: 0.4
+		Offset: 0,-20,0
+		FlipX: true
+	idle2:
+		Start: 72
+		Length: 4
+		Facings: 8
+		Scale: 0.4
+		Offset: 0,-20,0
+		FlipX: true
+	die1:
+		Start: 136
+		Length: 4
+		Facings: 8
+		Scale: 0.4
+		Offset: 0,-20,0
+		FlipX: true
+	die2:
+		Start: 136
+		Length: 4
+		Facings: 8
+		Scale: 0.4
+		Offset: 0,-20,0
+		FlipX: true
+	die3:
+		Start: 136
+		Length: 4
+		Facings: 8
+		Scale: 0.4
+		Offset: 0,-20,0
+		FlipX: true
+	die4:
+		Start: 136
+		Length: 4
+		Facings: 8
+		Scale: 0.4
+		Offset: 0,-20,0
+		FlipX: true
+	die5:
+		Filename: s_bang34.shp
+		Length: *
+	die6:
+		Filename: electro.tem
+		TilesetFilenames:
+			SNOW: electro.sno
+		Frames: 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13
+		Length: *
+	die-crushed:
+		Start: 136
+		Length: 4
+		Facings: 8
+		Tick: 120
+		ZOffset: -511
+		Scale: 0.4
+		Offset: 0,-20,0
+		FlipX: true
+	shoot:
+		Start: 104
+		Length: 4
+		Facings: 8
+		Scale: 0.4
+		Offset: 0,-20,0
+		FlipX: true
+	shoot2:
+		Start: 104
+		Length: 4
+		Facings: 8
+		Scale: 0.4
+		Offset: 0,-20,0
+		FlipX: true
+	garrison-muzzle:
+		Filename: minigun.shp
+		Length: 6
+		Facings: 8
+	icon:
+		Filename: mediknighticon.shp
+
+##Fire Wizard
+mfwizard:
+	Defaults:
+		Filename: mfwizard.shp
+		Tick: 80
+	stand:
+		Start: 72
+		Length: 4
+		Facings: 8
+		Scale: 0.4
+		Offset: 0,-20,0
+		FlipX: true
+	run:
+		Start: 0
+		Length: 8
+		Facings: 8
+		Scale: 0.4
+		Offset: 0,-20,0
+		FlipX: true
+	idle1:
+		Start: 72
+		Length: 4
+		Facings: 8
+		Scale: 0.4
+		Offset: 0,-20,0
+		FlipX: true
+	idle2:
+		Start: 72
+		Length: 4
+		Facings: 8
+		Scale: 0.4
+		Offset: 0,-20,0
+		FlipX: true
+	die1:
+		Start: 136
+		Length: 4
+		Facings: 8
+		Scale: 0.4
+		Offset: 0,-20,0
+		FlipX: true
+	die2:
+		Start: 136
+		Length: 4
+		Facings: 8
+		Scale: 0.4
+		Offset: 0,-20,0
+		FlipX: true
+	die3:
+		Start: 136
+		Length: 4
+		Facings: 8
+		Scale: 0.4
+		Offset: 0,-20,0
+		FlipX: true
+	die4:
+		Start: 136
+		Length: 4
+		Facings: 8
+		Scale: 0.4
+		Offset: 0,-20,0
+		FlipX: true
+	die5:
+		Filename: s_bang34.shp
+		Length: *
+	die6:
+		Filename: electro.tem
+		TilesetFilenames:
+			SNOW: electro.sno
+		Frames: 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13
+		Length: *
+	die-crushed:
+		Start: 136
+		Length: 4
+		Facings: 8
+		Tick: 120
+		ZOffset: -511
+		Scale: 0.4
+		Offset: 0,-20,0
+		FlipX: true
+	shoot:
+		Start: 104
+		Length: 4
+		Facings: 8
+		Scale: 0.4
+		Offset: 0,-20,0
+		FlipX: true
+	shoot2:
+		Start: 104
+		Length: 4
+		Facings: 8
+		Scale: 0.4
+		Offset: 0,-20,0
+		FlipX: true
+	garrison-muzzle:
+		Filename: minigun.shp
+		Length: 6
+		Facings: 8
+	icon:
+		Filename: mediknighticon.shp
+
+##Basic Archer
 marcher:
 	Defaults:
 		Filename: marcher.shp
@@ -5812,6 +6205,7 @@ marcher:
 	icon:
 		Filename: mediknighticon.shp
 
+##Priest - Holy
 mpriest:
 	Defaults:
 		Filename: mpriest.shp
@@ -5909,6 +6303,7 @@ mpriest:
 	icon:
 		Filename: mediknighticon.shp
 
+##Paladin unit
 mpaladin:
 	Defaults:
 		Filename: mpaladin.shp
@@ -6006,6 +6401,7 @@ mpaladin:
 	icon:
 		Filename: mediknighticon.shp
 
+##Tank buster
 mdwarf:
 	Defaults:
 		Filename: mdwarf.shp
@@ -6103,6 +6499,7 @@ mdwarf:
 	icon:
 		Filename: mediknighticon.shp
 
+##Old Paladin? or Shield Hero?
 medipaladin:
 	Defaults:
 		Filename: medipaladin.shp
@@ -6200,104 +6597,7 @@ medipaladin:
 	icon:
 		Filename: mediknighticon.shp
 
-mblackphantom:
-	Defaults:
-		Filename: mblackphantom.shp
-		Tick: 80
-	stand:
-		Facings: 8
-		Scale: 0.4
-		Offset: 0,-20,0
-		FlipX: true
-	run:
-		Start: 0
-		Length: 8
-		Facings: 8
-		Scale: 0.4
-		Offset: 0,-20,0
-		FlipX: true
-	idle1:
-		Start: 64
-		Length: 4
-		Facings: 8
-		Scale: 0.4
-		Offset: 0,-20,0
-		FlipX: true
-	idle2:
-		Start: 64
-		Length: 4
-		Facings: 8
-		Scale: 0.4
-		Offset: 0,-20,0
-		FlipX: true
-	die1:
-		Start: 160
-		Length: 4
-		Facings: 8
-		Scale: 0.4
-		Offset: 0,-20,0
-		FlipX: true
-	die2:
-		Start: 160
-		Length: 4
-		Facings: 8
-		Scale: 0.4
-		Offset: 0,-20,0
-		FlipX: true
-	die3:
-		Start: 160
-		Length: 4
-		Facings: 8
-		Scale: 0.4
-		Offset: 0,-20,0
-		FlipX: true
-	die4:
-		Start: 160
-		Length: 4
-		Facings: 8
-		Scale: 0.4
-		Offset: 0,-20,0
-		FlipX: true
-	die5:
-		Filename: s_bang34.shp
-		Length: *
-	die6:
-		Filename: electro.tem
-		TilesetFilenames:
-			SNOW: electro.sno
-		Frames: 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13
-		Length: *
-	die-crushed:
-		Start: 160
-		Length: 4
-		Facings: 8
-		Tick: 120
-		ZOffset: -511
-		Scale: 0.4
-		Offset: 0,-20,0
-		FlipX: true
-	shoot:
-		Start: 96
-		Length: 8
-		Facings: 8
-		Scale: 0.4
-		Offset: 0,-20,0
-		FlipX: true
-	shoot2:
-		Start: 128
-		Length: 8
-		Facings: 8
-		Scale: 0.4
-		Offset: 0,-20,0
-		FlipX: true
-	garrison-muzzle:
-		Filename: minigun.shp
-		Length: 6
-		Facings: 8
-	icon:
-		Filename: mediknighticon.shp
-
-
+##Giant Rat
 mgrat:
 	Defaults:
 		Filename: mgrat.shp
@@ -6404,6 +6704,7 @@ mgrat:
 	icon:
 		Filename: mediknighticon.shp
 
+##Rat Man
 mratman:
 	Defaults:
 		Filename: mratman.shp
@@ -6503,6 +6804,7 @@ mratman:
 	icon:
 		Filename: mediknighticon.shp
 
+##Evil Warrior
 mgoblinwarrior:
 	Defaults:
 		Filename: mgoblinwarrior.shp
@@ -6602,6 +6904,7 @@ mgoblinwarrior:
 	icon:
 		Filename: mediknighticon.shp
 
+##Evil Berserker
 mgoblinchamp:
 	Defaults:
 		Filename: mgoblinchamp.shp
@@ -6701,6 +7004,7 @@ mgoblinchamp:
 	icon:
 		Filename: mediknighticon.shp
 
+##Evil Priest
 mgoblinpriest:
 	Defaults:
 		Filename: mgoblinpriest.shp
@@ -6800,6 +7104,7 @@ mgoblinpriest:
 	icon:
 		Filename: mediknighticon.shp
 
+##Evil archer
 mgoblinarcher:
 	Defaults:
 		Filename: mgoblinarcher.shp
@@ -6899,6 +7204,7 @@ mgoblinarcher:
 	icon:
 		Filename: mediknighticon.shp
 
+##Evil Wizard
 mwitchking:
 	Defaults:
 		Filename: mwitchking.shp
@@ -6998,6 +7304,7 @@ mwitchking:
 	icon:
 		Filename: mediknighticon.shp
 
+##Skeleton
 mskeleton:
 	Defaults:
 		Filename: mskeleton.shp
@@ -7097,6 +7404,7 @@ mskeleton:
 	icon:
 		Filename: mediknighticon.shp
 
+##Zombie
 mzombie:
 	Defaults:
 		Filename: mzombie.shp
@@ -7196,6 +7504,7 @@ mzombie:
 	icon:
 		Filename: mediknighticon.shp
 
+##DEATHKNIGHT
 medideathknight:
 	Defaults:
 		Filename: medideathknight.shp
@@ -7270,6 +7579,7 @@ medideathknight:
 	icon:
 		Filename: medideathknighticon.shp
 
+##Void Archer
 mvoidarcher:
 	Defaults:
 		Filename: mvoidarcher.shp
@@ -7369,204 +7679,7 @@ mvoidarcher:
 	icon:
 		Filename: mediknighticon.shp
 
-mlwizard:
-	Defaults:
-		Filename: mlwizard.shp
-		Tick: 80
-	stand:
-		Start: 72
-		Length: 4
-		Facings: 8
-		Scale: 0.4
-		Offset: 0,-20,0
-		FlipX: true
-	run:
-		Start: 0
-		Length: 8
-		Facings: 8
-		Scale: 0.4
-		Offset: 0,-20,0
-		FlipX: true
-	idle1:
-		Start: 72
-		Length: 4
-		Facings: 8
-		Scale: 0.4
-		Offset: 0,-20,0
-		FlipX: true
-	idle2:
-		Start: 72
-		Length: 4
-		Facings: 8
-		Scale: 0.4
-		Offset: 0,-20,0
-		FlipX: true
-	die1:
-		Start: 136
-		Length: 4
-		Facings: 8
-		Scale: 0.4
-		Offset: 0,-20,0
-		FlipX: true
-	die2:
-		Start: 136
-		Length: 4
-		Facings: 8
-		Scale: 0.4
-		Offset: 0,-20,0
-		FlipX: true
-	die3:
-		Start: 136
-		Length: 4
-		Facings: 8
-		Scale: 0.4
-		Offset: 0,-20,0
-		FlipX: true
-	die4:
-		Start: 136
-		Length: 4
-		Facings: 8
-		Scale: 0.4
-		Offset: 0,-20,0
-		FlipX: true
-	die5:
-		Filename: s_bang34.shp
-		Length: *
-	die6:
-		Filename: electro.tem
-		TilesetFilenames:
-			SNOW: electro.sno
-		Frames: 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13
-		Length: *
-	die-crushed:
-		Start: 136
-		Length: 4
-		Facings: 8
-		Tick: 120
-		ZOffset: -511
-		Scale: 0.4
-		Offset: 0,-20,0
-		FlipX: true
-	shoot:
-		Start: 104
-		Length: 4
-		Facings: 8
-		Scale: 0.4
-		Offset: 0,-20,0
-		FlipX: true
-	shoot2:
-		Start: 104
-		Length: 4
-		Facings: 8
-		Scale: 0.4
-		Offset: 0,-20,0
-		FlipX: true
-	garrison-muzzle:
-		Filename: minigun.shp
-		Length: 6
-		Facings: 8
-	icon:
-		Filename: mediknighticon.shp
-
-mfwizard:
-	Defaults:
-		Filename: mfwizard.shp
-		Tick: 80
-	stand:
-		Start: 72
-		Length: 4
-		Facings: 8
-		Scale: 0.4
-		Offset: 0,-20,0
-		FlipX: true
-	run:
-		Start: 0
-		Length: 8
-		Facings: 8
-		Scale: 0.4
-		Offset: 0,-20,0
-		FlipX: true
-	idle1:
-		Start: 72
-		Length: 4
-		Facings: 8
-		Scale: 0.4
-		Offset: 0,-20,0
-		FlipX: true
-	idle2:
-		Start: 72
-		Length: 4
-		Facings: 8
-		Scale: 0.4
-		Offset: 0,-20,0
-		FlipX: true
-	die1:
-		Start: 136
-		Length: 4
-		Facings: 8
-		Scale: 0.4
-		Offset: 0,-20,0
-		FlipX: true
-	die2:
-		Start: 136
-		Length: 4
-		Facings: 8
-		Scale: 0.4
-		Offset: 0,-20,0
-		FlipX: true
-	die3:
-		Start: 136
-		Length: 4
-		Facings: 8
-		Scale: 0.4
-		Offset: 0,-20,0
-		FlipX: true
-	die4:
-		Start: 136
-		Length: 4
-		Facings: 8
-		Scale: 0.4
-		Offset: 0,-20,0
-		FlipX: true
-	die5:
-		Filename: s_bang34.shp
-		Length: *
-	die6:
-		Filename: electro.tem
-		TilesetFilenames:
-			SNOW: electro.sno
-		Frames: 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13
-		Length: *
-	die-crushed:
-		Start: 136
-		Length: 4
-		Facings: 8
-		Tick: 120
-		ZOffset: -511
-		Scale: 0.4
-		Offset: 0,-20,0
-		FlipX: true
-	shoot:
-		Start: 104
-		Length: 4
-		Facings: 8
-		Scale: 0.4
-		Offset: 0,-20,0
-		FlipX: true
-	shoot2:
-		Start: 104
-		Length: 4
-		Facings: 8
-		Scale: 0.4
-		Offset: 0,-20,0
-		FlipX: true
-	garrison-muzzle:
-		Filename: minigun.shp
-		Length: 6
-		Facings: 8
-	icon:
-		Filename: mediknighticon.shp
-
+##Priest - Basic
 mmonk:
 	Defaults:
 		Filename: mmonk.shp
@@ -7655,6 +7768,7 @@ mmonk:
 	icon:
 		Filename: mediknighticon.shp
 
+##Dryad
 mdryad:
 	Defaults:
 		Filename: mdryad.shp
@@ -7754,6 +7868,7 @@ mdryad:
 	icon:
 		Filename: mediknighticon.shp
 
+##Vampire
 mvampire:
 	Defaults:
 		Filename: mvampire.shp
@@ -7853,13 +7968,113 @@ mvampire:
 	icon:
 		Filename: mediknighticon.shp
 
-###############################################################################################################
-###############################################################################################################
-######################### Old Medi ############################################################################
-###############################################################################################################
-###############################################################################################################
+########################################################
+#################   Medi Hero   ########################
+########################################################
 
+##WarriorofDiscord
+WarriorofDiscord:
+	Defaults:
+		Filename: WarriorofDiscord.shp
+		Tick: 80
+	stand:
+		Start: 72
+		Length: 4
+		Facings: 8
+		Scale: 0.4
+		Offset: 0,-20,0
+		FlipX: true
+	run:
+		Start: 0
+		Length: 8
+		Facings: 8
+		Scale: 0.4
+		Offset: 0,-20,0
+		FlipX: true
+	idle1:
+		Start: 72
+		Length: 4
+		Facings: 8
+		Scale: 0.4
+		Offset: 0,-20,0
+		FlipX: true
+	idle2:
+		Start: 72
+		Length: 4
+		Facings: 8
+		Scale: 0.4
+		Offset: 0,-20,0
+		FlipX: true
+	die1:
+		Start: 136
+		Length: 4
+		Facings: 8
+		Scale: 0.4
+		Offset: 0,-20,0
+		FlipX: true
+	die2:
+		Start: 136
+		Length: 4
+		Facings: 8
+		Scale: 0.4
+		Offset: 0,-20,0
+		FlipX: true
+	die3:
+		Start: 136
+		Length: 4
+		Facings: 8
+		Scale: 0.4
+		Offset: 0,-20,0
+		FlipX: true
+	die4:
+		Start: 136
+		Length: 4
+		Facings: 8
+		Scale: 0.4
+		Offset: 0,-20,0
+		FlipX: true
+	die5:
+		Filename: s_bang34.shp
+		Length: *
+	die6:
+		Filename: electro.tem
+		TilesetFilenames:
+			SNOW: electro.sno
+		Frames: 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13
+		Length: *
+	die-crushed:
+		Start: 136
+		Length: 4
+		Facings: 8
+		Tick: 120
+		ZOffset: -511
+		Scale: 0.4
+		Offset: 0,-20,0
+		FlipX: true
+	shoot:
+		Start: 104
+		Length: 4
+		Facings: 8
+		Scale: 0.4
+		Offset: 0,-20,0
+		FlipX: true
+	shoot2:
+		Start: 104
+		Length: 4
+		Facings: 8
+		Scale: 0.4
+		Offset: 0,-20,0
+		FlipX: true
+	garrison-muzzle:
+		Filename: minigun.shp
+		Length: 6
+		Facings: 8
+	icon:
+		Filename: mediknighticon.shp
 
+########################################################
+########################################################
+########################################################
 
 
 heavyguy:

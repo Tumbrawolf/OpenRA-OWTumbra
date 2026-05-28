@@ -881,9 +881,14 @@ mgg:
 	icon-gla:
 		Filename: gmggicon.shp
 
-mcvmedi:
+#################################################################################################################
+#################################################################################################################
+#################################################################################################################
+
+##Used for MCV and Caravan, - Need to replace one of the 2
+MCVM:
 	Defaults:
-		Filename: mcvmedi.shp
+		Filename: medicarriage.shp
 	idle:
 		Start: 0
 		Facings: 8
@@ -892,12 +897,131 @@ mcvmedi:
 		Length: 10
 		Facings: 8
 		Tick: 100
+	die:
+		Start: 210
+		Length: 15
 	icon:
-		Filename: mcvmediicon.shp
-#################################################################################################################
-#################################################################################################################
-#################################################################################################################
+		Filename: MCVMicon.shp
 
+##Catapult Siege unit - Short range anti building/vehicle AOE
+catapult:
+	Defaults:
+		Filename: catapult.shp
+	idle:
+		Start: 0
+		Facings: 8
+	run:
+		Start: 8
+		Length: 10
+		Facings: 8
+		Tick: 100
+	shoot:
+		Start: 90
+		Length: 20
+		Facings: 8
+	die:
+		Start: 210
+		Length: 15
+	icon:
+		Filename: catapulticon.shp
+
+##Trebuchet Siege unit - Long range anti building
+trebuchet:
+	Defaults:
+		Filename: trebuchet.shp
+	idle:
+		Start: 0
+		Facings: 8
+	run:
+		Start: 8
+		Length: 10
+		Facings: 8
+		Tick: 100
+	shoot:
+		Start: 90
+		Length: 20
+		Facings: 8
+	die:
+		Start: 210
+		Length: 15
+	icon:
+		Filename: trebucheticon.shp
+
+##Hwacha anti infantry
+medihwacha:
+	Defaults:
+		Filename: medihwacha.shp
+	idle:
+		Start: 0
+		Facings: 8
+	run:
+		Start: 8
+		Length: 10
+		Facings: 8
+		Tick: 100
+	shoot:
+		Start: 90
+		Length: 14
+		Facings: 8
+	die:
+		Start: 210
+		Length: 15
+	icon:
+		Filename: medihwachaicon.shp
+
+##Mobile Balista anti Tanks
+mediballista:
+	Defaults:
+		Filename: mediballista.shp
+	idle:
+		Start: 0
+		Facings: 8
+	shoot:
+		Start: 8
+		Length: 1
+		Facings: 8
+		Tick: 200
+	icon:
+		Filename: mediballistaicon.shp
+
+##Heavy transport / Mobile bunker
+medisiegetower:
+	Defaults:
+		Filename: medisiegetower.shp
+	idle:
+		Start: 0
+	run:
+		Start: 0
+	shoot:
+		Start: 0
+	die:
+		Start: 0
+	icon:
+		Filename: medisiegetowericon.shp
+
+## Anti Infantry single target
+medicannon:
+	Defaults:
+		Filename: medicannon.shp
+	idle:
+		Start: 0
+		Facings: 8
+	run:
+		Start: 8
+		Length: 10
+		Facings: 8
+		Tick: 100
+	shoot:
+		Start: 90
+		Length: 15
+		Facings: 8
+	die:
+		Start: 210
+		Length: 15
+	icon:
+		Filename: medicannonicon.shp
+
+## Werewolf
 werewolf:
 	Defaults:
 		Filename: werewolf.shp
@@ -924,6 +1048,7 @@ werewolf:
 	icon:
 		Filename: catapulticon.shp
 
+##Giant Bear
 giantbear:
 	Defaults:
 		Filename: giantbear.shp
@@ -950,6 +1075,7 @@ giantbear:
 	icon:
 		Filename: catapulticon.shp
 
+##Giant Wolf
 giantwolf:
 	Defaults:
 		Filename: giantwolf.shp
@@ -977,6 +1103,7 @@ giantwolf:
 	icon:
 		Filename: catapulticon.shp
 
+##Dirgo
 dirgo:
 	Defaults:
 		Filename: dirgo.shp
@@ -1003,6 +1130,7 @@ dirgo:
 	icon:
 		Filename: catapulticon.shp
 
+##Giant Spider
 giantspider:
 	Defaults:
 		Filename: giantspider.shp
@@ -1030,6 +1158,7 @@ giantspider:
 	icon:
 		Filename: catapulticon.shp
 
+##Medusa
 medusa:
 	Defaults:
 		Filename: medusa.shp
@@ -1056,6 +1185,7 @@ medusa:
 	icon:
 		Filename: catapulticon.shp
 
+##Minotaur
 minotaur:
 	Defaults:
 		Filename: minotaur.shp
@@ -1082,6 +1212,7 @@ minotaur:
 	icon:
 		Filename: catapulticon.shp
 
+##Rrongol
 rrongol:
 	Defaults:
 		Filename: rrongol.shp
@@ -1108,6 +1239,7 @@ rrongol:
 	icon:
 		Filename: catapulticon.shp
 
+##troll
 troll:
 	Defaults:
 		Filename: troll.shp
@@ -1134,6 +1266,7 @@ troll:
 	icon:
 		Filename: catapulticon.shp
 
+##Daemonwood
 daemonwood:
 	Defaults:
 		Filename: daemonwood.shp
@@ -1160,6 +1293,7 @@ daemonwood:
 	icon:
 		Filename: catapulticon.shp
 
+##Golem
 rockgolem:
 	Defaults:
 		Filename: rockgolem.shp
@@ -1187,6 +1321,7 @@ rockgolem:
 	icon:
 		Filename: catapulticon.shp
 
+##mini Golem
 splitgolem:
 	Defaults:
 		Filename: rockgolem.shp
@@ -1214,6 +1349,7 @@ splitgolem:
 	icon:
 		Filename: catapulticon.shp
 
+##Rust Spitter
 rustspitter:
 	Defaults:
 		Filename: rustspitter.shp
@@ -1241,6 +1377,7 @@ rustspitter:
 	icon:
 		Filename: catapulticon.shp
 
+##UrlShekk
 urlshekk:
 	Defaults:
 		Filename: urlshekk.shp
@@ -1289,13 +1426,13 @@ moculus:
 	icon:
 		Filename: catapulticon.shp
 
+###############################################################################################################
+######################################   Old Medi Units   #####################################################
+###############################################################################################################
 
-#################################################################################################################
-#################################################################################################################
-#################################################################################################################
-catapult:
+mcvmedi:
 	Defaults:
-		Filename: catapult.shp
+		Filename: mcvmedi.shp
 	idle:
 		Start: 0
 		Facings: 8
@@ -1304,36 +1441,8 @@ catapult:
 		Length: 10
 		Facings: 8
 		Tick: 100
-	shoot:
-		Start: 90
-		Length: 20
-		Facings: 8
-	die:
-		Start: 210
-		Length: 15
 	icon:
-		Filename: catapulticon.shp
-
-trebuchet:
-	Defaults:
-		Filename: trebuchet.shp
-	idle:
-		Start: 0
-		Facings: 8
-	run:
-		Start: 8
-		Length: 10
-		Facings: 8
-		Tick: 100
-	shoot:
-		Start: 90
-		Length: 20
-		Facings: 8
-	die:
-		Start: 210
-		Length: 15
-	icon:
-		Filename: trebucheticon.shp
+		Filename: mcvmediicon.shp
 
 medicarriage:
 	Defaults:
@@ -1356,84 +1465,6 @@ medicarriage:
 	icon:
 		Filename: medicarriageicon.shp
 
-medihwacha:
-	Defaults:
-		Filename: medihwacha.shp
-	idle:
-		Start: 0
-		Facings: 8
-	run:
-		Start: 8
-		Length: 10
-		Facings: 8
-		Tick: 100
-	shoot:
-		Start: 90
-		Length: 14
-		Facings: 8
-	die:
-		Start: 210
-		Length: 15
-	icon:
-		Filename: medihwachaicon.shp
-
-bbus:
-	icon:
-		Filename: bbusicon.shp
-	muzzle:
-		Filename: minigun.shp
-		Length: 6
-		Facings: 8
-
-mediballista:
-	Defaults:
-		Filename: mediballista.shp
-	idle:
-		Start: 0
-		Facings: 8
-	shoot:
-		Start: 8
-		Length: 1
-		Facings: 8
-		Tick: 200
-	icon:
-		Filename: mediballistaicon.shp
-
-medisiegetower:
-	Defaults:
-		Filename: medisiegetower.shp
-	idle:
-		Start: 0
-	run:
-		Start: 0
-	shoot:
-		Start: 0
-	die:
-		Start: 0
-	icon:
-		Filename: medisiegetowericon.shp
-
-medicannon:
-	Defaults:
-		Filename: medicannon.shp
-	idle:
-		Start: 0
-		Facings: 8
-	run:
-		Start: 8
-		Length: 10
-		Facings: 8
-		Tick: 100
-	shoot:
-		Start: 90
-		Length: 15
-		Facings: 8
-	die:
-		Start: 210
-		Length: 15
-	icon:
-		Filename: medicannonicon.shp
-
 mediwaterelemental:
 	Defaults:
 		Filename: mediwaterelemental.shp
@@ -1454,6 +1485,18 @@ mediwaterelemental:
 		Length: 3
 	icon:
 		Filename: mediwaterelementalicon.shp
+
+###############################################################################################################
+###############################################################################################################
+###############################################################################################################
+
+bbus:
+	icon:
+		Filename: bbusicon.shp
+	muzzle:
+		Filename: minigun.shp
+		Length: 6
+		Facings: 8
 
 pprobe:
 	Defaults:

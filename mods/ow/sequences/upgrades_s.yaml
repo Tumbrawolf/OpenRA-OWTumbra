@@ -126,59 +126,79 @@ upgrade.glashoes:
 ################################################################################
 ##############################   Medi    #######################################
 ################################################################################
+
+##Archer Tower T1 (2nd Archer)
 upgrade.mediarrow:
 	icon:
 		Filename: meditowerupgradearchericon.shp
 
+##Imunity to Tib damage
 upgrade.mediworkboot:
 	icon:
 		Filename: meditowerupgradearchericon.shp
 
+##Non Magic units get enchanted blades, attack faster.
 upgrade.medimagicwep:
 	icon:
 		Filename: meditowerupgradearchericon.shp
 
+##Buildings get shields, very small regen
 upgrade.medimagiclogs:
 	icon:
 		Filename: meditowerupgradearchericon.shp
 
+##Faster Vision cooldown
 upgrade.medivision:
 	icon:
 		Filename: meditowerupgradearchericon.shp
 	
+##units can see stealth from longer
 upgrade.medibless:
 	icon:
 		Filename: meditowerupgradearchericon.shp
 	
+##units get imunity to debuffs when neer paladin or monuments
 upgrade.medishield:
 	icon:
 		Filename: meditowerupgradearchericon.shp
 	
+##removes slaves, cheaper workers, removes worker tech needs
 upgrade.mediabolish:
 	icon:
 		Filename: meditowerupgradearchericon.shp
 	
+##magic units get bonus damage
 upgrade.medipure:
 	icon:
 		Filename: meditowerupgradearchericon.shp
 	
+##shields for magic units
 upgrade.medimagearmor:
 	icon:
 		Filename: meditowerupgradearchericon.shp
 	
+##arcane towers can now hold wizards and are cheaper
 upgrade.mediwiztow:
 	icon:
 		Filename: meditowerupgradearchericon.shp
 	
+##Slaves carry more
 upgrade.slavedrive:
 	icon:
 		Filename: meditowerupgradearchericon.shp
 	
+##Creatures take less damage and regen missing HP
 upgrade.blackblood:
 	icon:
 		Filename: meditowerupgradearchericon.shp
 	
+##Undead units may respawn
 upgrade.necromancy:
+	icon:
+		Filename: meditowerupgradearchericon.shp
+		
+##Tax collector is buildable
+upgrade.Deathandtaxes:
 	icon:
 		Filename: meditowerupgradearchericon.shp
 
@@ -238,6 +258,10 @@ upgrade.medivision:
 upgrade.mediwiztow:
 	icon:
 		Filename: upgrademediwiztow.shp
+
+################################################################################
+################################################################################
+################################################################################
 
 upgrade.coldreactor:
 	icon:

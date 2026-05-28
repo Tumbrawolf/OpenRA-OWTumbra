@@ -39,14 +39,14 @@ upgrade.mediworkboot:
 	ExternalCondition@PRODUCED:
 		Condition: produced
 
-##Non Magic units get bonus Vehicle Damage
+##Non Magic units get enchanted blades, attack faster.
 ##magicweapons
 upgrade.medimagicwep:
 	Inherits: ^UpgradeBaseExt
 	Tooltip:
 		Name: Magic Weapons
 	Buildable:
-		Description: Enchant your weapons for bonus damage to vehicles
+		Description: Enchant your weapons for faster attack speed
 		BuildPaletteOrder: 10007
 		BuildDuration: 1000
 		Prerequisites: ~structures.medi, ~!upgrade.medimagicwep, ~techcenter
@@ -90,6 +90,22 @@ upgrade.medivision:
 	ExternalCondition@PRODUCED:
 		Condition: produced
 
+##Tax collector is buildable
+##Death and Taxes
+upgrade.Deathandtaxes:
+	Inherits: ^UpgradeBaseExt
+	Tooltip:
+		Name: Death and taxes
+	Buildable:
+		Description: You can now collect taxes.
+		BuildPaletteOrder: 10007
+		BuildDuration: 1000
+		Prerequisites: ~structures.medi, ~!upgrade.Deathandtaxes, ~techcenter
+	ProductionCostMultiplier@upgrade:
+		Multiplier: 2000
+	ProvidesPrerequisite@upgradename:
+	ExternalCondition@PRODUCED:
+		Condition: produced
 ###############################################################################
 ###################################   Holy   ##################################
 ###############################################################################
@@ -113,7 +129,7 @@ upgrade.medibless:
 
 ##units get imunity to debuffs when neer paladin or monuments
 ##protection
-upgrade.medishield:
+upgrade.mediholyshield:
 	Inherits: ^UpgradeBaseExt
 	Tooltip:
 		Name: Holy Shield
@@ -121,7 +137,7 @@ upgrade.medishield:
 		Description: Empower your paladins to Protect your units with a holy shield preventing debuffs
 		BuildPaletteOrder: 10007
 		BuildDuration: 1000
-		Prerequisites: ~structures.mediholy, ~!upgrade.medishield, ~techcenter
+		Prerequisites: ~structures.mediholy, ~!upgrade.mediholyshield, ~techcenter
 	ProductionCostMultiplier@upgrade:
 		Multiplier: 5000
 	ProvidesPrerequisite@upgradename:
@@ -159,7 +175,7 @@ upgrade.medipure:
 		Description: Boosts Magic Damage and range
 		BuildPaletteOrder: 10007
 		BuildDuration: 1000
-		Prerequisites: ~structures.medimages, ~!upgrade.medipure, ~techcenter
+		Prerequisites: ~structures.mediwizards, ~!upgrade.medipure, ~techcenter
 	ProductionCostMultiplier@upgrade:
 		Multiplier: 2000
 	ProvidesPrerequisite@upgradename:
@@ -176,7 +192,7 @@ upgrade.medimagearmor:
 		Description: Provides longer duration and faster cooldown on vision ability of the eye
 		BuildPaletteOrder: 10007
 		BuildDuration: 1000
-		Prerequisites: ~structures.medimages, ~!upgrade.medimagearmor, ~techcenter
+		Prerequisites: ~structures.mediwizards, ~!upgrade.medimagearmor, ~techcenter
 	ProductionCostMultiplier@upgrade:
 		Multiplier: 2000
 	ProvidesPrerequisite@upgradename:
@@ -193,7 +209,7 @@ upgrade.mediwiztow:
 		Description: Cheaper Arcane Towers, Can Garrison Mages.
 		BuildPaletteOrder: 10007
 		BuildDuration: 1000
-		Prerequisites: ~structures.medimages, ~!upgrade.mediwiztow, ~techcenter
+		Prerequisites: ~structures.mediwizards, ~!upgrade.mediwiztow, ~techcenter
 	ProductionCostMultiplier@upgrade:
 		Multiplier: 2000
 	ProvidesPrerequisite@upgradename:
@@ -256,3 +272,4 @@ upgrade.necromancy:
 	ProvidesPrerequisite@upgradename:
 	ExternalCondition@PRODUCED:
 		Condition: produced
+

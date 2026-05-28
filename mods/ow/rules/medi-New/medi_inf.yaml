@@ -71,10 +71,16 @@
 
 ##starting harvester
 ##medislave
-SLAVE:
+mediSLAVE:
 	Inherits: GHARV
 	-SpeedMultiplier@shoes:
-	-Buildable:
+	Buildable:
+		Queue: Infantry
+		BuildAtProductionType: infantry
+		Prerequisites: ~infantry.medi, ~!upgrade.mediabolish, ~!infantry.medicult
+		Description: Collects Ore, Tiberium and Gems for processing.\nCan repair buildngs and vehicles.
+		BuildPaletteOrder: 403
+		BuildDuration: 400
 	Valued:
 		Cost: 50
 	Tooltip:
@@ -125,10 +131,10 @@ SLAVE:
 ##upgraded harvester
 ##worker
 MEDIWORKER:
-	Inherits@SLAVE: SLAVE
+	Inherits@SLAVE: mediSLAVE
 	Buildable:
 		Queue: Infantry
-		BuildAtProductionType: Dog
+		BuildAtProductionType: infantry
 		Prerequisites: ~infantry.medi, techcenter, ~!upgrade.mediabolish
 		Description: Collects Ore, Tiberium and Gems for processing.\nCan repair buildngs and vehicles.
 		BuildPaletteOrder: 403
@@ -166,7 +172,14 @@ MEDIWORKER:
 
 ##medislave
 SLAVESpawn:
-	Inherits@SLAVE: SLAVE
+	Inherits@SLAVE: mediSLAVE
+	-Buildable
+	KillsSelf:
+		Delay: 150,350
+##medislave2
+SLAVESpawn2:
+	Inherits@SLAVE: BlackPhantom
+	-Buildable
 	KillsSelf:
 		Delay: 150,350
 
@@ -224,7 +237,7 @@ SCOUTMEDI:
 	RevealsShroud:
 		Range: 7c0
 	AutoTarget:
-		InitialStance: Defend
+		InitialStance: HoldFire
 	AutoTargetPriority@DEFAULT:
 		ValidTargets: GroundActor, Infantry
 	Targetable:
@@ -290,7 +303,8 @@ TaxCollector:
 		InitialStance: AttackAnything
 		ScanRadius: 7
 	AutoTargetPriority@DEFAULT:
-		ValidTargets: Buildings
+		ValidTargets: Taxable
+		ValidRelationships: Ally
 	Targetable:
 		TargetTypes: GroundActor, Infantry, Disguise
 	Armament@1:
@@ -754,7 +768,10 @@ ShieldHero:
 
 ##BlackPhantom - Reskin slave
 BlackPhantom:
-	Inherits@SLAVE: SLAVE
+	Inherits@SLAVE: mediSLAVE
+	Buildable:
+		Prerequisites: ~infantry.medi, ~!upgrade.mediabolish, ~infantry.medicult
+		Description: Collects Ore, Tiberium and Gems for processing.\nCan repair buildngs and vehicles.
 	RenderSprites:
 		Image: mblackphantom
 		PlayerPalette: tsunit
@@ -788,7 +805,7 @@ Giantrat:
 	Inherits@Dog: DOG
 	Buildable:
 		Prerequisites: ~infantry.medi, advtechcenter
-		Description: Toxic Rat from the sewers.\n Strong vs infantry \n Weak vs Air, Snipers, Buildings, Vehicles
+		Description: Toxic Rat from the sewers.\n Strong vs infantry \n Weak vs Anything else
 		Queue: Infantry
 		BuildAtProductionType: Soldier
 		BuildPaletteOrder: 412
@@ -928,6 +945,11 @@ Skeleton:
 	RenderSprites:
 		Image: mskeleton
 		PlayerPalette: tsunit
+
+Skeleton2:
+	Inherits@Knight: Skeleton
+	KillsSelf:
+		Delay: 250,500
 
 ##Zombie
 SummonedZombie:
@@ -1128,7 +1150,7 @@ Monk:
 	Inherits@PRIEST: PRIEST
 	Buildable:
 		Prerequisites: ~infantry.medi, advtechcenter
-		Description: Goblin Priest. Heals units
+		Description: Human Monk. Heals units
 		Queue: Infantry
 		BuildAtProductionType: Soldier
 		BuildPaletteOrder: 412

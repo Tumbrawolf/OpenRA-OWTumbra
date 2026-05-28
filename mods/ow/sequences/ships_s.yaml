@@ -101,6 +101,11 @@ dmdd:
 	icon:
 		Filename: dmddicon.shp
 
+######################################################
+#################   Medi Boats   #####################
+######################################################
+
+## Transport ship
 medicanoe:
 	Defaults:
 		Filename: medicanoe.shp
@@ -127,7 +132,8 @@ medicanoe:
 	icon:
 		Filename: medicanoeicon.shp
 
-medihwachaboat:
+##Anti Boat Boat - Balista on a boat
+MediBalistaboat:
 	Defaults:
 		Filename: medihwachaboat.shp
 	idle:
@@ -148,6 +154,7 @@ medihwachaboat:
 	icon:
 		Filename: medihwachaboaticon.shp
 
+##Siege Boat
 medimanofwar:
 	Defaults:
 		Filename: medimanofwar.shp
@@ -169,6 +176,7 @@ medimanofwar:
 	icon:
 		Filename: medimanofwaricon.shp
 
+##Spy Boat - Sub Killer
 mediarcaneboat:
 	Defaults:
 		Filename: mediarcaneboat.shp
@@ -184,6 +192,9 @@ mediarcaneboat:
 		Tick: 150
 	icon:
 		Filename: mediarcaneboaticon.shp
+
+######################################################
+######################################################
 
 usaspycarrier:
 	idle:

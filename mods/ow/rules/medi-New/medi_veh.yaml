@@ -39,6 +39,10 @@ MCVM:
 	Inherits: MCV
 	Inherits@GLAVehicle: ^GLAVehicle
 	Inherits@selection: ^SelectableSupportUnit
+	Buildable:
+		Prerequisites: fix, ~mcv, ~techlevel.medium, ~vehicles.medi
+	Transforms:
+		IntoActor: mediconyard
 	RenderSprites:
 		Image: mcvcravan
 
@@ -1007,7 +1011,7 @@ urlshekk:
 		VoiceSet: SiegeWeaponVoice
 
 
-Beholder
+##Beholder
 moculus:
 	Inherits@MediSoldier: ^MediSoldier
 	Inherits@NoExp: ^NoExp
