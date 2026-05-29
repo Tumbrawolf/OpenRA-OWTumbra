@@ -5034,3 +5034,61 @@ MagneticAcceleratorCannonCluster:
 		Damage: 1500
 		Spread: 2c0
 	-Warhead@22FlashEffect:
+
+aoe.glassing_beam:
+	ValidTargets: Ground, GroundActor, Water, WaterActor, Air, AirborneActor, Underwater, Trees
+	Range: 15c0
+	ReloadDelay: 4
+	Projectile: GravityBomb
+		Velocity: 0, 0, -512
+	Warhead@1Dam: SpreadDamage
+		Spread: 2c0
+		Damage: 12000
+		ValidTargets: Ground, GroundActor, Water, WaterActor, Air, AirborneActor, Underwater, Trees
+		Versus:
+			None: 60
+			Wood: 40
+			Light: 75
+			Concrete: 25
+		DamageTypes: Prone50Percent, TriggerProne, ElectricityDeath, Superweapon
+	Warhead@2Eff: CreateEffect
+		Explosions: particle_ring2
+		ValidTargets: Ground, GroundActor, Water, WaterActor, Air, AirborneActor, Underwater, Trees
+		ImpactSounds: glassing1.ogg, glassing2.ogg, glassing3.ogg
+	Warhead@3Smu_impact: LeaveSmudge
+		SmudgeType: Scorch
+		InvalidTargets: Vehicle, Tank, Structure, Wall
+		Size: 3
+	Warhead@3Smu_impactSnow: LeaveSmudge
+		SmudgeType: SnowScorch
+		InvalidTargets: Vehicle, Tank, Structure, Wall
+		Size: 3
+	Warhead@4Eff: CreateEffect
+		Explosions: glassingbeam1
+		ValidTargets: Ground, GroundActor, Water, WaterActor, Air, AirborneActor, Underwater, Trees
+	Warhead@5Eff: CreateEffect
+		Explosions: glassingbeam2
+		ValidTargets: Ground, GroundActor, Water, WaterActor, Air, AirborneActor, Underwater, Trees
+	Warhead@6Res_areanuke1: DestroyResource
+		Size: 3
+	Warhead@23Radiation: CreateResource
+		AddsResourceType: Radiation
+		Delay: 21
+		Size: 3
+	Warhead@Res27: DestroyResource
+		ResourceTypes: Radiation
+		Size: 3
+		Delay: 845
+		ResourceAmount: 10
+	Warhead@aaaa: FireCluster
+		Weapon: covenantmegaturretsharpnel
+		RandomClusterCount: 7
+		Dimensions: 6,6
+		Footprint: xxxxxx xxxxxx xxxxxx xxxxxx xxxxxx xxxxxx
+		ValidTargets: Ground, Water, GroundActor, WaterActor, AirborneActor, Air
+	Warhead@aaaaa: FireCluster
+		Weapon: covenantmegaturretsharpnelsmall
+		RandomClusterCount: 5
+		Dimensions: 7,7
+		Footprint: xxxxxxx xxxxxxx xxxxxxx xxxxxxx xxxxxxx xxxxxxx xxxxxxx
+		ValidTargets: Ground, Water, GroundActor, WaterActor, AirborneActor, Air

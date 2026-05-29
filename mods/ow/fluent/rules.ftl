@@ -2200,6 +2200,9 @@ actor-covenantwraith-husk-name = Husk (Zurdo-pattern Wraith)
 actor-covenantskyhunter-husk-name = Husk (Ogab'd-pattern anti-aircraft Wraith)
 actor-covenantbanshee-husk-name = Husk (Oghal-pattern Banshee)
 actor-covenantrevenant-husk-name = Husk (Rizvum-pattern Revenant)
+actor-covenantlich-husk-name = Husk (Kmiro'sish-pattern Lich)
+actor-covenantspirit-husk-name = Husk (Dextro Xur-pattern Spirit)
+actor-covenantphantom-husk-name = Husk (Ru'swum-pattern Phantom Spirit)
 
 ## japan_air.yaml
 actor-japanchoppervx =
@@ -8311,9 +8314,25 @@ actor-covenantbanshee =
    If [BLANK] is researched, the Banshee will also be armed 1× HAAW/M, Heavy Fuel Rod (Class-3)
 
     Speed: 170
-      Strong vs All
-      Weak vs None
+      Strong vs Vehicles
+      Weak vs Infantry, Aircraft
    .name = Oghal-pattern Banshee
+
+actor-covenantlich =
+   .description = Collects Ore, Tiberium and Gems for processing.
+    Speed: 96 
+      Unarmed
+   .name = Kmiro'sish-pattern Lich
+
+actor-covenantphantom =
+   .description = The Ru'swum-pattern Phantom was common among the Covenant fleets associated with the hierarch decrees.
+
+   The Phantom is capable of transporting a large amount of infantry and vehicles.
+
+    Speed: 128
+      Strong vs Infantry
+      Weak vs Aircraft, Vehicles
+   .name = Ru'swum-pattern Phantom
 
 ## covenant_inf.yaml
 
@@ -8358,17 +8377,153 @@ actor-covenantelite =
       Weak vs Aircraft
    .name = Sangheili (Elite)
 
-actor-covenantelite =
+actor-covenantjackal =
    .description = The Kig-Yar (Jackal) are a dinosaur-like saurian species, known for their keen aim.
 
    Kig-Yar can be trained with the following weapons:
 
-   Vostu-pattern carbine - Longer range battle rifle
+   Vostu-pattern carbine - Long Range battle rifle
    Gadulo-pattern needle rifle - Needle-type Sniper Rifle
    Sulok-pattern beam rifle - Shorter range, can target vehicles and aircraft
-   M'tara-pattern focus rifle - Long range beam rifle, persistant damage
 
     Speed: 70
       Strong vs Infantry, Vehicles
       Weak vs Aircraft
    .name = Kig-Yar (Jackal)
+
+
+actor-covenantbrute =
+   .description = The Jiralhanae (Brute) are a mostly carnivorous sapient species of pseudo-ursine mammals
+
+   Jiralhanae typically place a greater emphasis on brutality than wisdom; they are considered to be a savage species on the whole.
+   Due to heavy gravity on their home planet, they are immensely strong.
+
+   Jiralhanae can be trained with the following weapons:
+
+   Paegaas Workshop Spiker - Short range projectile weapon
+   Jovokada Workshop brute shot - Grenade launcher, strong against vehicles
+   Ukala Workshop Mauler - Short range shotgun
+   Kewu R'shi'k-pattern plasma rifle - Strong against shields
+   Akelus Workshop gravity hammer - Heavy melee weapon
+
+    Speed: 60
+      Strong vs Infantry, Vehicles
+      Weak vs Aircraft
+   .name = Jiralhanae (Brute)
+
+
+actor-covenanthunter =
+   .description = The Mgalekgolo (Brute) is a gestalt of Lekgolo, which are small worm-like creatures that group together to exponentially increase their intelligence,
+   strength, and maneuverability.
+
+   Of the myriad Lekgolo collectives, the best known is the Mgalekgolo or Hunter, a bipedal form that is used for heavy assault.
+
+   Mgalekgolo are armed with an Assault cannon similar to a fuel rod cannon, this can be fired in a burst or as a beam attack.
+
+    Speed: 60
+      Strong vs Infantry, Vehicles
+      Weak vs Aircraft
+   .name = Mgalekgolo (Hunter)
+
+## covenant_str.yaml
+
+actor-covenantcitadel =
+   .description = The citadel is a basic command structure deployed during interplanetary warfare or occupation campaigns.
+
+   "Once established, a large gravity lift pad is established in the front of the base,
+   which can be used to move troops and vehicles to the front lines of the battle.
+   The citadel does not appear to have any physical openings for which to enter or exit the base—troops simply use teleporters to enter and exit the base.
+   When threatened, the base can lock down, which will establish a shield around the teleporter into the base to prevent unauthorised entry or exit into or out of the base"
+
+   .name = Covenant Citadel
+
+actor-covenantfoundation =
+   .description = Foundation platforms are a prerequisite required for allowing construction of Covenant buildings.
+   Each Foundation has its on production queue and any buildings constructed can be sold back into a Foundation platform.
+   .name = Covenant Foundation
+
+actor-covenanthall =
+   .description = The Hall serves as the location where Covenant infantry are trained.
+
+   "The Covenant Hall rallies infantry units to the cause"
+
+   .name = Covenant Hall
+
+actor-covenantfactory =
+   .description = In addition to being a warehouse, the factory is also manufactures ground-based vehicles in the Covenants arsenal
+
+   "Most Covenant vehicles are pieced together and upgraded at the Factory."
+
+   .name = Covenant Factory
+
+actor-covenantwarehouse =
+   .description = The Warehouse is a Covenant structure where resources are brought down from Lich aircraft.
+
+   .name = Covenant Warehouse
+
+actor-covenantsummit =
+   .description = Summits are capable of mass-manufacturing, maintaining and upgrading a large variety of Covenant vehicles.
+
+   .name = Covenant Summit
+
+actor-covenanttemple =
+   .description = The temple is a cultural and scientific structure.
+
+   "Temples allow the Covenant to access advanced buildings, units and technology upgrades."
+
+   .name = Covenant Temple
+
+actor-covenanttheeye =
+   .description = Provides radar.
+
+   .name = Covenant Eye
+
+actor-covenantprojector =
+   .description = Covenant Superweapon that gives access to the Glassing Beam ability.
+
+       "You are, all of you, vermin. Cowering in the dirt thinking, what, I wonder? That you might escape the coming fire? No. Your world will burn until its surface is but glass!"
+    — The Prophet of Truth, to humans regarding Earth
+
+   .name = Covenant Projector
+
+actor-covenantsilo =
+   .description = Stores additional credits
+
+   .name = Covenant Silo
+
+actor-covenantadvtech =
+   .description = Unlocks advanced technology
+   .name = Covenant Advanced Tech Centre
+
+actor-covenantulttech =
+   .description = Unlocks super advanced technology and epic unit
+   .name = Covenant Super Tech Centre
+
+actor-covenantfoundry =
+   .description = Increases build speed much more than standard foundrys
+   .name = Covenant Foundry
+
+actor-covenantshade =
+   .description = Anti-infantry gun turret
+   .name = Covenant Preksheda-pattern Shade
+
+actor-covenantweevil =
+   .description = Anti-air artillery
+   .name = Zo'op-pattern Weevil
+
+actor-covenantmegaturret =
+   .description = [EPIC]
+
+   The Mantis is an automated Covenant ground-based stationary emplacement and the most storied extreme-range artillery piece in the service of the empire.
+
+       "They're setting up a battery. That thing'll tear the Dawn apart..."
+    — An Orbital Drop Shock Trooper
+
+   .name = Skar'wa-pattern Mantis
+
+actor-covenantshieldgenerator =
+   .description = The shield generator is a structure that provides shield protection for nearby units and buildings.
+
+   "Generates a large bubble shield to protect the base. Multiple Shield Generators can be built in a base to compound the shield's strength."
+
+   .name = Covenant Shield Generator

@@ -15,7 +15,7 @@ covenantgrunt:
 	UpdatesPlayerStatistics:
 		AddToArmyValue: true
 	Health:
-		HP: 10000
+		HP: 4000
 	Mobile:
 		Voice: Move
 		Speed: 70
@@ -133,13 +133,13 @@ covenantelite:
 	Tooltip:
 		Name: actor-covenantelite.name
 	Valued:
-		Cost: 300
+		Cost: 500
 	UpdatesPlayerStatistics:
 		AddToArmyValue: true
 	Health:
-		HP: 18000
+		HP: 12000
 	Shielded:
-		MaxStrength: 25000
+		MaxStrength: 12000
 		RequiresCondition: !emp_shields && !defense_matrix
 		HideBarWhenFull: false
 	Mobile:
@@ -271,7 +271,7 @@ covenantjackal:
 	Tooltip:
 		Name: actor-covenantjackal.name
 	Valued:
-		Cost: 900
+		Cost: 1000
 	UpdatesPlayerStatistics:
 		AddToArmyValue: true
 	Health:
@@ -286,7 +286,7 @@ covenantjackal:
 		ValidTargets: Infantry, Vehicle, Aircraft, Plane
 		InvalidTargets: NoAutoTarget
 	GrantRandomPeriodicCondition@covenantweapons:
-		Conditions: fake1, beamrifle, needlerifle, focusrifle
+		Conditions: fake1, beamrifle, needlerifle
 		CooldownDuration: 1
 		ActiveDuration: 90000
 	Armament@PRIMARY:
@@ -380,11 +380,11 @@ covenantbrute:
 	Tooltip:
 		Name: actor-covenantbrute.name
 	Valued:
-		Cost: 600
+		Cost: 900
 	UpdatesPlayerStatistics:
 		AddToArmyValue: true
 	Health:
-		HP: 35000
+		HP: 25000
 	Mobile:
 		Voice: Move
 		Speed: 60
@@ -492,11 +492,11 @@ covenanthunter:
 	Tooltip:
 		Name: actor-covenanthunter.name
 	Valued:
-		Cost: 1200
+		Cost: 1400
 	UpdatesPlayerStatistics:
 		AddToArmyValue: true
 	Health:
-		HP: 45000
+		HP: 35000
 	Armor:
 		Type: Heavy
 	Mobile:

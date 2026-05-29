@@ -1226,7 +1226,7 @@ unscfirebase.mac:
 		Queue: Firebase
 		BuildAtProductionType: Firebase
 		Description: actor-unscmac.description
-		Prerequisites: techcenter, ~techlevel.low, ~!structures.bothard
+		Prerequisites: techcenter, ~techlevel.low, ~!structures.bothard, !unscmac
 		IconPalette: player-icon
 		BuildPaletteOrder: 10
 		IconPaletteIsPlayerPalette: true
@@ -1277,7 +1277,7 @@ unscfirebase.ulttechcenter:
 		Queue: Firebase
 		BuildAtProductionType: Firebase
 		Description: actor-unsculttechcenter.description
-		Prerequisites: advtechcenter, ~techlevel.low, ~!structures.bothard
+		Prerequisites: advtechcenter, ~techlevel.low, ~!structures.bothard, !ulttechcenter
 		IconPalette: player-icon
 		BuildPaletteOrder: 14
 		IconPaletteIsPlayerPalette: true

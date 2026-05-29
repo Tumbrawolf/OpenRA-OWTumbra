@@ -1,20 +1,121 @@
+covenantlich:
+	Inherits: ^Vehicle
+	Inherits@CARGOPIPS: ^CargoPips
+	Inherits@selection: ^SelectableEconomicUnit
+	-HitShape:
+	HitShape: 
+		TargetableOffsets: 0,0,1536
+		Type: Circle
+			Radius: 426
+			VerticalTopOffset: 1600
+			VerticalBottomOffset: 1400
+	Buildable:
+		Queue: Aircraft
+		BuildAtProductionType: Helicopter
+		BuildPaletteOrder: 1
+		Prerequisites: ~aircraft.covenant
+		Description: actor-covenantlich.description
+	Valued: # 1200
+		Cost: 400
+	GivesExperienceMultiplier@value: 
+		Modifier: 300
+	ProductionCostMultiplier@value:
+		Multiplier: 300
+	Tooltip:
+		Name: actor-covenantlich.name
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Health:
+		HP: 40000
+	Harvester:
+		Resources: Ore,Gems,Tiberium,BlueTiberium,Oil
+		BaleUnloadDelay: 3
+		BaleLoadDelay: 9
+		SearchFromProcRadius: 15
+		SearchFromHarvesterRadius: 8
+		EmptyCondition: no-ore
+	WithHarvestOverlay:
+		Sequence: collect
+		LocalOffset: 0,0,0
+	WithDockingOverlay:
+		Sequence: deliver
+	ChangesHealth:
+		Step: 100
+		Delay: 25
+		StartIfBelow: 50
+		DamageCooldown: 500
+	RevealsShroud:
+		MinRange: 6c0
+		Range: 8c0
+		Type: GroundPosition
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 6c0
+		Type: GroundPosition
+	SpawnActorOnDeath:
+		Actor: covenantlich.Husk
+	Selectable:
+		Bounds: 1706, 1536, 0,-1536
+		DecorationBounds: 1706, 1536,0,-1536
+	FireWarheadsOnDeath:
+		RequiresCondition: !no-ore
+		Weapon: OreExplosion
+	Mobile:
+		Speed: 96
+		Locomotor: chinook
+		Voice: Move
+	WithStoresResourcesPipsDecoration:
+		Position: BottomLeft
+		RequiresSelection: true
+		PipCount: 7
+		ResourceSequences:
+			Ore: pip-yellow
+			Gems: pip-red
+			Tiberium: pip-green
+			BlueTiberium: pip-blue
+			Oil: pip-oil
+	Hovers:
+		InitialHeight: 1536
+	WithShadow:
+		Offset: 43, 1536, 0
+		ZOffset: -129
+	Voiced:
+		VoiceSet: CovenantElite
+	GpsDot:
+		String: Harvester
+	Targetable:
+		TargetTypes: Air, AirborneActor
+	-Passenger:
+	DockClientManager:
+	StoresResources:
+		Capacity: 20
+		Resources: Ore,Gems,Tiberium,BlueTiberium,Oil
+	GrantConditionOnPrerequisite@hatetib:
+		Prerequisites: ai.hatetib
+		Condition: ai.hatetib
+	ProximityExternalCondition@hatetib:
+		RequiresCondition: ai.hatetib
+		Range: 8c0
+		ValidRelationships: Neutral, Enemy
+		Condition: makecreeps
+
 covenantbanshee:
 	Inherits: ^Plane
 	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
 	Buildable:
 		Queue: Aircraft
 		BuildAtProductionType: Plane
-		BuildPaletteOrder: 1
+		BuildPaletteOrder: 2
 		Prerequisites: ~aircraft.covenant
 		Description: actor-covenantbanshee.description
 	Valued:
-		Cost: 1200
+		Cost: 1000
 	Tooltip:
 		Name: actor-covenantbanshee.name
 	UpdatesPlayerStatistics:
 		AddToArmyValue: true
 	Health:
-		HP: 14000
+		HP: 20000
 	RevealsShroud:
 		MinRange: 11c0
 		Range: 13c0
@@ -104,3 +205,78 @@ covenantbanshee:
 		RequiresCondition: damaged_critical
 		Sequence: fire1
 		Offset: -128,-128,0
+
+covenantspirit:
+	Inherits: BADR
+	Health:
+		HP: 45000
+	Aircraft:
+		Speed: 160
+	Tooltip:
+		Name: actor-covenantspirit-name
+	Contrail@1:
+		Offset: -261,-650,0
+		TrailLength: 15
+	Contrail@2:
+		Offset: -85,-384,0
+		TrailLength: 16
+	Contrail@3:
+		Offset: -85,384,0
+		TrailLength: 16
+	Contrail@4:
+		Offset: -261,650,0
+		TrailLength: 15
+	SpawnActorOnDeath:
+		Actor: covenantspirit.Husk
+	AutoTarget:
+		InitialStance: AttackAnything
+		InitialStanceAI: AttackAnything
+	AttackOmni:
+	Armament:
+		Name: primary
+		Weapon: covenantconcussionrifle
+
+covenantphantom:
+	Inherits: ^Helicopter
+	Inherits@CARGOPIPS: ^CargoPips
+	Buildable:
+		Queue: Aircraft
+		BuildAtProductionType: Helicopter
+		BuildPaletteOrder: 3
+		Prerequisites: ~aircraft.covenant, techcenter
+		Description: actor-covenantphantom.description
+	Valued:
+		Cost: 1200
+	Tooltip:
+		Name: actor-covenantphantom.name
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Health:
+		HP: 30000
+	RevealsShroud:
+		MinRange: 6c0
+		Range: 8c0
+		Type: GroundPosition
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 6c0
+		Type: GroundPosition
+	Aircraft:
+		TurnSpeed: 20
+		Speed: 128
+		AltitudeVelocity: 0c58
+	Cargo:
+		Types: Vehicle, Tank, Infantry
+		MaxWeight: 10
+		AfterUnloadDelay: 40
+		EjectOnDeath: true
+	SpawnActorOnDeath:
+		Actor: covenantphantom.Husk
+	Selectable:
+		DecorationBounds: 1706, 1536
+	Voiced:
+		VoiceSet: CovenantElite
+	AttackOmni:
+	Armament:
+		Name: primary
+		Weapon: covenantconcussionrifle

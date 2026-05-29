@@ -305,7 +305,7 @@ corvus.Hero0:
 	GrantPeriodicConditionOnEvent@invincibility:
 		Condition: ironshroud
 		CooldownDuration: 1500
-		ActiveDuration: 375
+		ActiveDuration: 250
 		Triggers: Damage
 		StartsCharged: True
 		ShowSelectionBar: true

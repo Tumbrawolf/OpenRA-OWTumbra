@@ -2820,11 +2820,11 @@ unscmcv:
 
 covenantmcv:
 	idle:
-		Filename: unscmcv.shp
+		Filename: covenantmcv.shp
 		Facings: 32
 		Offset: 0,-8
 	icon:
-		Filename: unscmcvicon.shp
+		Filename: covenantmcvicon.shp
 
 covenantghost:
 	Defaults:

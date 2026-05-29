@@ -53,7 +53,7 @@ unscmarine:
 		ActiveDuration: 90000
 		PauseOnCondition: covenantweapons
 	GrantRandomPeriodicCondition@covenantweapons:
-		Conditions: battlerifle, assaultrifle, plasmarifle, needler
+		Conditions: battlerifle, assaultrifle, plasmarifle, needler, carbine
 		CooldownDuration: 1
 		ActiveDuration: 90000
 		RequiresCondition: covenantweapons
@@ -68,22 +68,22 @@ unscmarine:
 		RequiresCondition: fraggrenades
 		PauseOnCondition: plasmagrenade
 	Armament@plasmagrenade:
-		Weapon: unscplasmagrenade
+		Weapon: covenantplasmagrenade
 		LocalOffset: 0,0,250
 		RequiresCondition: plasmagrenade
 	Armament@PRIMARY:
 		Weapon: unscpistol
-		PauseOnCondition: battlerifle || shotgun || assaultrifle || plasmapistol || plasmarifle || needler
+		PauseOnCondition: battlerifle || shotgun || assaultrifle || plasmapistol || plasmarifle || needler || carbine
 	Armament@GARRISONED:
 		Name: garrisoned
 		Weapon: unscpistol
 		MuzzleSequence: garrison-muzzle
-		PauseOnCondition: battlerifle || shotgun || assaultrifle || plasmapistol || plasmarifle || needler
+		PauseOnCondition: battlerifle || shotgun || assaultrifle || plasmapistol || plasmarifle || needler || carbine
 	Armament@BUS:
 		Name: bus
 		Weapon: unscpistol
 		MuzzleSequence: garrison-muzzle
-		PauseOnCondition: battlerifle || shotgun || assaultrifle || plasmapistol || plasmarifle || needler
+		PauseOnCondition: battlerifle || shotgun || assaultrifle || plasmapistol || plasmarifle || needler || carbine
 	Armament@PRIMARYbattlerifle:
 		Weapon: unscmarinebattlerifle
 		RequiresCondition: battlerifle
@@ -167,6 +167,20 @@ unscmarine:
 		Name: bus
 		Weapon: masterchiefneedler
 		RequiresCondition: needler
+	Armament@PRIMARYcarbine:
+		Weapon: covenantplasmacarbine
+		LocalOffset: 0,0,555
+		RequiresCondition: carbine
+	Armament@GARRISONEDcarbine:
+		Name: garrisoned
+		Weapon: covenantplasmacarbine
+		MuzzleSequence: garrison-muzzle
+		RequiresCondition: carbine
+	Armament@BUScarbine:
+		Name: bus
+		Weapon: covenantplasmacarbine
+		MuzzleSequence: garrison-muzzle
+		RequiresCondition: carbine
 	WithInfantryBody:
 		DefaultAttackSequence: shoot
 		RequiresCondition: !parachute
@@ -229,7 +243,7 @@ unscfrontrunner:
 		RequiresCondition: fraggrenades
 		PauseOnCondition: plasmagrenade
 	Armament@plasmagrenade:
-		Weapon: unscplasmagrenade
+		Weapon: covenantplasmagrenade
 		LocalOffset: 0,0,250
 		RequiresCondition: plasmagrenade
 	Armament@PRIMARY:
@@ -339,6 +353,7 @@ unscheavyweaponsmarine:
 	Armament@aintair:
 		Weapon: unscrocketlauncheraa
 		LocalOffset: 0,0,555
+		PauseOnCondition: fuelrodcannon
 	Armament@GARRISONED:
 		Name: garrisoned
 		Weapon: unscrocketlauncher
@@ -378,17 +393,21 @@ unscheavyweaponsmarine:
 		MuzzleSequence: garrison-muzzle
 		RequiresCondition: bruteshot
 	Armament@PRIMARYfuelrodcannon:
-		Weapon: unscfuelrodcannon
+		Weapon: covenantfuelrodcannon
+		LocalOffset: 0,0,555
+		RequiresCondition: fuelrodcannon
+	Armament@PRIMARYfuelrodcannonaa:
+		Weapon: covenantfuelrodcannonAA
 		LocalOffset: 0,0,555
 		RequiresCondition: fuelrodcannon
 	Armament@GARRISONEDfuelrodcannon:
 		Name: garrisoned
-		Weapon: unscfuelrodcannon
+		Weapon: covenantfuelrodcannon
 		MuzzleSequence: garrison-muzzle
 		RequiresCondition: fuelrodcannon
 	Armament@BUSfuelrodcannon:
 		Name: bus
-		Weapon: unscfuelrodcannon
+		Weapon: covenantfuelrodcannon
 		MuzzleSequence: garrison-muzzle
 		RequiresCondition: fuelrodcannon
 	WithInfantryBody:
@@ -440,7 +459,7 @@ unscsniper:
 		InvalidTargets: NoAutoTarget
 		RequiresCondition: carbine || beamrifle
 	GrantRandomPeriodicCondition@covenantweapons:
-		Conditions: carbine, fake1, beamrifle
+		Conditions: fake1, beamrifle
 		CooldownDuration: 1
 		ActiveDuration: 90000
 		RequiresCondition: covenantweapons

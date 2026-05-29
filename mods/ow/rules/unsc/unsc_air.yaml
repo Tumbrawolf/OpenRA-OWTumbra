@@ -99,9 +99,6 @@ unscdarter:
 	WithShadow:
 		Offset: 43, 1536, 0
 		ZOffset: -129
-	GrantConditionOnPrerequisite@1:
-		Condition: upgradesupplylines
-		Prerequisites: upgrade.supplylines
 	Voiced:
 		VoiceSet: ChinookVoice
 	GpsDot:
@@ -109,18 +106,6 @@ unscdarter:
 	Targetable:
 		TargetTypes: Air, AirborneActor
 	-Passenger:
-	ProductionCostMultiplier@airforcegeneral:
-		Multiplier: 75
-		Prerequisites: upgrade.cheaperplanes
-	ProductionTimeMultiplier@airforcegeneral:
-		Multiplier: 75
-		Prerequisites: upgrade.cheaperplanes
-	ProductionCostMultiplier@AIairforcegeneral:
-		Multiplier: 30
-		Prerequisites: ai.all && upgrade.aircraftgeneral
-	ProductionTimeMultiplier@AIairforcegeneral:
-		Multiplier: 30
-		Prerequisites: ai.all && upgrade.aircraftgeneral
 	DockClientManager:
 	StoresResources:
 		Capacity: 20

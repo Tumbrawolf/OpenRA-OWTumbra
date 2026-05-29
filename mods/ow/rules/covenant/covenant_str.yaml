@@ -1,4 +1,5 @@
 ^covenantbuilding:
+	Inherits@shield: ^ProtossShield
 	GrantConditionOnDamageState@fire1:
 		Condition: damaged_light
 		ValidDamageStates: Medium, Heavy, Critical
@@ -202,7 +203,18 @@ covenantfoundation:
 	TransformOnCondition@foundry:
 		IntoActor: covenantfoundry
 		RequiresCondition: foundry
-
+	GrantConditionOnProduction@shield:
+		Condition: shield
+		Actors: covenantfoundation.shieldgenerator
+	TransformOnCondition@shield:
+		IntoActor: covenantshieldgenerator
+		RequiresCondition: shield
+	GrantConditionOnProduction@megaturret:
+		Condition: megaturret
+		Actors: covenantfoundation.megaturret
+	TransformOnCondition@megaturret:
+		IntoActor: covenantmegaturret
+		RequiresCondition: megaturret
 
 covenanthall:
 	Inherits: ^DawnBuilding
@@ -381,7 +393,7 @@ covenantwarehouse:
 	CustomSellValue:
 		Value: 300
 	FreeActor:
-		Actor: unscdarter
+		Actor: covenantlich
 		SpawnOffset: 1,2
 		Facing: 256
 		RequiresCondition: !build-incomplete
@@ -508,9 +520,10 @@ covenanttheeye:
 	Inherits: ^Building
 	Inherits@shape: ^3x3Shape
 	Inherits@BIB: ^3xBuildingBib
+	Inherits@IDISABLE: ^DisableOnLowPowerOrPowerDown
 	Inherits@covenantbuilding: ^covenantbuilding
 	Tooltip:
-		Name: actor-unscradartower.name
+		Name: actor-covenanttheeye.name
 	ProvidesRadar:
 		RequiresCondition: !lowpower
 	Building:
@@ -544,14 +557,14 @@ covenanttheeye:
 	InfiltrateForExploration:
 		Types: SpyInfiltrate
 	ParatroopersPower:
-		OrderName: UNSCParadrop
+		OrderName: CovenantParadrop
 		Icon: paratroopers
-		ChargeInterval: 15000
-		Name: UNSC Marine Paradrop
-		Description: 3 D75 Pelicans drops a squad of UNSC Marine anywhere on the map.
-		UnitType: unscpelican
-		DropItems: unscmarine, unscfrontrunner, unscfrontrunner, unscfrontrunner, UNSCMarine, UNSCMarine, unscfrontrunner, unscfrontrunner, unscfrontrunner, UNSCMarine, UNSCMarine, unscfrontrunner, unscfrontrunner, unscfrontrunner, UNSCMarine
-		SquadSize: 3
+		ChargeInterval: 7500
+		Name: Covenant Spirit Drop
+		Description: 1 Spirit drops a squad of Covenant units and Ghost anywhere on the map.
+		UnitType: covenantspirit
+		DropItems: covenantgrunt, covenantgrunt, covenantelite, covenantjackal, covenantgrunt, covenantghost
+		SquadSize: 1
 		Cordon: 256
 		ReinforcementsArrivedSpeechNotification: ReinforcementsArrived
 		SelectTargetSpeechNotification: SelectTarget
@@ -653,6 +666,89 @@ covenantrepairpad:
 	SpawnActorOnDeath@firebase:
 		Actor: covenantfoundation
 
+covenantshieldgenerator:
+	Inherits: ^Building
+	Inherits@shape: ^3x3Shape
+	Inherits@BIB: ^3xBuildingBib
+	Inherits@IDISABLE: ^DisableOnLowPowerOrPowerDown
+	Inherits@AUTOTARGET: ^AutoTargetAll
+	Inherits@covenantbuilding: ^covenantbuilding
+	Tooltip:
+		Name: actor-covenantshieldgenerator.name
+	Building:
+		Footprint: xxx xxx ===
+		Dimensions: 3,3
+	Selectable:
+		Bounds: 3072, 4096
+		DecorationBounds: 3072, 4096
+	Valued:
+		Cost: 1500
+	Health:
+		HP: 30000
+	Shielded:
+		MaxStrength: 30000
+	Armor:
+		Type: Heavy
+	Power:
+		Amount: 0
+	RevealsShroud:
+		MinRange: 5c0
+		Range: 7c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 5c0
+	Targetable:
+		TargetTypes: GroundActor, C4, DetonateAttack, Structure, SpyInfiltrate
+	ProvidesPrerequisite@buildingname:
+	ToggleConditionOnOrder@sell:
+		OrderName: Sell
+		Condition: sell_me
+	Turreted:
+		TurnSpeed: 90
+		InitialFacing: 0
+		RealignDelay: -1
+	WithEmbeddedTurretSpriteBody:
+		QuantizedFacings: 64
+	Armament:
+		Weapon: ShieldBattery
+		Cursor: repair
+		OutsideRangeCursor: repair
+		TargetRelationships: Ally
+		ForceTargetRelationships: None
+		PauseOnCondition: !ammo
+	ProximityExternalCondition@shield:
+		RequiresCondition: !build-incomplete && !disabled
+		Condition: external_shield
+		Range: 10c0
+	AttackOmni:
+		RequiresCondition: !build-incomplete
+		PauseOnCondition: disabled
+	AmmoPool:
+		Ammo: 200
+		InitialAmmo: 100
+		AmmoCondition: ammo
+	ReloadAmmoPool:
+		ResetOnFire: true
+		Delay: 14
+	WithAmmoPipsDecoration:
+		Position: BottomLeft
+		Margin: 4, 3
+		RequiresSelection: false
+		PipCount: 20
+		FullSequence: bar-blue
+		EmptySequence: bar-empty
+	AutoTarget:
+		InitialStance: AttackAnything
+		MinimumScanTimeInterval: 20
+		MaximumScanTimeInterval: 25
+		RequiresCondition: ammo > 10
+	TransformOnCondition@sell:
+		RequiresCondition: sell_me
+		IntoActor: covenantfoundation
+		SkipMakeAnims: false
+	SpawnActorOnDeath@firebase:
+		Actor: covenantfoundation
+
 covenantprojector:
 	Inherits: ^Building
 	Inherits@superweapon: ^Superweapon
@@ -679,28 +775,20 @@ covenantprojector:
 		Type: Wood
 	RevealsShroud:
 		Range: 4c0
-	IonCannonPower:
-		OrderName: MagneticAcceleratorCannon
-		PauseOnCondition: disabled
-		Icon: magneticacceleratorcannonicon
-		Cursor: chrono-target
-		ChargeInterval: 22500
-		Name: Magnetic Accelerator Cannon
-		Description: actor-eyed.illumdesc
-		BeginChargeSpeechNotification: IonCannonCharge
-		EndChargeSpeechNotification: IonCannonReady
-		SelectTargetSpeechNotification: DawnSelectTarget
-		InsufficientPowerSpeechNotification: InsufficientPower
-		OnFireSound: magneticacceleratorcannonfire1.aud
-		DisplayRadarPing: True
-		CameraActor: camera.small
-		SupportPowerPaletteOrder: 19
-		WeaponDelay: 0
-		CameraRemoveDelay: 100
-		Effect: explosion
-		EffectSequence: piff
-		Weapon: MagneticAcceleratorCannonBombardment
+	SpawnActorPower:
+		OrderName: ParticleCannonStrike
+		Actor: hack.glassing_beam
+		LifeTime: 500
+		ChargeInterval: 18000
+		Icon: particle
+		Name: Glassing
+		Description: Initiates an plasma bombardment strike.
+		EffectSequence: idle
 		DisplayTimerRelationships: Ally, Neutral, Enemy
+		PauseOnCondition: disabled
+		LaunchSound: eulapar.wav
+		EndChargeSound: euparrea.wav
+		DetectedSound: eudepar.wav
 	SupportPowerChargeBar:
 	Power:
 		Amount: 0
@@ -717,6 +805,63 @@ covenantprojector:
 		SkipMakeAnims: false
 	SpawnActorOnDeath@firebase:
 		Actor: covenantfoundation
+
+hack.glassing_beam:
+	Inherits: ^Helicopter
+	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
+	Tooltip:
+		Name: actor-covenantprojector.name
+	Health:
+		HP: 5000
+	-UpdatesPlayerStatistics:
+	-Hovers@CRUISING:
+	-SelectionDecorations:
+	-GpsDot:
+	-Voiced:
+	-Targetable@GROUND:
+	-Targetable@AIRBORNE:
+	-Targetable@REPAIR:
+	-WithShadow:
+	DamageMultiplier@UNKILLABLE:
+		Modifier: 0
+	RevealsShroud:
+		Range: 3c0
+		Type: GroundPosition
+		RevealGeneratedShroud: False
+	Armament@PRIMARY:
+		Weapon: ParticleDummyWeapon
+		TargetRelationships: Ally, Enemy, Neutral
+		ForceTargetRelationships: None
+	ExplodeWeapon:
+		Weapon: aoe.glassing_beam
+		LocalOffset: 0,0,-1024
+	Turreted:
+		TurnSpeed: 90
+	AttackTurreted:
+	Aircraft:
+		TurnSpeed: 16
+		Speed: 32
+		CanSlide: false
+		CanForceLand: false
+		CruiseAltitude: 1024
+		LandAltitude: 0
+		AltitudeVelocity: 1000
+	AutoTarget:
+		InitialStance: AttackAnything
+		InitialStanceAI: AttackAnything
+		EnableStances: false
+	Selectable:
+		DecorationBounds: 2048, 2048
+	-KillsSelf:
+	KillsSelf@1:
+		RemoveInstead: true
+		Delay: 250
+	Wanders:
+		WanderMoveRadius: 10
+		MinMoveDelay: 25
+		MaxMoveDelay: 50
+	-SpawnActorOnDeath:
+	-EjectOnDeath:
 
 covenantsilo:
 	Inherits: ^Building
@@ -961,6 +1106,86 @@ T.MISSSTRcovenant:
 	Power:
 		Amount: 0
 
+covenantmegaturret:
+	Inherits: ^Defense
+	Inherits@shape: ^3x3Shape
+	Inherits@BIB: ^3xBuildingBib
+	Inherits@IDISABLE: ^DisableOnLowPowerOrPowerDown
+	Inherits@AUTOTARGET: ^AutoTargetAll
+	Inherits@AUTOTARGETGround: ^AutoTargetAirInfantryPriority
+	Inherits@NoExp: ^NoExp
+	Inherits@EPIC: ^EpicUnit
+	Inherits@covenantbuilding: ^covenantbuilding
+	Tooltip:
+		Name: actor-covenantmegaturret.name
+	Building:
+		Footprint: xxx xxx ===
+		Dimensions: 3,3
+	Selectable:
+		Bounds: 3072, 4096
+		DecorationBounds: 3072, 4096
+	Valued:
+		Cost: 1500
+	Health:
+		HP: 30000
+	Shielded:
+		MaxStrength: 30000
+	Armor:
+		Type: Heavy
+	Power:
+		Amount: 0
+	RevealsShroud:
+		MinRange: 5c0
+		Range: 7c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 5c0
+	Targetable:
+		TargetTypes: GroundActor, C4, DetonateAttack, Structure, SpyInfiltrate
+	ProvidesPrerequisite@buildingname:
+	ToggleConditionOnOrder@sell:
+		OrderName: Sell
+		Condition: sell_me
+	Turreted:
+		TurnSpeed: 90
+		InitialFacing: 0
+		RealignDelay: -1
+	WithSpriteTurret:
+		RequiresCondition: !build-incomplete
+		Recoils: false
+	Armament:
+		Name: primary
+		Weapon: covenantmegaturretcannonsound
+		AmmoUsage: 0
+		PauseOnCondition: !ammo
+	Armament@mac:
+		Name: primary
+		FireDelay: 100
+		Weapon: covenantmegaturretcannon
+		PauseOnCondition: !ammo
+	AttackTurreted:
+		RequiresCondition: !build-incomplete
+		PauseOnCondition: disabled
+	AmmoPool:
+		Ammo: 1
+		InitialAmmo: 1
+		AmmoCondition: ammo
+	ReloadAmmoPool:
+		ResetOnFire: true
+		Delay: 1125
+	WithAmmoPipsDecoration:
+		Position: BottomLeft
+		Margin: 4, 3
+		RequiresSelection: false
+		PipCount: 1
+		FullSequence: bar-blue
+		EmptySequence: bar-empty
+	TransformOnCondition@sell:
+		RequiresCondition: sell_me
+		IntoActor: covenantfoundation
+		SkipMakeAnims: false
+	SpawnActorOnDeath@firebase:
+		Actor: covenantfoundation
 
 ^covenantfoundation:
 	Buildable:
@@ -1100,7 +1325,7 @@ covenantfoundation.projector:
 		Queue: Foundation
 		BuildAtProductionType: Foundation
 		Description: actor-covenantprojector.description
-		Prerequisites: techcenter, ~techlevel.low, ~!structures.bothard
+		Prerequisites: techcenter, ~techlevel.low, ~!structures.bothard, !covenantprojector
 		IconPalette: player-icon
 		BuildPaletteOrder: 8
 		IconPaletteIsPlayerPalette: true
@@ -1126,6 +1351,23 @@ covenantfoundation.silo:
 	RenderSprites:
 		Image: covenantsilo
 
+covenantfoundation.shieldgenerator:
+	Inherits: ^covenantfoundation
+	Tooltip:
+		Name: actor-covenantshieldgenerator.name
+	Buildable:
+		Queue: Foundation
+		BuildAtProductionType: Foundation
+		Description: actor-covenantshieldgenerator.description
+		Prerequisites: techcenter
+		IconPalette: player-icon
+		BuildPaletteOrder: 10
+		IconPaletteIsPlayerPalette: true
+	Valued:
+		Cost: 2900
+	RenderSprites:
+		Image: covenantshieldgenerator
+
 covenantfoundation.advtech:
 	Inherits: ^covenantfoundation
 	Tooltip:
@@ -1136,7 +1378,7 @@ covenantfoundation.advtech:
 		Description: actor-covenantadvtech.description
 		Prerequisites: techcenter
 		IconPalette: player-icon
-		BuildPaletteOrder: 10
+		BuildPaletteOrder: 14
 		IconPaletteIsPlayerPalette: true
 	Valued:
 		Cost: 2900
@@ -1151,9 +1393,9 @@ covenantfoundation.ulttech:
 		Queue: Foundation
 		BuildAtProductionType: Foundation
 		Description: actor-covenantulttech.description
-		Prerequisites: advtechcenter
+		Prerequisites: advtechcenter, !ulttechcenter
 		IconPalette: player-icon
-		BuildPaletteOrder: 11
+		BuildPaletteOrder: 18
 		IconPaletteIsPlayerPalette: true
 	Valued:
 		Cost: 4900
@@ -1170,9 +1412,159 @@ covenantfoundation.foundry:
 		Description: actor-covenantfoundry.description
 		Prerequisites: techcenter
 		IconPalette: player-icon
-		BuildPaletteOrder: 11
+		BuildPaletteOrder: 22
 		IconPaletteIsPlayerPalette: true
 	Valued:
 		Cost: 1900
 	RenderSprites:
 		Image: covenantfoundry
+
+covenantfoundation.megaturret:
+	Inherits: ^covenantfoundation
+	Tooltip:
+		Name: actor-covenantmegaturret.name
+	Buildable:
+		Queue: Foundation
+		BuildAtProductionType: Foundation
+		Description: actor-covenantmegaturret.description
+		Prerequisites: ulttechcenter, !covenantmegaturret
+		IconPalette: player-icon
+		BuildPaletteOrder: 25
+		IconPaletteIsPlayerPalette: true
+	Valued:
+		Cost: 15000
+	RenderSprites:
+		Image: covenantmegaturret
+
+
+covenantshade:
+	Inherits: ^Defense
+	Inherits@LOWPOWER: ^DisableOnLowPowerOrPowerDown
+	Inherits@AUTOTARGET: ^AutoTargetAll
+	Inherits@AUTOTARGETGround: ^AutoTargetAirInfantryPriority
+	Inherits@unscbuilding: ^covenantbuilding
+	Valued:
+		Cost: 800
+	Selectable:
+		Bounds: 1024, 1024
+		DecorationBounds: 1024, 2048, 0, -512
+	Tooltip:
+		Name: actor-covenantshade.name
+	Building:
+	Buildable:
+		Queue: Defense
+		Description: actor-covenantshade.description
+		Prerequisites: barracks, ~techlevel.low, ~!structures.bothard
+		IconPalette: player-icon
+		BuildPaletteOrder: 2
+		IconPaletteIsPlayerPalette: true
+	Health:
+		HP: 70000
+	Armor:
+		Type: Heavy
+	RevealsShroud:
+		MinRange: 5c0
+		Range: 6c512
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 5c0
+	WithBuildingBib:
+		HasMinibib: true
+	Turreted:
+		TurnSpeed: 48
+		InitialFacing: 192
+		RealignDelay: -1
+		RequiresCondition: !build-incomplete
+	WithSpriteTurret:
+		RequiresCondition: !build-incomplete
+		Recoils: false
+	Armament@PRIMARY:
+		Weapon: covenantplasmarifle
+		LocalOffset: 512,-112,112
+		MuzzleSequence: muzzle
+		PauseOnCondition: disabled
+	Armament@PRIMARYb:
+		Weapon: covenantplasmarifle
+		LocalOffset: 512,0,112
+		MuzzleSequence: muzzle
+		PauseOnCondition: disabled
+	Armament@PRIMARYc:
+		Weapon: covenantplasmarifle
+		LocalOffset: 512,112,112
+		MuzzleSequence: muzzle
+		PauseOnCondition: disabled
+	AttackTurreted:
+		PauseOnCondition: build-incomplete
+	WithRangeCircle:
+		Range: 6c640
+	RenderDetectionCircle:
+	DetectCloaked:
+		Range: 5c0
+		DetectionTypes: Cloak, AirCloak
+		RequiresCondition: !disabled
+	WithMuzzleOverlay:
+	Power:
+		Amount: 0
+	-BodyOrientation:
+	ClassicFacingBodyOrientation:
+
+covenantweevil:
+	Inherits: ^Defense
+	Inherits@LOWPOWER: ^DisableOnLowPowerOrPowerDown
+	Inherits@AUTOTARGET: ^AutoTargetAll
+	Inherits@AUTOTARGETGround: ^AutoTargetAirInfantryPriority
+	Inherits@unscbuilding: ^covenantbuilding
+	Valued:
+		Cost: 1200
+	Selectable:
+		Bounds: 1024, 1024
+		DecorationBounds: 1024, 2048, 0, -512
+	Tooltip:
+		Name: actor-covenantweevil.name
+	Building:
+	Buildable:
+		Queue: Defense
+		Description: actor-covenantweevil.description
+		Prerequisites: techcenter, ~techlevel.low, ~!structures.bothard
+		IconPalette: player-icon
+		BuildPaletteOrder: 3
+		IconPaletteIsPlayerPalette: true
+	Health:
+		HP: 60000
+	Armor:
+		Type: Heavy
+	RevealsShroud:
+		MinRange: 5c0
+		Range: 6c512
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 5c0
+	WithBuildingBib:
+		HasMinibib: true
+	Turreted:
+		TurnSpeed: 48
+		InitialFacing: 192
+		RealignDelay: -1
+		RequiresCondition: !build-incomplete
+	WithSpriteTurret:
+		RequiresCondition: !build-incomplete
+		Recoils: false
+	Armament@PRIMARY:
+		Weapon: covenantweevilcannon
+		LocalOffset: 512,0,112
+		MuzzleSequence: muzzle
+		PauseOnCondition: disabled
+	AttackTurreted:
+		PauseOnCondition: build-incomplete
+	WithRangeCircle:
+		Range: 6c640
+	RenderDetectionCircle:
+	DetectCloaked:
+		Range: 5c0
+		DetectionTypes: Cloak, AirCloak
+		RequiresCondition: !disabled
+	WithMuzzleOverlay:
+	Power:
+		Amount: 0
+	-BodyOrientation:
+	ClassicFacingBodyOrientation:

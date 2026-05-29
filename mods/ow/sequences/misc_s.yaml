@@ -426,6 +426,14 @@ explosion:
 		Filename: particlebeam.shp
 		Length: *
 		Offset: 0, -280
+	glassingbeam1:
+		Filename: covenantglassingbeam.shp
+		Length: *
+		Offset: 0, -160
+	glassingbeam2:
+		Filename: covenantglassingbeam.shp
+		Length: *
+		Offset: 0, -280
 	mediholysuperland:
 		Filename: holysuperland.shp
 		Start: 4
@@ -552,6 +560,9 @@ explosion:
 		Filename: flash.shp
 	particle_ring:
 		Filename: particlering.shp
+	particle_ring2:
+		Filename: particlering.shp
+		Scale: 2.0
 	fuelbomb:
 		Filename: moab.shp
 		Tick: 100
@@ -1554,6 +1565,35 @@ explosion:
 		Tick: 120
 		Scale: 0.3
 		BlendMode: Additive
+	covenantmegaturretexplosion:
+		Filename: covenantmegaturretexplosion.shp
+		Length: *
+		Frames: 2,1,0,0,1,1,2,2,3,3,3
+		Tick: 80
+		ZOffset: 9000
+		Scale: 1.0
+	laserhitmedfade:
+		Filename: laserhit3.shp
+		Length: *
+		Tick: 35
+		BlendMode: Additive
+		ZOffset: 512
+		Scale: 1.25
+		AlphaFade: true
+	laserhitsmallfade:
+		Filename: laserhit2.shp
+		Length: *
+		Tick: 45
+		BlendMode: Additive
+		ZOffset: 512
+		AlphaFade: true
+	japanplasmaringfade:
+		Filename: japanplasmaring.shp
+		Length: *
+		Tick: 75
+		BlendMode: Additive
+		ZOffset: 512
+		AlphaFade: true
 
 pips:
 	Defaults:
@@ -3988,3 +4028,16 @@ covenantrevenantproj:
 		Filename: covenantbruteplasmarifleproj.shp
 		Length: *
 		Tick: 40
+		
+covenantmegaturretproj:
+	idle:
+		Filename: covenantmegaturretproj.shp
+		Length: *
+		Tick: 120
+		Scale: 0.5
+
+hack.glassing_beam:
+	idle:
+		Filename: covenantglassingbeam.shp
+		Length: *
+		Offset: 0, -40
