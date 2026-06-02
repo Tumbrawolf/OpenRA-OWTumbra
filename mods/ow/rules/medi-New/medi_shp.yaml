@@ -11,7 +11,7 @@ mcanoe:
 		Queue: Ship
 		BuildAtProductionType: Boat
 		BuildPaletteOrder: 10
-		Prerequisites: ~ships.medi
+		Prerequisites: ~ships.medi, ~!techlevel.noboats
 		Description: General-purpose naval transport.\nCan carry infantry and tanks.\n  Unarmed when unloaded
 	Valued:
 		Cost: 700
@@ -70,7 +70,7 @@ MBalistaboat:
 		Queue: Ship
 		BuildAtProductionType: Boat
 		BuildPaletteOrder: 40
-		Prerequisites: ~ships.medi
+		Prerequisites: ~ships.medi, ~!techlevel.noboats
 		Description: Fast arrow artillery ship.\nCan detect submarines.\n  Strong vs Subs, Infantry\n  Weak vs anything else
 	Valued:
 		Cost: 1000
@@ -95,13 +95,7 @@ MBalistaboat:
 		TurnSpeed: 40
 		Offset: 469,0,128
 	Armament@PRIMARY:
-		Weapon: hwachaarrow
-		PauseOnCondition: elementalweps
-		LocalOffset: 0,-100,0, 0,100,0
-		LocalYaw: 64, -64
-	Armament@PRIMARYElementalWepon:
-		Weapon: HwachaarrowElementalWeps
-		RequiresCondition: elementalweps
+		Weapon: medibattleballista
 		LocalOffset: 0,-100,0, 0,100,0
 		LocalYaw: 64, -64
 	Armament@SECONDARY:
@@ -116,6 +110,8 @@ MBalistaboat:
 	RenderDetectionCircle:
 	Selectable:
 		DecorationBounds: 1621, 1621
+	RenderSprites:
+		Image: medibalistaboat
 
 ## Anti Vehicle and Buildings, Slow attacks. long range
 mmanofwar:
@@ -125,7 +121,7 @@ mmanofwar:
 		Queue: Ship
 		BuildAtProductionType: Boat
 		BuildPaletteOrder: 40
-		Prerequisites: ~ships.medi, alchemylab, ~!ships.elementalists
+		Prerequisites: ~ships.medi, ~!techlevel.noboats
 		Description: Long range area siege.\n  Strong vs Buildings \n  Weak vs Infantry, Vehicles, Air
 	Valued:
 		Cost: 3000
@@ -150,12 +146,12 @@ mmanofwar:
 		TurnSpeed: 40
 		Offset: 469,0,128
 	Armament@PRIMARY:
-		Weapon: ManofWar
+		Weapon: mManofWar
 		LocalOffset: 0,-100,0, 0,100,0
 		LocalYaw: 64, -64
 	Armament@SECONDARY:
 		Name: secondary
-		Weapon: ManofWar
+		Weapon: mManofWar
 		LocalOffset: 480,-100,40, 480,100,40
 		LocalYaw: 64, -64
 	AttackTurreted:
@@ -166,6 +162,8 @@ mmanofwar:
 	RenderDetectionCircle:
 	Selectable:
 		DecorationBounds: 1621, 1621
+	RenderSprites:
+		Image: medimanofwar
 
 ##General purpose attack boat, Strong for Air or Subs.
 marcaneboat:
@@ -176,7 +174,7 @@ marcaneboat:
 		Queue: Ship
 		BuildAtProductionType: Boat
 		BuildPaletteOrder: 40
-		Prerequisites: ~ships.medi, castle
+		Prerequisites: ~ships.medi, ~!techlevel.noboats
 		Description: Ship with a Arcane Tower built onto it.\n  Strong vs Close range.
 	Valued:
 		Cost: 1500
@@ -201,11 +199,11 @@ marcaneboat:
 		TurnSpeed: 40
 		Offset: 469,0,128
 	Armament@PRIMARY:
-		Weapon: ArcaneBoatZap
+		Weapon: ArcaneZapboat
 		RequiresCondition: !lowpower
 	Armament@SECONDARY:
 		Name: secondary
-		Weapon: ArcaneBoatZapAA
+		Weapon: ArcaneZapboatair
 		RequiresCondition: !lowpower
 	AttackTurreted:
 	SelectionDecorations:

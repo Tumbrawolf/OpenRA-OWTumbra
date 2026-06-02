@@ -133,16 +133,15 @@ medicanoe:
 		Filename: medicanoeicon.shp
 
 ##Anti Boat Boat - Balista on a boat
-MediBalistaboat:
+medibalistaboat:
 	Defaults:
-		Filename: medihwachaboat.shp
+		Filename: mBalistaboat.shp
 	idle:
 		Start: 0
 		Facings: 8
 	run:
-		Start: 8
+		Start: 0
 		Facings: 8
-		Length: 10
 		Tick: 100
 	turret:
 		Start: 0
@@ -152,12 +151,12 @@ MediBalistaboat:
 		Facings: 8
 		Tick: 150
 	icon:
-		Filename: medihwachaboaticon.shp
+		Filename: mBalistaboaticon.shp
 
 ##Siege Boat
 medimanofwar:
 	Defaults:
-		Filename: medimanofwar.shp
+		Filename: mmanofwar.shp
 	idle:
 		Start: 0
 		Facings: 8
@@ -179,7 +178,7 @@ medimanofwar:
 ##Spy Boat - Sub Killer
 mediarcaneboat:
 	Defaults:
-		Filename: mediarcaneboat.shp
+		Filename: marcaneboat.shp
 	idle:
 		Start: 0
 		Facings: 8

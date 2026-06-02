@@ -888,20 +888,22 @@ mgg:
 ##Used for MCV and Caravan, - Need to replace one of the 2
 MCVM:
 	Defaults:
-		Filename: medicarriage.shp
+		Filename: mcvmv.shp
 	idle:
 		Start: 0
 		Facings: 8
+		Length: 9
 	run:
-		Start: 8
-		Length: 10
+		Start: 65
+		Length: 4
 		Facings: 8
 		Tick: 100
 	die:
-		Start: 210
-		Length: 15
+		Start: 97
+		Length: 4
+		Facings: 8
 	icon:
-		Filename: MCVMicon.shp
+		Filename: mcvmvicon.shp
 
 ##Catapult Siege unit - Short range anti building/vehicle AOE
 catapult:
@@ -950,7 +952,7 @@ trebuchet:
 ##Hwacha anti infantry
 medihwacha:
 	Defaults:
-		Filename: medihwacha.shp
+		Filename: mhwacha.shp
 	idle:
 		Start: 0
 		Facings: 8
@@ -972,7 +974,7 @@ medihwacha:
 ##Mobile Balista anti Tanks
 mediballista:
 	Defaults:
-		Filename: mediballista.shp
+		Filename: mballista.shp
 	idle:
 		Start: 0
 		Facings: 8
@@ -982,12 +984,12 @@ mediballista:
 		Facings: 8
 		Tick: 200
 	icon:
-		Filename: mediballistaicon.shp
+		Filename: mballistaicon.shp
 
 ##Heavy transport / Mobile bunker
 medisiegetower:
 	Defaults:
-		Filename: medisiegetower.shp
+		Filename: msiegetower.shp
 	idle:
 		Start: 0
 	run:
@@ -1002,7 +1004,7 @@ medisiegetower:
 ## Anti Infantry single target
 medicannon:
 	Defaults:
-		Filename: medicannon.shp
+		Filename: mcannon.shp
 	idle:
 		Start: 0
 		Facings: 8
@@ -1024,7 +1026,7 @@ medicannon:
 ## Werewolf
 werewolf:
 	Defaults:
-		Filename: werewolf.shp
+		Filename: mwerewolf.shp
 	idle:
 		Start: 0
 		Facings: 8
@@ -1046,12 +1048,12 @@ werewolf:
 		Length: 4
 		Scale: 0.3
 	icon:
-		Filename: catapulticon.shp
+		Filename: mwerewolficon.shp
 
 ##Giant Bear
 giantbear:
 	Defaults:
-		Filename: giantbear.shp
+		Filename: mgiantbear.shp
 	idle:
 		Start: 0
 		Facings: 8
@@ -1073,12 +1075,12 @@ giantbear:
 		Length: 4
 		Scale: 0.3
 	icon:
-		Filename: catapulticon.shp
+		Filename: mgiantbearicon.shp
 
 ##Giant Wolf
 giantwolf:
 	Defaults:
-		Filename: giantwolf.shp
+		Filename: mgiantwolf.shp
 	idle:
 		Start: 72
 		Length: 4
@@ -1101,12 +1103,12 @@ giantwolf:
 		Length: 4
 		Scale: 0.3
 	icon:
-		Filename: catapulticon.shp
+		Filename: mgiantwolficon.shp
 
 ##Dirgo
 dirgo:
 	Defaults:
-		Filename: dirgo.shp
+		Filename: mdirgo.shp
 	idle:
 		Start: 0
 		Facings: 8
@@ -1128,12 +1130,12 @@ dirgo:
 		Length: 4
 		Scale: 0.3
 	icon:
-		Filename: catapulticon.shp
+		Filename: mdirgoicon.shp
 
 ##Giant Spider
 giantspider:
 	Defaults:
-		Filename: giantspider.shp
+		Filename: mgiantspider.shp
 	idle:
 		Start: 72
 		Length: 4
@@ -1156,12 +1158,12 @@ giantspider:
 		Length: 4
 		Scale: 0.3
 	icon:
-		Filename: catapulticon.shp
+		Filename: mgiantspidericon.shp
 
 ##Medusa
 medusa:
 	Defaults:
-		Filename: medusa.shp
+		Filename: mmedusa.shp
 	idle:
 		Start: 0
 		Facings: 8
@@ -1183,12 +1185,12 @@ medusa:
 		Length: 4
 		Scale: 0.3
 	icon:
-		Filename: catapulticon.shp
+		Filename: mmedusaicon.shp
 
 ##Minotaur
 minotaur:
 	Defaults:
-		Filename: minotaur.shp
+		Filename: mminotaur.shp
 	idle:
 		Start: 0
 		Facings: 8
@@ -1210,12 +1212,12 @@ minotaur:
 		Length: 4
 		Scale: 0.3
 	icon:
-		Filename: catapulticon.shp
+		Filename: mminotauricon.shp
 
 ##Rrongol
 rrongol:
 	Defaults:
-		Filename: rrongol.shp
+		Filename: mrrongol.shp
 	idle:
 		Start: 0
 		Facings: 8
@@ -1237,12 +1239,12 @@ rrongol:
 		Length: 4
 		Scale: 0.3
 	icon:
-		Filename: catapulticon.shp
+		Filename: mrrongolicon.shp
 
 ##troll
 troll:
 	Defaults:
-		Filename: troll.shp
+		Filename: mtroll.shp
 	idle:
 		Start: 0
 		Facings: 8
@@ -1264,12 +1266,12 @@ troll:
 		Length: 4
 		Scale: 0.3
 	icon:
-		Filename: catapulticon.shp
+		Filename: mtrollicon.shp
 
 ##Daemonwood
 daemonwood:
 	Defaults:
-		Filename: daemonwood.shp
+		Filename: mdaemonwood.shp
 	idle:
 		Start: 0
 		Facings: 8
@@ -1291,12 +1293,12 @@ daemonwood:
 		Length: 4
 		Scale: 0.3
 	icon:
-		Filename: catapulticon.shp
+		Filename: mdaemonwoodicon.shp
 
 ##Golem
 rockgolem:
 	Defaults:
-		Filename: rockgolem.shp
+		Filename: mrockgolem.shp
 	idle:
 		Start: 72
 		Length: 4
@@ -1319,12 +1321,12 @@ rockgolem:
 		Length: 4
 		Scale: 0.3
 	icon:
-		Filename: catapulticon.shp
+		Filename: mrockgolemicon.shp
 
 ##mini Golem
 splitgolem:
 	Defaults:
-		Filename: rockgolem.shp
+		Filename: mrockgolem.shp
 	idle:
 		Start: 72
 		Length: 4
@@ -1347,12 +1349,12 @@ splitgolem:
 		Length: 4
 		Scale: 0.2
 	icon:
-		Filename: catapulticon.shp
+		Filename: mrockgolemicon.shp
 
 ##Rust Spitter
 rustspitter:
 	Defaults:
-		Filename: rustspitter.shp
+		Filename: mrustspitter.shp
 	idle:
 		Start: 72
 		Length: 4
@@ -1375,12 +1377,12 @@ rustspitter:
 		Length: 1
 		Scale: 0.3
 	icon:
-		Filename: catapulticon.shp
+		Filename: mrustspittericon.shp
 
 ##UrlShekk
 urlshekk:
 	Defaults:
-		Filename: urlshekk.shp
+		Filename: murlshekk.shp
 	idle:
 		Start: 0
 		Facings: 8
@@ -1402,7 +1404,7 @@ urlshekk:
 		Length: 4
 		Scale: 0.3
 	icon:
-		Filename: catapulticon.shp
+		Filename: murlshekkicon.shp
 
 moculus:
 	Defaults:
@@ -1410,6 +1412,9 @@ moculus:
 	idle:
 		Start: 0
 		Facings: 8
+	move:
+		Start: 0
+		Facings: 8
 	run:
 		Start: 0
 		Length: 8
@@ -1424,7 +1429,7 @@ moculus:
 		Start: 168
 		Length: 4
 	icon:
-		Filename: catapulticon.shp
+		Filename: moculusicon.shp
 
 ###############################################################################################################
 ######################################   Old Medi Units   #####################################################

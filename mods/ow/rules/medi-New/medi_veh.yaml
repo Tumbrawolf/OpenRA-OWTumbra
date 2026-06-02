@@ -44,7 +44,7 @@ MCVM:
 	Transforms:
 		IntoActor: mediconyard
 	RenderSprites:
-		Image: mcvcravan
+		Image: mcvmedi
 
 ###############################################################################
 ##############################   Utility and Misc   ###########################
@@ -53,9 +53,10 @@ MCVM:
 ##Sends Money to others
 TRUKMedi:
 	Inherits: ^TrackedVehicle
-	Inherits: ^Horse
+	Inherits@move: ^Horse
 	Inherits@selection: ^SelectableSupportUnit
 	Buildable:
+		IconPalette: tsunit
 		Queue: Vehicle
 		BuildPaletteOrder: 410
 		Prerequisites: ~vehicles.medi, techcenter
@@ -456,6 +457,7 @@ werewolf:
 	Inherits@GAINSEXPERIENCE: ^GainsExperience
 	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
 	Buildable:
+		IconPalette: tsunit
 		Prerequisites: ~vehicles.medi
 		Description: Berserkers Wish they were him. \n Strong vs infantry
 		Queue: Vehicle
@@ -496,7 +498,7 @@ werewolf:
 	RenderSprites:
 		Image: werewolf
 	Voiced:
-		VoiceSet: GiantbearVoice
+		VoiceSet: SwordmanVoice
 	ConvertsDamageToHealth:
 		DamagePercentConverted: 15
 
@@ -509,6 +511,7 @@ giantbear:
 	Inherits@GAINSEXPERIENCE: ^GainsExperience
 	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
 	Buildable:
+		IconPalette: tsunit
 		Prerequisites: ~vehicles.medi
 		Description: Berserkers Wish they were him. \n Strong vs infantry
 		Queue: Vehicle
@@ -537,7 +540,7 @@ giantbear:
 	RenderSprites:
 		Image: giantbear
 	Voiced:
-		VoiceSet: GiantbearVoice
+		VoiceSet: SwordmanVoice
 	ConvertsDamageToHealth:
 		DamagePercentConverted: 15
 
@@ -561,6 +564,7 @@ dirgo:
 	Inherits@GAINSEXPERIENCE: ^GainsExperience
 	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
 	Buildable:
+		IconPalette: tsunit
 		Prerequisites: ~vehicles.medi
 		Description: Berserkers Wish they were him. \n Strong vs infantry
 		Queue: Vehicle
@@ -597,6 +601,7 @@ giantspider:
 	Inherits@GAINSEXPERIENCE: ^GainsExperience
 	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
 	Buildable:
+		IconPalette: tsunit
 		Prerequisites: ~vehicles.medi
 		Description: Berserkers Wish they were him. \n Strong vs infantry
 		Queue: Vehicle
@@ -633,6 +638,7 @@ medusa:
 	Inherits@GAINSEXPERIENCE: ^GainsExperience
 	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
 	Buildable:
+		IconPalette: tsunit
 		Prerequisites: ~vehicles.medi
 		Description: Berserkers Wish they were him. \n Strong vs infantry
 		Queue: Vehicle
@@ -669,6 +675,7 @@ minotaur:
 	Inherits@GAINSEXPERIENCE: ^GainsExperience
 	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
 	Buildable:
+		IconPalette: tsunit
 		Prerequisites: ~vehicles.medi
 		Description: Berserkers Wish they were him. \n Strong vs infantry
 		Queue: Vehicle
@@ -705,6 +712,7 @@ rrongol:
 	Inherits@GAINSEXPERIENCE: ^GainsExperience
 	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
 	Buildable:
+		IconPalette: tsunit
 		Prerequisites: ~vehicles.medi
 		Description: Berserkers Wish they were him. \n Strong vs infantry
 		Queue: Vehicle
@@ -741,6 +749,7 @@ troll:
 	Inherits@GAINSEXPERIENCE: ^GainsExperience
 	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
 	Buildable:
+		IconPalette: tsunit
 		Prerequisites: ~vehicles.medi
 		Description: Berserkers Wish they were him. \n Strong vs infantry
 		Queue: Vehicle
@@ -782,6 +791,7 @@ daemonwood:
 	Inherits@GAINSEXPERIENCE: ^GainsExperience
 	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
 	Buildable:
+		IconPalette: tsunit
 		Queue: Vehicle
 		Prerequisites: ~vehicles.medi, advtechcenter
 		BuildPaletteOrder: 401
@@ -831,6 +841,7 @@ rockgolem:
 	Inherits@GAINSEXPERIENCE: ^GainsExperience
 	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
 	Buildable:
+		IconPalette: tsunit
 		Queue: Vehicle
 		Prerequisites: ~vehicles.medi, advtechcenter
 		BuildPaletteOrder: 401
@@ -905,6 +916,7 @@ rustspitter:
 	Inherits@GAINSEXPERIENCE: ^GainsExperience
 	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
 	Buildable:
+		IconPalette: tsunit
 		Queue: Vehicle
 		Prerequisites: ~vehicles.medi, advtechcenter
 		BuildPaletteOrder: 401
@@ -954,6 +966,7 @@ urlshekk:
 	Inherits@GAINSEXPERIENCE: ^GainsExperience
 	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
 	Buildable:
+		IconPalette: tsunit
 		Queue: Vehicle
 		Prerequisites: ~vehicles.medi, advtechcenter
 		BuildPaletteOrder: 401
@@ -1013,18 +1026,19 @@ urlshekk:
 
 ##Beholder
 moculus:
-	Inherits@MediSoldier: ^MediSoldier
+	Inherits: ^Helicopter
 	Inherits@NoExp: ^NoExp
 	Inherits@EPIC: ^EpicUnit
-	Inherits@EPIC2: ^EpicInfantryNerf
 	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
-	Inherits@InfPro: ^AutoTargetVehiclePriority
+	MustBeDestroyed:
+	-SpawnActorOnDeath:
 	Buildable:
-		Prerequisites: ~vehicles.medi
+		IconPalette: tsunit
+		Prerequisites: ~aircraft.medi
 		Description: Beholder of magic
-		Queue: Vehicle
+		Queue: Aircraft
 		BuildLimit: 1
-		BuildAtProductionType: Soldier
+		BuildAtProductionType: Helicopter
 		BuildPaletteOrder: 419
 	Valued:
 		Cost: 12000
@@ -1036,32 +1050,107 @@ moculus:
 		Type: Heavy
 	Health:
 		HP: 400000
-	Mobile:
+	Aircraft:
+		CruiseAltitude: 1280
+		TurnSpeed: 512
 		Speed: 60
-		Locomotor: foot2
+		Voice: Move
+	WithFacingSpriteBody:
 	Selectable:
-		Bounds: 2133, 4266, 0, -1493
-		DecorationBounds: 2133, 4266, 0, -1493
+		Bounds: 2133, 2133, 0, 0
+		DecorationBounds: 2133, 2133, 0, 0
 	SelectionDecorations:
 	RevealsShroud:
 		Range: 7c512
-	Armament@SECONDARY:
-		Name: secondary
-		Weapon: MediDeathKnightAttack1
-		RequiresCondition: SwordSwing
-	Armament:
-		Weapon: MediDeathKnightAttack2
-		LocalOffset: 400,60,2200, 400,-60,2200
-	WithInfantryBody:
-		DefaultAttackSequence: shoot
-		StandSequences: stand
+		Type: CenterPosition
+	Turreted@weapon1:
+		Turret: weapon1
+		TurnSpeed: 1023
+		FacingTolerance: 512
+		Offset: 0,0,256
+	Turreted@weapon2:
+		Turret: weapon2
+		TurnSpeed: 1023
+		FacingTolerance: 512
+		Offset: 0,0,256
+	Turreted@weapon3:
+		Turret: weapon3
+		TurnSpeed: 1023
+		FacingTolerance: 512
+		Offset: 0,0,256
+	Turreted@weapon4:
+		Turret: weapon4
+		TurnSpeed: 1023
+		FacingTolerance: 512
+		Offset: 0,0,256
+	Turreted@weapon5:
+		Turret: weapon5
+		TurnSpeed: 1023
+		FacingTolerance: 512
+		Offset: 0,0,256
+	Turreted@weapon6:
+		Turret: weapon6
+		TurnSpeed: 1023
+		FacingTolerance: 512
+		Offset: 0,0,256
+	Turreted@weapon7:
+		Turret: weapon7
+		TurnSpeed: 1023
+		FacingTolerance: 512
+		Offset: 0,0,256
+	Turreted@weapon8:
+		Turret: weapon8
+		TurnSpeed: 1023
+		FacingTolerance: 512
+		Offset: 0,0,256
+	Armament@weapon1:
+		Name: weapon1
+		Weapon: Voidarchershot3
+		Turret: weapon1
+		PauseOnCondition: !airborne
+	Armament@weapon2:
+		Name: weapon2
+		Weapon: WizBall
+		Turret: weapon2
+		PauseOnCondition: !airborne
+	Armament@weapon3:
+		Name: weapon3
+		Weapon: WizFireBall
+		Turret: weapon3
+		PauseOnCondition: !airborne
+	Armament@weapon4:
+		Name: weapon4
+		Weapon: Wizzap
+		Turret: weapon4
+		PauseOnCondition: !airborne
+	Armament@weapon5:
+		Name: weapon5
+		Weapon: Spitterbarb
+		Turret: weapon5
+		PauseOnCondition: !airborne
+	Armament@weapon6:
+		Name: weapon6
+		Weapon: Ballistashot
+		Turret: weapon6
+		PauseOnCondition: !airborne
+	Armament@weapon7:
+		Name: weapon7
+		Weapon: GryphonRiderAttack
+		Turret: weapon7
+		PauseOnCondition: !airborne
+	Armament@weapon8:
+		Name: weapon8
+		Weapon: Catapult
+		Turret: weapon8
+		PauseOnCondition: !airborne
+	AttackTurreted:
+		Turrets: weapon1, weapon2, weapon3, weapon4, weapon5, weapon6, weapon7, weapon8
+		Armaments: weapon1, weapon2, weapon3, weapon4, weapon5, weapon6, weapon7, weapon8
 	AutoTarget:
 		InitialStance: AttackAnything
 		ScanRadius: 10
-	AutoTargetPriority@DEFAULT:
-		ValidTargets: GroundActor, Infantry
 	Targetable:
-		TargetTypes: GroundActor, Infantry, Disguise
+		TargetTypes: AirborneActor, GroundActor, Vehicle, Infantry
 	RenderSprites:
 		Image: moculus
 	FireWarheadsOnDeath:

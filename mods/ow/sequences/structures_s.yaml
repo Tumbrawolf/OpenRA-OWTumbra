@@ -2332,6 +2332,10 @@ factm:
 			TEMPERAT: bib2.tem
 			DESERT: bib2.des
 		Length: *
+	frame:
+		Scale: 0.33
+		Start: 0
+		Length: 1
 	icon:
 		Filename: factmicon.shp
 
@@ -2342,7 +2346,7 @@ factm:
 ##Outpost building
 outpostmedi:
 	Defaults:
-		Filename: outpostmedi.shp
+		Filename: moutpost.shp
 	place:
 		Start: 0
 	idle:
@@ -2364,12 +2368,12 @@ outpostmedi:
 			DESERT: bib3.des
 		Length: *
 	icon:
-		Filename: farmmediicon.shp
+		Filename: moutposticon.shp
 
 ##Human Slaves
 slavecampgc:
 	Defaults:
-		Filename: slavecampgc.shp
+		Filename: mslavecamp.shp
 	place:
 		Scale: 0.4
 		Start: 0
@@ -2410,12 +2414,12 @@ slavecampgc:
 			DESERT: bib3.des
 		Length: *
 	icon:
-		Filename: slaveCampIcon.shp
+		Filename: mslavecampicon.shp
 
 ##Refinary
 refinarymarket:
 	Defaults:
-		Filename: refinarymarket.shp
+		Filename: mrefinary.shp
 	place:
 		Scale: 0.29
 		Start: 0
@@ -2447,12 +2451,12 @@ refinarymarket:
 			DESERT: bib3.des
 		Length: *
 	icon:
-		Filename: laborcampmediicon.shp
+		Filename: mrefinaryicon.shp
 
 ##Barracks
 barrackswg:
 	Defaults:
-		Filename: barrackswg.shp
+		Filename: mbarracks.shp
 	place:
 		Scale: 0.3
 		Start: 0
@@ -2480,12 +2484,12 @@ barrackswg:
 			DESERT: bib3.des
 		Length: *
 	icon:
-		Filename: tentmediicon.shp
+		Filename: mbarracksicon.shp
 
 ##Creatures for the base faction
 animalden:
 	Defaults:
-		Filename: AnimalDen.shp
+		Filename: manimalden.shp
 	place:
 		Scale: 0.23
 		Start: 0
@@ -2510,12 +2514,12 @@ animalden:
 			DESERT: bib3.des
 		Length: *
 	icon:
-		Filename: tentmediicon.shp
+		Filename: mcreatureWizicon.shp
 
 ##Vehicles
 dwarfsettlement:
 	Defaults:
-		Filename: DwarfSettlement.shp
+		Filename: mdwarfsettle.shp
 	place:
 		Scale: 0.25
 		Start: 1
@@ -2546,12 +2550,12 @@ dwarfsettlement:
 		Length: 7
 		Tick: 300
 	icon:
-		Filename: tentmediicon.shp
+		Filename: mdwarfsettleicon.shp
 
 ##Airfield
 dragonlair:
 	Defaults:
-		Filename: dragonlair.shp
+		Filename: mdragonlair.shp
 	place:
 		Scale: 0.5
 		Start: 0
@@ -2569,31 +2573,37 @@ dragonlair:
 		Scale: 0.5
 		Start: 1
 	icon:
-		Filename: tentmediicon.shp
+		Filename: mdragonlairicon.shp
 
-#TempleofLunord
-creaturestl:
+#
+mcreatureholy:
 	Inherits: animalden
 	Defaults:
-		Filename: CreaturesTL.shp
+		Filename: mcreatureholy.shp
+	icon:
+		Filename: mcreatureholyicon.shp
 		
-#TempleofLunord
-creaturestok:
+#
+mcreatureWiz:
 	Inherits: animalden
 	Defaults:
-		Filename: creaturestok.shp
+		Filename: mcreatureWiz.shp
+	icon:
+		Filename: mcreatureWizicon.shp
 
-#Templeofkrypta
-creaturestk:
+#
+mcreaturecult:
 	Inherits: animalden
 	Defaults:
-		Filename: creaturestk.shp
+		Filename: mcreaturecult.shp
+	icon:
+		Filename: mcreatureculticon.shp
 
 #GoblinCamp
 barracksgc:
 	Inherits: barrackswg
 	Defaults:
-		Filename: barracksgc.shp
+		Filename: mGoblinCamp.shp
 	place:
 		Scale: 0.3
 		Start: 0
@@ -2621,7 +2631,7 @@ barracksgc:
 			DESERT: bib3.des
 		Length: *
 	icon:
-		Filename: tentmediicon.shp
+		Filename: mGoblinCampicon.shp
 
 #Goblin Slaves
 slavecampgh:
@@ -2659,12 +2669,14 @@ slavecampgh:
 		Start: 0
 		Tick: 1200
 	Defaults:
-		Filename: slavecampgh.shp
+		Filename: mslavegoblin.shp
+	icon:
+		Filename: mslavegoblinicon.shp
 
 #Graveyard
 medigraveyard:
 	Defaults:
-		Filename: medigraveyard.shp
+		Filename: mgraveyard.shp
 	place:
 		Scale: 0.4
 		Start: 0
@@ -2698,7 +2710,7 @@ medigraveyard:
 		Start: 0
 		Tick: 1200
 	icon:
-		Filename: medicastleicon.shp
+		Filename: mgraveyardicon.shp
 
 ###############################################
 ###########   Tech and Nukes   ################
@@ -2707,7 +2719,7 @@ medigraveyard:
 ##Tech center
 techcenterblacksmith:
 	Defaults:
-		Filename: techcenterblacksmith.shp
+		Filename: mtechcenter.shp
 	place:
 		Scale: 0.4
 		Start: 0
@@ -2739,12 +2751,12 @@ techcenterblacksmith:
 			DESERT: bib3.des
 		Length: *
 	icon:
-		Filename: medicastleicon.shp
+		Filename: mtechcentericon.shp
 
 ##Advanced Tech
 advtechcenterlibrary:
 	Defaults:
-		Filename: advtechcenterlibrary.shp
+		Filename: madvtechcenter.shp
 	place:
 		Scale: 0.2
 		Start: 0
@@ -2771,12 +2783,12 @@ advtechcenterlibrary:
 			DESERT: bib3.des
 		Length: *
 	icon:
-		Filename: medicastleicon.shp
+		Filename: madvtechcentericon.shp
 
 ##Super Tech
 brashnards:
 	Defaults:
-		Filename: Brashnards.shp
+		Filename: msupertech.shp
 	place:
 		Scale: 0.2
 		Start: 0
@@ -2801,12 +2813,12 @@ brashnards:
 			DESERT: bib3.des
 		Length: *
 	icon:
-		Filename: medicastleicon.shp
+		Filename: msupertechicon.shp
 
 ##Radar structure
 radarwg:
 	Defaults:
-		Filename: radarwg.shp
+		Filename: mwizguild.shp
 	place:
 		Scale: 0.2
 		Start: 0
@@ -2822,6 +2834,10 @@ radarwg:
 		Scale: 0.2
 		Start: 2
 		Tick: 800
+	make:
+		Scale: 0.2
+		Start: 0
+		Length: 1
 	bib:
 		TilesetFilenames:
 			SNOW: bib3.sno
@@ -2830,7 +2846,7 @@ radarwg:
 			DESERT: bib3.des
 		Length: *
 	icon:
-		Filename: medicastleicon.shp
+		Filename: mwizguildicon.shp
 
 
 ##Nuke
@@ -3043,7 +3059,7 @@ medifirestorm:
 ##monument Building
 monumentgazebo:
 	Defaults:
-		Filename: monumentgazebo.shp
+		Filename: mmonument.shp
 	place:
 		Scale: 0.2
 		Start: 0
@@ -3059,40 +3075,10 @@ monumentgazebo:
 		Scale: 0.2
 		Start: 2
 		Tick: 800
-	bib:
-		TilesetFilenames:
-			SNOW: bib3.sno
-			INTERIOR: bib3.int
-			TEMPERAT: bib3.tem
-			DESERT: bib3.des
-		Length: *
-	icon:
-		Filename: medicastleicon.shp
-
-##Not used yet
-fairgrounds:
-	Defaults:
-		Filename: fairgrounds.shp
-	place:
-		Scale: 0.2
-		Start: 0
-		Length: 1
 	make:
 		Scale: 0.2
 		Start: 0
 		Length: 1
-		Tick: 1200
-	idle:
-		Scale: 0.2
-		Start: 0
-		Length: 1
-	damaged-idle:
-		Scale: 0.2
-		Start: 1
-	dead:
-		Scale: 0.2
-		Start: 2
-		Tick: 800
 	bib:
 		TilesetFilenames:
 			SNOW: bib3.sno
@@ -3101,12 +3087,12 @@ fairgrounds:
 			DESERT: bib3.des
 		Length: *
 	icon:
-		Filename: medicastleicon.shp
+		Filename: mmonumenticon.shp
 
 ##Gamba time
 gamblinghall:
 	Defaults:
-		Filename: gamblinghall.shp
+		Filename: mgamblinghall.shp
 	place:
 		Scale: 0.2
 		Start: 0
@@ -3135,12 +3121,12 @@ gamblinghall:
 			DESERT: bib3.des
 		Length: *
 	icon:
-		Filename: medicastleicon.shp
+		Filename: mgamblinghallicon.shp
 
 ##Elven Hideout
 elvenhideout:
 	Defaults:
-		Filename: elvenhideout.shp
+		Filename: melven.shp
 	place:
 		Scale: 0.2
 		Start: 0
@@ -3169,12 +3155,12 @@ elvenhideout:
 			DESERT: bib3.des
 		Length: *
 	icon:
-		Filename: medicastleicon.shp
+		Filename: melvenicon.shp
 
 ##Spitervine
 spittervine:
 	Defaults:
-		Filename: spittervine.shp
+		Filename: mspittervine.shp
 	place:
 		Scale: 0.2
 		Start: 0
@@ -3186,6 +3172,10 @@ spittervine:
 	damaged-idle:
 		Scale: 0.2
 		Start: 1
+	make:
+		Scale: 0.2
+		Start: 0
+		Length: 1
 	dead:
 		Scale: 0.2
 		Start: 2
@@ -3198,7 +3188,7 @@ spittervine:
 			DESERT: bib3.des
 		Length: *
 	icon:
-		Filename: medicastleicon.shp
+		Filename: mspittervineicon.shp
 
 ###############################################
 ##############   defences    ##################
@@ -3213,7 +3203,7 @@ Archertower4:
 ##Archer Tower
 Archertower:
 	Defaults:
-		Filename: mediarrowtower.shp
+		Filename: mArchertower.shp
 	place:
 		Scale: 0.15
 		Start: 1
@@ -3245,14 +3235,14 @@ Archertower:
 			DESERT: bib3.des
 		Length: *
 	icon:
-		Filename: mediarrowtowericon.shp
+		Filename: mArchertowericon.shp
 	icon-gun:
-		Filename: mediarrowtowericon.shp
+		Filename: mArchertowericon.shp
 
 ##Guardhouse
 guardhouse:
 	Defaults:
-		Filename: guardhouse.shp
+		Filename: mguardhouse.shp
 	place:
 		Scale: 0.2
 		Start: 0
@@ -3287,14 +3277,14 @@ guardhouse:
 			DESERT: bib3.des
 		Length: *
 	icon:
-		Filename: mediarrowtowericon.shp
+		Filename: mguardhouseicon.shp
 	icon-gun:
-		Filename: mediarrowtowericon.shp
+		Filename: mguardhouseicon.shp
 
 ##Wizards tower
 wizardtower:
 	Defaults:
-		Filename: wizardtower.shp
+		Filename: mwizardtower.shp
 	place:
 		Start: 6
 		Scale: 0.75
@@ -3329,12 +3319,12 @@ wizardtower:
 			DESERT: bib3.des
 		Length: *
 	icon:
-		Filename: mediarcanetowericon.shp
+		Filename: mwizardtowericon.shp
 
 ##Balista Tower
 balistatower:
 	Defaults:
-		Filename: balistatower.shp
+		Filename: mbalistatower.shp
 	place:
 		Scale: 0.2
 		Start: 1
@@ -3366,14 +3356,14 @@ balistatower:
 			DESERT: bib3.des
 		Length: *
 	icon:
-		Filename: medibalistatowericon.shp
+		Filename: mbalistatowericon.shp
 	icon-gun:
-		Filename: medibalistatowericon.shp
+		Filename: mbalistatowericon.shp
 
 ##The Eye
 medieyetower:
 	Defaults:
-		Filename: medieyetower.shp
+		Filename: meye.shp
 	place:
 		Start: 1
 	idle:
@@ -3395,9 +3385,9 @@ medieyetower:
 			DESERT: bib3.des
 		Length: *
 	icon:
-		Filename: medieyetowericon.shp
+		Filename: eyeicon.shp
 	icon-gap3:
-		Filename: medieyetowericon.shp
+		Filename: eyeicon.shp
 
 ###############################################
 ##############   MediOld    ###################

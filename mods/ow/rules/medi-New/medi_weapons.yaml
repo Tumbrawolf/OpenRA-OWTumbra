@@ -237,7 +237,7 @@ Spitterbarb:
 	ReloadDelay: 10
 	Range: 7c0
 	Burst: 2
-	BurstDelays: 0
+	BurstDelays: 15
 	Report: crossbowmanshoot1.aud,crossbowmanshoot2.aud,crossbowmanshoot3.aud
 	TargetActorCenter: True
 	Projectile: Bullet
@@ -250,7 +250,7 @@ Spitterbarb:
 		Blockable: True
 	Warhead@1Dam: SpreadDamage
 		Spread: 50
-		Damage: 300
+		Damage: 150
 		Falloff: 1000, 368, 135, 50, 18, 7, 0
 		ValidTargets: GroundActor, WaterActor, AirborneActor
 		Versus:
@@ -301,9 +301,10 @@ MusketeerShot:
 PayTax:
 	Range: 2c0
 	Report: footmansword1.aud
-	ValidTargets: Structure
+	ValidTargets: Taxable
+	ValidRelationships: Ally
 	Projectile: InstantHit
-	ReloadDelay: 100
+	ReloadDelay: 1
 	Warhead@curtain: GrantExternalCondition
 		ValidTargets: Structure
 		ValidRelationships: Ally
@@ -1027,12 +1028,12 @@ ElementalSpawner:
 	Warhead@GDam: SpawnRandomActor
 		Range: 5
 		ForceGround: True
-		Actors: swarmling,swarmling,swarmling,swarmling,swarmling,swarmling,swarmling
+		Actors: Knight,Knight,Knight,Knight,Knight,Knight,Knight
 
 ZombieSpawner:
 	Inherits: ElementalSpawner
 	Warhead@GDam: SpawnRandomActor
-		Actors: Goul,Goul,Goul,Goul,Goul,Goul,Goul
+		Actors: Knight,Knight,Knight,Knight,Knight,Knight,Knight
 		
 ###############################################################################
 ##############################   Condition Attacks   ##########################
@@ -2010,7 +2011,7 @@ wyvernbomb:
 			Concrete: 80
 			Heavy: 100
 		DamageTypes: Prone50Percent, TriggerProne, FireDeath, Incendiary
-	Warhead@1Dam: SpreadDamage
+	Warhead@2Dam: SpreadDamage
 		Spread: 512
 		Damage: 20000
 		ValidTargets: Structure, Wall, Husk, Trees
@@ -2048,46 +2049,52 @@ medibattleballista:
 ##
 #Used by medijuggernaut
 ##
-MediJugCatapult:
+mManofWar:
 	Inherits: Catapult
 	ReloadDelay: 60
-	Burst: 6
+	Burst: 5
 	BurstDelay: 0
 	Range: 10c0
 	MinRange: 2c0
 	Projectile: Bullet
-		Inaccuracy: 4c0
+		Inaccuracy: 3c0
 ##
+#Anti sub laser deals constant damage
 ##
-medijugtorp:
-	Inherits: TorpTube
-	Burst: 1
-	BurstDelays: 0
-	ValidTargets: Underwater
-	Projectile: Missile
-		Image: torpedo
-		Arm: 2
-		Speed: 85
-##
-#Used by medisub
-##
-medisubtorp:
-	Inherits: TorpTube
-	Burst: 4
-	BurstDelays: 5
-	Projectile: Missile
-		Image: torpedo
-		Arm: 2
-		Speed: 85
-##
-#Used by elvendestroyer ## Flame Thrower attack
-##
-elvendestroyer:
+ArcaneZapboat:
+	Inherits: ArcaneZap
+	ReloadDelay: 5
+	ValidTargets: Ground, Water, GroundActor, WaterActor
+	Projectile: LaserZap
+		Blockable: False
+		Duration: 30
+	Warhead@1Dam: SpreadDamage
+		Spread: 42
+		Damage: 300
+		Versus:
+			Wood: 100
+			Light: 100
+			Heavy: 100
+			Concrete: 100
+		DamageTypes: Prone50Percent, TriggerProne, ElectricityDeath
+		ValidTargets: Ground, Water, GroundActor, WaterActor
 
-##
-#Used by tanker
-##
-TankerExplosion:
+ArcaneZapboatair:
+	ReloadDelay: 15
+	ValidTargets: AirborneActor
+	Projectile: LaserZap
+		Blockable: False
+		Duration: 30
+	Warhead@1Dam: SpreadDamage
+		Spread: 42
+		Damage: 300
+		Versus:
+			Wood: 100
+			Light: 100
+			Heavy: 100
+			Concrete: 100
+		DamageTypes: Prone50Percent, TriggerProne, ElectricityDeath
+		ValidTargets: AirborneActor
 
 
 
@@ -2310,7 +2317,7 @@ Giantbearclaw:
 ##
 #Used by GiantWolf
 ##
-GiantEagle:
+GiantWolfBite:
 	Inherits: ratsword
 	ReloadDelay: 30
 	Report: swordmanattack1.aud,swordmanattack2.aud,swordmanattack3.aud,swordmanattack4.aud,swordmanattack5.aud,swordmanattack6.aud,swordmanattack7.aud,swordmanattack8.aud,swordmanattack9.aud,swordmanattack10.aud,swordmanattack11.aud,swordmanattack12.aud
@@ -2346,7 +2353,7 @@ Medusa:
 ##
 #Used by Minotaur
 ##
-GiantEagle:
+MinotaurStrike:
 	Inherits: ratsword
 	ReloadDelay: 30
 	Report: swordmanattack1.aud,swordmanattack2.aud,swordmanattack3.aud,swordmanattack4.aud,swordmanattack5.aud,swordmanattack6.aud,swordmanattack7.aud,swordmanattack8.aud,swordmanattack9.aud,swordmanattack10.aud,swordmanattack11.aud,swordmanattack12.aud
@@ -2355,7 +2362,7 @@ GiantEagle:
 ##
 #Used by Rrongol
 ##
-GiantEagle:
+RrongolStrike:
 	Inherits: ratsword
 	ReloadDelay: 30
 	Report: swordmanattack1.aud,swordmanattack2.aud,swordmanattack3.aud,swordmanattack4.aud,swordmanattack5.aud,swordmanattack6.aud,swordmanattack7.aud,swordmanattack8.aud,swordmanattack9.aud,swordmanattack10.aud,swordmanattack11.aud,swordmanattack12.aud
@@ -2364,7 +2371,7 @@ GiantEagle:
 ##
 #Used by Troll
 ##
-GiantEagle:
+TrollStrike:
 	Inherits: ratsword
 	ReloadDelay: 30
 	Report: swordmanattack1.aud,swordmanattack2.aud,swordmanattack3.aud,swordmanattack4.aud,swordmanattack5.aud,swordmanattack6.aud,swordmanattack7.aud,swordmanattack8.aud,swordmanattack9.aud,swordmanattack10.aud,swordmanattack11.aud,swordmanattack12.aud
@@ -2373,7 +2380,7 @@ GiantEagle:
 ##
 #Used by Daemonwood
 ##
-GiantEagle:
+DaemonwoodStrike:
 	Inherits: ratsword
 	ReloadDelay: 30
 	Report: swordmanattack1.aud,swordmanattack2.aud,swordmanattack3.aud,swordmanattack4.aud,swordmanattack5.aud,swordmanattack6.aud,swordmanattack7.aud,swordmanattack8.aud,swordmanattack9.aud,swordmanattack10.aud,swordmanattack11.aud,swordmanattack12.aud
@@ -2382,7 +2389,7 @@ GiantEagle:
 ##
 #Used by RockGolem
 ##
-GiantEagle:
+RockGolemStrike:
 	Inherits: ratsword
 	ReloadDelay: 30
 	Report: swordmanattack1.aud,swordmanattack2.aud,swordmanattack3.aud,swordmanattack4.aud,swordmanattack5.aud,swordmanattack6.aud,swordmanattack7.aud,swordmanattack8.aud,swordmanattack9.aud,swordmanattack10.aud,swordmanattack11.aud,swordmanattack12.aud
@@ -2391,7 +2398,7 @@ GiantEagle:
 ##
 #Used by SplitGolem
 ##
-GiantEagle:
+SplitGolemStrike:
 	Inherits: ratsword
 	ReloadDelay: 30
 	Report: swordmanattack1.aud,swordmanattack2.aud,swordmanattack3.aud,swordmanattack4.aud,swordmanattack5.aud,swordmanattack6.aud,swordmanattack7.aud,swordmanattack8.aud,swordmanattack9.aud,swordmanattack10.aud,swordmanattack11.aud,swordmanattack12.aud
@@ -2400,7 +2407,7 @@ GiantEagle:
 ##
 #Used by RustSpitter
 ##
-GiantEagle:
+RustSpitterStrike:
 	Inherits: ratsword
 	ReloadDelay: 30
 	Report: swordmanattack1.aud,swordmanattack2.aud,swordmanattack3.aud,swordmanattack4.aud,swordmanattack5.aud,swordmanattack6.aud,swordmanattack7.aud,swordmanattack8.aud,swordmanattack9.aud,swordmanattack10.aud,swordmanattack11.aud,swordmanattack12.aud
@@ -2409,7 +2416,7 @@ GiantEagle:
 ##
 #Used by UrlShekk
 ##
-GiantEagle:
+UrlShekkStrike:
 	Inherits: ratsword
 	ReloadDelay: 30
 	Report: swordmanattack1.aud,swordmanattack2.aud,swordmanattack3.aud,swordmanattack4.aud,swordmanattack5.aud,swordmanattack6.aud,swordmanattack7.aud,swordmanattack8.aud,swordmanattack9.aud,swordmanattack10.aud,swordmanattack11.aud,swordmanattack12.aud

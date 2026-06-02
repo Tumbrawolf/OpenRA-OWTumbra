@@ -4302,11 +4302,11 @@ nbos5:
 		Tick: 1600
 		ZOffset: -511
 	rotor:
-		Filename: lrotor.shp
+		Filename: lrotorlg.shp
 		Start: 0
 		Length: 4
 	slow-rotor:
-		Filename: lrotor.shp
+		Filename: lrotorlg.shp
 		Start: 4
 		Length: 8
 	icon:
@@ -5001,7 +5001,14 @@ mediabomination:
 ##Medi Slaves
 mslave:
 	Defaults:
-		Filename: mknight.shp
+		Filename: mslave.shp
+	stand:
+		Start: 64
+		Length: 4
+		Facings: 8
+		Scale: 0.4
+		Offset: 0,-20,0
+		FlipX: true
 	run:
 		Start: 0
 		Length: 7
@@ -5071,12 +5078,28 @@ mslave:
 		Scale: 0.4
 		Offset: 0,-20,0
 		FlipX: true
+	dock:
+		Start: 64
+		Length: 4
+		Facings: 8
+		Scale: 0.4
+		Offset: 0,-20,0
+		FlipX: true
+	dock-loop:
+		Start: 64
+		Length: 4
+		Facings: 8
+		Scale: 0.4
+		Offset: 0,-20,0
+		FlipX: true
 	garrison-muzzle:
 		Filename: minigun.shp
 		Length: 6
 		Facings: 8
 	icon:
-		Filename: mediknighticon.shp
+		Filename: mslaveicon.shp
+	icon-gla:
+		Filename: mslaveicon.shp
 
 mblackphantom:
 	Defaults:
@@ -5168,14 +5191,28 @@ mblackphantom:
 		Scale: 0.4
 		Offset: 0,-20,0
 		FlipX: true
+	dock-loop:
+		Start: 64
+		Length: 4
+		Facings: 8
+		Scale: 0.4
+		Offset: 0,-20,0
+		FlipX: true
+	dock:
+		Start: 64
+		Length: 4
+		Facings: 8
+		Scale: 0.4
+		Offset: 0,-20,0
+		FlipX: true
 	garrison-muzzle:
 		Filename: minigun.shp
 		Length: 6
 		Facings: 8
 	icon:
-		Filename: mediknighticon.shp
+		Filename: mblackphantomicon.shp
 	icon-gla:
-		Filename: mediknighticon.shp
+		Filename: mblackphantomicon.shp
 
 ##Workers
 mworker:
@@ -5292,16 +5329,16 @@ mworker:
 		Length: 6
 		Facings: 8
 	icon:
-		Filename: mediknighticon.shp
+		Filename: mworkericon.shp
 	icon-gla:
-		Filename: mediknighticon.shp
+		Filename: mworkericon.shp
 
 mworker2:
 	Inherits: mworker
 	Defaults:
 		Filename: mworker2.shp
 	icon-gla:
-		Filename: mediknighticon.shp
+		Filename: mworkericon.shp
 
 ##Scout unit
 mscout:
@@ -5392,7 +5429,7 @@ mscout:
 		Length: 6
 		Facings: 8
 	icon:
-		Filename: mediknighticon.shp
+		Filename: mscouticon.shp
 
 ##Surveyor unit
 msurveyor:
@@ -5401,24 +5438,20 @@ msurveyor:
 		Tick: 80
 	stand:
 		Facings: 8
-		Scale: 0.4
 		Offset: 0,-20,0
 		FlipX: true
 	idle1:
 		Facings: 8
-		Scale: 0.4
 		Offset: 0,-20,0
 		FlipX: true
 	idle2:
 		Facings: 8
-		Scale: 0.4
 		Offset: 0,-20,0
 		FlipX: true
 	run:
 		Start: 8
 		Length: 10
 		Facings: 8
-		Scale: 0.4
 		Offset: 0,-20,0
 		FlipX: true
 	die1:
@@ -5463,12 +5496,19 @@ msurveyor:
 		Offset: 0,-20,0
 		FlipX: true
 	icon:
-		Filename: surveyormediicon.shp
+		Filename: msurveyoricon.shp
 
 ##The Tax collector
 mtax:
 	Defaults:
 		Filename: mtax.shp
+	stand:
+		Start: 64
+		Length: 4
+		Facings: 8
+		Scale: 0.4
+		Offset: 0,-20,0
+		FlipX: true
 	run:
 		Start: 0
 		Length: 8
@@ -5547,7 +5587,7 @@ mtax:
 		Length: 6
 		Facings: 8
 	icon:
-		Filename: mediknighticon.shp
+		Filename: mtaxicon.shp
 
 ##Basic Knight
 mknight:
@@ -5628,14 +5668,15 @@ mknight:
 		Length: 6
 		Facings: 8
 	icon:
-		Filename: mediknighticon.shp
+		Filename: mknighticon.shp
 
 ##Guard - Needs implimenting
 mguard:
 	Defaults:
-		Filename: mknight.shp
+		Filename: mguard.shp
 		Tick: 80
 	stand:
+		Start: 64
 		Facings: 8
 		Scale: 0.4
 		Offset: 0,-20,0
@@ -5646,37 +5687,37 @@ mguard:
 		Scale: 0.4
 		Offset: 0,-20,0
 	idle1:
-		Start: 64
+		Start: 72
 		Length: 4
 		Facings: 8
 		Scale: 0.4
 		Offset: 0,-20,0
 	idle2:
-		Start: 64
+		Start: 72
 		Length: 4
 		Facings: 8
 		Scale: 0.4
 		Offset: 0,-20,0
 	die1:
-		Start: 96
+		Start: 136
 		Length: 4
 		Facings: 8
 		Scale: 0.4
 		Offset: 0,-20,0
 	die2:
-		Start: 96
+		Start: 136
 		Length: 4
 		Facings: 8
 		Scale: 0.4
 		Offset: 0,-20,0
 	die3:
-		Start: 96
+		Start: 136
 		Length: 4
 		Facings: 8
 		Scale: 0.4
 		Offset: 0,-20,0
 	die4:
-		Start: 96
+		Start: 136
 		Length: 4
 		Facings: 8
 		Scale: 0.4
@@ -5691,7 +5732,7 @@ mguard:
 		Frames: 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13
 		Length: *
 	die-crushed:
-		Start: 96
+		Start: 136
 		Length: 4
 		Facings: 8
 		Tick: 120
@@ -5699,8 +5740,8 @@ mguard:
 		Scale: 0.4
 		Offset: 0,-20,0
 	shoot:
-		Start: 128
-		Length: 8
+		Start: 104
+		Length: 4
 		Facings: 8
 		Scale: 0.4
 		Offset: 0,-20,0
@@ -5709,7 +5750,7 @@ mguard:
 		Length: 6
 		Facings: 8
 	icon:
-		Filename: mediknighticon.shp
+		Filename: mguardicon.shp
  
 ##Berserker
 mberserk:
@@ -5807,7 +5848,7 @@ mberserk:
 		Length: 6
 		Facings: 8
 	icon:
-		Filename: mediknighticon.shp
+		Filename: mberserkicon.shp
 
 ##Arcane Wizard
 mwizard:
@@ -5905,7 +5946,7 @@ mwizard:
 		Length: 6
 		Facings: 8
 	icon:
-		Filename: mediknighticon.shp
+		Filename: mwizardicon.shp
 
 ##Lightning Wizard
 mlwizard:
@@ -6005,7 +6046,7 @@ mlwizard:
 		Length: 6
 		Facings: 8
 	icon:
-		Filename: mediknighticon.shp
+		Filename: mlwizardicon.shp
 
 ##Fire Wizard
 mfwizard:
@@ -6105,7 +6146,7 @@ mfwizard:
 		Length: 6
 		Facings: 8
 	icon:
-		Filename: mediknighticon.shp
+		Filename: mfwizardicon.shp
 
 ##Basic Archer
 marcher:
@@ -6203,7 +6244,7 @@ marcher:
 		Length: 6
 		Facings: 8
 	icon:
-		Filename: mediknighticon.shp
+		Filename: marchericon.shp
 
 ##Priest - Holy
 mpriest:
@@ -6301,7 +6342,7 @@ mpriest:
 		Length: 6
 		Facings: 8
 	icon:
-		Filename: mediknighticon.shp
+		Filename: mpriesticon.shp
 
 ##Paladin unit
 mpaladin:
@@ -6399,7 +6440,7 @@ mpaladin:
 		Length: 6
 		Facings: 8
 	icon:
-		Filename: mediknighticon.shp
+		Filename: mpaladinicon.shp
 
 ##Tank buster
 mdwarf:
@@ -6497,7 +6538,7 @@ mdwarf:
 		Length: 6
 		Facings: 8
 	icon:
-		Filename: mediknighticon.shp
+		Filename: mdwarficon.shp
 
 ##Old Paladin? or Shield Hero?
 medipaladin:
@@ -6595,7 +6636,7 @@ medipaladin:
 		Length: 6
 		Facings: 8
 	icon:
-		Filename: mediknighticon.shp
+		Filename: medipaladinicon.shp
 
 ##Giant Rat
 mgrat:
@@ -6702,7 +6743,7 @@ mgrat:
 		Length: 6
 		Facings: 8
 	icon:
-		Filename: mediknighticon.shp
+		Filename: mgraticon.shp
 
 ##Rat Man
 mratman:
@@ -6802,7 +6843,7 @@ mratman:
 		Length: 6
 		Facings: 8
 	icon:
-		Filename: mediknighticon.shp
+		Filename: mratmanicon.shp
 
 ##Evil Warrior
 mgoblinwarrior:
@@ -6902,7 +6943,7 @@ mgoblinwarrior:
 		Length: 6
 		Facings: 8
 	icon:
-		Filename: mediknighticon.shp
+		Filename: mgoblinwarrioricon.shp
 
 ##Evil Berserker
 mgoblinchamp:
@@ -7002,7 +7043,7 @@ mgoblinchamp:
 		Length: 6
 		Facings: 8
 	icon:
-		Filename: mediknighticon.shp
+		Filename: mgoblinchampicon.shp
 
 ##Evil Priest
 mgoblinpriest:
@@ -7102,7 +7143,7 @@ mgoblinpriest:
 		Length: 6
 		Facings: 8
 	icon:
-		Filename: mediknighticon.shp
+		Filename: mgoblinpriesticon.shp
 
 ##Evil archer
 mgoblinarcher:
@@ -7202,7 +7243,7 @@ mgoblinarcher:
 		Length: 6
 		Facings: 8
 	icon:
-		Filename: mediknighticon.shp
+		Filename: mgoblinarchericon.shp
 
 ##Evil Wizard
 mwitchking:
@@ -7302,7 +7343,7 @@ mwitchking:
 		Length: 6
 		Facings: 8
 	icon:
-		Filename: mediknighticon.shp
+		Filename: mwitchkingicon.shp
 
 ##Skeleton
 mskeleton:
@@ -7402,7 +7443,7 @@ mskeleton:
 		Length: 6
 		Facings: 8
 	icon:
-		Filename: mediknighticon.shp
+		Filename: mskeletonicon.shp
 
 ##Zombie
 mzombie:
@@ -7502,7 +7543,7 @@ mzombie:
 		Length: 6
 		Facings: 8
 	icon:
-		Filename: mediknighticon.shp
+		Filename: mzombieicon.shp
 
 ##DEATHKNIGHT
 medideathknight:
@@ -7677,7 +7718,7 @@ mvoidarcher:
 		Length: 6
 		Facings: 8
 	icon:
-		Filename: mediknighticon.shp
+		Filename: mvoidarchericon.shp
 
 ##Priest - Basic
 mmonk:
@@ -7766,7 +7807,7 @@ mmonk:
 		Length: 6
 		Facings: 8
 	icon:
-		Filename: mediknighticon.shp
+		Filename: mmonkicon.shp
 
 ##Dryad
 mdryad:
@@ -7866,7 +7907,7 @@ mdryad:
 		Length: 6
 		Facings: 8
 	icon:
-		Filename: mediknighticon.shp
+		Filename: mdryadicon.shp
 
 ##Vampire
 mvampire:
@@ -7966,7 +8007,7 @@ mvampire:
 		Length: 6
 		Facings: 8
 	icon:
-		Filename: mediknighticon.shp
+		Filename: mvampireicon.shp
 
 ########################################################
 #################   Medi Hero   ########################
@@ -7975,7 +8016,7 @@ mvampire:
 ##WarriorofDiscord
 WarriorofDiscord:
 	Defaults:
-		Filename: WarriorofDiscord.shp
+		Filename: mdiscord.shp
 		Tick: 80
 	stand:
 		Start: 72
@@ -8070,7 +8111,7 @@ WarriorofDiscord:
 		Length: 6
 		Facings: 8
 	icon:
-		Filename: mediknighticon.shp
+		Filename: mdiscordicon.shp
 
 ########################################################
 ########################################################

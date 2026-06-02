@@ -85,7 +85,7 @@ gyro:
 		RequiresSelection: true
 		PipCount: 6
 	EjectOnDeath:
-		PilotActor: footman
+		PilotActor: Knight
 	RenderSprites:
 		Image: gyro
 
@@ -160,7 +160,7 @@ gryphon:
 	Selectable:
 		DecorationBounds: 1621, 1365
 	EjectOnDeath:
-		PilotActor: footman
+		PilotActor: Knight
 	RenderSprites:
 		Image: medigryphonrider
 
@@ -175,6 +175,7 @@ GiantEagle:
 	Inherits@MediLowPower: ^MediLowPower
 	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
 	Buildable:
+		IconPalette: tsunit
 		Queue: Aircraft
 		BuildAtProductionType: Helicopter
 		BuildPaletteOrder: 20
@@ -212,12 +213,6 @@ GiantEagle:
 	AutoTarget:
 		InitialStance: Defend
 		InitialStanceAI: Defend
-	WithIdleOverlay@ROTORAIR:
-		Sequence: rotor
-		RequiresCondition: airborne
-	WithIdleOverlay@ROTORGROUND:
-		Sequence: slow-rotor
-		RequiresCondition: !airborne
 	SelectionDecorations:
 	WithMuzzleOverlay:
 	WithDamageOverlay:
@@ -246,6 +241,7 @@ Harpy:
 	Inherits@MediLowPower: ^MediLowPower
 	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
 	Buildable:
+		IconPalette: tsunit
 		Queue: Aircraft
 		BuildAtProductionType: Helicopter
 		BuildPaletteOrder: 20
@@ -287,6 +283,7 @@ Vendral:
 	Inherits@MediLowPower: ^MediLowPower
 	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
 	Buildable:
+		IconPalette: tsunit
 		Queue: Aircraft
 		BuildAtProductionType: Helicopter
 		BuildPaletteOrder: 65
@@ -560,7 +557,9 @@ wyvern:
 medizeplin:
 	Inherits: ^Helicopter
 	Inherits@CARGOPIPS: ^CargoPips
+	-SpawnActorOnDeath:
 	Buildable:
+		IconPalette: tsunit
 		Queue: Aircraft
 		BuildAtProductionType: Helicopter
 		BuildPaletteOrder: 10
@@ -586,21 +585,11 @@ medizeplin:
 		TurnSpeed: 5
 		Speed: 80
 		AltitudeVelocity: 0c58
-	WithIdleOverlay@ROTOR1AIR:
-		Offset: 260,0,343
-		Sequence: rotor
-		RequiresCondition: airborne
-	WithIdleOverlay@ROTOR1GROUND:
-		Offset: 260,0,343
-		Sequence: slow-rotor
-		RequiresCondition: !airborne
 	Cargo:
 		Types: Infantry
 		MaxWeight: 20
 		AfterUnloadDelay: 40
 		EjectOnDeath: true
-	SpawnActorOnDeath:
-		Actor: medizeplinhusk.Husk
 	Selectable:
 		DecorationBounds: 1706, 1536
 	RenderSprites:

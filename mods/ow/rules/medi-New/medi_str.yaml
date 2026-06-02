@@ -3,44 +3,78 @@
 ##################################   Buildings   ##############################
 ###############################################################################
 
-TaxableBase:
-	ExternalCondition@TaxMan:
-		Condition: TaxMan
-	Targetable@Tax:
-		TargetTypes: Taxable
-		RequiresCondition: !TaxMan
+^TaxGen:
+	Inherits: MINE_DUMMY
+	-RevealsShroud:
+	-Interactable:
+	-Targetable:
+	ExternalCondition@anchor:
+		Condition: tax-anchor
+	KillsSelf:
+		RequiresCondition: !tax-anchor
+		Delay: 25
+	FireWarheadsOnDeath@tribute:
+		Type: CenterPosition
+		Weapon: TributeCleanup
+		EmptyWeapon: TributeCleanup
+
+taxgen.low:
+	Inherits: ^TaxGen
+	SeedsResource:
+		ResourceType: TributeLow
+		Interval: 400
+		MaxRange: 3
+
+taxgen.mid:
+	Inherits: ^TaxGen
+	SeedsResource:
+		ResourceType: TributeMid
+		Interval: 500
+		MaxRange: 3
+
+taxgen.high:
+	Inherits: ^TaxGen
+	SeedsResource:
+		ResourceType: TributeHigh
+		Interval: 600
+		MaxRange: 3
+
+taxgen.super:
+	Inherits: ^TaxGen
+	SeedsResource:
+		ResourceType: TributeSuper
+		Interval: 750
+		MaxRange: 3
+
+^TaxableBase:
+	ProximityExternalCondition@taxgen:
+		Condition: tax-anchor
+		Range: 2c0
+		AffectsParent: false
 
 ^TaxableLow:
-	Inherits@tax: TaxableBase
-	CashTrickler:
-		Interval: 1000
-		InitialDelay: 0
-		Amount: 300
-		RequiresCondition: TaxMan
+	Inherits@tax: ^TaxableBase
+	FreeActor@tribute:
+		Actor: taxgen.low
+		SpawnOffset: 0,0
 
 ^TaxableMid:
-	Inherits@tax: TaxableBase
-	CashTrickler:
-		Interval: 1000
-		InitialDelay: 0
-		Amount: 700
-		RequiresCondition: TaxMan
+	Inherits@tax: ^TaxableBase
+	FreeActor@tribute:
+		Actor: taxgen.mid
+		SpawnOffset: 0,0
 
 ^TaxableHigh:
-	Inherits@tax: TaxableBase
-	CashTrickler:
-		Interval: 1000
-		InitialDelay: 0
-		Amount: 1500
-		RequiresCondition: TaxMan
+	Inherits@tax: ^TaxableBase
+	FreeActor@tribute:
+		Actor: taxgen.high
+		SpawnOffset: 0,0
 
 ^TaxableSuper:
-	Inherits@tax: TaxableBase
-	CashTrickler:
-		Interval: 1000
-		InitialDelay: 0
-		Amount: 2000
-		RequiresCondition: TaxMan
+	Inherits@tax: ^TaxableBase
+	FreeActor@tribute:
+		Actor: taxgen.super
+		SpawnOffset: 0,0
 
 
 ###############################################################################
@@ -126,6 +160,8 @@ slavecampgc:
 	Inherits@tax: ^TaxableLow
 	Inherits: GPROC
 	Inherits@BIB: ^2xBuildingBib
+	-Refinery:
+	-DockHost:
 	Power:
 		Amount: 0
 	-WithIdleOverlay@TOP:
@@ -136,8 +172,9 @@ slavecampgc:
 		Bounds: 2048, 2048
 	-SpawnActorOnDeath:
 	Buildable:
+		IconPalette: tsunit
 		Queue: Building
-		Prerequisites: ~structures.medi, ~refinarymarket, ~!ai.boss, ~techlevel.infonly, ~!structures.medicult
+		Prerequisites: ~structures.medi, ~!ai.boss, ~techlevel.infonly, ~!structures.medicult
 		Description: Produces Slaves.\nAlso acts as a Silo to allow more credits to be held.
 		BuildPaletteOrder: 3
 		BuildDuration: 500
@@ -206,6 +243,7 @@ refinarymarket:
 		Condition: mediabolish
 		Prerequisites: ~!upgrade.mediabolish
 	Buildable:
+		IconPalette: tsunit
 		Prerequisites: ~structures.medi, ~techlevel.infonly, ~!ai.boss
 		Description: Allows production of Slaves and Workers
 		BuildPaletteOrder: 2
@@ -245,6 +283,7 @@ barrackswg:
 	Inherits@tax: ^TaxableLow
 	Inherits: TENT
 	Buildable:
+		IconPalette: tsunit
 		Queue: Building
 		Prerequisites: ~structures.medi, ~techlevel.infonly, ~!structures.bothard, ~!structures.medicult
 		Description: Allows production of infantry units.
@@ -260,16 +299,16 @@ barrackswg:
 		PlayerPalette: tsunit
 	ProvidesPrerequisite@medi:
 		RequiresPrerequisites: structures.medi
-		Prerequisite: Vehicles.medi
+		Prerequisite: infantry.medi
 	ProvidesPrerequisite@medicult:
 		RequiresPrerequisites: structures.medicult
-		Prerequisite: Vehicles.medicult
+		Prerequisite: infantry.medicult
 	ProvidesPrerequisite@mediholy:
 		RequiresPrerequisites: structures.mediholy
-		Prerequisite: Vehicles.mediholy
+		Prerequisite: infantry.mediholy
 	ProvidesPrerequisite@mediwizards:
 		RequiresPrerequisites: structures.mediwizards
-		Prerequisite: Vehicles.mediwizards
+		Prerequisite: infantry.mediwizards
 
 
 ##Medieval creatures
@@ -289,6 +328,7 @@ dwarfsettlement:
 	Inherits@tax: ^TaxableMid
 	Inherits@AUTOTARGET: ^AutoTargetAll
 	Buildable:
+		IconPalette: tsunit
 		Prerequisites: barracks, ~structures.medi, ~!ai.hard, ~techlevel.low
 		Description: Allows production of Vehicles.
 		BuildPaletteOrder: 4
@@ -377,6 +417,7 @@ dragonlair:
 	Inherits: AFLD
 	Inherits@tax: ^TaxableMid
 	Buildable:
+		IconPalette: tsunit
 		Prerequisites: Vehicles.medi, ~structures.medi, ~techlevel.low
 		Description: Allows production of air units.
 		BuildPaletteOrder: 7
@@ -425,6 +466,7 @@ techcenterblacksmith:
 	Selectable:
 		Bounds: 3072, 3072
 	Buildable:
+		IconPalette: tsunit
 		Queue: Building
 		Prerequisites: ~structures.medi, Vehicles.medi, ~!ai.hard, ~techlevel.infonly
 		Description: Mix of a Tech Center and Defense structure
@@ -549,6 +591,7 @@ advtechcenterlibrary:
 	Inherits: ADVTECH
 	Inherits@tax: ^TaxableHigh
 	Buildable:
+		IconPalette: tsunit
 		Queue: Tech
 		Prerequisites: ~structures.medi, techcenter, ~techlevel.high
 		BuildLimit: 1
@@ -650,7 +693,30 @@ advtechcenterlibrary:
 		Weapon: ChainsPowerWep
 		DisplayTimerRelationships: None
 	## Wizard Powers
-		##Meteor Storm ##Tomahawk storm but fireballs/meteors
+	DropPodsPowerOW@meteorstorm:
+		Icon: medivoidportalicon
+		Name: Meteor Storm
+		OrderName: meteorstorm
+		Description: Rain fireballs and meteors on the target area.\nFireballs devastate units, meteors crush buildings.
+		UnitTypes: meteorstorm_fire, meteorstorm_meteor, meteorstorm_fire1, meteorstorm_meteor1, meteorstorm_fire2, meteorstorm_meteor2
+		Cursor: chrono-target
+		Drops: 25,30
+		PodScatter: 10
+		PodFacing: 704
+		PauseOnCondition: disabled
+		CameraActor: camera
+		CameraRemoveDelay: 300
+		Weapon: ArtilleryPowerMarker
+		WeaponDelay: 5
+		ChargeInterval: 10000
+		EntryEffect: explosion
+		EntryEffectSequence: bunkerbustersring
+		LaunchSound: InterceptorMissile01.wav
+		SelectTargetSpeechNotification: SelectTarget
+		DisplayRadarPing: true
+		DisplayTimerRelationships: Ally, Enemy, Neutral
+		BeaconPoster: artillerybarragebeacon
+		Prerequisites: ~structures.mediwizards
 
 ##Super Tech
 ##Brashnards (Super Tech)
@@ -662,6 +728,7 @@ brashnards:
 	Selectable:
 		Bounds: 4096, 3072
 	Buildable:
+		IconPalette: tsunit
 		Queue: Tech
 		BuildDuration: 4500
 		Prerequisites: ~structures.medi, advtechcenter, ~techlevel.unrestricted, ~!ai.boss
@@ -739,11 +806,52 @@ brashnards:
 	Power:
 		Amount: -300
 	## Cult
-		##Zombie rain ##Tomahawk storm but Undead rain from the sky
+	DropPodsPowerOW@zombierain:
+		Icon: medivoidportalicon
+		Name: Zombie Rain
+		OrderName: zombierain
+		Description: Rain the undead upon your enemies - zombies and skeletons fall from the sky
+		UnitTypes: zombierainpod, zombierainpod1, zombierainpod2, zombierainpod3, zombierainpod4
+		Cursor: chrono-target
+		Drops: 20,25
+		PodScatter: 10
+		PodFacing: 704
+		PauseOnCondition: disabled
+		CameraActor: camera
+		CameraRemoveDelay: 300
+		Weapon: ArtilleryPowerMarker
+		WeaponDelay: 5
+		ChargeInterval: 12000
+		EntryEffect: explosion
+		EntryEffectSequence: bunkerbustersring
+		LaunchSound: InterceptorMissile01.wav
+		SelectTargetSpeechNotification: SelectTarget
+		DisplayRadarPing: true
+		DisplayTimerRelationships: Ally, Enemy, Neutral
+		BeaconPoster: artillerybarragebeacon
+		Prerequisites: ~structures.medicult
 	##Holy
-		##Transmute ##Turn Ore and Tib into Gems in large area
+	SpawnActorPower@TransmuteHoly:
+		OrderName: TransmuteHoly
+		Actor: TransmuteSpawnerHoly
+		LifeTime: 100
+		ChargeInterval: 8000
+		Icon: medivoidportalicon
+		Name: Holy Transmute
+		Description: Convert all Ore, Tiberium and Blue Tiberium in a large area into Gems
+		Prerequisites: ~structures.mediholy
+		EffectSequence: idle
 	## Wizard Powers
-		##Transmute ##Turn Ore into Gems in small area
+	SpawnActorPower@TransmuteWizard:
+		OrderName: TransmuteWizard
+		Actor: TransmuteSpawnerWizard
+		LifeTime: 100
+		ChargeInterval: 4000
+		Icon: medivoidportalicon
+		Name: Transmute
+		Description: Convert Ore in a small area into Gems
+		Prerequisites: ~structures.mediwizards
+		EffectSequence: idle
 
 ##radar structure
 ##medi radar
@@ -751,12 +859,12 @@ radarwg:
 	Inherits: ^ScienceBuilding
 	Inherits@tax: ^TaxableHigh
 	Inherits@IDISABLE: ^DisableOnLowPowerOrPowerDown
-	Inherits@AUTOTARGET: ^AutoTargetAll
 	Valued:
 		Cost: 1400
 	Tooltip:
 		Name: Wizard Guild
 	Buildable:
+		IconPalette: tsunit
 		Queue: Tech
 		Prerequisites: ~structures.medi, techcenter, ~techlevel.medium
 		Description: Provides radar
@@ -905,6 +1013,7 @@ guardhouse:
 	Inherits@shape: ^2x2Shape
 	Inherits@CARGOPIPS: ^CargoPips
 	Buildable:
+		IconPalette: tsunit
 		Queue: Defense
 		Prerequisites: ~structures.medi, barracks, ~techlevel.low
 		Description: Garison Units for Defence
@@ -976,6 +1085,7 @@ wizardtower:
 	Inherits@AUTOTARGET: ^AutoTargetAll
 	-SpawnActorsOnSell:
 	Buildable:
+		IconPalette: tsunit
 		Queue: Defense
 		Prerequisites: ~structures.medi, techcenter, ~techlevel.medium
 		Description: Tower that user Mana To fire a constant Beam \nStrong vs Aircraft, Vehicles & Infantry
@@ -998,6 +1108,10 @@ wizardtower:
 		Range: 8c0
 	WithBuildingBib:
 		HasMinibib: true
+	Turreted@base:
+		Turret: base
+		TurnSpeed: 1023
+		Offset: 128,128,384
 	Turreted@arc1:
 		Turret: arc1
 		TurnSpeed: 1023
@@ -1006,102 +1120,78 @@ wizardtower:
 		Turret: arc2
 		TurnSpeed: 1023
 		Offset: 128,128,384
-	Turreted@arc3:
-		Turret: arc3
+	Turreted@fire1:
+		Turret: fire1
 		TurnSpeed: 1023
 		Offset: 128,128,384
-	Turreted@arc4:
-		Turret: arc4
+	Turreted@fire2:
+		Turret: fire2
 		TurnSpeed: 1023
 		Offset: 128,128,384
-	Turreted@arc5:
-		Turret: arc5
+	Turreted@zap1:
+		Turret: zap1
 		TurnSpeed: 1023
 		Offset: 128,128,384
-	Turreted@arc6:
-		Turret: arc6
+	Turreted@zap2:
+		Turret: zap2
 		TurnSpeed: 1023
 		Offset: 128,128,384
-	Turreted@arc7:
-		Turret: arc7
-		TurnSpeed: 1023
-		Offset: 128,128,384
-	Turreted@arc8:
-		Turret: arc8
-		TurnSpeed: 1023
-		Offset: 128,128,384
-	Turreted@arc9:
-		Turret: arc9
-		TurnSpeed: 1023
-		Offset: 128,128,384
+	Armament@base:
+		Name: base
+		Weapon: WizBallBuilding
+		LocalOffset: 256,128,0, 256,-128,0
+		LocalYaw: -100,100
+		Turret: base
 	Armament@arc1:
 		Name: arc1
-		Weapon: ArcaneZap
-		LocalOffset: 256,128,0, 256,-128,0
-		LocalYaw: -100,100
-		Turret: arc1
-	Armament@arc2:
-		Name: arc2
-		Weapon: ArcaneZap2
-		LocalOffset: 256,128,0, 256,-128,0
-		LocalYaw: -100,100
-		Turret: arc2
-	Armament@arc3:
-		Name: arc3
-		Weapon: ArcaneZap
-		LocalOffset: 256,128,0, 256,-128,0
-		LocalYaw: -100,100
-		Turret: arc3
-	Armament@arc4:
-		Name: arc4
 		Weapon: WizBallBuilding
 		LocalOffset: 256,128,0, 256,-128,0
 		LocalYaw: -100,100
 		RequiresCondition: arcanewizard
-		Turret: arc4
-	Armament@arc5:
-		Name: arc5
-		Weapon: WizFireBallBuilding
-		LocalOffset: 256,128,0, 256,-128,0
-		LocalYaw: -100,100
-		RequiresCondition: firewizard
-		Turret: arc5
-	Armament@arc6:
-		Name: arc6
-		Weapon: Wizzap
-		LocalOffset: 256,128,0, 256,-128,0
-		LocalYaw: -100,100
-		RequiresCondition: lightningwizard
-		Turret: arc6
-	Armament@arc7:
-		Name: arc7
-		Weapon: Wizzap
-		LocalOffset: 256,128,0, 256,-128,0
-		LocalYaw: -100,100
-		RequiresCondition: lightningwizard == 2
-		Turret: arc7
-	Armament@arc8:
-		Name: arc8
-		Weapon: WizFireBallBuilding
-		LocalOffset: 256,128,0, 256,-128,0
-		LocalYaw: -100,100
-		RequiresCondition: firewizard == 2
-		Turret: arc8
-	Armament@arc9:
-		Name: arc9
+		Turret: arc1
+	Armament@arc2:
+		Name: arc2
 		Weapon: WizBallBuilding
 		LocalOffset: 256,128,0, 256,-128,0
 		LocalYaw: -100,100
 		RequiresCondition: arcanewizard == 2
-		Turret: arc9
+		Turret: arc2
+	Armament@fire1:
+		Name: fire1
+		Weapon: WizFireBallBuilding
+		LocalOffset: 256,128,0, 256,-128,0
+		LocalYaw: -100,100
+		RequiresCondition: firewizard
+		Turret: fire1
+	Armament@fire2:
+		Name: fire2
+		Weapon: WizFireBallBuilding
+		LocalOffset: 256,128,0, 256,-128,0
+		LocalYaw: -100,100
+		RequiresCondition: firewizard == 2
+		Turret: fire2
+	Armament@zap1:
+		Name: zap1
+		Weapon: Wizzap
+		LocalOffset: 256,128,0, 256,-128,0
+		LocalYaw: -100,100
+		RequiresCondition: lightningwizard
+		Turret: zap1
+	Armament@zap2:
+		Name: zap2
+		Weapon: Wizzap
+		LocalOffset: 256,128,0, 256,-128,0
+		LocalYaw: -100,100
+		RequiresCondition: lightningwizard == 2
+		Turret: zap2
 	AttackTurreted:
-		Turrets: arc1, arc2, arc3, arc4, arc5, arc6, arc6, arc7, arc8, arc9
-		Armaments: arc1, arc2, arc3, arc4, arc5, arc6, arc7, arc8, arc9
+		Turrets: base, arc1, arc2, fire1, fire2, zap1, zap2
+		Armaments: base, arc1, arc2, fire1, fire2, zap1, zap2
 		RequiresCondition: !build-incomplete
 		PauseOnCondition: lowpower || disabled
 	Cargo:
 		Types: arcanewizard, firewizard, lightningwizard
-		MaxWeight: 1
+		MaxWeight: 2
 		PassengerConditions:
 			firewizard: firewizard
 			lightningwizard: lightningwizard
@@ -1109,7 +1199,7 @@ wizardtower:
 	WithCargoPipsDecoration:
 		Position: BottomLeft
 		RequiresSelection: true
-		PipCount: 1
+		PipCount: 2
 	-BodyOrientation:
 	ClassicFacingBodyOrientation:
 		QuantizedFacings: 8
@@ -1133,6 +1223,7 @@ balistatower:
 	Power:
 		Amount: -50
 	Buildable:
+		IconPalette: tsunit
 		Queue: Defense
 		Prerequisites: ~structures.medi, techcenter
 		Description: Tower With a Siege Weapon strapped to the roof \nStrong vs Vehicles
@@ -1202,6 +1293,7 @@ TheEye:
 TempleofLunord:
 	Inherits: AnimalDen
 	Buildable:
+		IconPalette: tsunit
 		Prerequisites: barracks, ~structures.medi, ~!ai.hard, ~techlevel.low, ~structures.mediholy
 		Description: Allows production of creatures.
 		BuildPaletteOrder: 4
@@ -1216,6 +1308,7 @@ TempleofLunord:
 Templeofkrypta:
 	Inherits: AnimalDen
 	Buildable:
+		IconPalette: tsunit
 		Prerequisites: barracks, ~structures.medi, ~!ai.hard, ~techlevel.low, ~structures.medicult
 		Description: Allows production of creatures.
 		BuildPaletteOrder: 4
@@ -1226,6 +1319,7 @@ Templeofkrypta:
 GoblinCamp:
 	Inherits: barrackswg
 	Buildable:
+		IconPalette: tsunit
 		Queue: Building
 		Prerequisites: ~structures.medi, ~techlevel.infonly, ~!structures.bothard, ~structures.medicult
 		Description: Allows production of infantry units.
@@ -1235,9 +1329,10 @@ GoblinCamp:
 		PlayerPalette: tsunit
 
 ##Slave Generation
-Goblin Hovel:
+Goblinhovel:
 	Inherits: slavecampgc
 	Buildable:
+		IconPalette: tsunit
 		Prerequisites: ~structures.medi, ~refinarymarket, ~!ai.boss, ~techlevel.infonly, ~structures.medicult
 		Description: Produces Slaves.\nAlso acts as a Silo to allow more credits to be held.
 	FreeActor@Respawn1:
@@ -1254,6 +1349,10 @@ Graveyard:
 	Inherits@tax: ^TaxableLow
 	Inherits@shape: ^2x2Shape
 	Inherits@BIB: ^2xBuildingBib
+	Buildable:
+		IconPalette: tsunit
+		Prerequisites: ~structures.medicult, advtechcenter, ~!ai.boss, ~techlevel.infonly
+		Description: Produces undead to defend the area
 	Power:
 		Amount: -300
 	GrantPeriodicCondition@Undeadspawner1:
@@ -1295,11 +1394,12 @@ Graveyard:
 TempleofKrolm:
 	Inherits: AnimalDen
 	Buildable:
+		IconPalette: tsunit
 		Prerequisites: barracks, ~structures.medi, ~!ai.hard, ~techlevel.low, ~structures.mediwizards
 		Description: Allows production of creatures.
 		BuildPaletteOrder: 4
 	RenderSprites:
-		Image: creaturestok
+		Image: animalden
 
 ###############################################################################
 ###################################  Nukes   ##################################
@@ -1486,7 +1586,7 @@ FireStormMedi:
 		Name: Natures Will
 	Buildable:
 		Queue: Tech
-		Prerequisites: ~structures.medi, ~structures.elementalists, ~techlevel.unrestricted, techcenter
+		Prerequisites: ~structures.medi, ~structures.mediwizards, ~techlevel.unrestricted, techcenter
 		BuildLimit: 1
 		Description: Provides the Natures Will Super Weapon\nDevestates an area with explosive magic
 		BuildPaletteOrder: 10
@@ -1561,6 +1661,9 @@ monumentgazebo:
 	Inherits@tax: ^TaxableHigh
 	Inherits@AUTOTARGET: ^AutoTargetAll
 	-Targetable:
+	-Capturable:
+	DamageMultiplier:
+		Modifier: 0
 	ChangesHealth@Monumentregen:
 		PercentageStep: 1
 		Delay: 10
@@ -1590,17 +1693,13 @@ spittervine:
 	Inherits@tax: ^TaxableMid
 	Power:
 		Amount: -50
-	Buildable:
-		Queue: Defense
-		Prerequisites: ~structures.medi, techcenter
-		Description: Plant that attacks anything in range with toxic barbs
-		BuildPaletteOrder: 5
-	Valued:
-		Cost: 500
 	Tooltip:
 		Name: Spitter vine
 	Health:
 		HP: 35000
+	-Capturable:
+	SpawnActorOnDeath@revive:
+		Actor: spittervine.dead
 	AttackTurreted:
 		Armaments: PRIMARY
 		Turrets: PRIMARY
@@ -1636,6 +1735,150 @@ spittervine:
 	RenderSprites:
 		Image: spittervine
 
+## Dormant state - revives after 60 seconds
+spittervine.dead:
+	Inherits: spittervine
+	-Targetable:
+	-SpawnActorOnDeath@revive:
+	SpawnActorOnDeath@revive2:
+		Actor: spittervine
+	Health:
+		HP: 10000
+	Tooltip:
+		Name: Spitter Vine (Dormant)
+	KillsSelf:
+		Delay: 1500
+	-AttackTurreted:
+	-Armament@PRIMARY:
+	-Turreted@PRIMARY:
+	-DetectCloaked:
+	WithSpriteBody:
+		Sequence: dead
+
+## Meteor Storm pods
+## Fireballs: large AOE, strong vs units, weak vs buildings
+## Meteors: building damage only, no unit AOE
+meteorstorm_fire:
+	Inherits: tomahawkstormpower
+	FallsToEarth:
+		Explosion: MeteorStormFireball
+		Moves: true
+		Velocity: 160
+		MaximumSpinSpeed: 0
+	Armament:
+		Weapon: MeteorStormFireball
+	RenderSprites:
+		Image: napalm3
+	WithSpriteBody:
+		Sequence: idle
+
+meteorstorm_fire1:
+	Inherits: meteorstorm_fire
+	FallsToEarth:
+		Explosion: MeteorStormFireball
+		Moves: true
+		Velocity: 180
+		MaximumSpinSpeed: 0
+
+meteorstorm_fire2:
+	Inherits: meteorstorm_fire
+	FallsToEarth:
+		Explosion: MeteorStormFireball
+		Moves: true
+		Velocity: 200
+		MaximumSpinSpeed: 0
+
+meteorstorm_meteor:
+	Inherits: tomahawkstormpower
+	FallsToEarth:
+		Explosion: MeteorStormMeteor
+		Moves: true
+		Velocity: 140
+		MaximumSpinSpeed: 0
+	Armament:
+		Weapon: MeteorStormMeteor
+	RenderSprites:
+		Image: rockgolem
+	-BodyOrientation:
+	ClassicFacingBodyOrientation:
+		QuantizedFacings: 8
+	WithSpriteBody:
+		Sequence: idle
+
+meteorstorm_meteor1:
+	Inherits: meteorstorm_meteor
+	FallsToEarth:
+		Explosion: MeteorStormMeteor
+		Moves: true
+		Velocity: 165
+		MaximumSpinSpeed: 0
+
+meteorstorm_meteor2:
+	Inherits: meteorstorm_meteor
+	FallsToEarth:
+		Explosion: MeteorStormMeteor
+		Moves: true
+		Velocity: 190
+		MaximumSpinSpeed: 0
+
+## Zombie Rain pods - dropped by DropPodsPowerOW, falls to earth, explodes, spawns undead
+zombierainpod:
+	Inherits: tomahawkstormpower
+	GrantRandomCondition@undead:
+		Conditions: spawn-zombie, spawn-skeleton
+	SpawnActorOnDeath@zombie:
+		Actor: SummonedZombie
+		RequiresCondition: spawn-zombie
+	SpawnActorOnDeath@skeleton:
+		Actor: Skeleton
+		RequiresCondition: spawn-skeleton
+	FallsToEarth:
+		Explosion: ZombieRainExplosion
+		Moves: true
+		Velocity: 150
+		MaximumSpinSpeed: 0
+	Armament:
+		Weapon: ZombieRainExplosion
+	RenderSprites:
+		Image: mzombie
+	-BodyOrientation:
+	ClassicFacingBodyOrientation:
+		QuantizedFacings: 8
+	WithSpriteBody:
+		Sequence: run
+
+zombierainpod1:
+	Inherits: zombierainpod
+	FallsToEarth:
+		Explosion: ZombieRainExplosion
+		Moves: true
+		Velocity: 170
+		MaximumSpinSpeed: 0
+
+zombierainpod2:
+	Inherits: zombierainpod
+	FallsToEarth:
+		Explosion: ZombieRainExplosion
+		Moves: true
+		Velocity: 190
+		MaximumSpinSpeed: 0
+
+zombierainpod3:
+	Inherits: zombierainpod
+	FallsToEarth:
+		Explosion: ZombieRainExplosion
+		Moves: true
+		Velocity: 210
+		MaximumSpinSpeed: 0
+
+zombierainpod4:
+	Inherits: zombierainpod
+	FallsToEarth:
+		Explosion: ZombieRainExplosion
+		Moves: true
+		Velocity: 230
+		MaximumSpinSpeed: 0
+
 ##  Spawns Void archers for owner, gives powers.
 elvenhideout:
 	Inherits: guardhouse
@@ -1654,20 +1897,241 @@ elvenhideout:
 		Amount: 200
 	RenderSprites:
 		Image: elvenhideout
-
-## proximity capture, generates random money and losses.
-##gamblinghall:
-	##Inherits@tax: ^TaxableSuper
-	##Power:
-		##Amount: 0
-	##RenderSprites:
-		##Image: gamblinghall
-
-
-
+		PlayerPalette: tsunit
 
 ## Redundant ##
 
 medigarrisontower:
 	Inherits: guardhouse
 	-Buildable
+
+
+^TransmuteProbe:
+	Inherits: MINE_DUMMY
+	-RevealsShroud:
+	-Interactable:
+	-Targetable:
+
+TransmuteProbeHoly:
+	Inherits: ^TransmuteProbe
+	GrantConditionOnTerrain@resource:
+		Condition: on-resource
+		TerrainTypes: Ore, Tiberium, BlueTiberium
+	KillsSelf@notore:
+		RequiresCondition: !on-resource
+		Delay: 3
+		RemoveInstead: true
+	KillsSelf@convert:
+		RequiresCondition: on-resource
+		Delay: 50
+	FireWarheadsOnDeath@transmute:
+		Type: CenterPosition
+		Weapon: TransmuteConvertHoly
+		EmptyWeapon: TransmuteConvertHoly
+
+TransmuteProbeWizard:
+	Inherits: ^TransmuteProbe
+	GrantConditionOnTerrain@resource:
+		Condition: on-resource
+		TerrainTypes: Ore
+	KillsSelf@notore:
+		RequiresCondition: !on-resource
+		Delay: 3
+		RemoveInstead: true
+	KillsSelf@convert:
+		RequiresCondition: on-resource
+		Delay: 50
+	FireWarheadsOnDeath@transmute:
+		Type: CenterPosition
+		Weapon: TransmuteConvertWizard
+		EmptyWeapon: TransmuteConvertWizard
+
+## 7x7 grid spawner for Holy Transmute
+TransmuteSpawnerHoly:
+	Immobile:
+		OccupiesSpace: false
+	KillsSelf:
+		Delay: 5
+		RemoveInstead: true
+	FreeActor@h00:
+		Actor: TransmuteProbeHoly
+		SpawnOffset: -3,-3
+	FreeActor@h01:
+		Actor: TransmuteProbeHoly
+		SpawnOffset: -2,-3
+	FreeActor@h02:
+		Actor: TransmuteProbeHoly
+		SpawnOffset: -1,-3
+	FreeActor@h03:
+		Actor: TransmuteProbeHoly
+		SpawnOffset: 0,-3
+	FreeActor@h04:
+		Actor: TransmuteProbeHoly
+		SpawnOffset: 1,-3
+	FreeActor@h05:
+		Actor: TransmuteProbeHoly
+		SpawnOffset: 2,-3
+	FreeActor@h06:
+		Actor: TransmuteProbeHoly
+		SpawnOffset: 3,-3
+	FreeActor@h07:
+		Actor: TransmuteProbeHoly
+		SpawnOffset: -3,-2
+	FreeActor@h08:
+		Actor: TransmuteProbeHoly
+		SpawnOffset: -2,-2
+	FreeActor@h09:
+		Actor: TransmuteProbeHoly
+		SpawnOffset: -1,-2
+	FreeActor@h10:
+		Actor: TransmuteProbeHoly
+		SpawnOffset: 0,-2
+	FreeActor@h11:
+		Actor: TransmuteProbeHoly
+		SpawnOffset: 1,-2
+	FreeActor@h12:
+		Actor: TransmuteProbeHoly
+		SpawnOffset: 2,-2
+	FreeActor@h13:
+		Actor: TransmuteProbeHoly
+		SpawnOffset: 3,-2
+	FreeActor@h14:
+		Actor: TransmuteProbeHoly
+		SpawnOffset: -3,-1
+	FreeActor@h15:
+		Actor: TransmuteProbeHoly
+		SpawnOffset: -2,-1
+	FreeActor@h16:
+		Actor: TransmuteProbeHoly
+		SpawnOffset: -1,-1
+	FreeActor@h17:
+		Actor: TransmuteProbeHoly
+		SpawnOffset: 0,-1
+	FreeActor@h18:
+		Actor: TransmuteProbeHoly
+		SpawnOffset: 1,-1
+	FreeActor@h19:
+		Actor: TransmuteProbeHoly
+		SpawnOffset: 2,-1
+	FreeActor@h20:
+		Actor: TransmuteProbeHoly
+		SpawnOffset: 3,-1
+	FreeActor@h21:
+		Actor: TransmuteProbeHoly
+		SpawnOffset: -3,0
+	FreeActor@h22:
+		Actor: TransmuteProbeHoly
+		SpawnOffset: -2,0
+	FreeActor@h23:
+		Actor: TransmuteProbeHoly
+		SpawnOffset: -1,0
+	FreeActor@h24:
+		Actor: TransmuteProbeHoly
+		SpawnOffset: 0,0
+	FreeActor@h25:
+		Actor: TransmuteProbeHoly
+		SpawnOffset: 1,0
+	FreeActor@h26:
+		Actor: TransmuteProbeHoly
+		SpawnOffset: 2,0
+	FreeActor@h27:
+		Actor: TransmuteProbeHoly
+		SpawnOffset: 3,0
+	FreeActor@h28:
+		Actor: TransmuteProbeHoly
+		SpawnOffset: -3,1
+	FreeActor@h29:
+		Actor: TransmuteProbeHoly
+		SpawnOffset: -2,1
+	FreeActor@h30:
+		Actor: TransmuteProbeHoly
+		SpawnOffset: -1,1
+	FreeActor@h31:
+		Actor: TransmuteProbeHoly
+		SpawnOffset: 0,1
+	FreeActor@h32:
+		Actor: TransmuteProbeHoly
+		SpawnOffset: 1,1
+	FreeActor@h33:
+		Actor: TransmuteProbeHoly
+		SpawnOffset: 2,1
+	FreeActor@h34:
+		Actor: TransmuteProbeHoly
+		SpawnOffset: 3,1
+	FreeActor@h35:
+		Actor: TransmuteProbeHoly
+		SpawnOffset: -3,2
+	FreeActor@h36:
+		Actor: TransmuteProbeHoly
+		SpawnOffset: -2,2
+	FreeActor@h37:
+		Actor: TransmuteProbeHoly
+		SpawnOffset: -1,2
+	FreeActor@h38:
+		Actor: TransmuteProbeHoly
+		SpawnOffset: 0,2
+	FreeActor@h39:
+		Actor: TransmuteProbeHoly
+		SpawnOffset: 1,2
+	FreeActor@h40:
+		Actor: TransmuteProbeHoly
+		SpawnOffset: 2,2
+	FreeActor@h41:
+		Actor: TransmuteProbeHoly
+		SpawnOffset: 3,2
+	FreeActor@h42:
+		Actor: TransmuteProbeHoly
+		SpawnOffset: -3,3
+	FreeActor@h43:
+		Actor: TransmuteProbeHoly
+		SpawnOffset: -2,3
+	FreeActor@h44:
+		Actor: TransmuteProbeHoly
+		SpawnOffset: -1,3
+	FreeActor@h45:
+		Actor: TransmuteProbeHoly
+		SpawnOffset: 0,3
+	FreeActor@h46:
+		Actor: TransmuteProbeHoly
+		SpawnOffset: 1,3
+	FreeActor@h47:
+		Actor: TransmuteProbeHoly
+		SpawnOffset: 2,3
+	FreeActor@h48:
+		Actor: TransmuteProbeHoly
+		SpawnOffset: 3,3
+
+## 3x3 grid spawner for Wizard Transmute
+TransmuteSpawnerWizard:
+	Immobile:
+		OccupiesSpace: false
+	KillsSelf:
+		Delay: 5
+		RemoveInstead: true
+	FreeActor@w00:
+		Actor: TransmuteProbeWizard
+		SpawnOffset: -1,-1
+	FreeActor@w01:
+		Actor: TransmuteProbeWizard
+		SpawnOffset: 0,-1
+	FreeActor@w02:
+		Actor: TransmuteProbeWizard
+		SpawnOffset: 1,-1
+	FreeActor@w03:
+		Actor: TransmuteProbeWizard
+		SpawnOffset: -1,0
+	FreeActor@w04:
+		Actor: TransmuteProbeWizard
+		SpawnOffset: 0,0
+	FreeActor@w05:
+		Actor: TransmuteProbeWizard
+		SpawnOffset: 1,0
+	FreeActor@w06:
+		Actor: TransmuteProbeWizard
+		SpawnOffset: -1,1
+	FreeActor@w07:
+		Actor: TransmuteProbeWizard
+		SpawnOffset: 0,1
+	FreeActor@w08:
+		Actor: TransmuteProbeWizard
+		SpawnOffset: 1,1

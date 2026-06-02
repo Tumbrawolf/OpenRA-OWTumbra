@@ -130,134 +130,78 @@ upgrade.glashoes:
 ##Archer Tower T1 (2nd Archer)
 upgrade.mediarrow:
 	icon:
-		Filename: meditowerupgradearchericon.shp
+		Filename: mediarrowicon.shp
 
 ##Imunity to Tib damage
-upgrade.mediworkboot:
+upgrade.mediworkerboots:
 	icon:
-		Filename: meditowerupgradearchericon.shp
+		Filename: mediworkerbootsicon.shp
 
 ##Non Magic units get enchanted blades, attack faster.
-upgrade.medimagicwep:
+upgrade.medimagicweapons:
 	icon:
-		Filename: meditowerupgradearchericon.shp
+		Filename: medimagicweaponsicon.shp
 
 ##Buildings get shields, very small regen
 upgrade.medimagiclogs:
 	icon:
-		Filename: meditowerupgradearchericon.shp
+		Filename: medimagiclogsicon.shp
 
 ##Faster Vision cooldown
 upgrade.medivision:
 	icon:
-		Filename: meditowerupgradearchericon.shp
+		Filename: medivisionicon.shp
 	
 ##units can see stealth from longer
-upgrade.medibless:
+upgrade.mediblessing:
 	icon:
-		Filename: meditowerupgradearchericon.shp
+		Filename: mediblessingicon.shp
 	
 ##units get imunity to debuffs when neer paladin or monuments
-upgrade.medishield:
+upgrade.mediholyshield:
 	icon:
-		Filename: meditowerupgradearchericon.shp
+		Filename: mediholyshieldicon.shp
 	
 ##removes slaves, cheaper workers, removes worker tech needs
 upgrade.mediabolish:
 	icon:
-		Filename: meditowerupgradearchericon.shp
+		Filename: mediabolishicon.shp
 	
 ##magic units get bonus damage
-upgrade.medipure:
+upgrade.medipuremagic:
 	icon:
-		Filename: meditowerupgradearchericon.shp
+		Filename: medipuremagicicon.shp
 	
 ##shields for magic units
 upgrade.medimagearmor:
 	icon:
-		Filename: meditowerupgradearchericon.shp
+		Filename: medimagearmoricon.shp
 	
 ##arcane towers can now hold wizards and are cheaper
-upgrade.mediwiztow:
+upgrade.mediwizardtower:
 	icon:
-		Filename: meditowerupgradearchericon.shp
+		Filename: mediwizardtowericon.shp
 	
 ##Slaves carry more
-upgrade.slavedrive:
+upgrade.medislavedrive:
 	icon:
-		Filename: meditowerupgradearchericon.shp
+		Filename: medislavedriveicon.shp
 	
 ##Creatures take less damage and regen missing HP
-upgrade.blackblood:
+upgrade.mediblackblood:
 	icon:
-		Filename: meditowerupgradearchericon.shp
+		Filename: mediblackbloodicon.shp
 	
 ##Undead units may respawn
-upgrade.necromancy:
+upgrade.medinecromancy:
 	icon:
-		Filename: meditowerupgradearchericon.shp
+		Filename: medinecromancyicon.shp
 		
 ##Tax collector is buildable
-upgrade.Deathandtaxes:
+upgrade.medideathandtaxes:
 	icon:
-		Filename: meditowerupgradearchericon.shp
+		Filename: medideathandtaxesicon.shp
 
-
-################################################################################
-##############################   Medi    #######################################
-################################################################################
-
-upgrade.mediarrowt1: #Tier 1#
-	icon:
-		Filename: meditowerupgradearchericon.shp
-upgrade.mediarrowt2: #Tier 3#
-	icon:
-		Filename: meditowerupgrademusketeericon.shp
-upgrade.mediarrowt3: #Tier 2#
-	icon:
-		Filename: meditowerupgradewizardicon.shp
-upgrade.mediarrowt4: #Tier 2#
-	icon:
-		Filename: meditowerupgradevoidarchericon.shp
-upgrade.mediarrowwiz: #Tier 2#
-	icon:
-		Filename: meditowerupgradewizardicon.shp
-upgrade.elementalwepstech:
-	icon:
-		Filename: meditoxicityicon.shp
-upgrade.flintlockwepstech:
-	icon:
-		Filename: mediupgradeflintlocksicon.shp
-upgrade.cannondefence:
-	icon:
-		Filename: medicannontowerupgradeicon.shp
-upgrade.mediworkboot:
-	icon:
-		Filename: gshoesicon.shp
-upgrade.medimagicwep:
-	icon:
-		Filename: upgrademedimagicwep.shp
-upgrade.medimagiclogs:
-	icon:
-		Filename: upgrademedimagiclogs.shp
-upgrade.medibless:
-	icon:
-		Filename: upgrademedibless.shp
-upgrade.medishield:
-	icon:
-		Filename: upgrademedishield.shp
-upgrade.mediabolish:
-	icon:
-		Filename: upgrademediabolish.shp
-upgrade.medipure:
-	icon:
-		Filename: upgrademedipure.shp
-upgrade.medivision:
-	icon:
-		Filename: upgrademedivision.shp
-upgrade.mediwiztow:
-	icon:
-		Filename: upgrademediwiztow.shp
 
 ################################################################################
 ################################################################################

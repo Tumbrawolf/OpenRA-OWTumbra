@@ -162,6 +162,10 @@ medidragon:
 	icon:
 		Filename: medidragonicon.shp
 
+
+mdragon:
+	Inherits: medidragon
+
 ##The Old Dragon - Used for Bomber
 medidragonbomber:
 	Defaults:
@@ -182,21 +186,21 @@ medidragonbomber:
 ##Gyrocoptor
 gyro:
 	Defaults:
-		Filename: medigyro.shp
+		Filename: mGyro.shp
 	idle:
 		Facings: 8
 	move:
 		Start: 0
 		Facings: 8
 	rotor:
-		Filename: lrotor.shp
+		Filename: lrotorlg.shp
 		Length: 4
 	slow-rotor:
-		Filename: lrotor.shp
+		Filename: lrotorlg.shp
 		Start: 4
 		Length: 8
 	icon:
-		Filename: gyro.shp
+		Filename: medigyroicon.shp
 
 ##Gryphon
 medigryphonrider:
@@ -240,15 +244,60 @@ mediicewyvern:
 ############  Medi Aircraft -New   #####################
 ########################################################
 
-##Giant Eagle
+mgeagle:
+	Defaults:
+		Filename: mgeagle.shp
+	idle:
+		Facings: 8
+	move:
+		Start: 0
+		Facings: 8
+	icon:
+		Filename: mgeagleicon.shp
 
-##Harpy
+mharpy:
+	Defaults:
+		Filename: mHarpy.shp
+	idle:
+		Facings: 8
+	move:
+		Start: 0
+		Facings: 8
+	icon:
+		Filename: mHarpyicon.shp
 
-##Vendral
+mvendral:
+	Defaults:
+		Filename: mvendral.shp
+	idle:
+		Facings: 8
+	move:
+		Start: 0
+		Facings: 8
+	icon:
+		Filename: mvendralicon.shp
 
-##Wyvern
+mwyvern:
+	Defaults:
+		Filename: mwyvern.shp
+	idle:
+		Facings: 8
+	move:
+		Start: 0
+		Facings: 8
+	icon:
+		Filename: mwyvernicon.shp
 
-##Zeplin
+mblimp:
+	Defaults:
+		Filename: mblimp.shp
+	idle:
+		Facings: 8
+	move:
+		Start: 0
+		Facings: 8
+	icon:
+		Filename: mblimpicon.shp
 
 ########################################################
 ########################################################
@@ -778,13 +827,13 @@ usachinook:
 		Facings: 32
 		UseClassicFacings: True
 	rotor:
-		Filename: lrotor.shp
+		Filename: lrotorlg.shp
 		Length: 4
 	rotor2:
 		Filename: rrotor.shp
 		Length: 4
 	slow-rotor:
-		Filename: lrotor.shp
+		Filename: lrotorlg.shp
 		Start: 4
 		Length: 8
 	slow-rotor2:
@@ -819,13 +868,13 @@ usacombatchinook:
 		Facings: 32
 		UseClassicFacings: True
 	rotor:
-		Filename: lrotor.shp
+		Filename: lrotorlg.shp
 		Length: 4
 	rotor2:
 		Filename: rrotor.shp
 		Length: 4
 	slow-rotor:
-		Filename: lrotor.shp
+		Filename: lrotorlg.shp
 		Start: 4
 		Length: 8
 	slow-rotor2:

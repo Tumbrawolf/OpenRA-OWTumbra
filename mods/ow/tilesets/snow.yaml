@@ -112,6 +112,26 @@ Terrain:
 		TargetTypes: Ground
 		AcceptsSmudgeType: Crater, Scorch
 		Color: FFA500
+	TerrainType@TributeLow:
+		Type: TributeLow
+		TargetTypes: Ground
+		AcceptsSmudgeType: Crater, Scorch
+		Color: 808080
+	TerrainType@TributeMid:
+		Type: TributeMid
+		TargetTypes: Ground
+		AcceptsSmudgeType: Crater, Scorch
+		Color: 808080
+	TerrainType@TributeHigh:
+		Type: TributeHigh
+		TargetTypes: Ground
+		AcceptsSmudgeType: Crater, Scorch
+		Color: 808080
+	TerrainType@TributeSuper:
+		Type: TributeSuper
+		TargetTypes: Ground
+		AcceptsSmudgeType: Crater, Scorch
+		Color: 808080
 	TerrainType@ClearSnow:
 		Type: ClearSnow
 		TargetTypes: Ground

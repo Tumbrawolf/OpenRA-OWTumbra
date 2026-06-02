@@ -783,6 +783,8 @@
 
 # Inherited and changed from mods/ra to add upgrade modifiers and numerous other buff/debuff modifiers from support powers
 ^Infantry:
+	ProximityCaptor@gamba:
+		Types: gamba
 	Inherits@MediConditions: ^MediConditionsI
 	Inherits@corrode: ^CorrodesFromTibWeaps
 	Inherits@aeiou: ^AEIOUBoosted

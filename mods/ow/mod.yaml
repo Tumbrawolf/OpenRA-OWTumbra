@@ -196,6 +196,7 @@ Rules:
 	ow|rules/medi-New/medi_shp.yaml
 	ow|rules/medi-New/medi_air.yaml
 	ow|rules/medi-New/medi_upg.yaml
+	ow|rules/medi-New/medi_gamba.yaml
 	ow|rules/protoss/protoss_str.yaml
 	ow|rules/protoss/protoss_inf.yaml
 	ow|rules/protoss/protoss_veh.yaml
