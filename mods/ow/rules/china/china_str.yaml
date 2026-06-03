@@ -1028,7 +1028,6 @@ chinashipyard:
 		TerrainTypes: Water
 	RequiresBuildableArea:
 		Adjacent: 8
-	-GivesBuildableArea:
 	Health:
 		HP: 100000
 	Armor:

@@ -1003,7 +1003,7 @@ World:
 	CreateMapPlayersOW:
 		RandomiseWithDefaultNames: true
 		RandomChance: 33
-		DefaultBotNames: sbeve, jonno, Clanker, robots_rule, Grok, KIMI K2, QWEN, Haiku 3.5, Gemini 2.5, DeepSeek V3.1, GPT, fucku, John Cena, Dukem, Hitler, sbeven, steve, Greg, Sassy, Dave, damo, darren, CABAL, EVA, loser47, Joseph, Mengsk, Raynor, Jimmy, Jotaro, DIO, Zuckerberg, dont fuck with the zuck, dont trust musk, Elon's Musk, Johnny Number 5, WALL-E, Hatsune Miku, Jonesy, Loque, Ichthys, Doom Guy, Phobos, AstroBoy, C-3PO, Knight_Rider, HAL-9000, Optimus Prime, optimum prime, Ratchet, Bender, Clank, GLaDoS, Dalek, Kerrigan, Wheatley, Bumblebee, David, Claptrap, B-9, Marvin the Paranoid Android, Robocop, Terminator, Rosie, T-1000, Rob, Number 6, Sonny, Stavros, Nikoomba, Humans Suck, ROBOT, KillAllHumans, FreePalestine, Mark Fuckerberg, EvilPheebs, EvilFletto, EvilTumbra, EvilFlute, EvilMin, William Frank, Cassandra Blair, Mr Watson, Alphonse Giraud, Brittany Murphy, Sammy Stallion, Flint Westwood, Arnnie Frakenfurter, B J Blazkowicz, Amon, Narud, Ouros, GOD, JESUS, Jesus, God, Stolas, Blitz, Loona, Satan, Action Hotdog, Lemongrab, Finn the Human, Gigachad, MinBot, Iyedra, Hail Satan, Baphomet, Lucifer, Charlie, Blitz, I.M.P
+		DefaultBotNames: sbeve, jonno, Clanker, robots_rule, Grok, KIMI K2, QWEN, Haiku 3.5, Gemini 2.5, DeepSeek V3.1, GPT, fucku, John Cena, Dukem, Hitler, sbeven, steve, Greg, Sassy, Dave, damo, darren, CABAL, EVA, loser47, Joseph, Mengsk, Raynor, Jimmy, Jotaro, DIO, Zuckerberg, dont fuck with the zuck, dont trust musk, Elon's Musk, Johnny Number 5, WALL-E, Hatsune Miku, Jonesy, Loque, Ichthys, Doom Guy, Phobos, AstroBoy, C-3PO, Knight_Rider, HAL-9000, Optimus Prime, optimum prime, Ratchet, Bender, Clank, GLaDoS, Dalek, Kerrigan, Wheatley, Bumblebee, David, Claptrap, B-9, Marvin the Paranoid Android, Robocop, Terminator, Rosie, T-1000, Rob, Number 6, Sonny, Stavros, Nikoomba, Humans Suck, ROBOT, KillAllHumans, FreePalestine, Mark Fuckerberg, EvilPheebs, EvilFletto, EvilTumbra, EvilFlute, EvilMin, William Frank, Cassandra Blair, Mr Watson, Alphonse Giraud, Brittany Murphy, Sammy Stallion, Flint Westwood, Arnnie Frakenfurter, B J Blazkowicz, Amon, Narud, Ouros, GOD, JESUS, Jesus, God, Stolas, Blitz, Loona, Satan, Action Hotdog, Lemongrab, Finn the Human, Gigachad, MinBot, Iyedra, Hail Satan, Baphomet, Lucifer, Charlie, Blitz, I.M.P, Claude
 		RandomBotNames:
 			germany: Howard T. Ackerman, Ackerman, Tanya, Monnage, Einstein, Eva Lee, Michael Dugan, Bierman, Gunter von Esling, Volkswagen, Golf, not hitler, fuck hitler, Hans, Gretel, Besserwisser, Mach's Gut, Zwielicht, Punch Nazis, German Pioneers
 			france: Howard T. Ackerman, Ackerman, Tanya, Monnage, Einstein, Eva Lee, Michael Dugan, Macron, Lecornu, de Gaulle, Gouin, Bidault, Auriol, Blum, Renault, Peugeot, oui oui, Baguette, Croissant, Frog, Eiffel 65 isnt french
@@ -1051,10 +1051,11 @@ World:
 			zerg: Daggoth, Zasz, Overmind, Infested Duran, Brakk, Dehaka, Kraith, Slivan, Yagdra, Zurvan
 			kerrigan: Kerrigan, Alexei Stukov, Abathur, Izsha, Niadra, Zagara
 			zagara: Zagara, Alexei Stukov, Abathur, Izsha, Niadra, Zagara
-			silver: MinBot, EvilMin
-			angels: MinBot, EvilMin
-			sword: MinBot, EvilMin
-			unsc: John Chief, John Queef, Cortana, Sgt. Johnson, Rooster Teeth, Blood Gulch, HALO COMBAT EVOLVED
+			silver: MinBot, EvilMin, The Silver Lining, BigShipsBigDicks
+			angels: MinBot, EvilMin, The Lunar Angels
+			sword: MinBot, EvilMin, The Ardent Sword, Cold Steel
+			unsc: UNSC, Cortana, Terrence Hood, Serin Osman, General Hogan, General Dellert, General Strauss, Jun-A266, cormtama, cheif, United Nations Space Command, John Chief, John Queef, Master Cheeks, Captain Keyes, Hal0, John Halo, Spartan 117, Pretty Cool Guy, Halo, Jimmy Rings, Echo 419, Sgt Johnson, Reclaimer
+			covenant: Arbiter, wortwortwort, Ahhhwarbagah, Covenant, The Banished, Sesa 'Refumee, High Prophet of Regret, Tartarus, 343 Guilty Spark, Orsu Lar'Ahtalee, Tremonius, Chak 'Lok, Bassus, Hyperius, Tovarus, Jega 'Rdomnai, Escharum, Inka 'Saham, Thav 'Sebarim, Okro 'Vagaduun, Bipbap, Briglard, Barroth, Zeretus, Balkarus, En'Geddon, Ik'novus, Arthoc, Writh Kul, Skimmer Alpha, Myriad, Ordo 'Mal
 	ProductionQueueFromSelection:
 		ProductionPaletteWidget: PRODUCTION_PALETTE
 		ProductionTabsWidget: PRODUCTION_TABS
