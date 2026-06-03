@@ -9686,3 +9686,43 @@ unscsgtjohnson:
 		Facings: 8
 	icon:
 		Filename: unscsgtjohnsonicon.shp
+
+covenantengineer:
+	Defaults:
+		Filename: covenantengineer.shp
+		Scale: 0.8
+	stand:
+		Facings: 8
+	stand2:
+		Facings: 8
+	stand3:
+		Facings: 8
+	run:
+		Facings: 8
+	shoot:
+		Facings: 8
+	idle1:
+		Facings: 8
+	idle2:
+		Facings: 8
+	die1:
+		Facings: 8
+	die3:
+		Facings: 8
+	die2:
+		Facings: 8
+	die4:
+		Facings: 8
+	die5:
+		Facings: 8
+	die6:
+		Facings: 8
+	die-crushed:
+		Filename: corpse1.tem
+		TilesetFilenames:
+			SNOW: corpse1.sno
+		Length: 6
+		Tick: 1600
+		ZOffset: -511
+	icon:
+		Filename: covenantengineericon.shp

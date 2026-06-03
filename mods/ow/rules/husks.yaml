@@ -2263,3 +2263,29 @@ covenantlich.Husk:
 	RenderSprites:
 		Image: covenantlich
 	-RevealOnDeath:
+
+covenantscarab.Husk:
+	Inherits: ^BotCapturableHusk
+	WithIdleOverlay@Burns:
+		Image: covenantscarab
+		Sequence: fire1
+		Offset: -256,512,0
+	Tooltip:
+		Name: actor-covenantscarab-husk-name
+	TransformOnCapture:
+		IntoActor: covenantscarab
+	InfiltrateForTransform:
+		IntoActor: covenantscarab
+	TransformOnCondition:
+		IntoActor: covenantscarab
+	RenderSprites:
+		Image: covenantscarab
+	KillsSelf:
+		Delay: 340
+	AmbientSound:
+		SoundFiles: covenantscarabalarm.aud
+		Delay: 30
+		Interval: 30
+	FireWarheadsOnDeath:
+		Weapon: SkyEmpressCannon
+		EmptyWeapon: SkyEmpressCannon

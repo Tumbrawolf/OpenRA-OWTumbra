@@ -2203,6 +2203,7 @@ actor-covenantrevenant-husk-name = Husk (Rizvum-pattern Revenant)
 actor-covenantlich-husk-name = Husk (Kmiro'sish-pattern Lich)
 actor-covenantspirit-husk-name = Husk (Dextro Xur-pattern Spirit)
 actor-covenantphantom-husk-name = Husk (Ru'swum-pattern Phantom Spirit)
+actor-covenantscarab-husk-name = Husk (Protos-pattern Scarab)
 
 ## japan_air.yaml
 actor-japanchoppervx =
@@ -8235,6 +8236,15 @@ actor-unsc-armouredwarthog =
    .name = Armoured Warthog
    .description = Warthogs will now have 20% damage reduction.
 
+actor-unsc-odst =
+   .name = ODST
+   .description = Offensive infantry units are now trained as ODSTs
+
+    Major Antonio Silva: "Most of the crew—not to mention your fellow jarheads—will be leaving the ship in lifeboats.
+       They'll ride to the surface in air-conditioned comfort, sipping wine, and nibbling on appetizers.
+       Not you, however. Oh no, you're going to leave the Pillar of Autumn in a different method. Tell me boys and girls... how will you leave?"
+    Shock Troopers: "We go feet first, sir!"
+
 ## covenant_veh.yaml
 
 actor-covenantghost =
@@ -8303,6 +8313,17 @@ actor-covenantrevenant =
       Strong vs Infantry
       Weak vs Vehicles, Aircraft
    .name =  Rizvum-pattern Revenant
+
+actor-covenantscarab =
+   .description = The Protos-pattern Fortress Breaker is a type of Covenant Scarab quadrupedal mining platform and combat walker.
+
+    "We've all run the simulations. They're tough, but they ain't invincible!"
+    — Sergeant Major Avery Johnson
+
+    Speed: 48
+      Strong vs Vehicles, Infantry
+      Weak vs Aircraft
+   .name =  Protos-pattern Scarab
 
 ## covenant_air.yaml
 
@@ -8524,6 +8545,6 @@ actor-covenantmegaturret =
 actor-covenantshieldgenerator =
    .description = The shield generator is a structure that provides shield protection for nearby units and buildings.
 
-   "Generates a large bubble shield to protect the base. Multiple Shield Generators can be built in a base to compound the shield's strength."
+   "Generates a large bubble shield to protect the base"
 
    .name = Covenant Shield Generator

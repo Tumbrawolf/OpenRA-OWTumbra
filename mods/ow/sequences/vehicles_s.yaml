@@ -3055,3 +3055,48 @@ covenantrevenantdamaged:
 		Filename: bluefire2.shp
 		Length: *
 		ZOffset: 1023
+
+covenantscarab:
+	Defaults:
+		Filename: avimp.shp
+	idle:
+		Filename: avimp.shp
+		Facings: 8
+		ShadowStart: 88
+	stand:
+		Filename: avimp.shp
+		Facings: 8
+		ShadowStart: 88
+	walk:
+		Filename: avimp.shp
+		Start: 8
+		Length: 10
+		Facings: 8
+		ShadowStart: 96
+		Tick: 150
+	turret:
+		Filename: covenantscarabturret.shp
+		Facings: 32
+		Scale: 0.8
+	fire1:
+		Filename: bluefire1.shp
+		Length: *
+		ZOffset: 1023
+		Scale: 1.0
+	fire2:
+		Filename: bluefire2.shp
+		Length: *
+		ZOffset: 1023
+		Scale: 1.0
+	muzzle:
+		Filename: gunfire2.shp
+		Length: 2
+	muzzle2:
+		Filename: minigun.shp
+		Length: 6
+		Facings: 8
+		Tick: 25
+	icon:
+		Filename: covenantscarabicon.shp
+		Offset: 0,0
+		Scale: 1.0

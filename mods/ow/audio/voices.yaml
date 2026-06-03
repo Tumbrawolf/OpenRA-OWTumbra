@@ -2341,3 +2341,27 @@ CovenantBrute:
 		Die: covenantbrutedie1.aud, covenantbrutedie2.aud, covenantbrutedie3.aud, covenantbrutedie4.aud, covenantbrutedie5.aud, covenantbrutedie6.aud, covenantbrutedie7.aud, covenantbrutedie8.aud, covenantbrutedie9.aud, covenantbrutedie10.aud, covenantbrutedie11.aud
 		Burned: covenantbrutedie1.aud, covenantbrutedie2.aud, covenantbrutedie3.aud, covenantbrutedie4.aud, covenantbrutedie5.aud, covenantbrutedie6.aud, covenantbrutedie7.aud, covenantbrutedie8.aud, covenantbrutedie9.aud, covenantbrutedie10.aud, covenantbrutedie11.aud
 		Zapped: covenantbrutedie1.aud, covenantbrutedie2.aud, covenantbrutedie3.aud, covenantbrutedie4.aud, covenantbrutedie5.aud, covenantbrutedie6.aud, covenantbrutedie7.aud, covenantbrutedie8.aud, covenantbrutedie9.aud, covenantbrutedie10.aud, covenantbrutedie11.aud
+
+CovenantHunter:
+	DefaultVariant: 
+	Voices:
+		Attack: covenanthunterattack1.aud, covenanthunterattack2.aud, covenanthunterattack3.aud, covenanthunterattack4.aud
+		Select: covenanthunterselect1.aud, covenanthunterselect2.aud, covenanthunterselect3.aud, covenanthunterselect4.aud, covenanthunterselect5.aud
+		Move: covenanthuntermove1.aud, covenanthuntermove2.aud, covenanthuntermove3.aud, covenanthuntermove4.aud, covenanthuntermove5.aud, covenanthuntermove6.aud, covenanthuntermove7.aud, covenanthuntermove8.aud, covenanthuntermove9.aud
+		Action: covenanthuntermove1.aud, covenanthuntermove2.aud, covenanthuntermove3.aud, covenanthuntermove4.aud, covenanthuntermove5.aud, covenanthuntermove6.aud, covenanthuntermove7.aud, covenanthuntermove8.aud, covenanthuntermove9.aud
+		Die: covenanthunterdie1.aud, covenanthunterdie2.aud, covenanthunterdie3.aud, covenanthunterdie4.aud, covenanthunterdie5.aud, covenanthunterdie6.aud, covenanthunterdie7.aud, covenanthunterdie8.aud
+		Burned: covenanthunterdie1.aud, covenanthunterdie2.aud, covenanthunterdie3.aud, covenanthunterdie4.aud, covenanthunterdie5.aud, covenanthunterdie6.aud, covenanthunterdie7.aud, covenanthunterdie8.aud
+		Zapped: covenanthunterdie1.aud, covenanthunterdie2.aud, covenanthunterdie3.aud, covenanthunterdie4.aud, covenanthunterdie5.aud, covenanthunterdie6.aud, covenanthunterdie7.aud, covenanthunterdie8.aud
+
+CovenantEngineer:
+	DefaultVariant: 
+	Voices:
+		Attack: covenantengineerattack0.aud, covenantengineerattack1.aud, covenantengineerattack2.aud, covenantengineerattack3.aud, covenantengineerattack4.aud, covenantengineerattack5.aud, covenantengineerattack6.aud, covenantengineerattack7.aud, covenantengineerattack8.aud
+		Select: covenantengineerselect0.aud, covenantengineerselect1.aud, covenantengineerselect2.aud, covenantengineerselect3.aud
+		Move: covenantengineermove0.aud, covenantengineermove1.aud, covenantengineermove2.aud, covenantengineermove3.aud, covenantengineermove4.aud, covenantengineermove5.aud, covenantengineermove6.aud, covenantengineermove7.aud, covenantengineermove8.aud covenantengineermove9.aud
+		Action: covenantengineermove0.aud, covenantengineermove1.aud, covenantengineermove2.aud, covenantengineermove3.aud, covenantengineermove4.aud, covenantengineermove5.aud, covenantengineermove6.aud, covenantengineermove7.aud, covenantengineermove8.aud covenantengineermove9.aud
+		Die: covenantengineerdie0.aud, covenantengineerdie1.aud, covenantengineerdie2.aud, covenantengineerdie3.aud
+		Burned: covenantengineerdie0.aud, covenantengineerdie1.aud, covenantengineerdie2.aud, covenantengineerdie3.aud
+		Zapped: covenantengineerdie0.aud, covenantengineerdie1.aud, covenantengineerdie2.aud, covenantengineerdie3.aud
+
+

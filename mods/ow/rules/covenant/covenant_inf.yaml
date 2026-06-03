@@ -543,4 +543,84 @@ covenanthunter:
 	RenderSprites:
 		Image: judgedredd
 	Voiced:
-		VoiceSet: CovenantBrute
+		VoiceSet: CovenantHunter
+
+covenantengineer:
+	Inherits: ^Soldier
+	Inherits@AUTOTARGET: ^AutoTargetAll
+	Buildable:
+		Queue: Infantry
+		BuildAtProductionType: Soldier
+		BuildPaletteOrder: 42
+		Prerequisites: ~infantry.covenant, barracks
+		Description: actor-covenantengineer.description
+	Tooltip:
+		Name: actor-covenantengineer.name
+	Valued:
+		Cost: 600
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Health:
+		HP: 5000
+	Shielded:
+		MaxStrength: 2500
+		RequiresCondition: !emp_shields && !defense_matrix
+		HideBarWhenFull: false
+	Armor:
+		Type: None
+	Mobile:
+		Voice: Move
+		Speed: 50
+	Guard:
+		Voice: Move
+	Passenger:
+		Voice: Move
+		CustomPipType: yellow
+	Armament:
+		Weapon: Repair
+		Cursor: repair
+		OutsideRangeCursor: repair
+		TargetRelationships: Ally
+		ForceTargetRelationships: None
+	WithInfantryBody:
+		DefaultAttackSequence: shoot
+		RequiresCondition: !parachute
+	WithInfantryBody@PARACHUTE:
+		StandSequences: parachute
+		RequiresCondition: parachute
+	ProducibleWithLevel:
+		Prerequisites: barracks.upgraded
+	RevealsShroud:
+		Range: 5c0
+	Selectable:
+		Bounds: 768, 853, 0, -256
+		DecorationBounds: 640, 896, 0, -426
+	Voiced:
+		VoiceSet: CovenantEngineer
+	WithShadow:
+		Offset: 5, 64, 0
+		ZOffset: -129
+	Hovers:
+		InitialHeight: 128
+	Infiltrates:
+		Types: Husk
+		ValidRelationships: Ally
+		EnterCursor: goldwrench
+		PlayerExperience: 25
+	Captures@husk:
+		CaptureTypes: husk
+		PlayerExperience: 25
+		CaptureDelay: 100
+		EnterCursor: goldwrench
+		ConsumedByCapture: true
+	RepairsBridges:
+	CaptureManager:
+		PreventsAutoTarget: False
+	Captures@building:
+		CaptureTypes: building
+		PlayerExperience: 25
+		CaptureDelay: 150
+		ConsumedByCapture: False
+		SabotageThreshold: 25
+		SabotageHPRemoval: 30
+		ValidRelationships: Enemy, Ally, Neutral

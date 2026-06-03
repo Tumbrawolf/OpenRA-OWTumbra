@@ -434,6 +434,11 @@ unscgrizzlyrockets:
 	Burst: 8
 	BurstDelays: 8
 	Range: 6c0
+	Projectile: Missile
+		HomingActivationDelay: 5
+		Inaccuracy: 360
+		MinimumLaunchAngle: 160
+		MaximumLaunchAngle: 192
 
 unsccobratwincannon:
 	ReloadDelay: 70

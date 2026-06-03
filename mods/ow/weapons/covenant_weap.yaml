@@ -1065,6 +1065,44 @@ covenantmegaturretcannon:
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Scorch
 		InvalidTargets: Structure, Wall, Vehicle
+	Warhead@98Eff_impacta: CreateEffect
+		ImpactSounds: DMC_IMPX.aud
+		Explosions: SkyEmpressMuzzleFlashbig1
+		ImpactActors: false
+	Warhead@98Eff_impactb: CreateEffect
+		ImpactSounds: DMC_FIRE.aud
+		Explosions: SkyEmpressMuzzleFlashbig2
+		ImpactActors: false
+	Warhead@zappy1: FireCluster
+		Delay: 12
+		Weapon: SkyEmpressClusterSmall
+		RandomClusterCount: 6
+		Dimensions: 3,3
+		Footprint: xxx x_x xxx
+	Warhead@zappy2: FireCluster
+		Delay: 16
+		Weapon: SkyEmpressClusterSmall
+		RandomClusterCount: 6
+		Dimensions: 3,3
+		Footprint: xxx x_x xxx
+	Warhead@zappy3: FireCluster
+		Delay: 20
+		Weapon: SkyEmpressClusterSmall
+		RandomClusterCount: 6
+		Dimensions: 3,3
+		Footprint: xxx x_x xxx
+	Warhead@zappy4: FireCluster
+		Delay: 24
+		Weapon: SkyEmpressClusterSmall
+		RandomClusterCount: 6
+		Dimensions: 3,3
+		Footprint: xxx x_x xxx
+	Warhead@zappy5: FireCluster
+		Delay: 28
+		Weapon: SkyEmpressClusterSmall
+		RandomClusterCount: 6
+		Dimensions: 3,3
+		Footprint: xxx x_x xxx
 	Warhead@3Eff: CreateEffect
 		Explosions: covenantmegaturretexplosion
 		ImpactSounds: covenantexplosionlarge1.aud, covenantexplosionlarge2.aud, covenantexplosionlarge3.aud, covenantexplosionlarge4.aud
@@ -1172,3 +1210,48 @@ covenantmegaturretcannon:
 		ValidTargets: Ground, Water, GroundActor, WaterActor, AirborneActor, Air
 		Delay: 5
 
+covenantscarabcharge:
+	MinRange: 2c0
+	Range: 9c0
+	ReloadDelay: 125
+	Report: covenantscarabcharge.aud
+	ValidTargets: Ground, Water, GroundActor, WaterActor
+	Projectile: Missile
+		Speed: 2
+		RangeLimit: 3
+	Warhead@1Eff: CreateEffect
+		Explosions: lightbringer_charge
+		ImpactSounds: covenantscarabcharge.aud
+		Inaccuracy: 256
+		ValidTargets: Ground, GroundActor, WaterActor, Trees, Air
+
+
+covenantscarabbeam:
+	MinRange: 2c0
+	Range: 9c0
+	ReloadDelay: 125
+	Report: covenantscarabbeam1.aud, covenantscarabbeam2.aud, covenantscarabbeam3.aud
+	ValidTargets: Ground, Water, GroundActor, WaterActor
+	Projectile: AreaBeam
+		Speed: 256
+		Duration: 75
+		Shape: Cylindrical
+		Color: 00eb1b70
+		DamageInterval: 5
+		Width: 0c256
+	Warhead@1Dam: SpreadDamage
+		Delay: 5
+		Spread: 1024
+		Damage: 10000
+		Versus:
+			None: 110
+			Wood: 40
+			Light: 90
+			Heavy: 90
+			Concrete: 40
+			Shield: 200
+		DamageTypes: DefaultDeath
+		ValidTargets: GroundActor, WaterActor
+	Warhead@2Smu: LeaveSmudge
+		SmudgeType: Scorch
+		InvalidTargets: Structure, Wall, Vehicle

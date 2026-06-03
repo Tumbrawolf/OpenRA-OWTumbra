@@ -1,5 +1,4 @@
 ^covenantbuilding:
-	Inherits@shield: ^ProtossShield
 	GrantConditionOnDamageState@fire1:
 		Condition: damaged_light
 		ValidDamageStates: Medium, Heavy, Critical
@@ -1128,8 +1127,6 @@ covenantmegaturret:
 		Cost: 1500
 	Health:
 		HP: 100000
-	Shielded:
-		MaxStrength: 30000
 	Armor:
 		Type: Heavy
 	Power:

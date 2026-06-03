@@ -404,3 +404,104 @@ covenantrevenant:
 		Offset: -128,-128,0
 	Voiced:
 		VoiceSet: CovenantElite
+
+
+covenantscarab:
+	Inherits: ^Vehicle
+	Inherits@GAINSEXPERIENCE: ^GainsExperience
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	Inherits@mindcontrol: ^MindControlResistant
+	Buildable:
+		Queue: Vehicle
+		BuildPaletteOrder: 30
+		Prerequisites: ~vehicles.covenant, advtechcenter
+		Description: actor-covenantrevenant.description
+		BuildLimit: 2
+	Tooltip:
+		Name: actor-covenantscarab.name
+	Valued:
+		Cost: 5000
+	Health:
+		HP: 225000
+	Armor:
+		Type: Heavy
+	Mobile:
+		Speed: 48
+		TurnSpeed: 10
+	RevealsShroud:
+		MinRange: 5c0
+		Range: 8c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 5c0
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Turreted:
+		TurnSpeed: 40
+		Offset: -298,0,212
+	Armament:
+		Weapon: covenantscarabcharge
+		AmmoUsage: 0
+		LocalOffset: 256,0,0
+		PauseOnCondition: !ammo
+	Armament@2:
+		Weapon: covenantscarabbeam
+		LocalOffset: 256,0,0
+		AmmoUsage: 1
+		FireDelay: 45
+		PauseOnCondition: !ammo
+	Armament@PRIMARYb:
+		Weapon: covenantplasmarifle
+		LocalOffset: 0,-112,112
+		AmmoUsage: 0
+		PauseOnCondition: disabled
+	Armament@PRIMARYc:
+		Weapon: covenantplasmarifle
+		LocalOffset: 0,112,112
+		AmmoUsage: 0
+		PauseOnCondition: disabled
+	AttackTurreted:
+		PauseOnCondition: disabled 
+	SpawnActorOnDeath:
+		Actor: covenantscarab.Husk
+	WithMuzzleOverlay:
+	WithSpriteTurret:
+		Sequence: turret
+	WithShadow:
+		Offset: 5, 64, 0
+		ZOffset: -129
+	RenderSprites:
+		Image: covenantscarab
+	GrantConditionOnDamageState@fire2:
+		Condition: damaged_heavy
+		ValidDamageStates: Heavy, Critical
+	GrantConditionOnDamageState@fire3:
+		Condition: damaged_critical
+		ValidDamageStates: Critical
+	WithIdleOverlay@damage2:
+		RequiresCondition: damaged_heavy
+		Sequence: fire2
+		Offset: 128,128,0
+	WithIdleOverlay@damage3:
+		RequiresCondition: damaged_critical
+		Sequence: fire1
+		Offset: -128,-128,0
+	Voiced:
+		VoiceSet: CovenantElite
+	WithFacingSpriteBody:
+		Sequence: stand
+	WithMoveAnimation:
+		MoveSequence: walk
+		ValidMovementTypes: Horizontal, Turn
+	AmmoPool:
+		Ammo: 1
+		AmmoCondition: ammo
+		InitialAmmo: 1
+	ReloadAmmoPool@normal:
+		Delay: 210
+	WithAmmoPipsDecoration:
+		Position: BottomLeft
+		Margin: 4, 3
+		RequiresSelection: false
+		PipCount: 1
+		ValidRelationships: Ally, Enemy, Neutral

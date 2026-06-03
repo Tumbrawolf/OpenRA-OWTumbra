@@ -225,7 +225,7 @@ unscgrizzly:
 	Valued:
 		Cost: 2600
 	Tooltip:
-		Name: actor-unscgrizzly-name
+		Name: actor-unscgrizzly.name
 	UpdatesPlayerStatistics:
 		AddToArmyValue: true
 	Health:
