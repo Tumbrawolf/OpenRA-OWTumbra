@@ -1,6 +1,6 @@
 Metadata:
 	Title: mod-title
-	Version: OpenRA-OW-20260430
+	Version: OpenRA-OW-20260608
 	Website: https://github.com/PhoebeIV/OpenRA-OW
 	WebIcon32: https://www.openra.net/images/icons/ra_32x32.png
 	WindowTitle: OpenRA - Opposing Worlds
@@ -327,7 +327,7 @@ ChromeLayout:
 	ow|chrome/ingame-observer.yaml
 	ow|chrome/ingame-player.yaml
 	common|chrome/ingame-perf.yaml
-	common|chrome/ingame-debug.yaml
+	ra|chrome/ingame-debug.yaml	
 	common|chrome/ingame-debug-hpf.yaml
 	common|chrome/ingame-debuginfo.yaml
 	common|chrome/ingame-infochat.yaml
@@ -373,6 +373,7 @@ ChromeLayout:
 FluentMessages:
 	common|fluent/common.ftl
 	common|fluent/chrome.ftl
+	common|fluent/ingame-debug.ftl
 	common|fluent/hotkeys.ftl
 	common|fluent/rules.ftl
 	ow|fluent/ow.ftl
