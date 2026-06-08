@@ -4,17 +4,20 @@
 		Delay: 125
 		StartIfBelow: 100
 		DamageCooldown: 250
+		DamageTypes: BypassShield
 	ChangesHealth@regen2:
 		PercentageStep: 1
 		Delay: 75
 		StartIfBelow: 40
 		DamageCooldown: 250
+		DamageTypes: BypassShield
 	ChangesHealth@regen_zagara:
 		PercentageStep: 1
-		Delay: 125
+		Delay: 75
 		StartIfBelow: 100
 		DamageCooldown: 75
 		RequiresCondition: zagara_regen
+		DamageTypes: BypassShield
 	GrantConditionOnPrerequisite@zagararegen:
 		Condition: zagara_regen
 		Prerequisites: zagara.tier4.regen
@@ -43,7 +46,6 @@
 		Dimensions: 1,1
 		Footprint: x
 		BuildSounds: zbldgplc.aud
-		AllowPlacementOnResources: true
 		TerrainTypes: Creep
 		RequiresBaseProvider: True
 	RequiresBuildableArea:
@@ -72,9 +74,17 @@
 	ToggleConditionOnOrder@explode:
 		OrderName: Sell
 		Condition: sell_me
+	Sellable: 
+		SkipMakeAnimation: true
+	FireWarheads@sell:
+		RequiresCondition: sell_me
+		Weapons: LargeZergBuildingExplode
 	KillsSelf@explode:
 		RequiresCondition: sell_me
 		Delay: 5
+	FreeActor@sell:
+		RequiresCondition: sell_me
+		Actor: BuildQueueHandler2
 	ChangesHealth@regen:
 		PercentageStep: 1
 		Delay: 110
@@ -129,6 +139,9 @@ ZMCV:
 		Actor: 1tnk
 		SpawnOffset: 1,1
 		RequiresCondition: deploying
+	Production:
+		PauseOnCondition: !never
+		Produces: Building, Defense, Tech, Wall, Upgrade
 
 ZMCV.2:
 	Inherits: ZMCV
@@ -184,11 +197,13 @@ CreepGenBig:
 	Inherits@shape: ^1x1Shape
 	Targetable:
 		TargetTypes: CreepGenerator
+	OwnerLostAction:
+		Action: ChangeOwner
 	ExternalCondition@creep:
 		Condition: creepalive
 	KillsSelf:
 		RequiresCondition: !creepalive
-		Delay: 25
+		Delay: 50
 	FireWarheadsOnDeath:
 		Weapon: CreepRemoveBig
 	SeedsResource:
@@ -282,7 +297,7 @@ HatcheryBib:
 		Condition: creepalive
 	KillsSelf:
 		RequiresCondition: !creepalive
-		Delay: 25
+		Delay: 50
 	FireWarheadsOnDeath:
 		Weapon: CreepRemoveBig
 	SeedsResource:
@@ -297,6 +312,7 @@ HatcheryBib:
 ZHATCHERY:
 	Inherits: ^ZergBuilding
 	Inherits@prereqs: ^ConYardPrereqs
+	Inherits@infantry: ^InfantryExtras
 	Inherits@con: ^ConYard
 	Inherits@PRIMARY: ^PrimaryBuilding
 	HitShape:
@@ -342,6 +358,15 @@ ZHATCHERY:
 		RevealGeneratedShroud: False
 	RevealsShroud@GAPGEN:
 		Range: 4c0
+	SeedsResource:
+		Interval: 2
+		MaxRange: 9
+		ResourceType: ZergCreep
+	SeedsResource@large:
+		RequiresCondition: hive_upgrade
+		Interval: 2
+		MaxRange: 12
+		ResourceType: ZergCreep
 	Valued:
 		Cost: 3000
 	Tooltip:
@@ -365,11 +390,10 @@ ZHATCHERY:
 		Produces: Defense
 		RequiresCondition: zagara || botowner || easybuild_enabled
 	Production@inf:
-		Produces: Hatchery,Infantry
-		PauseOnCondition: busy
+		Produces: Hatchery, Infantry, Soldier
 		RequiresCondition: !zagara
 	Production@inf2:
-		Produces: Hatchery,Infantry
+		Produces: Hatchery, Infantry, Soldier
 		RequiresCondition: zagara
 	Production@veh:
 		Produces: Vehicle
@@ -398,6 +422,9 @@ ZHATCHERY:
 	ProductionBar@Inf:
 		ProductionType: Infantry
 		Color: FF0000
+	RallyPoint:
+	FireWarheadsOnDeath@creep:
+		Weapon: CreepRemoveBig
 	GrantExternalConditionToProduced:
 		Condition: produced
 	GrantConditionOnProduction@busy:
@@ -412,7 +439,7 @@ ZHATCHERY:
 		Range: 3c0
 		RequiresCondition: busy
 	StoresPlayerResources:
-		Capacity: 600
+		Capacity: 1000
 	Refinery:
 	DockHost:
 		Type: Unload
@@ -477,6 +504,12 @@ ZHATCHERY:
 		Actor: MediumZergBuildingComplete
 		SpawnOffset: 1,1
 		RequiresCondition: !build-incomplete
+	FireWarheads@creep:
+		RequiresCondition: !build-incomplete && !no-explode
+		Weapons: CreepSplashBig
+		Interval: 5000
+	GrantDelayedCondition@creep:
+		Condition: no-explode
 	Pluggable@1:
 		Offset: 1,1
 		Conditions:
@@ -542,9 +575,13 @@ ZHATCHERY:
 	ProvidesPrerequisite@lair:
 		RequiresCondition: lair_upgrade || hive_upgrade
 		Prerequisite: zlair
+	ProvidesPrerequisite@radar:
+		RequiresCondition: lair_upgrade || hive_upgrade
+		Prerequisite: radar
 	ProvidesPrerequisite@advtech:
 		RequiresCondition: lair_upgrade || hive_upgrade
 		Prerequisite: advtechcenter
+		RequiresPrerequisites: techlevel.unrestricted
 	ProvidesPrerequisite@epic1:
 		RequiresCondition: hive_upgrade
 		Prerequisite: zhive
@@ -572,6 +609,7 @@ ZHATCHERY:
 		RequiresCondition: hive_upgrade
 		UseResourceStorage: true
 	ProximityExternalCondition@creepalive:
+		-RequiresCondition:
 		Condition: creepalive
 		Range: 4c0
 	ParatroopersPower@rebelambush:
@@ -621,6 +659,8 @@ ZHATCHERY:
 		Actors: zdevouring
 	WithBuildingBib:
 		Palette: player
+	Sellable:
+		RequiresCondition: !botowner
 
 ZergLairComplete:
 	Inherits: SmallZergBuildingComplete
@@ -643,7 +683,7 @@ ZLAIR.up:
 	Buildable:
 		Queue: Tech
 		BuildPaletteOrder: 1000
-		Prerequisites: zhatchery, zchamber, ~structures.zerg, ~techlevel.high, ~free_hatchery
+		Prerequisites: zhatchery, zchamber, ~structures.zerg, ~techlevel.medium, ~free_hatchery
 		Description: actor-zlair-up.description
 		Icon: icon-lair
 		IconPalette: player-icon
@@ -867,7 +907,7 @@ ZCCOLONY:
 		SpawnOffset: 1,0
 		RequiresCondition: waiting_to_evolve
 	DetectCloaked:
-		DetectionTypes: Cloak
+		DetectionTypes: Cloak, AirCloak
 		Range: 6c0
 		RequiresCondition: str_spore && !disabled
 	Turreted@spore:
@@ -883,6 +923,7 @@ ZCCOLONY:
 	WithColoredOverlay@IDISABLE:
 		RequiresCondition: disabled && waiting_to_evolve
 		Color: 000000B4
+	IgnoresDisguise: 
 
 # Buildable version granted by an upgrade
 ZCCOLONY2:
@@ -954,7 +995,7 @@ ZEXTRAC:
 	Buildable:
 		Queue: Building
 		BuildPaletteOrder: 101
-		Prerequisites: ~structures.zerg, ~techlevel.infonly, ~zerg.easybuild, ~!ai.boss
+		Prerequisites: ~structures.zerg, ~techlevel.infonly, ~zerg.easybuild, ~!ai.god
 		Description: actor-zextrac.description
 	Health:
 		HP: 90000
@@ -968,7 +1009,9 @@ ZEXTRAC:
 		Range: 4c0
 	Refinery:
 	StoresPlayerResources:
-		Capacity: 2000
+		Capacity: 3000
+	ProvidesPrerequisite@silo:
+		Prerequisite: silo
 	Valued:
 		Cost: 800
 	Tooltip:
@@ -1184,7 +1227,7 @@ ZCHAMBER:
 		Queue: Building
 		BuildPaletteOrder: 104
 		BuildDuration: 2000
-		Prerequisites: zhydraden, ~structures.zerg, ~techlevel.high, ~zerg.easybuild
+		Prerequisites: zhydraden, ~structures.zerg, ~techlevel.medium, ~zerg.easybuild
 		Description: actor-zchamber.description
 	Health:
 		HP: 90000
@@ -1236,7 +1279,7 @@ ZSPIRE:
 		Queue: Building
 		BuildPaletteOrder: 105
 		BuildDuration: 2000
-		Prerequisites: ~structures.zerg, techcenter, ~techlevel.high, ~zerg.easybuild
+		Prerequisites: ~structures.zerg, radar, ~techlevel.medium, ~zerg.easybuild
 		Description: actor-zspire.description
 		BuildLimit: 2
 	Health:
@@ -1384,7 +1427,7 @@ ZGSPIRE.up:
 		Queue: Tech
 		BuildPaletteOrder: 1002
 		BuildDuration: 4500
-		Prerequisites: zlair, ~zspire.up, ~structures.zerg, ~techlevel.unrestricted
+		Prerequisites: zlair, ~zspire.up, ~structures.zerg, ~techlevel.high
 		Description: actor-zgspire-up.description
 		Icon: icon-gspire
 		IconPalette: player-icon

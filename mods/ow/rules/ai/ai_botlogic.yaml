@@ -1,0 +1,4352 @@
+
+Player:
+	ModularBot@EasyAI:
+		Name: bot-name.easy
+		Type: easy
+	ModularBot@NormalAI:
+		Name: bot-name.medium
+		Type: medium
+	ModularBot@HardAI:
+		Name: bot-name.hard
+		Type: hard
+	ModularBot@HarderAI:
+		Name: bot-name.harder
+		Type: harder
+	ModularBot@RealBossAI:
+		Name: bot-name.boss
+		Type: boss2
+	ModularBot@BossAI:
+		Name: bot-name.god
+		Type: boss
+	ModularBot@Hard1AI:
+		Name: bot-name.tech
+		Type: hard_b
+	ModularBot@dummyAI:
+		Name: bot-name.dummy
+		Type: dummy
+	ModularBot@dummy2AI:
+		Name: bot-name.dummy2
+		Type: dummy_build
+	ProvidesPrerequisite@all:
+		RequiresCondition: enable-all-ai
+		Prerequisite: ai.all
+	ProvidesPrerequisite@easy:
+		RequiresCondition: enable-easy-ai
+		Prerequisite: ai.easy
+	ProvidesPrerequisite@medium:
+		RequiresCondition: enable-medium-ai
+		Prerequisite: ai.medium
+	ProvidesPrerequisite@hard:
+		RequiresCondition: enable-hard-ai || enable-harder-ai || enable-boss-ai
+		Prerequisite: ai.hard
+	ProvidesPrerequisite@harder:
+		RequiresCondition: enable-harder-ai || enable-boss-ai
+		Prerequisite: ai.harder
+	ProvidesPrerequisite@realboss:
+		RequiresCondition: enable-realboss-ai
+		Prerequisite: ai.realboss
+	ProvidesPrerequisite@god:
+		RequiresCondition: enable-boss-ai
+		Prerequisite: ai.god
+	GrantConditionOnPrerequisite@ai_enable1:
+		Condition: enable-all-ai
+		Prerequisites: ai.enable
+	GrantConditionOnPrerequisite@ai_enable2:
+		Condition: enable-medium-ai
+		Prerequisites: ai.enable_med
+	GrantConditionOnPrerequisite@ai_enable3:
+		Condition: enable-hard-ai
+		Prerequisites: ai.enable_hard
+	GrantConditionOnPrerequisite@ai_enable4:
+		Condition: enable-no-epic
+		Prerequisites: techlevel.noepic
+	GrantConditionOnBotOwner@normal:
+		Condition: enable-medium-ai
+		Bots: medium
+	GrantConditionOnBotOwner@easy:
+		Condition: enable-easy-ai
+		Bots: easy
+	GrantConditionOnBotOwner@hard:
+		Condition: enable-hard-ai
+		Bots: hard,harder,hard_b,boss2
+	GrantConditionOnBotOwner@harder:
+		Condition: enable-harder-ai
+		Bots: harder,boss2
+	GrantConditionOnBotOwner@boss:
+		Condition: enable-boss-ai
+		Bots: boss
+	GrantConditionOnBotOwner@realboss:
+		Condition: enable-realboss-ai
+		Bots: boss2
+	GrantConditionOnBotOwner@bossgod:
+		Condition: enable-godboss-ai
+		Bots: boss,boss2
+	GrantConditionOnBotOwner@all:
+		Condition: enable-all-ai
+		Bots: easy, medium, hard, harder, boss, boss2, hard_b
+	GrantConditionOnBotOwner@dummy1:
+		Condition: enable-dummy-build-ai
+		Bots: dummy_build
+	GrantConditionOnBotOwner@dummy2:
+		Condition: enable-dummy-mcv-ai
+		Bots: dummy, dummy_build
+	GrantConditionOnFaction@medi:
+		Condition: enable-medi-ai
+		Factions: zerg, infantry, zagara, kerrigan
+	GrantConditionOnFaction@smallharv:
+		Condition: enable-smallharv-ai
+		Factions: zerg, zagara, kerrigan, kassad, demo, thrax, protoss, artanis, vorazun, terran, raynor, mengsk
+	GrantConditionOnFaction@heroonly:
+		Condition: enable-heroonly-ai
+		Factions: heroonly
+	PlayerCashTrickler@med:
+		RequiresCondition: enable-medium-ai
+		Interval: 750
+		InitialDelay: 3000
+		Amount: 500
+	PlayerCashTrickler@hard:
+		RequiresCondition: enable-hard-ai
+		Interval: 750
+		InitialDelay: 3000
+		Amount: 1000
+	PlayerCashTrickler@harder:
+		RequiresCondition: enable-harder-ai && !enable-hard-ai
+		Interval: 750
+		InitialDelay: 3000
+		Amount: 2000
+	PlayerCashTrickler@realboss:
+		RequiresCondition: enable-realboss-ai
+		Interval: 750
+		InitialDelay: 3000
+		Amount: 2500
+	PlayerCashTrickler@boss2:
+		RequiresCondition: enable-boss-ai || bossmodemoney
+		Interval: 750
+		InitialDelay: 1500
+		Amount: 5000
+	GrantConditionOnPrerequisite@bossmodemoney:
+		Prerequisites: techlevel.boss
+		Condition: bossmodemoney
+	GrantRandomCondition@surveyor:
+		Conditions: surveyor1, surveyor2
+	GrantCondition@surveyor1:
+		Condition: enable-surveyor
+		RequiresCondition: surveyor1 && enable-all-ai
+	GrantConditionOnFaction@surveyorrush:
+		Factions: economy, forgotten, nod3, heydrich, estonia
+		Condition: enable-surveyor
+		RequiresCondition: enable-all-ai
+	GrantDelayedCondition@surveyor2:
+		Condition: enable-surveyor
+		RequiresCondition: surveyor2 && enable-all-ai
+		Delay: 4500,9000
+	GrantRandomCondition@hatestib:
+		Conditions: hatetib,liketib
+	GrantConditionOnPrerequisite@alltiboverride:
+		Prerequisites: techlevel.monoliths
+		Condition: lobbytib
+	ProvidesPrerequisite@hatestib:
+		RequiresCondition: ((hatetib && enable-all-ai && !liketib) || (override_hatetib && enable-all-ai)) && !lobbytib
+		Prerequisite: ai.hatetib
+	GrantConditionOnFaction@likestib:
+		Factions: forgotten, nod, marked, bhand, nod3
+		Condition: liketib
+		RequiresCondition: enable-all-ai
+	GrantConditionOnFaction@hatestib:
+		Factions: infantry, gdi, steel, zocom, gdi3
+		Condition: override_hatetib
+		RequiresCondition: enable-all-ai
+	HarvesterBotModule@base:
+		RequiresCondition: enable-all-ai || enable-dummy-mcv-ai
+		HarvesterTypes: harv, harvd, usachinook, avharv, lst.harv, unscdarter
+		RefineryTypes: proc, procd, gproc, passim, zextrac, trefinery, usasupplycenter, chinasupplycenter, japansupplycenter, avproc, japansupplycenternavy, barr.boss, unscsupplypad
+		ScanForIdleHarvestersInterval: 250
+		HarvesterEnemyAvoidanceRadius: 10c0
+	HarvesterBotModule@smallharv: # for infantry-sized harvesters
+		RequiresCondition: enable-smallharv-ai
+		HarvesterTypes: gharv, pprobe, zdrone, tscv
+		RefineryTypes: proc, procd, gproc, passim, zextrac, trefinery, usasupplycenter, chinasupplycenter, japansupplycenter, avproc, japansupplycenternavy, barr.boss, unscsupplypad
+		ScanForIdleHarvestersInterval: 250
+		HarvesterEnemyAvoidanceRadius: 10c0
+		InitialHarvesters: 30
+	ResourceMapBotModule:
+		RequiresCondition: enable-all-ai || enable-dummy-build-ai
+		ResourceCreatorTypes: mine, gmine, mine.cr, gmine.cr, split3, split3.cr, split4, split4.cr, tmonolith, tmonolith.blue, japanoilderrick.cr
+		ValuableResourceTypes: Ore, Gems, Tiberium, BlueTiberium, Oil
+		HarvesterTypes: harv, harvd,  gharv, pprobe, zdrone, usachinook, tscv, avharv, lst.harv, unscdarter
+		RefineryTypes: proc, procd, gproc, passim, zextrac, usasupplycenter, trefinery, chinasupplycenter, barr.boss, japansupplycenter, avproc, japansupplycenternavy, btproc, syrd, spen, gspen, usashipyard, chinashipyard, japanshipyard, japanshipyardnavy, unscsupplypad
+		EnemyBaseBuildingTypes: syrd, spen, gspen, usashipyard, chinashipyard, japanshipyard, japanshipyardnavy, pbox.boss, gfix.boss, tsla, agun, pbox, hbox, gun, ftur, sam, gtwr, atd, xbar, tsla.est, tsla.ukr, ironball, dgun.nz, atwr, atwr2, samd, oblid, dgun, advsam, solcdepl, plstur, gpbox, ghbox, gstg, atd.g, pphoto, psbatt, zccolony, usapatriot, usapatriotemp, usalaserpatriot, usafirebaseai, tbunker.bot, tbunker.bot2, tbunker.mengsk.bot, tbunker.mengsk.bot2, tmissile, tmissile.mengsk, tstank.bot.buildable, avarty.bot.buildable, chinaspeakertower, chinagatlinggun, chinabunkerai, chinafortifiedbunkerai, ppylon.bot, chinanukecannonai, usasupportmatrix, japanlaserbaseai, japanmindcontrol, japanballoon, japanberserktower, japanwaveforceturret, avfact, avtent, avtent.bot, avweap, avweap.bot, avproc, pstarg.bot, hpad.bot, japanmindcontrolnavy, japanaikokusha, pdrago.warpai, pzealot.warpai, zegg.zergling, zegg.hydra, zegg.muta, zegg.ultra, ztumor, ztumor.bot, silo, silod, gsilo, usasilo, fact, factd, gfact, zhatchery, pnexus, tcommand, tcommand.landed, tcommand.ai, avfact, powr, apwr, dpwr, nuk2, xpwr, nuk3, zoverlord, usacoldfusion, tsupply, upgrade.coldreactor, chinanuclearreactor, chinaadvnuclearreactor, chinabreederreactor, ppylon, ppylon.bot, prefab.a, prefab.b, japanantimatterreactor, japanhyperantimatterreactor, avpowr1, avpowr2, avpowr3, japanantimatterreactornavy, japanhyperantimatterreactornavy, btpanel, barr, tent, weap, afld, hpad, hpad.bot, pstarg, handd, pyled, nhand, gtent, foundry, gfoundry, weapd, afldd, gair, upgradehandler, aeiou, barr.bot, barr.boss, tent.bot, handd.bot, pyled.bot, nhand.bot, gtent.bot, foundry.bot, gfoundry.bot, weap.bot, weap.boss, weapd.bot, afldd.bot, gair.bot, pgatew, pgatew.bot, psupor, psupor.bot, ptempl, probot, probot.bot, pcarry, zhatchery, zpool, zpool.bot, zccolony, zhydraden, zspire, usaairfield, usawarfactory, usastrategycenter, usabarracks, usashipyard, znydus, tcommand, tcommand.landed, tbarr, tbarr.1, tbarr.2, tbarr.3, tsilo, tfactory, tsport, chinabarracks, chinawarfactory, chinaairfield, chinashipyard, japanbarracks, japanmechabay, japanairfield, japanshipyard, japanshipyardnavy, japanairfieldnavy, avtent, avtent.bot, avweap, avweap.bot, avpad, pstarg.bot, hpad.bot, unscreactor, unscreactor.up, unscbarracks, unscfirebase.barracks
+		UpdateResourceMapInverval: 250
+		ResourceMapStrideRadius: 30
+	BuildingRepairBotModule:
+		RequiresCondition: enable-all-ai || enable-dummy-mcv-ai
+	McvManagerBotModule@easy:
+		RequiresCondition: enable-easy-ai
+		McvTypes: mcv, mcvd, mcvd.2, mcv.2, gmcv, gmcv.2, mcvc, pmcv, pmcv.2, zmcv, zmcv.2, tcommand.air, tcommand.air2, avmcv, avmcv.2, unscmcv, unscmcv.2
+		ConstructionYardTypes: fact, factd, gfact, v01.c, pnexus, zhatchery, tcommand, tcommand.landed, tcommand.ai, avfact, unsccommandcenter
+		McvFactoryTypes: weap, weapd, afldd, gair, probot, weap.bot, weapd.bot, afldd.bot, gair.bot, usawarfactory, zhatchery, chinawarfactory, japanmechabay, avweap, japanmechabaynavy, tsport, unscgarage
+		ScanForNewMcvInterval: 500
+		MinimumConstructionYardCount: 1
+	McvManagerBotModule@medhard:
+		RequiresCondition: enable-medium-ai || enable-hard-ai || enable-dummy-mcv-ai
+		McvTypes: mcv, mcvd, mcvd.2, mcv.2, gmcv, gmcv.2, mcvc, pmcv, pmcv.2, zmcv, zmcv.2, tcommand.air, tcommand.air2, avmcv, avmcv.2, unscmcv, unscmcv.2
+		ConstructionYardTypes: fact, factd, gfact, v01.c, pnexus, zhatchery, tcommand, tcommand.landed, tcommand.ai, avfact, unsccommandcenter
+		McvFactoryTypes: weap, weapd, afldd, gair, probot, weap.bot, weapd.bot, afldd.bot, gair.bot, usawarfactory, zhatchery, chinawarfactory, japanmechabay, avweap, japanmechabaynavy, tsport, unscgarage
+		ScanForNewMcvInterval: 500
+		MinimumConstructionYardCount: 3
+	McvManagerBotModule@boss:
+		RequiresCondition: enable-boss-ai
+		McvTypes: mcv, mcvd, mcvd.2, mcv.2, gmcv, gmcv.2, mcvc, pmcv, pmcv.2, zmcv, zmcv.2, tcommand.air, tcommand.air2, avmcv, avmcv.2, unscmcv, unscmcv.2
+		ConstructionYardTypes: fact, factd, gfact, v01.c, pnexus, zhatchery, tcommand, tcommand.landed, tcommand.ai, avfact, unsccommandcenter
+		McvFactoryTypes: weap, weapd, afldd, gair, probot, weap.bot, weapd.bot, afldd.bot, gair.bot, usawarfactory, zhatchery, chinawarfactory, japanmechabay, avweap, japanmechabaynavy, tsport, unscgarage
+		ScanForNewMcvInterval: 500
+		MinimumConstructionYardCount: 4
+	McvExpansionManagerBotModule@all:
+		RequiresCondition: (enable-all-ai && enable-mcv-exp) || enable-dummy-build-ai
+		McvTypes: mcv, mcvd, mcvd.2, mcv.2, gmcv, gmcv.2, mcvc, pmcv, pmcv.2, zmcv, zmcv.2, tcommand.air, tcommand.air2, avmcv, avmcv.2, unscmcv, unscmcv.2
+		ConstructionYardTypes: fact, factd, gfact, v01.c, pnexus, zhatchery, tcommand, tcommand.landed, tcommand.ai, avfact, unsccommandcenter
+		McvFactoryTypes: weap, weapd, afldd, gair, probot, weap.bot, weapd.bot, afldd.bot, gair.bot, usawarfactory, zhatchery, chinawarfactory, japanmechabay, avweap, japanmechabaynavy, tsport, unscgarage
+		MoveOldConyardFirst: false
+		BuildMcvInterval: 500
+		BuildAdditionalMCVCashAmount: 2500
+		MinimumConstructionYardCount: 2
+		AdditionalConstructionYardCount: 2
+		ScanForNewMcvInterval: 250
+		CBmodeMinDeployRadius: 8
+		CBmodeMaxDeployRadius: 30
+		InitialExpansionMode: CheckResource
+	McvExpansionManagerBotModule@surveyor:
+		RequiresCondition: enable-all-ai && enable-surveyor
+		McvTypes: tsengi.o, japansurveyorboat
+		ConstructionYardTypes: outpost, outpostnavy
+		McvFactoryTypes: barr, tent, handd, pyled, nhand, gtent, foundry, gfoundry, barr.bot, barr.boss, tent.bot, handd.bot, pyled.bot, nhand.bot, gtent.bot, foundry.bot, gfoundry.bot, pgatew, pgatew.bot, psupor, psupor.bot, zpool, zpool.bot, zhydraden, usabarracks, usabarracks.bot, zhatchery, znydus, tbarr, tbarr.1, tbarr.2, tbarr.3, tbarr.ai, chinabarracks,chinabarracks.bot, t.missinf, god.miss, japanbarracks, japanbarracks.bot, japanbarracks, avtent, avtent.bot, avcarrier, japanshipyard, unscbarracks, unscfirebase.barracks
+		MoveOldConyardFirst: false
+		BuildMcvInterval: 250
+		BuildAdditionalMCVCashAmount: 500
+		MinimumConstructionYardCount: 4
+		AdditionalConstructionYardCount: 4
+		CRmodeMinDeployRadius: 10
+		CBmodeMinDeployRadius: 15
+		ScanForNewMcvInterval: 250
+	GrantDelayedCondition@mcvexp:
+		Delay: 15000
+		Condition: enable-mcv-exp
+	PowerDownBotModule:
+		RequiresCondition: enable-all-ai
+		PowerDownTypes: hellgate,hellgate.d,dome,tsla,mslo,agun,sam,chinanuclearsilo,iron,chinasupernuclearsilo,japandecimator,gateoflight,medidarkcrystal,firestormmedi,tmpld,ptempl,eyed,tsilo,usaparticlecannon,zmslo,atd,tsla.est, tsla.ukr,ironball,atwr,atwr2,oblid,samd,advsam,plstur,pphoto,psbatt,usapatriot,usapatriotemp,tmissile,tmissile.mengsk,chinagatlinggun,usasupportmatrix, japanlaserbaseai, japanmindcontrol, japanballoon, japanberserktower, japanwaveforceturret,ftemple
+	BaseBuilderBotModule@normal:
+		RequiresCondition: enable-all-ai || enable-dummy-build-ai
+		PlaceDefenseTowardsEnemyChance: 40
+		InititalMinimumRefineryCount: 1
+		AdditionalMinimumRefineryCount: 1
+		ExpansionTolerate: 0,1
+		ForceExpansionTolerate: 0
+		CheckForWaterRadius: 6
+		MaxBaseRadius: 15
+		MinimumExcessPower: 100
+		MaximumExcessPower: 600
+		ExcessPowerIncrement: 40
+		ExcessPowerIncreaseThreshold: 4
+		StructureProductionInactiveDelay: 100
+		StructureProductionRandomBonusDelay: 50
+		StructureProductionActiveDelay: 45
+		MaximumFailedPlacementAttempts: 3
+		AssignRallyPointsInterval: 250
+		BuildingQueues: Building, Tech, Upgrade, UpgradeBot, BossFaction, Bot, Wall, Building.ZergColony, Nuke, HeroUpgrade1, HeroUpgrade2, HeroUpgrade3, HeroUpgrade4, HeroUpgrade5, HeroAbility, AvaliCarrier, SuperTechChoice, StrategyChoice, ConYardPerimeter
+		DefenseQueues: Defense, HeroAbility
+		ConstructionYardTypes: fact, factd, gfact, zhatchery, pnexus, tcommand, tcommand.landed, tcommand.ai, avfact, t.missstr, unsccommandcenter
+		RefineryTypes: proc, procd, gproc, passim, zextrac, usasupplycenter, trefinery, chinasupplycenter, barr.boss, japansupplycenter, avproc, japansupplycenternavy, btproc, unscsupplypad
+		PowerTypes: powr, apwr, dpwr, nuk2, xpwr, nuk3, zoverlord, usacoldfusion, tsupply, upgrade.coldreactor, chinanuclearreactor, chinaadvnuclearreactor, chinabreederreactor, ppylon, ppylon.bot, prefab.a, prefab.b, japanantimatterreactor, japanhyperantimatterreactor, avpowr1, avpowr2, avpowr3, japanantimatterreactornavy, japanhyperantimatterreactornavy, btpanel, unscreactor, unscreactor.up
+		ProductionTypes: barr, tent, weap, afld, hpad, hpad.bot, pstarg, handd, pyled, nhand, gtent, foundry, gfoundry, weapd, afldd, gair, upgradehandler, aeiou, barr.bot, barr.boss, tent.bot, handd.bot, pyled.bot, nhand.bot, gtent.bot, foundry.bot, gfoundry.bot, weap.bot, weap.boss, weapd.bot, afldd.bot, gair.bot, pgatew, pgatew.bot, psupor, psupor.bot, ptempl, probot, probot.bot, pcarry, zhatchery, zpool, zpool.bot, zccolony, zhydraden, zspire, usaairfield, usawarfactory, usastrategycenter, usabarracks, usashipyard, znydus, tcommand, tcommand.landed, tbarr, tbarr.1, tbarr.2, tbarr.3, tsilo, tfactory, tsport, chinabarracks, chinawarfactory, chinaairfield, chinashipyard, japanbarracks, japanmechabay, japanairfield, japanshipyard, japanshipyardnavy, japanairfieldnavy, avtent, avtent.bot, avweap, avweap.bot, avpad, pstarg.bot, hpad.bot, t.miss, god.miss, t.missstr, barr.hero, unscbarracks, unscgarage, unscairpad, unsccommandcenter, unscfirebase.barracks
+		NavalProductionTypes: syrd, spen, gspen, usashipyard, chinashipyard, japanshipyard, japanshipyardnavy
+		SiloTypes: silo, silod, gsilo, usasilo
+		DefenseTypes: pbox.boss, pbox.boss2, gfix.boss, tsla, agun, pbox, hbox, gun, ftur, sam, gtwr, atd, xbar, tsla.est, tsla.ukr, ironball, dgun.nz, atwr, atwr2, samd, oblid, dgun, advsam, solcdepl, plstur, gpbox, ghbox, gstg, atd.g, pphoto, psbatt, zccolony, usapatriot, usapatriotemp, usalaserpatriot, usafirebaseai, tbunker.bot, tbunker.bot2, tbunker.mengsk.bot, tbunker.mengsk.bot2, tmissile, tmissile.mengsk, tstank.bot.buildable, avarty.bot.buildable, chinaspeakertower, chinagatlinggun, chinabunkerai, chinafortifiedbunkerai, ppylon.bot, chinanukecannonai, usasupportmatrix, japanlaserbaseai, japanmindcontrol, japanballoon, japanberserktower, japanwaveforceturret, japanmindcontrolnavy, japanaikokusha, pdrago.warpai, pzealot.warpai, zegg.zergling, zegg.hydra, zegg.muta, zegg.ultra, ztumor, ztumor.bot, unsctalos, unscsiege, unscwatchtower, unscanaconda
+		TechTypes: mslo, dome, atek, stek, fix, gfix, advtech, t.miss, t.missair, t.missinf, t.missnavy, god.miss, gmiss, hqd, gpal, sstorm, gblk, eyed, tmpld, tenbay, tscience, tarmory, tcops, tplab, avradar, avtech, ftemple, usaparticlecannon, usastrategycenter, chinasupernuclearsilo, chinanuclearsilo, chinainternetcenter, chinapropagandacenter, japandecimator, japandecimatornavy, japanpsychicdatacenternavy, japanpsychicdatacenter, japanmainframe, japanmainframenavy, ptempl, pfleet, padun, pobser, stek.nod, atek.gdi, hellgate, hellgate.d, dmb3, zchamber, znest, zmslo, zmound, zultraden, znydus, unscarmory, unscradartower, unscadvtech, unsculttechcenter, T.MISSVEHunsc, T.MISSINFunsc, T.MISSAIRunsc, T.MISSSTRunsc
+		BuildingLimits:
+			xpwr: 8 # POWER
+			nuk3: 8
+			apwr: 6
+			nuk2: 10
+			powr: 8
+			dpwr: 8
+			manawell: 6
+			deepmanawell: 6
+			ppylon: 12
+			ppylon.bot: 12
+			usacoldfusion: 18
+			tsupply: 14
+			chinanuclearreactor: 12
+			chinaadvnuclearreactor: 12
+			chinabreederreactor: 2
+			japanantimatterreactor: 12
+			japanhyperantimatterreactor: 4
+			japanantimatterreactornavy: 12
+			japanhyperantimatterreactornavy: 4
+			unscreactor: 8
+			avpowr1: 8
+			avpowr2: 6
+			avpowr3: 4
+			btpanel: 12
+			proc: 8 # REFINERIES
+			procd: 8
+			gproc: 8
+			passim: 8
+			zextrac: 6
+			usasupplycenter: 6
+			oreext: 8
+			oreext.g: 8
+			treeext: 8
+			trefinery: 6
+			chinasupplycenter: 6
+			japansupplycenter: 6
+			japansupplycenternavy: 6
+			unscsupplypad: 6
+			avproc: 6
+			silo: 6
+			silod: 6
+			gsilo: 6
+			usasilo: 3
+			unscsilo: 2
+			btproc: 6
+			dome: 1 # TECHNOLOGY / UTILITY
+			hqd: 1
+			gmgg: 1
+			fix: 1
+			gfix: 1
+			gfix.boss: 1
+			atek: 1
+			stek: 1
+			stek.nod: 1
+			atek.gdi: 1
+			dmb3: 1
+			ftek: 1
+			atek.nz: 1
+			atek.gla: 1
+			atek.bot: 2
+			advtech: 1
+			gadvtech: 1
+			t.miss: 1
+			t.missnavy: 1
+			gmiss: 1
+			foundry: 1
+			gfoundry: 1
+			foundry.bot: 2
+			gfoundry.bot: 2
+			unscfoundry: 1
+			gblk: 2
+			pdox.bhand: 3
+			pcyber: 1
+			pobser: 1
+			psupor: 1
+			psupor.bot: 2
+			padun: 1
+			ptempl: 2
+			pfleet: 1
+			zlair.up: 1
+			zhive.up: 1
+			zchamber: 1
+			zultraden: 1
+			zhatchery: 4
+			znest: 1
+			zmound: 1
+			usastrategycenter: 1
+			tacadamy: 1
+			tenbay: 1
+			tarmory: 1
+			tcommand.ai: 3
+			tscience: 2
+			chinapropagandacenter: 1
+			chinainternetcenter: 1
+			usasupplydropzone: 2
+			japanmainframe: 1
+			japanpsychicdatacenter: 1
+			japanmainframenavy: 1
+			japanpsychicdatacenternavy: 1
+			japanoilderrick: 2
+			unscarmory: 1
+			unscradartower: 1
+			unscrepairpad: 1
+			unscadvtech: 1
+			unsculttechcenter: 1
+			radio.p: 1
+			avradar: 1
+			avtech: 1
+			forgtek: 1
+			btradar: 1
+			oregen: 2
+			gemgen: 4
+			barr: 4 # INFANTRY PRODUCTION
+			tent: 4
+			gtent: 4
+			handd: 4
+			pyled: 4
+			nhand: 4
+			kenn: 1
+			barr.bot: 3
+			tent.bot: 3
+			gtent.bot: 3
+			handd.bot: 3
+			pyled.bot: 3
+			nhand.bot: 3
+			barr.boss: 4
+			pgatew: 4
+			pgatew.bot: 4
+			zpool: 1
+			zpool.bot: 4
+			zhydraden: 1
+			znydus: 2
+			usabarracks: 4
+			usabarracks.bot: 4
+			tbarr: 2
+			tbarr.3: 2
+			tbarr.ai: 3
+			chinabarracks: 4
+			chinabarracks.bot: 4
+			japanbarracks: 4
+			japanbarracks.bot: 4
+			unscbarracks: 4
+			unscbarracks.bot: 4
+			avtent: 4
+			avtent.bot: 4
+			barr.hero: 4
+			weap: 4 # VEHICLE PRODUCTION
+			weapd: 4
+			afldd: 4
+			gair: 4
+			probot: 2
+			weap.bot: 3
+			weapd.bot: 3
+			afldd.bot: 3
+			gair.bot: 3
+			probot.bot: 2
+			weap.boss: 5
+			usawarfactory: 3
+			tfactory: 3
+			chinawarfactory: 3
+			japanmechabay: 3
+			unscgarage: 4
+			avweap: 4
+			avweap.bot: 3
+			btterminal: 4
+			btterminal.bot: 2
+			spen: 3 # NAVAL PRODUCTION
+			syrd: 3
+			gspen: 3
+			usashipyard: 3
+			chinashipyard: 3
+			japanshipyard: 3
+			japanshipyardnavy: 5
+			hpad: 5 # AIRCRAFT PRODUCTION
+			hpad.bot: 5
+			afld: 6
+			afld.ukraine: 6
+			pstarg: 2
+			usaairfield: 2
+			zspire: 2
+			tsport: 2
+			chinaairfield: 2
+			japanairfield: 2
+			japanairfieldnavy: 3
+			unscairpad: 4
+			avpad: 5
+			gtwr: 12 # DEFENSES
+			gun: 12
+			hbox: 9
+			pbox: 9
+			prism: 10
+			dgun: 8
+			dgun.nz: 10
+			ftur: 12
+			plstur: 8
+			tsla: 10
+			tsla.est: 10
+			tsla.ukr: 10
+			ironball: 10
+			atwr: 10
+			atwr2: 10
+			ctwr: 6
+			oblid: 10
+			agun: 10
+			sam: 10
+			samd: 10
+			advsam: 8
+			atd: 8
+			atd.g: 8
+			gap: 8
+			gap3: 2
+			gpbox: 10
+			ghbox: 10
+			gstg: 10
+			pbox.boss: 15
+			pphoto: 12
+			psbatt: 6
+			zccolony: 6
+			zccolony.bot: 9
+			usapatriot: 10
+			usapatriotemp: 6
+			usalaserpatriot: 10
+			usafirebaseai: 4 #creat an AI specific one for units in pillboxes
+			usasupportmatrix: 4
+			japanlaserbaseai: 4
+			japanballoon: 6
+			japanmindcontrol: 2
+			japanmindcontrolnavy: 2
+			japanberserktower: 4
+			japanwaveforceturret: 6
+			japanaikokusha: 6
+			tbunker.bot: 6
+			tbunker.bot2: 4
+			tbunker.mengsk.bot: 9
+			tbunker.mengsk.bot2: 7
+			tmissile: 10
+			tmissile.mengsk: 15
+			chinaspeakertower: 3
+			chinagatlinggun: 8
+			chinabunkerai: 4
+			chinafortifiedbunkerai: 4
+			chinanukecannonai: 4
+			avpbox: 9
+			avtowr: 10
+			avgun: 10
+			unsctalos: 15
+			unscsiege: 15
+			unscwatchtower: 5
+			unscanaconda: 10
+			mslo: 1 # SUPERWEAPONS
+			mslf: 1
+			pdox: 1
+			bio.a: 1
+			bio.afake: 1
+			iron: 1
+			tmpld: 1
+			eyed: 1
+			hellgate: 1
+			hellgate.d: 2
+			sstorm: 1
+			usaparticlecannon: 1
+			usatomahawkstorm: 1
+			zmslo: 1
+			chinanuclearsilo: 1
+			chinasupernuclearsilo: 1
+			japandecimator: 1
+			japandecimatornavy: 1
+			unscmac: 1
+		BuildingFractions:
+			prefab.a: 500
+			prefab.b: 500
+			proc: 150
+			procd: 150
+			gproc: 150
+			passim: 150
+			dome: 100
+			hqd: 100
+			gmgg: 100
+			fix: 10
+			gfix: 10
+			gfix.boss: 10
+			gap3: 10
+			oreext: 5
+			oreext.g: 5
+			treeext: 5
+			oregen: 10
+			gemgen: 10
+			gap: 10
+			pwrgen: 10
+			foundry: 10
+			gfoundry: 10
+			foundry.bot: 10
+			gfoundry.bot: 10
+			tent: 500
+			barr: 500
+			pyled: 500
+			gtent: 500
+			handd: 500
+			nhand: 500
+			barr.bot: 500
+			barr.boss: 500
+			tent.bot: 500
+			gtent.bot: 500
+			handd.bot: 500
+			pyled.bot: 500
+			nhand.bot: 500
+			barr.hero: 500
+			kenn: 20
+			weap: 50
+			weapd: 50
+			afldd: 50
+			gair: 50
+			weap.bot: 50
+			weap.boss: 50
+			weapd.bot: 50
+			afldd.bot: 50
+			gair.bot: 50
+			syrd: 30
+			spen: 30
+			gspen: 30
+			hpad: 10
+			hpad.bot: 10
+			afld: 10
+			afld.ukraine: 10
+			pbox: 70
+			hbox: 20
+			gpbox: 70
+			ghbox: 70
+			gstg: 50
+			gtwr: 100
+			gblk: 5
+			gsneak: 1
+			gun: 70
+			prism: 50
+			dgun: 100
+			dgun.nz: 100
+			ftur: 100
+			plstur: 100
+			tsla: 75
+			tsla.est: 75
+			tsla.ukr: 75
+			ironball: 60
+			atwr: 50
+			atwr2: 50
+			ctwr: 50
+			oblid: 50
+			agun: 50
+			sam: 50
+			samd: 50
+			advsam: 10
+			atd: 20
+			atd.g: 20
+			atek: 10
+			stek: 10
+			stek.nod: 10
+			atek.gdi: 10
+			atek.nz: 10
+			atek.gla: 10
+			dmb3: 10
+			ftek: 10
+			atek.bot: 10
+			advtech: 20
+			gadvtech: 20
+			gmiss: 20
+			t.miss: 20
+			t.missair: 20
+			t.missinf: 20
+			t.missnavy: 20
+			god.miss: 1
+			c.miss.veh: 20
+			c.miss.inf: 20
+			c.miss.air: 20
+			c.miss.navy: 20
+			c.miss.str: 20
+			radio.p: 5
+			mslo: 10
+			mslf: 1
+			pdox: 10
+			bio.a: 10
+			bio.afake: 1
+			pdox.bhand: 10
+			iron: 10
+			tmpld: 10
+			eyed: 10
+			sstorm: 10
+			hellgate: 10
+			hellgate.d: 10
+			pbox.boss: 100
+			pbox.boss2: 100
+			usafirebaseaiboss: 100
+			pgatew: 500
+			pgatew.bot: 500
+			ppylon: 30
+			ppylon.bot: 30
+			pcyber: 100
+			pphoto: 100
+			pobser: 100
+			psupor: 100
+			psupor.bot: 100
+			padun: 100
+			ptempl: 100
+			probot: 100
+			probot.bot: 100
+			psbatt: 100
+			pstarg: 100
+			pstarg.bot: 100
+			pfleet: 10
+			pzealot.warpai: 100
+			pdrago.warpai: 100
+			zpool: 100
+			zpool.bot: 100
+			zhydraden: 100
+			zextrac: 100
+			zccolony: 100
+			zccolony.bot: 25
+			ze.sunken: 100
+			ze.spore: 100
+			zlair.up: 5
+			zhive.up: 5
+			zchamber: 5
+			zultraden: 5
+			zhatchery: 5
+			zspire: 5
+			zgspire.up: 5
+			znest: 5
+			zmound: 5
+			znydus: 10
+			zmslo: 10
+			ztumor: 1
+			ztumor.bot: 5
+			zegg.zergling: 1
+			zegg.hydra: 1
+			zegg.muta: 1
+			zegg.ultra: 1
+			tcommand.ai: 5
+			tsupply.up: 5
+			tbarr: 25
+			tbarr.1: 20
+			tbarr.2: 15
+			tbarr.3: 10
+			tbarr.ai: 10
+			trefinery: 10
+			tacadamy: 10
+			tenbay: 10
+			tarmory: 10
+			tbunker.bot: 15
+			tbunker.bot2: 15
+			tbunker.mengsk.bot: 15
+			tbunker.mengsk.bot2: 15
+			tmissile: 20
+			tmissile.mengsk: 20
+			tfactory: 10
+			tstank.bot.buildable: 5
+			tsport: 10
+			tscience: 10
+			miss.terran: 10
+			tcomsat.plugai: 5
+			tshop.plugai: 5
+			tctrl.plugai: 5
+			tcops.plugai: 5
+			tplab.plugai: 5
+			tsilo.plug: 5
+			usabarracks: 100
+			usabarracks.bot: 100
+			usawarfactory: 100
+			usasupplycenter: 100
+			usaairfield: 100
+			usastrategycenter: 100
+			usaparticlecannon: 10
+			usatomahawkstorm: 10
+			usapatriot: 100
+			usapatriotemp: 100
+			usalaserpatriot: 100
+			usafirebaseai: 50
+			usasupportmatrix: 50
+			usashipyard: 100
+			usasupplydropzone: 10
+			controlrods.up: 5
+			advancedcontrolrods.up: 5
+			chinabarracks: 100
+			chinabarracks.bot: 100
+			chinawarfactory: 100
+			chinasupplycenter: 70
+			chinaairfield: 100
+			chinapropagandacenter: 100
+			chinainternetcenter: 10
+			chinanuclearsilo: 100
+			chinasupernuclearsilo: 100
+			chinagatlinggun: 50
+			chinaspeakertower: 50
+			chinabunkerai: 50
+			chinafortifiedbunkerai: 50
+			chinanukecannonai: 50
+			chinashipyard: 100
+			japanbarracks: 100
+			japanmechabay: 100
+			japanshipyard: 50
+			japansupplycenter: 100
+			japanairfield: 50
+			japanmainframe: 100
+			japanpsychicdatacenter: 100
+			japandecimator: 100
+			japanlaserbaseai: 100
+			japanmindcontrol: 100
+			japanballoon: 100
+			japanberserktower: 100
+			japanwaveforceturret: 100
+			japanshipyardnavy: 50
+			japansupplycenternavy: 100
+			japanairfieldnavy: 50
+			japanmainframenavy: 100
+			japanpsychicdatacenternavy: 100
+			japandecimatornavy: 100
+			japanmindcontrolnavy: 100
+			japanaikokusha: 100
+			unscreactor: 100
+			unscsupplypad: 100
+			unscbarracks: 100
+			unscairpad: 100
+			unscgarage: 100
+			unscarmory: 100
+			unscradartower: 100
+			unscrepairpad: 50
+			unscmac: 100
+			unscsilo: 50
+			unscadvtech: 100
+			unsculttechcenter: 100
+			unscreactor.up: 5
+			T.MISSVEHunsc: 100
+			T.MISSINFunsc: 100
+			T.MISSAIRunsc: 100
+			T.MISSSTRunsc: 100
+			unscfoundry: 10
+			unscfirebase.barracks: 100
+			unscfirebase.garage: 100
+			unscfirebase.airpad: 100
+			unsctalos: 100
+			unscsiege: 100
+			unscwatchtower: 50
+			unscanaconda: 100
+			unscpod.talos: 100
+			unscpod.siege: 100
+			unsc.fraggrenades: 100
+			unsc.covenantweapons: 100
+			unsc.megabarrage: 100
+			unsc.mlrssystem: 100
+			unsc.smokesystem: 100
+			unsc.warthogweapons: 100
+			unsc.chaffpod: 100
+			unsc.phoenix: 100
+			unsc.plating: 100
+			unsc.heatoutput: 100
+			unsc.armouredwarthog: 100
+			unsc.odst: 100
+			avpowr1: 50
+			avpowr2: 40
+			avpowr3: 30
+			avproc: 20
+			avtent: 20
+			avtent.bot: 20
+			avweap: 20
+			avweap.bot: 20
+			avradar: 5
+			avtech: 5
+			avpad: 5
+			avpbox: 10
+			avtowr: 10
+			avgun: 10
+			avdefnode: 10
+			avarty.bot.buildable: 5
+			treepro.bot: 1
+			forgtek: 1
+			ftemple: 1
+			btpanel: 10
+			btproc: 5
+			btradar: 5
+			btterminal: 5
+			btterminal.bot: 5
+			upgrade.infarmor1: 10
+			upgrade.infarmor2: 6
+			upgrade.infarmor3: 2
+			upgrade.inffirepower1: 10
+			upgrade.inffirepower2: 6
+			upgrade.inffirepower3: 2
+			upgrade.veharmor1: 10
+			upgrade.veharmor2: 6
+			upgrade.veharmor3: 2
+			upgrade.vehfirepower1: 10
+			upgrade.vehfirepower2: 6
+			upgrade.vehfirepower3: 2
+			upgrade.airarmor1: 2
+			upgrade.airarmor2: 1
+			upgrade.airarmor3: 1
+			upgrade.airfirepower1: 2
+			upgrade.airfirepower2: 1
+			upgrade.airfirepower3: 1
+			upgrade.navalarmor1: 1
+			upgrade.navalarmor2: 1
+			upgrade.navalarmor3: 1
+			upgrade.navalfirepower1: 1
+			upgrade.navalfirepower2: 1
+			upgrade.navalfirepower3: 1
+			upgrade.buildarmor1: 10
+			upgrade.buildarmor2: 6
+			upgrade.buildarmor3: 2
+			upgrade.buildrepair1: 1
+			upgrade.buildrepair2: 1
+			upgrade.buildrepair3: 1
+			upgrade.buildfirepower1: 10
+			upgrade.buildfirepower2: 6
+			upgrade.buildfirepower3: 2
+			upgrade.buildarmor1b: 10
+			upgrade.buildrepair1b: 1
+			upgrade.buildfirepower1b: 10
+			upgrade.shieldarmor1: 10
+			upgrade.shieldarmor2: 6
+			upgrade.shieldarmor3: 2
+			upgrade.wallrebuild: 1
+			upgrade.perimeter_varianta: 1
+			upgrade.perimeter_variantb: 1
+			upgrade.coldreactor: 15
+			upgrade.coldreactoradvanced: 4
+			upgrade.aircraftgeneral: 10
+			upgrade.superweaponsgeneral: 10
+			upgrade.lasergeneral: 10
+			upgrade.usatraining: 5
+			usastrat.snd: 33
+			usastrat.htl: 33
+			usastrat.bom: 33
+			upgrade.cheaperplanes: 10
+			upgrade.laserguided: 10
+			upgrade.countermeasures: 10
+			upgrade.chargedlasers: 10
+			upgrade.improvedbatteries: 10
+			upgrade.empmissiles: 10
+			upgrade.nukegeneral: 10
+			upgrade.tankgeneral: 10
+			upgrade.infantrygeneral: 10
+			upgrade.patriotism: 5
+			upgrade.propaganda: 5
+			upgrade.infantrytraininglvl1: 5
+			upgrade.infantrytraininglvl2: 5
+			upgrade.vehicletraininglvl1: 5
+			upgrade.vehicletraininglvl2: 5
+			upgrade.artillerytraininglvl1: 5
+			upgrade.uraniumtanks: 5
+			upgrade.uraniumshells: 5
+			upgrade.isotopes: 5
+			upgrade.nukerockets: 5
+			upgrade.autoloader: 5
+			upgrade.firstaidkits: 5
+			upgrade.unethicaltesting: 5
+			upgrade.upgradedualtankbarrels: 5
+			upgrade.basemedkits: 5
+			upgrade.remoteassembly: 5
+			upgrade.focusedlasers: 5
+			upgrade.cyrostream: 5
+			upgrade.explosivearrows: 5
+			upgrade.superheatedplasma: 5
+			upgrade.baseshields: 5
+			upgrade.dnaresearch: 5
+			upgrade.nanomachines: 5
+			upgrade.dnastamina: 5
+			upgrade.dnacloning: 5
+			upgrade.shikyo: 5
+			soviet.iron: 100
+			soviet.iron1: 100
+			soviet.tesla: 100
+			soviet.teslabomb: 100
+			soviet.teslapower: 100
+			soviet.training: 100
+			soviet.drones: 100
+			allies.training1: 100
+			allies.training2: 100
+			allies.pointdefense: 100
+			allies.rockets: 100
+			allies.prism: 100
+			gdi.speed: 100
+			gdi.suits: 100
+			gdi.steel: 100
+			gdi.zocom: 100
+			gdi.aerospace: 100
+			nod.tiberium: 100
+			nod.fanatic: 100
+			nod.marked: 100
+			nod.bhand: 100
+			nod.separatist: 100
+			ttr.fuel: 100
+			ttr.fanatic: 100
+			gla.shoes: 100
+			gla.beta: 100
+			gla.pay: 100
+			gla.aprockets: 100
+			gla.scorprockets: 100
+			gla.marauder: 100
+			gla.demotraps: 100
+			gla.junk: 100
+			protoss.dragoon: 100
+			protoss.shields: 100
+			protoss.shadows: 100
+			zerg.zergling: 100
+			zerg.hydra: 100
+			zerg.gcarapace1: 100
+			zerg.gcarapace2: 100
+			zerg.fcarapace1: 100
+			zerg.fcarapace2: 100
+			terran.marine: 100
+			terran.nuke: 100
+			terran.resources: 100
+			terran.armor: 200
+			terran.structure: 200
+			fed.shields: 200
+			avalon.carrier: 200
+			avalon.terra: 200
+			avalon.airarmor1: 200
+			avalon.airarmor2: 200
+			avalon.shields: 200
+			avalon.shieldsvehicle: 200
+			bossfaction.gdi: 1
+			bossfaction.nod: 1
+			bossfaction.usa: 1
+			bossfaction.china: 1
+			bossfaction.uac: 1
+			bossfaction.phobos: 1
+			bossfaction.deimos: 1
+			bossfaction.mars: 1
+			bossfaction.soviet: 1
+			bossfaction.russia: 1
+			bossfaction.ukraine: 1
+			bossfaction.estonia: 1
+			bossfaction.allies: 1
+			bossfaction.england: 1
+			bossfaction.france: 1
+			bossfaction.germany: 1
+			bossfaction.forgotten: 1
+			bossfaction.nazi: 1
+			bossfaction.himmler: 1
+			bossfaction.hitler: 1
+			bossfaction.heydrich: 1
+			bossfaction.fed: 1
+			bossfaction.angels: 1
+			bossfaction.sword: 1
+			bossfaction.silver: 1
+			bossfaction.gla: 1
+			bossfaction.kassad: 1
+			bossfaction.thrax: 1
+			bossfaction.demo: 1
+			bossfaction.japan: 1
+			bossfaction.mecha: 1
+			bossfaction.economic: 1
+			bossfaction.navy: 1
+			bossfaction.avalon: 1
+			bossfaction.protoss: 1
+			bossfaction.artanis: 1
+			bossfaction.vorazun: 1
+			bossfaction.terran: 1
+			bossfaction.mengsk: 1
+			bossfaction.raynor: 1
+			bossfaction.zerg: 1
+			bossfaction.kerrigan: 1
+			bossfaction.zagara: 1
+			bossfaction.battletech: 1
+			kerrigan.allpick: 1
+			raynor.allpick: 1
+			zagara.allpick: 1
+			btrae.allpick: 1
+			dukenukem.allpick: 1
+			corvus.allpick: 1
+			doomguy.allpick: 1
+			strifeguy.allpick: 1
+			maverick.allpick: 1
+			phaerah.allpick: 1
+			masterchief.allpick: 1
+			raynor.tier1.fastupgrade1: 1
+			raynor.tier1.fastupgrade2: 1
+			raynor.tier2.firespeed: 1
+			raynor.tier3.fastupgrade1: 1
+			raynor.tier3.fastupgrade2: 1
+			raynor.tier3.range: 1
+			raynor.tier4.support1: 1
+			raynor.tier4.support2: 1
+			raynor.tier5.hyperion1: 1
+			raynor.tier5.fastupgrade1: 1
+			raynor.tier5.fastupgrade2: 1
+			raynor.tier5.fastupgrade2a: 1
+			raynor.hosp: 1
+			kerrigan.tier1.fortitude: 1
+			kerrigan.tier1.savagery: 1
+			kerrigan.tier2.fastupgrade1: 1
+			kerrigan.tier2.fastupgrade2: 1
+			kerrigan.tier2.bomb1: 1
+			kerrigan.tier2.bomb2: 1
+			kerrigan.tier3.carapace: 1
+			kerrigan.tier3.overreach: 1
+			kerrigan.tier4.torrasque: 1
+			kerrigan.tier4.bloodlust: 1
+			kerrigan.tier5.frenzy: 1
+			zagara.tier1.fastupgrade1: 1
+			zagara.tier1.fastupgrade2: 1
+			zagara.tier1.zagarmor1: 1
+			zagara.tier1.zagarmor2: 1
+			zagara.tier1.zagarmor3: 1
+			zagara.tier2.firespeed: 1
+			zagara.tier3.fastupgrade1: 1
+			zagara.tier3.fastupgrade2: 1
+			zagara.tier3.range: 1
+			zagara.tier3.zagdamage1: 1
+			zagara.tier3.zagdamage2: 1
+			zagara.tier4.support1: 1
+			zagara.tier4.regen: 1
+			zagara.tier4.fastupgrade1: 1
+			zagara.tier4.fastupgrade2: 1
+			zagara.tier5.fortress: 1
+			zagara.tier5.heartoftheswarm: 1
+			dukenukem.tier1.fastupgrade1: 1
+			dukenukem.tier1.fastupgrade2: 1
+			dukenukem.tier2.firespeed: 1
+			dukenukem.tier3.fastupgrade1: 1
+			dukenukem.tier3.fastupgrade2: 1
+			dukenukem.tier3.range: 1
+			dukenukem.tier4.support1: 1
+			dukenukem.tier4.support2: 1
+			dukenukem.tier5.unit1: 1
+			dukenukem.tier5.unit2: 1
+			dukenukem.tier5.unit3: 1
+			corvus.tier1.scroll: 1
+			corvus.tier1.timebomb: 1
+			corvus.tier2.crystalvial: 1
+			corvus.tier2.silvershield: 1
+			corvus.tier3.quartzflask: 1
+			corvus.tier3.magicshield: 1
+			corvus.tier4.invincibility: 1
+			corvus.tier4.shadowsphere: 1
+			corvus.tier5.shadowsphere: 1
+			corvus.tier5.chaos: 1
+			corvus.tier5.mystic: 1
+			doomguy.tier1.greenarmor: 1
+			doomguy.tier1.fraggrenade: 1
+			doomguy.tier2.medikit: 1
+			doomguy.tier2.computer: 1
+			doomguy.tier3.radiationsuit: 1
+			doomguy.tier3.UACparadrop: 1
+			doomguy.tier3.hellportal: 1
+			doomguy.tier4.bluearmor: 1
+			doomguy.tier4.blursphere: 1
+			doomguy.tier4.doomslayer: 1
+			doomguy.tier5.invulnerability: 1
+			doomguy.tier5.chainsaw: 1
+			doomguy.tier5.berserk: 1
+			doomguy.tier5.overdrive: 1
+			strifeguy.tier1.fastupgrade1: 1
+			strifeguy.tier1.fastupgrade2: 1
+			strifeguy.tier2.acolyte: 1
+			strifeguy.tier2.targeter: 1
+			strifeguy.tier3.phosphorous: 1
+			strifeguy.tier3.templar: 1
+			strifeguy.tier4.crusader: 1
+			strifeguy.tier4.reinforcements: 1
+			btrae.tier1.fastupgrade1: 1
+			btrae.tier1.fastupgrade2: 1
+			btrae.tier1.cycles: 1
+			btrae.tier1.actuators: 1
+			btrae.tier1.plating: 1
+			btrae.tier1.heavyplating: 1
+			btrae.tier2.fastupgrade1: 1
+			btrae.tier2.srm6: 1
+			btrae.tier2.laser: 1
+			btrae.tier3.fastupgrade1: 1
+			btrae.tier3.fastupgrade2: 1
+			btrae.tier3.bap: 1
+			btrae.tier3.ecm: 1
+			btrae.tier4.service: 1
+			btrae.tier4.lrm: 1
+			btrae.tier4.ppc: 1
+			btrae.tier4.heat: 1
+			btrae.tier5.build: 1
+			btrae.tier5.iron: 1
+			btrae.tier5.nuke: 1
+			maverick.tier1.machinegun1: 1
+			maverick.tier1.machinegun2: 1
+			maverick.tier1.machinegun3: 1
+			maverick.tier2.upgrade1: 1
+			maverick.tier2.upgrade2: 1
+			maverick.tier2.upgrade3: 1
+			maverick.tier2.upgrade4: 1
+			maverick.tier2.upgrade5: 1
+			maverick.tier2.upgrade6: 1
+			maverick.tier3.missiles1: 1
+			maverick.tier3.missiles2: 1
+			maverick.tier3.missiles3: 1
+			maverick.tier3.missiles4: 1
+			maverick.tier3.missiles5: 1
+			maverick.tier4.upgrade1: 1
+			maverick.tier4.upgrade2: 1
+			maverick.tier4.upgrade3: 1
+			maverick.tier4.upgrade4: 1
+			maverick.tier4.upgrade5: 1
+			maverick.tier4.upgrade6: 1
+			maverick.tier5.parabomb1: 1
+			maverick.tier5.parabomb2: 1
+			maverick.tier5.parabomb3: 1
+			maverick.tier5.parabomb4: 1
+			maverick.tier5.parabomb5: 1
+			maverick.tier5.parabomb6: 1
+			maverick.tier5.parabomb7: 1
+			phaerah.frostspec: 1
+			phaerah.bloodspec: 1
+			frostwyrm.ready: 1
+			raisephae.ready: 1
+			phaerah.tier1.killingmachine: 1
+			phaerah.tier1.runicmastery: 1
+			phaerah.tier1.runicempowerment: 1
+			phaerah.tier1.leech: 1
+			phaerah.tier1.leech_b: 1
+			phaerah.tier2.veteran: 1
+			phaerah.tier2.march: 1
+			phaerah.tier2.rime: 1
+			phaerah.tier2.leech: 1
+			phaerah.tier3.veteran: 1
+			phaerah.tier3.runicattenuation: 1
+			phaerah.tier3.arcticassault: 1
+			phaerah.tier3.icecold: 1
+			phaerah.tier3.deathstrike: 1
+			phaerah.tier4.boneshield: 1
+			phaerah.tier4.pillar: 1
+			phaerah.tier4.iceytorrent: 1
+			phaerah.tier4.necropolis: 1
+			phaerah.tier5.runeweapon: 1
+			phaerah.tier5.blooddraw: 1
+			phaerah.tier5.nullmagic: 1
+			phaerah.tier5.obliteration: 1
+			masterchief.tier1.sprinterpack: 1
+			masterchief.tier1.titaniumalloy: 1
+			masterchief.tier2.cornealimplants: 1
+			masterchief.tier2.plasmagrenade: 1
+			masterchief.tier3.jammer: 1
+			masterchief.tier3.regenerator: 1
+			masterchief.tier4.cloakingdevice: 1
+			masterchief.tier4.bubbleshield: 1
+			masterchief.tier4.powerdrain: 1
+			masterchief.tier5.invulnerability: 1
+			masterchief.tier5.markviarmor: 1
+			masterchief.tier5.autoturret: 1
+			masterchief.weapon.pistol: 1
+			masterchief.weapon.plasmapistol: 1
+			masterchief.weapon.shotgun: 1
+			masterchief.weapon.needler: 1
+			masterchief.weapon.plasmarifle: 1
+			masterchief.weapon.assaultrifle: 1
+			masterchief.weapon.sniper: 1
+			masterchief.weapon.plasmacarbine: 1
+			masterchief.weapon.energysword: 1
+			masterchief.weapon.rocketlauncher: 1
+			masterchief.weapon.fuelrodcannon: 1
+			masterchief.weapon.bruteshot: 1
+			masterchief.weapon.sentinelbeam: 1
+			masterchief.weapon.gravityhammer: 1
+			masterchief.weapon.spartanlaser: 1
+			masterchief.weapon.flamethrower: 1
+			masterchief.ability.cloakingdevice: 1
+			masterchiefbubbleshield: 1
+			masterchief.ability.invincibility: 1
+		BuildingDelays:
+			zccolony.bot: 6000
+			zhatchery: 4500
+			foundry: 250
+			foundry.bot: 250
+			gfoundry: 250
+			upgrade.infarmor1: 1500
+			upgrade.inffirepower1: 1500
+			upgrade.veharmor1: 1500
+			upgrade.vehfirepower1: 1500
+			upgrade.airarmor1: 1500
+			upgrade.airfirepower1: 1500
+			upgrade.buildarmor1: 1500
+			upgrade.buildfirepower1: 1500
+			upgrade.buildrepair1: 1500
+			upgrade.buildarmor1b: 1500
+			upgrade.buildfirepower1b: 1500
+			upgrade.buildrepair1b: 1500
+			upgrade.infarmor2: 10000
+			upgrade.inffirepower2: 10000
+			upgrade.veharmor2: 10000
+			upgrade.vehfirepower2: 10000
+			upgrade.airarmor2: 10000
+			upgrade.airfirepower2: 10000
+			upgrade.buildarmor2: 10000
+			upgrade.buildfirepower2: 10000
+			upgrade.buildrepair2: 10000
+			upgrade.buildrepair3: 10000
+			dome: 4500
+			hqd: 4500
+			usastrategycenter: 4500
+			chinapropagandacenter: 4500
+			japanmainframe: 4500
+			pbox.boss: 9000
+	GrantRandomCondition@mineai:
+		Conditions: enable-mines-normal, enable-mines-turtle
+	GrantRandomCondition@turtleai:
+		Conditions: enable-turtle-defensive,x,x,x
+	ProvidesPrerequisite@aiperimeter:
+		RequiresCondition: enable-turtle-defensive
+		Prerequisite: ai.perimeter
+	GrantConditionOnPrerequisite@wallrebuild:
+		Prerequisites: upgrade.wallrebuild
+		Condition: enable-turtle-defensive
+	MinelayerBotModule@normal:
+		RequiresCondition: enable-all-ai && enable-mines-normal
+		MinelayingActorTypes: mnly, mnly.g, lst2.bot, tvult, tvult.raynor
+		IgnoredEnemyTargetTypes: Structure, Defense, AirborneActor, Trees
+		UseEnemyLocationTargetTypes: Structure, Defense
+		AwayFromAlliedTargetTypes: Structure, Defense
+		AwayFromEnemyTargetTypes: Structure, Defense
+	MinelayerBotModule@turtle:
+		RequiresCondition: enable-all-ai && enable-mines-turtle
+		MinelayingActorTypes: mnly, mnly.g, lst2.bot, tvult, tvult.raynor
+		IgnoredEnemyTargetTypes: Structure, Defense, AirborneActor, Trees
+		UseEnemyLocationTargetTypes: Structure, Defense
+		AwayFromAlliedTargetTypes: Structure, Defense
+		AwayFromEnemyTargetTypes: Structure, Defense
+		MineFieldRadius: 3
+		MaxPerAssign: 3
+	GrantRandomCondition@squadai:
+		Conditions: enable-squad-annoying, enable-squad-simple, enable-squad-moderate, enable-squad-large, enable-squad-huge
+	SquadManagerBotModule@all:
+		RequiresCondition: enable-all-ai && enable-squad-annoying && !enable-heroonly-ai
+		ExcludeFromSquadsTypes: harv, harvd,  mcv, mcv.2, mcvd, mcvd.2, gmcv, gmcv.2, gharv, gmgg, dog, mcvm, mcvm.2, mcvm.3, pmcv, pmcv.2, zmcv, zmcv.2, avmcv, avmcv.2, zdrone, zoverlord, pprobe, usachinook, tscv, e6, fe6, tsengi.o, surveyormedi, zdrone.eng, pprobe.eng, mnly, mnly.g, lst2.bot, tvalk.bomber, avinf2, avcarrier, harvnavy, japansurveyorboat, zzagara.hero0, zzagara.hero1, zzagara.hero2, zzagara.hero3, zzagara.hero4, zzagara.hero5, avharv, frge6, frgsurv, lst.harv, usaminedropactor, tspider, unscdarter, unscmcv, unscmcv.2
+		NavalUnitsTypes: ss,msub,dd,ca,lst,pt,dmdd,eyeship,dd.f,cruisemis,cruisemis.silver,dd.r,silverlining,usaspycarrier,usareconboat,usamlrscarrier,chinainfernoship,chinadreadnought,chinaemperorbattlecruiser,chinaemperornuclearcruiser,japankappa,japannaginata,japanshogun
+		ConstructionYardTypes: fact,factd,gfact,factm,pnexus,zhatchery,tcommand,tcommand.landed,avfact,unsccommandcenter
+		NavalProductionTypes: spen,syrd,gspen,usashipyard,chinashipyard,japanshipyard,japanshipyardnavy
+		AirUnitsTypes: mig, yak, heli, mh60, n.mig, bf109, do17, do17.shd, orca, a10, tsorca, tsorcab, tsorcatran.ai2, scrin, a10.n3, venom, vanguard, lance, lance.angels, nhwk, nhwk.angels, paladin, c17.f, spectre, spectre.angels, pscout, pcarry,usacombatchinookai,usacomanche,usaraptor,usastealthfighter,usaaurora,usakingraptor,usaauroraalpha, zmuta, zqueen, zscourge, chinamig, twraith, chinanukemig, chinahelixgatling, chinahelixspeaker, chinanukehelixgatling, chinanukehelixspeaker, japanchoppervx, japanjettengu, japankitsune, japanyousei, japankaminari, japanballoonsentryflying, japanswarmdrone, avfrigate, zep
+		ProtectionTypes: harv, harvd,  gharv, pprobe, zdrone, usachinook, tscv, gharv, fact,factd,gfact,factm,pnexus,zhatchery,tcommand,tcommand.landed,avfact,proc, procd, gproc, passim, zextrac, usasupplycenter, trefinery, chinasupplycenter, barr.boss, japansupplycenter, avproc, japansupplycenternavy, btproc, syrd, spen, gspen, usashipyard, chinashipyard, japanshipyard, japanshipyardnavy, pbox.boss, pbox.boss2, gfix.boss, tsla, agun, pbox, hbox, gun, ftur, sam, gtwr, atd, xbar, tsla.est, tsla.ukr, ironball, dgun.nz, atwr, atwr2, samd, oblid, dgun, advsam, solcdepl, plstur, gpbox, ghbox, gstg, atd.g, pphoto, psbatt, zccolony, usapatriot, usapatriotemp, usalaserpatriot, usafirebaseai, tbunker.bot, tbunker.bot2, tbunker.mengsk.bot, tbunker.mengsk.bot2, tmissile, tmissile.mengsk, tstank.bot.buildable, avarty.bot.buildable, chinaspeakertower, chinagatlinggun, chinabunkerai, chinafortifiedbunkerai, ppylon.bot, chinanukecannonai, usasupportmatrix, japanlaserbaseai, japanmindcontrol, japanballoon, japanberserktower, japanwaveforceturret, japanmindcontrolnavy, japanaikokusha, traynor.hero0, traynor.hero1, traynor.hero2, traynor.hero3, traynor.hero4, traynor.hero5, btrae.hero0, btrae.hero1, btrae.hero2, btrae.hero3, btrae.hero4, btrae.hero5, dukenukem.hero0, dukenukem.hero1, dukenukem.hero2, dukenukem.hero3, dukenukem.hero4, dukenukem.hero5, strifeguy.hero0, strifeguy.hero1, strifeguy.hero2, strifeguy.hero3, strifeguy.hero4, strifeguy.hero5,  traynor.hero0, corvus.hero1, corvus.hero2, corvus.hero3, corvus.hero4, corvus.hero5, zkerrigan.hero0, zkerrigan.hero1, zkerrigan.hero2, zkerrigan.hero3, zkerrigan.hero4, zkerrigan.hero5, zzagara.hero0, zzagara.hero1, zzagara.hero2, zzagara.hero3, zzagara.hero4, zzagara.hero5, doomguy.hero0, doomguy.hero1, doomguy.hero2, doomguy.hero3, doomguy.hero4, doomguy.hero5, masterchief.hero0, masterchief.hero1, masterchief.hero2, masterchief.hero3, masterchief.hero4, masterchief.hero5, unscsupplypad, unscdarter
+		AircraftTargetType: AirborneActor
+		SquadSize: 5
+		SquadSizeRandomBonus: 15
+		AttackForceInterval: 75
+		AssignRolesInterval: 50
+		MinimumAttackForceDelay: 0
+		RushAttackScanRadius: 30
+		RushInterval: 250
+		IdleScanRadius: 10
+		ProtectionScanRadius: 8
+		IgnoredEnemyTargetTypes: Catalyst, UpgradeThing, Underwater, NoAITarget, Trees
+		MaxBaseRadius: 20
+	SquadManagerBotModule@easy:
+		RequiresCondition: enable-all-ai && enable-squad-simple && !enable-heroonly-ai
+		ExcludeFromSquadsTypes: harv, harvd,  mcv, mcv.2, mcvd, mcvd.2, gmcv, gmcv.2, gharv, gmgg, dog, mcvm, mcvm.2, mcvm.3, pmcv, pmcv.2, zmcv, zmcv.2, avmcv, avmcv.2, zdrone, zoverlord, pprobe, usachinook, tscv, e6, fe6, tsengi.o, surveyormedi, zdrone.eng, pprobe.eng, mnly, mnly.g, lst2.bot, tvalk.bomber, avinf2, avcarrier, harvnavy, japansurveyorboat, zzagara.hero0, zzagara.hero1, zzagara.hero2, zzagara.hero3, zzagara.hero4, zzagara.hero5, avharv, frge6, frgsurv, lst.harv, usaminedropactor, tspider, unscdarter, unscmcv, unscmcv.2
+		NavalUnitsTypes: ss,msub,dd,ca,lst,pt,dmdd,eyeship,dd.f,cruisemis,cruisemis.silver,dd.r,silverlining,usaspycarrier,usareconboat,usamlrscarrier,chinainfernoship,chinadreadnought,chinaemperorbattlecruiser,chinaemperornuclearcruiser,japankappa,japannaginata,japanshogun
+		ConstructionYardTypes: fact,factd,gfact,factm,pnexus,zhatchery,tcommand,tcommand.landed,avfact,unsccommandcenter
+		NavalProductionTypes: spen,syrd,gspen,usashipyard,chinashipyard,japanshipyard,japanshipyardnavy
+		AirUnitsTypes: mig, yak, heli, mh60, n.mig, bf109, do17, do17.shd, orca, a10, tsorca, tsorcab, tsorcatran.ai2, scrin, a10.n3, venom, vanguard, lance, lance.angels, nhwk, nhwk.angels, paladin, c17.f, spectre, spectre.angels, pscout, pcarry,usacombatchinookai,usacomanche,usaraptor,usastealthfighter,usaaurora,usakingraptor,usaauroraalpha, zmuta, zqueen, zscourge, chinamig, twraith, chinanukemig, chinahelixgatling, chinahelixspeaker, chinanukehelixgatling, chinanukehelixspeaker, japanchoppervx, japanjettengu, japankitsune, japanyousei, japankaminari, japanballoonsentryflying, japanswarmdrone, avfrigate, zep
+		ProtectionTypes: harv, harvd,  gharv, pprobe, zdrone, usachinook, tscv, gharv, fact,factd,gfact,factm,pnexus,zhatchery,tcommand,tcommand.landed,avfact,proc, procd, gproc, passim, zextrac, usasupplycenter, trefinery, chinasupplycenter, barr.boss, japansupplycenter, avproc, japansupplycenternavy, btproc, syrd, spen, gspen, usashipyard, chinashipyard, japanshipyard, japanshipyardnavy, pbox.boss, pbox.boss2, gfix.boss, tsla, agun, pbox, hbox, gun, ftur, sam, gtwr, atd, xbar, tsla.est, tsla.ukr, ironball, dgun.nz, atwr, atwr2, samd, oblid, dgun, advsam, solcdepl, plstur, gpbox, ghbox, gstg, atd.g, pphoto, psbatt, zccolony, usapatriot, usapatriotemp, usalaserpatriot, usafirebaseai, tbunker.bot, tbunker.bot2, tbunker.mengsk.bot, tbunker.mengsk.bot2, tmissile, tmissile.mengsk, tstank.bot.buildable, avarty.bot.buildable, chinaspeakertower, chinagatlinggun, chinabunkerai, chinafortifiedbunkerai, ppylon.bot, chinanukecannonai, usasupportmatrix, japanlaserbaseai, japanmindcontrol, japanballoon, japanberserktower, japanwaveforceturret, japanmindcontrolnavy, japanaikokusha, traynor.hero0, traynor.hero1, traynor.hero2, traynor.hero3, traynor.hero4, traynor.hero5, btrae.hero0, btrae.hero1, btrae.hero2, btrae.hero3, btrae.hero4, btrae.hero5, dukenukem.hero0, dukenukem.hero1, dukenukem.hero2, dukenukem.hero3, dukenukem.hero4, dukenukem.hero5, strifeguy.hero0, strifeguy.hero1, strifeguy.hero2, strifeguy.hero3, strifeguy.hero4, strifeguy.hero5,  traynor.hero0, corvus.hero1, corvus.hero2, corvus.hero3, corvus.hero4, corvus.hero5, zkerrigan.hero0, zkerrigan.hero1, zkerrigan.hero2, zkerrigan.hero3, zkerrigan.hero4, zkerrigan.hero5, zzagara.hero0, zzagara.hero1, zzagara.hero2, zzagara.hero3, zzagara.hero4, zzagara.hero5, doomguy.hero0, doomguy.hero1, doomguy.hero2, doomguy.hero3, doomguy.hero4, doomguy.hero5, masterchief.hero0, masterchief.hero1, masterchief.hero2, masterchief.hero3, masterchief.hero4, masterchief.hero5, unscsupplypad, unscdarter
+		AircraftTargetType: AirborneActor
+		SquadSize: 10
+		SquadSizeRandomBonus: 15
+		AttackForceInterval: 150
+		AssignRolesInterval: 125
+		MinimumAttackForceDelay: 250
+		RushAttackScanRadius: 30
+		RushInterval: 750
+		IdleScanRadius: 10
+		ProtectionScanRadius: 8
+		IgnoredEnemyTargetTypes: Catalyst, UpgradeThing, Underwater, NoAITarget, Trees
+		MaxBaseRadius: 20
+	SquadManagerBotModule@mediumhard:
+		RequiresCondition: enable-all-ai && enable-squad-moderate && !enable-heroonly-ai
+		ExcludeFromSquadsTypes: harv, harvd,  mcv, mcv.2, mcvd, mcvd.2, gmcv, gmcv.2, gharv, gmgg, dog, mcvm, mcvm.2, mcvm.3, pmcv, pmcv.2, zmcv, zmcv.2, avmcv, avmcv.2, zdrone, zoverlord, pprobe, usachinook, tscv, e6, fe6, tsengi.o, surveyormedi, zdrone.eng, pprobe.eng, mnly, mnly.g, lst2.bot, tvalk.bomber, avinf2, avcarrier, harvnavy, japansurveyorboat, zzagara.hero0, zzagara.hero1, zzagara.hero2, zzagara.hero3, zzagara.hero4, zzagara.hero5, avharv, frge6, frgsurv, lst.harv, usaminedropactor, tspider, unscdarter, unscmcv, unscmcv.2
+		NavalUnitsTypes: ss,msub,dd,ca,lst,pt,dmdd,eyeship,dd.f,cruisemis,cruisemis.silver,dd.r,silverlining,usaspycarrier,usareconboat,usamlrscarrier,chinainfernoship,chinadreadnought,chinaemperorbattlecruiser,chinaemperornuclearcruiser,japankappa,japannaginata,japanshogun
+		ConstructionYardTypes: fact,factd,gfact,factm,pnexus,zhatchery,tcommand,tcommand.landed,avfact,unsccommandcenter
+		NavalProductionTypes: spen,syrd,gspen,usashipyard,chinashipyard,japanshipyard,japanshipyardnavy
+		AirUnitsTypes: mig, yak, heli, mh60, n.mig, bf109, do17, do17.shd, orca, a10, tsorca, tsorcab, tsorcatran.ai2, scrin, a10.n3, venom, vanguard, lance, lance.angels, nhwk, nhwk.angels, paladin, c17.f, spectre, spectre.angels, pscout, pcarry,usacombatchinookai,usacomanche,usaraptor,usastealthfighter,usaaurora,usakingraptor,usaauroraalpha, zmuta, zqueen, zscourge, chinamig, twraith, chinanukemig, chinahelixgatling, chinahelixspeaker, chinanukehelixgatling, chinanukehelixspeaker, japanchoppervx, japanjettengu, japankitsune, japanyousei, japankaminari, japanballoonsentryflying, japanswarmdrone, avfrigate, zep
+		ProtectionTypes: harv, harvd,  gharv, pprobe, zdrone, usachinook, tscv, gharv, fact,factd,gfact,factm,pnexus,zhatchery,tcommand,tcommand.landed,avfact,proc, procd, gproc, passim, zextrac, usasupplycenter, trefinery, chinasupplycenter, barr.boss, japansupplycenter, avproc, japansupplycenternavy, btproc, syrd, spen, gspen, usashipyard, chinashipyard, japanshipyard, japanshipyardnavy, pbox.boss, pbox.boss2, gfix.boss, tsla, agun, pbox, hbox, gun, ftur, sam, gtwr, atd, xbar, tsla.est, tsla.ukr, ironball, dgun.nz, atwr, atwr2, samd, oblid, dgun, advsam, solcdepl, plstur, gpbox, ghbox, gstg, atd.g, pphoto, psbatt, zccolony, usapatriot, usapatriotemp, usalaserpatriot, usafirebaseai, tbunker.bot, tbunker.bot2, tbunker.mengsk.bot, tbunker.mengsk.bot2, tmissile, tmissile.mengsk, tstank.bot.buildable, avarty.bot.buildable, chinaspeakertower, chinagatlinggun, chinabunkerai, chinafortifiedbunkerai, ppylon.bot, chinanukecannonai, usasupportmatrix, japanlaserbaseai, japanmindcontrol, japanballoon, japanberserktower, japanwaveforceturret, japanmindcontrolnavy, japanaikokusha, traynor.hero0, traynor.hero1, traynor.hero2, traynor.hero3, traynor.hero4, traynor.hero5, btrae.hero0, btrae.hero1, btrae.hero2, btrae.hero3, btrae.hero4, btrae.hero5, dukenukem.hero0, dukenukem.hero1, dukenukem.hero2, dukenukem.hero3, dukenukem.hero4, dukenukem.hero5, strifeguy.hero0, strifeguy.hero1, strifeguy.hero2, strifeguy.hero3, strifeguy.hero4, strifeguy.hero5,  traynor.hero0, corvus.hero1, corvus.hero2, corvus.hero3, corvus.hero4, corvus.hero5, zkerrigan.hero0, zkerrigan.hero1, zkerrigan.hero2, zkerrigan.hero3, zkerrigan.hero4, zkerrigan.hero5, zzagara.hero0, zzagara.hero1, zzagara.hero2, zzagara.hero3, zzagara.hero4, zzagara.hero5, doomguy.hero0, doomguy.hero1, doomguy.hero2, doomguy.hero3, doomguy.hero4, doomguy.hero5, masterchief.hero0, masterchief.hero1, masterchief.hero2, masterchief.hero3, masterchief.hero4, masterchief.hero5, unscsupplypad, unscdarter
+		AircraftTargetType: AirborneActor
+		SquadSize: 20
+		SquadSizeRandomBonus: 30
+		AttackForceInterval: 125
+		AssignRolesInterval: 100
+		MinimumAttackForceDelay: 250
+		RushAttackScanRadius: 30
+		RushInterval: 1500
+		IdleScanRadius: 10
+		ProtectionScanRadius: 8
+		IgnoredEnemyTargetTypes: Catalyst, UpgradeThing, Underwater, NoAITarget, Trees
+		MaxBaseRadius: 20
+	SquadManagerBotModule@boss:
+		RequiresCondition: enable-all-ai && enable-squad-large && !enable-heroonly-ai
+		ExcludeFromSquadsTypes: harv, harvd,  mcv, mcv.2, mcvd, mcvd.2, gmcv, gmcv.2, gharv, gmgg, dog, mcvm, mcvm.2, mcvm.3, pmcv, pmcv.2, zmcv, zmcv.2, avmcv, avmcv.2, zdrone, zoverlord, pprobe, usachinook, tscv, e6, fe6, tsengi.o, surveyormedi, zdrone.eng, pprobe.eng, mnly, mnly.g, lst2.bot, tvalk.bomber, avinf2, avcarrier, harvnavy, japansurveyorboat, zzagara.hero0, zzagara.hero1, zzagara.hero2, zzagara.hero3, zzagara.hero4, zzagara.hero5, avharv, frge6, frgsurv, lst.harv, usaminedropactor, tspider, unscdarter, unscmcv, unscmcv.2
+		NavalUnitsTypes: ss,msub,dd,ca,lst,pt,dmdd,eyeship,dd.f,cruisemis,cruisemis.silver,dd.r,silverlining,usaspycarrier,usareconboat,usamlrscarrier,chinainfernoship,chinadreadnought,chinaemperorbattlecruiser,chinaemperornuclearcruiser,japankappa,japannaginata,japanshogun
+		ConstructionYardTypes: fact,factd,gfact,factm,pnexus,zhatchery,tcommand,tcommand.landed,avfact,unsccommandcenter
+		NavalProductionTypes: spen,syrd,gspen,usashipyard,chinashipyard,japanshipyard,japanshipyardnavy
+		AirUnitsTypes: mig, yak, heli, mh60, n.mig, bf109, do17, do17.shd, orca, a10, tsorca, tsorcab, tsorcatran.ai2, scrin, a10.n3, venom, vanguard, lance, lance.angels, nhwk, nhwk.angels, paladin, c17.f, spectre, spectre.angels, pscout, pcarry,usacombatchinookai,usacomanche,usaraptor,usastealthfighter,usaaurora,usakingraptor,usaauroraalpha, zmuta, zqueen, zscourge, chinamig, twraith, chinanukemig, chinahelixgatling, chinahelixspeaker, chinanukehelixgatling, chinanukehelixspeaker, japanchoppervx, japanjettengu, japankitsune, japanyousei, japankaminari, japanballoonsentryflying, japanswarmdrone, avfrigate, zep
+		ProtectionTypes: harv, harvd,  gharv, pprobe, zdrone, usachinook, tscv, gharv, fact,factd,gfact,factm,pnexus,zhatchery,tcommand,tcommand.landed,avfact,proc, procd, gproc, passim, zextrac, usasupplycenter, trefinery, chinasupplycenter, barr.boss, japansupplycenter, avproc, japansupplycenternavy, btproc, syrd, spen, gspen, usashipyard, chinashipyard, japanshipyard, japanshipyardnavy, pbox.boss, pbox.boss2, gfix.boss, tsla, agun, pbox, hbox, gun, ftur, sam, gtwr, atd, xbar, tsla.est, tsla.ukr, ironball, dgun.nz, atwr, atwr2, samd, oblid, dgun, advsam, solcdepl, plstur, gpbox, ghbox, gstg, atd.g, pphoto, psbatt, zccolony, usapatriot, usapatriotemp, usalaserpatriot, usafirebaseai, tbunker.bot, tbunker.bot2, tbunker.mengsk.bot, tbunker.mengsk.bot2, tmissile, tmissile.mengsk, tstank.bot.buildable, avarty.bot.buildable, chinaspeakertower, chinagatlinggun, chinabunkerai, chinafortifiedbunkerai, ppylon.bot, chinanukecannonai, usasupportmatrix, japanlaserbaseai, japanmindcontrol, japanballoon, japanberserktower, japanwaveforceturret, japanmindcontrolnavy, japanaikokusha, traynor.hero0, traynor.hero1, traynor.hero2, traynor.hero3, traynor.hero4, traynor.hero5, btrae.hero0, btrae.hero1, btrae.hero2, btrae.hero3, btrae.hero4, btrae.hero5, dukenukem.hero0, dukenukem.hero1, dukenukem.hero2, dukenukem.hero3, dukenukem.hero4, dukenukem.hero5, strifeguy.hero0, strifeguy.hero1, strifeguy.hero2, strifeguy.hero3, strifeguy.hero4, strifeguy.hero5,  traynor.hero0, corvus.hero1, corvus.hero2, corvus.hero3, corvus.hero4, corvus.hero5, zkerrigan.hero0, zkerrigan.hero1, zkerrigan.hero2, zkerrigan.hero3, zkerrigan.hero4, zkerrigan.hero5, zzagara.hero0, zzagara.hero1, zzagara.hero2, zzagara.hero3, zzagara.hero4, zzagara.hero5, doomguy.hero0, doomguy.hero1, doomguy.hero2, doomguy.hero3, doomguy.hero4, doomguy.hero5, masterchief.hero0, masterchief.hero1, masterchief.hero2, masterchief.hero3, masterchief.hero4, masterchief.hero5, unscsupplypad, unscdarter
+		AircraftTargetType: AirborneActor
+		SquadSize: 30
+		SquadSizeRandomBonus: 40
+		AttackForceInterval: 450
+		AssignRolesInterval: 100
+		MinimumAttackForceDelay: 50
+		RushAttackScanRadius: 30
+		RushInterval: 1500
+		IdleScanRadius: 10
+		ProtectionScanRadius: 8
+		IgnoredEnemyTargetTypes: Catalyst, UpgradeThing, Underwater, NoAITarget, Trees
+		MaxBaseRadius: 20
+	SquadManagerBotModule@mediall:
+		RequiresCondition: enable-all-ai && enable-squad-huge && !enable-heroonly-ai
+		ExcludeFromSquadsTypes: harv, harvd,  mcv, mcv.2, mcvd, mcvd.2, gmcv, gmcv.2, gharv, gmgg, dog, mcvm, mcvm.2, mcvm.3, pmcv, pmcv.2, zmcv, zmcv.2, avmcv, avmcv.2, zdrone, zoverlord, pprobe, usachinook, tscv, e6, fe6, tsengi.o, surveyormedi, zdrone.eng, pprobe.eng, mnly, mnly.g, lst2.bot, tvalk.bomber, avinf2, avcarrier, harvnavy, japansurveyorboat, zzagara.hero0, zzagara.hero1, zzagara.hero2, zzagara.hero3, zzagara.hero4, zzagara.hero5, avharv, frge6, frgsurv, lst.harv, usaminedropactor, tspider, unscdarter, unscmcv, unscmcv.2
+		NavalUnitsTypes: ss,msub,dd,ca,lst,pt,dmdd,eyeship,dd.f,cruisemis,cruisemis.silver,dd.r,silverlining,usaspycarrier,usareconboat,usamlrscarrier,chinainfernoship,chinadreadnought,chinaemperorbattlecruiser,chinaemperornuclearcruiser,japankappa,japannaginata,japanshogun
+		ConstructionYardTypes: fact,factd,gfact,factm,pnexus,zhatchery,tcommand,tcommand.landed,avfact,unsccommandcenter
+		NavalProductionTypes: spen,syrd,gspen,usashipyard,chinashipyard,japanshipyard,japanshipyardnavy
+		AirUnitsTypes: mig, yak, heli, mh60, n.mig, bf109, do17, do17.shd, orca, a10, tsorca, tsorcab, tsorcatran.ai2, scrin, a10.n3, venom, vanguard, lance, lance.angels, nhwk, nhwk.angels, paladin, c17.f, spectre, spectre.angels, pscout, pcarry,usacombatchinookai,usacomanche,usaraptor,usastealthfighter,usaaurora,usakingraptor,usaauroraalpha, zmuta, zqueen, zscourge, chinamig, twraith, chinanukemig, chinahelixgatling, chinahelixspeaker, chinanukehelixgatling, chinanukehelixspeaker, japanchoppervx, japanjettengu, japankitsune, japanyousei, japankaminari, japanballoonsentryflying, japanswarmdrone, avfrigate, zep
+		ProtectionTypes: harv, harvd,  gharv, pprobe, zdrone, usachinook, tscv, gharv, fact,factd,gfact,factm,pnexus,zhatchery,tcommand,tcommand.landed,avfact,proc, procd, gproc, passim, zextrac, usasupplycenter, trefinery, chinasupplycenter, barr.boss, japansupplycenter, avproc, japansupplycenternavy, btproc, syrd, spen, gspen, usashipyard, chinashipyard, japanshipyard, japanshipyardnavy, pbox.boss, pbox.boss2, gfix.boss, tsla, agun, pbox, hbox, gun, ftur, sam, gtwr, atd, xbar, tsla.est, tsla.ukr, ironball, dgun.nz, atwr, atwr2, samd, oblid, dgun, advsam, solcdepl, plstur, gpbox, ghbox, gstg, atd.g, pphoto, psbatt, zccolony, usapatriot, usapatriotemp, usalaserpatriot, usafirebaseai, tbunker.bot, tbunker.bot2, tbunker.mengsk.bot, tbunker.mengsk.bot2, tmissile, tmissile.mengsk, tstank.bot.buildable, avarty.bot.buildable, chinaspeakertower, chinagatlinggun, chinabunkerai, chinafortifiedbunkerai, ppylon.bot, chinanukecannonai, usasupportmatrix, japanlaserbaseai, japanmindcontrol, japanballoon, japanberserktower, japanwaveforceturret, japanmindcontrolnavy, japanaikokusha, traynor.hero0, traynor.hero1, traynor.hero2, traynor.hero3, traynor.hero4, traynor.hero5, btrae.hero0, btrae.hero1, btrae.hero2, btrae.hero3, btrae.hero4, btrae.hero5, dukenukem.hero0, dukenukem.hero1, dukenukem.hero2, dukenukem.hero3, dukenukem.hero4, dukenukem.hero5, strifeguy.hero0, strifeguy.hero1, strifeguy.hero2, strifeguy.hero3, strifeguy.hero4, strifeguy.hero5,  traynor.hero0, corvus.hero1, corvus.hero2, corvus.hero3, corvus.hero4, corvus.hero5, zkerrigan.hero0, zkerrigan.hero1, zkerrigan.hero2, zkerrigan.hero3, zkerrigan.hero4, zkerrigan.hero5, zzagara.hero0, zzagara.hero1, zzagara.hero2, zzagara.hero3, zzagara.hero4, zzagara.hero5, doomguy.hero0, doomguy.hero1, doomguy.hero2, doomguy.hero3, doomguy.hero4, doomguy.hero5, masterchief.hero0, masterchief.hero1, masterchief.hero2, masterchief.hero3, masterchief.hero4, masterchief.hero5, unscsupplypad, unscdarter
+		AircraftTargetType: AirborneActor
+		SquadSize: 60
+		SquadSizeRandomBonus: 80
+		AttackForceInterval: 250
+		AssignRolesInterval: 100
+		MinimumAttackForceDelay: 150
+		RushAttackScanRadius: 30
+		RushInterval: 1500
+		IdleScanRadius: 15
+		ProtectionScanRadius: 8
+		IgnoredEnemyTargetTypes: Catalyst, UpgradeThing, Underwater, NoAITarget, Trees
+		MaxBaseRadius: 20
+	SquadManagerBotModule@heroonly:
+		RequiresCondition: enable-all-ai && enable-heroonly-ai
+		ExcludeFromSquadsTypes: harv, harvd,  mcv, mcv.2, mcvd, mcvd.2, gmcv, gmcv.2, gharv, gmgg, dog, mcvm, mcvm.2, mcvm.3, pmcv, pmcv.2, zmcv, zmcv.2, avmcv, avmcv.2, zdrone, zoverlord, pprobe, usachinook, tscv, e6, fe6, tsengi.o, surveyormedi, zdrone.eng, pprobe.eng, mnly, mnly.g, lst2.bot, tvalk.bomber, avinf2, avcarrier, harvnavy, japansurveyorboat, avharv, frge6, frgsurv, lst.harv, usaminedropactor, tspider, unscdarter, unscmcv, unscmcv.2
+		ConstructionYardTypes: fact,factd,gfact,factm,pnexus,zhatchery,tcommand,tcommand.landed,avfact,unsccommandcenter
+		NavalProductionTypes: spen,syrd,gspen,usashipyard,chinashipyard,japanshipyard,japanshipyardnavy
+		AirUnitsTypes: mig, yak, heli, mh60, n.mig, bf109, do17, do17.shd, orca, a10, tsorca, tsorcab, tsorcatran.ai2, scrin, a10.n3, venom, vanguard, lance, lance.angels, nhwk, nhwk.angels, paladin, c17.f, spectre, spectre.angels, pscout, pcarry,usacombatchinookai,usacomanche,usaraptor,usastealthfighter,usaaurora,usakingraptor,usaauroraalpha, zmuta, zqueen, zscourge, chinamig, twraith, chinanukemig, chinahelixgatling, chinahelixspeaker, chinanukehelixgatling, chinanukehelixspeaker, japanchoppervx, japanjettengu, japankitsune, japanyousei, japankaminari, japanballoonsentryflying, japanswarmdrone, avfrigate, zep
+		ProtectionTypes: harv, harvd,  gharv, pprobe, zdrone, usachinook, tscv, gharv, fact,factd,gfact,factm,pnexus,zhatchery,tcommand,tcommand.landed,avfact,proc, procd, gproc, passim, zextrac, usasupplycenter, trefinery, chinasupplycenter, barr.boss, japansupplycenter, avproc, japansupplycenternavy, btproc, syrd, spen, gspen, usashipyard, chinashipyard, japanshipyard, japanshipyardnavy, pbox.boss, pbox.boss2, gfix.boss, tsla, agun, pbox, hbox, gun, ftur, sam, gtwr, atd, xbar, tsla.est, tsla.ukr, ironball, dgun.nz, atwr, atwr2, samd, oblid, dgun, advsam, solcdepl, plstur, gpbox, ghbox, gstg, atd.g, pphoto, psbatt, zccolony, usapatriot, usapatriotemp, usalaserpatriot, usafirebaseai, tbunker.bot, tbunker.bot2, tbunker.mengsk.bot, tbunker.mengsk.bot2, tmissile, tmissile.mengsk, tstank.bot.buildable, avarty.bot.buildable, chinaspeakertower, chinagatlinggun, chinabunkerai, chinafortifiedbunkerai, ppylon.bot, chinanukecannonai, usasupportmatrix, japanlaserbaseai, japanmindcontrol, japanballoon, japanberserktower, japanwaveforceturret, japanmindcontrolnavy, japanaikokusha, traynor.hero0, traynor.hero1, traynor.hero2, traynor.hero3, traynor.hero4, traynor.hero5, btrae.hero0, btrae.hero1, btrae.hero2, btrae.hero3, btrae.hero4, btrae.hero5, dukenukem.hero0, dukenukem.hero1, dukenukem.hero2, dukenukem.hero3, dukenukem.hero4, dukenukem.hero5, strifeguy.hero0, strifeguy.hero1, strifeguy.hero2, strifeguy.hero3, strifeguy.hero4, strifeguy.hero5,  traynor.hero0, corvus.hero1, corvus.hero2, corvus.hero3, corvus.hero4, corvus.hero5, zkerrigan.hero0, zkerrigan.hero1, zkerrigan.hero2, zkerrigan.hero3, zkerrigan.hero4, zkerrigan.hero5, zzagara.hero0, zzagara.hero1, zzagara.hero2, zzagara.hero3, zzagara.hero4, zzagara.hero5, doomguy.hero0, doomguy.hero1, doomguy.hero2, doomguy.hero3, doomguy.hero4, doomguy.hero5, masterchief.hero0, masterchief.hero1, masterchief.hero2, masterchief.hero3, masterchief.hero4, masterchief.hero5, unscsupplypad, unscdarter
+		AircraftTargetType: AirborneActor
+		SquadSize: 1
+		SquadSizeRandomBonus: 0
+		IgnoredEnemyTargetTypes: Catalyst, UpgradeThing, Underwater, NoAITarget, Trees
+	GrantConditionOnPlayerArmyValue@slowai1:
+		Condition: upkeep_bot
+		Threshold: 100000
+	ProvidesPrerequisite@slowai1:
+		RequiresCondition: upkeep_bot && enable-all-ai
+		Prerequisite: prodspeed.botupkeep
+	GrantConditionOnPlayerArmyValue@slowai2:
+		Condition: disable-unitbuilder
+		Threshold: 150000
+	UnitBuilderBotModule@normal:
+		RequiresCondition: (enable-all-ai && !disable-unitbuilder)
+		UnitQueues: Vehicle, Infantry, Plane, Ship, Aircraft, Hero
+		UnitsToBuild:
+			e1: 30
+			e1of: 20
+			e2: 20
+			e3: 20
+			e4: 20
+			e5: 20
+			e6: 1
+			fe6: 1
+			e4deso: 5
+			zdrone.eng: 2
+			pprobe.eng: 2
+			medi: 5
+			fmedi: 5
+			medi.dm: 5
+			mech: 5
+			fmech: 5
+			mech.dm: 5
+			shok: 15
+			e7: 5
+			dog: 10
+			rmbo: 5
+			fe1: 50
+			fe2: 20
+			fe3: 20
+			fe4: 20
+			fshok: 20
+			dm1: 20
+			dm2: 30
+			dm2of: 20
+			dm3: 15
+			dm4: 5
+			dm6: 20
+			helld1: 10
+			helld1.de: 10
+			helld2: 10
+			helld3: 10
+			helld4: 25
+			helld4.de: 25
+			helld5: 10
+			helld6: 30
+			helld6.s: 30
+			helld7: 10
+			helld9: 10
+			nbos1: 20
+			nbos2: 20
+			nbos3: 15
+			nbos4: 10
+			nbos7: 50
+			tscyb: 20
+			tsghost: 15
+			tsjump: 10
+			tse5p.dm: 5
+			tse5p.gdi: 5
+			fe7: 5
+			frmbo: 5
+			tse5.g: 5
+			sbh: 20
+			ge1: 30
+			ge2: 35
+			ge3: 20
+			c1.masterbot: 5
+			harv: 10
+			harvd: 10
+			gharv: 10
+			harvnavy: 10
+			apc: 30
+			apc.ai1: 10
+			apc.ai2: 10
+			apc.ai3: 10
+			apc.ai4: 10
+			apc.ai5: 10
+			apc.ai6: 10
+			apc.ai7: 10
+			apc.ai8: 10
+			apc.ai9: 10
+			apc.ai10: 10
+			amapc.ai1: 10
+			amapc: 10
+			jeep: 20
+			arty: 15
+			v2rl: 40
+			ftrk: 30
+			1tnk: 50
+			2tnk: 50
+			3tnk: 50
+			4tnk: 25
+			ttnk: 25
+			mgg: 10
+			mnly: 2
+			mnly.g: 2
+			lst2.bot: 2
+			stnk: 5
+			mtnkd.g: 50
+			htnkd.g: 25
+			jeepd: 20
+			apc.g: 30
+			msam: 15
+			smech: 20
+			mmch: 50
+			triton: 25
+			jugg: 10
+			1tnk.n: 50
+			arty.n: 25
+			bggyd: 20
+			bike: 25
+			stnkd: 10
+			ftnkd: 20
+			ftnkd.n3: 30
+			ctnk.bhand: 5
+			scorpion: 10
+			novan.m: 5
+			novan: 5
+			stnk.dm: 40
+			stnk.ai1: 20
+			stnk.ai2: 20
+			stnk.ai3: 20
+			stnk.ai4: 20
+			1tnk.dm: 50
+			dmgtnk: 25
+			dmgtnk.ph: 25
+			dmgtnk.m: 25
+			btnk.m: 50
+			mtnkd.shd: 50
+			2tnk.nz: 20
+			3tnk.nz: 50
+			maus: 10
+			seige: 10
+			gmgg: 100
+			arty.ss: 10
+			gbike: 25
+			gbiket: 25
+			gscud: 25
+			gscud.t: 25
+			gftrk: 35
+			bbus.bot: 30
+			g1tnk: 40
+			g2tnk: 60
+			bggyd.g: 25
+			gtechnical: 25
+			gquad: 25
+			aaty: 10
+			btnk: 40
+			btnk.sword: 60
+			lmech: 30
+			drone: 10
+			mornstar: 25
+			rtnk: 15
+			rtnk.ai1: 15
+			rtnk.ai2: 15
+			rtnk.ai3: 15
+			speeder: 10
+			fcru: 35
+			heli: 10
+			mh60: 10
+			mig: 10
+			n.mig: 20
+			hind: 20
+			yak: 10
+			zep: 10
+			zep.bot: 10
+			bf109: 10
+			do17: 10
+			do17.shd: 10
+			orca: 10
+			a10: 10
+			tsorca: 30
+			tsorcab: 30
+			tsorca.ai: 40
+			tsorcab.ai: 40
+			tsorcatran.ai: 10
+			tsorcatran.ai2: 10
+			scrin: 10
+			a10.n3: 10
+			venom: 10
+			vanguard: 10
+			lance: 10
+			nhwk: 10
+			paladin: 10
+			spectre: 40
+			lance.angels: 10
+			nhwk.angels: 10
+			paladin.angels: 10
+			spectre.angels: 40
+			ss: 5
+			msub: 5
+			dd: 5
+			ca: 5
+			pt: 5
+			lst.harv: 5
+			dmdd: 5
+			dd.f: 5
+			cruisemis: 5
+			cruisemis.silver: 5
+			dd.r: 5
+			silverlining: 50
+			baneblade: 50
+			direwolf: 50
+			aeiou: 50
+			ztnk: 50
+			u.tnk: 50
+			dm5: 50
+			helld8: 50
+			tselite: 50
+			tscybcom: 50
+			tskodiac: 50
+			nbos6: 50
+			solc: 50
+			e7.e: 50
+			e7.g: 50
+			heavyguy: 50
+			pzealot: 30
+			pzealot.b: 30
+			pdrago: 15
+			pdrago.b: 15
+			pstalker.b: 15
+			pstalker: 15
+			ptemplar: 5
+			parchon: 10
+			pdtemplar: 5
+			pdarchon: 10
+			pprobe: 10
+			preaver: 15
+			pobserver: 5
+			pscout: 10
+			pcorsair: 5
+			pcarry: 10
+			pinter: 10
+			parbiter: 5
+			pmother: 5
+			pfenix: 5
+			pvoidray: 5
+			pzeratul: 5
+			ze.sunken: 100
+			ze.spore: 100
+			zzergling: 40
+			zzergling.b: 30
+			zzergling.b2: 30
+			zbaneling: 40
+			zhydra: 30
+			zhydra.b: 15
+			zlurker.ai: 10
+			zultra: 5
+			ztorrasque: 5
+			ztorrasque.hero: 5
+			zdrone: 10
+			zmuta: 10
+			zscourge: 10
+			zqueen: 5
+			zguardian: 5
+			zdefiler: 5
+			zkerrigan: 5
+			zkerrigan.hero0: 50
+			zkerrigan.hero1: 50
+			zkerrigan.hero2: 50
+			zkerrigan.hero3: 50
+			zkerrigan.hero4: 50
+			zkerrigan.hero5: 50
+			zzagara.hero0: 50
+			zzagara.hero1: 50
+			zzagara.hero2: 50
+			zzagara.hero3: 50
+			zzagara.hero4: 50
+			zzagara.hero5: 50
+			tscv: 5
+			tmarine: 30
+			tmarine.b: 30
+			tmarine.b2: 30
+			tfirebat: 20
+			tfirebat.b: 20
+			tmedic: 10
+			tghost: 10
+			tvult: 12
+			tstank: 5
+			tgoliath: 10
+			twraith: 15
+			tbattle: 5
+			tvalk: 4
+			tvessel: 4
+			terran.nuke: 50
+			tvult.raynor: 50
+			traynor.hero0: 50
+			traynor.hero1: 50
+			traynor.hero2: 50
+			traynor.hero3: 50
+			traynor.hero4: 50
+			traynor.hero5: 50
+			usacrusader: 40
+			usapaladin: 50
+			usahumvee: 5
+			usaambulance: 3
+			usatomahawk: 10
+			usasentrydrone: 5
+			usaavenger: 2
+			usamicrowave: 2
+			usalasercrusader: 50
+			usaranger: 40
+			usadefender: 40
+			usapathfinder: 20
+			usaburton: 1
+			usachinook: 10
+			usacombatchinookai: 5
+			usacomanche: 5
+			usaraptor: 50
+			usastealthfighter: 5
+			usaaurora: 2
+			usakingraptor: 50
+			usaauroraalpha: 4
+			usamlrscarrier: 3
+			usareconboat: 4
+			usaspycarrier: 1
+			usarailgun: 1
+			usadisrupter: 1
+			usaspectregunship: 1
+			usalaserpaladintank: 25
+			usalibra: 10
+			chinaredguard: 50
+			chinatankhunter: 50
+			chinaminigunner: 50
+			chinahacker: 3
+			chinasuperhacker: 3
+			chinablacklotus: 1
+			chinanukeneer: 5
+			chinamortar: 5
+			chinadragonbreathers: 15
+			chinaecmtroop: 5
+			chinasniper: 5
+			chinaofficer: 5
+			chinabattlemaster: 50
+			chinahoppertank: 40
+			chinadragontank: 30
+			chinagatlingtank: 30
+			chinalisteningoutpost: 2
+			chinaassaulttroopcarrier: 2
+			chinaecm: 2
+			chinainfernocannon: 6
+			chinanukecannon: 4
+			chinaoverlordgatling: 50
+			chinaoverlordspeaker: 50
+			chinaemperor: 50
+			chinaemperortankgeneral: 50
+			chinamig: 4
+			chinaattackoutpost: 2
+			chinanukemig: 2
+			chinahelixgatling: 2
+			chinahelixspeaker: 2
+			chinanukehelixgatling: 2
+			chinanukehelixspeaker: 2
+			chinainfernoship: 2
+			chinadreadnought: 4
+			chinaemperorbattlecruiser: 1
+			chinaemperornuclearcruiser: 1
+			chinashenlong: 1
+			chinafortress: 1
+			chinazhurong: 1
+			chinadeathhand: 1
+			japanimperialwarrior: 15
+			japantankbuster: 10
+			japanrocketangel: 10
+			japanarchermaiden: 15
+			japanwarhorse: 10
+			japanshinobi: 5
+			japanbioengineer: 5
+			japanmutant: 5
+			japansuddentransport: 3
+			japantsunamitank: 5
+			japanmechatransformer: 5
+			japanmecharaijuu: 10
+			japanstrikervx: 10
+			japanmechatengu: 10
+			japanhiroshimawaveforce: 5
+			japanexecutioner: 5
+			japandominatrix: 5
+			japanskyempress: 1
+			japandatenshi: 3
+			japanchoppervx: 5
+			japanjettengu: 5
+			japankitsune: 5
+			japanyousei: 5
+			japankaminari: 5
+			japanballoonsentryflying: 5
+			japankappa: 5
+			japannaginata: 5
+			japanshogun: 5
+			japanmatsui: 5
+			japanonmyodo: 5
+			japankomatsu: 3
+			japanshishiron: 3
+			japanakuma: 1
+			japanswarmdrone: 5
+			japantsukumogami: 5
+			japanmechatransformermecha: 5
+			japanmechanic: 3
+			japankingoni: 5
+			japankusogaki: 5
+			japankuruttaneko: 5
+			japanhakaimono: 1
+			japannamiryoku: 3
+			japanibukiboat: 4
+			japansanshikidan: 3
+			japankatsuragi: 4
+			japankongo: 2
+			japansurveyorboat: 2
+			japankaga: 1
+			unscmarine: 25
+			unscfrontrunner: 30
+			unscheavyweaponsmarine: 20
+			unscsniper: 15
+			unschellbringer: 10
+			unscsgtjohnson: 1
+			unscodstmarine: 30
+			unscodstfrontrunner: 30
+			unscodstheavyweaponsmarine: 20
+			unscodstsniper: 20
+			unscodsthellbringer: 15
+			unscwarthog: 10
+			unscmongoose: 5
+			unscscorpion: 15
+			unscgrizzly: 10
+			unsccobra: 5
+			unscwolverine: 5
+			unschornet: 10
+			unscsparrowhawk: 5
+			unscvulture: 5
+			unsccolonyship: 1
+			unscdarter: 10
+			avinf1: 15
+			avinf2: 1
+			avinf3: 5
+			avinf4: 10
+			avdrone: 8
+			avemp: 5
+			av1tnk: 15
+			av2tnk: 15
+			avarty: 15
+			avqtnk: 15
+			avfrigate: 5
+			avbomber: 3
+			avcarrier: 1
+			avcarrier.bot: 1
+			avmother: 5
+			olddk: 1
+			dukenukem.hero0: 50
+			dukenukem.hero1: 50
+			dukenukem.hero2: 50
+			dukenukem.hero3: 50
+			dukenukem.hero4: 50
+			dukenukem.hero5: 50
+			dukenukemcycloidemperor: 50
+			dukenukembattlelord: 50
+			dukenukemalienqueen: 50
+			ant: 10
+			zombie: 10
+			frge1: 60
+			frge1of: 20
+			frge3: 30
+			frgdog: 20
+			frgghost: 10
+			frge6: 5
+			frgsurv: 5
+			fbus.bot: 5
+			bulldozer: 1
+			mlrsd: 5
+			bte1: 10
+			bte2: 20
+			btraven: 5
+			btdemolisher: 5
+			btmanticore: 5
+			btrae.uav: 1
+			btrae.hero0: 50
+			btrae.hero1: 50
+			btrae.hero2: 50
+			btrae.hero3: 50
+			btrae.hero4: 50
+			btrae.hero5: 50
+			corvus.hero0: 50
+			corvus.hero1: 50
+			corvus.hero2: 50
+			corvus.hero3: 50
+			corvus.hero4: 50
+			corvus.hero5: 50
+			doomguy.hero0: 50
+			doomguy.hero1: 50
+			doomguy.hero2: 50
+			doomguy.hero3: 50
+			doomguy.hero4: 50
+			doomguy.hero5: 50
+			strifeguy.hero0: 50
+			strifeguy.hero1: 50
+			strifeguy.hero2: 50
+			strifeguy.hero3: 50
+			strifeguy.hero4: 50
+			strifeguy.hero5: 50
+			strifeguyacolyte: 10
+			strifeguytemplar: 5
+			strifeguycrusader: 5
+			maverick.hero0: 50
+			maverick.hero1: 50
+			maverick.hero2: 50
+			maverick.hero3: 50
+			maverick.hero4: 50
+			maverick.hero5: 50
+			phaedk.hero0: 50
+			phaedk.hero1: 50
+			phaedk.hero2: 50
+			phaedk.hero3: 50
+			phaedk.hero4: 50
+			phaedk.hero5: 50
+			masterchief.hero0: 50
+			masterchief.hero1: 50
+			masterchief.hero2: 50
+			masterchief.hero3: 50
+			masterchief.hero4: 50
+			masterchief.hero5: 50
+		UnitLimits:
+			e6: 2
+			fe6: 2
+			tsengi.o: 1
+			e1of: 4
+			dm2of: 4
+			e4deso: 3
+			e7: 2
+			medi: 6
+			fmedi: 6
+			medi.dm: 6
+			mech: 4
+			fmech: 4
+			mech.dm: 4
+			rmbo: 2
+			dm4: 2
+			tse5p.dm: 2
+			tse5p.gdi: 2
+			fe7: 2
+			frmbo: 2
+			helld3: 4
+			helld7: 2
+			helld9: 2
+			ctnk.bhand: 1
+			gmgg: 1
+			scorpion: 2
+			nbos4: 2
+			dog: 4
+			harv: 8
+			harvd: 8
+			harvnavy: 8
+			jeep: 4
+			mgg: 2
+			ftrk: 4
+			bbus.bot: 2
+			lst.harv: 6
+			ss: 6
+			msub: 2
+			dd: 4
+			ca: 2
+			pt: 4
+			mnly: 1
+			mnly.g: 1
+			lst2.bot: 1
+			dmdd: 4
+			dd.f: 4
+			cruisemis: 2
+			cruisemis.silver: 4
+			dd.r: 2
+			silverlining: 1
+			heli: 3
+			mh60: 3
+			mig: 3
+			n.mig: 2
+			zep: 3
+			zep.bot: 3
+			yak: 4
+			bf109: 3
+			do17: 3
+			do17.shd: 3
+			orca: 3
+			a10: 3
+			tsorca: 4
+			tsorcab: 4
+			scrin: 6
+			a10.n3: 3
+			venom: 4
+			vanguard: 3
+			lance: 6
+			nhwk: 6
+			paladin: 2
+			spectre: 1
+			lance.angels: 6
+			nhwk.angel: 6
+			paladin.angel: 6
+			spectre.angels: 1
+			baneblade: 1
+			direwolf: 1
+			aeiou: 1
+			ztnk: 1
+			u.tnk: 1
+			dm5: 1
+			helld8: 1
+			tselite: 1
+			tscybcom: 1
+			tskodiac: 1
+			nbos6: 1
+			solc: 1
+			e7.e: 1
+			e7.g: 1
+			novan: 1
+			heavyguy: 1
+			pprobe: 16
+			pzealot: 40
+			pzealot.b: 40
+			pdrago: 15
+			pdrago.b: 15
+			pobserver: 2
+			parchon: 6
+			pdarchon: 2
+			pscout: 8
+			pcarry: 4
+			pcorsair: 4
+			preaver: 12
+			zdrone: 16
+			zlurker.ai: 6
+			zultra: 6
+			ztorrasque: 6
+			zmuta: 10
+			zqueen: 2
+			zguardian: 4
+			zdefiler: 2
+			usaambulance: 4
+			usatomahawk: 8
+			usasentrydrone: 2
+			usaavenger: 4
+			usamicrowave: 4
+			usapathfinder: 10
+			usaburton: 1
+			usachinook: 8
+			usacombatchinookai: 4
+			usacomanche: 4
+			usastealthfighter: 4
+			usaaurora: 4
+			usaauroraalpha: 4
+			usamlrscarrier: 2
+			usareconboat: 5
+			usaspycarrier: 1
+			usarailgun: 1
+			usadisrupter: 1
+			usaspectregunship: 1
+			tscv: 10
+			tmedic: 6
+			tghost: 6
+			tvalk: 5
+			tvessel: 1
+			chinahacker: 5
+			chinasuperhacker: 5
+			chinablacklotus: 5
+			chinanukeneer: 10
+			chinamortar: 10
+			chinadragonbreathers: 30
+			chinaecmtroop: 10
+			chinasniper: 15
+			chinaofficer: 10
+			chinadragontank: 8
+			chinalisteningoutpost: 3
+			chinaassaulttroopcarrier: 3
+			chinaecm: 2
+			chinainfernocannon: 8
+			chinanukecannon: 6
+			chinaoverlordgatling: 8
+			chinaoverlordspeaker: 8
+			chinaemperor: 4
+			chinaemperortankgeneral: 5
+			chinaattackoutpost: 3
+			chinanukemig: 4
+			chinahelixgatling: 4
+			chinahelixspeaker: 4
+			chinanukehelixgatling: 4
+			chinanukehelixspeaker: 4
+			chinainfernoship: 4
+			chinadreadnought: 8
+			chinaemperorbattlecruiser: 2
+			chinaemperornuclearcruiser: 2
+			chinashenlong: 1
+			chinafortress: 1
+			chinazhurong: 1
+			chinadeathhand: 1
+			japanrocketangel: 20
+			japanwarhorse: 10
+			japanshinobi: 5
+			japanbioengineer: 8
+			japanmutant: 8
+			japansuddentransport: 3
+			japanmecharaijuu: 10
+			japanexecutioner: 2
+			japandominatrix: 2
+			japanskyempress: 1
+			japanstrikervx: 5
+			japanmechatengu: 5
+			japanhiroshimawaveforce: 10
+			japandatenshi: 3
+			japanchoppervx: 5
+			japanjettengu: 5
+			japanyousei: 5
+			japankaminari: 5
+			japanballoonsentryflying: 5
+			japankappa: 5
+			japannaginata: 5
+			japanshogun: 5
+			japanonmyodo: 10
+			japankomatsu: 6
+			japanshishiron: 6
+			japanakuma: 1
+			japanswarmdrone: 10
+			japanmechanic: 6
+			japankingoni: 10
+			japankuruttaneko: 10
+			japanhakaimono: 1
+			japannamiryoku: 6
+			japanibukiboat: 8
+			japansanshikidan: 6
+			japankatsuragi: 8
+			japankongo: 4
+			japansurveyorboat: 2
+			japankaga: 1
+			unscmarine: 50
+			unscfrontrunner: 60
+			unscheavyweaponsmarine: 40
+			unscsniper: 30
+			unschellbringer: 20
+			unscsgtjohnson: 1
+			unscodstmarine: 60
+			unscodstfrontrunner: 60
+			unscodstheavyweaponsmarine: 40
+			unscodstsniper: 30
+			unscodsthellbringer: 20
+			unscwarthog: 20
+			unscmongoose: 5
+			unscscorpion: 30
+			unscgrizzly: 20
+			unsccobra: 10
+			unscwolverine: 10
+			unschornet: 20
+			unscsparrowhawk: 10
+			unscvulture: 10
+			unsccolonyship: 1
+			unscdarter: 15
+			avinf2: 1
+			avinf3: 3
+			avbomber: 3
+			avcarrier: 1
+			frge1of: 4
+			frge6: 2
+			frgsurv: 1
+			fbus.bot: 5
+			strifeguyacolyte: 20
+			strifeguytemplar: 10
+			strifeguycrusader: 10
+			amapc: 5
+		UnitDelays:
+			gmgg: 4500
+			pzealot.b: 9000
+			pzealot.b2: 18000
+			pdrago.b: 13500
+			zzergling.b: 4500
+			zzergling.b2: 9000
+			zhydra.b: 13500
+			tmarine.b: 4500
+			tmarine.b2: 9000
+			tsengi.o: 3000
+			frgsurv: 3000
+			japansurveyorboat.o: 3000
+	UnitBuilderBotModule@noepic:
+		RequiresCondition: enable-no-epic
+		UnitsToBuild:
+			traynor: 1
+	UnitBuilderBotModule@turtle:
+		RequiresCondition: enable-turtle-defensive
+		UnitQueues: Upgrade
+		UnitsToBuild:
+			upgrade.wallfireports: 1
+	SupportPowerBotModule:
+		RequiresCondition: enable-all-ai
+		Decisions:
+			spyplane:
+				OrderName: SovietSpyPlane
+				MinimumAttractiveness: 1
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 5c0
+			ChinaSpyPlane:
+				OrderName: ChinaSpyPlane
+				MinimumAttractiveness: 1
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 5c0
+			spyvan:
+				OrderName: VanSweep
+				MinimumAttractiveness: 1
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 5c0
+			spyvan2:
+				OrderName: VanSweepProtoss
+				MinimumAttractiveness: 1
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 5c0
+			spydrone:
+				OrderName: SpyDrone
+				MinimumAttractiveness: 1
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 5c0
+			clairvoyance:
+				OrderName: clairvoyance
+				MinimumAttractiveness: 1
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 5c0
+			orbitaldrop:
+				OrderName: OrbitalDrop
+				MinimumAttractiveness: 5
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 8c0
+				Consideration@2:
+					Against: Enemy
+					Types: Water
+					Attractiveness: -5
+					TargetMetric: None
+					CheckRadius: 8c0
+			paratroopers:
+				OrderName: SovietParatroopers
+				MinimumAttractiveness: 5
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 8c0
+				Consideration@2:
+					Against: Enemy
+					Types: Water
+					Attractiveness: -5
+					TargetMetric: None
+					CheckRadius: 8c0
+			ZOCOMParatroopers:
+				OrderName: ZOCOMParatroopers
+				MinimumAttractiveness: 5
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 8c0
+				Consideration@2:
+					Against: Enemy
+					Types: Water
+					Attractiveness: -5
+					TargetMetric: None
+					CheckRadius: 8c0
+			parabombs:
+				OrderName: UkraineParabombs
+				MinimumAttractiveness: 1
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 5c0
+			ukrainedronestrike:
+				OrderName: UkraineDroneStrike
+				MinimumAttractiveness: 1
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 5c0
+			chinaparabombs:
+				OrderName: ChinaParabombs
+				MinimumAttractiveness: 1
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 5c0
+			nukepower:
+				OrderName: NukePowerInfoOrder
+				MinimumAttractiveness: 3000
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: Value
+					CheckRadius: 5c0
+				Consideration@2:
+					Against: Ally
+					Types: Air, Ground, Water
+					Attractiveness: -10
+					TargetMetric: Value
+					CheckRadius: 7c0
+			nukepower2:
+				OrderName: TempleNuke
+				MinimumAttractiveness: 3000
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: Value
+					CheckRadius: 5c0
+				Consideration@2:
+					Against: Ally
+					Types: Air, Ground, Water
+					Attractiveness: -10
+					TargetMetric: Value
+					CheckRadius: 7c0
+			nukepower3:
+				OrderName: ScudStorm
+				MinimumAttractiveness: 3000
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: Value
+					CheckRadius: 5c0
+				Consideration@2:
+					Against: Ally
+					Types: Air, Ground, Water
+					Attractiveness: -10
+					TargetMetric: Value
+					CheckRadius: 7c0
+			nukepower4:
+				OrderName: ScudStorm2
+				MinimumAttractiveness: 3000
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: Value
+					CheckRadius: 5c0
+				Consideration@2:
+					Against: Ally
+					Types: Air, Ground, Water
+					Attractiveness: -10
+					TargetMetric: Value
+					CheckRadius: 7c0
+			nukepower9:
+				OrderName: LightningStorm
+				MinimumAttractiveness: 3000
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: Value
+					CheckRadius: 5c0
+				Consideration@2:
+					Against: Ally
+					Types: Air, Ground, Water
+					Attractiveness: -10
+					TargetMetric: Value
+					CheckRadius: 7c0
+			nukepower9_2:
+				OrderName: CrateLightningStorm
+				MinimumAttractiveness: 3000
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: Value
+					CheckRadius: 5c0
+				Consideration@2:
+					Against: Ally
+					Types: Air, Ground, Water
+					Attractiveness: -10
+					TargetMetric: Value
+					CheckRadius: 7c0
+			nukepower9_3:
+				OrderName: FakeLightningStorm
+				MinimumAttractiveness: 3000
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: Value
+					CheckRadius: 5c0
+				Consideration@2:
+					Against: Ally
+					Types: Air, Ground, Water
+					Attractiveness: -10
+					TargetMetric: Value
+					CheckRadius: 7c0
+			nukepower10:
+				OrderName: ParticleCannonStrike
+				MinimumAttractiveness: 3000
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: Value
+					CheckRadius: 5c0
+				Consideration@2:
+					Against: Ally
+					Types: Air, Ground, Water
+					Attractiveness: -10
+					TargetMetric: Value
+					CheckRadius: 7c0
+			nukepower11:
+				OrderName: ZergAtom
+				MinimumAttractiveness: 3000
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: Value
+					CheckRadius: 5c0
+				Consideration@2:
+					Against: Ally
+					Types: Air, Ground, Water
+					Attractiveness: -10
+					TargetMetric: Value
+					CheckRadius: 7c0
+			nukepower12:
+				OrderName: chinanuke
+				MinimumAttractiveness: 3000
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: Value
+					CheckRadius: 5c0
+				Consideration@2:
+					Against: Ally
+					Types: Air, Ground, Water
+					Attractiveness: -10
+					TargetMetric: Value
+					CheckRadius: 7c0
+			nukepower13:
+				OrderName: BFG
+				MinimumAttractiveness: 3000
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: Value
+					CheckRadius: 5c0
+				Consideration@2:
+					Against: Ally
+					Types: Air, Ground, Water
+					Attractiveness: -10
+					TargetMetric: Value
+					CheckRadius: 7c0
+			nukepowerfake1:
+				OrderName: FakeABomb
+				MinimumAttractiveness: 3000
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: Value
+					CheckRadius: 5c0
+				Consideration@2:
+					Against: Ally
+					Types: Air, Ground, Water
+					Attractiveness: -10
+					TargetMetric: Value
+					CheckRadius: 7c0
+			nukepowerfake2:
+				OrderName: CrateABomb
+				MinimumAttractiveness: 3000
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: Value
+					CheckRadius: 5c0
+				Consideration@2:
+					Against: Ally
+					Types: Air, Ground, Water
+					Attractiveness: -10
+					TargetMetric: Value
+					CheckRadius: 7c0
+			earthquake:
+				OrderName: CrateEarthquake
+				MinimumAttractiveness: 3000
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: Value
+					CheckRadius: 5c0
+				Consideration@2:
+					Against: Ally
+					Types: Air, Ground, Water
+					Attractiveness: -10
+					TargetMetric: Value
+					CheckRadius: 7c0
+			colonydrop:
+				OrderName: colonydrop
+				MinimumAttractiveness: 3000
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: Value
+					CheckRadius: 5c0
+				Consideration@2:
+					Against: Ally
+					Types: Air, Ground, Water
+					Attractiveness: -10
+					TargetMetric: Value
+					CheckRadius: 7c0
+			roadroller:
+				OrderName: roadroller
+				MinimumAttractiveness: 1
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 5
+					TargetMetric: Value
+					CheckRadius: 5c0
+				Consideration@2:
+					Against: Enemy
+					Types: Water, Defense
+					Attractiveness: -5
+					TargetMetric: None
+					CheckRadius: 5c0
+			holyhandgrenade:
+				OrderName: holyhandgrenade
+				MinimumAttractiveness: 1
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 5
+					TargetMetric: Value
+					CheckRadius: 5c0
+				Consideration@2:
+					Against: Enemy
+					Types: Water, Defense
+					Attractiveness: -5
+					TargetMetric: None
+					CheckRadius: 5c0
+			bananabomb:
+				OrderName: bananabomb
+				MinimumAttractiveness: 1
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 5
+					TargetMetric: Value
+					CheckRadius: 5c0
+				Consideration@2:
+					Against: Enemy
+					Types: Water, Defense
+					Attractiveness: -5
+					TargetMetric: None
+					CheckRadius: 5c0
+			acolytestrike:
+				OrderName: acolytestrike
+				MinimumAttractiveness: 1
+				Consideration@1:
+					Against: Ally
+					Types: Vehicle, Infantry
+					Attractiveness: 5
+					TargetMetric: None
+					CheckRadius: 3c0
+			reinforcements:
+				OrderName: strifereinforcements
+				MinimumAttractiveness: 5
+				Consideration@1:
+					Against: Ally
+					Types: Vehicle, Infantry
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 3c0
+			metalnuke:
+				OrderName: metalnuke
+				MinimumAttractiveness: 1
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 5
+					TargetMetric: Value
+					CheckRadius: 5c0
+				Consideration@2:
+					Against: Enemy
+					Types: Water, Defense
+					Attractiveness: -5
+					TargetMetric: None
+					CheckRadius: 5c0
+			IonCannonPower:
+				OrderName: IonCannonPowerInfoOrder
+				MinimumAttractiveness: 1000
+				FineScanRadius: 2
+				Consideration@00:
+					Against: Enemy
+					Types: Superweapon
+					Attractiveness: 1500
+					TargetMetric: Value
+					CheckRadius: 1c0
+				Consideration@0:
+					Against: Enemy
+					Types: EpicUnit
+					Attractiveness: 500
+					TargetMetric: Value
+					CheckRadius: 1c0
+				Consideration@1:
+					Against: Enemy
+					Types: Vehicle, Infantry, WaterActor
+					Attractiveness: 2
+					TargetMetric: Value
+					CheckRadius: 2c0
+				Consideration@2:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: Value
+					CheckRadius: 2c0
+				Consideration@3:
+					Against: Ally
+					Types: GroundActor, WaterActor
+					Attractiveness: -10
+					TargetMetric: Value
+					CheckRadius: 3c0
+			AvaliIonCannon:
+				OrderName: AvaliIonCannon
+				MinimumAttractiveness: 1000
+				FineScanRadius: 2
+				Consideration@00:
+					Against: Enemy
+					Types: Superweapon
+					Attractiveness: 1500
+					TargetMetric: Value
+					CheckRadius: 1c0
+				Consideration@0:
+					Against: Enemy
+					Types: EpicUnit
+					Attractiveness: 500
+					TargetMetric: Value
+					CheckRadius: 1c0
+				Consideration@1:
+					Against: Enemy
+					Types: Vehicle, Infantry, WaterActor
+					Attractiveness: 2
+					TargetMetric: Value
+					CheckRadius: 2c0
+				Consideration@2:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: Value
+					CheckRadius: 2c0
+				Consideration@3:
+					Against: Ally
+					Types: GroundActor, WaterActor
+					Attractiveness: -10
+					TargetMetric: Value
+					CheckRadius: 3c0
+			OrbitalBombardment:
+				OrderName: OrbitalBombardment
+				MinimumAttractiveness: 1000
+				FineScanRadius: 2
+				Consideration@00:
+					Against: Enemy
+					Types: Superweapon
+					Attractiveness: 1500
+					TargetMetric: Value
+					CheckRadius: 1c0
+				Consideration@0:
+					Against: Enemy
+					Types: EpicUnit
+					Attractiveness: 500
+					TargetMetric: Value
+					CheckRadius: 1c0
+				Consideration@1:
+					Against: Enemy
+					Types: Vehicle, Infantry, Water
+					Attractiveness: 2
+					TargetMetric: Value
+					CheckRadius: 2c0
+				Consideration@2:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: Value
+					CheckRadius: 2c0
+				Consideration@3:
+					Against: Ally
+					Types: GroundActor, WaterActor
+					Attractiveness: -10
+					TargetMetric: Value
+					CheckRadius: 3c0
+			CrateSmite:
+				OrderName: CrateSmite
+				MinimumAttractiveness: 2500
+				FineScanRadius: 1
+				Consideration@00:
+					Against: Enemy
+					Types: Superweapon
+					Attractiveness: 1500
+					TargetMetric: Value
+					CheckRadius: 512
+				Consideration@0:
+					Against: Enemy
+					Types: EpicUnit
+					Attractiveness: 500
+					TargetMetric: Value
+					CheckRadius: 512
+				Consideration@2:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: Value
+					CheckRadius: 512
+				Consideration@3:
+					Against: Ally
+					Types: GroundActor, WaterActor
+					Attractiveness: -10
+					TargetMetric: Value
+					CheckRadius: 1c0
+			EMP:
+				OrderName: EMPPower
+				MinimumAttractiveness: 1000
+				FineScanRadius: 2
+				Consideration@1:
+					Against: Enemy
+					Types: AirborneActor, Tank, Vehicle, Cyborg
+					Attractiveness: 2
+					TargetMetric: Value
+					CheckRadius: 4c0
+				Consideration@2:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: Value
+					CheckRadius: 2c0
+				Consideration@3:
+					Against: Ally
+					Types: WaterActor, GroundActor
+					Attractiveness: -10
+					TargetMetric: Value
+					CheckRadius: 5c0
+			EMP2:
+				OrderName: EMPPower2
+				MinimumAttractiveness: 1000
+				FineScanRadius: 2
+				Consideration@1:
+					Against: Enemy
+					Types: AirborneActor, Tank, Vehicle, Cyborg
+					Attractiveness: 2
+					TargetMetric: Value
+					CheckRadius: 4c0
+				Consideration@2:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: Value
+					CheckRadius: 2c0
+				Consideration@3:
+					Against: Ally
+					Types: WaterActor, GroundActor, WaterActor
+					Attractiveness: -10
+					TargetMetric: Value
+					CheckRadius: 5c0
+			TimeStop:
+				OrderName: TimeStop
+				MinimumAttractiveness: 1000
+				FineScanRadius: 2
+				Consideration@1:
+					Against: Enemy
+					Types: AirborneActor, Tank, Vehicle, Infantry
+					Attractiveness: 1
+					TargetMetric: Value
+					CheckRadius: 6c0
+				Consideration@2:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: -1
+					TargetMetric: Value
+					CheckRadius: 2c0
+				Consideration@3:
+					Against: Ally
+					Types: AirborneActor, GroundActor, WaterActor
+					Attractiveness: -10
+					TargetMetric: Value
+					CheckRadius: 5c0
+			Catalyst:
+				OrderName: CatalystPower
+				MinimumAttractiveness: 3000
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: Value
+					CheckRadius: 3c0
+				Consideration@2:
+					Against: Ally
+					Types: Air, Ground, Water
+					Attractiveness: -10
+					TargetMetric: Value
+					CheckRadius: 7c0
+			Decimator:
+				OrderName: Decimator
+				MinimumAttractiveness: 1000
+				FineScanRadius: 2
+				Consideration@1:
+					Against: Enemy
+					Types: Air, Tank, Vehicle, Infantry, Water
+					Attractiveness: 2
+					TargetMetric: Value
+					CheckRadius: 2c0
+				Consideration@2:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: Value
+					CheckRadius: 2c0
+				Consideration@3:
+					Against: Ally
+					Types: Ground, Water
+					Attractiveness: -10
+					TargetMetric: Value
+					CheckRadius: 3c0
+			MagneticAcceleratorCannon:
+				OrderName: MagneticAcceleratorCannon
+				MinimumAttractiveness: 1000
+				FineScanRadius: 2
+				Consideration@1:
+					Against: Enemy
+					Types: Air, Tank, Vehicle, Infantry, Water
+					Attractiveness: 2
+					TargetMetric: Value
+					CheckRadius: 2c0
+				Consideration@2:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: Value
+					CheckRadius: 2c0
+				Consideration@3:
+					Against: Ally
+					Types: Ground, Water
+					Attractiveness: -10
+					TargetMetric: Value
+					CheckRadius: 3c0
+			Primer:
+				OrderName: PrimerPower
+				MinimumAttractiveness: 1
+				Consideration@1:
+					Against: Ally
+					Types: Catalyst
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 5c0
+			paradoom:
+				OrderName: Paradoom
+				MinimumAttractiveness: 5
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 8c0
+				Consideration@2:
+					Against: Enemy
+					Types: Water
+					Attractiveness: -5
+					TargetMetric: None
+					CheckRadius: 8c0
+			paradoom2:
+				OrderName: ParadoomPhobos
+				MinimumAttractiveness: 5
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 8c0
+				Consideration@2:
+					Against: Enemy
+					Types: Water
+					Attractiveness: -5
+					TargetMetric: None
+					CheckRadius: 8c0
+			usarangers:
+				OrderName: usarangers
+				MinimumAttractiveness: 5
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 8c0
+				Consideration@2:
+					Against: Enemy
+					Types: Water
+					Attractiveness: -5
+					TargetMetric: None
+					CheckRadius: 8c0
+			chinadrop:
+				OrderName: chinadrop
+				MinimumAttractiveness: 5
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 8c0
+				Consideration@2:
+					Against: Enemy
+					Types: Water
+					Attractiveness: -5
+					TargetMetric: None
+					CheckRadius: 8c0
+			tenshidrop:
+				OrderName: tenshidrop
+				MinimumAttractiveness: 5
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 8c0
+			mechadrop:
+				OrderName: mechadrop
+				MinimumAttractiveness: 5
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 8c0
+			hellportal1:
+				OrderName: HellPortalPower1
+				MinimumAttractiveness: 5
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 8c0
+				Consideration@2:
+					Against: Enemy
+					Types: Water
+					Attractiveness: -5
+					TargetMetric: None
+					CheckRadius: 8c0
+			hellportal2:
+				OrderName: HellPortalPower2
+				MinimumAttractiveness: 5
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 8c0
+				Consideration@2:
+					Against: Enemy
+					Types: Water
+					Attractiveness: -5
+					TargetMetric: None
+					CheckRadius: 8c0
+			UNSCParadrop:
+				OrderName: UNSCParadrop
+				MinimumAttractiveness: 5
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 8c0
+				Consideration@2:
+					Against: Enemy
+					Types: Water
+					Attractiveness: -5
+					TargetMetric: None
+					CheckRadius: 8c0
+			odstdrop:
+				OrderName: odstdrop
+				MinimumAttractiveness: 5
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 8c0
+				Consideration@2:
+					Against: Enemy
+					Types: Water
+					Attractiveness: -5
+					TargetMetric: None
+					CheckRadius: 8c0
+			zergcanal:
+				OrderName: ZergCanal
+				MinimumAttractiveness: 5
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 8c0
+				Consideration@2:
+					Against: Enemy
+					Types: Water
+					Attractiveness: -5
+					TargetMetric: None
+					CheckRadius: 8c0
+			zergdevouringones:
+				OrderName: SpawnDevouringOne
+				MinimumAttractiveness: 5
+				Consideration@1:
+					Against: Ally
+					Types: Vehicle, Infantry, Structure
+					Attractiveness: 1
+					TargetMetric: Health
+					CheckRadius: 4c0
+			hunterseeker:
+				OrderName: HunterSeeker
+				MinimumAttractiveness: 5
+				Consideration@1:
+					Against: Ally
+					Types: Vehicle, Infantry, Structure
+					Attractiveness: 1
+					TargetMetric: Health
+					CheckRadius: 4c0
+			hunterseeker2:
+				OrderName: Intelligence
+				MinimumAttractiveness: 5
+				Consideration@1:
+					Against: Ally
+					Types: Vehicle, Infantry, Structure
+					Attractiveness: 1
+					TargetMetric: Health
+					CheckRadius: 4c0
+			NapalmStrike:
+				OrderName: GDINapalmStrike
+				MinimumAttractiveness: 1
+				Consideration@1:
+					Against: Enemy
+					Types: Infantry
+					Attractiveness: 1
+					TargetMetric: Value
+					CheckRadius: 6c0
+				Consideration@2:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: Value
+					CheckRadius: 3c0
+			NapalmStrike2:
+				OrderName: FedNapalmStrike
+				MinimumAttractiveness: 1
+				Consideration@1:
+					Against: Enemy
+					Types: Infantry
+					Attractiveness: 1
+					TargetMetric: Value
+					CheckRadius: 6c0
+				Consideration@2:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: Value
+					CheckRadius: 3c0
+			Do17Strike:
+				OrderName: Do17Strike
+				MinimumAttractiveness: 1
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 5c0
+			ChemStrike:
+				OrderName: NodChemStrike
+				MinimumAttractiveness: 1
+				Consideration@1:
+					Against: Enemy
+					Types: Infantry, Vehicle
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 5c0
+			ChemStrike2:
+				OrderName: GLAChemStrike
+				MinimumAttractiveness: 1
+				Consideration@1:
+					Against: Enemy
+					Types: Infantry, Vehicle
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 5c0
+			a10strike:
+				OrderName: a10strike
+				MinimumAttractiveness: 1
+				Consideration@1:
+					Against: Enemy
+					Types: Infantry, Vehicle, Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 5c0
+			AvaliStrike:
+				OrderName: AvaliAirstrike
+				MinimumAttractiveness: 1
+				Consideration@1:
+					Against: Enemy
+					Types: Infantry, Vehicle, Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 5c0
+			FedAirstrike:
+				OrderName: FedAirstrike
+				MinimumAttractiveness: 1
+				Consideration@1:
+					Against: Enemy
+					Types: Infantry, Vehicle, Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 5c0
+			USAMines:
+				OrderName: USAMines
+				MinimumAttractiveness: 1
+				Consideration@1:
+					Against: Enemy
+					Types: Infantry, Vehicle
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 5c0
+			ChinaMines:
+				OrderName: ChinaMines
+				MinimumAttractiveness: 1
+				Consideration@1:
+					Against: Enemy
+					Types: Infantry, Vehicle
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 5c0
+			ChinaTanks:
+				OrderName: chinatanks
+				MinimumAttractiveness: 5
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 8c0
+				Consideration@2:
+					Against: Enemy
+					Types: Water
+					Attractiveness: -5
+					TargetMetric: None
+					CheckRadius: 8c0
+			ChinaArtillery:
+				OrderName: artillerybarrage
+				MinimumAttractiveness: 1000
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 8c0
+			FedArtillery:
+				OrderName: artillerybarrage2
+				MinimumAttractiveness: 1000
+				Consideration@0:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 2
+					TargetMetric: None
+					CheckRadius: 8c0
+				Consideration@1:
+					Against: Enemy
+					Types: Vehicle, Infantry, Defense
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 8c0
+			MorshuArtillery:
+				OrderName: artillerybarrage3
+				MinimumAttractiveness: 1000
+				Consideration@0:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 2
+					TargetMetric: None
+					CheckRadius: 8c0
+				Consideration@1:
+					Against: Enemy
+					Types: Vehicle, Infantry, Defense
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 8c0
+			tomahawkstorm:
+				OrderName: tomahawkstorm
+				MinimumAttractiveness: 5
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 8c0
+				Consideration@2:
+					Against: Enemy
+					Types: Water
+					Attractiveness: -5
+					TargetMetric: None
+					CheckRadius: 8c0
+			moab:
+				OrderName: Motherofallbombs
+				MinimumAttractiveness: 1
+				Consideration@1:
+					Against: Enemy
+					Types: Infantry, Vehicle, Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 5c0
+			finalsquadron:
+				OrderName: finalsquadron
+				MinimumAttractiveness: 1
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 5c0
+			AntiMatterBombDrop:
+				OrderName: AntiMatterBombDrop
+				MinimumAttractiveness: 1
+				Consideration@1:
+					Against: Enemy
+					Types: Infantry, Vehicle, Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 5c0
+			JapanBerserkerPower:
+				OrderName: JapanBerserker
+				MinimumAttractiveness: 1
+				Consideration@1:
+					Against: Enemy
+					Types: Infantry, Vehicle, Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 5c0
+			JapanDroneSwarm:
+				OrderName: droneswarm
+				MinimumAttractiveness: 1
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 5c0
+			SupplyDrop1:
+				OrderName: SupplyDrop
+				MinimumAttractiveness: 10
+				Consideration@1:
+					Against: Ally
+					Types: Vehicle, Infantry, Structure
+					Attractiveness: 1
+					TargetMetric: Health
+					CheckRadius: 3c0
+			SupplyDrop2:
+				OrderName: SupplyDrop2
+				MinimumAttractiveness: 10
+				Consideration@1:
+					Against: Ally
+					Types: Vehicle, Infantry, Structure
+					Attractiveness: 1
+					TargetMetric: Health
+					CheckRadius: 3c0
+			patriotism:
+				OrderName: patriotism
+				MinimumAttractiveness: 15
+				MinimumScanTimeInterval: 50
+				MaximumScanTimeInterval: 60
+				CoarseScanRadius: 12
+				Consideration@1:
+					Against: Ally
+					Types: FrenzyMe
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 6c0
+			frenzy:
+				OrderName: frenzy
+				MinimumAttractiveness: 15
+				MinimumScanTimeInterval: 50
+				MaximumScanTimeInterval: 60
+				CoarseScanRadius: 12
+				Consideration@1:
+					Against: Ally
+					Types: FrenzyMe
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 6c0
+			dukespatriotism:
+				OrderName: dukespatriotism
+				MinimumAttractiveness: 15
+				MinimumScanTimeInterval: 50
+				MaximumScanTimeInterval: 60
+				CoarseScanRadius: 12
+				Consideration@1:
+					Against: Ally
+					Types: FrenzyMe
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 6c0
+			DukeNukemParadrop:
+				OrderName: DukeNukemParadrop
+				MinimumAttractiveness: 15
+				MinimumScanTimeInterval: 50
+				MaximumScanTimeInterval: 60
+				CoarseScanRadius: 12
+				Consideration@1:
+					Against: Ally
+					Types: FrenzyMe
+					Attractiveness: 10
+					TargetMetric: None
+					CheckRadius: 6c0
+				Consideration@2:
+					Against: Ally
+					Types: Structure
+					Attractiveness: 5
+					TargetMetric: None
+					CheckRadius: 6c0
+			DukesShip:
+				OrderName: dukesship
+				MinimumAttractiveness: 1000
+				FineScanRadius: 2
+				Consideration@1:
+					Against: Enemy
+					Types: Air, Tank, Vehicle, Infantry, Water
+					Attractiveness: 3
+					TargetMetric: Value
+					CheckRadius: 5c0
+				Consideration@2:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: Value
+					CheckRadius: 5c0
+			MasterChiefParadrop:
+				OrderName: MasterChiefParadrop
+				MinimumAttractiveness: 15
+				MinimumScanTimeInterval: 50
+				MaximumScanTimeInterval: 60
+				CoarseScanRadius: 12
+				Consideration@1:
+					Against: Ally
+					Types: FrenzyMe
+					Attractiveness: 10
+					TargetMetric: None
+					CheckRadius: 6c0
+				Consideration@2:
+					Against: Ally
+					Types: Structure
+					Attractiveness: 5
+					TargetMetric: None
+					CheckRadius: 6c0
+			deadsix:
+				OrderName: DeadSix
+				MinimumAttractiveness: 15
+				MinimumScanTimeInterval: 50
+				MaximumScanTimeInterval: 60
+				CoarseScanRadius: 12
+				Consideration@1:
+					Against: Ally
+					Types: FrenzyMe
+					Attractiveness: 10
+					TargetMetric: None
+					CheckRadius: 6c0
+				Consideration@2:
+					Against: Ally
+					Types: Structure
+					Attractiveness: 5
+					TargetMetric: None
+					CheckRadius: 6c0
+			Scrambler:
+				OrderName: GPSScrambler
+				MinimumAttractiveness: 5
+				Consideration@1:
+					Against: Ally
+					Types: Tank, Infantry, Structure
+					Attractiveness: 1
+					TargetMetric: Value
+					CheckRadius: 2c0
+			RussiaParatanks:
+				OrderName: RussiaParatanks
+				MinimumAttractiveness: 5
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 8c0
+				Consideration@2:
+					Against: Enemy
+					Types: Water
+					Attractiveness: -5
+					TargetMetric: None
+					CheckRadius: 8c0
+			himmlertroopers:
+				OrderName: EpicHimmler2
+				MinimumAttractiveness: 5
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 8c0
+				Consideration@2:
+					Against: Enemy
+					Types: Water
+					Attractiveness: -5
+					TargetMetric: None
+					CheckRadius: 8c0
+			himmlerbomb:
+				OrderName: EpicHimmler1
+				MinimumAttractiveness: 1
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 5c0
+			lunartroopers:
+				OrderName: LunarParatroopers
+				MinimumAttractiveness: 5
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 8c0
+				Consideration@2:
+					Against: Enemy
+					Types: Water
+					Attractiveness: -5
+					TargetMetric: None
+					CheckRadius: 8c0
+			lunarbomb:
+				OrderName: LunarParabombs
+				MinimumAttractiveness: 1
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 5c0
+			rebelambush:
+				OrderName: RebelAmbush
+				MinimumAttractiveness: 1000
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 5
+					TargetMetric: Value
+					CheckRadius: 5c0
+				Consideration@2:
+					Against: Enemy
+					Types: Water, Defense, Infantry, Vehicle
+					Attractiveness: -5
+					TargetMetric: None
+					CheckRadius: 5c0
+			terrambush:
+				OrderName: BombAmbush
+				MinimumAttractiveness: 1000
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 5
+					TargetMetric: Value
+					CheckRadius: 5c0
+				Consideration@2:
+					Against: Enemy
+					Types: Water, Defense, Infantry, Vehicle
+					Attractiveness: -5
+					TargetMetric: None
+					CheckRadius: 5c0
+			DemoTrapDrop:
+				OrderName: GLAMines
+				MinimumAttractiveness: 10
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 5c0
+				Consideration@2:
+					Against: Enemy
+					Types: Infantry, Vehicle
+					Attractiveness: -2
+					TargetMetric: None
+					CheckRadius: 8c0
+				Consideration@3:
+					Against: Enemy
+					Types: Water
+					Attractiveness: -5
+					TargetMetric: None
+					CheckRadius: 8c0
+			SneakAttack:
+				OrderName: SneakAttack
+				MinimumAttractiveness: 5
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: Value
+					CheckRadius: 8c0
+				Consideration@2:
+					Against: Enemy
+					Types: Water, Defense, Infantry, Vehicle
+					Attractiveness: -2
+					TargetMetric: Value
+					CheckRadius: 5c0
+				Consideration@3:
+					Against: Enemy
+					Types: Water
+					Attractiveness: -5
+					TargetMetric: None
+					CheckRadius: 8c0
+			HolyLightPower:
+				OrderName: HolyLight
+				MinimumAttractiveness: 10
+				Consideration@1:
+					Against: Ally
+					Types: Vehicle, Infantry, Structure
+					Attractiveness: 1
+					TargetMetric: Health
+					CheckRadius: 3c0
+			IronCurtain:
+				OrderName: IronCurtain
+				MinimumAttractiveness: 1000
+				Consideration@1:
+					Against: Ally
+					Types: IronCurtainMe
+					Attractiveness: 2
+					TargetMetric: Value
+					CheckRadius: 2c0
+			JapanCurse:
+				OrderName: JapanCurse
+				MinimumAttractiveness: 1000
+				FineScanRadius: 2
+				Consideration@1:
+					Against: Enemy
+					Types: Air, Tank, Vehicle, Infantry, Water
+					Attractiveness: 3
+					TargetMetric: Value
+					CheckRadius: 5c0
+				Consideration@2:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: Value
+					CheckRadius: 5c0
+			JapanCurseEconomic:
+				OrderName: JapanCurseEconomic
+				MinimumAttractiveness: 1000
+				FineScanRadius: 2
+				Consideration@1:
+					Against: Enemy
+					Types: Air, Tank, Vehicle, Infantry, Water
+					Attractiveness: 3
+					TargetMetric: Value
+					CheckRadius: 5c0
+				Consideration@2:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: Value
+					CheckRadius: 5c0
+			ParticleBeam:
+				OrderName: Particle Cannon Strike
+				MinimumAttractiveness: 1000
+				FineScanRadius: 2
+				Consideration@1:
+					Against: Enemy
+					Types: Tank, Vehicle, Infantry, Water
+					Attractiveness: 2
+					TargetMetric: Value
+					CheckRadius: 2c0
+				Consideration@2:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: Value
+					CheckRadius: 2c0
+				Consideration@3:
+					Against: Ally
+					Types: Ground, Water
+					Attractiveness: -10
+					TargetMetric: Value
+					CheckRadius: 3c0
+			ParatankSoviet:
+				OrderName: ParatankSoviet
+				MinimumAttractiveness: 5
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 8c0
+				Consideration@2:
+					Against: Enemy
+					Types: Water
+					Attractiveness: -5
+					TargetMetric: None
+					CheckRadius: 8c0
+			ParatankAllies:
+				OrderName: ParatankAllies
+				MinimumAttractiveness: 5
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 8c0
+				Consideration@2:
+					Against: Enemy
+					Types: Water
+					Attractiveness: -5
+					TargetMetric: None
+					CheckRadius: 8c0
+			ParatankGDI:
+				OrderName: ParatankGDI
+				MinimumAttractiveness: 5
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 8c0
+				Consideration@2:
+					Against: Enemy
+					Types: Water
+					Attractiveness: -5
+					TargetMetric: None
+					CheckRadius: 8c0
+			ParatankGDI2:
+				OrderName: ParamechGDI
+				MinimumAttractiveness: 5
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 8c0
+				Consideration@2:
+					Against: Enemy
+					Types: Water
+					Attractiveness: -5
+					TargetMetric: None
+					CheckRadius: 8c0
+			ParatankNod:
+				OrderName: ParatankNod
+				MinimumAttractiveness: 5
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 8c0
+				Consideration@2:
+					Against: Enemy
+					Types: Water
+					Attractiveness: -5
+					TargetMetric: None
+					CheckRadius: 8c0
+			ParatankFed:
+				OrderName: ParatankFed
+				MinimumAttractiveness: 5
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 8c0
+				Consideration@2:
+					Against: Enemy
+					Types: Water
+					Attractiveness: -5
+					TargetMetric: None
+					CheckRadius: 8c0
+			ParatankUAC:
+				OrderName: ParatankUAC
+				MinimumAttractiveness: 5
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 8c0
+				Consideration@2:
+					Against: Enemy
+					Types: Water
+					Attractiveness: -5
+					TargetMetric: None
+					CheckRadius: 8c0
+			ParatankNazi:
+				OrderName: ParatankNazi
+				MinimumAttractiveness: 5
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 8c0
+				Consideration@2:
+					Against: Enemy
+					Types: Water
+					Attractiveness: -5
+					TargetMetric: None
+					CheckRadius: 8c0
+			ParatankGLA:
+				OrderName: ParatankGLA
+				MinimumAttractiveness: 5
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 8c0
+				Consideration@2:
+					Against: Enemy
+					Types: Water
+					Attractiveness: -5
+					TargetMetric: None
+					CheckRadius: 8c0
+			RaynorParadrop:
+				OrderName: RaynorParadrop
+				MinimumAttractiveness: 15
+				MinimumScanTimeInterval: 50
+				MaximumScanTimeInterval: 60
+				CoarseScanRadius: 12
+				Consideration@1:
+					Against: Ally
+					Types: FrenzyMe
+					Attractiveness: 10
+					TargetMetric: None
+					CheckRadius: 6c0
+				Consideration@2:
+					Against: Ally
+					Types: Structure
+					Attractiveness: 5
+					TargetMetric: None
+					CheckRadius: 6c0
+			RaynorBombardment:
+				OrderName: RaynorBombardment
+				MinimumAttractiveness: 1000
+				FineScanRadius: 2
+				Consideration@0:
+					Against: Enemy
+					Types: EpicUnit
+					Attractiveness: 1000
+					TargetMetric: Value
+					CheckRadius: 2c0
+				Consideration@00:
+					Against: Enemy
+					Types: SupportPowerConsiderer
+					Attractiveness: 1000
+					TargetMetric: Value
+					CheckRadius: 2c0
+				Consideration@1:
+					Against: Enemy
+					Types: Vehicle, Infantry, Water
+					Attractiveness: 2
+					TargetMetric: Value
+					CheckRadius: 2c0
+				Consideration@2:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: Value
+					CheckRadius: 2c0
+				Consideration@3:
+					Against: Ally
+					Types: Ground, Water
+					Attractiveness: -10
+					TargetMetric: Value
+					CheckRadius: 3c0
+			RaynorHyperion:
+				OrderName: Hyperion
+				MinimumAttractiveness: 1000
+				FineScanRadius: 2
+				Consideration@0:
+					Against: Enemy
+					Types: EpicUnit
+					Attractiveness: 1000
+					TargetMetric: Value
+					CheckRadius: 2c0
+				Consideration@00:
+					Against: Enemy
+					Types: SupportPowerConsiderer
+					Attractiveness: 1000
+					TargetMetric: Value
+					CheckRadius: 2c0
+				Consideration@1:
+					Against: Enemy
+					Types: Vehicle, Infantry, Water
+					Attractiveness: 5
+					TargetMetric: Value
+					CheckRadius: 2c0
+				Consideration@2:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: Value
+					CheckRadius: 2c0
+				Consideration@3:
+					Against: Ally
+					Types: Ground, Water
+					Attractiveness: -10
+					TargetMetric: Value
+					CheckRadius: 3c0
+			RaynorHyperion2:
+				OrderName: Hyperion2
+				MinimumAttractiveness: 1000
+				FineScanRadius: 2
+				Consideration@0:
+					Against: Enemy
+					Types: EpicUnit
+					Attractiveness: 1000
+					TargetMetric: Value
+					CheckRadius: 2c0
+				Consideration@00:
+					Against: Enemy
+					Types: SupportPowerConsiderer
+					Attractiveness: 1000
+					TargetMetric: Value
+					CheckRadius: 2c0
+				Consideration@1:
+					Against: Enemy
+					Types: Vehicle, Infantry, Water
+					Attractiveness: 5
+					TargetMetric: Value
+					CheckRadius: 2c0
+				Consideration@2:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: Value
+					CheckRadius: 2c0
+				Consideration@3:
+					Against: Ally
+					Types: Ground, Water
+					Attractiveness: -10
+					TargetMetric: Value
+					CheckRadius: 3c0
+			MengskDogs:
+				OrderName: MengskDogs
+				MinimumAttractiveness: 5
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 8c0
+				Consideration@2:
+					Against: Enemy
+					Types: Water
+					Attractiveness: -5
+					TargetMetric: None
+					CheckRadius: 8c0
+			MengskBunker:
+				OrderName: MengskBunker
+				MinimumAttractiveness: 5
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 8c0
+				Consideration@2:
+					Against: Enemy
+					Types: Water
+					Attractiveness: -5
+					TargetMetric: None
+					CheckRadius: 8c0
+			MengskStrike:
+				OrderName: MengskStrike
+				MinimumAttractiveness: 1000
+				FineScanRadius: 2
+				Consideration@0:
+					Against: Enemy
+					Types: EpicUnit
+					Attractiveness: 1000
+					TargetMetric: Value
+					CheckRadius: 2c0
+				Consideration@1:
+					Against: Enemy
+					Types: Vehicle, Infantry, Water
+					Attractiveness: 2
+					TargetMetric: Value
+					CheckRadius: 2c0
+				Consideration@2:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: Value
+					CheckRadius: 2c0
+				Consideration@3:
+					Against: Ally
+					Types: Ground, Water
+					Attractiveness: -10
+					TargetMetric: Value
+					CheckRadius: 3c0
+			ProtossShields:
+				OrderName: ProtossShields
+				MinimumAttractiveness: 1000
+				Consideration@1:
+					Against: Ally
+					Types: Vehicle, Structure, Infantry
+					Attractiveness: 2
+					TargetMetric: Value
+					CheckRadius: 3c0
+				Consideration@2:
+					Against: Ally
+					Types: ShieldHit
+					Attractiveness: -1000
+					TargetMetric: None
+					CheckRadius: 3c0
+			ProtossShields2:
+				OrderName: ProtossShields2
+				MinimumAttractiveness: 15
+				MinimumScanTimeInterval: 50
+				MaximumScanTimeInterval: 60
+				CoarseScanRadius: 12
+				Consideration@1:
+					Against: Ally
+					Types: FrenzyMe
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 4c0
+			WarpshipBot:
+				OrderName: WarpshipBot
+				MinimumAttractiveness: 2000
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 2
+					TargetMetric: Value
+					CheckRadius: 5c0
+				Consideration@2:
+					Against: Enemy
+					Types: Vehicle, Infantry
+					Attractiveness: 1
+					TargetMetric: Value
+					CheckRadius: 5c0
+			AIChrono:
+				OrderName: AIChrono
+				MinimumAttractiveness: 1000
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 5
+					TargetMetric: Value
+					CheckRadius: 5c0
+				Consideration@2:
+					Against: Enemy
+					Types: Water, Defense, Infantry, Vehicle
+					Attractiveness: -5
+					TargetMetric: None
+					CheckRadius: 5c0
+			AIChrono2:
+				OrderName: AIChrono2
+				MinimumAttractiveness: 1000
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 5
+					TargetMetric: Value
+					CheckRadius: 5c0
+				Consideration@2:
+					Against: Enemy
+					Types: Water, Defense, Infantry, Vehicle
+					Attractiveness: -5
+					TargetMetric: None
+					CheckRadius: 5c0
+			Haruna:
+				OrderName: Haruna
+				MinimumAttractiveness: 1000
+				FineScanRadius: 2
+				Consideration@0:
+					Against: Enemy
+					Types: EpicUnit
+					Attractiveness: 1000
+					TargetMetric: Value
+					CheckRadius: 2c0
+				Consideration@00:
+					Against: Enemy
+					Types: SupportPowerConsiderer
+					Attractiveness: 1000
+					TargetMetric: Value
+					CheckRadius: 2c0
+				Consideration@1:
+					Against: Enemy
+					Types: Vehicle, Infantry, Water
+					Attractiveness: 5
+					CheckRadius: 5c0
+			Starfox:
+				OrderName: Starfox
+				MinimumAttractiveness: 1000
+				FineScanRadius: 2
+				Consideration@0:
+					Against: Enemy
+					Types: EpicUnit
+					Attractiveness: 1000
+					TargetMetric: Value
+					CheckRadius: 2c0
+				Consideration@00:
+					Against: Enemy
+					Types: SupportPowerConsiderer
+					Attractiveness: 1000
+					TargetMetric: Value
+					CheckRadius: 2c0
+				Consideration@1:
+					Against: Enemy
+					Types: Vehicle, Infantry, Water
+					Attractiveness: 5
+					CheckRadius: 5c0
+			SpectreGunShip:
+				OrderName: SpectreGunShip
+				MinimumAttractiveness: 1000
+				FineScanRadius: 2
+				Consideration@0:
+					Against: Enemy
+					Types: EpicUnit
+					Attractiveness: 1000
+					TargetMetric: Value
+					CheckRadius: 2c0
+				Consideration@00:
+					Against: Enemy
+					Types: SupportPowerConsiderer
+					Attractiveness: 1000
+					TargetMetric: Value
+					CheckRadius: 2c0
+				Consideration@1:
+					Against: Enemy
+					Types: Vehicle, Infantry, Water
+					Attractiveness: 5
+			MeteorShower:
+				OrderName: MeteorShower
+				MinimumAttractiveness: 1000
+				FineScanRadius: 2
+				Consideration@1:
+					Against: Enemy
+					Types: Vehicle, Infantry, Water
+					Attractiveness: 2
+					TargetMetric: Value
+					CheckRadius: 2c0
+				Consideration@2:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: Value
+					CheckRadius: 2c0
+				Consideration@3:
+					Against: Ally
+					Types: Ground, Water
+					Attractiveness: -10
+					TargetMetric: Value
+					CheckRadius: 3c0
+			SpaceWarpBlue:
+				OrderName: SpaceWarpBlue
+				MinimumAttractiveness: 1000
+				Consideration@1:
+					Against: Ally
+					Types: Vehicle
+					Attractiveness: 2
+					TargetMetric: Value
+					CheckRadius: 2c0
+				Consideration@2:
+					Against: Ally
+					Types: Vehicle
+					Attractiveness: -1
+					TargetMetric: Health
+					CheckRadius: 2c0
+			SpaceWarpRedAI:
+				OrderName: SpaceWarpRedAI
+				MinimumAttractiveness: 1000
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 5
+					TargetMetric: Value
+					CheckRadius: 5c0
+				Consideration@2:
+					Against: Enemy
+					Types: Defense, Infantry, Vehicle
+					Attractiveness: -5
+					TargetMetric: None
+					CheckRadius: 5c0
+			SpaceWarpRedAIMecha:
+				OrderName: SpaceWarpRedAIMecha
+				MinimumAttractiveness: 1000
+				Consideration@1:
+					Against: Enemy
+					Types: Defense, Infantry, Vehicle
+					Attractiveness: -5
+					TargetMetric: None
+					CheckRadius: 5c0
+			SpaceWarpRedAINavy:
+				OrderName: SpaceWarpRedAINavy
+				MinimumAttractiveness: 1000
+				Consideration@1:
+					Against: Enemy
+					Types: Water, WaterActor
+					Attractiveness: 5
+					TargetMetric: None
+					CheckRadius: 3c0
+			RaeAirdrop:
+				OrderName: RaeAirdrop
+				MinimumAttractiveness: 1
+				MinimumScanTimeInterval: 50
+				MaximumScanTimeInterval: 60
+				CoarseScanRadius: 6
+				Consideration@1:
+					Against: Ally
+					Types: FrenzyMe, RaeHero
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 6c0
+			CrateAirdrop:
+				OrderName: CrateAirdrop
+				MinimumAttractiveness: 1
+				MinimumScanTimeInterval: 50
+				MaximumScanTimeInterval: 60
+				CoarseScanRadius: 6
+				Consideration@1:
+					Against: Ally
+					Types: FrenzyMe, Hero
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 6c0
+			IonCannonPower6:
+				OrderName: NewIon6
+				MinimumAttractiveness: 3000
+				Consideration@00:
+					Against: Enemy
+					Types: Superweapon
+					Attractiveness: 2
+					TargetMetric: Value
+					CheckRadius: 1c0
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: Value
+					CheckRadius: 8c0
+				Consideration@1b:
+					Against: Enemy
+					Types: Vehicle, Infantry
+					Attractiveness: 2
+					TargetMetric: Value
+					CheckRadius: 7c0
+				Consideration@2:
+					Against: Ally
+					Types: Air, Ground, Water
+					Attractiveness: -10
+					TargetMetric: Value
+					CheckRadius: 7c0
+	GrantConditionOnPrerequisite@ion:
+		Prerequisites: eyed.ion
+		Condition: enable-ion
+	GrantConditionOnPrerequisite@ion2:
+		Prerequisites: eyed.lvl6
+		Condition: disable-ion
+	GrantRandomPeriodicCondition@iondecision: # this should allow the AI to let their Ion Cannon build up in power, probably won't work well
+		RequiresCondition: enable-ion && !disable-ion
+		CooldownDuration: 5500
+		ActiveDuration: 500
+		Conditions: iondecision1, iondecision2, iondecision3, iondecision3, iondecision4, iondecision4, iondecision5,x,x,x,x
+	SupportPowerBotModuleOW@ION1:
+		RequiresCondition: enable-all-ai && iondecision1
+		Decisions:
+			IonCannonPower1:
+				OrderName: NewIon1
+				MinimumAttractiveness: 1000
+				FineScanRadius: 1
+				Consideration@0:
+					Against: Enemy
+					Types: EpicUnit
+					Attractiveness: 500
+					TargetMetric: Value
+					CheckRadius: 512
+				Consideration@1:
+					Against: Enemy
+					Types: Vehicle, Infantry, WaterActor
+					Attractiveness: 3
+					TargetMetric: Value
+					CheckRadius: 512
+				Consideration@2:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: Value
+					CheckRadius: 512
+	SupportPowerBotModuleOW@ION2:
+		RequiresCondition: enable-all-ai && iondecision2
+		Decisions:
+			IonCannonPower2:
+				OrderName: NewIon2
+				MinimumAttractiveness: 1000
+				FineScanRadius: 1
+				Consideration@00:
+					Against: Enemy
+					Types: Superweapon
+					Attractiveness: 2
+					TargetMetric: Value
+					CheckRadius: 1c0
+				Consideration@0:
+					Against: Enemy
+					Types: EpicUnit
+					Attractiveness: 100
+					TargetMetric: Value
+					CheckRadius: 1c0
+				Consideration@1:
+					Against: Enemy
+					Types: Vehicle, Infantry, WaterActor
+					Attractiveness: 3
+					TargetMetric: Value
+					CheckRadius: 1c0
+				Consideration@2:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: Value
+					CheckRadius: 1c0
+				Consideration@3:
+					Against: Ally
+					Types: Ground, Water
+					Attractiveness: -10
+					TargetMetric: Value
+					CheckRadius: 3c0
+	SupportPowerBotModuleOW@ION3:
+		RequiresCondition: enable-all-ai && iondecision3
+		Decisions:
+			IonCannonPower3:
+				OrderName: NewIon3
+				MinimumAttractiveness: 3000
+				Consideration@00:
+					Against: Enemy
+					Types: Superweapon
+					Attractiveness: 1000
+					TargetMetric: Value
+					CheckRadius: 1c0
+				Consideration@0:
+					Against: Enemy
+					Types: EpicUnit
+					Attractiveness: 500
+					TargetMetric: Value
+					CheckRadius: 1c0
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: Value
+					CheckRadius: 5c0
+				Consideration@2:
+					Against: Ally
+					Types: Air, Ground, Water
+					Attractiveness: -10
+					TargetMetric: Value
+					CheckRadius: 7c0
+	SupportPowerBotModuleOW@ION4:
+		RequiresCondition: enable-all-ai && iondecision4
+		Decisions:
+			IonCannonPower4:
+				OrderName: NewIon4
+				MinimumAttractiveness: 3000
+				Consideration@00:
+					Against: Enemy
+					Types: Superweapon
+					Attractiveness: 1
+					TargetMetric: Value
+					CheckRadius: 1c0
+				Consideration@0:
+					Against: Enemy
+					Types: EpicUnit
+					Attractiveness: 1
+					TargetMetric: Value
+					CheckRadius: 1c0
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: Value
+					CheckRadius: 5c0
+				Consideration@2:
+					Against: Ally
+					Types: Air, Ground, Water
+					Attractiveness: -10
+					TargetMetric: Value
+					CheckRadius: 7c0
+	SupportPowerBotModuleOW@ION5:
+		RequiresCondition: enable-all-ai && iondecision5
+		Decisions:
+			IonCannonPower5:
+				OrderName: NewIon5
+				MinimumAttractiveness: 3000
+				Consideration@00:
+					Against: Enemy
+					Types: Superweapon
+					Attractiveness: 1
+					TargetMetric: Value
+					CheckRadius: 1c0
+				Consideration@0:
+					Against: Enemy
+					Types: EpicUnit
+					Attractiveness: 1
+					TargetMetric: Value
+					CheckRadius: 1c0
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: Value
+					CheckRadius: 5c0
+				Consideration@2:
+					Against: Ally
+					Types: Air, Ground, Water
+					Attractiveness: -10
+					TargetMetric: Value
+					CheckRadius: 7c0

@@ -206,10 +206,9 @@ doomguy.Hero0:
 	RenderSprites:
 		Image: thedoomguy
 	Buildable:
-		Queue: Infantry
-		BuildAtProductionType: Soldier
+		Queue: Infantry, Hero
 		BuildPaletteOrder: 50
-		Prerequisites: ~barracks, ~techlevel.unrestricted, !active.doomguy, ~!hero.tier1, ~hero.doomguy
+		Prerequisites: ~barracks, !active.doomguy, ~!hero.tier1, ~hero.doomguy
 		Description: actor-doomguy-hero0.description
 		BuildDurationModifier: 100
 		BuildDuration: 750
@@ -290,8 +289,9 @@ doomguy.Hero0:
 	ChangesHealth@default:
 		PercentageStep: 1
 		Delay: 75
-		StartIfBelow: 101
+		StartIfBelow: 100
 		DamageCooldown: 75
+		DamageTypes: BypassShield
 	GrantConditionOnPrerequisite@greenarmor:
 		Prerequisites: doomguy.tier1.greenarmor
 		Condition: greenarmor
@@ -311,7 +311,7 @@ doomguy.Hero0:
 	ChangesHealth@medikit:
 		PercentageStep: 1
 		Delay: 75
-		StartIfBelow: 101
+		StartIfBelow: 100
 		DamageCooldown: 125
 		RequiresCondition: medikit
 	GrantConditionOnPrerequisite@computer:
@@ -397,7 +397,7 @@ doomguy.Hero0:
 		Range: 7c0
 	GrantConditionOnPrerequisite@invulnerability:
 		Prerequisites: doomguy.tier5.invulnerability
-		Condition: invulnerability
+		Condition: invulnerability_doom
 	GrantPeriodicConditionOnEvent@invulnerability:
 		Condition: invulnerability1
 		CooldownDuration: 1500
@@ -406,7 +406,7 @@ doomguy.Hero0:
 		StartsCharged: True
 		ShowSelectionBar: true
 		ActiveColor: ff0000
-		RequiresCondition: invulnerability
+		RequiresCondition: invulnerability_doom
 	WithColoredOverlay@invulnerability:
 		RequiresCondition: invulnerability1
 		Color: FFFFFF50
@@ -452,7 +452,7 @@ doomguy.Hero1:
 	Inherits: doomguy.Hero0
 	Inherits@heroTier: ^HeroTier1
 	Buildable:
-		Prerequisites: ~barracks, ~techlevel.unrestricted, !active.doomguy, ~!hero.tier2, ~hero.tier1, ~hero.doomguy
+		Prerequisites: ~barracks, !active.doomguy, ~!hero.tier2, ~hero.tier1, ~hero.doomguy
 		BuildDuration: 1500
 	Tooltip:
 		Name: actor-doomguy-hero1-name
@@ -474,7 +474,7 @@ doomguy.Hero2:
 	Inherits: doomguy.Hero1
 	Inherits@heroTier: ^HeroTier2
 	Buildable:
-		Prerequisites: ~barracks, ~techlevel.unrestricted, !active.doomguy, ~!hero.tier3, ~hero.tier2, ~hero.doomguy
+		Prerequisites: ~barracks, !active.doomguy, ~!hero.tier3, ~hero.tier2, ~hero.doomguy
 	Tooltip:
 		Name: actor-doomguy-hero2-name
 	Health:
@@ -496,7 +496,7 @@ doomguy.Hero3:
 	Inherits: doomguy.Hero2
 	Inherits@heroTier: ^HeroTier3
 	Buildable:
-		Prerequisites: ~barracks, ~techlevel.unrestricted, !active.doomguy, ~!hero.tier4, ~hero.tier3, ~hero.doomguy
+		Prerequisites: ~barracks, !active.doomguy, ~!hero.tier4, ~hero.tier3, ~hero.doomguy
 	Tooltip:
 		Name: actor-doomguy-hero3-name
 	Health:
@@ -522,7 +522,7 @@ doomguy.Hero4:
 	Inherits: doomguy.Hero3
 	Inherits@heroTier: ^HeroTier4
 	Buildable:
-		Prerequisites: ~barracks, ~techlevel.unrestricted, !active.doomguy, ~!hero.tier5, ~hero.tier4, ~hero.doomguy
+		Prerequisites: ~barracks, !active.doomguy, ~!hero.tier5, ~hero.tier4, ~hero.doomguy
 		BuildDuration: 3000
 	Tooltip:
 		Name: actor-doomguy-hero4-name
@@ -547,8 +547,8 @@ doomguy.Hero5:
 	Inherits: doomguy.Hero4
 	Inherits@heroTier: ^HeroTier5
 	Buildable:
-		Prerequisites: ~barracks, ~techlevel.unrestricted, !active.doomguy, ~hero.tier5, ~hero.doomguy
-		BuildDuration: 6000
+		Prerequisites: ~barracks, !active.doomguy, ~hero.tier5, ~hero.doomguy
+		BuildDuration: 4500
 	Tooltip:
 		Name: actor-doomguy-hero5-name
 	Health:

@@ -168,12 +168,39 @@ Napalm:
 			None: 300
 			Shield: 150
 		DamageTypes: Prone50Percent, TriggerProne, ElectricityDeath
+	Warhead@1Flash: FlashTargetsInRadius
+		Radius: 128
+		ActorFlashCount: 1
+		ActorFlashInterval: 2
+		ValidTargets: GroundActor, WaterActor
 
 TeslaZap:
 	Inherits: ^TeslaWeapon
 	Warhead@1Dam: SpreadDamage
 		Versus:
 			Wood: 60
+
+TeslaZapExplosive:
+	Inherits: TeslaZap
+	Range: 7c0
+	Warhead@1Dam: SpreadDamage
+		Damage: 3000
+		Versus:
+			Wood: 60
+	Warhead@2Dam: SpreadDamage
+		Spread: 256
+		Damage: 8000
+		ValidTargets: GroundActor, WaterActor
+		Versus:
+			None: 100
+			Heavy: 90
+			Shield: 100
+		DamageTypes: Prone50Percent, TriggerProne, ExplosionDeath
+	Warhead@3Eff: CreateEffect
+		Explosions: self_destruct
+		ImpactSounds: kaboom15.aud, kaboom12.aud, kaboom30.aud
+		ValidTargets: Ground, GroundActor, WaterActor, Trees
+		ImpactActors: false
 
 TeslaZapEMP:
 	Inherits: TeslaZap
@@ -272,6 +299,11 @@ GoliathZap3:
 	Warhead@1Smu: LeaveSmudge
 		SmudgeType: Scorch
 		ValidTargets: Ground, Infantry
+	Warhead@1Flash: FlashTargetsInRadius
+		Radius: 128
+		ActorFlashCount: 1
+		ActorFlashInterval: 2
+		ValidTargets: GroundActor, WaterActor
 
 VoltAutorifle:
 	Inherits: ^ElectricBoltWeapon
@@ -367,7 +399,7 @@ DogJaw:
 Heal:
 	ReloadDelay: 80
 	Range: 2c0
-	Report: heal2.aud, dsitemup.aud, hlheal.aud
+	Report: heal2.aud, dsitemup.aud, hlheal.aud, uthealth.aud, uhealth.aud, utsuperheal.aud
 	ValidTargets: Heal
 	Projectile: Bullet
 		Speed: 1c682
@@ -864,9 +896,23 @@ AvaliBomberBomb:
 		Damage: 22500
 		Versus:
 			None: 30
-			Wood: 30
+			Wood: 60
 			Light: 75
 			Concrete: 25
+
+PaladinBomberBomb:
+	Inherits: AvaliBomberBomb
+	ReloadDelay: 5
+	Range: 7c0
+	Report: plasma1.aud
+	Projectile: GravityBomb
+		Image: plasma
+	Warhead@1Dam: SpreadDamage
+		Spread: 1c128
+		Damage: 25000
+		Versus:
+			None: 50
+			Heavy: 75
 
 KirovBomb:
 	Inherits: OrcaBomb
@@ -1096,10 +1142,10 @@ ScrinPlasma:
 		Damage: 11000
 		ValidTargets: GroundActor, WaterActor
 		Versus:
-			None: 90
-			Wood: 60
-			Light: 100
-			Heavy: 95
+			None: 80
+			Wood: 50
+			Light: 80
+			Heavy: 100
 			Concrete: 45
 			Shield: 100
 		DamageTypes: TriggerProne, DefaultDeath
@@ -1137,15 +1183,6 @@ JusticarGauss:
 	Range: 6c512
 	Warhead@1Dam: SpreadDamage
 		Damage: 18000
-		Versus:
-			None: 125
-			Wood: 75
-			Light: 125
-			Heavy: 125
-			Concrete: 75
-	Warhead@3Dam: SpreadDamage
-		Spread: 128
-		Damage: 5000
 
 DireGauss:
 	Inherits: ^GaussWeapon
@@ -2038,6 +2075,39 @@ A10Chem:
 		Dimensions: 6,6
 		Footprint: xxxxxx xxxxxx xxxxxx xxxxxx xxxxxx xxxxxx
 
+FartExplosion:
+	Inherits: A10Chem
+	Warhead@1Dam: SpreadDamage
+		Versus:
+			None: 300
+			Wood: 5
+			Light: 5
+			Heavy: 5
+			Concrete: 0
+		DamageTypes: Prone50Percent, TriggerProne, DefaultDeath
+		AffectsParent: true
+	Warhead@3Eff_impact: CreateEffect
+		ImpactSounds: echofart.ogg
+		ImpactActors: false
+	Warhead@3Eff_impact2: CreateEffect
+		ImpactSounds: echofart.ogg
+		ImpactActors: false
+	Warhead@gas: FireCluster
+		Delay: 0
+		RandomClusterCount: 12
+	Warhead@gas2: FireCluster
+		Delay: 3
+		RandomClusterCount: 12
+	Warhead@gas3: FireCluster
+		Delay: 6
+		RandomClusterCount: 12
+	Warhead@gas4: FireCluster
+		Delay: 9
+		Weapon: A10Gas
+		RandomClusterCount: 12
+		Dimensions: 6,6
+		Footprint: xxxxxx xxxxxx xxxxxx xxxxxx xxxxxx xxxxxx
+
 A10Chem_Beta:
 	Inherits: A10Chem
 	Warhead@1Dam: SpreadDamage
@@ -2064,7 +2134,7 @@ A10Gas:
 	ValidTargets: Ground, Water, GroundActor, WaterActor
 	Projectile: Bullet
 		Speed: 2c0
-		Inaccuracy: 1c0
+		Inaccuracy: 512
 	Warhead@1Eff: CreateEffect
 		Explosions: cloud
 		ImpactActors: false
@@ -2074,6 +2144,7 @@ A10Gas:
 		Condition: corrode
 		Duration: 500
 		ValidTargets: GroundActor, WaterActor
+		ValidRelationships: Enemy, Neutral
 	Warhead@1Dam: SpreadDamage
 		Spread: 1c0
 		Damage: 300
@@ -2095,6 +2166,7 @@ A10Gas:
 		Duration: 500
 		Delay: 18
 		ValidTargets: GroundActor, WaterActor
+		ValidRelationships: Enemy, Neutral
 	Warhead@2Dam: SpreadDamage
 		Spread: 1c0
 		Damage: 300
@@ -2117,6 +2189,7 @@ A10Gas:
 		Duration: 500
 		Delay: 36
 		ValidTargets: GroundActor, WaterActor
+		ValidRelationships: Enemy, Neutral
 	Warhead@3Dam: SpreadDamage
 		Spread: 1c0
 		Damage: 300
@@ -2139,6 +2212,7 @@ A10Gas:
 		Duration: 500
 		Delay: 54
 		ValidTargets: GroundActor, WaterActor
+		ValidRelationships: Enemy, Neutral
 	Warhead@4Dam: SpreadDamage
 		Spread: 1c0
 		Damage: 300
@@ -2161,6 +2235,7 @@ A10Gas:
 		Duration: 500
 		Delay: 72
 		ValidTargets: GroundActor, WaterActor
+		ValidRelationships: Enemy, Neutral
 	Warhead@5Dam: SpreadDamage
 		Spread: 1c0
 		Damage: 300
@@ -2202,6 +2277,7 @@ ApocIronCurtain:
 		Duration: 150
 		AffectsParent: true
 		ValidTargets: GroundActor
+		InvalidTargets: Infantry
 
 IronShroudWeapon:
 	ReloadDelay: 375
@@ -2258,7 +2334,7 @@ JapanWarpPortalSpawn2:
 	Inherits: GLAAmbushHole
 	ReloadDelay: 175
 
-ZombiehHole:
+ZombieHole:
 	ReloadDelay: 60
 	Range: 25c0
 	ValidTargets: Ground, Water, GroundActor, WaterActor, AirborneActor
@@ -2827,6 +2903,11 @@ ArchonBeam1:
 		Inaccuracy: 512
 		ValidTargets: Ground, Air, GroundActor, AirborneActor, WaterActor, Water, Trees
 		Delay: 18
+	Warhead@1Flash: FlashTargetsInRadius
+		Radius: 128
+		ActorFlashCount: 3
+		ActorFlashInterval: 2
+		ValidTargets: Airborne, GroundActor, WaterActor
 
 TemplarBlade:
 	Inherits: ^ShieldHit
@@ -3031,6 +3112,25 @@ PointDefenseLaserAEIOU:
 	BurstDelays: 6
 	Range: 4c0
 
+PointDefenseLaserCruise:
+	Inherits: ^LaserWeapon
+	ReloadDelay: 750
+	Range: 5c0
+	Report: vcrlweaa.aud,vcrlweab.aud
+	ValidTargets: Ground, Water, Air
+	Projectile: LaserZap
+		ZOffset: 2047
+		Duration: 12
+		Width: 64
+		SecondaryBeam: true
+		SecondaryBeamWidth: 32
+		SecondaryBeamColor: FFFFFF
+		Color: 00FFEEB3
+	Warhead@1Dam:
+		Damage: 1
+		ValidTargets: GroundActor, Ground, Air, AirborneActor, Water, WaterActor
+	-Warhead@2Smu:
+
 USAAvengerLaser:
 	ReloadDelay: 2
 	Range: 9c0
@@ -3120,6 +3220,26 @@ USALaserCrusaderLaser:
 		Color: FF0000
 	Warhead@1Dam: SpreadDamage
 		Damage: 8000
+		Versus:
+			None: 100
+			Wood: 70
+			Light: 70
+			Heavy: 70
+			Concrete: 70
+		DamageTypes: Prone50Percent, TriggerProne, FireDeath
+	-Warhead@2Smu:
+
+USALaserPaladinLaser:
+	Inherits: ^LaserWeapon
+	ReloadDelay: 30
+	Range: 7c0
+	Report: laserpaladinfire.aud
+	Projectile: LaserZap
+		Width: 80
+		ZOffset: 2047
+		Color: 690000
+	Warhead@1Dam: SpreadDamage
+		Damage: 10000
 		Versus:
 			None: 100
 			Wood: 70
@@ -3804,6 +3924,17 @@ KerriganBeam:
 		ValidTargets: Ground, Air, GroundActor, AirborneActor, WaterActor, Water, Trees
 		Delay: 6
 
+KerriganBeamHero:
+	Inherits: KerriganBeam
+	Range: 6c0
+	ReloadDelay: 29
+	Warhead@1Dam: SpreadDamage
+		Damage: 7500
+	Warhead@1Air: SpreadDamage
+		Damage: 2500
+	Warhead@2Dam: SpreadDamage
+		Damage: 3500
+
 KerriganMelee:
 	Inherits: KerriganBeam
 	Range: 2c512
@@ -3811,7 +3942,7 @@ KerriganMelee:
 	ValidTargets: Ground, Water, GroundActor, WaterActor
 	Warhead@1Dam: SpreadDamage
 		Spread: 256
-		Damage: 12000
+		Damage: 8000
 		ValidTargets: GroundActor, WaterActor
 		Versus:
 			None: 80
@@ -3825,7 +3956,7 @@ KerriganMelee:
 	Warhead@2Dam: SpreadDamage
 		Delay: 8
 		Spread: 400
-		Damage: 6000
+		Damage: 5000
 		ValidTargets: GroundActor, WaterActor
 		Versus:
 			Light: 80
@@ -3837,6 +3968,12 @@ KerriganMelee:
 	-Warhead@4EffGround:
 	-Warhead@5EffGround:
 	-Warhead@6EffGround:
+	Warhead@curtain: GrantExternalCondition
+		Condition: queen_ensnare
+		Range: 512
+		Duration: 31
+		AffectsParent: false
+		ValidTargets: WaterActor, GroundActor, AirborneActor
 
 KerriganPlague:
 	Inherits: DefilerPlague
@@ -3845,6 +3982,35 @@ KerriganPlague:
 	Warhead@curtain: GrantExternalCondition
 		AffectsParent: false
 		ValidRelationships: Enemy, Neutral
+
+KerriganPlagueHero:
+	Inherits: DefilerPlague
+	ReloadDelay: 1500
+	Range: 6c0
+	Warhead@curtain: GrantExternalCondition
+		AffectsParent: false
+		ValidRelationships: Enemy, Neutral
+
+KerriganBloodlust:
+	ValidTargets: Ground, Water, GroundActor, WaterActor
+	Projectile: GravityBomb
+		Acceleration: 0,0,-32
+	Warhead: GrantExternalCondition
+		Range: 7c0
+		Condition: patriotismboost
+		Duration: 375
+		AffectsParent: true
+		ValidTargets: GroundActor
+		ValidRelationships: Ally
+	Warhead@shake: ShakeScreen
+		Duration: 25
+		Intensity: 1
+		Multiplier: 1,1
+
+KerriganGlaive:
+	Inherits: MutaGlaive
+	ReloadDelay: 50
+	Range: 6c0
 
 ZagaraAttack:
 	ReloadDelay: 25
@@ -3884,12 +4050,20 @@ ZagaraAttack:
 		ImpactSounds: zaghit00.aud, zaghit01.aud, zaghit02.aud, zaghit03.aud, zaghit04.aud
 		ValidTargets: GroundActor, WaterActor, Trees
 
+ZagaraAttackUpgraded:
+	Inherits: ZagaraAttack
+	Range: 5c0
+	Warhead@1Dam: SpreadDamage
+		Damage: 14000
+	Warhead@2StructureDam: SpreadDamage
+		Damage: 6000
+
 ZagaraMend:
 	Inherits: Heal
 	ReloadDelay: 33
 	Range: 2c0
 	Report: zdrmin00.aud
-	ValidTargets: Heal, StructureRepair
+	ValidTargets: Heal, StructureRepair, Repair
 	TargetActorCenter: true
 	Projectile: Bullet
 		Speed: 1c682
@@ -3907,12 +4081,30 @@ ZagaraMend:
 		ValidTargets: StructureRepair
 		DebugOverlayColor: 00FF00
 		DamageTypes: BypassShield
+	Warhead@3Dam: SpreadDamage
+		Spread: 213
+		Damage: -750
+		ValidRelationships: Ally
+		ValidTargets: Repair
+		DebugOverlayColor: 00FF00
+		DamageTypes: BypassShield
+
+ZagaraMendUpgraded:
+	Inherits: ZagaraMend
+	Range: 3c0
+	Warhead@1Dam: SpreadDamage
+		Damage: -4120
+	Warhead@2Dam: SpreadDamage
+		Damage: -1500
+	Warhead@3Dam: SpreadDamage
+		Damage: -1500
 
 ZagaraAreaHeal:
 	Inherits: Heal
 	Report: zagheal.aud
 	ReloadDelay: 100
 	Range: 5c0
+	ValidTargets: Heal, StructureRepair, Repair
 	Warhead@1Dam: HealthPercentageDamage
 		Spread: 3c0
 		Damage: -25
@@ -4551,8 +4743,8 @@ chinaecmshot:
 	TargetActorCenter: True
 	ValidTargets: Tank, Vehicle
 	Projectile: LaserZap
-		Width: 120
-		Duration: 30
+		Width: 100
+		Duration: 20
 		Color: FFA500
 		Shape: Cylindrical
 	Warhead@1Dam: SpreadDamage
@@ -4703,6 +4895,7 @@ chinablacklotusanim:
 	ReloadDelay: 15
 	Range: 14c768
 	ValidTargets: Tank, Vehicle
+	InvalidTargets: NoMindControl
 	TargetActorCenter: true
 	Report: ucapture.aud
 	Projectile: LaserZap
@@ -4729,23 +4922,26 @@ chinablacklotusend:
 		SecondaryBeamColor: FF000035
 	Warhead@1Dam: ChangeOwner
 		Range: 256
-		ValidTargets: Infantry, Vehicle, AirborneActor
+		ValidTargets: Vehicle, AirborneActor
 		InvalidTargets: EpicUnit, NoMindControl, HighValueMindControl
 	Warhead@2Dam: ChangeOwner
 		Delay: 1
 		Range: 256
 		Duration: 200
 		ValidTargets: EpicUnit, HighValueMindControl
+		InvalidTargets: Infantry
 	Warhead@cond: GrantExternalCondition
 		Condition: mindcontrolresist
 		Range: 256
 		Duration: 150
 		ValidTargets: EpicUnit, HighValueMindControl
+		InvalidTargets: Infantry
 	Warhead@condhero: GrantExternalCondition
 		Condition: mc_protect
 		Range: 256
 		Duration: 250
 		ValidTargets: EpicUnit
+		InvalidTargets: Infantry
 	Warhead@3EffGround: CreateEffect
 		Explosions: bfgred
 		ImpactSounds: mind.aud
@@ -7892,11 +8088,11 @@ BigPPCZap:
 		Damage: 1250
 		Versus:
 			None: 200
-			Light: 80
-			Heavy: 75
+			Light: 70
+			Heavy: 65
 			Wood: 65
 			Concrete: 50
-			Shield: 150
+			Shield: 125
 		ValidTargets: Ground, Water, GroundActor, WaterActor, Trees
 	Warhead@1DamAir: SpreadDamage
 		Spread: 65
@@ -7929,10 +8125,10 @@ BTMedLaser_Single:
 		SecondaryBeamColor: 3CFF00
 		LaunchEffectSequence: medium
 	Warhead@1Dam: SpreadDamage
-		Damage: 2000
+		Damage: 1800
 	Warhead@1DamAir: SpreadDamage
 		Spread: 128
-		Damage: 1250
+		Damage: 1000
 
 BTLargeLaser_Single:
 	Inherits: ^BTLaserWeapon
@@ -7948,10 +8144,10 @@ BTLargeLaser_Single:
 		LaunchEffectSequence: large
 	Warhead@1Dam: SpreadDamage
 		Spread: 128
-		Damage: 3000
+		Damage: 2750
 	Warhead@1DamAir: SpreadDamage
 		Spread: 128
-		Damage: 1750
+		Damage: 1500
 
 MechShutdown:
 	Projectile: InstantHit
@@ -7978,6 +8174,17 @@ PointDefenseLaserRae:
 		Explosions: small_explosion_air
 		Inaccuracy: 256
 		ValidTargets: Air, Ground, Water, Trees, AirborneActor
+
+PointDefenseLaserRaeCruise:
+	Inherits: PointDefenseLaserRae
+	Burst: 6
+	BurstDelays: 0
+	ReloadDelay: 750
+	Range: 6c0
+	Report: baud.aud
+	StartBurstReport: bt_lbx2_1.ogg, bt_lbx2_2.ogg
+	Projectile: Bullet
+		Inaccuracy: 1c0
 
 # RAE VEN HACKY AREA BOOST
 AEIOUBoostRae:
@@ -8219,30 +8426,1283 @@ HackyCaptureAttack:
 	Projectile: InstantHit
 	TargetActorCenter: true
 	Warhead@1Dam: ChangeOwner
+		Delay: 1
 		Range: 256
+		ValidTargets: BotCaptureTarget
+	Warhead@transform: GrantExternalCondition
+		Condition: bot_capture
+		Delay: 0
+		Range: 256
+		Duration: 0
+		AffectsParent: false
 		ValidTargets: BotCaptureTarget
 
 HackyCaptureAttackHusk:
 	Inherits: HackyCaptureAttack
 	ValidTargets: BotCaptureTargetHusk
 	Warhead@1Dam: ChangeOwner
+		Delay: 0
 		ValidTargets: BotCaptureTargetHusk
 	Warhead@transform: GrantExternalCondition
-		Condition: bot_capture
 		Delay: 1
-		Range: 256
-		Duration: 0
-		AffectsParent: false
 		ValidTargets: BotCaptureTargetHusk
 
 HackyCaptureAttackCrate:
 	Inherits: HackyCaptureAttack
 	ReloadDelay: 500
 	Range: 2c0
+	ValidTargets: Structure
 	Warhead@0Dam: SpreadDamage
 		Spread: 128
 		Damage: 1
 		ValidTargets: Structure
 		DamageTypes: BulletDeath
-	Warhead@1Dam: ChangeOwner
+	Warhead@1Dam: ChangeOwnerOW
+		Delay: 5
 		ValidTargets: Structure
+		InvalidTargets: Defense
+		OwnerType: InternalName
+		InternalName: Neutral
+	Warhead@2Dam: ChangeOwnerOW
+		Delay: 5
+		Range: 256
+		ValidTargets: Defense
+		OwnerType: InternalName
+		InternalName: Creeps
+	Warhead@capturable: GrantExternalCondition
+		Condition: bot_recapture
+		Delay: 250
+		Range: 256
+		Duration: 0
+		AffectsParent: false
+		ValidTargets: Structure
+
+LibraAttackEffect:
+	ReloadDelay: 31
+	Range: 12c0
+	MinRange: 5c0
+	Report: libracharge.aud
+	ValidTargets: Ground, Water, GroundActor, WaterActor
+	Projectile: Missile
+		Speed: 2
+		RangeLimit: 3
+	Warhead@1Eff: CreateEffect
+		Explosions: lightbringer_charge
+		ImpactSounds: libracharge.aud
+		Inaccuracy: 256
+		ValidTargets: Ground, GroundActor, WaterActor, Trees, Air
+	Warhead@2Eff: CreateEffect
+		Delay: 5
+		Explosions: lightbringer_charge
+		Inaccuracy: 256
+		ValidTargets: Ground, GroundActor, WaterActor, Trees, Air
+
+LibraAttackLaser:
+	Inherits: ^GaussWeapon
+	ReloadDelay: 40
+	Range: 12c0
+	MinRange: 5c0
+	Report: librafire.aud
+	Projectile: Railgun
+		DamageActorsInLine: false
+		BeamWidth: 32
+		BeamColor: ff0000
+		BeamAlphaDeltaPerTick: -3
+		HelixAlphaDeltaPerTick: -3
+		HelixThickness: 32
+		HelixRadius: 196
+		HitAnim: explosion
+		HitAnimSequence: japanplasmaringupgrade
+		Duration: 41
+	Warhead@1Dam: SpreadDamage
+		Spread: 426
+		Damage: 28000
+		Versus:
+			None: 90
+			Wood: 40
+			Light: 60
+			Heavy: 25
+		DamageTypes: Prone50Percent, TriggerProne, FireDeath, Incendiary
+	Warhead@2Dam: SpreadDamage
+		Spread: 426
+		Damage: 28000
+		Versus:
+			None: 90
+			Wood: 40
+			Light: 60
+			Heavy: 25
+		DamageTypes: Prone50Percent, TriggerProne, FireDeath, Incendiary
+	Warhead@3Eff_impact: CreateEffect
+		Delay: 4
+		Explosions: japanplasmaringupgrade
+		ImpactActors: false
+	Warhead@4Eff_impact: CreateEffect
+		Explosions: laserhitmed
+		ImpactActors: false
+	Warhead@7Eff: CreateEffect
+		ImpactSounds: librafire.aud
+		ImpactActors: true
+
+LibraAttackLaserHit:
+	ReloadDelay: 40
+	Range: 12c0
+	MinRange: 5c0
+	Projectile: InstantHit
+	ValidTargets: Ground, Water, GroundActor, WaterActor
+	Warhead@3Eff_impact: CreateEffect
+		Delay: 4
+		Explosions: japanplasmaringupgrade
+		ImpactActors: false
+	Warhead@4Eff_impact: CreateEffect
+		Explosions: laserhitmed
+		ImpactActors: false
+
+
+AvaliRefractorCannon:
+	Inherits: ^Cannon
+	ReloadDelay: 100
+	Range: 7c0
+	Report: bt_slaserb1.ogg, bt_slaserb2.ogg, bt_slaserb3.ogg, bt_slaserb4.ogg
+	ValidTargets: Ground, Water, GroundActor, WaterActor
+	Projectile: LaserZap
+		Color: FFF183
+		Width: 96
+		SecondaryBeamWidth: 48
+		SecondaryBeam: true
+		SecondaryBeamColor: FFFFFF
+		ZOffset: 1024
+		SecondaryBeamZOffset: 1023
+	Warhead@1Dam: SpreadDamage
+		Damage: 7000
+		Spread: 192
+		Versus:
+			None: 125
+			Light: 80
+			Wood: 50
+			Heavy: 50
+			Concrete: 20
+	Warhead@2Smu: LeaveSmudge
+		SmudgeType: Scorch
+	Warhead@3Eff: CreateEffect
+		Explosions: med_explosion2
+		ImpactSounds: explomed.aud, explosm.aud, kaboom25.aud, avbursthit.aud, kaboom12.aud
+	Warhead@4Cluster: FireShrapnel
+		Amount: 3
+		Weapon: AvaliRefractorCluster
+		AimTargetStances: Neutral, Enemy, Ally
+		AimChance: 25
+		ThrowWithoutTarget: true
+		AroundTarget: true
+		ImpactActors: false
+
+AvaliRefractorCluster:
+	Inherits: ^Cannon
+	MinRange: 1c0
+	Range: 3c0
+	Report: baud.aud
+	ValidTargets: Ground, Water, GroundActor, WaterActor
+	Projectile: LaserZap
+		Color: FFF183
+		Width: 64
+		SecondaryBeamWidth: 32
+		SecondaryBeam: true
+		SecondaryBeamColor: FFFFFF
+		ZOffset: 1024
+		SecondaryBeamZOffset: 1023
+	Warhead@1Dam: SpreadDamage
+		Damage: 3000
+		Spread: 256
+		Versus:
+			None: 110
+			Light: 80
+			Wood: 50
+			Heavy: 33
+			Concrete: 20
+	Warhead@2Smu: LeaveSmudge
+		SmudgeType: Scorch
+		Chance: 33
+	Warhead@3Eff: CreateEffect
+		Inaccuracy: 128
+		Explosions: small_explosion
+		-ImpactSounds: 
+
+PrismTowerSound:
+	ReloadDelay: 50
+	MinRange: 1c0
+	Range: 9c0
+	Report: bt_prism.ogg
+	ValidTargets: Ground, Water, GroundActor, WaterActor
+	InvalidTargets: PrismTowerSupport
+	Projectile: InstantHit
+	Warhead@1Dam: SpreadDamage
+		Damage: 0
+
+PrismTowerCannon:
+	Inherits: AvaliRefractorCannon
+	ReloadDelay: 1
+	MinRange: 1c0
+	Range: 9c0
+	Report: bt_lrglaserb1.ogg, bt_lrglaserb2.ogg, bt_lrglaserb3.ogg, bt_lrglaserb4.ogg
+	ValidTargets: Ground, Water, GroundActor, WaterActor
+	Projectile: LaserZap
+		Color: 83EAFF
+		Width: 128
+		SecondaryBeamWidth: 72
+		Duration: 14
+		Blockable: false
+	Warhead@1Dam: SpreadDamage
+		Damage: 20000
+		Spread: 256
+		Versus:
+			None: 125
+			Light: 80
+			Wood: 50
+			Heavy: 100
+			Concrete: 20
+	Warhead@3Eff: CreateEffect
+		Inaccuracy: 128
+		Explosions: med_explosion2
+		ImpactSounds: explomed.aud
+	Warhead@4Cluster: FireShrapnel
+		Weapon: PrismTowerCluster
+		AimTargetStances: Neutral, Enemy
+		AimChance: 50
+
+PrismTowerCluster:
+	Inherits: AvaliRefractorCluster
+	Range: 4c0
+	Projectile: LaserZap
+		Color: 83EAFF
+		Width: 96
+		SecondaryBeamWidth: 48
+		Duration: 14
+	Warhead@1Dam: SpreadDamage
+		Damage: 2500
+	Warhead@2Smu: LeaveSmudge
+		SmudgeType: Scorch
+		Chance: 50
+	Warhead@4Cluster: FireShrapnel
+		Weapon: PrismTowerCluster
+		Amount: 1
+		AimTargetStances: Neutral, Enemy
+		AimChance: 25
+		ValidTargets: GroundActor
+		InvalidTargets: Infantry
+
+PrismTowerSupport:
+	Range: 10c0
+	ReloadDelay: 75
+	FirstBurstTargetOffset: 0,0,1024
+	ValidTargets: PrismTowerSupport
+	Projectile: LaserZap
+		Color: 83EAFF
+		Width: 64
+		SecondaryBeamWidth: 32
+		SecondaryBeam: true
+		SecondaryBeamColor: FFFFFF
+		Duration: 75
+		TrackTarget: false
+
+PrismTowerSupportReal:
+	Range: 10c0
+	ReloadDelay: 50
+	ValidTargets: PrismTowerSupport
+	Projectile: InstantHit
+	Warhead@0Condition: GrantExternalCondition
+		Range: 512
+		ValidTargets: PrismTowerSupport
+		ValidRelationships: Ally
+		Condition: prism_support
+		Duration: 40
+
+RevealSuperweapons:
+	Inherits: DoomBFGTest
+	ValidTargets: Ground, Water, GroundActor, WaterActor
+	-Warhead@frag:
+	Warhead@global: GlobalExplodeWeapon
+		Weapon: RevealSuperweaponsCondition
+		ValidTargets: Superweapon, Air, Ground, Water
+		ValidRelationships: Enemy, Neutral
+		ImpactActors: false
+
+RevealSuperweaponsCondition:
+	ValidTargets: Superweapon
+	Warhead@1Dam: SpreadDamage
+		Spread: 128
+		Damage: 1
+		DamageTypes: DefaultDeath
+		ValidTargets: Superweapon
+	Warhead@condition: GrantExternalCondition
+		Condition: reveal_me
+		Range: 6c0
+		Duration: 250
+		AffectsParent: false
+		ValidTargets: Superweapon
+		ValidRelationships: Enemy, Neutral
+
+AIPerimeterCondition:
+	ValidTargets: Ground, Water, GroundActor, WaterActor, AirborneActor
+	Projectile: GravityBomb
+		OpenSequence: idle
+		Velocity: 0, 0, -256
+		Acceleration: 0, 0, 0
+	Warhead@curtain: GrantExternalCondition
+		Condition: place_wall
+		Range: 2c0
+		AffectsParent: true
+		ValidTargets: AIPerimeterSpawner
+
+DKBasicMelee:
+	Inherits: ^ShieldHit
+	ReloadDelay: 17
+	Range: 2c0
+	Report: baud.aud
+	ValidTargets: Ground, Water, GroundActor, WaterActor
+	Projectile: LaserZap
+		Color: 00000000
+	Warhead@0Swing: CreateEffect
+		ImpactSounds: wcswing1.ogg,wcswing2.ogg,wcswing3.ogg,wcswing4.ogg
+		ImpactActors: false
+	Warhead@1Dam: SpreadDamage
+		Delay: 3
+		Spread: 64
+		Damage: 4000
+		Versus:
+			None: 100
+			Wood: 25
+			Light: 80
+			Heavy: 30
+			Concrete: 10
+		DamageTypes: DefaultDeath
+		ValidTargets: GroundActor, WaterActor
+	Warhead@2Impact: CreateEffect
+		Delay: 3
+		ValidTargets: Infantry
+		InvalidTargets: Cyborg
+		ImpactSounds: wcaxeflesh1.ogg,wcaxeflesh2.ogg,wcaxeflesh3.ogg,wcaxeflesh4.ogg,wcaxeflesh5.ogg
+		Explosions: bloodsplat1, fakeexplosion, fakeexplosion
+		Inaccuracy: 256
+	Warhead@3Impact: CreateEffect
+		Delay: 3
+		ValidTargets: Vehicle, Wall, Structure, Cyborg, Trees
+		ImpactSounds: wcaxerock1.ogg,wcaxerock2.ogg,wcaxerock3.ogg,wcaxerock4.ogg,wcaxerock5.ogg
+
+DKBasicMeleeRight:
+	Inherits: DKBasicMelee
+	Report: baud.aud,baud.aud,baud.aud,baud.aud,baud.aud,vulpattack01.ogg,vulpattack02.ogg,vulpattack03.ogg,vulpattack04.ogg,vulpattack05.ogg,vulpattack06.ogg,vulpattack07.ogg,vulpattack08.ogg,vulpattack09.ogg,vulpattack10.ogg
+
+DKHeartStrike:
+	Inherits: DKBasicMeleeRight
+	ReloadDelay: 50
+	Warhead@0Swing: CreateEffect
+		ImpactSounds: vulpbloodstrike1.ogg, vulpbloodstrike2.ogg, vulpbloodstrike3.ogg
+	Warhead@1Dam: SpreadDamage
+		Spread: 400
+		Damage: 3500
+	Warhead@2Impact: CreateEffect
+		Explosions: bloodsplat2
+		Inaccuracy: 256
+	Warhead@condition2: GrantExternalCondition
+		Range: 1c512
+		Condition: queen_ensnare
+		Duration: 200
+		ValidTargets: Vehicle, Infantry
+		ValidRelationships: Enemy, Neutral
+
+DKMarrowrend:
+	Inherits: DKBasicMeleeRight
+	ReloadDelay: 50
+	Warhead@0Swing: CreateEffect
+		ImpactSounds: vulpmarrowrend1.ogg, vulpmarrowrend2.ogg
+	Warhead@1Dam: SpreadDamage
+		Spread: 256
+		Damage: 5000
+	Warhead@2Impact: CreateEffect
+		Explosions: bloodsplat3
+		Inaccuracy: 256
+
+DKObliterate:
+	Inherits: ^ShieldHit
+	ReloadDelay: 50
+	Range: 2c0
+	Report: vulpoblit1.ogg, vulpoblit2.ogg, vulpoblit3.ogg
+	ValidTargets: GroundActor, WaterActor
+	Projectile: LaserZap
+		Color: 00000000
+		Duration: 15
+	Warhead@1Dam: SpreadDamage
+		Delay: 13
+		Spread: 256
+		Damage: 7500
+		Versus:
+			None: 100
+			Wood: 75
+			Light: 75
+			Heavy: 75
+			Concrete: 50
+		DamageTypes: BulletDeath
+		ValidTargets: GroundActor, WaterActor
+	Warhead@2Impact: CreateEffect
+		Delay: 13
+		ValidTargets: GroundActor
+		ImpactSounds: wcaxefleshcrit.ogg,wcaxefleshcrit2.ogg,wcaxefleshcrit3.ogg
+
+DKObliterateKM:
+	Inherits: DKObliterate
+	Warhead@0Impact: CreateEffect
+		ValidTargets: GroundActor
+		ImpactSounds: vulpkillingmachine1.ogg, vulpkillingmachine2.ogg
+	Warhead@1Dam: SpreadDamage
+		Damage: 30000
+		Spread: 312
+	Warhead@shake: ShakeScreen
+		Delay: 11
+		Duration: 5
+		Intensity: 1
+		Multiplier: 1,1
+	Warhead@1Impact: CreateEffect
+		Delay: 13
+		ValidTargets: Infantry
+		InvalidTargets: Cyborg
+		Explosions: bloodsplat3
+
+DKDeathstrike:
+	Inherits: DKObliterate
+	Report: vulpdeathstrike1.ogg, vulpdeathstrike2.ogg
+	Warhead@1Dam: SpreadDamage
+		Delay: 1
+		Spread: 128
+		Damage: 5000
+		Versus:
+			Wood: 100
+			Light: 100
+			Heavy: 100
+			Concrete: 100
+	Warhead@2Impact: CreateEffect
+		Delay: 5
+		Explosions: deathstrikeshockwave
+		Inaccuracy: 256
+
+DKDeathAndDecay:
+	Range: 2c0
+	ReloadDelay: 25
+	Report: vulpdnd.ogg
+	ValidTargets: Vehicle, Infantry
+	Projectile: GravityBomb
+		Acceleration: 0,0,-32
+	Warhead@1effect: CreateEffect
+		Explosions: fakeexplosion
+		ImpactActors: false
+
+DKDNDDamage:
+	Projectile: InstantHit
+	Warhead@1Dam: SpreadDamage
+		Spread: 1c0
+		Falloff: 100,100,100,75,50
+		Damage: 1000
+		Versus:
+			Light: 80
+			Heavy: 90
+		ValidRelationships: Enemy, Neutral
+		ValidTargets: GroundActor
+		InvalidTargets: Structure
+		DamageTypes: DefaultDeath
+	Warhead@condition: GrantExternalCondition
+		Range: 5c0
+		Condition: demoralise
+		Duration: 51
+		ValidTargets: Infantry
+		ValidRelationships: Enemy, Neutral
+	Warhead@condition2: GrantExternalCondition
+		Range: 5c0
+		Condition: queen_ensnare
+		Duration: 51
+		ValidTargets: Vehicle
+		ValidRelationships: Enemy, Neutral
+
+DKFroststrike:
+	Inherits: DKBasicMelee
+	ReloadDelay: 40
+	Report: vulpfroststrike1.ogg, vulpfroststrike2.ogg
+	ValidTargets: GroundActor, WaterActor
+	Warhead@1Dam: SpreadDamage
+		Delay: 4
+		Spread: 96
+		Damage: 10000
+		Versus:
+			None: 100
+			Wood: 50
+			Light: 80
+			Heavy: 50
+			Concrete: 20
+		DamageTypes: ExplosionDeath
+		ValidTargets: GroundActor, WaterActor
+	Warhead@2Impact: CreateEffect
+		Delay: 4
+		ValidTargets: GroundActor, WaterActor
+		ImpactSounds: vulpfroststrikehit1.ogg,vulpfroststrikehit2.ogg,vulpfroststrikehit3.ogg,vulpfroststrikehit4.ogg
+		Explosions: icesmoke1_sm, icesmoke2_sm, icesmoke3_sm
+		Inaccuracy: 512
+	Warhead@3Condition: GrantExternalCondition
+		Delay: 4
+		Condition: cyrostreameffect
+		Duration: 200
+		Range: 1c0
+		ValidTargets: GroundActor, WaterActor
+	Warhead@snow1: FireCluster
+		RandomClusterCount: 3
+		Weapon: DKSnowflake
+		Footprint: xxx xxx x_x
+		Dimensions: 3,3
+	Warhead@1Swing: CreateEffect
+		Delay: 3
+		ImpactSounds: wcswing1.ogg,wcswing2.ogg,wcswing3.ogg,wcswing4.ogg
+		ImpactActors: false
+	Warhead@1Dam2: SpreadDamage
+		Delay: 9
+		Spread: 96
+		Damage: 7500
+		Versus:
+			None: 100
+			Wood: 50
+			Light: 80
+			Heavy: 50
+			Concrete: 20
+		DamageTypes: DefaultDeath
+		ValidTargets: GroundActor, WaterActor
+	Warhead@2Impact2: CreateEffect
+		Delay: 9
+		ValidTargets: GroundActor, WaterActor
+		ImpactSounds: vulpfroststrikehit1.ogg,vulpfroststrikehit2.ogg,vulpfroststrikehit3.ogg,vulpfroststrikehit4.ogg
+		Explosions: icesmoke1_sm, icesmoke2_sm, icesmoke3_sm
+		Inaccuracy: 512
+	Warhead@snow2: FireCluster
+		RandomClusterCount: 3
+		Weapon: DKSnowflake
+		Footprint: xxx xxx x_x
+		Dimensions: 3,3
+	Warhead@3Condition2: GrantExternalCondition
+		Delay: 9
+		Condition: cyrostreameffect
+		Duration: 200
+		Range: 1c0
+		ValidTargets: GroundActor, WaterActor
+	Warhead@3Condition3: GrantExternalCondition
+		Delay: 12
+		Condition: cyrostreameffect
+		Duration: 200
+		Range: 1c0
+		ValidTargets: GroundActor, WaterActor
+
+DKHowlingBlast:
+	ReloadDelay: 25
+	Range: 6c0
+	Report: vulphowling1.ogg,vulphowling2.ogg
+	ValidTargets: Ground, Water, GroundActor, WaterActor, AirborneActor
+	Projectile: Bullet
+		Speed: 1c0
+		Image: vulpsnowflake
+		Sequences: 1,2,3,4,5
+	Warhead@1Dam: SpreadDamage
+		Spread: 768
+		Damage: 6000
+		Versus:
+			None: 100
+			Wood: 50
+			Light: 80
+			Heavy: 50
+			Concrete: 20
+		DamageTypes: ExplosionDeath, Prone50Percent, TriggerProne
+		ValidTargets: GroundActor, WaterActor, AirborneActor
+	Warhead@2Impact: CreateEffect
+		ValidTargets: Ground, Water, Air, GroundActor, WaterActor, AirborneActor
+		ImpactSounds: vulphowlinghit1.ogg,vulphowlinghit2.ogg
+		Explosions: iceshockwave
+	Warhead@2Impact2: CreateEffect
+		ValidTargets: Ground, Water, Air
+		Explosions: icesmoke1, icesmoke2, icesmoke3
+		ImpactActors: false
+	Warhead@2Impact3: CreateEffect
+		ValidTargets: Ground, Water, Air
+		Explosions: icesmoke1, icesmoke2, icesmoke3
+		Inaccuracy: 768
+		ImpactActors: false
+	Warhead@2Impact4: CreateEffect
+		ValidTargets: Ground, Water, Air
+		Explosions: icesmoke1, icesmoke2, icesmoke3
+		Inaccuracy: 768
+		ImpactActors: false
+	Warhead@3Condition: GrantExternalCondition
+		Condition: cyrostreameffect
+		Duration: 250
+		Range: 4c0
+		ValidTargets: GroundActor, WaterActor, AirborneActor
+		ValidRelationships: Enemy, Neutral
+	Warhead@3Condition2: GrantExternalCondition
+		Condition: cyrostreameffect
+		Duration: 200
+		Range: 4c0
+		ValidTargets: GroundActor, WaterActor, AirborneActor
+	Warhead@3Condition3: GrantExternalCondition
+		Condition: cyrostreameffect
+		Duration: 175
+		Range: 4c0
+		ValidTargets: GroundActor, WaterActor, AirborneActor
+	Warhead@cluster: FireCluster
+		RandomClusterCount: 12
+		Weapon: DKSnowflake
+		Footprint: xxx xxx x_x
+		Dimensions: 3,3
+	Warhead@shrapnel: FireShrapnel
+		Delay: 3
+		Amount: 4
+		Weapon: DKRemorselessWinterCluster
+		AimTargetStances: Neutral, Enemy
+		AimChance: 100
+		TargetActorCenter: true
+		AroundTarget: true
+		AffectsParent: true
+		ValidTargets: Air, Ground, Water, GroundActor, WaterActor
+
+DKHowlingBlastRime:
+	Inherits: DKHowlingBlast
+	Projectile: Bullet
+		Speed: 512
+		TrailInterval: 1
+		TrailImage: explosion
+		TrailSequences: icesmoke1_sm, icesmoke2_sm, 
+	Warhead@1Dam: SpreadDamage
+		Spread: 900
+	Warhead@3Condition: GrantExternalCondition
+		Duration: 375
+	Warhead@3Condition2: GrantExternalCondition
+		Duration: 375
+	Warhead@3Condition3: GrantExternalCondition
+		Duration: 375
+	Warhead@3Impact: CreateEffect
+		Delay: 8
+		ValidTargets: GroundActor, WaterActor, AirborneActor
+		Explosions: icespikecrush
+		ImpactActors: true
+	Warhead@2Dam: SpreadDamage
+		Delay: 12
+		Spread: 256
+		Damage: 6000
+		Versus:
+			None: 100
+			Wood: 50
+			Light: 80
+			Heavy: 50
+			Concrete: 20
+		DamageTypes: ExplosionDeath, TriggerProne
+		ValidTargets: GroundActor, WaterActor, AirborneActor
+	Warhead@4Impact: CreateEffect
+		Delay: 12
+		ValidTargets: Ground, Water, Air, GroundActor, WaterActor, AirborneActor
+		ImpactSounds: vulpfroststrikehit1.ogg,vulpfroststrikehit2.ogg,vulpfroststrikehit3.ogg,vulpfroststrikehit4.ogg
+		Explosions: iceshockwave
+	Warhead@4Impact2: CreateEffect
+		Delay: 12
+		ValidTargets: Ground, Water, Air
+		Explosions: icesmoke1, icesmoke2, icesmoke3
+		ImpactActors: false
+	Warhead@4Impact3: CreateEffect
+		Delay: 12
+		ValidTargets: Ground, Water, Air
+		Explosions: icesmoke1, icesmoke2, icesmoke3
+		Inaccuracy: 768
+		ImpactActors: false
+	Warhead@shrapnel2: FireShrapnel
+		Delay: 16
+		Amount: 3
+		Weapon: DKRemorselessWinterCluster
+		AimTargetStances: Neutral, Enemy
+		AimChance: 100
+		TargetActorCenter: true
+		AroundTarget: true
+		AffectsParent: true
+		ValidTargets: Air, Ground, Water, GroundActor, WaterActor
+
+DKSnowflake:
+	Range: 5c0
+	Projectile: Bullet
+		Speed: 96
+		Image: vulpsnowflake
+		Sequences: 1,2,3,4,5
+		LaunchAngle: 96,168
+		BounceCount: 3
+		Inaccuracy: 1c0
+
+DKRemorselessWinter:
+	Range: 2c0
+	ReloadDelay: 25
+	Report: vulpwinter.ogg
+	ValidTargets: GroundActor
+	Projectile: GravityBomb
+		Acceleration: 0,0,-32
+	Warhead@2Impact: CreateEffect
+		ValidTargets: Ground, Water, Air
+		Inaccuracy: 768
+		ImpactActors: false
+		Explosions: iceshockwave
+	Warhead@2Impact2: CreateEffect
+		ValidTargets: Ground, Water, Air
+		Explosions: icesmoke1, icesmoke2, icesmoke3
+		ImpactActors: false
+	Warhead@2Impact3: CreateEffect
+		ValidTargets: Ground, Water, Air
+		Explosions: icesmoke1, icesmoke2, icesmoke3
+		Inaccuracy: 768
+		ImpactActors: false
+	Warhead@2Impact4: CreateEffect
+		ValidTargets: Ground, Water, Air
+		Explosions: icesmoke1, icesmoke2, icesmoke3
+		Inaccuracy: 768
+		ImpactActors: false
+	Warhead@cluster: FireCluster
+		RandomClusterCount: 12
+		Weapon: DKSnowflake
+		Footprint: xxx xxx x_x
+		Dimensions: 3,3
+
+DKRemorselessWinterDamage:
+	ReloadDelay: 25
+	ValidTargets: Ground, GroundActor
+	Projectile: InstantHit
+	FirstBurstTargetOffset: 0,0,512
+	Warhead@1Dam: SpreadDamage
+		Spread: 615
+		Falloff: 100,100,100,75,50
+		Damage: 1000
+		Versus:
+			Light: 125
+			Heavy: 150
+		ValidRelationships: Enemy, Neutral
+		ValidTargets: GroundActor
+		InvalidTargets: Structure
+		DamageTypes: DefaultDeath, TriggerProne
+	Warhead@2Impact1: CreateEffect
+		Explosions: icesmoke1, icesmoke2, icesmoke3
+		Inaccuracy: 512
+		ImpactActors: false
+	Warhead@2Impact2: CreateEffect
+		Delay: 8
+		Explosions: icesmoke1, icesmoke2, icesmoke3
+		Inaccuracy: 512
+		ImpactActors: false
+	Warhead@2Impact3: CreateEffect
+		Delay: 17
+		Explosions: icesmoke1, icesmoke2, icesmoke3
+		Inaccuracy: 512
+		ImpactActors: false
+	Warhead@condition: GrantExternalCondition
+		Range: 3c512
+		Condition: cyrostreameffect
+		Duration: 100
+		ValidTargets: Infantry
+		ValidRelationships: Enemy, Neutral
+	Warhead@cluster: FireCluster
+		RandomClusterCount: 6
+		Weapon: DKSnowflake
+		Footprint: xxx xxx x_x
+		Dimensions: 3,3
+		AffectsParent: true
+	Warhead@shrapnel: FireShrapnel
+		Amount: 4
+		Weapon: DKRemorselessWinterCluster
+		AimTargetStances: Neutral, Enemy
+		AimChance: 100
+		TargetActorCenter: true
+		AroundTarget: true
+		AffectsParent: true
+		ValidTargets: Air, Ground, Water, GroundActor, WaterActor
+	Warhead@shrapnel2: FireShrapnel
+		Amount: 1
+		Weapon: DKRemorselessWinterCluster
+		AimTargetStances: Neutral, Enemy, Ally
+		AimChance: 100
+		TargetActorCenter: true
+		AroundTarget: true
+		AffectsParent: true
+		ValidTargets: Air, Ground, Water, GroundActor, WaterActor
+
+DKRemorselessWinterCluster:
+	Range: 3c0
+	ValidTargets: GroundActor
+	Projectile: Bullet
+		Speed: 2c512
+	Warhead@1Dam: SpreadDamage
+		Spread: 333
+		Falloff: 100,75,50,25,5
+		Damage: 1000
+		Versus:
+			Light: 125
+			Heavy: 150
+		ValidRelationships: Enemy, Neutral
+		ValidTargets: GroundActor
+		DamageTypes: DefaultDeath, TriggerProne
+	Warhead@2Impact2: CreateEffect
+		ValidTargets: GroundActor
+		Explosions: icesmoke1, icesmoke2, icesmoke3
+		ImpactSounds: vulpwinterhit1.ogg, vulpwinterhit2.ogg, vulpwinterhit3.ogg
+		ImpactSoundChance: 66
+		ImpactActors: true
+	Warhead@cluster: FireCluster
+		RandomClusterCount: 3
+		Weapon: DKSnowflake
+		Footprint: xxx xxx x_x
+		Dimensions: 3,3
+		ValidTargets: GroundActor
+
+DKBloodboil:
+	Range: 2c0
+	ReloadDelay: 125
+	Report: vulpbloodboil1.ogg, vulpbloodboil2.ogg
+	ValidTargets: Vehicle, Infantry
+	Projectile: GravityBomb
+		Acceleration: 0,0,-32
+	Warhead@1Dam: SpreadDamage
+		Spread: 1c0
+		Falloff: 100,100,100,75,50
+		Damage: 2500
+		Versus:
+			Light: 70
+			Heavy: 60
+		ValidRelationships: Enemy, Neutral
+		ValidTargets: GroundActor
+		InvalidTargets: Structure
+		DamageTypes: DefaultDeath
+	Warhead@condition: GrantExternalCondition
+		Range: 4c512
+		Condition: corrode
+		Duration: 125
+		ValidTargets: GroundActor
+		ValidRelationships: Enemy, Neutral
+	Warhead@1effect: CreateEffect
+		Explosions: bloodboil
+		ImpactActors: false
+
+DKDrainRunicPower:
+	ValidTargets: Ground, Water, GroundActor, WaterActor
+	ReloadDelay: 8
+
+DKGrantKillingMachine:
+	ValidTargets: Ground, Water, GroundActor, WaterActor
+	Projectile: GravityBomb
+		Acceleration: 0,0,-32
+	Warhead: GrantExternalCondition
+		Range: 96
+		Condition: killingmachine
+		Duration: 150
+		AffectsParent: true
+		ValidTargets: DeathKnight
+
+DKPillarOfFrost:
+	Range: 4c0
+	ValidTargets: Ground, Water, GroundActor, WaterActor
+	Projectile: GravityBomb
+		Acceleration: 0,0,-32
+
+DKFrostwyrmFury:
+	ReloadDelay: 50
+	Range: 8c0
+	Report: frostwyrmfuryroar.ogg
+	ValidTargets: Ground, Water, GroundActor, WaterActor, Air
+	Projectile: Missile
+		RangeLimit: 256
+	Warhead@dragon: FireFragment
+		Weapon: DKFrostwyrmFuryDragon
+		Offsets: 0,-24000,-2048
+		UseZOffsetAsAbsoluteHeight: true
+		Rotate: true
+		ValidTargets: Ground, Water, GroundActor, WaterActor, Air
+	Warhead@dragondamage: FireFragment
+		Weapon: DKFrostwyrmFuryDamage
+		Offsets: 0,-16000,0
+		Rotate: true
+		ValidTargets: Ground, Water, GroundActor, WaterActor, Air
+	Warhead@dragondamage2: FireFragment
+		Weapon: DKFrostwyrmFuryDamage
+		Offsets: 3072,-16000,0
+		Rotate: true
+		ValidTargets: Ground, Water, GroundActor, WaterActor, Air
+	Warhead@dragondamage3: FireFragment
+		Weapon: DKFrostwyrmFuryDamage
+		Offsets: -3072,-16000,0
+		Rotate: true
+		ValidTargets: Ground, Water, GroundActor, WaterActor, Air
+
+DKFrostwyrmFuryDragon:
+	Range: 24c0
+	Report: frostwyrmfurybreath.ogg
+	ValidTargets: Ground, Water, GroundActor, WaterActor, Air
+	Projectile: Missile
+		Speed: 256
+		RangeLimit: 32c0
+		LockOnProbability: 0
+		MinimumLaunchSpeed: 192
+		MaximumLaunchSpeed: 192
+		CruiseAltitude: 2c256
+		Shadow: true
+		Image: bonedragon
+		Sequences: attack
+	Warhead@4Impact: CreateEffect
+		ValidTargets: Ground, Water, Air
+		Image: bonedragon
+		Explosions: idle
+		ImpactActors: false
+
+DKFrostwyrmFuryDamage:
+	ReloadDelay: 50
+	Range: 16c0
+	Report: frostwyrmfurybreath.ogg
+	ValidTargets: Ground, Water, GroundActor, WaterActor, Air
+	Projectile: WarheadTrailProjectile
+		Weapon: DKFrostwyrmFuryCluster
+		Offsets: 0,0,0
+		ExplosionInterval: 4
+		KillProjectilesWhenReachedTargetLocation: true
+		FireMode: Focus
+		Speed: 256
+		Blockable: false
+		ForceAtGroundLevel: true
+
+DKFrostwyrmFuryCluster:
+	Inherits: DKRemorselessWinterCluster
+	Projectile: Bullet
+		Inaccuracy: 1c0
+	Warhead@1Dam: SpreadDamage
+		Spread: 1c512
+		Falloff: 100,75,50,25,5
+		Damage: 1500
+		ValidRelationships: Enemy, Neutral
+		ValidTargets: GroundActor
+		DamageTypes: DefaultDeath, TriggerProne
+	Warhead@2Impact2: CreateEffect
+		-ImpactSounds:
+	Warhead@4Impact: CreateEffect
+		ValidTargets: Ground, Water, Air, GroundActor, WaterActor, AirborneActor
+		Explosions: iceshockwave_large
+	Warhead@condition: GrantExternalCondition
+		Range: 3c0
+		Duration: 500
+		Condition: deepfreeze
+		ValidTargets: GroundActor, WaterActor, AirborneActor
+	Warhead@condition2: GrantExternalCondition
+		Range: 3c0
+		Duration: 500
+		Condition: timestop
+		ValidTargets: GroundActor, WaterActor, AirborneActor
+	Warhead@condition3: GrantExternalCondition
+		Range: 3c0
+		Duration: 500
+		Condition: disabled
+		ValidTargets: Vehicle, Cyborg
+	Warhead@condition4: GrantExternalCondition
+		Range: 3c0
+		Duration: 750
+		Condition: cyrostreameffect
+		ValidTargets: GroundActor, WaterActor, AirborneActor
+
+FrozenSmokey:
+	Warhead@2Impact1: CreateEffect
+		Explosions: icesmoke1, icesmoke2, icesmoke3
+		Inaccuracy: 512
+		ImpactActors: false
+	Warhead@2Impact2: CreateEffect
+		Delay: 8
+		Explosions: icesmoke1, icesmoke2, icesmoke3
+		Inaccuracy: 512
+		ImpactActors: false
+	Warhead@2Impact3: CreateEffect
+		Delay: 17
+		Explosions: icesmoke1, icesmoke2, icesmoke3
+		Inaccuracy: 512
+		ImpactActors: false
+
+DKBoneExplode:
+	ReloadDelay: 25
+	ValidTargets: Ground, GroundActor
+	Report: vulpboneexplo1.ogg, vulpboneexplo2.ogg
+	Projectile: InstantHit
+	FirstBurstTargetOffset: 0,0,512
+	Warhead@1Dam: SpreadDamage
+		Spread: 615
+		Falloff: 100,100,100,75,50
+		Damage: 1000
+		Versus:
+			Light: 125
+			Heavy: 150
+		ValidRelationships: Enemy, Neutral
+		ValidTargets: GroundActor
+		InvalidTargets: Structure
+		DamageTypes: ExplosionDeath, TriggerProne
+	Warhead@2Impact1: CreateEffect
+		Explosions: bloodcloud1, bloodcloud2, bloodcloud3
+		Inaccuracy: 512
+		ImpactActors: false
+	Warhead@2Impact2: CreateEffect
+		Delay: 3
+		Explosions: bloodcloud1, bloodcloud2, bloodcloud3
+		ImpactActors: false
+	Warhead@2Impact3: CreateEffect
+		Delay: 6
+		Explosions: bloodcloud1, bloodcloud2, bloodcloud3
+		Inaccuracy: 512
+		ImpactActors: false
+	Warhead@shrapnel: FireShrapnel
+		Amount: 6
+		Weapon: DKBone
+		AimTargetStances: Neutral, Enemy
+		AimChance: 100
+		TargetActorCenter: true
+		AroundTarget: true
+		AffectsParent: true
+		ValidTargets: Air, Ground, Water, GroundActor, WaterActor
+
+DKBone:
+	Range: 4c0
+	ValidTargets: GroundActor
+	Projectile: Bullet
+		Speed: 192,350
+		Image: vulpbone
+		Sequences: 1,2,3,4,5
+		Inaccuracy: 256
+	Warhead@1Dam: SpreadDamage
+		Spread: 260
+		Falloff: 100,75,50,25,5
+		Damage: 2000
+		Versus:
+			Light: 75
+			Heavy: 75
+		ValidRelationships: Enemy, Neutral
+		ValidTargets: GroundActor
+		DamageTypes: ExplosionDeath, TriggerProne
+	Warhead@2Impact2: CreateEffect
+		ValidTargets: Infantry
+		InvalidTargets: Cyborg
+		Explosions: bloodsplat2, bloodsplat1
+		ImpactSounds: vulpbloodstrike1.ogg, vulpbloodstrike2.ogg, vulpbloodstrike3.ogg
+		ImpactSoundChance: 50
+		ImpactActors: true
+
+DKBloodDraw:
+	ValidTargets: Ground, Water, GroundActor, WaterActor
+	Projectile: GravityBomb
+		Acceleration: 0,0,-32
+	Warhead: GrantExternalCondition
+		Range: 96
+		Condition: blooddraw_cooldown
+		Duration: 1125
+		AffectsParent: true
+		ValidTargets: DeathKnight
+	Warhead@heal: HealthPercentageDamage
+		Spread: 64
+		Damage: -50
+		AffectsParent: true
+		ValidTargets: DeathKnight
+	Warhead@explosion: FireCluster
+		RandomClusterCount: 1
+		Dimensions: 1,1
+		Footprint: X
+		Weapon: DKBloodboil
+
+DKIceyDeathTorrent:
+	ReloadDelay: 50
+	Report: vulpiceydeath1.ogg, vulpiceydeath2.ogg
+	Warhead@fragment1: FireFragment
+		ValidTargets: Ground, Water, GroundActor, WaterActor, AirborneActor, Air
+		Weapon: DKIceyDeathTorrentShrapnel
+		Offsets: 0,-512,0, 0,-1024,0, 512,-1024,0, -512,-1024,0, 0,-1536,0, 512,-1536,0, -512,-1536,0, 1024,-1536,0, -1024,-1536,0
+		Rotate: true
+
+DKIceyDeathTorrentShrapnel:
+	Inherits: DKRemorselessWinterCluster
+	Range: 3c0
+	ValidTargets: GroundActor
+	Projectile: Bullet
+		Speed: 192
+		Inaccuracy: 372
+	Warhead@2Impact2: CreateEffect
+		ValidTargets: Ground, Water, Air
+		Explosions: icesmoke1, icesmoke2, icesmoke3
+		ImpactSounds: vulpwinterhit1.ogg, vulpwinterhit2.ogg, vulpwinterhit3.ogg
+		ImpactSoundChance: 33
+		ImpactActors: true
+	Warhead@cluster: FireCluster
+		RandomClusterCount: 2
+		Weapon: DKSnowflake
+		Footprint: xxx xxx x_x
+		Dimensions: 3,3
+		ValidTargets: GroundActor
+
+DKRuneWeaponFreeze:
+	ReloadDelay: 50
+	Report: vulpiceydeath1.ogg, vulpiceydeath2.ogg
+	Warhead@fragment1: FireFragment
+		ValidTargets: Ground, Water, GroundActor, WaterActor, AirborneActor, Air
+		Weapon: DKRuneWeaponFreezeEffect
+		Offsets: 0,-1024,0, 0,-2048,0
+		Rotate: true
+
+DKRuneWeaponFreezeEffect:
+	ValidTargets: Ground, Water
+	Projectile: Bullet
+		Speed: 1c0
+	Warhead: GrantExternalCondition
+		Range: 900
+		Condition: deepfreeze
+		Duration: 75
+		ValidTargets: GroundActor
+	Warhead@2: GrantExternalCondition
+		Range: 900
+		Condition: timestop
+		Duration: 75
+		ValidTargets: GroundActor
+	Warhead@3: GrantExternalCondition
+		Range: 900
+		Condition: disabled
+		Duration: 75
+		ValidTargets: Vehicle, Cyborg
+
+DKArcticAssault:
+	ReloadDelay: 50
+	Report: vulpglacial1.ogg, vulpglacial2.ogg, vulpglacial3.ogg
+	Warhead@fragment1: FireFragment
+		Delay: 6
+		ValidTargets: Ground, Water, GroundActor, WaterActor, AirborneActor, Air
+		Weapon: DKArcticAssaultFragment
+		Offsets: 0,-768,0, 0,-1536,0, 0,-1536,0, 0,-2304,0, 0,-3072,0, 0,-3840,0
+		Rotate: true
+
+DKArcticAssaultFragment:
+	ReloadDelay: 25
+	Range: 6c0
+	ValidTargets: Ground, Water, GroundActor, WaterActor, AirborneActor
+	Projectile: Bullet
+		Speed: 192
+	Warhead@1Dam: SpreadDamage
+		Spread: 768
+		Damage: 500
+		Versus:
+			None: 100
+			Wood: 50
+			Light: 80
+			Heavy: 50
+			Concrete: 20
+		DamageTypes: ExplosionDeath, Prone50Percent, TriggerProne
+		ValidTargets: GroundActor, WaterActor, AirborneActor
+	Warhead@2Impact1: CreateEffect
+		ValidTargets: Ground, Water, Air
+		Explosions: icespikeup
+		ImpactActors: false
+	Warhead@2Impact2: CreateEffect
+		ValidTargets: Ground, Water, Air
+		Explosions: icesmoke1, icesmoke2, icesmoke3
+		ImpactActors: false
+		Inaccuracy: 256
+	Warhead@3Condition3: GrantExternalCondition
+		Condition: cyrostreameffect
+		Duration: 125
+		Range: 512
+		ValidTargets: GroundActor, WaterActor, AirborneActor
+	Warhead@cluster: FireCluster
+		RandomClusterCount: 4
+		Weapon: DKSnowflake
+		Footprint: xxx xxx x_x
+		Dimensions: 3,3
+
+DKResurrectCondition:
+	ValidTargets: Ground, Water, GroundActor, WaterActor
+	Projectile: GravityBomb
+		Acceleration: 0,0,-32
+	Warhead: GrantExternalCondition
+		Delay: 41
+		Range: 2c0
+		Condition: resurrected
+		Duration: 250
+		AffectsParent: true
+		ValidTargets: DeathKnight
+	Warhead@shake: ShakeScreen
+		Delay: 35
+		Duration: 10
+		Intensity: 1
+		Multiplier: 1,1
+
+# SPIDER MASTERMIND HACKY AREA BOOST
+SquadBoostSpider:
+	ReloadDelay: 50
+	Range: 1c0
+	ValidTargets: Ground, Water, GroundActor, WaterActor, AirborneActor
+	Projectile: GravityBomb
+		OpenSequence: idle
+		Velocity: 0, 0, -256
+		Acceleration: 0, 0, 0
+	Warhead@boost: GrantExternalCondition
+		Condition: squadboost
+		Range: 8c0
+		Duration: 55
+		AffectsParent: false
+		ValidTargets: Infantry
+		ValidRelationships: Ally
+
+ArwingShot1:
+	ReloadDelay: 5
+	Range: 8c512
+	Report: arwingfire1.aud, arwingfire2.aud, arwingfire3.aud
+	ValidTargets: Ground, Water, GroundActor, WaterActor
+	Projectile: Bullet
+		Speed: 1c112
+		Blockable: false
+		Image: starfoxproj1
+		Inaccuracy: 512
+	Warhead@1Dam: SpreadDamage
+		Spread: 256
+		Damage: 2000
+		ValidTargets: Ground, GroundActor, WaterActor, Trees
+		Versus:
+			None: 100
+			Wood: 70
+			Light: 90
+			Heavy: 70
+			Concrete: 40
+		DamageTypes: Prone50Percent, TriggerProne, SmallExplosionDeath
+	Warhead@2Smu: LeaveSmudge
+		SmudgeType: Scorch
+		InvalidTargets: Structure, Wall, Vehicle
+	Warhead@3EffGround: CreateEffect
+		Explosions: laserhitsmall
+		ValidTargets: Ground, Water, GroundActor, WaterActor
+
+ArwingShot2:
+	ReloadDelay: 5
+	Range: 8c512
+	Report: arwingfire1.aud, arwingfire2.aud, arwingfire3.aud
+	ValidTargets: Ground, Water, GroundActor, WaterActor
+	Projectile: Bullet
+		Speed: 1c112
+		Blockable: false
+		Image: starfoxproj2
+		Inaccuracy: 512
+	Warhead@1Dam: SpreadDamage
+		Spread: 256
+		Damage: 4000
+		ValidTargets: Ground, GroundActor, WaterActor, Trees
+		Versus:
+			None: 100
+			Wood: 70
+			Light: 90
+			Heavy: 70
+			Concrete: 40
+		DamageTypes: Prone50Percent, TriggerProne, SmallExplosionDeath
+	Warhead@2Smu: LeaveSmudge
+		SmudgeType: Scorch
+		InvalidTargets: Structure, Wall, Vehicle
+	Warhead@3EffGround: CreateEffect
+		Explosions: laserhitsmall
+		ValidTargets: Ground, Water, GroundActor, WaterActor
+	Warhead@4EffGround: CreateEffect
+		Delay: 1
+		Explosions: unscplasmagrenade
+		ImpactActors: false
+		Inaccuracy: 256

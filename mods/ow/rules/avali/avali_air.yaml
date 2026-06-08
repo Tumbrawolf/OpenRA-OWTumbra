@@ -16,7 +16,7 @@
 	ExternalCondition@cold:
 		Condition: env_snow_buff
 	Rearmable:
-		RearmActors: hpad, hpad.bot, afld, afld.ukraine, usaairfield, usaairstriplandingspot, chinaairfield, japanairfield, japanairfieldnavy, pstarg, tsport, tsport.landed, zspire, zspire.spot, avpad, avcarrier, avcarrier.ai, avcarrier.bot
+		RearmActors: hpad, hpad.bot, afld, afld.ukraine, usaairfield, usaairstriplandingspot, chinaairfield, japanairfield, japanairfieldnavy, pstarg, tsport, tsport.landed, zspire, zspire.spot, avpad, avcarrier, avcarrier.ai, avcarrier.bot, unscairpad
 
 
 AVFRIGATE:
@@ -30,7 +30,7 @@ AVFRIGATE:
 		Prerequisites: ~aircraft.avalon, ~techlevel.medium
 		Description: actor-avfrigate.description
 	Valued:
-		Cost: 1800
+		Cost: 1500
 	Tooltip:
 		Name: actor-avfrigate.name
 	UpdatesPlayerStatistics:
@@ -134,7 +134,7 @@ AVBOMBER:
 		Prerequisites: techcenter, ~aircraft.avalon, ~techlevel.high
 		Description: actor-avbomber.description
 	Valued:
-		Cost: 2100
+		Cost: 1800
 	Tooltip:
 		Name: actor-avbomber.name
 	UpdatesPlayerStatistics:
@@ -226,8 +226,12 @@ AVCARRIER:
 			TopLeft: -1250, -2816
 			BottomRight: 1250, 2816
 		TargetableOffsets: 0,0,0, 2048,-512,0, 1536,-512,0, 1024,-512,0, 512,-512,0, 0,-512,0, -512,-512,0, -1024,-512,0, -1536,-512,0, -2048,-512,0, 2048,512,0, 1536,512,0, 1024,512,0, 512,512,0, 0,512,0, -512,512,0, -1024,512,0, -1536,512,0, -2048,512,0, -2560,-512,0, -1024,1024,-512, -1024,-1024,-512
-	Valued:
-		Cost: 4000
+	Valued: # 4000
+		Cost: 2000
+	GivesExperienceMultiplier@value:
+		Modifier: 200
+	ProductionCostMultiplier@value:
+		Multiplier: 200
 	Tooltip:
 		Name: actor-avcarrier.name
 	UpdatesPlayerStatistics:
@@ -295,6 +299,7 @@ AVCARRIER:
 		Range: 8c0
 	DetectCloaked:
 		Range: 8c0
+		DetectionTypes: Cloak, AirCloak
 	-Rearmable:
 	CarrierMaster:
 		Actors: avinter, avinter, avinter, avinter
@@ -392,7 +397,7 @@ AVCARRIER:
 		InsufficientPowerSpeechNotification: InsufficientPower
 		DisplayRadarPing: True
 		CameraActor: camera.small
-		SupportPowerPaletteOrder: 20
+		SupportPowerPaletteOrder: 19
 		WeaponDelay: 1
 		CameraRemoveDelay: 100
 		Effect: explosion
@@ -438,6 +443,7 @@ AVCARRIER:
 	Repairable:
 		HpPerStep: 1000
 	Reservable:
+	-Cloneable:
 
 AVINTER:
 	Inherits: ^NeutralPlane
@@ -567,6 +573,7 @@ AVCARRIER.AI:
 	-Armament:
 	-IonCannonPower:
 	-AirstrikePower@parabombs:
+	-Berserkable@JapanBerserkerPower:
 	SpeedMultiplier@triggered:
 		RequiresCondition: trigger_jump
 		Modifier: 40
@@ -580,3 +587,14 @@ AVCARRIER.AI:
 		RequiresCondition: trigger_jump
 		Weapons: WarpshipJumpAI
 		Interval: 100
+
+AVMOTHER:
+	Inherits: PMOTHER
+	Inherits@avali: ^AvaliAircraft
+	Buildable:
+		Prerequisites: ~aircraft.avalon, ulttechcenter, ~techlevel.unrestricted
+		Description: actor-avmother.description
+	Tooltip:
+		Name: actor-avmother.name
+	RenderSprites:
+		Image: pmother

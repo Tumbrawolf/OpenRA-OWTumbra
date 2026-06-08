@@ -1,6 +1,7 @@
 MCV:
 	Inherits: ^Vehicle
 	Inherits@selection: ^SelectableSupportUnit
+	Inherits@MCV: ^MCVBehaviour
 	Buildable:
 		Queue: Vehicle
 		BuildPaletteOrder: 90
@@ -27,6 +28,7 @@ MCV.2:
 MCVD:
 	Inherits: ^Vehicle
 	Inherits@selection: ^SelectableSupportUnit
+	Inherits@MCV: ^MCVBehaviour
 	Buildable:
 		Queue: Vehicle
 		BuildPaletteOrder: 90
@@ -78,12 +80,13 @@ MCVD.2:
 		Image: mcvd
 
 HARV:
+	Inherits@harv: ^Harvester
 	Buildable:
 		Prerequisites: refinery, ~techlevel.infonly, ~vehicles.harvprereq
 		Description: actor-harv-description
 	Harvester:
 		BaleLoadDelay: 3
-		Resources: Ore,Gems,Tiberium,BlueTiberium
+		Resources: Ore,Gems,Tiberium,BlueTiberium,Oil
 	WithStoresResourcesPipsDecoration:
 		Position: BottomLeft
 		RequiresSelection: true
@@ -93,32 +96,9 @@ HARV:
 			Gems: pip-red
 			Tiberium: pip-green
 			BlueTiberium: pip-blue
-	GrantConditionOnPrerequisite@chrono:
-		Condition: pdox
-		Prerequisites: pdox
-	ChronoResourceDelivery:
-		RequiresCondition: pdox
-		WarpInSound: chrono2.aud
-		WarpOutSound: chrono2.aud
-		WarpInSequence: bunkerbustersring
-		WarpOutSequence: bunkerbustersring
-		AudibleThroughFog: false
-		SoundVolume: 0.33
-		CheckTeleportDelay: 30
-		Image: explosion
+			Oil: pip-oil
 	Mobile:
 		Speed: 100
-	DockClientManager:
-	StoresResources:
-		Resources: Ore,Gems,Tiberium,BlueTiberium
-	Cloak@stealthgen:
-		PauseOnCondition: cloak-force-disabled
-	GrantConditionOnDamageState@UNCLOAK:
-		Condition: cloak-force-disabled
-		ValidDamageStates: Critical
-	GrantConditionOnPrerequisite@bhand:
-		Prerequisites: vehicles.bhand
-		Condition: stealthgen
 	Valued:
 		Cost: 550
 	GivesExperienceMultiplier@value:
@@ -136,18 +116,11 @@ HARVNAVY:
 		Locomotor: hover
 	RenderSprites:
 		Image: HARV
-	Harvester:
-		BaleLoadDelay: 3
-		Resources: Ore,Gems,Tiberium,BlueTiberium,Oil
-	WithStoresResourcesPipsDecoration:
-		ResourceSequences:
-			Oil: pip-gray
-	StoresResources:
-		Resources: Ore,Gems,Tiberium,BlueTiberium,Oil
 
 HARVD:
 	Inherits: ^Vehicle
 	Inherits@selection: ^SelectableEconomicUnit
+	Inherits@harv: ^Harvester
 	Buildable:
 		Queue: Vehicle
 		BuildPaletteOrder: 110
@@ -198,8 +171,14 @@ HARVD:
 	RenderSprites:
 		PlayerPalette: dawn
 		Image: harvd
+	Cloak@stealthgen:
+		Palette: dawncloak
+		CloakSound: trans1.aud
+		UncloakSound: trans1.aud
+		PauseOnCondition: cloak-force-disabled
 	WithStoresResourcesPipsDecoration:
 		Position: BottomLeft
+		Margin: 4, 3
 		RequiresSelection: true
 		PipCount: 7
 		ResourceSequences:
@@ -207,21 +186,6 @@ HARVD:
 			Gems: pip-red
 			Tiberium: pip-green
 			BlueTiberium: pip-blue
-	DockClientManager:
-	StoresResources:
-		Capacity: 20
-		Resources: Ore,Gems,Tiberium,BlueTiberium
-	Cloak@stealthgen:
-		Palette: dawncloak
-		CloakSound: trans1.aud
-		UncloakSound: trans1.aud
-		PauseOnCondition: cloak-force-disabled
-	GrantConditionOnDamageState@UNCLOAK:
-		Condition: cloak-force-disabled
-		ValidDamageStates: Critical
-	GrantConditionOnPrerequisite@bhand:
-		Prerequisites: vehicles.bhand
-		Condition: stealthgen
 
 ARTY:
 	Buildable:
@@ -287,7 +251,7 @@ MNLY:
 		Prerequisites: fix, ~techlevel.medium, ~vehicles.all
 		Description: actor-mnly-description
 	Rearmable:
-		RearmActors: fix, gfix
+		RearmActors: fix, gfix, tshop, unscrepairpad
 	AmmoPool:
 		Ammo: 3
 	Minelayer:

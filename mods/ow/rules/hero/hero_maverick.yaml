@@ -385,9 +385,9 @@ maverick.Hero0:
 	RenderSprites:
 		Image: maverick
 	Buildable:
-		Queue: Aircraft
+		Queue: Aircraft, Hero
 		BuildPaletteOrder: 50
-		Prerequisites: ~barracks, ~techlevel.unrestricted, !active.maverick, ~!hero.tier1, ~hero.maverick
+		Prerequisites: ~barracks, !active.maverick, ~!hero.tier1, ~hero.maverick
 		Description: actor-maverick-hero0.description
 		BuildDurationModifier: 100
 		BuildDuration: 750
@@ -567,6 +567,14 @@ maverick.Hero0:
 		Name: laser
 		Weapon: PointDefenseLaser
 		RequiresCondition: maverickupgrade2
+	PointDefense@cruise:
+		PointDefenseTypes: cruisemissile
+		Armament: laser2
+		RequiresCondition: maverickupgrade2
+	Armament@cruise:
+		Name: laser2
+		Weapon: PointDefenseLaserCruise
+		RequiresCondition: maverickupgrade2
 	AmmoPool:
 		Ammo: 4
 		ReloadDelay: 2
@@ -640,8 +648,9 @@ maverick.Hero0:
 	ChangesHealth@default:
 		PercentageStep: 1
 		Delay: 75
-		StartIfBelow: 101
+		StartIfBelow: 100
 		DamageCooldown: 75
+		DamageTypes: BypassShield
 	GrantConditionOnPrerequisite@maverickmachinegun1:
 		Prerequisites: maverick.tier1.machinegun1
 		Condition: maverickmachinegun1
@@ -767,7 +776,7 @@ maverick.Hero1:
 	Inherits: maverick.Hero0
 	Inherits@heroTier: ^HeroTier1
 	Buildable:
-		Prerequisites: ~barracks, ~techlevel.unrestricted, !active.maverick, ~!hero.tier2, ~hero.tier1, ~hero.maverick
+		Prerequisites: ~barracks, !active.maverick, ~!hero.tier2, ~hero.tier1, ~hero.maverick
 		BuildDuration: 1500
 	Tooltip:
 		Name: actor-maverick-hero1-name
@@ -789,13 +798,19 @@ maverick.Hero1:
 		IntoActor: maverick.Hero2
 	FirepowerMultiplier@1:
 		Modifier: 110
+	GrantTimedCondition@wander:
+		RequiresCondition: !produced
+		Condition: wander
+		Duration: 5
+	Wanders@default:
+		RequiresCondition: wander
 	-ExperienceTrickler:
 
 maverick.Hero2:
 	Inherits: maverick.Hero1
 	Inherits@heroTier: ^HeroTier2
 	Buildable:
-		Prerequisites: ~barracks, ~techlevel.unrestricted, !active.maverick, ~!hero.tier3, ~hero.tier2, ~hero.maverick
+		Prerequisites: ~barracks, !active.maverick, ~!hero.tier3, ~hero.tier2, ~hero.maverick
 	Tooltip:
 		Name: actor-maverick-hero2-name
 	Health:
@@ -821,7 +836,7 @@ maverick.Hero3:
 	Inherits: maverick.Hero2
 	Inherits@heroTier: ^HeroTier3
 	Buildable:
-		Prerequisites: ~barracks, ~techlevel.unrestricted, !active.maverick, ~!hero.tier4, ~hero.tier3, ~hero.maverick
+		Prerequisites: ~barracks, !active.maverick, ~!hero.tier4, ~hero.tier3, ~hero.maverick
 	Tooltip:
 		Name: actor-maverick-hero3-name
 	Health:
@@ -848,7 +863,7 @@ maverick.Hero4:
 	Inherits: maverick.Hero3
 	Inherits@heroTier: ^HeroTier4
 	Buildable:
-		Prerequisites: ~barracks, ~techlevel.unrestricted, !active.maverick, ~!hero.tier5, ~hero.tier4, ~hero.maverick
+		Prerequisites: ~barracks, !active.maverick, ~!hero.tier5, ~hero.tier4, ~hero.maverick
 		BuildDuration: 3000
 	Tooltip:
 		Name: actor-maverick-hero4-name
@@ -875,8 +890,8 @@ maverick.Hero5:
 	Inherits: maverick.Hero4
 	Inherits@heroTier: ^HeroTier5
 	Buildable:
-		Prerequisites: ~barracks, ~techlevel.unrestricted, !active.maverick, ~hero.tier5, ~hero.maverick
-		BuildDuration: 6000
+		Prerequisites: ~barracks, !active.maverick, ~hero.tier5, ~hero.maverick
+		BuildDuration: 4500
 	Tooltip:
 		Name: actor-maverick-hero5-name
 	Health:

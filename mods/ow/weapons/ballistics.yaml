@@ -1,7 +1,7 @@
 ^Cannon:
 	Inherits: ^ShieldHit
 	ReloadDelay: 45
-	Range: 4c768
+	Range: 5c0
 	Report: cannon1.aud
 	ValidTargets: Ground, Water, GroundActor, WaterActor
 	Projectile: Bullet
@@ -40,7 +40,7 @@
 25mm:
 	Inherits: ^Cannon
 	ReloadDelay: 14
-	Range: 4c768
+	Range: 5c0
 	Report: cannon2.aud
 	Projectile: Bullet
 		Speed: 853
@@ -58,6 +58,11 @@
 		-ImpactSounds:
 	Warhead@4EffWater: CreateEffect
 		-ImpactSounds:
+
+Scorpion25mm:
+	Inherits: 25mm
+	Projectile: Bullet
+		Inaccuracy: 256
 
 # Nod Light Tank
 Nod70mm:
@@ -101,6 +106,11 @@ Nod70mm:
 		Versus:
 			Heavy: 115
 		InvalidTargets: Air
+
+# Marauder tank upgrade
+120mm_b:
+	Inherits: 120mm
+	InvalidTargets: Air
 
 # GDI Med tank
 GDI120mm:
@@ -579,11 +589,11 @@ TurretGunTechnical:
 
 TurretGunHellfire:
 	Inherits: TurretGun
-	ReloadDelay: 25
+	ReloadDelay: 23
 	MinRange: 5c0
 	Range: 14c0
 	Burst: 2
-	BurstDelays: 10
+	BurstDelays: 8
 	Report: turret1.aud
 	Projectile: Bullet
 		Speed: 682
@@ -597,7 +607,7 @@ TurretGunHellfire:
 		Damage: 2000
 		Falloff: 600, 368, 135, 50, 18, 7, 0
 		Versus:
-			None: 10
+			None: 20
 			Wood: 10
 			Light: 75
 			Concrete: 10
@@ -608,7 +618,7 @@ TurretGunHellfire:
 		Falloff: 600, 368, 135, 50, 18, 7, 0
 		ValidRelationships: Enemy, Neutral
 		Versus:
-			None: 10
+			None: 20
 			Wood: 10
 			Light: 75
 			Concrete: 10
@@ -804,7 +814,7 @@ CrateCannon:
 
 8Inch:
 	Inherits: ^Artillery
-	MinRange: 3c0
+	MinRange: 5c0
 	ReloadDelay: 250
 	Range: 20c0
 	Burst: 2
@@ -828,7 +838,7 @@ CrateCannon:
 
 sl8Inch1:
 	Inherits: 8Inch
-	ReloadDelay: 100
+	ReloadDelay: 150
 	Range: 25c0
 	Burst: 4
 	BurstDelays: 5
@@ -1326,7 +1336,7 @@ KodiacNuke:
 		FlashType: Nuke
 
 usafirebaseshot:
-	Inherits: ^Cannon
+	Inherits: ^Artillery
 	ReloadDelay: 100
 	Range: 12c896
 	MinRange: 3c256
@@ -1341,8 +1351,10 @@ usafirebaseshot:
 		Inaccuracy: 2c768
 		ContrailLength: 30
 	Warhead@1Dam: SpreadDamage
-		Spread: 0c256
-		Damage: 8000
+		Spread: 256
+		Damage: 10000
+		Versus:
+			None: 50
 		ValidTargets: GroundActor, WaterActor
 		DamageTypes: Prone50Percent, TriggerProne, ExplosionDeath
 	Warhead@2Smu: LeaveSmudge
@@ -1421,8 +1433,17 @@ RaynorVultureGrenade:
 
 RaynorMarineGrenade:
 	Inherits: RaynorVultureGrenade
+	ReloadDelay: 50
 	Burst: 2
-	BurstDelays: 3
+	BurstDelays: 4
+	Warhead@1Dam: SpreadDamage
+		Spread: 256
+		Versus:
+			None: 100
+			Wood: 60
+			Light: 33
+			Heavy: 33
+			Concrete: 30
 	Warhead@condition: GrantExternalCondition
 		Condition: SupportPowerConsiderer
 		Range: 2c0
@@ -2581,7 +2602,6 @@ AvaliBurstGrenade:
 		Image: plse2
 		ContrailLength: 6
 		Inaccuracy: 480
-		TrailImage: smokey
 	Warhead@1Dam: SpreadDamage
 		Spread: 128
 		Damage: 1670
@@ -2603,7 +2623,6 @@ AvaliBurstGrenade:
 AvaliPredatorCannon:
 	Inherits: ^Cannon
 	ReloadDelay: 40
-	Range: 4c768
 	Report: BalloonWeap1.aud, BalloonWeap2.aud, BalloonWeap3.aud
 	ValidTargets: Ground, Water, GroundActor, WaterActor
 	Projectile: Bullet
@@ -2613,7 +2632,9 @@ AvaliPredatorCannon:
 	Warhead@1Dam: SpreadDamage
 		Damage: 3500
 		Versus:
+			None: 40
 			Heavy: 110
+			Shield: 125
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Scorch
 	Warhead@3Eff: CreateEffect
@@ -2787,11 +2808,11 @@ corvusphoenixrod:
 		Image: phoenixrod
 		Shadow: True
 	Warhead@1Dam: SpreadDamage
-		Spread: 1c0
-		Damage: 11000
+		Spread: 512
+		Damage: 10000
 		ValidTargets: GroundActor, WaterActor
 		Versus:
-			None: 120
+			None: 100
 			Wood: 50
 			Light: 100
 			Heavy: 100
@@ -3553,6 +3574,11 @@ AC20:
 	Warhead@3Eff: CreateEffect
 		Explosions: building
 		ImpactSounds: gexpcara.aud,gexpcarb.aud,gexpcarc.aud,gexpcard.aud
+		InvalidTargets: Vehicle, Wall, Structure
+	Warhead@4Eff: CreateEffect
+		Explosions: building
+		ImpactSounds: bt_acimp1.ogg, bt_acimp2.ogg, bt_acimp3.ogg, bt_acimp4.ogg, bt_acimp5.ogg, bt_acimp6.ogg, bt_acimp7.ogg, bt_acimp8.ogg, bt_acimp9.ogg, bt_acimp10.ogg
+		ValidTargets: Vehicle, Structure, Cyborg, Wall
 	Warhead@Res7: DestroyResource
 		Size: 2
 		Delay: 8
@@ -3698,18 +3724,20 @@ RaeNuke:
 		Image: 120MM
 		ContrailLength: 25
 	Warhead@1Dam: SpreadDamage
+		Spread: 1c512
 		Damage: 10000
 		Versus:
-			None: 50
+			None: 75
 			Wood: 50
 			Light: 75
 			Heavy: 100
 			Concrete: 25
 		ValidRelationships: Neutral, Enemy, Ally
 	Warhead@2Dam: SpreadDamage
+		Spread: 2c256
 		Damage: 5000
 		Versus:
-			None: 50
+			None: 75
 			Wood: 50
 			Light: 75
 			Heavy: 100

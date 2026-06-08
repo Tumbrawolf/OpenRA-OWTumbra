@@ -169,10 +169,9 @@ corvus.Hero0:
 	RenderSprites:
 		Image: hereticcorvus
 	Buildable:
-		Queue: Infantry
-		BuildAtProductionType: Soldier
+		Queue: Infantry, Hero
 		BuildPaletteOrder: 50
-		Prerequisites: ~barracks, ~techlevel.unrestricted, !active.corvus, ~!hero.tier1, ~hero.corvus
+		Prerequisites: ~barracks, !active.corvus, ~!hero.tier1, ~hero.corvus
 		Description: actor-corvus-hero0.description
 		BuildDurationModifier: 100
 		BuildDuration: 750
@@ -253,8 +252,9 @@ corvus.Hero0:
 	ChangesHealth@default:
 		PercentageStep: 1
 		Delay: 75
-		StartIfBelow: 101
+		StartIfBelow: 100
 		DamageCooldown: 75
+		DamageTypes: BypassShield
 	GrantConditionOnPrerequisite@scroll:
 		Prerequisites: corvus.tier1.scroll
 		Condition: scroll
@@ -277,7 +277,7 @@ corvus.Hero0:
 	ChangesHealth@crystalvial:
 		PercentageStep: 1
 		Delay: 75
-		StartIfBelow: 101
+		StartIfBelow: 100
 		DamageCooldown: 125
 		RequiresCondition: crystalvial
 	GrantConditionOnPrerequisite@silvershield:
@@ -289,7 +289,7 @@ corvus.Hero0:
 	ChangesHealth@quartzflask:
 		PercentageStep: 1
 		Delay: 75
-		StartIfBelow: 101
+		StartIfBelow: 100
 		DamageCooldown: 125
 		RequiresCondition: quartzflask
 	GrantConditionOnPrerequisite@magicshield:
@@ -305,7 +305,7 @@ corvus.Hero0:
 	GrantPeriodicConditionOnEvent@invincibility:
 		Condition: ironshroud
 		CooldownDuration: 1500
-		ActiveDuration: 375
+		ActiveDuration: 250
 		Triggers: Damage
 		StartsCharged: True
 		ShowSelectionBar: true
@@ -361,7 +361,7 @@ corvus.Hero1:
 	Inherits: corvus.Hero0
 	Inherits@heroTier: ^HeroTier1
 	Buildable:
-		Prerequisites: ~barracks, ~techlevel.unrestricted, !active.corvus, ~!hero.tier2, ~hero.tier1, ~hero.corvus
+		Prerequisites: ~barracks, !active.corvus, ~!hero.tier2, ~hero.tier1, ~hero.corvus
 		BuildDuration: 1500
 	Tooltip:
 		Name: actor-corvus-hero1-name
@@ -390,7 +390,7 @@ corvus.Hero2:
 	Inherits: corvus.Hero1
 	Inherits@heroTier: ^HeroTier2
 	Buildable:
-		Prerequisites: ~barracks, ~techlevel.unrestricted, !active.corvus, ~!hero.tier3, ~hero.tier2, ~hero.corvus
+		Prerequisites: ~barracks, !active.corvus, ~!hero.tier3, ~hero.tier2, ~hero.corvus
 	Tooltip:
 		Name: actor-corvus-hero2-name
 	Health:
@@ -414,7 +414,7 @@ corvus.Hero3:
 	Inherits: corvus.Hero2
 	Inherits@heroTier: ^HeroTier3
 	Buildable:
-		Prerequisites: ~barracks, ~techlevel.unrestricted, !active.corvus, ~!hero.tier4, ~hero.tier3, ~hero.corvus
+		Prerequisites: ~barracks, !active.corvus, ~!hero.tier4, ~hero.tier3, ~hero.corvus
 	Tooltip:
 		Name: actor-corvus-hero3-name
 	Health:
@@ -440,7 +440,7 @@ corvus.Hero4:
 	Inherits: corvus.Hero3
 	Inherits@heroTier: ^HeroTier4
 	Buildable:
-		Prerequisites: ~barracks, ~techlevel.unrestricted, !active.corvus, ~!hero.tier5, ~hero.tier4, ~hero.corvus
+		Prerequisites: ~barracks, !active.corvus, ~!hero.tier5, ~hero.tier4, ~hero.corvus
 		BuildDuration: 3000
 	Tooltip:
 		Name: actor-corvus-hero4.name
@@ -465,8 +465,8 @@ corvus.Hero5:
 	Inherits: corvus.Hero4
 	Inherits@heroTier: ^HeroTier5
 	Buildable:
-		Prerequisites: ~barracks, ~techlevel.unrestricted, !active.corvus, ~hero.tier5, ~hero.corvus
-		BuildDuration: 6000
+		Prerequisites: ~barracks, !active.corvus, ~hero.tier5, ~hero.corvus
+		BuildDuration: 4500
 	Tooltip:
 		Name: actor-corvus-hero5-name
 	Health:

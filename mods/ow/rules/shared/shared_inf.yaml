@@ -1,7 +1,8 @@
 
 E1:
+	Inherits@voice: ^InfantryVoiceSwitch
 	Buildable:
-		Prerequisites: ~barracks, ~techlevel.infonly, ~infantry.e1e3prereq
+		Prerequisites: ~barracks, ~techlevel.infonly, ~infantry.e1e3prereq, ~!ai.god
 	ProvidesPrerequisite@dawn:
 		Factions: nod, bhand, marked, nod3, gdi, steel, zocom, gdi3, hitler, himmler, heydrich
 		Prerequisite: e1.dawn
@@ -52,6 +53,7 @@ E1.D:
 
 # Grenadier
 E2:
+	Inherits@voice: ^InfantryVoiceSwitch
 	Buildable:
 		Prerequisites: ~barracks, ~techlevel.infonly, ~infantry.e2prereq
 	Armament@BUS:
@@ -71,6 +73,7 @@ E2:
 
 # Rocket man
 E3:
+	Inherits@voice: ^InfantryVoiceSwitch
 	Buildable:
 		Prerequisites: ~barracks, ~techlevel.infonly, ~infantry.e1e3prereq
 	Armament@BUS:
@@ -87,6 +90,7 @@ E3:
 
 # Flamethrower
 E4:
+	Inherits@voice: ^InfantryVoiceSwitch
 	Buildable:
 		Prerequisites: ~barracks, radar, ~techlevel.low, ~infantry.e4prereq
 	Armament@BUS:
@@ -171,6 +175,7 @@ MECH:
 #Officer
 E1OF:
 	Inherits: ^Soldier
+	Inherits@voice: ^InfantryVoiceSwitch
 	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
 	Buildable:
 		Queue: Infantry
@@ -260,7 +265,14 @@ TSENGI.O:
 		SabotageHPRemoval: 30
 		ValidRelationships: Enemy, Ally, Neutral
 	Voiced:
+		RequiresCondition: !avalon
 		VoiceSet: EngineerVoice
+	Voiced@1:
+		RequiresCondition: avalon
+		VoiceSet: GenericVoice
+	GrantConditionOnFaction@avali:
+		Factions: avalon
+		Condition: avalon
 	-AttackFrontal:
 	RenderSprites:
 		Image: tsengi
@@ -293,7 +305,14 @@ C1.O:
 	Inherits@2: ^ArmedCivilian
 	AutoTarget:
 	Voiced:
+		RequiresCondition: !avalon
 		VoiceSet: EngineerVoice
+	Voiced@1:
+		RequiresCondition: avalon
+		VoiceSet: GenericVoice
+	GrantConditionOnFaction@avali:
+		Factions: avalon
+		Condition: avalon
 	RenderSprites:
 		Image: C1
 	Tooltip:

@@ -7,7 +7,6 @@ ROAD:
 		Prerequisites: ~structures.civ
 	EnergyWall:
 		TerrainTypes: Clear,ClearSnow,Road,Creep
-		AllowPlacementOnResources: true
 		Weapon: E100Cannon
 		ActiveCondition: never
 	FreeActor:
@@ -24,7 +23,6 @@ ROAD:
 
 ROAD.Terrain:
 	Inherits@1: MINE_DUMMY
-	-RevealsShroud:
 	ChangesTerrain:
 		TerrainType: Road
 	ExternalCondition:

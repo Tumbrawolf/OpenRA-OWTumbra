@@ -8,7 +8,7 @@ SCRIN:
 		Description: actor-scrin.description
 		Prerequisites: ~hpad, techcenter, ~techlevel.unrestricted, ~aircraft.nod_bhand_sep
 	Valued:
-		Cost: 2000
+		Cost: 1800
 	Tooltip:
 		Name: actor-scrin.name
 	UpdatesPlayerStatistics:
@@ -62,8 +62,6 @@ SCRIN:
 		Prerequisites: aircraft.upgraded
 	Selectable:
 		DecorationBounds: 1280, 1194, 0, 85
-	Rearmable:
-		RearmActors: hpad
 	WithAmmoPipsDecoration:
 		Position: BottomLeft
 		RequiresSelection: true
@@ -120,7 +118,7 @@ VENOM:
 		Prerequisites: ~hpad, ~techlevel.high, ~aircraft.nod
 		Description: actor-venom.description
 	Valued:
-		Cost: 1350
+		Cost: 1200
 	Tooltip:
 		Name: actor-venom.name
 	UpdatesPlayerStatistics:
@@ -169,8 +167,6 @@ VENOM:
 	Selectable:
 		Bounds: 1621, 1365, 0, -341
 		DecorationBounds: 1621, 1365, 0, -341
-	Rearmable:
-		RearmActors: hpad
 	RenderVoxels:
 		Scale: 0.8
 	WithAmmoPipsDecoration:
@@ -198,7 +194,7 @@ HUNTER:
 	Inherits@3: ^AutoTargetAllAssaultMove
 	RejectsOrders:
 	Valued:
-		Cost: 1000
+		Cost: 100
 	Tooltip:
 		Name: actor-hunter.name
 	Health:
@@ -209,13 +205,12 @@ HUNTER:
 	Aircraft:
 		TurnSpeed: 64
 		Speed: 355
-		Pitch: 0
-		Roll: 0
 		CruiseAltitude: 2c0
 		CruisingCondition: cruising
 		MoveIntoShroud: true
 	AttackTurreted:
 		TargetFrozenActors: true
+		RequiresCondition: cruising
 	Turreted:
 	Armament@PRIMARY:
 		Weapon: HunterSeekerBomb
@@ -225,11 +220,10 @@ HUNTER:
 		RequiresCondition: triggered
 	KillsSelf@2:
 		RequiresCondition: disabled
-		DamageTypes: disabled
 	FireWarheadsOnDeath:
 		Weapon: UnitExplodeSmall
 		EmptyWeapon: UnitExplodeSmall
-		DeathTypes: disabled
+		RequiresCondition: !triggered
 	Targetable:
 		TargetTypes: AirborneActor, GroundActor
 	HiddenUnderFog:
@@ -252,6 +246,12 @@ HUNTER:
 	AutoTarget:
 		InitialStance: AttackAnything
 		ScanRadius: 256
+	AutoTargetPriority@ATTACKANYTHING:
+		ValidTargets: Infantry, Cyborg, Vehicle, Water, Ship, Underwater, AirborneActor, Structure, Defense
+		Priority: 1
+	AutoTargetPriority@EPIC:
+		ValidTargets: EpicUnit, Hero
+		Priority: 10
 	AttackWander:
 		WanderMoveRadius: 64
 		ReduceMoveRadiusDelay: 1
@@ -267,3 +267,20 @@ HUNTER:
 	WithShadow:
 		Offset: 43, 128, 0
 		ZOffset: -129
+
+HUNTER.Spy:
+	Inherits: HUNTER
+	-WithFacingSpriteBody:
+	-ActorLostNotification:
+	GrantDelayedCondition@never:
+		Condition: never
+		Delay: 500
+	KillsSelf@0: 
+		Delay: 250
+	Armament@PRIMARY:
+		RequiresCondition: never
+	Aircraft:
+		Speed: 8
+	FireWarheadsOnDeath@always:
+		Weapon: RevealSuperweapons
+		EmptyWeapon: RevealSuperweapons

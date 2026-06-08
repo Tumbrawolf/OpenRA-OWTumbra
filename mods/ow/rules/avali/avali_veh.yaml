@@ -1,23 +1,38 @@
 ^AvaliVehicle:
 	ExternalCondition@hordebonustank:
 		Condition: hordebonus
+		TotalCap: 10
+	ExternalCondition@hordebonustank2:
+		Condition: hordebonusupgrade1
+		TotalCap: 10
+	ExternalCondition@hordebonustank3:
+		Condition: hordebonusupgrade2
+		TotalCap: 10
 	ProximityExternalCondition@hordebonus:
 		Condition: hordebonus
-		Range: 4c0
+		Range: 6c0
 	WithIdleOverlay@hordebonus:
 		Image: hordebonus-overlay
 		Sequence: vehicle
 		Palette: effect
-		RequiresCondition: (hordebonus >= 15) || (hordebonusupgrade1 >= 15) || (hordebonusupgrade2 >= 15)
+		RequiresCondition: (hordebonus >= 10) || (hordebonusupgrade1 >= 10) || (hordebonusupgrade2 >= 10)
 		IsDecoration: True
 	ReloadDelayMultiplier@hordebonus:
-		RequiresCondition: (hordebonus >= 15) || (hordebonusupgrade1 >= 15) || (hordebonusupgrade2 >= 15)
+		RequiresCondition: (hordebonus >= 10) || (hordebonusupgrade1 >= 10) || (hordebonusupgrade2 >= 10)
+		Modifier: 80
+	ReloadAmmoDelayMultiplier@hordebonus:
+		RequiresCondition: (hordebonus >= 10) || (hordebonusupgrade1 >= 10) || (hordebonusupgrade2 >= 10)
+		Modifier: 90
+	DamageMultiplier@hordebonus:
+		RequiresCondition: (hordebonus >= 10) || (hordebonusupgrade1 >= 10) || (hordebonusupgrade2 >= 10)
 		Modifier: 90
 	GrantConditionOnTerrain@snow:
 		TerrainTypes: ClearSnow
 		Condition: env_snow_buff
 	GrantConditionOnTileSet@cold:
 		TileSets: SNOW
+		Condition: env_snow_buff
+	ExternalCondition@cold:
 		Condition: env_snow_buff
 	SpeedMultiplier@cold:
 		Modifier: 115
@@ -28,8 +43,15 @@
 	SpeedMultiplier@cyrostream2:
 		RequiresCondition: (cyrostreameffect >= 3) && (cyrostreameffect < 8)
 		Modifier: 100
-	ExternalCondition@cold:
-		Condition: env_snow_buff
+	SpeedMultiplier@cyrostrike:
+		Modifier: 100
+	ReloadDelayMultiplier@cyrostrike:
+		Modifier: 100
+	ReloadAmmoDelayMultiplier@cyrostrike:
+		Modifier: 100
+	WithColoredOverlay@cyrostrike:
+		RequiresCondition: cyrostrikeeffect
+		Color: 00FBFF00
 	Targetable@weatherimmune:
 		TargetTypes: WeatherTankImmume
 	Voiced:
@@ -239,7 +261,7 @@ AV1TNK:
 	Selectable:
 		Class: AV1TNK
 	Valued:
-		Cost: 880
+		Cost: 800
 	Tooltip:
 		Name: actor-av1tnk.name
 	Health:
@@ -251,8 +273,50 @@ AV1TNK:
 		TurnSpeed: 16
 	Armament:
 		Weapon: AvaliPredatorCannon
+	GrantConditionOnTerrain@water:
+		TerrainTypes: Water
+		Condition: water
 	SpawnActorOnDeath:
 		Actor: AV1TNK.Husk
+		RequiresCondition: !water
+	SelectionDecorations:
+	WithShadow:
+		Offset: 43, 128, -64
+		ZOffset: -129
+	Hovers:
+		PauseOnCondition: disabled
+	-ClassicFacingBodyOrientation:
+	BodyOrientation:
+
+AV2TNK:
+	Inherits: 2TNK
+	Inherits@avali: ^AvaliVehicle
+	Buildable:
+		Queue: Vehicle
+		BuildPaletteOrder: 133
+		Prerequisites: fix, techcenter, ~vehicles.avalon, ~techlevel.high
+		Description: actor-av2tnk.description
+	Selectable:
+		Class: AV1TNK
+	Valued:
+		Cost: 900
+	Tooltip:
+		Name: actor-av2tnk.name
+	Health:
+		HP: 44000
+	Mobile:
+		Speed: 82
+		Locomotor: hover
+	Turreted:
+		TurnSpeed: 16
+	Armament:
+		Weapon: AvaliRefractorCannon
+	GrantConditionOnTerrain@water:
+		TerrainTypes: Water
+		Condition: water
+	SpawnActorOnDeath:
+		Actor: AV2TNK.Husk
+		RequiresCondition: !water
 	SelectionDecorations:
 	WithShadow:
 		Offset: 43, 128, -64
@@ -280,7 +344,7 @@ AVARTY:
 		AddToArmyValue: true
 	Buildable:
 		Queue: Vehicle
-		BuildPaletteOrder: 225
+		BuildPaletteOrder: 134
 		Prerequisites: fix, techcenter, ~vehicles.avalon, ~techlevel.high
 		Description: actor-avarty.description
 	Health:
@@ -505,6 +569,7 @@ AVARTY:
 		Modifier: 95
 	SpawnActorOnDeath:
 		Actor: AVARTY.Husk
+	-Cloneable:
 
 AVARTY.BOT:
 	Inherits: ^TrackedVehicle
@@ -982,8 +1047,12 @@ AVQTNK:
 		Prerequisites: fix, advtechcenter, ~vehicles.avalon, ~techlevel.high
 		BuildLimit: 2
 		Description: actor-avqtnk.description
-	Valued:
-		Cost: 3000
+	Valued: # 3000
+		Cost: 1000
+	GivesExperienceMultiplier@value:
+		Modifier: 300
+	ProductionCostMultiplier@value:
+		Multiplier: 300
 	Tooltip:
 		Name: actor-avqtnk.name
 	UpdatesPlayerStatistics:

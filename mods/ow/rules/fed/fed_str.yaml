@@ -6,7 +6,7 @@ fed.shields:
 		Description: actor-fedupgrades.shieldsdesc
 		BuildPaletteOrder: 12000
 		BuildDuration: 4500
-		Prerequisites: ~!fed.shields, ~structures.fed, ulttechcenter, ~techlevel.unrestricted
+		Prerequisites: ~structures.fed, ulttechcenter, ~techlevel.unrestricted
 		Icon: protossshields
 	ProvidesPrerequisite@upgradename:
 	ProvidesPrerequisite@enableshieldupgrade:
@@ -15,6 +15,9 @@ fed.shields:
 		Multiplier: 15000
 	RenderSprites:
 		Image: icon
+	WithProductionIconOverlay:
+		Types: UpgradeComplete
+		Prerequisites: fed.shields
 
 
 FTEK:
@@ -58,7 +61,7 @@ GAP3:
 	Armor:
 		Type: Wood
 	RevealsShroud:
-		MinRange: 16c0
+		MinRange: 15c0
 		Range: 18c0
 		RevealGeneratedShroud: False
 		RequiresCondition: !jammed && !disabled
@@ -68,8 +71,9 @@ GAP3:
 	DetectCloaked:
 		Range: 8c0
 		RequiresCondition: !jammed && !disabled
+		DetectionTypes: Cloak, AirCloak, Underwater
 	RevealsShroud@GAPGEN:
-		Range: 18c0
+		Range: 15c0
 		RequiresCondition: !disabled
 	RenderDetectionCircle:
 	RenderSprites:
@@ -104,6 +108,11 @@ DGUN:
 	Power:
 		Amount: -50
 	-RangeMultiplier@harderAI:
+	-GrantConditionOnPrerequisite@rockets:
+	-WithSpriteTurret@rocket:
+	-Turreted@rocket:
+	-Armament@rocket:
+	-DamageMultiplier@rockets:
 
 ADVSAM:
 	Inherits: SAM
@@ -163,6 +172,8 @@ OREGEN:
 		Amount: 10
 		RequiresCondition: !disabled
 	-AcceptsDeliveredCash:
+	-GrantConditionOnPrerequisite@frost:
+	-SeedsResource@frost:
 
 GEMGEN:
 	Inherits: OREGEN

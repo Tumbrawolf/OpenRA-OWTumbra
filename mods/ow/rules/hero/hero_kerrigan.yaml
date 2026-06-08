@@ -28,9 +28,11 @@ kerrigan.tier2.fastupgrade1:
 		Name: actor-kerrigan-tier2-fastupgrade1.name
 	Buildable:
 		Description: actor-kerrigan-tier2-fastupgrade1.description
-		Prerequisites: ~active.kerrigan, !upgrade.inffirepower1
+		Prerequisites: ~active.kerrigan, !upgrade.inffirepower1, ~!hero.talent2
 	RenderSprites:
 		Image: upgrade.inffirepower1
+	ProvidesPrerequisite@tier:
+		Prerequisite: hero.talent2
 	ProvidesPrerequisite@buildingname:
 	ProvidesPrerequisite@upgradename:
 		Prerequisite: upgrade.inffirepower1
@@ -42,12 +44,38 @@ kerrigan.tier2.fastupgrade2:
 		Name: actor-kerrigan-tier2-fastupgrade2.name
 	Buildable:
 		Description: actor-kerrigan-tier2-fastupgrade2.description
-		Prerequisites: ~active.kerrigan, !upgrade.infarmor1
+		Prerequisites: ~active.kerrigan, !upgrade.infarmor1, ~!hero.talent2
 	RenderSprites:
 		Image: upgrade.infarmor1
+	ProvidesPrerequisite@tier:
+		Prerequisite: hero.talent2
 	ProvidesPrerequisite@buildingname:
 	ProvidesPrerequisite@upgradename:
 		Prerequisite: upgrade.infarmor1
+
+# Sinew Bomb
+kerrigan.tier2.bomb1:
+	Inherits: ^HeroUpgradeBaseTier2
+	Tooltip:
+		Name: actor-kerrigan-tier2-bomb.name
+	Buildable:
+		Description: actor-kerrigan-tier2-bomb.description
+		Prerequisites: ~active.kerrigan, ~hero.talent2
+		Icon: chem
+	RenderSprites:
+		Image: icon
+
+# Toxin Bomb
+kerrigan.tier2.bomb2:
+	Inherits: ^HeroUpgradeBaseTier2
+	Tooltip:
+		Name: actor-kerrigan-tier2-bomb2.name
+	Buildable:
+		Description: actor-kerrigan-tier2-bomb2.description
+		Prerequisites: ~active.kerrigan, ~hero.talent2
+		Icon: nuke
+	RenderSprites:
+		Image: icon
 
 # Carapace, increase Kerrigan lifesteal from 15% to 30%
 kerrigan.tier3.carapace:
@@ -61,6 +89,18 @@ kerrigan.tier3.carapace:
 	RenderSprites:
 		Image: icon
 
+# Overreach, increase attack range by 20%
+kerrigan.tier3.overreach:
+	Inherits: ^HeroUpgradeBaseTier3
+	Tooltip:
+		Name: actor-kerrigan-tier3-overreach.name
+	Buildable:
+		Description: actor-kerrigan-tier3-overreach.description
+		Prerequisites: ~active.kerrigan
+		Icon: raise
+	RenderSprites:
+		Image: phaerah.icons
+
 # Ultralisk Evolution, Unlocks Torrasque ultralisk
 kerrigan.tier4.torrasque:
 	Inherits: ^HeroUpgradeBaseTier4
@@ -71,6 +111,18 @@ kerrigan.tier4.torrasque:
 		Prerequisites: ~active.kerrigan
 	RenderSprites:
 		Image: zultra
+
+# Bloodlust - enables area Frenzy effect when entering combat
+kerrigan.tier4.bloodlust:
+	Inherits: ^HeroUpgradeBaseTier4
+	Tooltip:
+		Name: actor-kerrigan-tier4-bloodlust.name
+	Buildable:
+		Description: actor-kerrigan-tier4-bloodlust.description
+		Prerequisites: ~active.kerrigan
+		Icon: deathstrike
+	RenderSprites:
+		Image: phaerah.icons
 
 # Adrenal Glands, Improves ground unit attack speed by 10%.
 kerrigan.tier5.frenzy:
@@ -117,10 +169,9 @@ ZKERRIGAN.Hero0:
 		Image: zkerrigan
 	Buildable:
 		Description: actor-zkerrigan-hero0.description
-		Queue: Infantry
-		BuildAtProductionType: Infantry
+		Queue: Infantry, Hero
 		BuildPaletteOrder: 50
-		Prerequisites: ~barracks, ~techlevel.unrestricted, !active.kerrigan, ~!hero.tier1, ~hero.kerrigan
+		Prerequisites: ~barracks, !active.kerrigan, ~!hero.tier1, ~hero.kerrigan
 		BuildDurationModifier: 100
 		BuildDuration: 750
 		BuildLimit: 1
@@ -153,6 +204,16 @@ ZKERRIGAN.Hero0:
 	Armament@1:
 		Name: primary
 		Weapon: KerriganMelee
+		LocalOffset: 512,200,256
+	Armament@bomb1:
+		RequiresCondition: biobomb_enabled
+		Name: secondary
+		Weapon: KerriganBioBomb
+		LocalOffset: 512,200,256
+	Armament@bomb2:
+		RequiresCondition: toxinbomb_enabled
+		Name: secondary
+		Weapon: KerriganToxinBomb
 		LocalOffset: 512,200,256
 	WithInfantryBody:
 		DefaultAttackSequence: shoot
@@ -206,9 +267,6 @@ ZKERRIGAN.Hero0:
 		UncloakOn: Damage, Attack, Move
 		Palette: player
 		IsPlayerPalette: true
-	ProximityExternalCondition@wander:
-		Condition: wander
-		Range: 2c0
 	FireWarheadsOnDeath:
 		Weapon: KerriganDeathNoExplosion
 		EmptyWeapon: KerriganDeathNoExplosion
@@ -243,7 +301,7 @@ ZKERRIGAN.Hero0:
 		DamagePercentConverted: 15
 	ConvertsDamageToHealth@kerrigan2:
 		RequiresCondition: lifesteal
-		DamagePercentConverted: 30
+		DamagePercentConverted: 25
 	GrantConditionOnPrerequisite@lifesteal:
 		Prerequisites: kerrigan.tier3.carapace
 		Condition: lifesteal
@@ -259,6 +317,12 @@ ZKERRIGAN.Hero0:
 	FirepowerMultiplier@savagery:
 		RequiresCondition: savagery
 		Modifier: 115
+	GrantConditionOnPrerequisite@bomb:
+		Prerequisites: kerrigan.tier2.bomb1
+		Condition: biobomb_enabled
+	GrantConditionOnPrerequisite@bomb2:
+		Prerequisites: kerrigan.tier2.bomb2
+		Condition: toxinbomb_enabled
 	ChangesHealth@regen:
 		Delay: 175
 	ChangesHealth@regen2:
@@ -275,12 +339,39 @@ ZKERRIGAN.Hero0:
 		Delay: 125
 		StartIfBelow: 40
 		DamageCooldown: 250
+	GrantConditionOnPrerequisite@overreach:
+		Prerequisites: kerrigan.tier3.overreach
+		Condition: overreach_enabled
+	RangeMultiplier@overreach:
+		RequiresCondition: overreach_enabled
+		Modifier: 118
+	GrantConditionOnPrerequisite@bloodlust:
+		Prerequisites: kerrigan.tier4.bloodlust
+		Condition: bloodlust_enabled
+	GrantPeriodicConditionOnEvent@bloodlust:
+		RequiresCondition: bloodlust_enabled
+		Condition: bloodlust
+		StartsCharged: true
+		ShowSelectionBar: true
+		ActiveColor: FF5858
+		CooldownColor: 4E1B1B
+		ActiveDuration: 375
+		CooldownDuration: 1875
+		Triggers: Attack
+	AmbientSound@bloodlust:
+		SoundFiles: bloodlust.ogg
+		Interval: 9000
+		RequiresCondition: bloodlust
+	FireWarheads@bloodlust:
+		RequiresCondition: bloodlust
+		Weapons: KerriganBloodlust
+		Interval: 9000
 
 ZKERRIGAN.Hero1:
 	Inherits: ZKERRIGAN.Hero0
 	Inherits@heroTier: ^HeroTier1
 	Buildable:
-		Prerequisites: ~barracks, ~techlevel.unrestricted, !active.kerrigan, ~!hero.tier2, ~hero.tier1, ~hero.kerrigan
+		Prerequisites: ~barracks, !active.kerrigan, ~!hero.tier2, ~hero.tier1, ~hero.kerrigan
 		BuildDuration: 1500
 	Tooltip:
 		Name: actor-zkerrigan-hero1-name
@@ -311,7 +402,7 @@ ZKERRIGAN.Hero2:
 	Inherits@autotarget: ^AutoTargetAllAssaultMove
 	Buildable:
 		Description: actor-zkerrigan-hero2.description
-		Prerequisites: ~barracks, ~techlevel.unrestricted, !active.kerrigan, ~!hero.tier3, ~hero.tier2, ~hero.kerrigan
+		Prerequisites: ~barracks, !active.kerrigan, ~!hero.tier3, ~hero.tier2, ~hero.kerrigan
 	Tooltip:
 		Name: actor-zkerrigan-hero2.name
 	Health:
@@ -323,25 +414,13 @@ ZKERRIGAN.Hero2:
 	FirepowerMultiplier@1:
 		Modifier: 120
 	Armament@1:
-		Weapon: KerriganBeam
-	GrantConditionOnPrerequisite@notzerg:
-		Prerequisites: techlevel.hero
-		Condition: not_zerg
-	FirepowerMultiplier@notzerg:
-		RequiresCondition: not_zerg
-		Modifier: 80
-	DamageMultiplier@notzerg:
-		RequiresCondition: not_zerg
-		Modifier: 120
-	RangeMultiplier@notzerg:
-		RequiresCondition: not_zerg
-		Modifier: 80
+		Weapon: KerriganBeamHero
 
 ZKERRIGAN.Hero3:
 	Inherits: ZKERRIGAN.Hero2
 	Inherits@heroTier: ^HeroTier3
 	Buildable:
-		Prerequisites: ~barracks, ~techlevel.unrestricted, !active.kerrigan, ~!hero.tier4, ~hero.tier3, ~hero.kerrigan
+		Prerequisites: ~barracks, !active.kerrigan, ~!hero.tier4, ~hero.tier3, ~hero.kerrigan
 	Tooltip:
 		Name: actor-zkerrigan-hero3-name
 	Health:
@@ -351,12 +430,12 @@ ZKERRIGAN.Hero3:
 	FirepowerMultiplier@1:
 		Modifier: 130
 	SpeedMultiplier@1:
-		Modifier: 120
+		Modifier: 110
 	ProximityExternalCondition@squadboost:
 		Range: 8c0
 	Armament@2:
 		Name: primary
-		Weapon: KerriganBomb
+		Weapon: KerriganGlaive
 		LocalOffset: 512,-200,256
 		FireDelay: 14
 		LocalYaw: 96,-96
@@ -365,7 +444,7 @@ ZKERRIGAN.Hero4:
 	Inherits: ZKERRIGAN.Hero3
 	Inherits@heroTier: ^HeroTier4
 	Buildable:
-		Prerequisites: ~barracks, ~techlevel.unrestricted, !active.kerrigan, ~!hero.tier5, ~hero.tier4, ~hero.kerrigan
+		Prerequisites: ~barracks, !active.kerrigan, ~!hero.tier5, ~hero.tier4, ~hero.kerrigan
 		BuildDuration: 3000
 	Tooltip:
 		Name: actor-zkerrigan-hero4-name
@@ -377,16 +456,14 @@ ZKERRIGAN.Hero4:
 		Modifier: 140
 	Armament@3:
 		Name: primary
-		Weapon: KerriganPlague
-		LocalOffset: 512,-200,555
-		FireDelay: 25
+		Weapon: KerriganSpawn
 
 ZKERRIGAN.Hero5:
 	Inherits: ZKERRIGAN.Hero4
 	Inherits@heroTier: ^HeroTier5
 	Buildable:
-		Prerequisites: ~barracks, ~techlevel.unrestricted, !active.kerrigan, ~hero.tier5, ~hero.kerrigan
-		BuildDuration: 6000
+		Prerequisites: ~barracks, !active.kerrigan, ~hero.tier5, ~hero.kerrigan
+		BuildDuration: 4500
 	Tooltip:
 		Name: actor-zkerrigan-hero5-name
 	Health:
@@ -395,7 +472,4 @@ ZKERRIGAN.Hero5:
 	-GrantPeriodicCondition@deploy:
 	-GainsExperienceMultiplier@1:
 	FirepowerMultiplier@1:
-		Modifier: 150
-	Armament@4:
-		Name: primary
-		Weapon: KerriganSpawn
+		Modifier: 140

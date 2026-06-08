@@ -1,8 +1,6 @@
 
 ^GLABuilding:
-	FireWarheadsOnDeath@hole:
-		Weapon: HoleDamage
-		EmptyWeapon: HoleDamage
+	Inherits@kassad: ^KassadStealth
 	ExternalCondition@tempheal:
 		Condition: tempheal
 	ChangesHealth@tempheal:
@@ -11,18 +9,26 @@
 		StartIfBelow: 100
 		DamageCooldown: 125
 		RequiresCondition: tempheal
+	WithDecoration@service:
+		Image: pips
+		Sequence: wrench
+		Position: BottomLeft
+		Margin: 8, 8
+		BlinkInterval: 35
+		BlinkPattern: Off, On
+		RequiresCondition: (wrench && !damage-cooldown) || tempheal
 
 ^KassadStealth:
 	Cloak@stealthgen:
-		RequiresCondition: stealthgen && !disabled && !kassadstealth
+		RequiresCondition: stealthgen && !disabled && !kassadstealth && !no_owner
 	Cloak@kassad:
 		IsPlayerPalette: true
-		InitialDelay: 25
-		CloakDelay: 100
+		InitialDelay: 75
+		CloakDelay: 150
 		CloakSound: gstealon.aud
 		UncloakSound: gstealof.aud
-		RequiresCondition: kassadstealth && !stealthgen && !disabled
-		UncloakOn: Attack, Unload, Infiltrate, Demolish, Damage
+		RequiresCondition: kassadstealth && !stealthgen && !disabled && !no_owner
+		UncloakOn: Attack, Unload, Infiltrate, Demolish, Damage, SupportPower
 	GrantConditionOnFaction@kassad:
 		Factions: kassad
 		Condition: kassadstealth
@@ -38,36 +44,22 @@
 	Selectable:
 		Bounds: 2048, 2048
 	Targetable:
-		TargetTypes: GroundActor, C4, DetonateAttack, Structure, Defense, Hole
+		TargetTypes: GroundActor, C4, DetonateAttack, Structure, Hole
 	Building:
-		Footprint: ++ ++ ==
+		Footprint: == == ==
 		Dimensions: 2,3
 		LocalCenterOffset: 0,-512,0
 	Health:
 		HP: 60000
 	Valued:
-		Cost: 150
+		Cost: 200
 	Armor:
 		Type: Wood
 	Tooltip:
 		Name: meta-glahole-name
-	RevealsShroud:
-		MinRange: 2c0
-		Range: 3c0
-		RevealGeneratedShroud: False
 	Power:
 		Amount: 0
-	DamageMultiplier@bar1:
-		Modifier: 96
-	DamageMultiplier@bar2:
-		Modifier: 93
-	DamageMultiplier@bar3:
-		Modifier: 90
-	-WithColoredOverlay@IRONCURTAIN:
-	-TimedConditionBar:
-	DamageMultiplier@IRONCURTAIN:
-		Modifier: 15
-	-RepairableBuilding:
+	RepairableBuilding:
 	-WithBuildingRepairDecoration:
 	-SpawnActorsOnSell:
 	-Sellable:
@@ -81,28 +73,22 @@
 	WithDamageOverlay:
 	-ActorLostNotification:
 	-SoundOnDamageTransition:
+	GrantTimedCondition@invul:
+		Duration: 66
+		Condition: invince
+	DamageMultiplier@invul:
+		RequiresCondition: invince
+		Modifier: 15
+	WithDecoration@service:
+		RequiresCondition: (wrench && !damage-cooldown) || worker_active
 	SoundOnDamageTransition:
 		DamagedSounds: kaboom1.aud
 	WithDeathAnimation:
 		DeathSequence: dead
 		UseDeathTypeSuffix: false
-	ChangesHealth@hole:
-		PercentageStep: 1
-		Delay: 25
-		StartIfBelow: 100
-		DamageCooldown: 125
 	GrantConditionOnPrerequisite@pay:
 		Prerequisites: gla.pay
 		Condition: hazard_pay
-	ChangesHealth@pay:
-		RequiresCondition: hazard_pay
-		PercentageStep: 1
-		Delay: 75
-		StartIfBelow: 100
-		DamageCooldown: 250
-	DamageMultiplier@pay:
-		RequiresCondition: hazard_pay
-		Modifier: 90
 	FireWarheadsOnDeath:
 		DeathTypes: DefaultDeath, BulletDeath, SmallExplosionDeath, ExplosionDeath, FireDeath, TiberiumDeath, ElectricityDeath
 	FireWarheadsOnDeath@sound:
@@ -113,33 +99,72 @@
 		DeathTypes: hole
 		Weapon: HoleBuild
 		EmptyWeapon: HoleBuild
+	AmbientSound@rebuild:
+		Interval: 9000
+		RequiresCondition: rebuild
+		SoundFiles: placbldg.aud
 	KillsSelf:
-		Delay: 175
+		Delay: 75
 		RequiresCondition: rebuild
 		DamageTypes: hole
-	GrantConditionOnDamageState:
-		Condition: rebuild
-		ValidDamageStates: Light, Undamaged
-		EnabledSounds: placbldg.aud
 	SpawnActorOnDeath@hole:
 		Actor: GTENT
 		DeathType: hole
 		SkipMakeAnimations: false
-	-Shielded:
+	GrantDelayedCondition@hole:
+		Delay: 25
+		Condition: enable_hole
+	ProximityExternalCondition@hole:
+		Condition: hole_active
+	GrantPeriodicConditionOW@startrebuild:
+		RequiresCondition: enable_hole
+		PauseOnCondition: !worker_active
+		Condition: rebuild
+		ShowSelectionBar: true
+		ActiveDuration: 100
+		CooldownColor: 0099FF
+		ActiveColor: 0099FF
+		CooldownDuration: 1000
+	ExternalCondition@worker:
+		Condition: worker_active
+	GrantPeriodicConditionOW@workerspawn:
+		RequiresCondition: !worker_active && enable_hole
+		Condition: spawn_worker
+		CooldownDuration: 500
+	PeriodicConditionCooldownMultiplier:
+		RequiresCondition: hazard_pay
+		CooldownModifier: 66
+	FreeActor@worker:
+		Actor: GHARV.Hole
+		RequiresCondition: spawn_worker
+		AllowRespawn: true
+	FreeActor@holeterrain1:
+		Actor: GLAHoleTerrain
+		SpawnOffset: 0,0
+	FreeActor@holeterrain2:
+		Actor: GLAHoleTerrain
+		SpawnOffset: 0,1
+	FreeActor@holeterrain4:
+		Actor: GLAHoleTerrain
+		SpawnOffset: 1,0
+	FreeActor@holeterrain5:
+		Actor: GLAHoleTerrain
+		SpawnOffset: 1,1
 	RenderSprites:
 		Image: ghole2x2
-	-GrantConditionOnPrerequisite@lobbyhp1: # lobby option for HP scaling
-	-GrantConditionOnPrerequisite@lobbyhp2:
-	-GrantConditionOnPrerequisite@lobbyhp3:
-	-GrantConditionOnPrerequisite@lobbyhp4:
-	-GrantConditionOnPrerequisite@lobbyhp5:
-	-GrantConditionOnPrerequisite@lobbyhp6:
-	-DamageMultiplier@lobbyhp1:
-	-DamageMultiplier@lobbyhp2:
-	-DamageMultiplier@lobbyhp3:
-	-DamageMultiplier@lobbyhp4:
-	-DamageMultiplier@lobbyhp5:
-	-DamageMultiplier@lobbyhp6:
+
+GLAHoleTerrain:
+	Inherits: MINE_DUMMY
+	Targetable: 
+		TargetTypes: UpgradeThing, GroundActor
+	ExternalCondition: 
+		Condition: hole_active
+	ChangesTerrain:
+		TerrainType: Rock
+	KillsSelf:
+		RequiresCondition: !hole_active
+		RemoveInstead: true
+		Delay: 25
 
 ^GLAHole1x1:
 	Inherits: ^GLAHole
@@ -149,7 +174,7 @@
 	Health:
 		HP: 30000
 	Building:
-		Footprint: +
+		Footprint: =
 		Dimensions: 1,1
 		LocalCenterOffset: 0,0,0
 	RenderSprites:
@@ -161,6 +186,13 @@
 	-WithIdleOverlay@bibtemp:
 	-WithIdleOverlay@bibsnow:
 	-WithIdleOverlay@bibdes:
+	-FreeActor@holeterrain2:
+	-FreeActor@holeterrain4:
+	-FreeActor@holeterrain5:
+	ProximityExternalCondition@hole:
+		Range: 1c256
+	FreeActor@worker:
+		Actor: GHARV.Hole2
 
 ^GLAHole3x2:
 	Inherits: ^GLAHole
@@ -169,11 +201,22 @@
 	Selectable:
 		Bounds: 3072, 2048
 	Building:
-		Footprint: +++ +++ ===
+		Footprint: === === ===
 		Dimensions: 3,3
 		LocalCenterOffset: 0,-512,0
 	RenderSprites:
 		Image: ghole3x2
+	FreeActor@holeterrain7:
+		Actor: GLAHoleTerrain
+		SpawnOffset: 2,0
+	FreeActor@holeterrain8:
+		Actor: GLAHoleTerrain
+		SpawnOffset: 2,1
+	ProximityExternalCondition@hole:
+		Range: 3c512
+	FreeActor@worker:
+		Actor: GHARV.Hole3
+		SpawnOffset: 1,1
 
 ^GLAHole3x3:
 	Inherits: ^GLAHole
@@ -182,11 +225,25 @@
 	Selectable:
 		Bounds: 3072, 3072
 	Building:
-		Footprint: +++ +x+ +++ ===
+		Footprint: === === === ===
 		Dimensions: 3,4
 		LocalCenterOffset: 0,-512,0
 	RenderSprites:
 		Image: ghole3x3
+	FreeActor@holeterrain7:
+		Actor: GLAHoleTerrain
+		SpawnOffset: 2,0
+	FreeActor@holeterrain8:
+		Actor: GLAHoleTerrain
+		SpawnOffset: 2,1
+	FreeActor@holeterrain9:
+		Actor: GLAHoleTerrain
+		SpawnOffset: 2,2
+	ProximityExternalCondition@hole:
+		Range: 3c512
+	FreeActor@worker:
+		Actor: GHARV.Hole3
+		SpawnOffset: 1,1
 
 GFACT:
 	Inherits: FACT
@@ -202,6 +259,17 @@ GFACT:
 		Actor: GFACT.Hole
 	RenderSprites:
 		Image: fact
+	Production@maverick:
+		RequiresCondition: maverick && gotfactory
+		Produces: Aircraft
+	Exit@0:
+		ProductionTypes: Aircraft
+	GrantConditionOnPrerequisite@maverick:
+		Condition: maverick
+		Prerequisites: hero.maverick
+	GrantConditionOnPrerequisite@aircraft:
+		Condition: gotfactory
+		Prerequisites: factory
 
 GFACT.Hole:
 	Inherits: ^GLAHole3x3
@@ -209,9 +277,8 @@ GFACT.Hole:
 		Name: actor-gfact-hole-name
 	Health:
 		HP: 100000
-	ChangesHealth@hole:
-		DamageCooldown: 750
-		Delay: 35
+	GrantPeriodicConditionOW@startrebuild:
+		CooldownDuration: 2500
 	SpawnActorOnDeath@hole:
 		Actor: GFACT
 		DeathType: hole
@@ -256,7 +323,7 @@ GPROC:
 	Inherits: PROC
 	Inherits@GLA: ^GLABuilding
 	Buildable:
-		Prerequisites: gtent, ~techlevel.infonly, ~structures.gla, ~!ai.boss
+		Prerequisites: gtent, ~techlevel.infonly, ~structures.gla, ~!ai.god
 	Valued:
 		Cost: 1600
 	Building:
@@ -287,8 +354,6 @@ GPROC:
 		Actor: GPROC.Hole
 	RenderSprites:
 		Image: proc
-	StoresPlayerResources:
-		Capacity: 1500
 	FireWarheadsOnDeath:
 		Weapon: FireBaseExplosion
 		EmptyWeapon: FireBaseExplosion
@@ -302,8 +367,6 @@ GPROC.Hole:
 	SpawnActorOnDeath@hole:
 		Actor: GPROC.Free
 		DeathType: hole
-	ChangesHealth@hole:
-		DamageCooldown: 375
 
 GPROC.Free:
 	Inherits: GPROC
@@ -353,12 +416,11 @@ GADVTECH.Hole:
 	Inherits: ^GLAHole3x3
 	Tooltip:
 		Name: actor-gadvtech-hole-name
-	ChangesHealth@hole:
-		DamageCooldown: 750
-		Delay: 30
 	SpawnActorOnDeath@hole:
 		Actor: GADVTECH
 		DeathType: hole
+	GrantPeriodicConditionOW@startrebuild:
+		CooldownDuration: 3000
 
 ATEK.GLA:
 	Inherits: ATEK
@@ -385,12 +447,11 @@ ATEK.Hole:
 	Inherits: ^GLAHole
 	Tooltip:
 		Name: actor-atek-hole-name
-	ChangesHealth@hole:
-		DamageCooldown: 350
-		Delay: 28
 	SpawnActorOnDeath@hole:
 		Actor: ATEK.GLA
 		DeathType: hole
+	GrantPeriodicConditionOW@startrebuild:
+		CooldownDuration: 2500
 
 GSILO:
 	Inherits: SILO
@@ -416,6 +477,8 @@ GSILO.Hole:
 	SpawnActorOnDeath@hole:
 		Actor: GSILO
 		DeathType: hole
+	GrantPeriodicConditionOW@startrebuild:
+		CooldownDuration: 1000
 
 GAIR:
 	Inherits: ^Building
@@ -457,10 +520,22 @@ GAIR:
 	Exit@1:
 		SpawnOffset: -1024,-512,0
 		ExitCell: 3,1
+	Exit@2:
+		SpawnOffset: -1024,-512,0
+		ExitCell: 3,0
+	Exit@3:
+		SpawnOffset: -1024,-512,0
+		ExitCell: 0,1
+	Exit@4:
+		SpawnOffset: -1024,-512,0
+		ExitCell: 0,0
 	ProductionAirdrop:
 		Produces: Vehicle
 		ReadyAudio: ReinforcementsArrived
-		ActorType: badr.g
+		ActorType: tran.g
+		BaselineSpawn: true
+		WaitTickAfterProduce: 25
+		WaitTickBeforeProduce: 5
 	GrantConditionOnPrerequisite:
 		Prerequisites: anypower
 		Condition: power
@@ -528,19 +603,34 @@ GAIR.Hole:
 		Type: Rectangle
 			TopLeft: -2048, -1024
 			BottomRight: 1536, 1024
-	ChangesHealth@hole:
-		DamageCooldown: 500
 	RenderSprites:
 		Image: gairhole
+	FreeActor@holeterrain10:
+		Actor: GLAHoleTerrain
+		SpawnOffset: 3,0
+	FreeActor@holeterrain11:
+		Actor: GLAHoleTerrain
+		SpawnOffset: 3,1
+	FreeActor@holeterrain12:
+		Actor: GLAHoleTerrain
+		SpawnOffset: 3,2
 	SpawnActorOnDeath@hole:
 		Actor: GAIR
 		DeathType: hole
+	GrantPeriodicConditionOW@startrebuild:
+		CooldownDuration: 3000
+	ProximityExternalCondition@hole:
+		Range: 4c256
+	FreeActor@worker:
+		Actor: GHARV.Hole3
+		SpawnOffset: 2,0
 
 GFIX:
 	Inherits: FIX
 	Inherits@GLA: ^GLABuilding
 	Buildable:
-		Prerequisites: factory, ~structures.gla, ~techlevel.medium, ~!ai.boss
+		Prerequisites: factory, ~structures.gla, ~techlevel.medium, ~!ai.god
+		Description: actor-fix.gladesc
 	Valued:
 		Cost: 1300
 	Power:
@@ -574,13 +664,15 @@ GFIX.Hole:
 	-WithIdleOverlay@bibtemp:
 	-WithIdleOverlay@bibsnow:
 	-WithIdleOverlay@bibdes:
+	GrantPeriodicConditionOW@startrebuild:
+		CooldownDuration: 2500
 
 GPBOX:
 	Inherits: PBOX
 	Inherits@GLA: ^GLABuilding
 	Buildable:
 		Queue: Defense
-		Prerequisites: gtent, ~structures.gla, ~!structures.kassad, ~techlevel.low, ~!ai.boss
+		Prerequisites: gtent, ~structures.gla, ~!structures.kassad, ~techlevel.low, ~!ai.god
 	Cargo:
 		InitialUnits: ge1
 	Power:
@@ -594,16 +686,20 @@ GPBOX.Hole:
 	Inherits: ^GLAHole1x1
 	Tooltip:
 		Name: actor-gpbox-hole-name
+	Targetable@hole:
+		TargetTypes: Defense
 	SpawnActorOnDeath@hole:
 		Actor: GPBOX
 		DeathType: hole
+	GrantPeriodicConditionOW@startrebuild:
+		CooldownDuration: 900
 
 GHBOX:
 	Inherits: HBOX
 	Inherits@GLA: ^GLABuilding
 	Buildable:
 		Queue: Defense
-		Prerequisites: gtent, ~structures.kassad, ~techlevel.low, ~!ai.boss
+		Prerequisites: gtent, ~structures.kassad, ~techlevel.low, ~!ai.god
 	Cargo:
 		InitialUnits: ge1
 	Power:
@@ -617,9 +713,13 @@ GHBOX.Hole:
 	Inherits: ^GLAHole1x1
 	Tooltip:
 		Name: actor-ghbox-hole-name
+	Targetable@hole:
+		TargetTypes: Defense
 	SpawnActorOnDeath@hole:
 		Actor: GHBOX
 		DeathType: hole
+	GrantPeriodicConditionOW@startrebuild:
+		CooldownDuration: 900
 
 SSTORM:
 	Inherits: ^ScienceBuilding
@@ -636,7 +736,7 @@ SSTORM:
 	Buildable:
 		Queue: Tech
 		BuildPaletteOrder: 9002
-		Prerequisites: advtechcenter, ~techlevel.unrestricted, ~structures.gla, ~!sstorm
+		Prerequisites: advtechcenter, ~techlevel.unrestricted, ~structures.gla, !sstorm, ~!techlevel.nosuperweapons
 		BuildLimit: 1
 		Description: actor-sstorm.description
 	Building:
@@ -740,15 +840,14 @@ SSTORM:
 
 SSTORM.Hole:
 	Inherits: ^GLAHole3x3
+	Targetable@hole:
+		TargetTypes: Defense
 	Health:
 		HP: 150000
 	Tooltip:
 		Name: actor-sstorm-hole-name
-	ChangesHealth@hole:
-		DamageCooldown: 500
-		Delay: 55
-	KillsSelf:
-		Delay: 250
+	GrantPeriodicConditionOW@startrebuild:
+		CooldownDuration: 4500
 	ProvidesPrerequisite@self:
 		Prerequisite: sstorm
 	SpawnActorOnDeath@hole:
@@ -760,7 +859,7 @@ GMISS:
 	Inherits@GLA: ^GLABuilding
 	Buildable:
 		Queue: Tech
-		Prerequisites: advtechcenter, ~structures.gla, ~techlevel.unrestricted, !gmiss, ~!techlevel.noepic
+		Prerequisites: advtechcenter, ~structures.gla, ~techlevel.unrestricted, !gmiss, ~!techlevel.noepic, ~disabled
 	Valued:
 		Cost: 7500
 	Power:
@@ -768,24 +867,7 @@ GMISS:
 	ProvidesPrerequisite@self:
 		Prerequisite: gmiss
 	SpawnActorOnDeath:
-		Actor: GMISS.Hole
-
-GMISS.Hole:
-	Inherits: ^GLAHole3x2
-	Tooltip:
-		Name: actor-gmiss-hole-name
-	Health:
-		HP: 150000
-	ChangesHealth@hole:
-		DamageCooldown: 500
-		Delay: 55
-	KillsSelf:
-		Delay: 250
-	ProvidesPrerequisite@self:
-		Prerequisite: gmiss
-	SpawnActorOnDeath@hole:
-		Actor: GMISS
-		DeathType: hole
+		Actor: T.MISS.Hole
 
 GBLK:
 	Inherits: ^ScienceBuilding
@@ -851,7 +933,7 @@ GBLK.Hole:
 	Health:
 		HP: 75000
 	Building:
-		Footprint: xxx= xxx= ====
+		Footprint: ==== ==== ====
 		Dimensions: 4,3
 		LocalCenterOffset: 0,-512,0
 	HitShape:
@@ -859,13 +941,24 @@ GBLK.Hole:
 		Type: Rectangle
 			TopLeft: -2048, -1024
 			BottomRight: 1536, 1024
-	ChangesHealth@hole:
-		DamageCooldown: 500
 	RenderSprites:
 		Image: gairhole
 	SpawnActorOnDeath@hole:
 		Actor: GBLK
 		DeathType: hole
+	FreeActor@holeterrain10:
+		Actor: GLAHoleTerrain
+		SpawnOffset: 3,0
+	FreeActor@holeterrain11:
+		Actor: GLAHoleTerrain
+		SpawnOffset: 3,1
+	GrantPeriodicConditionOW@startrebuild:
+		CooldownDuration: 4500
+	ProximityExternalCondition@hole:
+		Range: 4c256
+	FreeActor@worker:
+		Actor: GHARV.Hole3
+		SpawnOffset: 2,0
 
 GSTG:
 	Inherits: ^Defense
@@ -923,18 +1016,21 @@ GSTG:
 		Sequence: tarp
 		PauseOnCondition: !build-incomplete
 	Armament@1:
+		RequiresCondition: !aprockets
 		Weapon: StingerMissile
 		LocalOffset: 0,0,512
 		MuzzleSequence: shoot
 		MuzzlePalette: player
 		PauseOnCondition: sniped
 	Armament@1AA:
+		RequiresCondition: !aprockets
 		Weapon: StingerMissileAA
 		LocalOffset: 0,0,512
 		MuzzleSequence: shoot
 		MuzzlePalette: player
 		PauseOnCondition: sniped
 	Armament@2:
+		RequiresCondition: !aprockets
 		Turret: secondary
 		Weapon: StingerMissile
 		LocalOffset: 0,0,512
@@ -942,8 +1038,39 @@ GSTG:
 		MuzzlePalette: player
 		PauseOnCondition: deadman
 	Armament@2AA:
+		RequiresCondition: !aprockets
 		Turret: secondary
 		Weapon: StingerMissileAA
+		LocalOffset: 0,0,512
+		MuzzleSequence: shoot
+		MuzzlePalette: player
+		PauseOnCondition: deadman
+	Armament@1AP:
+		RequiresCondition: aprockets
+		Weapon: StingerMissileAP
+		LocalOffset: 0,0,512
+		MuzzleSequence: shoot
+		MuzzlePalette: player
+		PauseOnCondition: sniped
+	Armament@1AAAP:
+		RequiresCondition: aprockets
+		Weapon: StingerMissileAPAA
+		LocalOffset: 0,0,512
+		MuzzleSequence: shoot
+		MuzzlePalette: player
+		PauseOnCondition: sniped
+	Armament@2AP:
+		RequiresCondition: aprockets
+		Turret: secondary
+		Weapon: StingerMissileAP
+		LocalOffset: 0,0,512
+		MuzzleSequence: shoot
+		MuzzlePalette: player
+		PauseOnCondition: deadman
+	Armament@2AAAP:
+		RequiresCondition: aprockets
+		Turret: secondary
+		Weapon: StingerMissileAPAA
 		LocalOffset: 0,0,512
 		MuzzleSequence: shoot
 		MuzzlePalette: player
@@ -992,8 +1119,12 @@ GSTG:
 	DetectCloaked:
 		RequiresCondition: !deadman
 		Range: 6c0
+		DetectionTypes: Cloak, AirCloak
 	SpawnActorOnDeath:
 		Actor: GSTG.Hole
+	GrantConditionOnPrerequisite@aprockets:
+		Condition: aprockets
+		Prerequisites: gla.aprockets
 	RenderSprites:
 		Image: gstgnew
 
@@ -1008,8 +1139,10 @@ GSTG.Hole:
 	Tooltip:
 		Name: actor-gstg-hole-name
 	-Building:
+	Targetable@hole:
+		TargetTypes: Defense
 	Building:
-		Footprint: ++ ++
+		Footprint: == ==
 		Dimensions: 2,2
 	SpawnActorOnDeath@hole:
 		Actor: GSTG
@@ -1032,7 +1165,7 @@ ATD.G:
 		Amount: 0
 	DetectCloaked:
 		RequiresCondition: !disabled
-		DetectionTypes: Underwater
+		DetectionTypes: Underwater, AirCloak
 		Range: 5c0
 	RenderSprites:
 		Image: ATD
@@ -1320,9 +1453,8 @@ GSNEAK.Hole:
 		Name: actor-gsneak-hole-name
 	Health:
 		HP: 100000
-	ChangesHealth@hole:
-		DamageCooldown: 750
-		Delay: 35
+	GrantPeriodicConditionOW@startrebuild:
+		CooldownDuration: 1500
 	SpawnActorOnDeath@hole:
 		Actor: GSNEAK
 		DeathType: hole
@@ -1366,9 +1498,6 @@ GSNEAK2.Hole:
 		Name: actor-gsneak2-hole-name
 	Health:
 		HP: 100000
-	ChangesHealth@hole:
-		DamageCooldown: 750
-		Delay: 35
 	SpawnActorOnDeath@hole:
 		Actor: GSNEAK2
 		DeathType: hole
@@ -1481,7 +1610,7 @@ GSNEAK2.Teleport:
 		Actor: gftrk
 	SpawnActorOnDeath@6:
 		RequiresCondition: r6
-		Actor: 1tnk.g
+		Actor: g1tnk
 	SpawnActorOnDeath@7:
 		RequiresCondition: r7
 		Actor: bggyd.g

@@ -79,7 +79,7 @@ MetalNuke:
 	Warhead@99Eff_impacta: CreateEffect
 		ImpactSounds: metalsound.aud
 		ImpactActors: false
-	Warhead@99Eff_impactb: CreateEffect
+	Warhead@99Eff_impactc: CreateEffect
 		ImpactSounds: metalsound.aud
 		ImpactActors: false
 
@@ -462,7 +462,7 @@ C17Nuke:
 		ValidTargets: Ground, Infantry
 
 RedeemerNukeDelayed:
-	Report: nggyu.wav
+	Report: nggyu.ogg
 	ValidTargets: Ground, Water, Air, GroundActor, WaterActor, AirborneActor
 	Projectile: GravityBomb
 		Velocity: 0,0,-256
@@ -472,7 +472,7 @@ RedeemerNukeDelayed:
 		Weapon: Redeemernuke
 		Footprint: x
 		Dimensions: 1,1
-		ValidTargets: Ground, Water, Air, GroundActor, WaterActor,
+		ValidTargets: Ground, Water, Air, GroundActor, WaterActor
 
 Redeemernuke:
 	ValidTargets: Ground, Water, Air, GroundActor, WaterActor, AirborneActor
@@ -1008,3 +1008,79 @@ TinyNukeChina:
 		Size: 3
 		Delay: 500
 		ResourceAmount: 10
+
+WTFBoom:
+	Warhead@1Dam: CreateEffect
+		ImpactSounds: wtfboombeep.ogg
+		ImpactActors: false
+	Warhead@2Dam: CreateEffect
+		Explosions: wtfboomcrate
+		ImpactSounds: wtfboombeep.ogg
+		ImpactActors: false
+	Warhead@bomb: CreateEffect
+		Delay: 180
+		Explosions: wtfboom
+		ImpactActors: false
+	Warhead@3Dam: CreateEffect
+		Delay: 223
+		ImpactSounds: wtfboom.ogg
+		ImpactActors: false
+	Warhead@4Dam: CreateEffect
+		Delay: 223
+		ImpactSounds: wtfboom.ogg
+		ImpactActors: false
+	Warhead@cluster2: FireCluster
+		Delay: 235
+		Weapon: WTFBoomExplosion
+		RandomClusterCount: 1
+		Dimensions: 1,1
+		Footprint: x
+		AffectsParent: true
+
+WTFBoomExplosion:
+	Inherits: ColonyDropExplosion
+	ValidTargets: Ground, Water, GroundActor, WaterActor, Underwater, AirborneActor, Trees, TerranNuke, Husk
+	Projectile: InstantHit
+	Warhead@4Eff_impact: CreateEffect
+		ImpactSounds: baud.aud
+	-Warhead@98Eff_impact: CreateEffect
+	-Warhead@98Eff_impact1: CreateEffect
+	-Warhead@colonyflash1: FlashEffect
+	Warhead@colonyflash4: FlashEffect
+		Delay: 3
+		Duration: 66
+	Warhead@colony3: ShakeScreen
+		Delay: 5
+	Warhead@superweapon: SpreadDamage
+		Spread: 4c0
+	Warhead@9Dam_areanuke2: SpreadDamage
+		Spread: 3c0
+		Damage: 50000
+		Delay: 5
+		AffectsParent: true
+	Warhead@17Dam_areanuke4: SpreadDamage
+		Spread: 5c0
+		Damage: 30000
+		Delay: 10
+		AffectsParent: true
+	Warhead@emppwrplant: GrantExternalCondition
+		Range: 12c0
+
+MorshuBombs:
+	ValidTargets: Ground, Water, Air, GroundActor, WaterActor, AirborneActor
+	Projectile: InstantHit
+	Warhead@2Dam: CreateEffect
+		Explosions: morshubombs
+		ImpactSounds: morshubombs.ogg
+		ImpactActors: false
+	Warhead@3Dam: CreateEffect
+		Explosions: morshubombs
+		ImpactSounds: morshubombs.ogg
+		ImpactActors: false
+	Warhead@cluster: FireCluster
+		Delay: 125
+		RandomClusterCount: 3
+		Weapon: Redeemernuke
+		Footprint: xxx xxx xxx
+		Dimensions: 3,3
+		ValidTargets: Ground, Water, Air, GroundActor, WaterActor

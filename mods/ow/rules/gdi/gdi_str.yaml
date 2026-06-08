@@ -5,12 +5,13 @@ gdi.speed:
 	Buildable:
 		Description: actor-gdi-speed.description
 		BuildPaletteOrder: 12003
-		Prerequisites: ~!gdi.speed, ~structures.gdi, techcenter, ~techlevel.high
+		Prerequisites: !gdi.speed, ~structures.gdi, techcenter, ~techlevel.high
 	ProvidesPrerequisite@upgradename:
-	Valued:
-		Cost: 100
 	ProductionCostMultiplier@upgrade:
 		Multiplier: 5000
+	WithProductionIconOverlay:
+		Types: UpgradeComplete
+		Prerequisites: gdi.speed
 
 gdi.suits:
 	Inherits: ^UpgradeBaseExt
@@ -19,13 +20,16 @@ gdi.suits:
 	Buildable:
 		Description: actor-gdi-suits.description
 		BuildPaletteOrder: 12004
-		Prerequisites: ~!gdi.suits, ~structures.gdi, advtechcenter, ~techlevel.unrestricted
+		Prerequisites: !gdi.suits, ~structures.gdi, advtechcenter, ~techlevel.unrestricted
 		BuildDuration: 4000
 	ProvidesPrerequisite@upgradename:
-	Valued:
-		Cost: 100
+	ProvidesPrerequisite@upgradename2:
+		Prerequisite: upgrade.isotopes
 	ProductionCostMultiplier@upgrade:
 		Multiplier: 7500
+	WithProductionIconOverlay:
+		Types: UpgradeComplete
+		Prerequisites: gdi.suits
 
 gdi.zocom:
 	Inherits: ^UpgradeBaseExt
@@ -34,9 +38,8 @@ gdi.zocom:
 	Buildable:
 		Description: actor-gdi-faction.description1
 		BuildPaletteOrder: 30000
-		Queue: Wall
-		Prerequisites: ~!gdi.zocom, ~structures.gdibase, advtechcenter, ~techlevel.unrestricted
-		BuildDuration: 10000
+		Prerequisites: ~structures.gdibase, advtechcenter, ~techlevel.unrestricted, hero.tier4
+		BuildDuration: 7500
 	ProvidesPrerequisite@upgradename:
 	ProvidesPrerequisite@special:
 		Prerequisite: structures.zocom
@@ -50,6 +53,9 @@ gdi.zocom:
 		Prerequisite: infantry.mediprereq
 	ProductionCostMultiplier@upgrade:
 		Multiplier: 25000
+	WithProductionIconOverlay:
+		Types: UpgradeComplete
+		Prerequisites: gdi.zocom
 
 gdi.steel:
 	Inherits: ^UpgradeBaseExt
@@ -58,9 +64,8 @@ gdi.steel:
 	Buildable:
 		Description: actor-gdi-faction.description2
 		BuildPaletteOrder: 30000
-		Queue: Wall
-		Prerequisites: ~!gdi.steel, ~structures.gdibase, advtechcenter, ~techlevel.unrestricted
-		BuildDuration: 10000
+		Prerequisites: ~structures.gdibase, advtechcenter, ~techlevel.unrestricted, hero.tier4
+		BuildDuration: 7500
 	ProvidesPrerequisite@upgradename:
 	ProvidesPrerequisite@special:
 		Prerequisite: structures.steel
@@ -74,6 +79,9 @@ gdi.steel:
 		Prerequisite: infantry.mechprereq
 	ProductionCostMultiplier@upgrade:
 		Multiplier: 25000
+	WithProductionIconOverlay:
+		Types: UpgradeComplete
+		Prerequisites: gdi.steel
 
 gdi.aerospace:
 	Inherits: ^UpgradeBaseExt
@@ -82,9 +90,8 @@ gdi.aerospace:
 	Buildable:
 		Description: actor-gdi-faction.description3
 		BuildPaletteOrder: 30000
-		Queue: Wall
-		Prerequisites: ~!gdi.aerospace, ~structures.gdibase, advtechcenter, ~techlevel.unrestricted
-		BuildDuration: 10000
+		Prerequisites: ~structures.gdibase, advtechcenter, ~techlevel.unrestricted, hero.tier4
+		BuildDuration: 7500
 	ProvidesPrerequisite@upgradename:
 	ProvidesPrerequisite@special:
 		Prerequisite: structures.gdi3
@@ -96,6 +103,9 @@ gdi.aerospace:
 		Prerequisite: vehicles.gdi3
 	ProductionCostMultiplier@upgrade:
 		Multiplier: 25000
+	WithProductionIconOverlay:
+		Types: UpgradeComplete
+		Prerequisites: gdi.aerospace
 
 ATEK.GDI:
 	Inherits: ATEK
@@ -118,7 +128,7 @@ ATWR:
 	Building:
 		BuildSounds: constru2.aud, hvydoor1.aud
 	Valued:
-		Cost: 1300
+		Cost: 1100
 	Tooltip:
 		Name: actor-atwr.name
 	Buildable:
@@ -153,6 +163,10 @@ ATWR:
 		Weapon: TowerAAMissile
 		LocalOffset: 256,128,0, 256,-128,0
 		LocalYaw: -100,100
+	Armament@3:
+		Weapon: Vulcan_D
+		LocalOffset: 256,128,0, 256,-128,0
+		LocalYaw: -100,100
 	AttackTurreted:
 		RequiresCondition: !build-incomplete
 		PauseOnCondition: lowpower || disabled
@@ -161,9 +175,10 @@ ATWR:
 		QuantizedFacings: 8
 	DetectCloaked:
 		Range: 6c0
-		RequiresCondition: !lowpower
+		RequiresCondition: !disabled
+		DetectionTypes: Cloak, AirCloak, Underwater
 	Power:
-		Amount: -100
+		Amount: -80
 	WithDeathAnimation:
 		DeathSequence: dead
 		UseDeathTypeSuffix: false
@@ -175,7 +190,7 @@ ATWR2:
 	Tooltip:
 		Name: actor-atwr2.name
 	Buildable:
-		Prerequisites: factory, ~structures.allies, ~techlevel.unrestricted
+		Prerequisites: factory, ~structures.allies, ~techlevel.unrestricted, ~disabled
 		Description: actor-atwr2.description
 	Health:
 		HP: 50000
@@ -398,8 +413,9 @@ CTWR:
 		Amount: -10
 		RequiresCondition: has_sam
 	DetectCloaked:
-		RequiresCondition: has_attachment
+		RequiresCondition: has_agt || has_sam
 		Range: 6c0
+		DetectionTypes: Cloak, AirCloak, Underwater
 	Sellable:
 		-RequiresCondition:
 	GrantCondition@wall:
@@ -533,13 +549,14 @@ BRIK.CTWR:
 	-Tooltip:
 	-Sellable:
 	-BlocksProjectiles:
-	-Targetable:
-	-HitShape:
-	-Health:
+	DamageMultiplier:
+		Modifier: 0
+	Targetable:
+		TargetTypes: Wall, GroundActor
 	ExternalCondition@tower:
 		Condition: tower
-	KillsSelf@tower:
-		Delay: 8
+	KillsSelfOnParentDeath@tower:
+		Delay: 5
 		RequiresCondition: !tower
 
 CTWR.GUN:

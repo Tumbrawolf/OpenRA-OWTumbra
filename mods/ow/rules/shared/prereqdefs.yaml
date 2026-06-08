@@ -1,10 +1,10 @@
 ^ConYardPrereqs:
 	ProvidesPrerequisite@oreext: # Buildable by all bar GLA
-		Factions: allies, england, france, germany, soviet, russia, ukraine, estonia, phobos, deimos, mars, hitler, himmler, heydrich, nod, bhand, marked, nod3, gdi, steel, zocom, gdi3, sword, angels, silver, civ, usa, protoss, artanis, vorazun, terran, raynor, mengsk, china, townes, alexander, granger, tank, infantry, nuke, japan, mecha, navy, avalon, btsphere, btclan, btmerc
+		Factions: allies, england, france, germany, soviet, russia, ukraine, estonia, phobos, deimos, mars, hitler, himmler, heydrich, nod, bhand, marked, nod3, gdi, steel, zocom, gdi3, sword, angels, silver, civ, usa, protoss, artanis, vorazun, terran, raynor, mengsk, china, townes, alexander, granger, tank, infantry, nuke, japan, mecha, navy, avalon, btsphere, btclan, btmerc, unsc, covenant
 		Prerequisite: structures.oreextprereq
 		RequiresPrerequisites: !techlevel.gems
 	ProvidesPrerequisite@generator: # Buildable by all bar GLA
-		Factions: allies, england, france, germany, soviet, russia, ukraine, estonia, phobos, deimos, mars, hitler, himmler, heydrich, nod, bhand, marked, nod3, gdi, steel, zocom, gdi3, sword, angels, silver, civ, usa, protoss, artanis, vorazun, terran, raynor, mengsk, china, townes, alexander, granger, tank, infantry, nuke, japan, mecha, navy, avalon, forgotten, btsphere, btclan, btmerc
+		Factions: allies, england, france, germany, soviet, russia, ukraine, estonia, phobos, deimos, mars, hitler, himmler, heydrich, nod, bhand, marked, nod3, gdi, steel, zocom, gdi3, sword, angels, silver, civ, usa, protoss, artanis, vorazun, terran, raynor, mengsk, china, townes, alexander, granger, tank, infantry, nuke, japan, mecha, navy, avalon, forgotten, btsphere, btclan, btmerc, unsc, covenant
 		Prerequisite: structures.generatorprereq
 	ProvidesPrerequisite@oreextnopower: # Zerg / GLA
 		Factions: demo, kassad, thrax, zerg, zagara, kerrigan, evil
@@ -19,10 +19,10 @@
 		Prerequisite: structures.treeextprereq
 		RequiresPrerequisites: !techlevel.tibremove
 	ProvidesPrerequisite@foundryprereq: # FOUNDRY Buildable by all bar Civilians/GLA/Medi
-		Factions: allies, england, france, germany, soviet, russia, ukraine, estonia, phobos, deimos, mars, hitler, himmler, heydrich, nod, bhand, marked, nod3, gdi, steel, zocom, gdi3, sword, angels, silver, usa, china, granger, townes, alexander, tank, nuke, infantry, japan, economic, mecha, navy, avalon, medi, mediholy, medicult, mediwizards, forgotten, btsphere, btclan, btmerc
+		Factions: allies, england, france, germany, soviet, russia, ukraine, estonia, phobos, deimos, mars, hitler, himmler, heydrich, nod, bhand, marked, nod3, gdi, steel, zocom, gdi3, sword, angels, silver, usa, china, granger, townes, alexander, tank, nuke, infantry, japan, economic, mecha, navy, avalon, medi, mediholy, medicult, mediwizards, forgotten, btsphere, btclan, btmerc, unsc
 		Prerequisite: structures.foundryprereq
-	ProvidesPrerequisite@ultprereq: # EpicTech centre Buildable by all bar Civilians/GLA/Medi
-		Factions: allies, england, france, germany, soviet, russia, ukraine, estonia, mars, hitler, himmler, heydrich, nod, bhand, marked, nod3, gdi, steel, forgotten, sword, usa, china, townes, alexander, tank, nuke, japan, terran, mengsk, mecha, economic, avalon, medi, mediholy, medicult, mediwizards, btsphere, btclan, btmerc
+	ProvidesPrerequisite@ultprereq: # EpicTech centre Buildable by all bar Civilians/Protoss
+		Factions: allies, england, france, germany, soviet, russia, ukraine, estonia, phobos, deimos, mars, hitler, himmler, heydrich, nod, bhand, marked, nod3, gdi, steel, zocom, gdi3, forgotten, sword, silver, angels, usa, china, townes, alexander, granger, infantry, tank, nuke, japan, terran, raynor, mengsk, mecha, economic, navy, avalon, medi, mediholy, medicult, mediwizards, btsphere, btclan, btmerc, kassad, thrax, demo, unsc
 		Prerequisite: structures.ultprereq
 	ProvidesPrerequisite@ultinf: # EpicTech centre for infantry Buildable by infantry factions
 		Factions: infantry, phobos, deimos, raynor, medi, mediholy, medicult, mediwizards, zocom
@@ -34,10 +34,10 @@
 		Factions: navy, silver
 		Prerequisite: structures.navyultprereq
 	ProvidesPrerequisite@all: # Buildable by all bar Civilians
-		Factions: allies, england, france, germany, soviet, russia, ukraine, estonia, phobos, deimos, mars, hitler, himmler, heydrich, nod, bhand, marked, nod3, gdi, steel, zocom, gdi3, sword, angels, silver, demo, kassad, thrax, usa, evil, china, townes, alexander, granger, tank, infantry, nuke, japan, economic, mecha, navy, avalon, medi, mediholy, medicult, mediwizards
+		Factions: allies, england, france, germany, soviet, russia, ukraine, estonia, phobos, deimos, mars, hitler, himmler, heydrich, nod, bhand, marked, nod3, gdi, steel, zocom, gdi3, sword, angels, silver, demo, kassad, thrax, usa, evil, china, townes, alexander, granger, tank, infantry, nuke, japan, economic, mecha, navy, avalon, medi, mediholy, medicult, mediwizards, unsc
 		Prerequisite: structures.all
 	ProvidesPrerequisite@proc: # REF
-		Factions: allies, england, france, germany, soviet, russia, ukraine, estonia, hitler, himmler, heydrich
+		Factions: allies, england, france, germany, soviet, russia, ukraine, estonia, hitler, himmler, heydrich, avalon, heroonly
 		Prerequisite: structures.procprereq
 	ProvidesPrerequisite@procd: # Dawn REF
 		Factions: gdi, steel, zocom, gdi3, nod, bhand, marked, nod3, fed, sword, angels, silver, phobos, deimos, mars, forgotten
@@ -52,7 +52,7 @@
 		Factions: gdi, steel, zocom, gdi3, nod, bhand, marked, nod3, fed, sword, angels, silver, forgotten
 		Prerequisite: structures.hqdprereq
 	ProvidesPrerequisite@dome: # Dome
-		Factions: allies, england, france, germany, soviet, russia, ukraine, estonia, phobos, deimos, mars, hitler, himmler, heydrich
+		Factions: allies, england, france, germany, soviet, russia, ukraine, estonia, phobos, deimos, mars, hitler, himmler, heydrich, heroonly
 		Prerequisite: structures.domeprereq
 	ProvidesPrerequisite@hpad: # Helipad - Allies, GDI, Nod, Fed, UAC
 		Factions: allies, england, france, germany, gdi, steel, zocom, gdi3, nod, bhand, marked, nod3, fed, sword, angels, silver, phobos, deimos, mars, forgotten
@@ -66,9 +66,6 @@
 	ProvidesPrerequisite@mslo: # Missile Silo
 		Factions: soviet, russia, ukraine, estonia, hitler, himmler, heydrich
 		Prerequisite: structures.msloprereq
-	ProvidesPrerequisite@weather: # Weather Machine
-		Factions: allies, england, france, germany
-		Prerequisite: structures.weatherprereq
 	ProvidesPrerequisite@eyed: # Ion Cannon/Adv Comm Centre
 		Factions: gdi, steel, zocom, gdi3, fed, sword, angels, silver, phobos, deimos, mars, avalon
 		Prerequisite: structures.eyedprereq
@@ -126,6 +123,9 @@
 	ProvidesPrerequisite@nodtib: # Tib upgrade
 		Factions: nod, bhand, marked, nod3, forgotten
 		Prerequisite: upgrade.nodtiberium
+	ProvidesPrerequisite@aiperimeter: # AI wall perimeter
+		Factions: estonia, zagara
+		Prerequisite: ai.perimeter
 	ProvidesPrerequisite@allies:
 		Factions: allies, england, france, germany
 		Prerequisite: structures.allies
@@ -372,10 +372,19 @@
 		Factions: navy
 		Prerequisite: faction.navygeneral
 		RequiresPrerequisites: !techlevel.noboats
+	ProvidesPrerequisite@unsc:
+		Factions: unsc
+		Prerequisite: structures.unsc
+	ProvidesPrerequisite@covenant:
+		Factions: covenant
+		Prerequisite: structures.covenant
 	ProvidesPrerequisite@noboats_navy:
 		Factions: navy
 		Prerequisite: faction.mechageneral
 		RequiresPrerequisites: techlevel.noboats
+	ProvidesPrerequisite@heroonly:
+		Factions: heroonly
+		Prerequisite: structures.heroonly
 	ProvidesPrerequisite@botonly:
 		Prerequisite: structures.botonly
 		RequiresPrerequisites: ai.all
@@ -385,13 +394,14 @@
 
 
 ^BarracksPrereqs:
+	Inherits@extras: ^InfantryExtras
 	ProvidesPrerequisite:
 		Prerequisite: barracks
 	ProvidesPrerequisite@surv: # Surveyor (all but civ/medi)
-		Factions: allies, england, france, germany, soviet, ukraine, russia, estonia, nod, marked, bhand, nod3, gdi, zocom, steel, gdi3, hitler, himmler, heydrich, thrax, demo, kassad, angels, silver, sword, phobos, deimos, mars, usa, china, townes, alexander, granger, tank, infantry, nuke, japan, economic, mecha, navy, avalon, btsphere, btclan, btmerc
+		Factions: allies, england, france, germany, soviet, ukraine, russia, estonia, nod, marked, bhand, nod3, gdi, zocom, steel, gdi3, hitler, himmler, heydrich, thrax, demo, kassad, angels, silver, sword, phobos, deimos, mars, usa, china, townes, alexander, granger, tank, infantry, nuke, japan, economic, mecha, navy, avalon, btsphere, btclan, btmerc, unsc, covenant
 		Prerequisite: infantry.surveyorprereq
 	ProvidesPrerequisite@e1of: # Officer
-		Factions: allies, england, france, germany, soviet, ukraine, russia, estonia, nod, marked, bhand, nod3, gdi, zocom, steel, gdi3, hitler, himmler, heydrich, civ, demo, kassad, thrax
+		Factions: allies, england, france, germany, soviet, ukraine, russia, estonia, nod, marked, bhand, nod3, gdi, zocom, steel, gdi3, hitler, himmler, heydrich, civ
 		Prerequisite: infantry.e1ofprereq
 	ProvidesPrerequisite@e1e4: # Light/Rocket
 		Factions: allies, england, france, germany, soviet, ukraine, russia, estonia, nod, marked, bhand, nod3, gdi, zocom, steel, gdi3, hitler, himmler, heydrich, civ
@@ -403,14 +413,14 @@
 		Factions: soviet, ukraine, russia, estonia, nod, marked, bhand, nod3, civ
 		Prerequisite: infantry.e4prereq
 	ProvidesPrerequisite@e6: # Engineer
-		Factions: allies, england, france, germany, soviet, ukraine, russia, estonia, nod, marked, bhand, nod3, gdi, zocom, steel, gdi3, phobos, deimos, mars, hitler, himmler, heydrich, usa, china, townes, alexander, granger, tank, infantry, nuke, japan, mengsk, economic, mecha, navy, btsphere, btclan, btmerc
+		Factions: allies, england, france, germany, soviet, ukraine, russia, estonia, nod, marked, bhand, nod3, gdi, zocom, steel, gdi3, phobos, deimos, mars, hitler, himmler, heydrich, usa, china, townes, alexander, granger, tank, infantry, nuke, japan, mengsk, economic, mecha, navy, btsphere, btclan, btmerc, unsc
 		Prerequisite: infantry.e6prereq
 	ProvidesPrerequisite@e6bot: # Engineer for GLA and Terran bot
 		Factions: kassad, thrax, demo, terran, raynor, mengsk
 		Prerequisite: infantry.e6prereq
 		RequiresPrerequisites: ai.all
 	ProvidesPrerequisite@medic: # Medic
-		Factions: allies, england, france, germany, marked, zocom, btsphere, btclan, btmerc
+		Factions: allies, england, france, germany, marked, zocom, btsphere, btclan, btmerc, unsc
 		Prerequisite: infantry.mediprereq
 	ProvidesPrerequisite@mech: # Mechanic
 		Factions: allies, england, france, germany, estonia, steel, economic, btsphere, btclan, btmerc
@@ -421,6 +431,9 @@
 	ProvidesPrerequisite@e5: # Chem Warrior
 		Factions: nod3, thrax
 		Prerequisite: infantry.e5prereq
+	ProvidesPrerequisite@rmbo: # Commando
+		Factions: nod, bhand, nod3, gdi, gdi3
+		Prerequisite: infantry.rmboprereq
 	ProvidesPrerequisite@alliessoviet:
 		Factions: allies, england, france, germany, soviet, ukraine, russia, estonia
 		Prerequisite: infantry.ra
@@ -513,9 +526,6 @@
 	ProvidesPrerequisite@dawn:
 		Factions: nod, marked, bhand, nod3, gdi, zocom, steel, gdi3
 		Prerequisite: infantry.dawn
-	ProvidesPrerequisite@rmbo:
-		Factions: nod, bhand, nod3, gdi, gdi3
-		Prerequisite: infantry.rmboprereq
 	ProvidesPrerequisite@gdi:
 		Factions: gdi, steel, zocom, gdi3
 		Prerequisite: infantry.gdi
@@ -744,6 +754,12 @@
 	ProvidesPrerequisite@avalon:
 		Factions: avalon
 		Prerequisite: infantry.avalon
+	ProvidesPrerequisite@unsc:
+		Factions: unsc
+		Prerequisite: infantry.unsc
+	ProvidesPrerequisite@covenant:
+		Factions: covenant
+		Prerequisite: infantry.covenant
 	ProvidesPrerequisite@forgottenstructures:
 		RequiresPrerequisites: structures.forgotten
 		Prerequisite: infantry.forgotten
@@ -760,6 +776,42 @@
 		Prerequisite: infantry.botonly
 		RequiresPrerequisites: ai.all
 
+# used for infantry that are produced in pairs
+^InfantryExtras:
+	GrantConditionOnProduction@chinaredguard:
+		Actors: chinaredguard
+		Condition: produce_redguard
+		Duration: 4
+		ShowSelectionBar: false
+	PeriodicProducer@chinaredguard: 
+		RequiresCondition: produce_redguard
+		Actors: chinaredguard2
+		Type: Infantry
+		ResetTraitOnEnable: true
+		ChargeDuration: 3
+	GrantConditionOnProduction@zergling:
+		Actors: zzergling
+		Condition: produce_zergling
+		Duration: 4
+		ShowSelectionBar: false
+	PeriodicProducer@zergling: 
+		RequiresCondition: produce_zergling
+		Actors: zzergling2
+		Type: Infantry
+		ResetTraitOnEnable: true
+		ChargeDuration: 3
+	GrantConditionOnProduction@baneling:
+		Actors: zbaneling
+		Condition: produce_baneling
+		Duration: 4
+		ShowSelectionBar: false
+	PeriodicProducer@baneling: 
+		RequiresCondition: produce_baneling
+		Actors: zbaneling2
+		Type: Infantry
+		ResetTraitOnEnable: true
+		ChargeDuration: 3
+
 ^FactoryPrereqs:
 	ProvidesPrerequisite@fact:
 		Prerequisite: factory
@@ -767,7 +819,7 @@
 		Factions: allies, england, france, germany, soviet, russia, ukraine, estonia, phobos, deimos, mars, hitler, himmler, heydrich, demo, kassad, thrax, nod, bhand, marked, nod3, gdi, steel, zocom, gdi3, sword, angels, silver, usa, china, townes, alexander, granger, tank, infantry, nuke
 		Prerequisite: vehicles.all
 	ProvidesPrerequisite@supply: # Buildable by all bar Civilians
-		Factions: allies, england, france, germany, soviet, russia, ukraine, estonia, phobos, deimos, mars, hitler, himmler, heydrich, demo, kassad, thrax, nod, bhand, marked, nod3, gdi, steel, zocom, gdi3, sword, angels, silver, usa, china, terran, raynor, mengsk, zerg, kerrigan, zagara, protoss, artanis, vorazun, townes, alexander, granger, tank, infantry, nuke, japan, economic, mecha, navy, avalon, forgotten
+		Factions: allies, england, france, germany, soviet, russia, ukraine, estonia, phobos, deimos, mars, hitler, himmler, heydrich, demo, kassad, thrax, nod, bhand, marked, nod3, gdi, steel, zocom, gdi3, sword, angels, silver, usa, china, terran, raynor, mengsk, zerg, kerrigan, zagara, protoss, artanis, vorazun, townes, alexander, granger, tank, infantry, nuke, japan, economic, mecha, navy, avalon, forgotten, unsc
 		Prerequisite: vehicles.truk
 	ProvidesPrerequisite@mcv: # RA MCV
 		Factions: allies, england, france, germany, soviet, russia, ukraine, estonia, phobos, deimos, mars, hitler, himmler, heydrich, usa, townes, alexander, granger
@@ -1113,6 +1165,12 @@
 	ProvidesPrerequisite@avalon:
 		Factions: avalon
 		Prerequisite: vehicles.avalon
+	ProvidesPrerequisite@unsc:
+		Factions: unsc
+		Prerequisite: vehicles.unsc
+	ProvidesPrerequisite@covenant:
+		Factions: covenant
+		Prerequisite: vehicles.covenant
 	ProvidesPrerequisite@forgottenstructures:
 		RequiresPrerequisites: vehicles.forgotten
 		Prerequisite: vehicles.forgotten
@@ -1130,7 +1188,7 @@
 		RequiresPrerequisites: ai.all
 	ProvidesPrerequisite@bossaddons:
 		Prerequisite: tshop
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 
 ^NavalPrereqs:
 	ProvidesPrerequisite@ship:
@@ -1141,7 +1199,7 @@
 	ProvidesPrerequisite@lst: # Transport
 		Factions: allies, france, germany, soviet, ukraine, russia, estonia, hitler, himmler, heydrich, angels, silver, sword, phobos, deimos, mars
 		Prerequisite: ships.lstprereq
-	ProvidesPrerequisite@newlst: # Hovercraft
+	ProvidesPrerequisite@newlst: # Hovercraft / Amphibious APC
 		Factions: nod, marked, bhand, nod3, gdi, zocom, steel, gdi3, demo, thrax, kassad, china, tank, infantry, nuke, japan, economic, mecha, navy
 		Prerequisite: ships.newlstprereq
 	ProvidesPrerequisite@lste: # Submersive transport
@@ -1151,17 +1209,20 @@
 		Factions: allies, england, france, germany, gdi, steel, zocom, gdi3, fed, sword, angels, silver, phobos, deimos, mars, forgotten
 		Prerequisite: ships.ptprereq
 	ProvidesPrerequisite@dd: # Destroyer
-		Factions: allies, england, france, germany, gdi, steel, zocom, fed, sword, angels, phobos, deimos, mars, forgotten
+		Factions: allies, england, france, germany, gdi, steel, zocom, gdi3, fed, sword, angels, phobos, deimos, mars, forgotten
 		Prerequisite: ships.ddprereq
 	ProvidesPrerequisite@ca: # Cruiser
-		Factions: allies, england, france, germany, gdi, zocom
+		Factions: allies, england, france, germany
 		Prerequisite: ships.caprereq
 	ProvidesPrerequisite@ss: # Sub
-		Factions: soviet, russia, ukraine, estonia, nod, bhand, marked, nod3, hitler, himmler, heydrich
+		Factions: soviet, russia, ukraine, estonia, nod, bhand, marked, nod3, hitler, himmler, heydrich, kassad, demo, thrax
 		Prerequisite: ships.ssprereq
 	ProvidesPrerequisite@msub: # Missile Sub
 		Factions: soviet, russia, ukraine, estonia, nod, bhand, marked, hitler, himmler, heydrich, forgotten
 		Prerequisite: ships.msubprereq
+	ProvidesPrerequisite@navysurveyor: # Navy Surveyor
+		Factions: navy, silver
+		Prerequisite: ships.surveyorboat
 	ProvidesPrerequisite@soviet:
 		Factions: soviet, russia, ukraine, estonia
 		Prerequisite: ships.soviet
@@ -1417,6 +1478,12 @@
 	ProvidesPrerequisite@forgotten:
 		Factions: forgotten
 		Prerequisite: ships.forgotten
+	ProvidesPrerequisite@unsc:
+		Factions: unsc
+		Prerequisite: ships.unsc
+	ProvidesPrerequisite@covenant:
+		Factions: covenant
+		Prerequisite: ships.covenant
 	ProvidesPrerequisite@botonly:
 		Prerequisite: ships.botonly
 		RequiresPrerequisites: ai.all
@@ -1745,12 +1812,18 @@
 	ProvidesPrerequisite@forgotten:
 		Factions: forgotten
 		Prerequisite: aircraft.forgotten
+	ProvidesPrerequisite@unsc:
+		Factions: unsc
+		Prerequisite: aircraft.unsc
+	ProvidesPrerequisite@covenant:
+		Factions: covenant
+		Prerequisite: aircraft.covenant
 	ProvidesPrerequisite@botonly:
 		Prerequisite: aircraft.botonly
 		RequiresPrerequisites: ai.all
 	ProvidesPrerequisite@bossaddons:
 		Prerequisite: tctrl
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 
 BARRACKS:
 	Tooltip:
@@ -1831,403 +1904,259 @@ SUPERWEAPON:
 
 ^ConYardPrereqs_Bot:
 	ProvidesPrerequisite@ultprereq2: # Buildable by all bar Civilians/GLA/Medi
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: structures.ultprereq
 	ProvidesPrerequisite@all2: # Buildable by all bar Civilians
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: structures.all
 	ProvidesPrerequisite@proc2: # REF
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: structures.procprereq
 	ProvidesPrerequisite@procd2: # Dawn REF
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: structures.procdprereq
 	ProvidesPrerequisite@radiopre2: # Radio dish
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: structures.radioprereq
 	ProvidesPrerequisite@hq2: # Comm centre
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: structures.hqdprereq
 	ProvidesPrerequisite@dome2: # Dome
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: structures.domeprereq
 	ProvidesPrerequisite@hpad2: # Helipad
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: structures.hpadprereq
 	ProvidesPrerequisite@afld2: # Airfield
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: structures.afldprereq
 	ProvidesPrerequisite@mslo2: # Missile Silo
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: structures.msloprereq
 	ProvidesPrerequisite@eyed2: # Ion Cannon/Adv Comm Centre
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: structures.eyedprereq
 	ProvidesPrerequisite@barr2: # Sov Barracks
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: structures.barrprereq
 	ProvidesPrerequisite@pyled2: # GDI Barr
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: structures.pyledprereq
 	ProvidesPrerequisite@weap2: # RA Weap Factory
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: structures.weapprereq
 	ProvidesPrerequisite@weapd2: # Dawn Weap Factory
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: structures.weapdprereq
 	ProvidesPrerequisite@syrd2: # Shipyard
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: structures.syrdprereq
 	ProvidesPrerequisite@spen2: # Subpen
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: structures.spenprereq
 	ProvidesPrerequisite@iron2: # Iron Curtain
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: structures.ironprereq
 	ProvidesPrerequisite@pdoxs2: # Stealth Generator
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: structures.pdoxbhandprereq
 	ProvidesPrerequisite@atd2: # Adv Torp Def
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: structures.atdprereq
 	ProvidesPrerequisite@gun2: # Gun Turret
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: structures.gunprereq
 	ProvidesPrerequisite@pbox2: # Pillboxes
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: structures.pboxprereq
 	ProvidesPrerequisite@gtwr2: # Guard Tower
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: structures.gtwrprereq
 	ProvidesPrerequisite@samd2: # Dawn SAM
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: structures.samdprereq
 	ProvidesPrerequisite@alliessoviet2:
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: structures.ra
 	ProvidesPrerequisite@soviet2:
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: structures.soviet
 	ProvidesPrerequisite@estonia2:
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: structures.estonia
 	ProvidesPrerequisite@uac2:
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: structures.uac
 	ProvidesPrerequisite@phobos2:
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: structures.phobos
 	ProvidesPrerequisite@deimos2:
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: structures.deimos
 	ProvidesPrerequisite@mars2:
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: structures.mars
 	ProvidesPrerequisite@nazi2:
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: structures.nazi
 	ProvidesPrerequisite@hitler2:
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: structures.hitler
 	ProvidesPrerequisite@himmler2:
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: structures.himmler
 	ProvidesPrerequisite@heydrich2:
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: structures.heydrich
 	ProvidesPrerequisite@gdi2:
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: structures.gdi
 	ProvidesPrerequisite@steel2:
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: structures.steel
 	ProvidesPrerequisite@zocom2:
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: structures.zocom
 	ProvidesPrerequisite@gdi32:
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: structures.gdi3
 	ProvidesPrerequisite@nod2:
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: structures.nod
 	ProvidesPrerequisite@bhand2:
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: structures.bhand
 	ProvidesPrerequisite@marked2:
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: structures.marked
 	ProvidesPrerequisite@nod32:
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: structures.nod3
 	ProvidesPrerequisite@dawn2:
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: structures.dawn
 	ProvidesPrerequisite@sword2:
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: structures.sword
 	ProvidesPrerequisite@angels2:
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: structures.angels
 	ProvidesPrerequisite@silver2:
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: structures.silver
 	ProvidesPrerequisite@fed2:
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: structures.fed
 	ProvidesPrerequisite@gla2:
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: structures.gla
 	ProvidesPrerequisite@demo2:
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: structures.demo
 	ProvidesPrerequisite@kassad2:
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: structures.kassad
 	ProvidesPrerequisite@thrax2:
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: structures.thrax
 	ProvidesPrerequisite@allies2:
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: structures.allies
 	ProvidesPrerequisite@alliesvanilla2:
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: structures.alliesvanilla
 	ProvidesPrerequisite@england2:
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: structures.england
 	ProvidesPrerequisite@france2:
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: structures.france
 	ProvidesPrerequisite@germany2:
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: structures.germany
 	ProvidesPrerequisite@sovietvanilla2:
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: structures.sovietvanilla
 	ProvidesPrerequisite@russia2:
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: structures.russia
 	ProvidesPrerequisite@ukraine2:
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: structures.ukraine
 	ProvidesPrerequisite@scudstorm2:
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: sstorm.thrax
-	ProvidesPrerequisite@weather2:
-		RequiresPrerequisites: ai.boss
-		Prerequisite: structures.weatherprereq
 	ProvidesPrerequisite@protoss2:
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: structures.protoss
 	ProvidesPrerequisite@artanis2:
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: structures.artanis
 	ProvidesPrerequisite@vorazun2:
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: structures.vorazun
 	ProvidesPrerequisite@zerg2:
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: structures.zerg
 	ProvidesPrerequisite@kerrigan2:
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: structures.kerrigan
 	ProvidesPrerequisite@zagara2:
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: structures.zagara
 	ProvidesPrerequisite@terran2:
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: structures.terran
 	ProvidesPrerequisite@raynor2:
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: structures.raynor
 	ProvidesPrerequisite@mengsk2:
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: structures.mengsk
 	ProvidesPrerequisite@usa2:
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: structures.usa
 	ProvidesPrerequisite@evil2:
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: structures.evil
 	ProvidesPrerequisite@china2:
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: structures.china
+	ProvidesPrerequisite@china3:
+		RequiresPrerequisites: ai.god
+		Prerequisite: faction.nukegeneral
 	ProvidesPrerequisite@japan2:
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: structures.japan
 	ProvidesPrerequisite@avalon2:
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: structures.avalon
 	ProvidesPrerequisite@forgotten2:
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: structures.forgotten
 	ProvidesPrerequisite@herobot1:
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: hero.corvus
 	ProvidesPrerequisite@herobot2:
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: hero.rae
 	ProvidesPrerequisite@herobot3:
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: hero.doomguy
 	ProvidesPrerequisite@herobot4:
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: hero.dukenukem
 	ProvidesPrerequisite@herobot5:
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: hero.strifeguy
 	ProvidesPrerequisite@herobot6:
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: hero.maverick
+	ProvidesPrerequisite@deathbox:
+		RequiresPrerequisites: ai.god
+		Prerequisite: techlevel.deathbox
 
 ^EpicBotPrereqs:
 	ProvidesPrerequisite@bot1:
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: ulttech.allies
-	ProvidesPrerequisite@bot2:
-		RequiresPrerequisites: ai.boss
-		Prerequisite: ulttech.alliesvanilla
-	ProvidesPrerequisite@bot3:
-		RequiresPrerequisites: ai.boss
-		Prerequisite: ulttech.england
-	ProvidesPrerequisite@bot4:
-		RequiresPrerequisites: ai.boss
-		Prerequisite: ulttech.france
-	ProvidesPrerequisite@bot5:
-		RequiresPrerequisites: ai.boss
-		Prerequisite: ulttech.germany
-	ProvidesPrerequisite@bot6:
-		RequiresPrerequisites: ai.boss
-		Prerequisite: ulttech.soviet
-	ProvidesPrerequisite@bot7:
-		RequiresPrerequisites: ai.boss
-		Prerequisite: ulttech.sovietvanilla
-	ProvidesPrerequisite@bot8:
-		RequiresPrerequisites: ai.boss
-		Prerequisite: ulttech.russia
-	ProvidesPrerequisite@bot9:
-		RequiresPrerequisites: ai.boss
-		Prerequisite: ulttech.ukraine
-	ProvidesPrerequisite@bot10:
-		RequiresPrerequisites: ai.boss
-		Prerequisite: ulttech.estonia
-	ProvidesPrerequisite@bot11:
-		RequiresPrerequisites: ai.boss
-		Prerequisite: ulttech.gdi
-	ProvidesPrerequisite@bot12:
-		RequiresPrerequisites: ai.boss
-		Prerequisite: ulttech.steel
-	ProvidesPrerequisite@bot13:
-		RequiresPrerequisites: ai.boss
-		Prerequisite: ulttech.zocom
-	ProvidesPrerequisite@bot14:
-		RequiresPrerequisites: ai.boss
-		Prerequisite: ulttech.gdi3
-	ProvidesPrerequisite@bot15:
-		RequiresPrerequisites: ai.boss
-		Prerequisite: ulttech.nod
-	ProvidesPrerequisite@bot16:
-		RequiresPrerequisites: ai.boss
-		Prerequisite: ulttech.bhand
-	ProvidesPrerequisite@bot17:
-		RequiresPrerequisites: ai.boss
-		Prerequisite: ulttech.marked
-	ProvidesPrerequisite@bot18:
-		RequiresPrerequisites: ai.boss
-		Prerequisite: ulttech.nod3
-	ProvidesPrerequisite@bot19:
-		RequiresPrerequisites: ai.boss
-		Prerequisite: ulttech.fed
-	ProvidesPrerequisite@bot20:
-		RequiresPrerequisites: ai.boss
-		Prerequisite: ulttech.sword
-	ProvidesPrerequisite@bot21:
-		RequiresPrerequisites: ai.boss
-		Prerequisite: ulttech.angels
-	ProvidesPrerequisite@bot22:
-		RequiresPrerequisites: ai.boss
-		Prerequisite: ulttech.silver
-	ProvidesPrerequisite@bot23:
-		RequiresPrerequisites: ai.boss
-		Prerequisite: ulttech.uac
-	ProvidesPrerequisite@bot24:
-		RequiresPrerequisites: ai.boss
-		Prerequisite: ulttech.phobos
-	ProvidesPrerequisite@bot25:
-		RequiresPrerequisites: ai.boss
-		Prerequisite: ulttech.deimos
-	ProvidesPrerequisite@bot26:
-		RequiresPrerequisites: ai.boss
-		Prerequisite: ulttech.mars
-	ProvidesPrerequisite@bot27:
-		RequiresPrerequisites: ai.boss
-		Prerequisite: ulttech.nazi
-	ProvidesPrerequisite@bot28:
-		RequiresPrerequisites: ai.boss
-		Prerequisite: ulttech.hitler
-	ProvidesPrerequisite@bot29:
-		RequiresPrerequisites: ai.boss
-		Prerequisite: ulttech.himmler
-	ProvidesPrerequisite@bot30:
-		RequiresPrerequisites: ai.boss
-		Prerequisite: ulttech.heydrich
-	ProvidesPrerequisite@bot31:
-		RequiresPrerequisites: ai.boss
-		Prerequisite: ulttech.gla
-	ProvidesPrerequisite@bot32:
-		RequiresPrerequisites: ai.boss
-		Prerequisite: ulttech.kassad
-	ProvidesPrerequisite@bot33:
-		RequiresPrerequisites: ai.boss
-		Prerequisite: ulttech.demo
-	ProvidesPrerequisite@bot34:
-		RequiresPrerequisites: ai.boss
-		Prerequisite: ulttech.thrax
-	ProvidesPrerequisite@bot35:
-		RequiresPrerequisites: ai.boss
-		Prerequisite: ulttech.gpsscrambler
-	ProvidesPrerequisite@bot36:
-		RequiresPrerequisites: ai.boss
-		Prerequisite: ulttech.civ
-	ProvidesPrerequisite@bot37:
-		RequiresPrerequisites: ai.boss
-		Prerequisite: ulttech.usa
-	ProvidesPrerequisite@bot38:
-		RequiresPrerequisites: ai.boss
-		Prerequisite: ulttech.protoss
-	ProvidesPrerequisite@bot381:
-		RequiresPrerequisites: ai.boss
-		Prerequisite: ulttech.vorazun
-	ProvidesPrerequisite@bot382:
-		RequiresPrerequisites: ai.boss
-		Prerequisite: ulttech.artanis
-	ProvidesPrerequisite@bot39:
-		RequiresPrerequisites: ai.boss
-		Prerequisite: ulttech.zerg
-	ProvidesPrerequisite@bot391:
-		RequiresPrerequisites: ai.boss
-		Prerequisite: ulttech.zagara
-	ProvidesPrerequisite@bot392:
-		RequiresPrerequisites: ai.boss
-		Prerequisite: ulttech.kerrigan
-	ProvidesPrerequisite@bot40:
-		RequiresPrerequisites: ai.boss
-		Prerequisite: ulttech.terran
-	ProvidesPrerequisite@bot401:
-		RequiresPrerequisites: ai.boss
-		Prerequisite: ulttech.raynor
-	ProvidesPrerequisite@bot402:
-		RequiresPrerequisites: ai.boss
-		Prerequisite: ulttech.mengsk
-	ProvidesPrerequisite@bot42:
-		RequiresPrerequisites: ai.boss
-		Prerequisite: ulttech.china
-	ProvidesPrerequisite@bot43:
-		RequiresPrerequisites: ai.boss
-		Prerequisite: ulttech.japan
-	ProvidesPrerequisite@bot44:
-		RequiresPrerequisites: ai.boss
-		Prerequisite: ulttech.avalon
-	ProvidesPrerequisite@bot45:
-		RequiresPrerequisites: ai.boss
-		Prerequisite: ulttech.forgotten

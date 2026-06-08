@@ -247,8 +247,17 @@ ltnkd:
 	muzzle:
 		Filename: gunfire2.shp
 		Length: 2
+	turret-1:
+		Filename: mlrsdg.shp
+		Start: 32
+		Facings: 32
+	turret-2:
+		Filename: mlrsdg.shp
+		Facings: 32
 	icon:
 		Filename: 1tnkicon.shp
+	icon-gla:
+		Filename: g1tnkicon.shp
 
 ltnkd.husk:
 	idle:
@@ -268,14 +277,38 @@ mtnkd:
 		Filename: mtnkd.shp
 	idle:
 		Facings: 32
+		UseClassicFacings: True
 	turret:
 		Start: 32
 		Facings: 32
+		UseClassicFacings: True
+	turret-0:
+		Filename: 2tnk.shp
+		Start: 32
+		Facings: 32
+		UseClassicFacings: True
+	turret-1:
+		Filename: 3tnk.shp
+		Start: 32
+		Facings: 32
+		UseClassicFacings: True
+	turret-2:
+		Filename: htnkd.shp
+		Start: 32
+		Facings: 32
+		UseClassicFacings: True
+	turret-3:
+		Filename: 4tnk.shp
+		Start: 32
+		Facings: 32
+		UseClassicFacings: True
 	muzzle:
 		Filename: gunfire2.shp
 		Length: 2
 	icon:
 		Filename: 2tnkicon.shp
+	icon-gla:
+		Filename: g2tnkicon.shp
 
 mtnkd.husk:
 	idle:
@@ -1654,6 +1687,8 @@ usasentrydrone:
 		Facings: 8
 	icon:
 		Filename: usasentrydroneicon.shp
+	icon-unsc:
+		Filename: unscmongooseicon.shp
 	
 usamicrowavetank:
 	idle:
@@ -1679,6 +1714,11 @@ usacrusadertank:
 	muzzle:
 		Filename: gunfire2.shp
 		Length: 2
+	muzzle2:
+		Filename: minigun.shp
+		Length: 6
+		Facings: 8
+		Tick: 25
 	icon:
 		Filename: usacrusadertankicon.shp
 
@@ -1755,12 +1795,10 @@ usaavenger:
 	
 usalasercrusadertank:
 	idle:
-		Filename: usalasercrusadertank.shp
+		Filename: openraltnk.shp
 		Facings: 32
-		UseClassicFacings: True
 	turret:
-		Filename: usalasercrusadertank.shp
-		Start: 32
+		Filename: usalasercrusadertankturret.shp
 		Facings: 32
 		UseClassicFacings: True
 	muzzle:
@@ -1768,19 +1806,65 @@ usalasercrusadertank:
 		Length: 8
 	icon:
 		Filename: usalasercrusadertankicon.shp
-	
+
+
 usalasercrusadertank.destroyed:
 	idle:
-		Filename: usalasercrusadertank.shp
+		Filename: openraltnk.shp
 		Facings: 32
 		UseClassicFacings: True
 		ZOffset: -512
 	turret:
+		Filename: usalasercrusadertankturret.shp
+		Facings: 32
+		UseClassicFacings: True
+
+usalaserpaladintank:
+	idle:
 		Filename: usalasercrusadertank.shp
+		Facings: 32
+		UseClassicFacings: True
+	turret:
+		Filename: chinaturrets.shp
+		Start: 224
+		Facings: 32
+		UseClassicFacings: True
+		Offset: 0,3,0
+		Scale: 1.4
+	muzzle:
+		Filename: litningmuzzle.shp
+		Length: 8
+	icon:
+		Filename: usalaserpaladintankicon.shp
+
+usalaserpaladintank.destroyed:
+	idle:
+		Filename: usalasercrusadertank.shp
+		Facings: 32
+		UseClassicFacings: True
+	turret:
+		Filename: chinaturrets.shp
+		Start: 224
+		Facings: 32
+		UseClassicFacings: True
+		Offset: 0,3,0
+		Scale: 1.4
+
+usalibra:
+	idle:
+		Filename: usalibra.shp
+		Facings: 32
+		UseClassicFacings: True
+	turret:
+		Filename: usalibra.shp
 		Start: 32
 		Facings: 32
 		UseClassicFacings: True
-		ZOffset: -512
+	muzzle:
+		Filename: litningmuzzle.shp
+		Length: 2
+	icon:
+		Filename: usalibraicon.shp
 
 chinabattlemaster:
 	idle:
@@ -2045,6 +2129,11 @@ chinaoverlord:
 	muzzle:
 		Filename: gunfire2.shp
 		Length: 5
+	muzzle2:
+		Filename: minigun.shp
+		Length: 6
+		Facings: 8
+		Tick: 25
 	icon:
 		Filename: chinaoverlordicon.shp
 
@@ -2868,51 +2957,54 @@ btraven:
 
 btrae:
 	Defaults:
-		Filename: btrae.png
+		Filename: btrae.shp
 		Tick: 100
 	idle:
 		Facings: 16
-		Start: 160
-		ShadowStart: 512
+		Start: 1328
+		ShadowStart: 320
 	turret:
 		Facings: 16
-		Start: 336
-		ShadowStart: 688
+		Start: 656
+		ShadowStart: 992
+		ZOffset: 512
 	move:
 		Facings: 16
-		Length: 10
-		Start: 0
-		ShadowStart: 352
+		Length: 20
+		Start: 1008
+		ShadowStart: 0
 		Tick: 133
 	turret-move:
 		Facings: 16
-		Length: 10
-		Start: 176
-		ShadowStart: 528
+		Length: 20
+		Start: 336
+		ShadowStart: 672
+		ZOffset: 512
 		Tick: 133
 	idle1:
-		Filename: btrae_idle1.png
+		Filename: btrae_idle1.shp
 		Length: 25
 		Facings: 8
-		ShadowStart: 200
 		Tick: 150
 	idle2:
-		Filename: btrae_idle2.png
-		Length: 25
+		Filename: btrae_idle2.shp
+		Length: 30
 		Facings: 8
-		ShadowStart: 200
 		Tick: 150
 	idle3:
-		Filename: btrae_idle3.png
-		Length: 25
+		Filename: btrae_idle3.shp
+		Length: 30
 		Facings: 8
-		ShadowStart: 200
 		Tick: 150
 	idle4:
-		Filename: btrae_idle4.png
+		Filename: btrae_idle4.shp
 		Length: 18
 		Facings: 8
-		ShadowStart: 144
+		Tick: 100
+	die:
+		Filename: btrae_die.shp
+		Length: 15
+		Facings: 8
 		Tick: 100
 	muzzle:
 		Filename: gunfire2.shp
@@ -2922,6 +3014,10 @@ btrae:
 		Filename: gunfire2.shp
 		Scale: 0.5
 		Length: 2
+		Tick: 40
+	muzzleamsbig:
+		Filename: gunfire2.shp
+		Length: 5
 		Tick: 40
 	icon:
 		Filename: btraeicon.shp
@@ -3063,3 +3159,427 @@ strifeguyinquisitor:
 	icon:
 		Filename: strifeguyinquisitoricon.shp
 		Offset: 0,0
+
+unscwarthog:
+	Defaults:
+		Filename: unscwarthog.shp
+		Offset: 0,-4
+		Scale: 0.65
+	idle:
+		Facings: 32
+		UseClassicFacings: True
+	idle2:
+		Scale: 0.1
+		Filename: tbunker.shp
+		Start: 10
+	turret:
+		Filename: e1turret.shp
+		Facings: 8
+	muzzle:
+		Filename: minigun.shp
+		Length: 6
+		Facings: 8
+	icon:
+		Filename: unscwarthogicon.shp
+		Offset: 0,0
+
+	
+unscscorpion:
+	Defaults:
+		Filename: unscscorpion.shp
+		Offset: 0,-4
+		Scale: 0.8
+	idle:
+		Facings: 32
+	turret:
+		Filename: unscscorpionturret.shp
+		Offset: 0,-6
+		Facings: 32
+	muzzle:
+		Filename: gunfire2.shp
+		Length: 2
+	muzzle2:
+		Filename: minigun.shp
+		Length: 6
+		Facings: 8
+		Tick: 25
+	icon:
+		Filename: unscscorpionicon.shp
+		Offset: 0,0
+
+unscscorpion.husk:
+	Defaults:
+		Filename: unscscorpion.shp
+		Scale: 0.8
+	idle:
+		Facings: 32
+		UseClassicFacings: True
+		ZOffset: -512
+	turret:
+		Filename: unscscorpionturret.shp
+		Facings: 32
+		UseClassicFacings: True
+		ZOffset: -512
+
+unscgrizzly:
+	Defaults:
+		Filename: unscgrizzly.shp
+		Scale: 0.9
+	idle:
+		Facings: 32
+	turret:
+		Filename: unscgrizzlyturret.shp
+		Facings: 32
+	muzzle:
+		Filename: gunfire2.shp
+		Length: 2
+	muzzle2:
+		Filename: minigun.shp
+		Length: 6
+		Facings: 8
+		Tick: 25
+	icon:
+		Filename: unscgrizzlyicon.shp
+		Offset: 0,0
+
+unscgrizzly.husk:
+	Defaults:
+		Filename: unscgrizzly.shp
+		Scale: 0.9
+	idle:
+		Facings: 32
+		UseClassicFacings: True
+		ZOffset: -512
+	turret:
+		Filename: unscgrizzlyturret.shp
+		Facings: 32
+		UseClassicFacings: True
+		ZOffset: -512
+
+unsccobra:
+	Defaults:
+		Filename: unsccobra.shp
+		Offset: 0,-4
+		Scale: 0.75
+	idle:
+		Facings: 32
+	turret:
+		Filename: unsccobraturret.shp
+		Facings: 32
+	muzzle:
+		Filename: gunfire2.shp
+		Length: 2
+	icon:
+		Filename: unsccobraicon.shp
+		Offset: 0,0
+
+unscwolverine:
+	Defaults:
+		Filename: unscwolverine.shp
+		Scale: 0.9
+	idle:
+		Facings: 32
+	pod:
+		Filename: unscwolverineturret.shp
+		Start: 0
+		Facings: 32
+	muzzle:
+		Filename: minigun.shp
+		Length: 6
+		Facings: 8
+	unload:
+		Facings: 32
+	icon:
+		Filename: unscwolverineicon.shp
+		Offset: 0,0
+
+unscmcv:
+	idle:
+		Filename: unscmcv.shp
+		Facings: 32
+		Offset: 0,-8
+	icon:
+		Filename: unscmcvicon.shp
+
+covenantmcv:
+	idle:
+		Filename: covenantmcv.shp
+		Facings: 32
+		Offset: 0,-8
+	icon:
+		Filename: covenantmcvicon.shp
+
+covenantghost:
+	Defaults:
+		Filename: invis.shp
+	idle:
+		Filename: invis.shp
+	turret:
+		Filename: covenantghost.shp
+		Offset: 0,-10
+		Facings: 32
+	turretdamaged:
+		Filename: covenantghostdamaged.shp
+		Offset: 0,-10
+		Facings: 32
+	fire1:
+		Filename: bluefire1.shp
+		Length: *
+		ZOffset: 1023
+	fire2:
+		Filename: bluefire2.shp
+		Length: *
+		ZOffset: 1023
+	muzzle:
+		Filename: gunfire2.shp
+		Length: 2
+	muzzle2:
+		Filename: minigun.shp
+		Length: 6
+		Facings: 8
+		Tick: 25
+	icon:
+		Filename: covenantghosticon.shp
+		Offset: 0,0
+
+covenantghostdamaged:
+	Defaults:
+		Filename: covenantghostdamaged.shp
+	idle:
+		Filename: covenantghostdamaged.shp
+		Offset: 0,-10
+		Facings: 32
+	turret:
+		Filename: invis.shp
+	fire1:
+		Filename: bluefire1.shp
+		Length: *
+		ZOffset: 1023
+	fire2:
+		Filename: bluefire2.shp
+		Length: *
+		ZOffset: 1023
+
+covenantchopper:
+	Defaults:
+		Filename: covenantchopper.shp
+	idle:
+		Filename: covenantchopper.shp
+		Facings: 32
+	turret:
+		Filename: invis.shp
+	muzzle:
+		Filename: gunfire2.shp
+		Length: 2
+	muzzle2:
+		Filename: minigun.shp
+		Length: 6
+		Facings: 8
+		Tick: 25
+	icon:
+		Filename: covenantchoppericon.shp
+		Offset: 0,0
+
+covenantwraith:
+	Defaults:
+		Filename: invis.shp
+		Scale: 0.85
+	idle:
+		Filename: invis.shp
+	turret:
+		Filename: covenantwraith.shp
+		Facings: 32
+	turretdamaged:
+		Filename: covenantwraithdamaged.shp
+		Facings: 32
+	fire1:
+		Filename: bluefire1.shp
+		Length: *
+		ZOffset: 1023
+		Scale: 1.0
+	fire2:
+		Filename: bluefire2.shp
+		Length: *
+		ZOffset: 1023
+		Scale: 1.0
+	muzzle:
+		Filename: gunfire2.shp
+		Length: 2
+	muzzle2:
+		Filename: minigun.shp
+		Length: 6
+		Facings: 8
+		Tick: 25
+	icon:
+		Filename: covenantwraithicon.shp
+		Offset: 0,0
+		Scale: 1.0
+
+covenantwraithdamaged:
+	Defaults:
+		Scale: 0.85
+		Filename: covenantwraithdamaged.shp
+	idle:
+		Filename: covenantwraithdamaged.shp
+		Facings: 32
+	turret:
+		Filename: invis.shp
+	fire1:
+		Filename: bluefire1.shp
+		Length: *
+		ZOffset: 1023
+	fire2:
+		Filename: bluefire2.shp
+		Length: *
+		ZOffset: 1023
+
+covenantskyhunter:
+	Defaults:
+		Filename: invis.shp
+		Scale: 0.85
+	idle:
+		Filename: invis.shp
+	turret:
+		Filename: covenantskyhunter.shp
+		Facings: 32
+	turretdamaged:
+		Filename: covenantskyhunterdamaged.shp
+		Facings: 32
+	fire1:
+		Filename: bluefire1.shp
+		Length: *
+		ZOffset: 1023
+		Scale: 1.0
+	fire2:
+		Filename: bluefire2.shp
+		Length: *
+		ZOffset: 1023
+		Scale: 1.0
+	muzzle:
+		Filename: gunfire2.shp
+		Length: 2
+	muzzle2:
+		Filename: minigun.shp
+		Length: 6
+		Facings: 8
+		Tick: 25
+	icon:
+		Filename: covenantskyhuntericon.shp
+		Offset: 0,0
+		Scale: 1.0
+
+covenantskyhunterdamaged:
+	Defaults:
+		Scale: 0.85
+		Filename: covenantskyhunterdamaged.shp
+	idle:
+		Filename: covenantskyhunterdamaged.shp
+		Facings: 32
+	turret:
+		Filename: invis.shp
+	fire1:
+		Filename: bluefire1.shp
+		Length: *
+		ZOffset: 1023
+	fire2:
+		Filename: bluefire2.shp
+		Length: *
+		ZOffset: 1023
+
+covenantrevenant:
+	Defaults:
+		Filename: invis.shp
+		Scale: 0.85
+	idle:
+		Filename: invis.shp
+	turret:
+		Filename: covenantrevenant.shp
+		Facings: 32
+	turretdamaged:
+		Filename: covenantrevenantdamaged.shp
+		Facings: 32
+	fire1:
+		Filename: bluefire1.shp
+		Length: *
+		ZOffset: 1023
+		Scale: 1.0
+	fire2:
+		Filename: bluefire2.shp
+		Length: *
+		ZOffset: 1023
+		Scale: 1.0
+	muzzle:
+		Filename: gunfire2.shp
+		Length: 2
+	muzzle2:
+		Filename: minigun.shp
+		Length: 6
+		Facings: 8
+		Tick: 25
+	icon:
+		Filename: covenantrevenanticon.shp
+		Offset: 0,0
+		Scale: 1.0
+
+covenantrevenantdamaged:
+	Defaults:
+		Scale: 0.85
+		Filename: covenantrevenantdamaged.shp
+	idle:
+		Filename: covenantrevenantdamaged.shp
+		Facings: 32
+	turret:
+		Filename: invis.shp
+	fire1:
+		Filename: bluefire1.shp
+		Length: *
+		ZOffset: 1023
+	fire2:
+		Filename: bluefire2.shp
+		Length: *
+		ZOffset: 1023
+
+covenantscarab:
+	Defaults:
+		Filename: avimp.shp
+	idle:
+		Filename: avimp.shp
+		Facings: 8
+		ShadowStart: 88
+	stand:
+		Filename: avimp.shp
+		Facings: 8
+		ShadowStart: 88
+	walk:
+		Filename: avimp.shp
+		Start: 8
+		Length: 10
+		Facings: 8
+		ShadowStart: 96
+		Tick: 150
+	turret:
+		Filename: covenantscarabturret.shp
+		Facings: 32
+		Scale: 0.8
+	fire1:
+		Filename: bluefire1.shp
+		Length: *
+		ZOffset: 1023
+		Scale: 1.0
+	fire2:
+		Filename: bluefire2.shp
+		Length: *
+		ZOffset: 1023
+		Scale: 1.0
+	muzzle:
+		Filename: gunfire2.shp
+		Length: 2
+	muzzle2:
+		Filename: minigun.shp
+		Length: 6
+		Facings: 8
+		Tick: 25
+	icon:
+		Filename: covenantscarabicon.shp
+		Offset: 0,0
+		Scale: 1.0

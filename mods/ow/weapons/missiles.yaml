@@ -106,6 +106,30 @@ StingerMissile:
 		Versus:
 			None: 40
 
+StingerMissileAA:
+	Inherits: Nike
+	ReloadDelay: 50
+	Range: 8c0
+	Report: bstiweaa.aud,bstiweab.aud,bstiweac.aud
+	Projectile: Missile
+		Image: DRAGON
+	Warhead@1Dam: SpreadDamage
+		Damage: 4500
+
+StingerMissileAP:
+	Inherits: StingerMissile
+	Projectile: Missile
+		ContrailStartColor: FFF3BE
+	Warhead@1Dam: SpreadDamage
+		Damage: 7750
+
+StingerMissileAPAA:
+	Inherits: StingerMissileAA
+	Projectile: Missile
+		ContrailStartColor: FFF3BE
+	Warhead@1Dam: SpreadDamage
+		Damage: 4500
+
 BuggyRockets:
 	Inherits: Dragon
 	ReloadDelay: 150
@@ -137,7 +161,7 @@ BuggyRocketsAP:
 	Warhead@1Dam: SpreadDamage
 		Damage: 3000
 		Versus:
-			None: 33
+			None: 40
 			Light: 80
 			Heavy: 110
 
@@ -169,7 +193,7 @@ FRkt:
 
 BikeRockets:
 	Inherits: ^AntiGroundMissile
-	Range: 6c0
+	Range: 7c0
 	Burst: 2
 	BurstDelays: 6
 	ValidTargets: Ground, Water, GroundActor, WaterActor, Air, AirborneActor
@@ -243,7 +267,7 @@ MonMis:
 	Warhead@3Smu: LeaveSmudge
 		SmudgeType: Crater
 	Warhead@4EffGround: CreateEffect
-		Explosions: artillery_explosion
+		Explosions: med_explosion
 		ImpactSounds: kaboom25.aud
 		ValidTargets: Ground, GroundActor, WaterActor, Trees
 	Warhead@5EffWater: CreateEffect
@@ -355,6 +379,11 @@ TritonTusk:
 	Warhead@2Dam: SpreadDamage
 		Damage: 1200
 
+MarauderTusk:
+	Inherits: MammothTusk
+	Range: 5c0
+	ValidTargets: Infantry, Cyborg
+
 DireMissile:
 	Inherits: ^AntiGroundMissile
 	ReloadDelay: 70
@@ -430,16 +459,6 @@ TerranHK:
 		Acceleration: 64
 	Warhead@1Dam: SpreadDamage
 		Damage: 3000
-
-StingerMissileAA:
-	Inherits: Nike
-	ReloadDelay: 50
-	Range: 8c0
-	Report: bstiweaa.aud,bstiweab.aud,bstiweac.aud
-	Projectile: Missile
-		Image: DRAGON
-	Warhead@1Dam: SpreadDamage
-		Damage: 3200
 
 DawnNike:
 	Inherits: Nike
@@ -682,22 +701,38 @@ GLASCUD:
 	ReloadDelay: 350
 	Range: 14c0
 	MinRange: 5c0
-	Report: samshot1.aud
-	-Projectile:
-	Projectile: Bullet
-		Speed: 70
-		Blockable: false
-		TrailImage: smokey
-		TrailDelay: 4
-		Inaccuracy: 213
+	Report: vscuweaa.wav
+	Projectile: Missile
+		Speed: 400
 		Image: V2
 		Shadow: True
 		LaunchAngle: 150
+		Blockable: false
+		TrailImage: smokey
+		TrailDelay: 4
+		RangeLimit: 30c0
+		ExplodeWhenEmpty: false
+		CruiseAltitude: 4c0
+		MinimumLaunchAngle: 256
+		MinimumLaunchSpeed: 64
+		MaximumLaunchSpeed: 64
+		HorizontalRateOfTurn: 8
+		VerticalRateOfTurn: 8
+		Gravity: 0
+		Acceleration: 3
+		HomingActivationDelay: 12
+		LockOnProbability: 0
+		Inaccuracy: 1c0
+		ContrailLength: 33
+		ContrailStartWidth: 72
+		ContrailZOffset: 1021
+		Jammable: false
+		PointDefenseType: cruisemissile
 	Warhead@1Dam: SpreadDamage
 		Spread: 600
 		Damage: 22500
 		ValidTargets: GroundActor, WaterActor, Trees
-		Falloff: 150, 80, 60, 40, 20, 10, 0
+		Falloff: 225, 75, 60, 40, 20, 10, 0
 		Versus:
 			None: 35
 			Wood: 75
@@ -707,14 +742,20 @@ GLASCUD:
 		AffectsParent: true
 		DamageTypes: Prone50Percent, TriggerProne, SmallExplosionDeath, Incendiary
 	Warhead@3Eff: CreateEffect
-		Explosions: building
-		ImpactSounds: dsbigexp.aud
+		Explosions: dukenukemexplosionmed2
+		ImpactSounds: gexpcara.aud, gexpcarb.aud, gexpcarc.aud, gexpcard.aud
 	Warhead@4EffWater: CreateEffect
 		Explosions: large_splash
+	Warhead@5shake: ShakeScreen
+		Duration: 5
+		Intensity: 1
+		Multiplier: 1,1
 
 
 ToxinSCUD:
 	Inherits: GLASCUD
+	Projectile: Missile
+		ContrailStartColor: 60FF60
 	Warhead@1Dam: SpreadDamage
 		Spread: 768
 		Damage: 12500
@@ -726,28 +767,25 @@ ToxinSCUD:
 			Concrete: 20
 		AffectsParent: true
 	Warhead@gas: FireCluster
-		Delay: 4
 		Weapon: A10Gas
 		RandomClusterCount: 5
-		Dimensions: 4,4
-		Footprint: xxxx xxxx xxxx xxxx
+		Dimensions: 5,5
+		Footprint: _xxx_ xx_xx x_x_x xx_xx _xxx_
+	Warhead@3Eff: CreateEffect
+		Explosions: dukenukemexplosion_green
 
 ToxinSCUD_Beta:
 	Inherits: ToxinSCUD
+	Projectile: Missile
+		ContrailStartColor: 6098FF
 	Warhead@1Dam: SpreadDamage
-		Damage: 13300
+		Versus:
+			None: 80
 	Warhead@gas: FireCluster
-		Delay: 4
-		Weapon: A10Gas_Beta
-		RandomClusterCount: 3
-		Dimensions: 3,3
-		Footprint: xxx xxx xxx
-	Warhead@gas2: FireCluster
-		Delay: 8
 		Weapon: A10Gas_Beta
 		RandomClusterCount: 6
-		Dimensions: 6,6
-		Footprint: xxxxxx xxxxxx xxxxxx xxxxxx xxxxxx xxxxxx
+	Warhead@3Eff: CreateEffect
+		Explosions: dukenukemexplosion_blue
 
 TowerMissile:
 	Inherits: ^AntiGroundMissile
@@ -761,7 +799,7 @@ TowerMissile:
 		HorizontalRateOfTurn: 80
 		Speed: 280
 		RangeLimit: 8c409
-		Inaccuracy: 256
+		Inaccuracy: 768
 		MinimumLaunchAngle: 128
 		MaximumLaunchAngle: 144
 		VerticalRateOfTurn: 32
@@ -770,7 +808,7 @@ TowerMissile:
 		Damage: 9000
 		ValidTargets: GroundActor, WaterActor
 		Versus:
-			None: 60
+			None: 40
 			Wood: 75
 			Light: 100
 			Heavy: 70
@@ -779,6 +817,10 @@ TowerMissile:
 		Explosions: artillery_explosion
 		ImpactSounds: xplobig4.aud
 		ValidTargets: Ground, Air, GroundActor, AirborneActor, WaterActor, Trees
+
+TowerMissileTurret:
+	Inherits: TowerMissile
+	ReloadDelay: 100
 
 TowerAAMissile:
 	Inherits: ^AntiAirMissile
@@ -791,7 +833,7 @@ TowerAAMissile:
 		HorizontalRateOfTurn: 80
 		Speed: 350
 		RangeLimit: 11c409
-		Inaccuracy: 0
+		Inaccuracy: 256
 		MinimumLaunchAngle: 128
 		MaximumLaunchAngle: 180
 		VerticalRateOfTurn: 64
@@ -822,11 +864,13 @@ AvaliTowerAAMissile:
 ApocMissile:
 	Inherits: TowerMissile
 	ReloadDelay: 45
+	ValidTargets: Ground, Water, GroundActor, WaterActor, AirborneActor
 	Warhead@1Dam: SpreadDamage
 		Versus:
 			None: 100
 			Light: 60
 			Heavy: 110
+		ValidTargets: GroundActor, WaterActor, AirborneActor
 
 
 GDI277mm:
@@ -1350,14 +1394,22 @@ tomahawkmissile:
 	Inherits: ^AntiGroundMissile
 	ReloadDelay: 250
 	Range: 13c0
-	Report: btunweaa.wav, btunweab.wav, btunweac.wav, btunwead.wav
+	Report: vtomweaa.wav
 	Projectile: Missile
 		Speed: 200
-		HorizontalRateOfTurn: 60
+		HorizontalRateOfTurn: 20
 		RangeLimit: 15c0
 		Image: V2
 		TrailImage: smokey
 		ContrailLength: 0
+		Gravity: 1
+		MinimumLaunchAngle: 48
+		MinimumLaunchSpeed: 8
+		MaximumLaunchSpeed: 8
+		HomingActivationDelay: 3
+		Acceleration: 10
+		CruiseAltitude: 3c0
+		PointDefenseType: cruisemissile
 	Warhead@1Dam: SpreadDamage
 		Spread: 426
 		Damage: 2500
@@ -1370,7 +1422,7 @@ tomahawkmissile:
 			Concrete: 100
 		DamageTypes: Prone50Percent, TriggerProne, SmallExplosionDeath
 	Warhead@3Eff: CreateEffect
-		Explosions: artillery_explosion
+		Explosions: self_destruct
 		ImpactSounds: kaboom15.aud
 	Warhead@4EffWater: CreateEffect
 		Explosions: large_splash
@@ -1384,11 +1436,19 @@ tomahawkmissileair:
 	Report: btunweaa.wav, btunweab.wav, btunweac.wav, btunwead.wav
 	Projectile: Missile
 		Speed: 300
-		HorizontalRateOfTurn: 60
+		HorizontalRateOfTurn: 20
 		RangeLimit: 15c0
 		Image: V2
 		TrailImage: smokey
 		ContrailLength: 0
+		Gravity: 1
+		MinimumLaunchAngle: 48
+		MinimumLaunchSpeed: 8
+		MaximumLaunchSpeed: 8
+		HomingActivationDelay: 3
+		Acceleration: 10
+		CruiseAltitude: 2c0
+		PointDefenseType: cruisemissile
 	Warhead@1Dam: SpreadDamage
 		Spread: 426
 		Damage: 700
@@ -1401,7 +1461,7 @@ tomahawkmissileair:
 			Concrete: 100
 		DamageTypes: Prone50Percent, TriggerProne, SmallExplosionDeath
 	Warhead@3Eff: CreateEffect
-		Explosions: artillery_explosion
+		Explosions: self_destruct
 		ImpactSounds: kaboom15.aud
 	Warhead@4EffWater: CreateEffect
 		Explosions: large_splash
@@ -1664,11 +1724,11 @@ usapatriotshotair:
 		Arm: 3
 		Inaccuracy: 0
 		Image: MISSILE
-		HorizontalRateOfTurn: 25
+		HorizontalRateOfTurn: 100
 		RangeLimit: 24c0
 		MinimumLaunchAngle: 62
 		MaximumLaunchAngle: 62
-		Speed: 512
+		Speed: 341
 	Warhead@1Dam: SpreadDamage
 		Damage: 4000
 		Versus:
@@ -1949,6 +2009,40 @@ KerriganBomb:
 		AffectsParent: false
 		ValidTargets: WaterActor, GroundActor, AirborneActor
 
+KerriganBioBomb:
+	Inherits: KerriganBomb
+	ReloadDelay: 250
+	Range: 6c0
+	Warhead@1Dam: SpreadDamage
+		Damage: 10000
+	Warhead@curtain: GrantExternalCondition
+		Delay: 10
+		Range: 4c0
+	Warhead@3EffGround: CreateEffect
+		Explosions: ensnare
+		ImpactSounds: zquens00.aud
+		ValidTargets: Ground, GroundActor, WaterActor, Trees, Air, AirborneActor
+
+KerriganToxinBomb:
+	Inherits: KerriganBomb
+	ReloadDelay: 250
+	Range: 6c0
+	Warhead@1Dam: SpreadDamage
+		Damage: 15000
+	Warhead@curtain: GrantExternalCondition
+		Condition: corrode
+		Delay: 10
+		Range: 3c0
+	Warhead@3EffGround: CreateEffect
+		Explosions: plague
+		ImpactSounds: zdeblo00.aud
+		ValidTargets: Ground, GroundActor, WaterActor, Trees, Air, AirborneActor
+	Warhead@gas: FireCluster
+		Weapon: A10Gas
+		RandomClusterCount: 5
+		Dimensions: 5,5
+		Footprint: _xxx_ xx_xx x_x_x xx_xx _xxx_
+
 ScourgeWeapon:
 	Inherits: ^AntiGroundMissile
 	ReloadDelay: 250
@@ -2012,6 +2106,81 @@ tankhuntershotgarrison:
 	Report: itanweaa.wav, itanweab.wav, itanweac.wav, itanwead.wav
 	Projectile: Missile
 		TrailImage: smokey
+
+nuketankhuntershot:
+	Inherits: missiledefendershot
+	Report: itanweaa.wav, itanweab.wav, itanweac.wav, itanwead.wav
+	Projectile: Missile
+		Speed: 270
+		ContrailStartColor: ff5500
+		ContrailEndColor: ff9b69
+	Warhead@1Dam: SpreadDamage
+		Damage: 5000
+		ValidTargets: Ground, GroundActor, Air, AirborneActor, WaterActor, Trees
+	Warhead@3Eff: CreateEffect
+		Explosions: dukenukemexplosiontiny
+		ImpactSounds: kaboom25.aud
+		ValidTargets: Ground, Air, GroundActor, WaterActor, Trees
+		ImpactActors: false
+	Warhead@4Radiation: CreateResource
+		AddsResourceType: Radiation
+		Delay: 1
+		Size: 1
+	Warhead@Res7: DestroyResource
+		ResourceTypes: Radiation
+		Size: 1
+		Delay: 175
+		ResourceAmount: 10
+
+nuketankhuntershotair:
+	Inherits: missiledefendershotair
+	Report: itanweaa.wav, itanweab.wav, itanweac.wav, itanwead.wav
+	Projectile: Missile
+		Speed: 500
+		ContrailStartColor: ff5500
+		ContrailEndColor: ff9b69
+	Warhead@1Dam: SpreadDamage
+		Damage: 5000
+		ValidTargets: Ground, GroundActor, Air, AirborneActor, WaterActor, Trees
+	Warhead@3Eff: CreateEffect
+		Explosions: dukenukemexplosiontiny
+		ImpactSounds: kaboom25.aud
+		ValidTargets: Ground, Air, GroundActor, WaterActor, Trees
+		ImpactActors: false
+	Warhead@4Radiation: CreateResource
+		AddsResourceType: Radiation
+		Delay: 1
+		Size: 1
+	Warhead@Res7: DestroyResource
+		ResourceTypes: Radiation
+		Size: 1
+		Delay: 175
+		ResourceAmount: 10
+
+nuketankhuntershotgarrison:
+	Inherits: missiledefendershotgarrison
+	Report: itanweaa.wav, itanweab.wav, itanweac.wav, itanwead.wav
+	Projectile: Missile
+		Speed: 270
+		ContrailStartColor: ff5500
+		ContrailEndColor: ff9b69
+	Warhead@1Dam: SpreadDamage
+		Damage: 5000
+		ValidTargets: Ground, GroundActor, Air, AirborneActor, WaterActor, Trees
+	Warhead@3Eff: CreateEffect
+		Explosions: dukenukemexplosiontiny
+		ImpactSounds: kaboom25.aud
+		ValidTargets: Ground, Air, GroundActor, WaterActor, Trees
+		ImpactActors: false
+	Warhead@4Radiation: CreateResource
+		AddsResourceType: Radiation
+		Delay: 1
+		Size: 1
+	Warhead@Res7: DestroyResource
+		ResourceTypes: Radiation
+		Size: 1
+		Delay: 175
+		ResourceAmount: 10
 
 chinamigshot:
 	Inherits: ^AntiGroundMissile
@@ -2160,72 +2329,6 @@ doomguyfraggrenade:
 	Inherits: chinamortarshot
 	Range: 6c0
 	MinRange: 1c0
-
-HunterSeekerBomb:
-	Inherits: ^AntiGroundMissile
-	ReloadDelay: 250
-	Report: baud.aud
-	Range: 8c0
-	ValidTargets: Ground, Water, GroundActor, WaterActor, AirborneActor
-	Projectile: Missile
-		Arm: 3
-		Image: gghunt
-		Sequence: move
-		Palette: tsunit
-		IsPlayerPalette: true
-		HorizontalRateOfTurn: 64
-		RangeLimit: 9c0
-		Speed: 400
-		ContrailLength: 0
-		MinimumLaunchSpeed: 355
-		MaximumLaunchSpeed: 400
-		Acceleration: 5
-		Inaccuracy: 0
-	Warhead@1Dam: SpreadDamage
-		Spread: 512
-		Damage: 300000
-		Falloff: 250, 200, 175, 150, 0, 0, 0
-		Versus:
-			None: 100
-			Wood: 100
-			Light: 100
-			Heavy: 100
-			Concrete: 100
-		AffectsParent: true
-		ValidRelationships: Neutral, Enemy
-		ValidTargets: GroundActor, WaterActor, AirborneActor
-		DamageTypes: ElectricityDeath
-	Warhead@inf: SpreadDamage
-		Spread: 1c512
-		Delay: 1
-		Damage: 100000
-		AffectsParent: true
-		ValidRelationships: Neutral, Enemy
-		ValidTargets: Infantry
-		DamageTypes: ElectricityDeath
-	Warhead@2Dam: SpreadDamage
-		Delay: 4
-		Spread: 300
-		Damage: 20000
-		Falloff: 250, 250, 175, 150, 0, 0, 0
-		ValidRelationships: Ally
-		ValidTargets: GroundActor, WaterActor, AirborneActor
-		DamageTypes: Prone50Percent, TriggerProne, ExplosionDeath
-	Warhead@2Eff: CreateEffect
-		ValidTargets: Ground, Air, GroundActor, AirborneActor, WaterActor, Trees, Water
-		ImpactSounds: expnew11.aud
-	Warhead@3Eff: CreateEffect
-		ValidTargets: Ground, Air, GroundActor, AirborneActor, WaterActor, Trees, Water
-		ImpactSounds: expnew10.aud
-	-Warhead@4EffWater:
-	Warhead@15Shake: ShakeScreen
-		Duration: 5
-		Intensity: 1
-		Multiplier: 1,1
-	Warhead@99Eff_impact: CreateEffect
-		ImpactSounds: jericho.wav
-		Explosions: nuke
-		ImpactActors: false
 
 USASpectreGunshipbunkerbuster:
 	Inherits: ^AntiGroundMissile
@@ -3027,6 +3130,12 @@ SRM6:
 	Warhead@3Eff: CreateEffect
 		Explosions: med_explosion
 		ImpactSounds: bt_explo1.aud, bt_explo2.aud, bt_explo3.aud
+		InvalidTargets: Vehicle, Structure, Wall
+	Warhead@4Eff: CreateEffect
+		Explosions: med_explosion
+		ImpactSounds: bt_acimp1.ogg, bt_acimp2.ogg, bt_acimp3.ogg, bt_acimp4.ogg, bt_acimp5.ogg, bt_acimp6.ogg, bt_acimp7.ogg, bt_acimp8.ogg, bt_acimp9.ogg, bt_acimp10.ogg
+		ImpactSoundChance: 50
+		ValidTargets: Vehicle, Structure, Cyborg, Wall
 
 LRM10_5:
 	Inherits: ^AntiGroundMissile
@@ -3061,10 +3170,16 @@ LRM10_5:
 	Warhead@3Eff: CreateEffect
 		ImpactSounds: bt_explo1.aud, bt_explo2.aud, bt_explo3.aud
 		ValidTargets: Ground, GroundActor, AirborneActor, WaterActor, Trees
+		InvalidTargets: Vehicle, Structure, Wall
 	Warhead@5EffAir: CreateEffect
 		Explosions: med_explosion_air
 		ImpactSounds: kaboom25.aud
 		ValidTargets: Air, AirborneActor
+	Warhead@4Eff: CreateEffect
+		Explosions: med_explosion
+		ImpactSounds: bt_acimp1.ogg, bt_acimp2.ogg, bt_acimp3.ogg, bt_acimp4.ogg, bt_acimp5.ogg, bt_acimp6.ogg, bt_acimp7.ogg, bt_acimp8.ogg, bt_acimp9.ogg, bt_acimp10.ogg
+		ImpactSoundChance: 33
+		ValidTargets: Vehicle, Structure, Cyborg, Wall
 
 LRM10:
 	Inherits: LRM10_5
@@ -3079,7 +3194,7 @@ strifeguymissile:
 	Report: strifeguymissilefire.wav
 	ValidTargets: AirborneActor
 	Projectile: Missile
-		Speed: 213
+		Speed: 384
 		Arm: 2
 		Blockable: false
 		ContrailLength: 10
@@ -3121,7 +3236,7 @@ strifeguycrusadermissile:
 	Range: 6c0
 	ValidTargets: Vehicle, Structure, AirborneActor, Trees, Wall, Ground
 	Warhead@2Dam: SpreadDamage
-		Spread: 128
+		Spread: 256
 		Damage: 7500
 		ValidTargets: Ground, GroundActor, WaterActor, Trees
 		Versus:
@@ -3136,3 +3251,141 @@ strifeguycrusadermissile:
 		ImpactSounds: strifeguymissileexplosion.wav
 		ImpactActors: false
 		ValidTargets: Ground, GroundActor, AirborneActor, Air, WaterActor, Trees
+
+SilverCruiseMissile:
+	ReloadDelay: 500
+	Range: 28c0
+	MinRange: 8c0
+	Burst: 2
+	BurstDelays: 150
+	Report: bt_mrm40.ogg
+	ValidTargets: Vehicle, Structure, Ground, Water, WaterActor, EpicUnit, Hero, HighHPInfantry
+	Projectile: Missile
+		Speed: 1c0
+		Image: V2
+		Shadow: True
+		LaunchAngle: 150
+		Blockable: false
+		TrailImage: smokey
+		TrailDelay: 4
+		RangeLimit: 30c0
+		ExplodeWhenEmpty: false
+		CruiseAltitude: 7c0
+		MinimumLaunchAngle: 256
+		MinimumLaunchSpeed: 256
+		MaximumLaunchSpeed: 256
+		HorizontalRateOfTurn: 8
+		VerticalRateOfTurn: 32
+		Gravity: 10
+		Acceleration: 3
+		HomingActivationDelay: 9
+		Inaccuracy: 2c0
+		ContrailLength: 50
+		ContrailStartWidth: 128
+		ContrailZOffset: 1021
+		PointDefenseType: cruisemissile
+	Warhead@1Dam: SpreadDamage
+		Spread: 1c0
+		Damage: 10000
+		Falloff: 750, 368, 135, 50, 18, 7, 0
+		ValidTargets: GroundActor, Trees, WaterActor, Underwater, AirborneActor
+		Versus:
+			Concrete: 15
+		AffectsParent: true
+		DamageTypes: Prone50Percent, TriggerProne, FireDeath, Incendiary
+	Warhead@98Eff_impact: CreateEffect
+		ImpactSounds: jericho.wav
+		ImpactActors: false
+	Warhead@2Res_impact: DestroyResource
+		Size: 1
+		Delay: 5
+	Warhead@3Eff_impact: CreateEffect
+		Explosions: nuke
+		ImpactSounds: kaboom1.aud
+		Delay: 5
+		ValidTargets: Ground, GroundActor, Trees, Water, WaterActor, Air
+		ImpactActors: false
+	Warhead@4Dam_areanuke1: SpreadDamage
+		Spread: 800
+		Damage: 3000
+		Falloff: 500, 368, 135, 50, 18, 7, 0
+		Delay: 10
+		ValidTargets: GroundActor, Trees, WaterActor, Underwater, AirborneActor
+		Versus:
+			Heavy: 60
+			Concrete: 15
+		AffectsParent: true
+		DamageTypes: Prone50Percent, TriggerProne, FireDeath, Incendiary
+	Warhead@6Eff_areanuke1: CreateEffect
+		ImpactSounds: kaboom22.aud
+		Delay: 10
+	Warhead@7Dam_areanuke2: SpreadDamage
+		Spread: 1200
+		Damage: 2500
+		Falloff: 500, 368, 135, 50, 18, 7, 0
+		Delay: 15
+		ValidTargets: GroundActor, Trees, WaterActor, Underwater, AirborneActor
+		Versus:
+			Heavy: 60
+			Concrete: 15
+		AffectsParent: true
+		DamageTypes: Prone50Percent, TriggerProne, FireDeath, Incendiary
+		ValidRelationships: Enemy, Neutral
+	Warhead@9Dam_areanuke3: SpreadDamage
+		Spread: 1750
+		Damage: 2000
+		Falloff: 500, 368, 135, 50, 18, 7, 0
+		Delay: 15
+		ValidTargets: GroundActor, Trees, WaterActor, Underwater, AirborneActor
+		Versus:
+			Heavy: 60
+			Concrete: 15
+		AffectsParent: false
+		DamageTypes: Prone50Percent, TriggerProne, FireDeath, Incendiary
+		ValidRelationships: Enemy, Neutral
+	Warhead@11Smu_areanuke3: LeaveSmudge
+		SmudgeType: Scorch
+		Size: 2
+		Delay: 15
+	Warhead@22FlashEffect: FlashEffect
+		Duration: 15
+		FlashType: Nuke
+
+ScorpionRocket:
+	Inherits: ^AntiGroundMissile
+	ReloadDelay: 75
+	Range: 4c768
+	Report: btunweaa.wav, btunweab.wav, btunweac.wav, btunwead.wav
+	Projectile: Missile
+		Speed: 200
+		HorizontalRateOfTurn: 20
+		RangeLimit: 15c0
+		Gravity: 1
+		MinimumLaunchAngle: 48
+		MinimumLaunchSpeed: 16
+		MaximumLaunchSpeed: 16
+		HomingActivationDelay: 2
+		Acceleration: 12
+		CruiseAltitude: 2c0
+		Inaccuracy: 512
+		LockOnProbability: 0
+		Image: patriot
+	Warhead@1Dam: SpreadDamage
+		Damage: 7500
+		Spread: 512
+		Versus:
+			None: 100
+			Wood: 50
+			Light: 75
+			Heavy: 75
+			Concrete: 50
+	Warhead@3Eff: CreateEffect
+		Explosions: artillery_explosion
+		ImpactSounds: kaboom15.aud
+
+ScorpionRocketAP:
+	Inherits: ScorpionRocket
+	Projectile: Missile
+		ContrailStartColor: FFF3BE
+	Warhead@1Dam: SpreadDamage
+		Damage: 8750

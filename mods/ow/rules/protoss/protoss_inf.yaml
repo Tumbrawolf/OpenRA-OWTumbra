@@ -13,7 +13,11 @@ PPROBE:
 		Prerequisites: refinery, ~infantry.protoss, ~techlevel.infonly
 		Description: actor-pprobe.description
 	Valued:
-		Cost: 550
+		Cost: 225
+	GivesExperienceMultiplier@value:
+		Modifier: 200
+	ProductionCostMultiplier@value:
+		Multiplier: 200
 	Tooltip:
 		Name: actor-pprobe.name
 		GenericName: actor-pprobe.generic-name
@@ -27,7 +31,7 @@ PPROBE:
 		SearchFromHarvesterRadius: 8
 		EmptyCondition: no-ore
 	Health:
-		HP: 20000
+		HP: 22500
 	Armor:
 		Type: Light
 	Mobile:
@@ -54,6 +58,7 @@ PPROBE:
 			Gems: pip-red
 			Tiberium: pip-green
 			BlueTiberium: pip-blue
+			Oil: pip-oil
 	RepairsBridges:
 	CaptureManager:
 	Captures:
@@ -82,12 +87,20 @@ PPROBE:
 	StoresResources:
 		Capacity: 8
 		Resources: Ore,Gems,Tiberium,BlueTiberium,Oil
+	GrantConditionOnPrerequisite@hatetib:
+		Prerequisites: ai.hatetib
+		Condition: ai.hatetib
+	ProximityExternalCondition@hatetib:
+		RequiresCondition: ai.hatetib
+		Range: 8c0
+		ValidRelationships: Neutral, Enemy
+		Condition: makecreeps
 
 PPROBE.ENG:
-	Inherits: PZEALOT
+	Inherits: PPROBE
 	Inherits@engineer: ^EngineerBehaviour
 	RenderSprites:
-		Image: pzealot
+		Image: pprobe
 	Buildable:
 		BuildPaletteOrder: 9000
 		Prerequisites: ~infantry.protoss, ~techlevel.infonly, ~ai.all
@@ -114,6 +127,10 @@ PPROBE.ENG:
 		WanderMoveRadius: 3
 		MinMoveDelay: 250
 		MaxMoveDelay: 400
+	-Harvester:
+	-WithStoresResourcesPipsDecoration:
+	-WithHarvestAnimation:
+	-WithDockingAnimation:
 
 PZEALOT:
 	Inherits: ^Infantry
@@ -399,7 +416,7 @@ PARCHON:
 	ChangesHealth@forming:
 		PercentageStep: 1
 		Delay: 5
-		StartIfBelow: 101
+		StartIfBelow: 100
 		DamageCooldown: 0
 		RequiresCondition: forming
 	VoiceAnnouncement:
@@ -653,7 +670,7 @@ PDARCHON:
 	ChangesHealth@forming:
 		PercentageStep: 1
 		Delay: 5
-		StartIfBelow: 101
+		StartIfBelow: 100
 		DamageCooldown: 0
 		RequiresCondition: forming
 	ChangesHealth@shield:

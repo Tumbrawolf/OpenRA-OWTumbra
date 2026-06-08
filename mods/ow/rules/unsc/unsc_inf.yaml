@@ -1,0 +1,731 @@
+^unscinfantry:
+	GrantConditionOnPrerequisite@fraggrenades:
+		Condition: fraggrenades
+		Prerequisites: unsc.fraggrenades
+	GrantConditionOnPrerequisite@covenantweapons:
+		Condition: covenantweapons
+		Prerequisites: unsc.covenantweapons
+	GrantRandomCondition:
+		Conditions: Voice1, Voice2, Voice3, Voice4, Voice5
+	Voiced:
+		VoiceSet: UNSCMarine1
+		RequiresCondition: Voice1
+	Voiced@2:
+		VoiceSet: UNSCMarine2
+		RequiresCondition: Voice2
+	Voiced@3:
+		VoiceSet: UNSCMarine3
+		RequiresCondition: Voice3
+	Voiced@4:
+		VoiceSet: UNSCMarine4
+		RequiresCondition: Voice4
+	Voiced@5:
+		VoiceSet: UNSCMarine5
+		RequiresCondition: Voice5
+
+unscmarine:
+	Inherits: ^Soldier
+	Inherits: ^unscinfantry
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	Buildable:
+		Queue: Infantry, ColonyShip
+		BuildAtProductionType: Soldier
+		BuildPaletteOrder: 4
+		Prerequisites: ~infantry.unsc, ~!unsc.odst
+		Description: actor-unscmarine.description
+	Tooltip:
+		Name: actor-unscmarine.name
+	Valued:
+		Cost: 250
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Health:
+		HP: 16000
+	Mobile:
+		Voice: Move
+	Guard:
+		Voice: Move
+	Passenger:
+		Voice: Move
+	GrantRandomPeriodicCondition@humanweapons:
+		Conditions: battlerifle, assaultrifle
+		CooldownDuration: 1
+		ActiveDuration: 90000
+		PauseOnCondition: covenantweapons
+	GrantRandomPeriodicCondition@covenantweapons:
+		Conditions: battlerifle, assaultrifle, plasmarifle, needler, carbine
+		CooldownDuration: 1
+		ActiveDuration: 90000
+		RequiresCondition: covenantweapons
+	GrantRandomPeriodicCondition@plasmagrenade:
+		Conditions: plasmagrenade, fake1
+		CooldownDuration: 1
+		ActiveDuration: 90000
+		RequiresCondition: covenantweapons && fraggrenades
+	Armament@fraggrenade:
+		Weapon: unscfraggrenade
+		LocalOffset: 0,0,250
+		RequiresCondition: fraggrenades
+		PauseOnCondition: plasmagrenade
+	Armament@plasmagrenade:
+		Weapon: covenantplasmagrenade
+		LocalOffset: 0,0,250
+		RequiresCondition: plasmagrenade
+	Armament@PRIMARY:
+		Weapon: unscpistol
+		PauseOnCondition: battlerifle || shotgun || assaultrifle || plasmapistol || plasmarifle || needler || carbine
+	Armament@GARRISONED:
+		Name: garrisoned
+		Weapon: unscpistol
+		MuzzleSequence: garrison-muzzle
+		PauseOnCondition: battlerifle || shotgun || assaultrifle || plasmapistol || plasmarifle || needler || carbine
+	Armament@BUS:
+		Name: bus
+		Weapon: unscpistol
+		MuzzleSequence: garrison-muzzle
+		PauseOnCondition: battlerifle || shotgun || assaultrifle || plasmapistol || plasmarifle || needler || carbine
+	Armament@PRIMARYbattlerifle:
+		Weapon: unscmarinebattlerifle
+		RequiresCondition: battlerifle
+	Armament@PRIMARYbattlerifle1:
+		Weapon: unscmarinebattlerifletracer
+		LocalOffset: 0,0,250
+		RequiresCondition: battlerifle
+	Armament@GARRISONEDbattlerifle:
+		Name: garrisoned
+		Weapon: unscmarinebattlerifle
+		MuzzleSequence: garrison-muzzle
+		RequiresCondition: battlerifle
+	Armament@BUSbattlerifle:
+		Name: bus
+		Weapon: unscmarinebattlerifle
+		RequiresCondition: battlerifle
+	Armament@PRIMARYshotgun:
+		Weapon: unscshotgun
+		RequiresCondition: shotgun
+	Armament@PRIMARYshotgun1:
+		Weapon: unscshotguntracer
+		LocalOffset: 0,0,250
+		RequiresCondition: shotgun
+	Armament@GARRISONEDshotgun:
+		Name: garrisoned
+		Weapon: unscshotgun
+		MuzzleSequence: garrison-muzzle
+		RequiresCondition: shotgun
+	Armament@BUSshotgun:
+		Name: bus
+		Weapon: unscshotgun
+		RequiresCondition: shotgun
+	Armament@PRIMARYassaultrifle:
+		Weapon: unscassaultrifle
+		RequiresCondition: assaultrifle
+	Armament@GARRISONEDassaultrifle:
+		Name: garrisoned
+		Weapon: unscassaultrifle
+		MuzzleSequence: garrison-muzzle
+		RequiresCondition: assaultrifle
+	Armament@BUSassaultrifle:
+		Name: bus
+		Weapon: unscassaultrifle
+		RequiresCondition: assaultrifle
+	Armament@PRIMARYplasmapistol:
+		Weapon: unscplasmapistol
+		LocalOffset: 0,0,250
+		RequiresCondition: plasmapistol
+	Armament@GARRISONEDplasmapistol:
+		Name: garrisoned
+		Weapon: unscplasmapistol
+		MuzzleSequence: garrison-muzzle
+		RequiresCondition: plasmapistol
+	Armament@BUSplasmapistol:
+		Name: bus
+		Weapon: unscplasmapistol
+		RequiresCondition: plasmapistol
+	Armament@PRIMARYplasmarifle:
+		Weapon: unscplasmarifle
+		LocalOffset: 0,0,250
+		RequiresCondition: plasmarifle
+	Armament@GARRISONEDplasmarifle:
+		Name: garrisoned
+		Weapon: unscplasmarifle
+		MuzzleSequence: garrison-muzzle
+		RequiresCondition: plasmarifle
+	Armament@BUSplasmarifle:
+		Name: bus
+		Weapon: unscplasmarifle
+		RequiresCondition: plasmarifle
+	Armament@PRIMARYneedler:
+		Weapon: masterchiefneedler
+		LocalOffset: 0,0,250
+		RequiresCondition: needler
+	Armament@GARRISONEDneedler:
+		Name: garrisoned
+		Weapon: masterchiefneedler
+		MuzzleSequence: garrison-muzzle
+		RequiresCondition: needler
+	Armament@BUSneedler:
+		Name: bus
+		Weapon: masterchiefneedler
+		RequiresCondition: needler
+	Armament@PRIMARYcarbine:
+		Weapon: covenantplasmacarbine
+		LocalOffset: 0,0,555
+		RequiresCondition: carbine
+	Armament@GARRISONEDcarbine:
+		Name: garrisoned
+		Weapon: covenantplasmacarbine
+		MuzzleSequence: garrison-muzzle
+		RequiresCondition: carbine
+	Armament@BUScarbine:
+		Name: bus
+		Weapon: covenantplasmacarbine
+		MuzzleSequence: garrison-muzzle
+		RequiresCondition: carbine
+	WithInfantryBody:
+		DefaultAttackSequence: shoot
+		RequiresCondition: !parachute
+	WithInfantryBody@PARACHUTE:
+		StandSequences: parachute
+		RequiresCondition: parachute
+	ProducibleWithLevel:
+		Prerequisites: barracks.upgraded
+	RevealsShroud:
+		Range: 5c0
+	Selectable:
+		Bounds: 768, 853, 0, -256
+		DecorationBounds: 640, 896, 0, -426
+	RenderSprites:
+		Image: usaranger
+
+unscfrontrunner:
+	Inherits: ^Soldier
+	Inherits: ^unscinfantry
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	Buildable:
+		Queue: Infantry, ColonyShip
+		BuildAtProductionType: Soldier
+		BuildPaletteOrder: 5
+		Prerequisites: ~infantry.unsc, ~!unsc.odst
+		Description: actor-unscfrontrunner.description
+	Tooltip:
+		Name: actor-unscfrontrunner.name
+	Valued:
+		Cost: 200
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Health:
+		HP: 12000
+	Mobile:
+		Voice: Move
+		Speed: 70
+	Guard:
+		Voice: Move
+	Passenger:
+		Voice: Move
+	GrantRandomPeriodicCondition@humanweapons:
+		Conditions: shotgun, smg, fake1
+		CooldownDuration: 1
+		ActiveDuration: 90000
+		PauseOnCondition: covenantweapons
+	GrantRandomPeriodicCondition@covenantweapons:
+		Conditions: shotgun, smg, plasmapistol, fake1
+		CooldownDuration: 1
+		ActiveDuration: 90000
+		RequiresCondition: covenantweapons
+	GrantRandomPeriodicCondition@plasmagrenade:
+		Conditions: plasmagrenade, fake1
+		CooldownDuration: 1
+		ActiveDuration: 90000
+		RequiresCondition: covenantweapons && fraggrenades
+	Armament@fraggrenade:
+		Weapon: unscfraggrenade
+		LocalOffset: 0,0,250
+		RequiresCondition: fraggrenades
+		PauseOnCondition: plasmagrenade
+	Armament@plasmagrenade:
+		Weapon: covenantplasmagrenade
+		LocalOffset: 0,0,250
+		RequiresCondition: plasmagrenade
+	Armament@PRIMARY:
+		Weapon: unscpistol
+		PauseOnCondition: shotgun || plasmapistol || smg
+	Armament@GARRISONED:
+		Name: garrisoned
+		Weapon: unscpistol
+		MuzzleSequence: garrison-muzzle
+		PauseOnCondition: shotgun || plasmapistol || smg
+	Armament@BUS:
+		Name: bus
+		Weapon: unscpistol
+		MuzzleSequence: garrison-muzzle
+		PauseOnCondition: shotgun || plasmapistol || smg
+	Armament@PRIMARYshotgun:
+		Weapon: unscshotgun
+		RequiresCondition: shotgun
+	Armament@PRIMARYshotgun1:
+		Weapon: unscshotguntracer
+		LocalOffset: 0,0,250
+		RequiresCondition: shotgun
+	Armament@GARRISONEDshotgun:
+		Name: garrisoned
+		Weapon: unscshotgun
+		MuzzleSequence: garrison-muzzle
+		RequiresCondition: shotgun
+	Armament@BUSshotgun:
+		Name: bus
+		Weapon: unscshotgun
+		RequiresCondition: shotgun
+	Armament@PRIMARYplasmapistol:
+		Weapon: unscplasmapistol
+		LocalOffset: 0,0,250
+		RequiresCondition: plasmapistol
+	Armament@GARRISONEDplasmapistol:
+		Name: garrisoned
+		Weapon: unscplasmapistol
+		MuzzleSequence: garrison-muzzle
+		RequiresCondition: plasmapistol
+	Armament@BUSplasmapistol:
+		Name: bus
+		Weapon: unscplasmapistol
+		RequiresCondition: plasmapistol
+	Armament@PRIMARYsmg:
+		Weapon: unscsmg
+		RequiresCondition: smg
+	Armament@GARRISONEDsmg:
+		Name: garrisoned
+		Weapon: unscsmg
+		MuzzleSequence: garrison-muzzle
+		RequiresCondition: smg
+	WithInfantryBody:
+		DefaultAttackSequence: shoot
+		RequiresCondition: !parachute
+	WithInfantryBody@PARACHUTE:
+		StandSequences: parachute
+		RequiresCondition: parachute
+	ProducibleWithLevel:
+		Prerequisites: barracks.upgraded
+	RevealsShroud:
+		Range: 5c0
+	Selectable:
+		Bounds: 768, 853, 0, -256
+		DecorationBounds: 640, 896, 0, -426
+	RenderSprites:
+		Image: japanimperialwarrior
+
+unscheavyweaponsmarine:
+	Inherits: ^Soldier
+	Inherits: ^unscinfantry
+	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
+	Buildable:
+		Queue: Infantry, ColonyShip
+		BuildAtProductionType: Soldier
+		BuildPaletteOrder: 6
+		Prerequisites: ~infantry.unsc, ~!unsc.odst
+		Description: actor-unscheavyweaponsmarine.description
+	Tooltip:
+		Name: actor-unscheavyweaponsmarine.name
+	Valued:
+		Cost: 400
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Health:
+		HP: 10000
+	Mobile:
+		Voice: Move
+	Guard:
+		Voice: Move
+	Passenger:
+		Voice: Move
+	GrantRandomPeriodicCondition@humanweapons:
+		Conditions: grenadelauncher, fake1
+		CooldownDuration: 1
+		ActiveDuration: 90000
+		PauseOnCondition: covenantweapons
+	GrantRandomPeriodicCondition@covenantweapons:
+		Conditions: grenadelauncher, bruteshot, fuelrodcannon, fake1
+		CooldownDuration: 1
+		ActiveDuration: 90000
+		RequiresCondition: covenantweapons
+	Armament@PRIMARY:
+		Weapon: unscrocketlauncher
+		LocalOffset: 0,0,555
+		PauseOnCondition: grenadelauncher || bruteshot || fuelrodcannon
+	Armament@aintair:
+		Weapon: unscrocketlauncheraa
+		LocalOffset: 0,0,555
+		PauseOnCondition: fuelrodcannon
+	Armament@GARRISONED:
+		Name: garrisoned
+		Weapon: unscrocketlauncher
+		MuzzleSequence: garrison-muzzle
+		PauseOnCondition: grenadelauncher || bruteshot || fuelrodcannon
+	Armament@BUS:
+		Name: bus
+		Weapon: unscrocketlauncher
+		MuzzleSequence: garrison-muzzle
+		PauseOnCondition: grenadelauncher || bruteshot || fuelrodcannon
+	Armament@PRIMARYgrenadelauncher:
+		Weapon: unscgrenadelauncher
+		LocalOffset: 0,0,555
+		RequiresCondition: grenadelauncher
+	Armament@GARRISONEDgrenadelauncher:
+		Name: garrisoned
+		Weapon: unscgrenadelauncher
+		MuzzleSequence: garrison-muzzle
+		RequiresCondition: grenadelauncher
+	Armament@BUSgrenadelauncher:
+		Name: bus
+		Weapon: unscgrenadelauncher
+		MuzzleSequence: garrison-muzzle
+		RequiresCondition: grenadelauncher
+	Armament@PRIMARYbruteshot:
+		Weapon: unscbruteshot
+		LocalOffset: 0,0,555
+		RequiresCondition: bruteshot
+	Armament@GARRISONEDbruteshot:
+		Name: garrisoned
+		Weapon: unscbruteshot
+		MuzzleSequence: garrison-muzzle
+		RequiresCondition: bruteshot
+	Armament@BUSbruteshot:
+		Name: bus
+		Weapon: unscbruteshot
+		MuzzleSequence: garrison-muzzle
+		RequiresCondition: bruteshot
+	Armament@PRIMARYfuelrodcannon:
+		Weapon: covenantfuelrodcannon
+		LocalOffset: 0,0,555
+		RequiresCondition: fuelrodcannon
+	Armament@PRIMARYfuelrodcannonaa:
+		Weapon: covenantfuelrodcannonAA
+		LocalOffset: 0,0,555
+		RequiresCondition: fuelrodcannon
+	Armament@GARRISONEDfuelrodcannon:
+		Name: garrisoned
+		Weapon: covenantfuelrodcannon
+		MuzzleSequence: garrison-muzzle
+		RequiresCondition: fuelrodcannon
+	Armament@BUSfuelrodcannon:
+		Name: bus
+		Weapon: covenantfuelrodcannon
+		MuzzleSequence: garrison-muzzle
+		RequiresCondition: fuelrodcannon
+	WithInfantryBody:
+		DefaultAttackSequence: shoot
+		RequiresCondition: !parachute
+	WithInfantryBody@PARACHUTE:
+		StandSequences: parachute
+		RequiresCondition: parachute
+	ProducibleWithLevel:
+		Prerequisites: barracks.upgraded
+	RevealsShroud:
+		Range: 5c0
+	Selectable:
+		Bounds: 768, 853, 0, -256
+		DecorationBounds: 640, 896, 0, -426
+	RenderSprites:
+		Image: usadefender
+
+unscsniper:
+	Inherits: ^Soldier
+	Inherits@unsc: ^unscinfantry
+	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
+	Buildable:
+		Queue: Infantry, ColonyShip
+		BuildAtProductionType: Soldier
+		BuildPaletteOrder: 61
+		Prerequisites: ~infantry.unsc, techcenter, ~!unsc.odst
+		Description: actor-unscsniper.description
+	Tooltip:
+		Name: actor-unscsniper.name
+	Valued:
+		Cost: 900
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Health:
+		HP: 6000
+	Mobile:
+		Voice: Move
+	Guard:
+		Voice: Move
+	Passenger:
+		Voice: Move
+	AutoTargetPriority@DEFAULT:
+		ValidTargets: Infantry
+		InvalidTargets: NoAutoTarget
+		RequiresCondition: !carbine
+	AutoTargetPriority@carbine:
+		ValidTargets: Infantry, Vehicle, Aircraft, Plane
+		InvalidTargets: NoAutoTarget
+		RequiresCondition: carbine || beamrifle
+	GrantRandomPeriodicCondition@covenantweapons:
+		Conditions: fake1, beamrifle
+		CooldownDuration: 1
+		ActiveDuration: 90000
+		RequiresCondition: covenantweapons
+	Armament@PRIMARY:
+		Weapon: unscsniperrifle
+		LocalOffset: 0,0,555
+		PauseOnCondition: carbine || beamrifle
+	Armament@GARRISONED:
+		Name: garrisoned
+		Weapon: unscsniperrifle
+		MuzzleSequence: garrison-muzzle
+		PauseOnCondition: carbine || beamrifle
+	Armament@BUS:
+		Name: bus
+		Weapon: unscsniperrifle
+		MuzzleSequence: garrison-muzzle
+		PauseOnCondition: carbine || beamrifle
+	Armament@PRIMARYcarbine:
+		Weapon: unscplasmacarbine
+		LocalOffset: 0,0,555
+		RequiresCondition: carbine
+	Armament@GARRISONEDcarbine:
+		Name: garrisoned
+		Weapon: unscplasmacarbine
+		MuzzleSequence: garrison-muzzle
+		RequiresCondition: carbine
+	Armament@BUScarbine:
+		Name: bus
+		Weapon: unscplasmacarbine
+		MuzzleSequence: garrison-muzzle
+		RequiresCondition: carbine
+	Armament@PRIMARYbeamrifle:
+		Weapon: unscparticlebeamrifle
+		LocalOffset: 0,0,555
+		RequiresCondition: beamrifle
+	Armament@PRIMARYbeamrifleaa:
+		Weapon: unscparticlebeamrifleaa
+		LocalOffset: 0,0,555
+		RequiresCondition: beamrifle
+	Armament@GARRISONEDbeamrifle:
+		Name: garrisoned
+		Weapon: unscparticlebeamrifle
+		MuzzleSequence: garrison-muzzle
+		RequiresCondition: beamrifle
+	Armament@BUSbeamrifle:
+		Name: bus
+		Weapon: unscparticlebeamrifle
+		MuzzleSequence: garrison-muzzle
+		RequiresCondition: beamrifle
+	WithInfantryBody:
+		DefaultAttackSequence: shoot
+		RequiresCondition: !parachute
+	WithInfantryBody@PARACHUTE:
+		StandSequences: parachute
+		RequiresCondition: parachute
+	ProducibleWithLevel:
+		Prerequisites: barracks.upgraded
+	RevealsShroud:
+		Range: 5c0
+	Selectable:
+		Bounds: 768, 853, 0, -256
+		DecorationBounds: 640, 896, 0, -426
+	Cloak:
+		InitialDelay: 200
+		CloakDelay: 100
+		CloakSound:
+		UncloakSound:
+		UncloakOn: Attack, Unload, Infiltrate, Demolish, Move
+		IsPlayerPalette: true
+		RequiresCondition: !cloak-force-disabled
+	GrantConditionOnDamageState@UNCLOAK:
+		Condition: cloak-force-disabled
+		ValidDamageStates: Critical
+	RenderSprites:
+		Image: usapathfinder
+
+unschellbringer:
+	Inherits: ^Soldier
+	Inherits@unsc: ^unscinfantry
+	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
+	Buildable:
+		Queue: Infantry, ColonyShip
+		BuildAtProductionType: Soldier
+		BuildPaletteOrder: 42
+		Prerequisites: ~infantry.unsc, advtechcenter, ~!unsc.odst
+		Description: actor-unschellbringer.description
+		Icon: icon-ecm
+	Tooltip:
+		Name: actor-unschellbringer.name
+	Valued:
+		Cost: 800
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Health:
+		HP: 20000
+	Armor:
+		Type: Light
+	Mobile:
+		Voice: Move
+	Guard:
+		Voice: Move
+	Passenger:
+		Voice: Move
+	Armament@PRIMARY:
+		Weapon: unscflamethrower
+		MuzzleSequence: muzzle
+		LocalOffset: 0,0,555
+		FireDelay: 5
+	Armament@GARRISONED:
+		Name: garrisoned
+		Weapon: unscflamethrower
+		FireDelay: 5
+	Armament@BUS:
+		Name: bus
+		Weapon: unscflamethrower
+		FireDelay: 5
+	WithInfantryBody:
+		DefaultAttackSequence: shoot
+		RequiresCondition: !parachute
+	WithInfantryBody@PARACHUTE:
+		StandSequences: parachute
+		RequiresCondition: parachute
+	ProducibleWithLevel:
+		Prerequisites: barracks.upgraded
+	RevealsShroud:
+		Range: 5c0
+	Selectable:
+		Bounds: 768, 853, 0, -256
+		DecorationBounds: 640, 896, 0, -426
+	RenderSprites:
+		Image: judgedredd
+
+unscsgtjohnson:
+	Inherits: ^Soldier
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	Buildable:
+		Queue: Infantry
+		BuildAtProductionType: Soldier
+		BuildPaletteOrder: 120
+		Prerequisites: ~infantry.unsc, techcenter
+		Description: actor-unscsgtjohnson.description
+		BuildLimit: 1
+	Valued:
+		Cost: 1500
+	Tooltip:
+		Name: actor-unscsgtjohnson.name
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Health:
+		HP: 50000
+	Mobile:
+		Speed: 71
+		Voice: Move
+	Guard:
+		Voice: Move
+	RevealsShroud:
+		Range: 6c0
+	Passenger:
+		CustomPipType: red
+		Voice: Move
+	Armament@PRIMARY:
+		Weapon: unscsgtjohnsonsniper
+		LocalOffset: 0,0,250
+	Armament@GARRISONED:
+		Name: garrisoned
+		Weapon: unscsgtjohnsonsniper
+		MuzzleSequence: garrison-muzzle
+	Armament@BUS:
+		Name: bus
+		Weapon: unscsgtjohnsonsniper
+		MuzzleSequence: garrison-muzzle
+	WithInfantryBody:
+		DefaultAttackSequence: shoot
+		StandSequences: stand
+	ExternalCondition@PRODUCED:
+		Condition: produced
+	VoiceAnnouncement:
+		RequiresCondition: produced
+		Voice: Build
+	AnnounceOnKill:
+	ProducibleWithLevel:
+		Prerequisites: barracks.upgraded
+	Voiced:
+		VoiceSet: SgtJohnsonVoice
+	AmbientSound@talky:
+		SoundFiles: sgtjohnsontaunt1.aud, sgtjohnsontaunt2.aud, sgtjohnsontaunt3.aud, sgtjohnsontaunt4.aud, sgtjohnsontaunt5.aud, sgtjohnsontaunt6.aud, sgtjohnsontaunt7.aud, sgtjohnsontaunt8.aud, sgtjohnsontaunt9.aud, sgtjohnsontaunt10.aud, sgtjohnsontaunt11.aud, sgtjohnsontaunt12.aud, sgtjohnsontaunt13.ogg, sgtjohnsontaunt14.ogg
+		Delay: 150
+		Interval: 750, 1000
+
+
+unscodstmarine:
+	Inherits: unscmarine
+	Buildable:
+		Queue: Infantry, ColonyShip
+		BuildAtProductionType: Soldier
+		BuildPaletteOrder: 4
+		Prerequisites: ~infantry.unsc, ~unsc.odst
+		Description: actor-unscodstmarine.description
+	Tooltip:
+		Name: actor-unscodstmarine.name
+	Health:
+		HP: 32000
+	RenderSprites:
+		Image: tse1b
+		PlayerPalette: tsunit
+
+unscodstfrontrunner:
+	Inherits: unscfrontrunner
+	Buildable:
+		Queue: Infantry, ColonyShip
+		BuildAtProductionType: Soldier
+		BuildPaletteOrder: 5
+		Prerequisites: ~infantry.unsc, ~unsc.odst
+		Description: actor-unscodstfrontrunner.description
+	Tooltip:
+		Name: actor-unscodstfrontrunner.name
+	Health:
+		HP: 24000
+	RenderSprites:
+		Image: tse1b
+		PlayerPalette: tsunit
+
+unscodstheavyweaponsmarine:
+	Inherits: unscheavyweaponsmarine
+	Buildable:
+		Queue: Infantry, ColonyShip
+		BuildAtProductionType: Soldier
+		BuildPaletteOrder: 6
+		Prerequisites: ~infantry.unsc, ~unsc.odst
+		Description: actor-unscodstheavyweaponsmarine.description
+	Tooltip:
+		Name: actor-unscodstheavyweaponsmarine.name
+	Health:
+		HP: 20000
+	RenderSprites:
+		Image: tse1b
+		PlayerPalette: tsunit
+
+unscodstsniper:
+	Inherits: unscsniper
+	Buildable:
+		Queue: Infantry, ColonyShip
+		BuildAtProductionType: Soldier
+		BuildPaletteOrder: 7
+		Prerequisites: ~infantry.unsc, ~unsc.odst, techcenter
+		Description: actor-unscodstsniper.description
+	Tooltip:
+		Name: actor-unscodstsniper.name
+	Health:
+		HP: 12000
+	RenderSprites:
+		Image: tse1b
+		PlayerPalette: tsunit
+
+unscodsthellbringer:
+	Inherits: unschellbringer
+	Buildable:
+		Queue: Infantry, ColonyShip
+		BuildAtProductionType: Soldier
+		BuildPaletteOrder: 8
+		Prerequisites: ~infantry.unsc, ~unsc.odst, advtechcenter
+		Description: actor-unscodsthellbringer.description
+	Tooltip:
+		Name: actor-unscodsthellbringer.name
+	Health:
+		HP: 40000
+	RenderSprites:
+		Image: tse1b
+		PlayerPalette: tsunit

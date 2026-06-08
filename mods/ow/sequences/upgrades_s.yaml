@@ -25,6 +25,12 @@ upgrade.buildrepair2:
 upgrade.buildrepair3:
 	icon:
 		Filename: brepairu3icon.shp
+upgrade.wallrebuild:
+	icon:
+		Filename: brepairu4icon.shp
+upgrade.wallfireports:
+	icon:
+		Filename: brepairu5icon.shp
 
 
 upgrade.infarmor1:
@@ -119,16 +125,7 @@ upgrade.shieldarmor3:
 		Filename: sarmoru1icon.shp
 		Start: 2
 
-upgrade.glashoes:
-	icon:
-		Filename: gshoesicon.shp
-
-################################################################################
-##############################   Medi    #######################################
-################################################################################
-
-##Archer Tower T1 (2nd Archer)
-upgrade.mediarrow:
+upgrade.mediarrowt: #Tier 1#
 	icon:
 		Filename: mediarrowicon.shp
 
@@ -301,12 +298,18 @@ upgrade.nationalism:
 upgrade.isotopes:
 	icon:
 		Filename: chinaisotopesicon.shp
+upgrade.nukerockets:
+	icon:
+		Filename: chinanukerocketsicon.shp
 upgrade.autoloader:
 	icon:
 		Filename: chinaautoloadericon.shp
 upgrade.firstaidkits:
 	icon:
 		Filename: chinafirstaidkitsicon.shp
+upgrade.unethicaltesting:
+	icon:
+		Filename: chinaunethicaltestingicon.shp
 
 upgrade.upgradedualtankbarrels:
 	icon:
@@ -351,18 +354,34 @@ upgrade.advancedtargetingsystems:
 	icon:
 		Filename: upgradeadvancedtargetingsystemsicon.shp
 
+soviet.iron1:
+	icon:
+		Filename: sovietup1icon.shp
 soviet.iron:
 	icon:
+		Start: 1
 		Filename: sovietup1icon.shp
 soviet.tesla:
 	icon:
 		Filename: sovietup2icon.shp
+soviet.teslapower:
+	icon:
+		Filename: sovietup3icon.shp
+soviet.teslabomb:
+	icon:
+		Filename: sovietup4icon.shp
+soviet.drones:
+	icon:
+		Filename: sovietup5icon.shp
 allies.training1:
 	icon:
 		Filename: alliesup1icon.shp
 allies.training2:
 	icon:
 		Filename: alliesup2icon.shp
+allies.prism:
+	icon:
+		Filename: prismupicon.shp
 gdi.speed:
 	icon:
 		Filename: gdiup1icon.shp
@@ -399,6 +418,10 @@ ttr.fuel:
 ttr.fanatic:
 	icon:
 		Filename: ttrup2icon.shp
+
+gla.shoes:
+	icon:
+		Filename: gshoesicon.shp
 gla.beta:
 	icon:
 		Filename: glaup1icon.shp
@@ -408,6 +431,9 @@ gla.pay:
 gla.aprockets:
 	icon:
 		Filename: glaup3icon.shp
+gla.scorprockets:
+	icon:
+		Filename: glaup4icon.shp
 
 protoss.shields:
 	icon:
@@ -425,6 +451,9 @@ avalon.terra:
 avalon.carrier:
 	icon:
 		Filename: avup2icon.shp
+avalon.infspeed:
+	icon:
+		Filename: avup3icon.shp
 
 raynor.mercmunitions:
 	icon:
@@ -435,6 +464,71 @@ raynor.supplychain:
 raynor.firespeed:
 	icon:
 		Filename: traynorup3.shp
+
+phaerah.bloodspec:
+	icon:
+		Filename: vulpspec.shp
+
+phaerah.frostspec:
+	icon:
+		Filename: vulpspec.shp
+		Start: 1
+
+phaerah.icons:
+	Defaults:
+		Filename: vulptalenticon.shp
+	km:
+	arcticassault:
+		Start: 1
+	runicmastery:
+		Start: 2
+	runicempowerment:
+		Start: 3
+	march:
+		Start: 4
+	leech1:
+		Start: 5
+	leech2:
+		Start: 6
+	rime:
+		Start: 7
+	vet1:
+		Start: 8
+	vet2:
+		Start: 9
+	runicattenuation:
+		Start: 10
+	boneshield:
+		Start: 11
+	heat:
+		Start: 12
+	pillar:
+		Start: 13
+	empowerrune:
+		Start: 14
+	deathstrike:
+		Start: 15
+	frostwyrm:
+		Start: 16
+	will:
+		Start: 17
+	icey:
+		Start: 18
+	nullmagic:
+		Start: 19
+	raise:
+		Start: 20
+
+btrae.icons:
+	Defaults:
+		Filename: btraeicons.shp
+	actuators:
+	plating:
+		Start: 1
+	plating2:
+		Start: 2
+	heat:
+		Start: 3
 
 adpip:
 	Defaults:
@@ -849,3 +943,60 @@ upgradeicons:
 # 43,84
 # 54,84
 # 65,84
+
+upgradecheckmark:
+	Defaults:
+		Filename: checkmark.shp
+	checked:
+
+unsc.fraggrenades:
+	icon:
+		Filename: unscfraggrenadesicon.shp
+
+unsc.covenantweapons:
+	icon:
+		Filename: unsccovenantweaponsicon.shp
+
+unsc.megabarrage:
+	icon:
+		Filename: unscmegabarrageicon.shp
+
+unsc.mlrssystem:
+	icon:
+		Filename: unscmlrssystemicon.shp
+
+unsc.smokesystem:
+	icon:
+		Filename: unscsmokesystemicon.shp
+
+unsc.warthogweapons:
+	icon:
+		Filename: unscwarthogweaponsicon.shp
+
+unsc.chaffpod:
+	icon:
+		Filename: unscchaffpodicon.shp
+
+unsc.phoenix:
+	icon:
+		Filename: unscphoenixicon.shp
+
+unsc.plating:
+	icon:
+		Filename: unscplatingicon.shp
+
+unsc.heatoutput:
+	icon:
+		Filename: unscheatoutputicon.shp
+
+unsc.armouredwarthog:
+	icon:
+		Filename: unscarmouredwarthogicon.shp
+
+unsc.odst:
+	icon:
+		Filename: unscodsticon.shp
+
+covenant.armament:
+	icon:
+		Filename: covenantarmamenticon.shp

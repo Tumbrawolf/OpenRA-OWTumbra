@@ -1,3 +1,7 @@
+^AvaliBuilding:
+	Building:
+		BuildSounds: pbldgplc.aud, constru2.aud
+
 AVFACT:
 	Inherits: FACTD
 	Selectable:
@@ -9,9 +13,9 @@ AVFACT:
 		Name: actor-avfact-name
 	SpawnActorsOnSell:
 		ActorTypes: avinf1,avinf1,avinf1,tecn,tecn2
-		GuaranteedActorTypes: avinf1, e6
+		GuaranteedActorTypes: avinf1, avinf2
 	Transforms:
-		RequiresCondition: factundeploy
+		RequiresCondition: (factundeploy && !bot_undeploy_block) || (bot_undeploy_block && capture_undeploy_override)
 		PauseOnCondition: chrono-vortex || being-captured || being-demolished || build-incomplete
 		IntoActor: avmcv
 		Offset: 1,1
@@ -30,6 +34,7 @@ AVFACT:
 		Palette: cloak
 
 ^AvaliPowerPlant:
+	Inherits@avali: ^AvaliBuilding
 	GrantConditionOnTerrain@buffsnow:
 		TerrainTypes: ClearSnow
 		Condition: env_buffsnow
@@ -61,6 +66,7 @@ AVPOWR1:
 	ProvidesPrerequisite:
 		Prerequisite: anypower
 	Building:
+		Footprint: +
 	Health:
 		HP: 36000
 	Armor:
@@ -166,7 +172,7 @@ AVPOWR3:
 	Selectable:
 		Bounds: 3072, 2048
 	Buildable:
-		Prerequisites: advtechcenter, ~techlevel.unrestricted, ~structures.avalon, ~!ai.boss, ~!ai.powerout
+		Prerequisites: advtechcenter, ~techlevel.unrestricted, ~structures.avalon, ~!ai.god, ~!ai.powerout
 		Description: actor-avpowr3.description
 	Building:
 		Footprint: xxx xxx ===
@@ -183,19 +189,19 @@ AVPOWR3:
 
 AVPROC:
 	Inherits: PROC
+	Inherits@avali: ^AvaliBuilding
 	Buildable:
-		Prerequisites: anypower, ~techlevel.infonly, ~structures.avalon, ~!ai.boss
+		Prerequisites: anypower, ~techlevel.infonly, ~structures.avalon, ~!ai.god
 	Tooltip:
 		Name: actor-avproc-name
 	FreeActor:
 		Actor: AVHARV
 	-GrantConditionOnFaction:
 	-WithIdleOverlay@uac:
-	RenderSprites:
-		Image: PROC
 
 AVTENT:
 	Inherits: TENT
+	Inherits@avali: ^AvaliBuilding
 	Inherits@BIB: ^3xBuildingBib
 	Inherits@SHAPE: ^3x2Shape
 	Selectable:
@@ -232,17 +238,16 @@ AVTENT:
 
 AVWEAP:
 	Inherits: WEAP
+	Inherits@avali: ^AvaliBuilding
 	Buildable:
 		Queue: Building
 		Prerequisites: refinery, barracks, ~techlevel.low, ~structures.avalon, ~!structures.bothard
 	Tooltip:
 		Name: actor-avweap-name
-	RenderSprites:
-		Image: WEAP
-
 
 AVRADAR:
 	Inherits: ^Building
+	Inherits@avali: ^AvaliBuilding
 	Inherits@IDISABLE: ^DisableOnLowPowerOrPowerDown
 	Inherits@shape: ^2x2Shape
 	Inherits@BIB: ^2xBuildingBib
@@ -253,7 +258,7 @@ AVRADAR:
 		TargetableOffsets: 0,0,0, 630,-384,0, 630,384,0, -700,-512,0, -700,512,0
 	Buildable:
 		Queue: Building
-		BuildPaletteOrder: 90
+		BuildPaletteOrder: 109
 		Prerequisites: refinery, ~techlevel.medium, ~structures.avalon
 		Description: actor-avradar.description
 	Valued:
@@ -297,8 +302,6 @@ AVRADAR:
 	WithDeathAnimation:
 		DeathSequence: dead
 		UseDeathTypeSuffix: false
-	RenderSprites:
-		Image: HQD
 	AirstrikePower@avali:
 		PauseOnCondition: disabled
 		OrderName: AvaliAirstrike
@@ -325,6 +328,7 @@ AVRADAR:
 
 AVPAD:
 	Inherits: HPAD
+	Inherits@avali: ^AvaliBuilding
 	Selectable:
 		Bounds: 2048, 2048
 	Buildable:
@@ -342,12 +346,11 @@ AVPAD:
 		LocalCenterOffset: 0,-512,0
 	Health:
 		HP: 80000
-	RenderSprites:
-		Image: HPAD
 
 AVTECH:
 	Inherits: ^ScienceBuilding
 	Inherits@TECH: ^TechCenter
+	Inherits@avali: ^AvaliBuilding
 	Inherits@IDISABLE: ^DisableOnLowPower
 	Inherits@shape: ^2x2Shape
 	Inherits@BIB: ^2xBuildingBib
@@ -380,11 +383,10 @@ AVTECH:
 	Targetable:
 		TargetTypes: GroundActor, C4, DetonateAttack, Structure, SpyInfiltrate
 	ProvidesPrerequisite@buildingname:
-	RenderSprites:
-		Image: ATEK
 
 AVFROST:
 	Inherits: ^Building
+	Inherits@avali: ^AvaliBuilding
 	Inherits@IDISABLE: ^DisableOnLowPowerOrPowerDown
 	Valued:
 		Cost: 400
@@ -413,8 +415,6 @@ AVFROST:
 		MaxRange: 9
 		RequiresCondition: !disabled
 	-AcceptsDeliveredCash:
-	RenderSprites:
-		Image: OREGEN
 	FireWarheadsOnDeath@frost:
 		Weapon: FrostRemoveMed
 		-RequiresCondition:
@@ -430,8 +430,7 @@ AVFROST:
 
 AVPBOX:
 	Inherits: PBOX
-	RenderSprites:
-		Image: pbox
+	Inherits@avali: ^AvaliBuilding
 	Tooltip:
 		Name: actor-avpbox.name
 	Buildable:
@@ -446,6 +445,7 @@ AVPBOX:
 
 AVTOWR:
 	Inherits: ^Defense
+	Inherits@avali: ^AvaliBuilding
 	Inherits@IDISABLE: ^DisableOnLowPowerOrPowerDown
 	Inherits@AUTOTARGET: ^AutoTargetAll
 	Valued:
@@ -489,14 +489,15 @@ AVTOWR:
 	DetectCloaked:
 		Range: 6c0
 		RequiresCondition: !lowpower
+		DetectionTypes: Cloak, AirCloak
 	Power:
 		Amount: -50
 
 AVGUN:
 	Inherits: ^Defense
+	Inherits@avali: ^AvaliBuilding
 	Inherits@AUTOTARGET: ^AutoTargetGround
-	RenderSprites:
-		Image: GUN
+	Inherits@AUTOTARGETGround: ^AutoTargetVehiclePriority
 	Buildable:
 		Queue: Defense
 		BuildPaletteOrder: 70
@@ -540,5 +541,231 @@ AVGUN:
 		Amount: -30
 	DetectCloaked:
 		Range: 6c0
+		DetectionTypes: Cloak, AirCloak
 	-BodyOrientation:
 	ClassicFacingBodyOrientation:
+
+AVDEFNODE:
+	Inherits: ^Building
+	Inherits@avali: ^AvaliBuilding
+	Inherits@superweapon: ^Superweapon
+	Inherits@IDISABLE: ^DisableOnLowPowerOrPowerDown
+	Inherits@shape: ^2x2Shape
+	Valued:
+		Cost: 5000
+	Buildable:
+		Queue: Tech
+		BuildPaletteOrder: 9001
+		BuildLimit: 1
+		Prerequisites: advtechcenter, ~structures.avalon, ~techlevel.unrestricted, ~!techlevel.nosuperweapons
+		Description: actor-avdefnode.description
+	Tooltip:
+		Name: actor-avdefnode.name
+	Building:
+		Footprint: ++ xx
+		Dimensions: 2,2
+		UndeploySounds: radaron2.aud
+	Selectable:
+		Bounds: 2048, 2133, 0, -170
+	Power:
+		Amount: -300
+	Power@active:
+		RequiresCondition: activated
+		Amount: -1000
+	Health:
+		HP: 300000
+	Armor:
+		Type: Wood
+	RevealsShroud:
+		Range: 5c0
+	ToggleConditionOnOrder:
+		RequiresCondition: !activated
+	GrantDelayedCondition:
+		RequiresCondition: !activated
+		PauseOnCondition: disabled
+		Condition: charged
+		RevokeOnDisabled: true
+		Delay: 13500
+	SupportPowerChargeBar:
+		Color: FF0000
+	ProduceActorPower:
+		Name: actor-avdefnode.name
+		RequiresCondition: !activated
+		PauseOnCondition: charged || disabled
+		Description: actor-avdefnode.description
+		Icon: protossshields
+		Actors: c1
+		Type: NoType
+		ChargeInterval: 13500
+		InsufficientPowerSpeechNotification: InsufficientPower
+		BeginChargeSpeechNotification: IronCurtainCharging
+		EndChargeSpeechNotification: IronCurtainReady
+		SelectTargetTextNotification: notification-select-target
+		InsufficientPowerTextNotification: notification-insufficient-power
+		BeginChargeTextNotification: notification-iron-curtain-charging
+		EndChargeTextNotification: notification-iron-curtain-ready
+		OrderName: AvaliDefenseNode
+		SupportPowerPaletteOrder: 1
+		DisplayTimerRelationships: Ally, Enemy, Neutral
+	GrantConditionOnDamage@superweapon:
+		RequiresCondition: charged && !disabled
+		DamageTypes: Superweapon
+		Condition: activated
+		ValidRelationships: Neutral, Enemy, Ally
+		Duration: 999
+	WithIdleOverlay@charged:
+		Sequence: active
+		RequiresCondition: charged
+	FireWarheads@activated:
+		RequiresCondition: activated
+		Interval: 90000
+		Weapons: AvaliDefenseNodeEffect
+	FireWarheads@activatedEMP:
+		RequiresCondition: activated
+		StartCooldown: 5
+		Interval: 90000
+		Weapons: EMPWeapon
+	GrantCondition@transform:
+		RequiresCondition: activated
+		GrantPermanently: true
+		Condition: start_transform
+	GrantCondition@disableme:
+		RequiresCondition: start_transform
+		Condition: disabled
+	GrantDelayedCondition@transform:
+		Condition: do_transform
+		RequiresCondition: start_transform
+		Delay: 1000
+	TransformOnCondition@transform:
+		RequiresCondition: do_transform
+		IntoActor: AVDEFNODE
+	AmbientSound@lowpower:
+		SoundFiles: buzzy1.aud
+		RequiresCondition: start_transform
+		Interval: 30
+
+AVLPOST:
+	Inherits: ^Building
+	Inherits@IDISABLE: ^DisableOnLowPowerOrPowerDown
+	-SeedsResource@frost:
+	Buildable:
+		Queue: Wall
+		BuildPaletteOrder: 30
+		Prerequisites: anypower, barracks, ~structures.avalon, ~techlevel.low
+		Description: actor-avlpost.description
+		Icon: avfence
+	Valued:
+		Cost: 200
+	Tooltip:
+		Name: actor-avlpost.name
+	Health:
+		HP: 30000
+	Armor:
+		Type: Concrete
+	LineBuild:
+		Range: 10
+		NodeTypes: avalifencenode
+		SegmentType: avlfence
+		SegmentsRequireNode: true
+	LineBuildNode:
+		Types: avalifencenode
+	Power:
+		Amount: -50
+	RevealsShroud:
+		Range: 4c0
+	LineBuildSegmentExternalCondition:
+		RequiresCondition: !build-incomplete && !disabled
+		Condition: active-posts
+	-WithSpriteBody:
+	-WithMakeAnimation:
+	ExternalCondition:
+		Condition: nearlaserfence
+	ProximityExternalCondition@gates:
+		Range: 2c600
+		Condition: nearlaserfencepost
+	WithWallSpriteBody:
+		Type: laserfence
+	RenderSprites:
+		Image: brik2
+
+AVLFENCE:
+	Inherits: ^Wall
+	Tooltip:
+		Name: actor-avlpost.node
+	LineBuild:
+		NodeTypes: avalifence
+	LineBuildNode:
+		Types: avalifence
+	-Crushable:
+	-Sellable:
+	Targetable:
+		TargetTypes: Ground, GroundActor, NoAutoTarget, NoAITarget
+	-Building:
+	EnergyWall:
+		ActiveCondition: active-posts == 2
+		Weapon: TeslaZap
+		TerrainTypes: Clear, Rough, Road, ClearSnow
+	RequiresBuildableArea:
+		Adjacent: 4
+	GrantConditionOnLineBuildDirection@X:
+		Direction: X
+		Condition: laserfence-direction-x
+	GrantConditionOnLineBuildDirection@Y:
+		Direction: Y
+		Condition: laserfence-direction-y
+	-WithWallSpriteBody:
+	ExternalCondition@ACTIVE:
+		Condition: active-posts
+	WithWallSpriteBody@XENABLED:
+		RequiresCondition: laserfence-direction-x && active-posts == 2
+		Type: laserfence
+		Sequence: enabled-x
+		Name: x-enabled
+	WithWallSpriteBody@YENABLED:
+		RequiresCondition: laserfence-direction-y && active-posts == 2
+		Type: laserfence
+		Sequence: enabled-y
+		Name: y-enabled
+	WithSpriteBody@XDISABLED:
+		RequiresCondition: laserfence-direction-x && active-posts < 2
+		Sequence: disabled-x
+		Name: x-disabled
+	WithSpriteBody@YDISABLED:
+		RequiresCondition: laserfence-direction-y && active-posts < 2
+		Sequence: disabled-y
+		Name: y-disabled
+	BlocksProjectiles:
+		RequiresCondition: active-posts == 2
+		ValidRelationships: Enemy, Neutral
+	DamageMultiplier: # Prevent all normal damage, but still allows direct kills from the post
+		Modifier: 0
+	-SoundOnDamageTransition:
+	FireWarheadsOnDeath:
+		Weapon: UnitExplodeSmall
+		EmptyWeapon: UnitExplodeSmall
+		Type: Footprint
+	ProximityExternalCondition@wall:
+		Range: 512
+		Condition: nearlaserfence
+		RequiresCondition: active-posts == 2
+	FreeActor:
+		RequiresCondition: active-posts == 2
+		AllowRespawn: true
+		Actor: AVLFENCE.Light
+	Interactable:
+		Bounds: 1448, 1448
+
+AVLFENCE.Light:
+	Inherits: MINE_DUMMY
+	ExternalCondition:
+		Condition: nearlaserfence
+	KillsSelf:
+		RequiresCondition: !nearlaserfence
+		Delay: 2
+		RemoveInstead: true
+	TerrainLightSource:
+		Range: 1c512
+		Intensity: 0.1
+		RedTint: 0.25
+		GreenTint: 0.10
+		BlueTint: 0.0

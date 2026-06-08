@@ -2,10 +2,10 @@
 
 @echo on
 
-set Name="Dedicated Server"
-set Mod=ra
+set Name="Phoebe's"
+set Mod=ow
 set Map=""
-set ListenPort=1234
+set ListenPort=10668
 set AdvertiseOnline=True
 set AdvertiseOnLocalNetwork=True
 set Password=""
@@ -15,8 +15,8 @@ set RequireAuthentication=False
 set ProfileIDBlacklist=""
 set ProfileIDWhitelist=""
 
-set EnableSingleplayer=False
-set EnableSyncReports=False
+set EnableSingleplayer=True
+set EnableSyncReports=True
 set EnableGeoIP=True
 set EnableLintChecks=True
 set ShareAnonymizedIPs=True

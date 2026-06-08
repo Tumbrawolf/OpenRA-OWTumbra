@@ -167,28 +167,55 @@ Tick = function()
 			CrateParadropTicks = 0
 		end
 	end
+
+	if (Neutral.HasPrerequisites({"debug.listactors"})) then
+		DebugTicks = DebugTicks+1
+		if(DebugTicks == 7500) then
+			GetActorList()
+			DebugTicks = 0
+		end
+	end
 end
 
-Time = 0
+GetActorList = function()
+	local buildings = Utils.Where(Map.ActorsInWorld, function(b) return b.HasProperty("AcceptsCondition") and b.AcceptsCondition("DevActorList") end)
 
-TargetRed = 0.0
-TargetGreen = 0.0
-TargetBlue = 0.0
-TargetAmbient = 0.0
+	Utils.Do(buildings, function(a)
+		print(tostring(a))
+	end)
 
-DaylightRed = 1.0
-DaylightGreen = 1.0
-DaylightBlue = 1.0
-DaylightAmbient = 1.0
+	print(DateTime.GameTime / 25 .. " seconds elapsed")
+end
 
-SunRise = 30000
-SunSet = 15000
+Newnodes = 0;
 
-CrateTicks = 0
-CrateTimer = 3000
+ReplaceResourceNodes = function()
+	local nodes = Utils.Where(Map.ActorsInWorld, function(b) return b.Type == "mine" or b.Type == "mine.cr" or b.Type == "gmine" or b.Type == "gmine.cr" or b.Type == "split3" or b.Type == "split4" or b.Type == "tmonolith" or b.Type == "tmonolith.blue" end)
+	local i = 0
 
-CrateParadropTicks = 0
-CrateParadropTimer = 249
+	Utils.Do(nodes, function(a)
+		Newnodes = Newnodes + 1 + Utils.RandomInteger(0,2)
+		i = i+1
+		a.Destroy()
+	end)
+
+	print("Removed "..i.." resource nodes...")
+	SpawnNewNodes()
+end
+
+SpawnNewNodes = function()
+	local i = 0;
+
+	while (i < Newnodes) do
+		NewCell = Map.RandomCell()
+		if(Map.TerrainType(NewCell) == "Clear" or Map.TerrainType(NewCell) == "Road") then
+			Reinforcements.Reinforce(Neutral, {"1tnk.randommine"}, {NewCell}, 1)
+			i = i+1;
+		end
+	end
+
+	print("... and added "..i.." new nodes!")
+end
 
 DoStrike = function()
 	Reinforcements.Reinforce(Creeps, {"1tnk.lightning"}, {Map.RandomCell()}, 1)
@@ -212,7 +239,30 @@ SpawnWaterDerricks = function(amount)
 	print("Placed "..i.." oil derricks after "..attempts.." attempts")
 end
 
-WorldLoaded = function()
+Time = 0
+
+TargetRed = 0.0
+TargetGreen = 0.0
+TargetBlue = 0.0
+TargetAmbient = 0.0
+
+DaylightRed = 1.0
+DaylightGreen = 1.0
+DaylightBlue = 1.0
+DaylightAmbient = 1.0
+
+SunRise = 30000
+SunSet = 15000
+
+CrateTicks = 0
+CrateTimer = 3000
+
+DebugTicks = 7400
+
+CrateParadropTicks = 0
+CrateParadropTimer = 249
+
+DoBaseScriptLoad = function()
 	Neutral = Player.GetPlayer("Neutral")
 	Creeps = Player.GetPlayer("Creeps")
 
@@ -273,4 +323,9 @@ WorldLoaded = function()
 	elseif Neutral.HasPrerequisites({"japanoilderrick.cr"}) then print("Map already has oil derricks!")
 	elseif Creeps.HasPrerequisites({"techlevel.noboats"}) then print("Boats are disabled!") end
 
+	if Creeps.HasPrerequisites({"environment.newmines"}) then ReplaceResourceNodes() end
+end
+
+WorldLoaded = function()
+	DoBaseScriptLoad()
 end

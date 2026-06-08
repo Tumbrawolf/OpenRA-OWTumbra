@@ -1,10 +1,10 @@
 ^hordebonus:
 	ExternalCondition@hordebonus:
 		Condition: hordebonus
-		RequiresCondition: !upgradenationalism
+		TotalCap: 10
 	ProximityExternalCondition@hordebonus:
 		Condition: hordebonus
-		Range: 2c0
+		Range: 4c0
 		RequiresCondition: !upgradenationalism
 	ReloadDelayMultiplier@hordebonus:
 		RequiresCondition: hordebonus >= 10 && !upgradenationalism
@@ -17,10 +17,10 @@
 		IsDecoration: True
 	ExternalCondition@hordebonusupgrade1:
 		Condition: hordebonusupgrade1
-		RequiresCondition: upgradenationalism && !upgradepatriotism
+		TotalCap: 10
 	ProximityExternalCondition@hordebonusupgrade1:
 		Condition: hordebonusupgrade1
-		Range: 2c0
+		Range: 4c0
 		RequiresCondition: upgradenationalism && !upgradepatriotism
 	ReloadDelayMultiplier@hordebonusupgrade1:
 		RequiresCondition: hordebonusupgrade1 >= 10 && upgradenationalism
@@ -33,10 +33,10 @@
 		IsDecoration: True
 	ExternalCondition@hordebonusupgrade2:
 		Condition: hordebonusupgrade2
-		RequiresCondition: upgradepatriotism
+		TotalCap: 10
 	ProximityExternalCondition@hordebonusupgrade2:
 		Condition: hordebonusupgrade2
-		Range: 2c0
+		Range: 4c0
 		RequiresCondition: upgradepatriotism
 	ReloadDelayMultiplier@hordebonusupgrade2:
 		RequiresCondition: hordebonusupgrade2 >= 10
@@ -81,6 +81,17 @@
 		Delay: 750
 		DamageCooldown: 250
 		RequiresCondition: upgradefirstaidkits
+	GrantConditionOnPrerequisite@unethicaltesting:
+		Condition: unethicaltesting
+		Prerequisites: upgrade.unethicaltesting
+	SpeedMultiplier@unethicaltesting:
+		RequiresCondition: unethicaltesting
+		Modifier: 133
+	DamageMultiplier@unethicaltesting:
+		RequiresCondition: unethicaltesting
+		Modifier: 77
+
+
 
 chinaredguard:
 	Inherits: ^Soldier
@@ -101,7 +112,11 @@ chinaredguard:
 		Name: actor-chinaredguard.hordebonus--name
 		RequiresCondition: hordebonus >= 10
 	Valued:
-		Cost: 300
+		Cost: 150
+	ProductionCostMultiplier@default:
+		Multiplier: 200
+	GainsExperienceMultiplier@default:
+		Modifier: 50
 	UpdatesPlayerStatistics:
 		AddToArmyValue: true
 	Health:
@@ -137,9 +152,9 @@ chinaredguard:
 		Bounds: 768, 853, 0, -256
 		DecorationBounds: 640, 896, 0, -426
 		Class: redguard
-	FreeActor@extraredguard:
-		Actor: chinaredguard2
-		SpawnOffset: -1,-1
+	#FreeActor@extraredguard: # now handled by Barracks themselves!
+	#	Actor: chinaredguard2
+	#	SpawnOffset: 0,0
 	RenderSprites:
 		Image: chinaredguard
 	Voiced:
@@ -152,11 +167,13 @@ chinaredguard2:
 		Bounds: 768, 853, 0, -256
 		DecorationBounds: 640, 896, 0, -426
 		Class: redguard
-	-FreeActor@extraredguard:
+	#-FreeActor@extraredguard:
 	-Buildable:
+	GrantTimedCondition@wander:
+		Duration: 24
+		Condition: wander
 	UpdatesPlayerStatistics:
-		AddToArmyValue: false
-		AddToAssetsValue: false
+		OverrideActor: chinaredguard
 
 chinatankhunter:
 	Inherits: ^Soldier
@@ -191,25 +208,31 @@ chinatankhunter:
 	Armament@PRIMARY:
 		Weapon: tankhuntershot
 		LocalOffset: 0,0,555
+		PauseOnCondition: nukerockets
 	Armament@Secondary:
 		Weapon: tankhuntershotair
 		LocalOffset: 0,0,555
+		PauseOnCondition: nukerockets
 	Armament@GARRISONED:
 		Name: garrisoned
 		Weapon: tankhuntershotgarrison
 		MuzzleSequence: garrison-muzzle
+		PauseOnCondition: nukerockets
 	Armament@BUS:
 		Name: bus
 		Weapon: tankhuntershotgarrison
 		MuzzleSequence: garrison-muzzle
+		PauseOnCondition: nukerockets
 	Armament@GARRISONEDair:
 		Name: garrisonedair
 		Weapon: tankhuntershotair
 		MuzzleSequence: garrison-muzzle
+		PauseOnCondition: nukerockets
 	Armament@BUSair:
 		Name: busair
 		Weapon: tankhuntershotair
 		MuzzleSequence: garrison-muzzle
+		PauseOnCondition: nukerockets
 	WithInfantryBody:
 		DefaultAttackSequence: shoot
 		RequiresCondition: !parachute
@@ -227,6 +250,37 @@ chinatankhunter:
 		Image: chinatankhunter
 	Voiced:
 		VoiceSet: TankHunterVoice
+	GrantConditionOnPrerequisite@hordebonusupgrade1:
+		Condition: nukerockets
+		Prerequisites: upgrade.nukerockets
+	Armament@PRIMARYnuke:
+		Weapon: nuketankhuntershot
+		LocalOffset: 0,0,555
+		RequiresCondition: nukerockets
+	Armament@Secondarynuke:
+		Weapon: nuketankhuntershotair
+		LocalOffset: 0,0,555
+		RequiresCondition: nukerockets
+	Armament@GARRISONEDnuke:
+		Name: garrisoned
+		Weapon: nuketankhuntershotgarrison
+		MuzzleSequence: garrison-muzzle
+		RequiresCondition: nukerockets
+	Armament@BUSnuke:
+		Name: bus
+		Weapon: nuketankhuntershotgarrison
+		MuzzleSequence: garrison-muzzle
+		RequiresCondition: nukerockets
+	Armament@GARRISONEDairnuke:
+		Name: garrisonedair
+		Weapon: nuketankhuntershotair
+		MuzzleSequence: garrison-muzzle
+		RequiresCondition: nukerockets
+	Armament@BUSairnuke:
+		Name: busair
+		Weapon: nuketankhuntershotair
+		MuzzleSequence: garrison-muzzle
+		RequiresCondition: nukerockets
 
 chinaminigunner:
 	Inherits: ^Soldier
@@ -609,7 +663,9 @@ chinadragonbreathers:
 	UpdatesPlayerStatistics:
 		AddToArmyValue: true
 	Health:
-		HP: 22000
+		HP: 20000
+	Armor:
+		Type: Light
 	Mobile:
 		Voice: Move
 	Guard:
@@ -706,3 +762,214 @@ chinamortar:
 		Image: chinamortar
 	Voiced:
 		VoiceSet: NukaneerVoice
+
+chinaecmtroop:
+	Inherits: ^Soldier
+	Inherits@hordebonus: ^hordebonus
+	Inherits@infantrygeneralbuff: ^infantrygeneralbuff
+	Inherits@infantrytrainingbuff: ^infantrytrainingbuff
+	Inherits@infantrytrainingbuff: ^infantryfirstaidkits
+	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
+	Buildable:
+		Queue: Infantry
+		BuildAtProductionType: Soldier
+		BuildPaletteOrder: 42
+		Prerequisites: ~infantry.china, advtechcenter, upgrade.infantrygeneral, ~!faction.nukegeneral, ~!faction.tankgeneral, ~faction.infantrygeneral
+		Description: actor-chinaecmtroop.description
+		Icon: icon-ecm
+	Tooltip:
+		Name: actor-chinaecmtroop.name
+	Tooltip@hordebonus:
+		Name: actor-chinaecmtroop.hordebonus--name
+		RequiresCondition: hordebonus >= 10
+	Valued:
+		Cost: 900
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Health:
+		HP: 15000
+	Armor:
+		Type: Light
+	Mobile:
+		Voice: Move
+	Guard:
+		Voice: Move
+	Passenger:
+		Voice: Move
+	Armament@PRIMARY:
+		Weapon: chinaecmshot
+		MuzzleSequence: muzzle
+		LocalOffset: 0,0,555
+		FireDelay: 5
+	Armament@GARRISONED:
+		Name: garrisoned
+		Weapon: chinaecmshot
+		FireDelay: 5
+	Armament@BUS:
+		Name: bus
+		Weapon: chinaecmshot
+		FireDelay: 5
+	WithInfantryBody:
+		DefaultAttackSequence: shoot
+		RequiresCondition: !parachute
+	WithInfantryBody@PARACHUTE:
+		StandSequences: parachute
+		RequiresCondition: parachute
+	ProducibleWithLevel:
+		Prerequisites: barracks.upgraded
+	RevealsShroud:
+		Range: 5c0
+	Selectable:
+		Bounds: 768, 853, 0, -256
+		DecorationBounds: 640, 896, 0, -426
+	RenderSprites:
+		Image: judgedredd
+	Voiced:
+		VoiceSet: ECMTrooperVoice
+
+chinasniper:
+	Inherits: ^Soldier
+	Inherits@hordebonus: ^hordebonus
+	Inherits@infantrygeneralbuff: ^infantrygeneralbuff
+	Inherits@infantrytrainingbuff: ^infantrytrainingbuff
+	Inherits@infantrytrainingbuff: ^infantryfirstaidkits
+	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
+	Buildable:
+		Queue: Infantry
+		BuildAtProductionType: Soldier
+		BuildPaletteOrder: 44
+		Prerequisites: ~infantry.china, advtechcenter, upgrade.infantrygeneral, ~!faction.nukegeneral, ~!faction.tankgeneral, ~faction.infantrygeneral
+		Description: actor-chinasniper.description
+		Icon: icon-china
+	Tooltip:
+		Name: actor-chinasniper.name
+		RequiresCondition: !upgradelasergeneral
+	Tooltip@hordebonus:
+		Name: actor-chinasniper.hordebonus--name
+		RequiresCondition: hordebonus >= 10
+	Valued:
+		Cost: 1000
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Health:
+		HP: 5000
+	Mobile:
+		Voice: Move
+	Guard:
+		Voice: Move
+	Passenger:
+		Voice: Move
+	AutoTargetPriority@DEFAULT:
+		ValidTargets: Infantry
+		InvalidTargets: NoAutoTarget
+	Armament@PRIMARY:
+		Weapon: pathfindersniper
+		LocalOffset: 0,0,555
+	Armament@GARRISONED:
+		Name: garrisoned
+		Weapon: pathfindersniper
+		MuzzleSequence: garrison-muzzle
+	Armament@BUS:
+		Name: bus
+		Weapon: pathfindersniper
+		MuzzleSequence: garrison-muzzle
+	WithInfantryBody:
+		DefaultAttackSequence: shoot
+		RequiresCondition: !parachute
+	WithInfantryBody@PARACHUTE:
+		StandSequences: parachute
+		RequiresCondition: parachute
+	ProducibleWithLevel:
+		Prerequisites: barracks.upgraded
+	RevealsShroud:
+		Range: 5c0
+	Selectable:
+		Bounds: 768, 853, 0, -256
+		DecorationBounds: 640, 896, 0, -426
+	Cloak:
+		InitialDelay: 200
+		CloakDelay: 100
+		CloakSound:
+		UncloakSound:
+		UncloakOn: Attack, Unload, Infiltrate, Demolish, Move
+		IsPlayerPalette: true
+		RequiresCondition: !cloak-force-disabled
+	GrantConditionOnDamageState@UNCLOAK:
+		Condition: cloak-force-disabled
+		ValidDamageStates: Critical
+	RenderSprites:
+		Image: usapathfinder
+	Voiced:
+		VoiceSet: ChinaSniperVoice
+
+chinaofficer:
+	Inherits: ^Soldier
+	Inherits@hordebonus: ^hordebonus
+	Inherits@infantrygeneralbuff: ^infantrygeneralbuff
+	Inherits@infantrytrainingbuff: ^infantrytrainingbuff
+	Inherits@infantrytrainingbuff: ^infantryfirstaidkits
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	Buildable:
+		Queue: Infantry
+		BuildAtProductionType: Soldier
+		BuildPaletteOrder: 43
+		Prerequisites: ~infantry.china, advtechcenter, upgrade.infantrygeneral, ~!faction.nukegeneral, ~!faction.tankgeneral, ~faction.infantrygeneral
+		Description: actor-chinaofficer.description
+		Icon: icon-china
+	Tooltip:
+		Name: actor-chinaofficer.name
+	Tooltip@hordebonus:
+		Name: actor-chinaofficer.hordebonus--name
+		RequiresCondition: hordebonus >= 10
+	Valued:
+		Cost: 1400
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Health:
+		HP: 24000
+	Armor:
+		Type: Light
+	Mobile:
+		Voice: Move
+	Guard:
+		Voice: Move
+	Passenger:
+		Voice: Move
+	Armament@PRIMARY:
+		Weapon: redguardshot
+	Armament@GARRISONED:
+		Name: garrisoned
+		Weapon: redguardshotgarrison
+		MuzzleSequence: garrison-muzzle
+	Armament@BUS:
+		Name: bus
+		Weapon: redguardshotgarrison
+		MuzzleSequence: garrison-muzzle
+	WithInfantryBody:
+		DefaultAttackSequence: shoot
+		RequiresCondition: !parachute
+	WithInfantryBody@PARACHUTE:
+		StandSequences: parachute
+		RequiresCondition: parachute
+	ProducibleWithLevel:
+		Prerequisites: barracks.upgraded
+	RevealsShroud:
+		Range: 5c0
+	Selectable:
+		Bounds: 768, 853, 0, -256
+		DecorationBounds: 640, 896, 0, -426
+	RenderSprites:
+		Image: e1
+	Voiced:
+		VoiceSet: ChinaOfficerVoice
+	ProximityExternalCondition@officerboost:
+		Condition: frenzyboost
+		RequiresCondition: !disabled
+		Range: 2c0
+	WithDecoration@officer2:
+		Image: pips
+		Sequence: pip-bonus
+		Palette: effect
+		Position: TopRight
+		ValidRelationships: None,Neutral,Enemy,Ally
+		RequiresCondition: !demoralise

@@ -69,7 +69,6 @@ TRAYNOR:
 	-ExternalCondition@parasite:
 	-ExternalCondition@timestop:
 	-ExternalCondition@corrode:
-	-ExternalCondition@carrier:
 	-ExternalCondition@plague:
 	-ExternalCondition@avengermarked:
 	-ExternalCondition@irradiate:
@@ -78,9 +77,6 @@ TRAYNOR:
 		LoadedChance: 50
 	AmbientSound@talky:
 		Delay: 80, 4500
-	GrantPeriodicCondition@rings:
-		CooldownDuration: 5, 1000
-		ActiveDuration: 1,125
 
 TRAYNOR.Map:
 	Inherits: TRAYNOR

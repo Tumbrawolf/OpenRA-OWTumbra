@@ -4,27 +4,24 @@
 	-ReloadDelayMultiplier@hordebonus:
 	-ReloadDelayMultiplier@hordebonusupgrade1:
 	-ReloadDelayMultiplier@hordebonusupgrade2:
-	ProximityExternalCondition@hordebonus:
-		Range: 3c0
-	ProximityExternalCondition@hordebonusupgrade1:
-		Range: 3c0
-	ProximityExternalCondition@hordebonusupgrade2:
-		Range: 3c0
 	FirepowerMultiplier@hordebonus:
-		RequiresCondition: hordebonus >= 15 && !upgradenationalism
+		RequiresCondition: hordebonus >= 10 && !upgradenationalism
 		Modifier: 110
 	FirepowerMultiplier@hordebonusupgrade1:
-		RequiresCondition: hordebonusupgrade1 >= 15 && upgradenationalism
+		RequiresCondition: hordebonusupgrade1 >= 10 && upgradenationalism
 		Modifier: 115
 	FirepowerMultiplier@hordebonusupgrade2:
-		RequiresCondition: hordebonusupgrade2 >= 15
+		RequiresCondition: hordebonusupgrade2 >= 10
 		Modifier: 120
+	DamageMultiplier@hordebonus:
+		RequiresCondition: (hordebonus >= 10) || (hordebonusupgrade1 >= 10) || (hordebonusupgrade2 >= 10)
+		Modifier: 90
 	WithIdleOverlay@hordebonus:
-		RequiresCondition: hordebonus >= 15 && !upgradenationalism
+		RequiresCondition: hordebonus >= 10 && !upgradenationalism
 	WithIdleOverlay@hordebonusupgrade1:
-		RequiresCondition: hordebonusupgrade1 >= 15 && upgradenationalism
+		RequiresCondition: hordebonusupgrade1 >= 10 && upgradenationalism
 	WithIdleOverlay@hordebonusupgrade2:
-		RequiresCondition: hordebonusupgrade2 >= 15
+		RequiresCondition: hordebonusupgrade2 >= 10
 	ProducibleWithLevel:
 		Prerequisites: barracks.upgraded
 	WithProductionIconOverlay:
@@ -74,6 +71,13 @@
 	SpeedMultiplier@cyrostream2:
 		RequiresCondition: (cyrostreameffect >= 3) && (cyrostreameffect < 8)
 		Modifier: 100
+	SpeedMultiplier@cyrostrike:
+		Modifier: 100
+	ReloadDelayMultiplier@cyrostrike:
+		Modifier: 100
+	ReloadAmmoDelayMultiplier@cyrostrike:
+		Modifier: 100
+	-WithColoredOverlay@cyrostrike:
 	Targetable@weatherimmune:
 		TargetTypes: WeatherTankImmume
 	Voiced:
@@ -99,12 +103,20 @@ AVINF1:
 		Cost: 150
 	Health:
 		HP: 9000
+	Shielded:
+		MaxStrength: 12000
 	Mobile:
 		PauseOnCondition: taunt_dance
 	Armament@PRIMARY:
 		Weapon: AvaliLaser
 		LocalOffset: 400,0,380
 		PauseOnCondition: (ammo == 10) || no_shoot
+		RequiresCondition: weapon1
+	Armament@PRIMARY2:
+		Weapon: AvaliLaser2
+		LocalOffset: 400,0,380
+		PauseOnCondition: (ammo == 10) || no_shoot
+		RequiresCondition: weapon2
 	Armament@GRENADE:
 		Name: secondary
 		Weapon: AvaliGrenade
@@ -143,11 +155,36 @@ AVINF1:
 		ArmamentNames: secondary
 		Condition: no_shoot
 		RevokeDelay: 10
-	GrantPeriodicCondition@grenade:
+	PeriodicConditionActiveMultiplier@RANK-1:
+		RequiresCondition: rank-veteran == 1
+		ActiveModifier: 90
+	PeriodicConditionActiveMultiplier@RANK-2:
+		RequiresCondition: rank-veteran == 2
+		ActiveModifier: 80
+	PeriodicConditionActiveMultiplier@RANK-3:
+		RequiresCondition: rank-veteran == 3
+		ActiveModifier: 70
+	PeriodicConditionActiveMultiplier@RANK-ELITE:
+		RequiresCondition: rank-elite
+		ActiveModifier: 50
+	GrantPeriodicConditionOW@grenade:
 		Condition: grenade_tick
 		RequiresCondition: grenade_reload
-		CooldownDuration: 1,6
+		CooldownDuration: 4
 		ActiveDuration: 14
+	GrantRandomCondition@weapon:
+		Conditions: weapon1, weapon2
+	GrantRandomCondition@grenade:
+		Conditions: nogrenade,nogrenade,nogrenade,nogrenade,grenade_start
+	GrantTimedCondition@grenade:
+		RequiresCondition: grenade_start
+		Condition: grenade_give
+		Duration: 25
+	ReloadAmmoPool@grenade_start:
+		AmmoPool: secondary
+		Delay: 1
+		Count: 1
+		RequiresCondition: grenade_give
 	TakeCover:
 		ProneOffset: 0,0,-331
 	WithInfantryBody:
@@ -195,6 +232,8 @@ AVINF2:
 		Cost: 400
 	Mobile:
 		Speed: 64
+	Shielded:
+		MaxStrength: 10000
 	Tooltip:
 		Name: actor-avinf2.name
 	WithInfantryBody:
@@ -267,6 +306,8 @@ AVINF3:
 		Cost: 500
 	Health:
 		HP: 16000
+	Shielded:
+		MaxStrength: 16000
 	TakeCover:
 		SpeedModifier: 100
 		Duration: 100
@@ -291,6 +332,8 @@ AVINF3:
 	Armament@PRIMARY:
 		Weapon: AvaliLeaderLaser
 		PauseOnCondition: (ammo == 9) || no_shoot
+		-RequiresCondition:
+	-Armament@PRIMARY2:
 	Armament@GRENADE:
 		Name: secondary
 		Weapon: AvaliLeaderSword
@@ -316,12 +359,28 @@ AVINF3:
 		Weapon: DoomMinigunDK
 		MuzzleSequence: garrison-muzzle
 	-Armament@GARRISONED2:
+	-GrantRandomCondition@weapon:
+	-GrantRandomCondition@grenade:
+	-GrantTimedCondition@grenade:
+	-ReloadAmmoPool@grenade_start:
 	WithInfantryBody:
 		AttackSequences:
 			primary: shoot
 			secondary: grenade
 	ReloadAmmoPool:
 		RequiresCondition: grenade_tick && ((hordebonus < 5) && (hordebonusupgrade1 < 5) && (hordebonusupgrade2 < 5))
+	ProximityExternalCondition@hordebonusb:
+		Condition: hordebonus
+		Range: 4c0
+		RequiresCondition: !upgradenationalism
+	ProximityExternalCondition@hordebonusupgrade1b:
+		Condition: hordebonusupgrade1
+		Range: 4c0
+		RequiresCondition: upgradenationalism && !upgradepatriotism
+	ProximityExternalCondition@hordebonusupgrade2b:
+		Condition: hordebonusupgrade2
+		Range: 4c0
+		RequiresCondition: upgradepatriotism
 
 # Heavy Inf
 AVINF4:
@@ -341,6 +400,8 @@ AVINF4:
 		Cost: 320
 	Health:
 		HP: 10000
+	Shielded:
+		MaxStrength: 8000
 	Mobile:
 		PauseOnCondition: taunt_dance
 	Armament@PRIMARY:

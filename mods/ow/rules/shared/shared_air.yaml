@@ -2,15 +2,21 @@ HELI:
 	Buildable:
 		Prerequisites: ~hpad, techcenter, ~techlevel.high, ~aircraft.allies
 		Description: actor-heli-description
+	Valued:
+		Cost: 1500
 
 HIND:
 	Buildable:
 		Prerequisites: ~hpad, ~techlevel.medium, ~aircraft.forgotten
+	Valued:
+		Cost: 1200
 
 MH60:
 	Buildable:
 		Prerequisites: ~hpad, ~techlevel.medium, ~aircraft.allies
 		Description: actor-mh60-description
+	Valued:
+		Cost: 1200
 
 TRAN:
 	Buildable:
@@ -57,6 +63,8 @@ U2.D6:
 		ChuteSound: chute1.aud
 
 BADR:
+	Health:
+		HP: 50000
 	ParaDrop:
 		DropRange: 5c0
 	Cargo:
@@ -406,3 +414,193 @@ DO17.Auschwitz:
 	WithAmmoPipsDecoration:
 		Position: BottomLeft
 		RequiresSelection: true
+
+MISSPLANE:
+	Inherits: ^NeutralPlane
+	RenderSprites:
+		Image: usaspydrone
+	Valued:
+		Cost: 50
+	Tooltip:
+		Name: actor-usaspydrone-name
+	Health:
+		HP: 9000
+	-UpdatesPlayerStatistics:
+	Aircraft:
+		CruiseAltitude: 920
+		LandAltitude: 0
+		TurnSpeed: 8
+		Speed: 64
+		RepulsionSpeed: 40
+		MaximumPitch: 56
+		Repulsable: false
+		AltitudeVelocity: 900
+		MinAirborneAltitude: 900
+	Targetable@inter:
+		TargetTypes: Interceptor, AvaliCarrier
+	RevealsShroud:
+		MinRange: 5c0
+		Range: 6c0
+		Type: GroundPosition
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 5c0
+		Type: GroundPosition
+	-Selectable:
+	Interactable:
+	-EjectOnDeath:
+	RejectsOrders:
+	-ActorLostNotification:
+	-SpawnActorOnDeath:
+	Contrail@1:
+		Offset: -598,0,0
+		RequiresCondition: airborne
+		TrailLength: 13
+	WithDamageOverlay:
+		Offset: -853,0,171
+		Interval: 2
+	FireWarheadsOnDeath:
+		-RequiresCondition:
+		Weapon: UnitExplodeSmall
+		EmptyWeapon: UnitExplodeSmall
+	DetectCloaked:
+		Range: 6c0
+		DetectionTypes: Cloak, AirCloak, Underwater
+	GrantCondition@cloak:
+		Condition: stealthgen
+	Wanders@1:
+		WanderMoveRadius: 10
+	-Rearmable:
+	KillsSelf@1:
+		RemoveInstead: true
+		Delay: 3000
+
+PALADIN.Bomber:
+	Inherits: BADR.Bomber
+	ClassicFacingBodyOrientation:
+		QuantizedFacings: 32
+	-BodyOrientation:
+	-WithFacingSpriteBody:
+	-QuantizeFacingsFromSequence:
+	-WithShadow:
+	WithVoxelBody:
+	-WithColoredOverlay@shielded:
+	Health:
+		HP: 45000
+	Shielded:
+		MaxStrength: 30000
+	Aircraft:
+		Speed: 220
+	Contrail@1:
+		Offset: -598,-583,0
+	Contrail@2:
+		Offset: -598,583,0
+	WithDamageOverlay:
+		Offset: -853,0,171
+		Interval: 2
+	SpawnActorOnDeath:
+		Actor: PALADIN.Husk
+	EjectOnDeath:
+		PilotActor: FE2
+		SuccessRate: 50
+	Tooltip:
+		Name: actor-paladin.name
+	AttackBomber:
+		FacingTolerance: 8
+	AmmoPool:
+		Ammo: 16
+	Armament:
+		Weapon: PaladinBomberBomb
+	RenderSprites:
+		Image: burningb
+	RenderVoxels:
+		Image: burningb
+		PlayerPalette: tsunit
+		Scale: 0.7
+		LightAmbientColor: 1.0,1.0,1.0
+		LightDiffuseColor: 0.7,0.7,0.7
+
+LANCE.Bomber:
+	Inherits: BADR.Bomber
+	ClassicFacingBodyOrientation:
+		QuantizedFacings: 32
+	-BodyOrientation:
+	-WithFacingSpriteBody:
+	-QuantizeFacingsFromSequence:
+	-WithShadow:
+	WithVoxelBody:
+	-WithColoredOverlay@shielded:
+	Health:
+		HP: 45000
+	Shielded:
+		MaxStrength: 30000
+	Aircraft:
+		Speed: 230
+	Contrail@1:
+		Offset: -598,-583,0
+	Contrail@2:
+		Offset: -598,583,0
+	WithDamageOverlay:
+		Offset: -853,0,171
+		Interval: 2
+	SpawnActorOnDeath:
+		Actor: LANCE.Husk
+	EjectOnDeath:
+		PilotActor: FE2
+		SuccessRate: 50
+	Tooltip:
+		Name: actor-lance.name
+	AttackBomber:
+		FacingTolerance: 8
+	AmmoPool:
+		Ammo: 10
+	Armament:
+		Weapon: NapalmBomb
+	RenderSprites:
+		Image: burninge
+	RenderVoxels:
+		Image: burninge
+		PlayerPalette: tsunit
+		Scale: 0.7
+		LightAmbientColor: 1.0,1.0,1.0
+		LightDiffuseColor: 0.7,0.7,0.7
+
+TRAN.G:
+	Inherits: ^Helicopter
+	RenderSprites:
+		Image: tran
+	Tooltip:
+		RequiresCondition: !cruising
+		Name: actor-tran.name
+	WithIdleOverlay@ROTOR1AIR:
+		Offset: 597,0,213
+		Sequence: rotor
+		RequiresCondition: airborne
+	WithIdleOverlay@ROTOR1GROUND:
+		Offset: 597,0,213
+		Sequence: slow-rotor
+		RequiresCondition: !airborne
+	WithIdleOverlay@ROTOR2AIR:
+		Offset: -597,0,341
+		Sequence: rotor2
+		RequiresCondition: airborne
+	WithIdleOverlay@ROTOR2GROUND:
+		Offset: -597,0,341
+		Sequence: slow-rotor2
+		RequiresCondition: !airborne
+	-Targetable@AIRBORNE:
+	-Targetable@GROUND:
+	Health:
+		HP: 140000
+	Aircraft:
+		TurnSpeed: 20
+		Repulsable: false
+		Speed: 192
+		AltitudeVelocity: 64
+		CruiseAltitude: 1c256
+		CruisingCondition: cruising
+	WithFacingSpriteBody:
+	-SpawnActorOnDeath:
+	-Selectable:
+	RejectsOrders:
+	Interactable:

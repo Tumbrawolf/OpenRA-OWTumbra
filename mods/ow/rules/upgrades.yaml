@@ -5,6 +5,10 @@
 		ValidRelationships: Ally, Enemy, Neutral, None
 		Palette: effect
 		RequiresSelection: true
+		RequiresCondition: !noshow
+	GrantConditionOnPrerequisite@noupgrades2:
+		Prerequisites: techlevel.noupgrades
+		Condition: noshow
 	GrantConditionOnPrerequisite@bar1:
 		Prerequisites: upgrade.buildarmor1
 		Condition: bar1
@@ -119,227 +123,227 @@
 	WithDecoration@bar1:
 		Image: adpip
 		Sequence: bar1
-		RequiresCondition: bar1 && !bar2
+		RequiresCondition: bar1 && !bar2 && !noshow
 		ValidRelationships: Ally, Enemy, Neutral, None
 		RequiresSelection: true
 	WithDecoration@bar2:
 		Image: adpip
 		Sequence: bar2
-		RequiresCondition: bar2 && !bar3
+		RequiresCondition: bar2 && !bar3 && !noshow
 		ValidRelationships: Ally, Enemy, Neutral, None
 		RequiresSelection: true
 	WithDecoration@bar3:
 		Image: adpip
 		Sequence: bar3
-		RequiresCondition: bar3
+		RequiresCondition: bar3 && !noshow
 		ValidRelationships: Ally, Enemy, Neutral, None
 		RequiresSelection: true
 	WithDecoration@bfp1:
 		Image: adpip
 		Sequence: bfp1
-		RequiresCondition: bfp1 && !bfp2
+		RequiresCondition: bfp1 && !bfp2 && !noshow
 		ValidRelationships: Ally, Enemy, Neutral, None
 		RequiresSelection: true
 	WithDecoration@bfp2:
 		Image: adpip
 		Sequence: bfp2
-		RequiresCondition: bfp2 && !bfp3
+		RequiresCondition: bfp2 && !bfp3 && !noshow
 		ValidRelationships: Ally, Enemy, Neutral, None
 		RequiresSelection: true
 	WithDecoration@bfp3:
 		Image: adpip
 		Sequence: bfp3
-		RequiresCondition: bfp3
+		RequiresCondition: bfp3 && !noshow
 		ValidRelationships: Ally, Enemy, Neutral, None
 		RequiresSelection: true
 	WithDecoration@brep1:
 		Image: adpip
 		Sequence: brep1
-		RequiresCondition: brep1 && !brep2
+		RequiresCondition: brep1 && !brep2 && !noshow
 		ValidRelationships: Ally, Enemy, Neutral, None
 		RequiresSelection: true
 	WithDecoration@brep2:
 		Image: adpip
 		Sequence: brep2
-		RequiresCondition: brep2 && !brep3
+		RequiresCondition: brep2 && !brep3 && !noshow
 		ValidRelationships: Ally, Enemy, Neutral, None
 		RequiresSelection: true
 	WithDecoration@brep3:
 		Image: adpip
 		Sequence: brep3
-		RequiresCondition: brep3
+		RequiresCondition: brep3 && !noshow
 		ValidRelationships: Ally, Enemy, Neutral, None
 		RequiresSelection: true
 	WithDecoration@iar1:
 		Image: adpip
 		Sequence: iar1
-		RequiresCondition: iar1 && !iar2
+		RequiresCondition: iar1 && !iar2 && !noshow
 		ValidRelationships: Ally, Enemy, Neutral, None
 		RequiresSelection: true
 	WithDecoration@iar2:
 		Image: adpip
 		Sequence: iar2
-		RequiresCondition: iar2 && !iar3
+		RequiresCondition: iar2 && !iar3 && !noshow
 		ValidRelationships: Ally, Enemy, Neutral, None
 		RequiresSelection: true
 	WithDecoration@iar3:
 		Image: adpip
 		Sequence: iar3
-		RequiresCondition: iar3
+		RequiresCondition: iar3 && !noshow
 		ValidRelationships: Ally, Enemy, Neutral, None
 		RequiresSelection: true
 	WithDecoration@ifp1:
 		Image: adpip
 		Sequence: ifp1
-		RequiresCondition: ifp1 && !ifp2
+		RequiresCondition: ifp1 && !ifp2 && !noshow
 		ValidRelationships: Ally, Enemy, Neutral, None
 		RequiresSelection: true
 	WithDecoration@ifp2:
 		Image: adpip
 		Sequence: ifp2
-		RequiresCondition: ifp2 && !ifp3
+		RequiresCondition: ifp2 && !ifp3 && !noshow
 		ValidRelationships: Ally, Enemy, Neutral, None
 		RequiresSelection: true
 	WithDecoration@ifp3:
 		Image: adpip
 		Sequence: ifp3
-		RequiresCondition: ifp3
+		RequiresCondition: ifp3 && !noshow
 		ValidRelationships: Ally, Enemy, Neutral, None
 		RequiresSelection: true
 	WithDecoration@var1:
 		Image: adpip
 		Sequence: var1
-		RequiresCondition: var1 && !var2
+		RequiresCondition: var1 && !var2 && !noshow
 		ValidRelationships: Ally, Enemy, Neutral, None
 		RequiresSelection: true
 	WithDecoration@var2:
 		Image: adpip
 		Sequence: var2
-		RequiresCondition: var2 && !var3
+		RequiresCondition: var2 && !var3 && !noshow
 		ValidRelationships: Ally, Enemy, Neutral, None
 		RequiresSelection: true
 	WithDecoration@var3:
 		Image: adpip
 		Sequence: var3
-		RequiresCondition: var3
+		RequiresCondition: var3 && !noshow
 		ValidRelationships: Ally, Enemy, Neutral, None
 		RequiresSelection: true
 	WithDecoration@vfp1:
 		Image: adpip
 		Sequence: vfp1
-		RequiresCondition: vfp1 && !vfp2
+		RequiresCondition: vfp1 && !vfp2 && !noshow
 		ValidRelationships: Ally, Enemy, Neutral, None
 		RequiresSelection: true
 	WithDecoration@vfp2:
 		Image: adpip
 		Sequence: vfp2
-		RequiresCondition: vfp2 && !vfp3
+		RequiresCondition: vfp2 && !vfp3 && !noshow
 		ValidRelationships: Ally, Enemy, Neutral, None
 		RequiresSelection: true
 	WithDecoration@vfp3:
 		Image: adpip
 		Sequence: vfp3
-		RequiresCondition: vfp3
+		RequiresCondition: vfp3 && !noshow
 		ValidRelationships: Ally, Enemy, Neutral, None
 		RequiresSelection: true
 	WithDecoration@aar1:
 		Image: adpip
 		Sequence: aar1
-		RequiresCondition: aar1 && !aar2
+		RequiresCondition: aar1 && !aar2 && !noshow
 		ValidRelationships: Ally, Enemy, Neutral, None
 		RequiresSelection: true
 	WithDecoration@aar2:
 		Image: adpip
 		Sequence: aar2
-		RequiresCondition: aar2 && !aar3
+		RequiresCondition: aar2 && !aar3 && !noshow
 		ValidRelationships: Ally, Enemy, Neutral, None
 		RequiresSelection: true
 	WithDecoration@aar3:
 		Image: adpip
 		Sequence: aar3
-		RequiresCondition: aar3
+		RequiresCondition: aar3 && !noshow
 		ValidRelationships: Ally, Enemy, Neutral, None
 		RequiresSelection: true
 	WithDecoration@afp1:
 		Image: adpip
 		Sequence: afp1
-		RequiresCondition: afp1 && !afp2
+		RequiresCondition: afp1 && !afp2 && !noshow
 		ValidRelationships: Ally, Enemy, Neutral, None
 		RequiresSelection: true
 	WithDecoration@afp2:
 		Image: adpip
 		Sequence: afp2
-		RequiresCondition: afp2 && !afp3
+		RequiresCondition: afp2 && !afp3 && !noshow
 		ValidRelationships: Ally, Enemy, Neutral, None
 		RequiresSelection: true
 	WithDecoration@afp3:
 		Image: adpip
 		Sequence: afp3
-		RequiresCondition: afp3
+		RequiresCondition: afp3 && !noshow
 		ValidRelationships: Ally, Enemy, Neutral, None
 		RequiresSelection: true
 	WithDecoration@nar1:
 		Image: adpip
 		Sequence: nar1
-		RequiresCondition: nar1 && !nar2
+		RequiresCondition: nar1 && !nar2 && !noshow
 		ValidRelationships: Ally, Enemy, Neutral, None
 		RequiresSelection: true
 	WithDecoration@nar2:
 		Image: adpip
 		Sequence: nar2
-		RequiresCondition: nar2 && !nar3
+		RequiresCondition: nar2 && !nar3 && !noshow
 		ValidRelationships: Ally, Enemy, Neutral, None
 		RequiresSelection: true
 	WithDecoration@nar3:
 		Image: adpip
 		Sequence: nar3
-		RequiresCondition: nar3
+		RequiresCondition: nar3 && !noshow
 		ValidRelationships: Ally, Enemy, Neutral, None
 		RequiresSelection: true
 	WithDecoration@nfp1:
 		Image: adpip
 		Sequence: nfp1
-		RequiresCondition: nfp1 && !nfp2
+		RequiresCondition: nfp1 && !nfp2 && !noshow
 		ValidRelationships: Ally, Enemy, Neutral, None
 		RequiresSelection: true
 	WithDecoration@nfp2:
 		Image: adpip
 		Sequence: nfp2
-		RequiresCondition: nfp2 && !nfp3
+		RequiresCondition: nfp2 && !nfp3 && !noshow
 		ValidRelationships: Ally, Enemy, Neutral, None
 		RequiresSelection: true
 	WithDecoration@nfp3:
 		Image: adpip
 		Sequence: nfp3
-		RequiresCondition: nfp3
+		RequiresCondition: nfp3 && !noshow
 		ValidRelationships: Ally, Enemy, Neutral, None
 		RequiresSelection: true
 	WithDecoration@sar0:
 		Image: adpip
 		Sequence: sar0
 		Palette: effect
-		RequiresCondition: sar0 && !sar1
+		RequiresCondition: sar0 && !sar1 && !noshow
 		ValidRelationships: Ally, Enemy, Neutral, None
 		RequiresSelection: true
 	WithDecoration@sar1:
 		Image: adpip
 		Sequence: sar1
 		Palette: effect
-		RequiresCondition: sar1 && !sar2
+		RequiresCondition: sar1 && !sar2 && !noshow
 		ValidRelationships: Ally, Enemy, Neutral, None
 		RequiresSelection: true
 	WithDecoration@sar2:
 		Image: adpip
 		Sequence: sar2
 		Palette: effect
-		RequiresCondition: sar2 && !sar3
+		RequiresCondition: sar2 && !sar3 && !noshow
 		ValidRelationships: Ally, Enemy, Neutral, None
 		RequiresSelection: true
 	WithDecoration@sar3:
 		Image: adpip
 		Sequence: sar3
 		Palette: effect
-		RequiresCondition: sar3
+		RequiresCondition: sar3 && !noshow
 		ValidRelationships: Ally, Enemy, Neutral, None
 		RequiresSelection: true
 
@@ -393,18 +397,28 @@ UpgradeHandler:
 	GrantConditionOnPrerequisite@bossowner:
 		Condition: bossowner
 		Prerequisites: ai.realboss
+	GrantConditionOnPrerequisite@godowner:
+		Condition: bossowner
+		Prerequisites: ai.god
+	GrantConditionOnPrerequisite@godowner2:
+		Condition: godowner
+		Prerequisites: ai.god
 	GrantConditionOnProduction@busy:
 		Condition: busy
 		Duration: 25
 	GrantConditionOnPrerequisite@conyard:
 		Condition: conyard
 		Prerequisites: conyard
+	Production@hack:
+		RequiresCondition: !conyard
+		PauseOnCondition: !never
+		Produces: Building, Defense, Tech, Wall, Upgrade
 	ExternalCondition@upgrade:
 		Condition: upgradelevel
 	FreeActor:
 		AllowRespawn: true
 		Actor: upgrade.levelup
-		RequiresCondition: busy
+		RequiresCondition: busy && !noupgrades
 	Targetable:
 		TargetTypes: UpgradeThing
 	ProvidesPrerequisite@noboats:
@@ -428,11 +442,15 @@ UpgradeHandler:
 	ProvidesPrerequisite@ai_noboats:
 		Prerequisite: faction.noboats
 		RequiresPrerequisites: ai.all, !structures.silver, !structures.navy
+	ProvidesPrerequisite@ai_onlyboats:
+		Prerequisite: faction.onlyboats
+		RequiresPrerequisites: ai.all
+		Factions: navy, silver
 	GrantConditionOnPrerequisite@colony:
 		Condition: colony
 		Prerequisites: techlevel.colonydrop
 	FreeActor@colony:
-		RequiresCondition: colony
+		RequiresCondition: colony || godowner
 		Actor: powerproxy.colonydrop
 	GrantConditionOnPrerequisite@pipe:
 		Condition: pipe
@@ -445,11 +463,11 @@ UpgradeHandler:
 		Prerequisites: ai.harder
 	FreeActor@harderbot:
 		Actor: UpgradeHandlerBot
-		SpawnOffset: 1,0
+		SpawnOffset: 0,0
 		RequiresCondition: bot_harder
 	FreeActor@resources:
 		Actor: UpgradeHandlerResources
-		SpawnOffset: 1,0
+		SpawnOffset: 0,0
 		RequiresCondition: botowner
 	GrantConditionOnProduction@idle:
 		Condition: idle
@@ -474,49 +492,52 @@ UpgradeHandler:
 		Prerequisites: upkeep.high
 	ProduceActorPower@1:
 		Name: Low Upkeep
+		PauseOnCondition: never
 		Description: actor-player.upkeep-desc1
-		Icon: usasupplydroppower
+		Icon: upkeep1
 		RequiresCondition: upkeep.low
 		Actors: c1
-		Type: SpecialUnit
-		ChargeInterval: 900000
+		Type: NoType
+		ChargeInterval: 1
 		BeginChargeTextNotification: actor-player.upkeep-warning1
 		EndChargeTextNotification: actor-player.upkeep-warning1
 		OrderName: Upkeep1
 		SupportPowerPaletteOrder: 1
 	ProduceActorPower@2:
 		Name: Medium Upkeep
+		PauseOnCondition: never
 		Description: actor-player.upkeep-desc2
-		Icon: usasupplydroppower
+		Icon: upkeep2
 		RequiresCondition: upkeep.medium
 		Actors: c1
-		Type: SpecialUnit
-		ChargeInterval: 900000
+		Type: NoType
+		ChargeInterval: 1
 		BeginChargeTextNotification: actor-player.upkeep-warning2
 		EndChargeTextNotification: actor-player.upkeep-warning2
 		OrderName: Upkeep2
 		SupportPowerPaletteOrder: 1
 	ProduceActorPower@3:
 		Name: High Upkeep
+		PauseOnCondition: never
 		Description: actor-player.upkeep-desc3
-		Icon: usasupplydroppower
+		Icon: upkeep3
 		RequiresCondition: upkeep.high
 		Actors: c1
-		Type: SpecialUnit
-		ChargeInterval: 900000
+		Type: NoType
+		ChargeInterval: 1
 		BeginChargeTextNotification: actor-player.upkeep-warning3
 		EndChargeTextNotification: actor-player.upkeep-warning3
 		OrderName: Upkeep3
 		SupportPowerPaletteOrder: 1
 	GrantConditionOnPlayerArmyValue@1:
 		Condition: upkeep
-		Threshold: 30000
+		Threshold: 40000
 	GrantConditionOnPlayerArmyValue@2:
 		Condition: upkeep
-		Threshold: 50000
+		Threshold: 70000
 	GrantConditionOnPlayerArmyValue@3:
 		Condition: upkeep
-		Threshold: 70000
+		Threshold: 100000
 	ProvidesPrerequisite@upkeep1:
 		RequiresCondition: (upkeep == 1) && upkeep_enabled
 		Prerequisite: upkeep.low
@@ -529,6 +550,57 @@ UpgradeHandler:
 	GrantConditionOnPrerequisite@upkeep:
 		Condition: upkeep_enabled
 		Prerequisites: techlevel.upkeep
+	GrantConditionOnPrerequisite@noupgrades: # if general upgrades are removed, remove the mechanic that slows upgrades the more you have
+		Condition: noupgrades
+		Prerequisites: techlevel.noupgrades
+	GrantConditionOnPrerequisite@glatech1:
+		Condition: advtechcenter
+		Prerequisites: advtechcenter
+	GrantConditionOnPrerequisite@glatech2:
+		Condition: ulttechcenter
+		Prerequisites: ulttechcenter
+	GrantConditionOnFaction@glatech: # if player is GLA, use a hack to provide 600 power when they are at Adv Tech level.
+		Condition: glaowner
+		Factions: kassad, demo, thrax
+	Power@gla: # the power provided is now removed as the Super Tech is set to not use power if the owner is GLA
+		RequiresCondition: glaowner && advtechcenter && !ulttechcenter
+		Amount: 600
+	GrantConditionOnPrerequisite@gradualtech:
+		Condition: gradualtech
+		Prerequisites: techlevel.gradualtech
+	GrantConditionOnPrerequisite@herotier1tech: # use this player owned actor to handle the gradual tech lobby option
+		Condition: hero_tier1
+		Prerequisites: techlevel.gradualtech, hero.tier1
+	GrantConditionOnPrerequisite@herotier2tech:
+		Condition: hero_tier2
+		Prerequisites: techlevel.gradualtech, hero.tier2
+	GrantConditionOnPrerequisite@herotier3tech:
+		Condition: hero_tier3
+		Prerequisites: techlevel.gradualtech, hero.tier3
+	GrantConditionOnPrerequisite@herotier4tech:
+		Condition: hero_tier4
+		Prerequisites: techlevel.gradualtech, hero.tier4
+	GrantConditionOnPrerequisite@herotier5tech:
+		Condition: hero_tier5
+		Prerequisites: techlevel.gradualtech, hero.tier5
+	ProvidesPrerequisite@herotier1tech:
+		RequiresCondition: hero_tier1 && gradualtech
+		Prerequisite: techlevel.low
+	ProvidesPrerequisite@herotier2tech:
+		RequiresCondition: hero_tier2 && gradualtech
+		Prerequisite: techlevel.medium
+	ProvidesPrerequisite@herotier3tech:
+		RequiresCondition: hero_tier3 && gradualtech
+		Prerequisite: techlevel.high
+	ProvidesPrerequisite@herotier4tech:
+		RequiresCondition: hero_tier4 && !hero_tier5 && gradualtech
+		Prerequisite: techlevel.noepic
+	ProvidesPrerequisite@herotier5tech:
+		RequiresCondition: (hero_tier4 || hero_tier5) && gradualtech
+		Prerequisite: techlevel.unrestricted
+	ProvidesDelayedPrerequisite@perimeterearly:
+		Prerequisite: conyard.perimeterearly
+		Delay: 3000
 	OwnerLostAction:
 		Action: Dispose
 
@@ -553,14 +625,9 @@ UpgradeHandlerResources:
 
 BuildQueueHandler:
 	Inherits@mine: MINE_DUMMY
-	ProductionQueue@ability:
-		Type: DroneEvolve
-		Group: Building
-	Production@ability:
-		Produces: DroneEvolve
 	GrantDelayedCondition@aaoe:
 		Condition: spawn_hack
-		Delay: 25
+		Delay: 1
 	FreeActor@hack:
 		RequiresCondition: spawn_hack
 		Actor: BuildQueueHandler2
@@ -570,11 +637,20 @@ BuildQueueHandler:
 
 BuildQueueHandler2:
 	Inherits@mine: BuildQueueHandler
+	ProductionQueue@ability:
+		Type: DroneEvolve
+		Group: Building
+	Production@ability:
+		Produces: DroneEvolve
 	-FreeActor@hack:
+	ProvidesPrerequisite:
 	KillsSelf@11:
-		Delay: 5
+		Delay: 0
 
 FreeUpgrades:
+	GrantConditionOnPrerequisite@gla:
+		Prerequisites: structures.gla
+		Condition: spawn_buildrepair1
 	ProvidesPrerequisite@estonia:
 		Prerequisite: upgrade.buildarmor1
 		RequiresPrerequisites: structures.estonia
@@ -585,7 +661,7 @@ FreeUpgrades:
 		RequiresCondition: spawn_buildarmor1
 		Actor: upgrade.buildarmor1
 	FreeActor@estonia2:
-		RequiresCondition: spawn_buildarmor1
+		RequiresCondition: spawn_buildarmor1 || spawn_buildrepair1
 		Actor: upgrade.buildrepair1
 	GrantConditionOnPrerequisite@mengsk:
 		Prerequisites: structures.mengsk
@@ -639,6 +715,8 @@ FreeUpgrades:
 	Interactable:
 	ScriptTriggers:
 	RenderSprites:
+	ExternalCondition:
+		Condition: DevActorList
 	Valued:
 		Cost: 20
 	UpdatesPlayerStatistics:
@@ -653,8 +731,11 @@ FreeUpgrades:
 	ProductionTimeMultiplier@lobbyprodspeed3:
 		Prerequisites: prodspeed.fastest
 		Multiplier: 55
+	ProductionTimeMultiplier@lobbyprodspeed4:
+		Prerequisites: prodspeed.firesale
+		Multiplier: 25
 	ProductionCostMultiplier@boss:
-		Prerequisites: ai.boss
+		Prerequisites: ai.god
 		Multiplier: 10
 
 
@@ -662,12 +743,15 @@ FreeUpgrades:
 ^UpgradeBaseExt:
 	Inherits: ^UpgradeBase
 	Buildable:
-		Queue: Upgrade, UpgradeBot
+		Queue: Upgrade
 		BuildDuration: 2000
 		BuildPaletteOrder: 9900
 	ProductionCostMultiplier@bot:
 		Prerequisites: ai.all
-		Multiplier: 50
+		Multiplier: 75
+	ProductionTimeMultiplier@noupgrades: # if general upgrades are removed, increase build time
+		Prerequisites: techlevel.noupgrades
+		Multiplier: 150
 	Valued:
 		Cost: 100
 
@@ -710,9 +794,12 @@ upgrade.buildarmor3:
 	Buildable:
 		Description: actor-upgrade-buildarmor3.description
 		BuildPaletteOrder: 9997
-		Prerequisites: ~upgrade.buildarmor2, ~!upgrade.buildarmor3, ~!techlevel.noupgrades, ~!ai.realboss
+		Prerequisites: ~upgrade.buildarmor2, !upgrade.buildarmor3, ~!techlevel.noupgrades, ~!ai.realboss
 	UpdatesPlayerStatistics:
 		OverrideActor: upgrade.buildarmor1
+	WithProductionIconOverlay:
+		Types: UpgradeComplete
+		Prerequisites: upgrade.buildarmor3
 	ProvidesPrerequisite@upgradename:
 
 upgrade.buildrepair1:
@@ -722,7 +809,7 @@ upgrade.buildrepair1:
 	Buildable:
 		Description: actor-upgrade-buildrepair1.description
 		BuildPaletteOrder: 9998
-		Prerequisites: ~!upgrade.buildrepair1, ~!techlevel.noupgrades, ~!techlevel.noupgrades
+		Prerequisites: ~!upgrade.buildrepair1, ~!techlevel.noupgrades
 	ProvidesPrerequisite@upgradename:
 
 upgrade.buildrepair2:
@@ -744,9 +831,12 @@ upgrade.buildrepair3:
 	Buildable:
 		Description: actor-upgrade-buildrepair3.description
 		BuildPaletteOrder: 9998
-		Prerequisites: ~upgrade.buildrepair2, ~!upgrade.buildrepair3, ~!techlevel.noupgrades
+		Prerequisites: ~upgrade.buildrepair2, !upgrade.buildrepair3, ~!techlevel.noupgrades
 	UpdatesPlayerStatistics:
 		OverrideActor: upgrade.buildrepair1
+	WithProductionIconOverlay:
+		Types: UpgradeComplete
+		Prerequisites: upgrade.buildrepair3
 	ProvidesPrerequisite@upgradename:
 
 upgrade.buildfirepower1:
@@ -778,9 +868,12 @@ upgrade.buildfirepower3:
 	Buildable:
 		Description: actor-upgrade-buildfirepower3.description
 		BuildPaletteOrder: 9999
-		Prerequisites: ~upgrade.buildfirepower2, ~!upgrade.buildfirepower3, ~!techlevel.noupgrades
+		Prerequisites: ~upgrade.buildfirepower2, !upgrade.buildfirepower3, ~!techlevel.noupgrades
 	UpdatesPlayerStatistics:
 		OverrideActor: upgrade.buildfirepower1
+	WithProductionIconOverlay:
+		Types: UpgradeComplete
+		Prerequisites: upgrade.buildfirepower3
 	ProvidesPrerequisite@upgradename:
 
 ###########################
@@ -814,9 +907,12 @@ upgrade.infarmor3:
 	Buildable:
 		Description: actor-upgrade-infarmor3.description
 		BuildPaletteOrder: 10000
-		Prerequisites: ~upgrade.infarmor2, ~!upgrade.infarmor3, ~!faction.noinfantry, ~!techlevel.noupgrades, ~!ai.realboss
+		Prerequisites: ~upgrade.infarmor2, !upgrade.infarmor3, ~!faction.noinfantry, ~!techlevel.noupgrades, ~!ai.realboss
 	UpdatesPlayerStatistics:
 		OverrideActor: upgrade.infarmor1
+	WithProductionIconOverlay:
+		Types: UpgradeComplete
+		Prerequisites: upgrade.infarmor3
 	ProvidesPrerequisite@upgradename:
 
 upgrade.inffirepower1:
@@ -848,9 +944,12 @@ upgrade.inffirepower3:
 	Buildable:
 		Description: actor-upgrade-inffirepower3.description
 		BuildPaletteOrder: 10001
-		Prerequisites: ~upgrade.inffirepower2, ~!upgrade.inffirepower3, ~!faction.noinfantry, ~!techlevel.noupgrades
+		Prerequisites: ~upgrade.inffirepower2, !upgrade.inffirepower3, ~!faction.noinfantry, ~!techlevel.noupgrades
 	UpdatesPlayerStatistics:
 		OverrideActor: upgrade.inffirepower1
+	WithProductionIconOverlay:
+		Types: UpgradeComplete
+		Prerequisites: upgrade.inffirepower3
 	ProvidesPrerequisite@upgradename:
 
 ###########################
@@ -884,9 +983,12 @@ upgrade.veharmor3:
 	Buildable:
 		Description: actor-upgrade-veharmor3.description
 		BuildPaletteOrder: 10002
-		Prerequisites: ~upgrade.veharmor2, ~!upgrade.veharmor3, ~!faction.novehicles, ~!techlevel.noupgrades, ~!ai.realboss
+		Prerequisites: ~upgrade.veharmor2, !upgrade.veharmor3, ~!faction.novehicles, ~!techlevel.noupgrades, ~!ai.realboss
 	UpdatesPlayerStatistics:
 		OverrideActor: upgrade.veharmor1
+	WithProductionIconOverlay:
+		Types: UpgradeComplete
+		Prerequisites: upgrade.veharmor3
 	ProvidesPrerequisite@upgradename:
 
 upgrade.vehfirepower1:
@@ -918,9 +1020,12 @@ upgrade.vehfirepower3:
 	Buildable:
 		Description: actor-upgrade-vehfirepower3.description
 		BuildPaletteOrder: 10003
-		Prerequisites: ~upgrade.vehfirepower2, ~!upgrade.vehfirepower3, ~!faction.novehicles, ~!techlevel.noupgrades
+		Prerequisites: ~upgrade.vehfirepower2, !upgrade.vehfirepower3, ~!faction.novehicles, ~!techlevel.noupgrades
 	UpdatesPlayerStatistics:
 		OverrideActor: upgrade.vehfirepower1
+	WithProductionIconOverlay:
+		Types: UpgradeComplete
+		Prerequisites: upgrade.vehfirepower3
 	ProvidesPrerequisite@upgradename:
 
 ###########################
@@ -954,9 +1059,12 @@ upgrade.airarmor3:
 	Buildable:
 		Description: actor-upgrade-airarmor3.description
 		BuildPaletteOrder: 10004
-		Prerequisites: ~upgrade.airarmor2, ~!upgrade.airarmor3, ~!faction.noair, ~!techlevel.noupgrades, ~techlevel.medium
+		Prerequisites: ~upgrade.airarmor2, !upgrade.airarmor3, ~!faction.noair, ~!techlevel.noupgrades, ~techlevel.medium
 	UpdatesPlayerStatistics:
 		OverrideActor: upgrade.airarmor1
+	WithProductionIconOverlay:
+		Types: UpgradeComplete
+		Prerequisites: upgrade.airarmor3
 	ProvidesPrerequisite@upgradename:
 
 upgrade.airfirepower1:
@@ -988,9 +1096,12 @@ upgrade.airfirepower3:
 	Buildable:
 		Description: actor-upgrade-airfirepower3.description
 		BuildPaletteOrder: 10005
-		Prerequisites: ~upgrade.airfirepower2, ~!upgrade.airfirepower3, ~!faction.noair, ~!techlevel.noupgrades, ~techlevel.medium
+		Prerequisites: ~upgrade.airfirepower2, !upgrade.airfirepower3, ~!faction.noair, ~!techlevel.noupgrades, ~techlevel.medium
 	UpdatesPlayerStatistics:
 		OverrideActor: upgrade.airfirepower1
+	WithProductionIconOverlay:
+		Types: UpgradeComplete
+		Prerequisites: upgrade.airfirepower3
 	ProvidesPrerequisite@upgradename:
 
 ###########################
@@ -1024,9 +1135,12 @@ upgrade.navarmor3:
 	Buildable:
 		Description: actor-upgrade-navarmor3.description
 		BuildPaletteOrder: 10005
-		Prerequisites: ~upgrade.navarmor2, ~!upgrade.navarmor3, ~!techlevel.noboats, ~!techlevel.noupgrades
+		Prerequisites: ~upgrade.navarmor2, !upgrade.navarmor3, ~!techlevel.noboats, ~!techlevel.noupgrades
 	UpdatesPlayerStatistics:
 		OverrideActor: upgrade.navarmor1
+	WithProductionIconOverlay:
+		Types: UpgradeComplete
+		Prerequisites: upgrade.navarmor3
 	ProvidesPrerequisite@upgradename:
 
 upgrade.navfirepower1:
@@ -1058,9 +1172,12 @@ upgrade.navfirepower3:
 	Buildable:
 		Description: actor-upgrade-navfirepower3.description
 		BuildPaletteOrder: 10006
-		Prerequisites: ~upgrade.navfirepower2, ~!upgrade.navfirepower3, ~!techlevel.noboats, ~!techlevel.noupgrades
+		Prerequisites: ~upgrade.navfirepower2, !upgrade.navfirepower3, ~!techlevel.noboats, ~!techlevel.noupgrades
 	UpdatesPlayerStatistics:
 		OverrideActor: upgrade.navfirepower1
+	WithProductionIconOverlay:
+		Types: UpgradeComplete
+		Prerequisites: upgrade.navfirepower3
 	ProvidesPrerequisite@upgradename:
 
 ####################################
@@ -1099,9 +1216,12 @@ upgrade.shieldarmor3:
 		Description: actor-upgrade-shieldarmor3.description
 		BuildDuration: 4500
 		BuildPaletteOrder: 10007
-		Prerequisites: ~upgrade.shieldarmor2, ~!upgrade.shieldarmor3, ~!techlevel.noupgrades, techlevel.shields, ~!ai.realboss
+		Prerequisites: ~upgrade.shieldarmor2, !upgrade.shieldarmor3, ~!techlevel.noupgrades, techlevel.shields, ~!ai.realboss
 	UpdatesPlayerStatistics:
 		OverrideActor: upgrade.shieldarmor1
+	WithProductionIconOverlay:
+		Types: UpgradeComplete
+		Prerequisites: upgrade.shieldarmor3
 	ProvidesPrerequisite@upgradename:
 
 techlevel.shields:
@@ -1110,3 +1230,91 @@ techlevel.shields:
 	Interactable:
 	Buildable:
 		Description: actor-techlevelshields.description
+
+################################### Faction wide upgrades
+
+upgrade.buildarmor1b:
+	Inherits: ^UpgradeBaseExt
+	Tooltip:
+		Name: actor-upgrade-buildarmor1.name
+	Buildable:
+		Description: actor-upgrade-buildarmor1.description
+		BuildPaletteOrder: 9997
+		Prerequisites: !upgrade.buildarmor1, ~techlevel.noupgrades, ~techlevel.low, hero.tier1
+	ProductionCostMultiplier@upgrade:
+		Multiplier: 2500
+	ProvidesPrerequisite@upgradename:
+		Prerequisite: upgrade.buildarmor1
+	WithProductionIconOverlay:
+		Types: UpgradeComplete
+		Prerequisites: upgrade.buildarmor1
+	RenderSprites:
+		Image: upgrade.buildarmor1
+
+upgrade.buildrepair1b:
+	Inherits: ^UpgradeBaseExt
+	Tooltip:
+		Name: actor-upgrade-buildrepair1.name
+	Buildable:
+		Description: actor-upgrade-buildrepair1.description
+		BuildPaletteOrder: 9998
+		Prerequisites: !upgrade.buildrepair1, ~techlevel.noupgrades, ~techlevel.low, hero.tier1
+	ProductionCostMultiplier@upgrade:
+		Multiplier: 2500
+	ProvidesPrerequisite@upgradename:
+		Prerequisite: upgrade.buildrepair1
+	WithProductionIconOverlay:
+		Types: UpgradeComplete
+		Prerequisites: upgrade.buildrepair1
+	RenderSprites:
+		Image: upgrade.buildrepair1
+
+upgrade.buildfirepower1b:
+	Inherits: ^UpgradeBaseExt
+	Tooltip:
+		Name: actor-upgrade-buildfirepower1.name
+	Buildable:
+		Description: actor-upgrade-buildfirepower1.description
+		BuildPaletteOrder: 9999
+		Prerequisites: !upgrade.buildfirepower1, ~techlevel.noupgrades, ~techlevel.low, hero.tier1
+	ProductionCostMultiplier@upgrade:
+		Multiplier: 2500
+	ProvidesPrerequisite@upgradename:
+		Prerequisite: upgrade.buildfirepower1
+	WithProductionIconOverlay:
+		Types: UpgradeComplete
+		Prerequisites: upgrade.buildfirepower1
+	RenderSprites:
+		Image: upgrade.buildfirepower1
+
+upgrade.wallrebuild:
+	Inherits: ^UpgradeBaseExt
+	Tooltip:
+		Name: actor-upgrade-wallrebuild.name
+	Buildable:
+		Description: actor-upgrade-wallrebuild.description
+		BuildPaletteOrder: 9998
+		Prerequisites: ~upgrade.buildrepair1, ~techlevel.noupgrades, ~techlevel.medium
+	ProductionCostMultiplier@upgrade:
+		Multiplier: 2500
+	ProvidesPrerequisite@upgradename:
+	ProvidesPrerequisite@aiwall:
+		Prerequisite: ai.perimeter
+	WithProductionIconOverlay:
+		Types: UpgradeComplete
+		Prerequisites: upgrade.wallrebuild
+
+upgrade.wallfireports:
+	Inherits: ^UpgradeBaseExt
+	Tooltip:
+		Name: actor-upgrade-wallfireports.name
+	Buildable:
+		Description: actor-upgrade-wallfireports.description
+		BuildPaletteOrder: 9998
+		Prerequisites: ~upgrade.buildrepair1, ~techlevel.noupgrades, ~techlevel.medium
+	ProductionCostMultiplier@upgrade:
+		Multiplier: 2500
+	ProvidesPrerequisite@upgradename:
+	WithProductionIconOverlay:
+		Types: UpgradeComplete
+		Prerequisites: upgrade.wallfireports

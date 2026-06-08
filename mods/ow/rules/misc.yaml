@@ -3,6 +3,7 @@ MINE_DUMMY:
 	HitShape:
 	Interactable:
 	HiddenUnderShroud:
+		Type: CenterPosition
 	RenderSprites:
 		Palette: terrain
 		Image: MINE
@@ -10,12 +11,13 @@ MINE_DUMMY:
 		TargetTypes: UpgradeThing, Ground
 	Health:
 		HP: 9000000
-	RevealsShroud:
-		Range: 12c0
 	Immobile:
 		OccupiesSpace: false
 	OwnerLostAction:
 		Action: Dispose
+	ExternalCondition@devlist:
+		Condition: DevActorList
+	#WithSpriteBody:
 
 MINE:
 	-Building:
@@ -37,9 +39,10 @@ MINE:
 		TerrainType: Oremine
 	ExternalCondition@creep:
 		Condition: creepgen
-	ExplodeWeapon@1:
+	FireWarheads@1:
 		RequiresCondition: creepgen
-		Weapon: CreepPreventer
+		Weapons: CreepPreventer
+		Interval: 50
 	Interactable:
 		Bounds: 1024, 1024
 	GrantConditionOnPrerequisite@gems:
@@ -100,19 +103,10 @@ GMINE:
 		TargetTypes: UpgradeThing, Ground, OreMine, NoAITarget, NoAutoTarget
 	ExternalCondition@creep:
 		Condition: creepgen
-	ChangesHealth@1:
-		PercentageStep: -25
-		StartIfBelow: 101
-		Delay: 10
+	FireWarheads@1:
 		RequiresCondition: creepgen
-	ChangesHealth@2:
-		PercentageStep: 100
-		StartIfBelow: 74
-		Delay: 10
-		RequiresCondition: creepgen
-	ExplosionOnDamageTransition:
-		Weapon: CreepPreventer
-		DamageState: Medium
+		Weapons: CreepPreventer
+		Interval: 50
 	GrantConditionOnPrerequisite@gems:
 		Prerequisites: techlevel.gems
 		Condition: gems
@@ -198,8 +192,6 @@ CAMERA:
 		Type: CenterPosition
 	MapEditorData:
 		Categories: System
-	DetectCloaked:
-		Range: 10c0
 
 CAMERA.small:
 	Interactable:
@@ -221,10 +213,26 @@ CAMERA.small:
 	MapEditorData:
 		Categories: System
 
+camera.spyplane:
+	Inherits: CAMERA
+	DetectCloaked:
+		Range: 10c0
+
 SPLIT3:
+	Inherits: SPLIT3.CR
+	-FireWarheads@changeowner: 
+	-FireWarheads@changeownerback:
+	-FireWarheads@changeownerbackstructure:
+	-Targetable@tree:
+	-Targetable@creeps:
+	Targetable@attackable:
+		TargetTypes: TibTree, Ground, UpgradeThing, OreMine, NoAITarget, NoAutoTarget
+	DamageMultiplier@invince:
+		Modifier: 0
+
+SPLIT3.CR:
 	Inherits: ^TibTree
-	RenderSprites:
-		PlayerPalette: dawn
+	HitShape:
 	SeedsResource:
 		ResourceType: Tiberium
 		Interval: 65
@@ -252,9 +260,10 @@ SPLIT3:
 		Condition: growth
 	ExternalCondition@dotransform:
 		Condition: dotransform
-	ExplodeWeapon@burst:
+	FireWarheads@burst:
 		RequiresCondition: burst
-		Weapon: TibTreeBurst
+		Weapons: TibTreeBurst
+		Interval: 100
 	GrantRandomCondition@infectable:
 		Conditions: infectable,lessinfectable,moreinfectable
 	SpawnActorOnDeath:
@@ -264,16 +273,11 @@ SPLIT3:
 	KillsSelf@transform:
 		RequiresCondition: (lessinfectable && (growth > 150)) || (infectable && (growth > 120)) || (moreinfectable && (growth > 90)) || dotransform
 		Delay: 1
-	ChangesTerrain:
-		TerrainType: TibTree
-
-SPLIT3.CR:
-	Inherits: SPLIT3
-	HitShape:
 	RenderSprites:
 		Image: split3
+		PlayerPalette: dawn
 	Targetable@attackable:
-		TargetTypes: GroundActor, C4, DetonateAttack, Structure
+		TargetTypes: GroundActor, Structure
 	Health:
 		HP: 500000
 	Armor:
@@ -284,12 +288,24 @@ SPLIT3.CR:
 		EmptyWeapon: DemoTrapExplosion2
 	SpawnActorOnDeath:
 		Actor: split4.cr
+	ChangesTerrain:
+		TerrainType: TibTree
 
 SPLIT4:
+	Inherits: SPLIT4.CR
+	-FireWarheads@changeowner: 
+	-FireWarheads@changeownerback:
+	-FireWarheads@changeownerbackstructure:
+	-Targetable@tree:
+	-Targetable@creeps:
+	Targetable@attackable:
+		TargetTypes: TibTree, Ground, UpgradeThing, OreMine, NoAITarget, NoAutoTarget
+	DamageMultiplier@invince:
+		Modifier: 0
+
+SPLIT4.CR:
 	Inherits: ^TibTree
-	RenderSprites:
-		Image: split3
-		PlayerPalette: dawn
+	HitShape:
 	SeedsResource:
 		ResourceType: BlueTiberium
 		Interval: 65
@@ -313,17 +329,15 @@ SPLIT4:
 		StartSequence: make
 	GrantTimedCondition:
 		Condition: making
-	ExplodeWeapon@burst:
+	FireWarheads@burst:
 		RequiresCondition: burst
-		Weapon: TibTreeBlueBurst
-	ChangesTerrain:
-		TerrainType: TibTreeBlue
-
-SPLIT4.CR:
-	Inherits: SPLIT4
-	HitShape:
+		Weapons: TibTreeBlueBurst
+		Interval: 100
+	RenderSprites:
+		Image: split3
+		PlayerPalette: dawn
 	Targetable@attackable:
-		TargetTypes: GroundActor, C4, DetonateAttack, Structure
+		TargetTypes: GroundActor, Structure
 	Health:
 		HP: 500000
 	Armor:
@@ -332,6 +346,8 @@ SPLIT4.CR:
 	FireWarheadsOnDeath:
 		Weapon: DemoTrapExplosion2
 		EmptyWeapon: DemoTrapExplosion2
+	ChangesTerrain:
+		TerrainType: TibTreeBlue
 
 TMONOLITH:
 	Inherits: ^TibTree
@@ -377,9 +393,10 @@ TMONOLITH:
 		Triggers: Damage
 		CooldownDuration: 100
 		ActiveDuration: 50
-	ExplodeWeapon@burst:
+	FireWarheads@burst:
 		RequiresCondition: burst
-		Weapon: TibTreeBurst
+		Weapons: TibTreeBurst
+		Interval: 100
 	GrantPeriodicCondition@form:
 		RequiresCondition: making
 		Condition: form_fire
@@ -407,6 +424,8 @@ TMONOLITH:
 	SpawnActorOnDeath:
 		RequiresCondition: !spawn_blue
 		Actor: MINE
+		OwnerType: InternalName
+		InternalOwner: Neutral
 	SpawnActorOnDeath@spread:
 		RequiresCondition: spawn_blue
 		Actor: tmonolith.blue
@@ -416,13 +435,12 @@ TMONOLITH:
 		Delay: 1
 	ChangesTerrain:
 		TerrainType: TibMonolith
-
-#	TerrainLightSource:
-#		Range: 7c0
-#		Intensity: 0.2
-#		RedTint: -0.5
-#		GreenTint: -0.2
-#		BlueTint: -0.7
+	TerrainLightSource:
+		Range: 7c0
+		Intensity: 0.2
+		RedTint: -0.3
+		GreenTint: 0.1
+		BlueTint: -0.5
 
 TMONOLITH.BLUE:
 	Inherits: TMONOLITH
@@ -434,8 +452,8 @@ TMONOLITH.BLUE:
 		ResourceType: BlueTiberium
 	ExplodeWeapon@form:
 		Weapon: MonolithShakeBlue
-	ExplodeWeapon@burst:
-		Weapon: TibTreeBlueBurst
+	FireWarheads@burst:
+		Weapons: TibTreeBlueBurst
 	-SpawnActorOnDeath@spread:
 	-GrantCondition@growth:
 	-ExternalCondition@growth:
@@ -446,13 +464,12 @@ TMONOLITH.BLUE:
 		Actor: GMINE
 	ChangesTerrain:
 		TerrainType: TibMonolithBlue
-
-#	TerrainLightSource:
-#		Range: 7c0
-#		Intensity: 0.2
-#		RedTint: -0.3
-#		GreenTint: -0.2
-#		BlueTint: 0.0
+	TerrainLightSource:
+		Range: 7c0
+		Intensity: 0.2
+		RedTint: -0.2
+		GreenTint: -0.1
+		BlueTint: 0.1
 
 VICE:
 	Inherits: ^Viceroid
@@ -646,7 +663,7 @@ HUGECRATER:
 		Type: Tree
 	MapEditorData:
 		ExcludeTilesets: INTERIOR
-		Categories: Tree
+		Categories: Decoration
 	RequiresSpecificOwners:
 		ValidOwnerNames: Neutral
 	WithMakeAnimation:
@@ -672,6 +689,7 @@ HUGECRATER.colony:
 	RenderSprites:
 		Image: HUGECRATER
 	FireWarheads@lightning:
+		RequiresCondition: !prereq
 		StartCooldown: 200
 		Interval: 475
 		Weapons: WeatherGrenade
@@ -680,6 +698,25 @@ HUGECRATER.colony:
 		Prerequisite: environment.weather
 	GrantDelayedCondition@prereq:
 		Condition: prereq
+		Delay: 7500
+	FreeActor:
+		Actor: HUGECRATER.Blocker
+
+HUGECRATER.Blocker:
+	Inherits: HUGECRATER
+	RenderSprites:
+		Image: HUGECRATER
+	-WithSpriteBody:
+	-WithMakeAnimation:
+	-MapEditorData:
+	-WithDeathAnimation:
+	-AppearsOnRadar:
+	-RadarColorFromTerrain:
+	-FireWarheads@smoke:
+	-ProximityExternalCondition:
+	Building:
+		Footprint: ===xxxxxxxxxx== =xxxxxxxxxxxxx= =xx=========xx= =XX=========XXX XXX==========XX XX============X XX===========XX XX===========XX XX===========X= =Xx===========x =XXXXXX==XXXXX= ======XXXXXXXX= ========XX=====
+	KillsSelf:
 		Delay: 7500
 
 SNIPER:
@@ -712,7 +749,17 @@ japanoilderrick.cr:
 	-CapturableProgressBar:
 	-CapturableProgressBlink:
 	-CaptureNotification:
+	-GrantConditionOnCapture: 
+	-GrantConditionIfOwnerIsNeutral@cap:
+	-ExternalCondition@bot_recapture:
+	-Targetable@bot_recapture:
+	MapEditorData:
+		Categories: Resource spawn
 	ProvidesPrerequisite@buildingname:
+
+japanoilderrick.cr2:
+	Inherits: japanoilderrick.cr
+	-DamageMultiplier@invince:
 
 1TNK.FIEND:
 	Inherits: 1TNK.MINE

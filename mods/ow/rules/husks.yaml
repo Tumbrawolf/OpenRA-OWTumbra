@@ -81,6 +81,19 @@ LTNKD.Husk:
 	InfiltrateForTransform:
 		IntoActor: 1TNK.N
 
+G1TNK.Husk:
+	Inherits: ^Husk
+	Tooltip:
+		Name: actor-ltnkd-husk-name
+	ThrowsParticle@turret:
+		Anim: turret
+	TransformOnCapture:
+		IntoActor: G1TNK
+	InfiltrateForTransform:
+		IntoActor: G1TNK
+	RenderSprites:
+		Image: LTNKD.Husk
+
 MTNKD.Husk:
 	Inherits: ^Husk
 	Tooltip:
@@ -91,6 +104,17 @@ MTNKD.Husk:
 		IntoActor: MTNKD.G
 	InfiltrateForTransform:
 		IntoActor: MTNKD.G
+
+G2TNK.Husk:
+	Inherits: ^Husk
+	Tooltip:
+		Name: actor-mtnkd-husk-name
+	TransformOnCapture:
+		IntoActor: G2TNK
+	InfiltrateForTransform:
+		IntoActor: G2TNK
+	RenderSprites:
+		Image: MTNKD.Husk
 
 
 HTNKD.Husk:
@@ -358,7 +382,6 @@ BBUS.Husk:
 		IsDecoration: True
 	ChangesHealth:
 		Step: -500
-		StartIfBelow: 101
 		Delay: 8
 
 FBUS.Husk:
@@ -920,6 +943,19 @@ USALASERCRUSADER.Husk:
 	RenderSprites:
 		Image: usalasercrusadertank.destroyed
 
+usalaserpaladintank.Husk:
+	Inherits: ^Husk
+	Tooltip:
+		Name: actor-usalaserpaladintank-husk-name
+	ThrowsParticle@turret:
+		Anim: turret
+	TransformOnCapture:
+		IntoActor: usalaserpaladintank
+	InfiltrateForTransform:
+		IntoActor: usalaserpaladintank
+	RenderSprites:
+		Image: usalaserpaladintank.destroyed
+
 SUPPLYCHINOOK.Husk:
 	Inherits: ^HelicopterHusk
 	Tooltip:
@@ -1454,7 +1490,7 @@ AVCARRIER.GroundHusk:
 AV1TNK.Husk:
 	Inherits: ^Husk
 	Tooltip:
-		Name: actor-av1tnk-husk-name
+		Name: actor-av1tnk.husk
 	ThrowsParticle@turret:
 		Anim: turret
 	TransformOnCapture:
@@ -1463,6 +1499,19 @@ AV1TNK.Husk:
 		IntoActor: av1tnk
 	RenderSprites:
 		Image: av1tnk.destroyed
+
+AV2TNK.Husk:
+	Inherits: ^Husk
+	Tooltip:
+		Name: actor-av2tnk.husk
+	ThrowsParticle@turret:
+		Anim: turret
+	TransformOnCapture:
+		IntoActor: av2tnk
+	InfiltrateForTransform:
+		IntoActor: av2tnk
+	RenderSprites:
+		Image: av2tnk.destroyed
 
 
 MediDragon.Husk:
@@ -1604,6 +1653,8 @@ GTECHNICAL.Husk:
 	GrantDelayedCondition@3:
 		Delay: 225
 		Condition: overlay
+	WithColoredOverlay@IDISABLE:
+		Color: 00000023
 	WithColoredOverlay@heat1:
 		RequiresCondition: !overlay
 		Color: FF370008
@@ -1636,6 +1687,12 @@ BTRAE.Husk:
 	Inherits: ^MechHusk
 	Tooltip:
 		Name: actor-btrae-hero.husk
+	GrantDelayedCondition:
+		Delay: 37
+		Condition: anim
+	WithFacingSpriteBody:
+		PauseOnCondition: anim
+		Sequence: die
 	RenderSprites:
 		Image: btrae
 
@@ -1851,3 +1908,388 @@ SPECTRE.GroundHusk:
 	ClassicFacingBodyOrientation:
 		QuantizedFacings: 32
 	-WithFacingSpriteBody:
+
+unscdarter.Husk:
+	Inherits: ^HelicopterHusk
+	Tooltip:
+		Name: actor-unscdarter-husk-name
+	Aircraft:
+		TurnSpeed: 16
+		Speed: 149
+		AltitudeVelocity: 1280
+	RevealsShroud:
+		MinRange: 6c0
+		Range: 8c0
+		Type: GroundPosition
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 6c0
+		Type: GroundPosition
+	RenderSprites:
+		Image: unscdarter
+
+unscpelican.Husk:
+	Inherits: ^PlaneHusk
+	Tooltip:
+		Name: actor-unscpelican-husk-name
+	Aircraft:
+		TurnSpeed: 20
+		Speed: 149
+	WithDamageOverlay@0:
+		Offset: -432,560,0
+		Interval: 2
+		MinimumDamageState: Undamaged
+	WithDamageOverlay@1:
+		Offset: -432,-560,0
+		Interval: 2
+		MinimumDamageState: Undamaged
+	RenderSprites:
+		Image: unscpelican
+	-RevealOnDeath:
+
+unschornet.Husk:
+	Inherits: ^PlaneHusk
+	Tooltip:
+		Name: actor-unschornet-husk-name
+	Aircraft:
+		TurnSpeed: 20
+		Speed: 149
+	WithDamageOverlay@0:
+		Offset: -432,560,0
+		Interval: 2
+		MinimumDamageState: Undamaged
+	WithDamageOverlay@1:
+		Offset: -432,-560,0
+		Interval: 2
+		MinimumDamageState: Undamaged
+	RenderSprites:
+		Image: unschornet
+	-RevealOnDeath:
+
+
+unscsparrowhawk.Husk:
+	Inherits: ^PlaneHusk
+	Tooltip:
+		Name: actor-unscsparrowhawk-husk-name
+	Aircraft:
+		TurnSpeed: 20
+		Speed: 149
+	WithDamageOverlay@0:
+		Offset: -432,560,0
+		Interval: 2
+		MinimumDamageState: Undamaged
+	WithDamageOverlay@1:
+		Offset: -432,-560,0
+		Interval: 2
+		MinimumDamageState: Undamaged
+	RenderSprites:
+		Image: unscsparrowhawk
+	-RevealOnDeath:
+
+unscvulture.Husk:
+	Inherits: ^PlaneHusk
+	Tooltip:
+		Name: actor-unscvulture-husk-name
+	Aircraft:
+		TurnSpeed: 20
+		Speed: 149
+	WithDamageOverlay@0:
+		Offset: -432,560,0
+		Interval: 2
+		MinimumDamageState: Undamaged
+	WithDamageOverlay@1:
+		Offset: -432,-560,0
+		Interval: 2
+		MinimumDamageState: Undamaged
+	RenderSprites:
+		Image: unscvulture
+	-RevealOnDeath:
+
+unscscorpion.Husk:
+	Inherits: ^BotCapturableHusk
+	Tooltip:
+		Name: actor-unscscorpion-husk-name
+	ThrowsParticle@turret:
+		Anim: turret
+	TransformOnCapture:
+		IntoActor: unscscorpion
+	InfiltrateForTransform:
+		IntoActor: unscscorpion
+	TransformOnCondition:
+		IntoActor: unscscorpion
+
+unscgrizzly.Husk:
+	Inherits: ^BotCapturableHusk
+	Tooltip:
+		Name: actor-unscgrizzly-husk-name
+	ThrowsParticle@turret:
+		Anim: turret
+	TransformOnCapture:
+		IntoActor: unscgrizzly
+	InfiltrateForTransform:
+		IntoActor: unscgrizzly
+	TransformOnCondition:
+		IntoActor: unscgrizzly
+
+unsccolonyship.Husk:
+	Inherits: ^PlaneHusk
+	Tooltip:
+		Name: actor-unsccolonyship-husk-name
+	Aircraft:
+		TurnSpeed: 8
+		Speed: 50
+	WithDamageOverlay@0:
+		Offset: -432,560,0
+		Interval: 2
+		MinimumDamageState: Undamaged
+	WithDamageOverlay@1:
+		Offset: -432,-560,0
+		Interval: 2
+		MinimumDamageState: Undamaged
+	FallsToEarth:
+		Moves: True
+		Velocity: 35
+		Explosion: SkyEmpressCannon
+		MaximumSpinSpeed: 0
+	RenderSprites:
+		Image: unsccolonyship
+	-RevealOnDeath:
+
+covenantghost.Husk:
+	Inherits: ^BotCapturableHusk
+	WithIdleOverlay@Burns:
+		Image: covenantghostdamaged
+		Sequence: fire1
+		Offset: -256,512,0
+	Tooltip:
+		Name: actor-covenantghost-husk-name
+	TransformOnCapture:
+		IntoActor: covenantghost
+	InfiltrateForTransform:
+		IntoActor: covenantghost
+	TransformOnCondition:
+		IntoActor: covenantghost
+	RenderSprites:
+		Image: covenantghostdamaged
+	KillsSelf:
+		Delay: 340
+	AmbientSound:
+		SoundFiles: covenantghostdeath.aud
+		Delay: 150
+		Interval: 500
+	FireProjectilesOnDeath@2:
+		Weapons: covenantghostdeathproj
+		Pieces: 1,1
+		Range: 3c0, 5c0
+	FireWarheadsOnDeath:
+		Weapon: covenantghostdeathexplosion
+		EmptyWeapon: covenantghostdeathexplosion
+
+starfox.Husk:
+	Inherits: ^PlaneHusk
+	Tooltip:
+		Name: actor-starfox-husk-name
+	Aircraft:
+		TurnSpeed: 20
+		Speed: 128
+	WithDamageOverlay:
+		Offset: -853,0,0
+		Interval: 2
+		MinimumDamageState: Undamaged
+	RevealsShroud:
+		MinRange: 7c0
+		Range: 9c0
+		Type: GroundPosition
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 7c0
+		Type: GroundPosition
+	RenderSprites:
+		Image: starfoxarwing
+
+starfoxbluemarine.Husk:
+	Inherits: ^PlaneHusk
+	Tooltip:
+		Name: actor-starfoxbluemarine-husk-name
+	Aircraft:
+		TurnSpeed: 20
+		Speed: 128
+	WithDamageOverlay:
+		Offset: -853,0,0
+		Interval: 2
+		MinimumDamageState: Undamaged
+	RevealsShroud:
+		MinRange: 7c0
+		Range: 9c0
+		Type: GroundPosition
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 7c0
+		Type: GroundPosition
+	RenderSprites:
+		Image: starfoxbluemarine
+
+covenantwraith.Husk:
+	Inherits: ^BotCapturableHusk
+	WithIdleOverlay@Burns:
+		Image: covenantwraith
+		Sequence: fire1
+		Offset: -256,512,0
+	Tooltip:
+		Name: actor-covenantwraith-husk-name
+	TransformOnCapture:
+		IntoActor: covenantwraith
+	InfiltrateForTransform:
+		IntoActor: covenantwraith
+	TransformOnCondition:
+		IntoActor: covenantwraith
+	RenderSprites:
+		Image: covenantwraithdamaged
+	FireWarheadsOnDeath:
+		Weapon: covenantghostdeathexplosion
+		EmptyWeapon: covenantghostdeathexplosion
+
+covenantskyhunter.Husk:
+	Inherits: ^BotCapturableHusk
+	WithIdleOverlay@Burns:
+		Image: covenantskyhunter
+		Sequence: fire1
+		Offset: -256,512,0
+	Tooltip:
+		Name: actor-covenantskyhunter-husk-name
+	TransformOnCapture:
+		IntoActor: covenantskyhunter
+	InfiltrateForTransform:
+		IntoActor: covenantskyhunter
+	TransformOnCondition:
+		IntoActor: covenantskyhunter
+	RenderSprites:
+		Image: covenantskyhunterdamaged
+	FireWarheadsOnDeath:
+		Weapon: covenantghostdeathexplosion
+		EmptyWeapon: covenantghostdeathexplosion
+
+covenantbanshee.Husk:
+	Inherits: ^PlaneHusk
+	Tooltip:
+		Name: actor-covenantbanshee-husk-name
+	Aircraft:
+		TurnSpeed: 20
+		Speed: 128
+	WithDamageOverlay:
+		Offset: -853,0,0
+		Interval: 2
+		MinimumDamageState: Undamaged
+	RevealsShroud:
+		MinRange: 7c0
+		Range: 9c0
+		Type: GroundPosition
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 7c0
+		Type: GroundPosition
+	RenderSprites:
+		Image: covenantbanshee
+
+covenantrevenant.Husk:
+	Inherits: ^BotCapturableHusk
+	WithIdleOverlay@Burns:
+		Image: covenantrevenant
+		Sequence: fire1
+		Offset: -256,512,0
+	Tooltip:
+		Name: actor-covenantrevenant-husk-name
+	TransformOnCapture:
+		IntoActor: covenantrevenant
+	InfiltrateForTransform:
+		IntoActor: covenantrevenant
+	TransformOnCondition:
+		IntoActor: covenantrevenant
+	RenderSprites:
+		Image: covenantrevenantdamaged
+	FireWarheadsOnDeath:
+		Weapon: covenantghostdeathexplosion
+		EmptyWeapon: covenantghostdeathexplosion
+
+covenantspirit.Husk:
+	Inherits: ^PlaneHusk
+	Tooltip:
+		Name: actor-covenantspirit-husk-name
+	Aircraft:
+		TurnSpeed: 20
+		Speed: 149
+	WithDamageOverlay@0:
+		Offset: -432,560,0
+		Interval: 2
+		MinimumDamageState: Undamaged
+	WithDamageOverlay@1:
+		Offset: -432,-560,0
+		Interval: 2
+		MinimumDamageState: Undamaged
+	RenderSprites:
+		Image: covenantspirit
+	-RevealOnDeath:
+
+covenantphantom.Husk:
+	Inherits: ^PlaneHusk
+	Tooltip:
+		Name: actor-covenantphantom-husk-name
+	Aircraft:
+		TurnSpeed: 20
+		Speed: 149
+	WithDamageOverlay@0:
+		Offset: -432,560,0
+		Interval: 2
+		MinimumDamageState: Undamaged
+	WithDamageOverlay@1:
+		Offset: -432,-560,0
+		Interval: 2
+		MinimumDamageState: Undamaged
+	RenderSprites:
+		Image: covenantphantom
+	-RevealOnDeath:
+
+covenantlich.Husk:
+	Inherits: ^PlaneHusk
+	Tooltip:
+		Name: actor-covenantlich-husk-name
+	Aircraft:
+		TurnSpeed: 20
+		Speed: 149
+	WithDamageOverlay@0:
+		Offset: -432,560,0
+		Interval: 2
+		MinimumDamageState: Undamaged
+	WithDamageOverlay@1:
+		Offset: -432,-560,0
+		Interval: 2
+		MinimumDamageState: Undamaged
+	RenderSprites:
+		Image: covenantlich
+	-RevealOnDeath:
+
+covenantscarab.Husk:
+	Inherits: ^BotCapturableHusk
+	WithIdleOverlay@Burns:
+		Image: covenantscarab
+		Sequence: fire1
+		Offset: -256,512,0
+	Tooltip:
+		Name: actor-covenantscarab-husk-name
+	TransformOnCapture:
+		IntoActor: covenantscarab
+	InfiltrateForTransform:
+		IntoActor: covenantscarab
+	TransformOnCondition:
+		IntoActor: covenantscarab
+	RenderSprites:
+		Image: covenantscarab
+	KillsSelf:
+		Delay: 340
+	AmbientSound:
+		SoundFiles: covenantscarabalarm.aud
+		Delay: 30
+		Interval: 30
+	FireWarheadsOnDeath:
+		Weapon: SkyEmpressCannon
+		EmptyWeapon: SkyEmpressCannon

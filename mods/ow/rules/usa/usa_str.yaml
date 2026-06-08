@@ -221,95 +221,24 @@ usabarracks:
 		DeathSequencePalette: dawn
 	
 usasupplycenter:
-	Inherits: ^DawnBuilding
-	Inherits@ref: ^Refinery
-	Inherits@BIB: ^3x4BuildingBib
+	Inherits: PROCD
 	Buildable:
 		Queue: Building
 		BuildPaletteOrder: 15
-		Prerequisites: anypower, ~structures.usa, ~!ai.boss
+		Prerequisites: anypower, ~structures.usa, ~!ai.god
 		Description: actor-usasupplycenter.description
-	Valued:
-		Cost: 1400
 	Tooltip:
 		Name: actor-usasupplycenter.name
-	Building:
-		Footprint: _x_ xxx === ===
-		Dimensions: 3,4
-		LocalCenterOffset: 0,-512,0
-	Selectable:
-		Bounds: 3072, 2133, 0, 170
-		DecorationBounds: 3072, 2986, 0, -85
-	SelectionDecorations:
-	Targetable:
-		TargetTypes: GroundActor, Structure, C4, DetonateAttack, ThiefInfiltrate, SpyInfiltrate
-	Health:
-		HP: 90000
-	Armor:
-		Type: Wood
-	RevealsShroud:
-		MinRange: 4c0
-		Range: 5c0
-		RevealGeneratedShroud: False
-	RevealsShroud@GAPGEN:
-		Range: 4c0
-	Refinery:
-	StoresPlayerResources:
-		Capacity: 2000
-	DrawLineToTarget:
-	CustomSellValue:
-		Value: 300
 	FreeActor:
 		Actor: USACHINOOK
 		SpawnOffset: 1,2
 		Facing: 256
-	InfiltrateForCash:
-		Percentage: 50
-		Types: SpyInfiltrate, ThiefInfiltrate
-		InfiltratedNotification: CreditsStolen
-		Maximum: 5000
 	RenderSprites:
 		Image: usasupplycenterbuilding
-	Power:
-		Amount: -30
-	WithDeathAnimation:
-		DeathSequence: dead
-		UseDeathTypeSuffix: false
-	ProvidesPrerequisite@buildingname:
-	ProvidesPrerequisite@usa:
-		Prerequisite: refinery
-	HitShape:
-		Type: Rectangle
-			TopLeft: -1536, -512
-			BottomRight: 1536, 598
-	HitShape@TOP:
-		TargetableOffsets: 1680,0,0
-		Type: Rectangle
-			TopLeft: -512, -1536
-			BottomRight: 512, -512
-	HitShape@BOTTOMLEFT:
-		TargetableOffsets: -1260,-1024,0
-		Type: Rectangle
-			TopLeft: -1536, 598
-			BottomRight: -512, 1280
-	WithDeathAnimation:
-		DeathSequence: dead
-		UseDeathTypeSuffix: false
-	WithResourceStoragePipsDecoration:
-		Position: BottomLeft
-		RequiresSelection: true
-		PipCount: 17
-		FullSequence: pip-yellow
 	Production:
 		Produces: Helicopter, Aircraft
 	Exit:
 		ProductionTypes: Helicopter
-	GrantConditionOnPrerequisite@supplylines:
-		Condition: supplylines
-		Prerequisites: ~upgrade.supplylines
-	ResourceValueMultiplier@supplylines:
-		Modifier: 125
-		RequiresCondition: supplylines
 	DockHost:
 		Type: Unload
 		DockAngle: 448
@@ -325,7 +254,7 @@ usawarfactory:
 	Buildable:
 		Queue: Building
 		BuildPaletteOrder: 80
-		Prerequisites: refinery, anypower, usabarracks, ~structures.usa, ~!structures.bothard
+		Prerequisites: refinery, anypower, usabarracks, ~structures.usa, ~!structures.bothard, ~techlevel.low
 		Description: actor-usawarfactory.description
 		Icon: icon-usa
 	Valued:
@@ -340,7 +269,7 @@ usaairfield:
 	Buildable:
 		Queue: Building
 		BuildPaletteOrder: 130
-		Prerequisites: refinery, anypower, ~structures.usa, ~!ai.boss
+		Prerequisites: refinery, anypower, ~structures.usa, ~!ai.god, ~techlevel.medium
 		Description: actor-usaairfield.description
 	Tooltip:
 		Name: actor-usaairfield.name
@@ -500,17 +429,19 @@ usaairstriplandingspot:
 usastrategycenter:
 	Inherits: ^ScienceBuilding
 	Inherits@shape: ^3x3Shape
+	Inherits@IDISABLE: ^DisableOnLowPowerOrPowerDown
+	Inherits@AUTOTARGET: ^AutoTargetGround
 	Selectable:
 		Bounds: 3072, 3072
 	Buildable:
 		Queue: Building
-		Prerequisites: refinery, factory, anypower, ~structures.usa
+		Prerequisites: refinery, factory, anypower, ~structures.usa, !usastrategycenter.exists, ~techlevel.medium
 		Description: actor-usastrategycenter.description
 		BuildPaletteOrder: 150
 	Tooltip:
 		Name: actor-usastrategycenter.name
 	ProvidesRadar:
-		RequiresCondition: !lowpower
+		RequiresCondition: !disabled
 	Building:
 		Footprint: xxx xxx x=x
 		Dimensions: 3,3
@@ -522,9 +453,6 @@ usastrategycenter:
 		Type: Heavy
 	Power:
 		Amount: -100
-	Power@Strategy:
-		Amount: -100
-		RequiresCondition: bombardment || hold_the_line || search_and_destroy
 	RevealsShroud:
 		MinRange: 5c0
 		Range: 7c0
@@ -535,13 +463,16 @@ usastrategycenter:
 		TargetTypes: GroundActor, C4, DetonateAttack, Structure, SpyInfiltrate
 	ProvidesPrerequisite@buildingname:
 	ProvidesPrerequisite:
+		RequiresPrerequisites: techlevel.high
 		Prerequisite: techcenter
+		RequiresCondition: !powerdown
 	ProvidesPrerequisite@radar:
 		Prerequisite: radar
 	RenderSprites:
 		Image: usastrategycenter
 	SpawnActorPower@spydrone:
 		OrderName: SpyDrone
+		PauseOnCondition: disabled
 		Name: Spy Drone
 		Actor: USASPYDRONE
 		LifeTime: -1
@@ -553,6 +484,7 @@ usastrategycenter:
 		SelectTargetSpeechNotification: SelectTarget
 		Prerequisites: ~structures.usa
 	ParatroopersPower@usarangers:
+		PauseOnCondition: disabled
 		OrderName: usarangers
 		Prerequisites: ~structures.usa, ~aircraft.usa
 		Icon: paratroopers
@@ -599,12 +531,20 @@ usastrategycenter:
 		Offset: -416, -576, 0
 	RenderDetectionCircle:
 	DetectCloaked:
-		Range: 12c512
+		Range: 16c0
+		DetectionTypes: Cloak, AirCloak
 		RequiresCondition: search_and_destroy && !disabled
 	Armament:
 		Weapon: usafirebaseshot
 		LocalOffset: 520,0,450
 		RequiresCondition: bombardment
+		PauseOnCondition: disabled
+	RangeMultiplier@default:
+		Modifier: 200
+	ReloadDelayMultiplier@default:
+		Modifier: 200
+	FirepowerMultiplier@default:
+		Modifier: 200
 	WithIdleOverlay@HOLD_THE_LINE:
 		Sequence: hold_the_line
 		Palette: effect
@@ -616,34 +556,191 @@ usastrategycenter:
 		Sequence: search_and_destroy
 		RequiresCondition: search_and_destroy
 	AttackTurreted:
-		PauseOnCondition: build-incomplete || emp || hacked || lowpower || disabled
-	WithRangeCircle:
-		Range: 10c0
-		Color: DDDD0088
-		RequiresCondition: bombardment
+		PauseOnCondition: build-incomplete || emp || hacked || disabled
 	WithSpriteTurret:
 		RequiresCondition: bombardment && !build-incomplete
 	GrantConditionOnPrerequisite@bombardment:
 		Condition: bombardment
-		Prerequisites: ~upgrade.bombardment
+		Prerequisites: upgrade.bombardment
 	GrantConditionOnPrerequisite@holdtheline:
 		Condition: hold_the_line
-		Prerequisites: ~upgrade.holdtheline
+		Prerequisites: upgrade.holdtheline
 	GrantConditionOnPrerequisite@searchanddestroy:
 		Condition: search_and_destroy
-		Prerequisites: ~upgrade.searchanddestroy
+		Prerequisites: upgrade.searchanddestroy
+	GrantConditionOnPrerequisite@godowner:
+		Condition: godowner
+		Prerequisites: ai.god
 	ProximityExternalCondition@bombardment:
 		Condition: usa.bombardment
-		RequiresCondition: bombardment
+		RequiresCondition: (bombardment || godowner) && !disabled
 		Range: 32c0
 	ProximityExternalCondition@holdtheline:
 		Condition: usa.hold_the_line
-		RequiresCondition: hold_the_line
+		RequiresCondition: (hold_the_line || godowner) && !disabled
 		Range: 32c0
 	ProximityExternalCondition@searchanddestroy:
 		Condition: usa.search_and_destroy
-		RequiresCondition: search_and_destroy
+		RequiresCondition: (search_and_destroy || godowner) && !disabled
 		Range: 32c0
+	ProvidesPrerequisite@botowner:
+		Prerequisite: usastrategycenter.exists
+	ProductionBar@transformstructure:
+		ProductionType: StrategyChoice
+	Production@transformstructure:
+		Produces: StrategyChoice
+	ProductionQueue@transformstructure:
+		Type: StrategyChoice
+		Group: Tech
+		DisplayOrder: 1
+		BlockedAudio: NoBuild
+		LimitedAudio: BuildingInProgress
+		QueuedAudio: Building
+		OnHoldAudio: OnHold
+		CancelledAudio: Cancelled
+		QueueLimit: 1
+	GrantConditionOnProduction@bom:
+		Condition: usabom
+		Actors: usastrat.bom
+	GrantConditionOnProduction@htl:
+		Condition: usahtl
+		Actors: usastrat.htl
+	GrantConditionOnProduction@snd:
+		Condition: usasnd
+		Actors: usastrat.snd
+	TransformOnCondition@bom:
+		RequiresCondition: usabom
+		IntoActor: usastrategycenter.bom
+	TransformOnCondition@htl:
+		RequiresCondition: usahtl
+		IntoActor: usastrategycenter.htl
+	TransformOnCondition@snd:
+		RequiresCondition: usasnd
+		IntoActor: usastrategycenter.snd
+	ProvidesPrerequisite@socket:
+		Prerequisite: usastrat.socket
+
+^USAStrategyCenterRevert:
+	TooltipDescription:
+		Description: actor-usastrategycenter.sell
+		ValidRelationships: None, Ally
+	ToggleConditionOnOrder@sell:
+		OrderName: Sell
+		Condition: sell_me
+	TransformOnCondition@sell:
+		RequiresCondition: sell_me
+		IntoActor: usastrategycenter
+	GrantConditionOnPrerequisite@botowner:
+		Prerequisites: ai.all
+		Condition: botowner
+	GrantDelayedCondition@botreset:
+		RequiresCondition: botowner
+		Delay: 9000, 15000
+		Condition: sell_me
+	Power:
+		Amount: -200
+
+usastrategycenter.bom:
+	Inherits: usastrategycenter
+	Inherits@strat: ^USAStrategyCenterRevert
+	-Buildable:
+	Tooltip:
+		Name: actor-usastrategycenter.bom
+	ProvidesPrerequisite@strat:
+		RequiresCondition: !disabled
+		Prerequisite: upgrade.bombardment
+	-ProductionBar@transformstructure:
+	-Production@transformstructure:
+	-ProductionQueue@transformstructure:
+	-ProvidesPrerequisite@socket:
+	Voiced:
+		VoiceSet: StrategyCentre
+	GrantTimedCondition@announce:
+		Condition: announce
+		Duration: 125
+	VoiceAnnouncement:
+		RequiresCondition: announce
+		Voice: BOM
+	RevealsShroud@everyone:
+		RequiresCondition: announce
+		Range: 3c0
+		ValidRelationships: Ally, Neutral, Enemy
+	RenderRangeCircle:
+	-CommandBarBlacklist:
+
+usastrategycenter.htl:
+	Inherits: usastrategycenter.bom
+	Tooltip:
+		Name: actor-usastrategycenter.htl
+	ProvidesPrerequisite@strat:
+		Prerequisite: upgrade.holdtheline
+	VoiceAnnouncement:
+		Voice: HTL
+	-RenderRangeCircle:
+	CommandBarBlacklist:
+
+usastrategycenter.snd:
+	Inherits: usastrategycenter.bom
+	Tooltip:
+		Name: actor-usastrategycenter.snd
+	ProvidesPrerequisite@strat:
+		Prerequisite: upgrade.searchanddestroy
+	VoiceAnnouncement:
+		RequiresCondition: announce
+		Voice: SND
+	-RenderRangeCircle:
+	CommandBarBlacklist:
+
+^USAStratChoice:
+	Buildable:
+		Queue: StrategyChoice
+		BuildDurationModifier: 60
+		BuildPaletteOrder: 1
+		BuildDuration: 750
+		Prerequisites: ~usastrat.socket, ~techlevel.high
+	Interactable:
+	ScriptTriggers:
+	KillsSelf:
+		RemoveInstead: true
+	Valued:
+		Cost: 100
+	Power:
+		Amount: -100
+		RequiresCondition: i_dont_exist
+	GrantDelayedCondition@1:
+		Condition: i_dont_exist
+
+usastrat.socket:
+	Interactable:
+	Tooltip:
+		Name: actor-usastrategycenter.socket
+
+usastrat.bom:
+	Inherits: ^USAStratChoice
+	Buildable:
+		Description: actor-upgrade-bombardment.description
+	Tooltip:
+		Name: actor-upgrade-bombardment.name
+	RenderSprites:
+		Image: upgrade.bombardment
+
+usastrat.htl:
+	Inherits: ^USAStratChoice
+	Buildable:
+		Description: actor-upgrade-holdtheline.description
+	Tooltip:
+		Name: actor-upgrade-holdtheline.name
+	RenderSprites:
+		Image: upgrade.holdtheline
+
+usastrat.snd:
+	Inherits: ^USAStratChoice
+	Buildable:
+		Description: actor-upgrade-searchanddestroy.description
+	Tooltip:
+		Name: actor-upgrade-searchanddestroy.name
+	RenderSprites:
+		Image: upgrade.searchanddestroy
 
 #mines move later
 USAMINEDROP:
@@ -766,7 +863,7 @@ usasupplydropzone:
 		Bounds: 2048, 2048
 	Buildable:
 		Queue: Building
-		Prerequisites: techcenter, ~structures.usa
+		Prerequisites: techcenter, ~structures.usa, ~techlevel.high
 		BuildPaletteOrder: 150
 		Description: actor-usasupplydropzone.description
 		BuildLimit: 2
@@ -811,7 +908,7 @@ usaparticlecannon:
 		Name: actor-usaparticlecannon.name
 	Buildable:
 		Queue: Tech
-		Prerequisites: techcenter, ~structures.usa
+		Prerequisites: techcenter, ~structures.usa, ~techlevel.unrestricted
 		BuildLimit: 1
 		Description: actor-usaparticlecannon.description
 		BuildPaletteOrder: 500
@@ -936,12 +1033,13 @@ usapatriot:
 	Inherits@AUTOTARGET: ^AutoTargetAll
 	Inherits@LOWPOWER: ^DisableOnLowPowerOrPowerDown
 	Inherits@SHAPE: ^2x1Shape
+	Inherits@AUTOTARGETGround: ^AutoTargetAirVehiclePriority
 	Buildable:
 		Queue: Defense
 		BuildPaletteOrder: 4
 		BuildDuration: 625
 		BuildDurationModifier: 100
-		Prerequisites: anypower, ~structures.usa, barracks, ~!faction.lasergeneral, ~!faction.superweaponsgeneral
+		Prerequisites: anypower, ~structures.usa, barracks, ~!faction.lasergeneral, ~!faction.superweaponsgeneral, ~techlevel.low
 		Description: actor-usapatriot.description
 	Valued:
 		Cost: 1000
@@ -1001,6 +1099,7 @@ usapatriot:
 	RenderDetectionCircle:
 	DetectCloaked:
 		Range: 5c0
+		DetectionTypes: Cloak, AirCloak
 	BodyOrientation:
 		UseClassicFacingFudge: True
 	RenderSprites:
@@ -1013,12 +1112,13 @@ usapatriotEMP:
 	Inherits@AUTOTARGET: ^AutoTargetAll
 	Inherits@LOWPOWER: ^DisableOnLowPowerOrPowerDown
 	Inherits@SHAPE: ^2x1Shape
+	Inherits@AUTOTARGETGround: ^AutoTargetAirVehiclePriority
 	Buildable:
 		Queue: Defense
 		BuildPaletteOrder: 4
 		BuildDuration: 625
 		BuildDurationModifier: 100
-		Prerequisites: anypower, ~structures.usa, barracks, upgrade.superweaponsgeneral, ~!faction.lasergeneral, ~!faction.aircraftgeneral
+		Prerequisites: anypower, ~structures.usa, barracks, upgrade.superweaponsgeneral, ~!faction.lasergeneral, ~!faction.aircraftgeneral, ~techlevel.low
 		Description: actor-usapatriotemp.description
 	Valued:
 		Cost: 1200
@@ -1079,6 +1179,7 @@ usapatriotEMP:
 	RenderDetectionCircle:
 	DetectCloaked:
 		Range: 5c0
+		DetectionTypes: Cloak, AirCloak
 	BodyOrientation:
 		UseClassicFacingFudge: True
 	RenderSprites:
@@ -1094,7 +1195,7 @@ usalaserpatriot:
 	Buildable:
 		Queue: Defense
 		BuildPaletteOrder: 70
-		Prerequisites: anypower, ~structures.usa, barracks, upgrade.lasergeneral, ~!faction.aircraftgeneral, ~!faction.superweaponsgeneral
+		Prerequisites: anypower, ~structures.usa, barracks, upgrade.lasergeneral, ~!faction.aircraftgeneral, ~!faction.superweaponsgeneral, ~techlevel.low
 		Description: actor-usalaserpatriot.description
 	Valued:
 		Cost: 1400
@@ -1151,6 +1252,7 @@ usalaserpatriot:
 		RequiresCondition: upgradeimprovedbatteries
 	DetectCloaked:
 		Range: 6c0
+		DetectionTypes: Cloak, AirCloak
 	-BodyOrientation:
 	ClassicFacingBodyOrientation:
 	RenderSprites:
@@ -1182,7 +1284,7 @@ usafirebase:
 	Buildable:
 		Queue: Defense
 		BuildPaletteOrder: 70
-		Prerequisites: anypower, ~structures.usa, barracks
+		Prerequisites: anypower, ~structures.usa, barracks, ~!ai.god, ~techlevel.medium
 		Description: actor-usafirebase.description
 	Selectable:
 		Bounds: 2048, 2048
@@ -1249,7 +1351,6 @@ firebasebunker:
 	Inherits: PBOX
 	-Buildable:
 	-Sellable:
-	-Targetable@carrier:
 	Targetable:
 		TargetTypes: Firebasebox
 	-Cargo:
@@ -1282,7 +1383,7 @@ usasilo:
 	Buildable:
 		Queue: Defense
 		BuildPaletteOrder: 35
-		Prerequisites: ~structures.usa
+		Prerequisites: ~structures.usa, refinery
 		Description: actor-usasilo.description
 	Building:
 		Footprint: xx xx
@@ -1312,7 +1413,7 @@ usasilo:
 	WithResourceLevelSpriteBody:
 		Sequence: stages
 	StoresPlayerResources:
-		Capacity: 12000
+		Capacity: 4000
 	-SpawnActorsOnSell:
 	Power:
 		Amount: -40
@@ -1330,6 +1431,7 @@ usashipyard:
 	Inherits: ^Building
 	Inherits@PRIMARY: ^PrimaryBuilding
 	Inherits@prereqs: ^NavalPrereqs
+	Inherits@Navyspot: ^NavalYardSpot
 	Selectable:
 		Bounds: 3072, 2048
 	InfiltrateForSupportPower:
@@ -1338,7 +1440,7 @@ usashipyard:
 	Buildable:
 		Queue: Building
 		BuildPaletteOrder: 40
-		Prerequisites: anypower, ~structures.usa, factory, ~!techlevel.noboats
+		Prerequisites: anypower, ~structures.usa, factory, ~!techlevel.noboats, ~techlevel.low
 		Description: actor-usashipyard.description
 	Valued:
 		Cost: 1000
@@ -1347,12 +1449,11 @@ usashipyard:
 	Targetable:
 		TargetTypes: WaterActor, Structure, C4, DetonateAttack, SpyInfiltrate
 	Building:
-		Footprint: =x= x=x =x=
+		Footprint: =x= x=x ===
 		Dimensions: 3,3
 		TerrainTypes: Water
 	RequiresBuildableArea:
 		Adjacent: 8
-	-GivesBuildableArea:
 	Health:
 		HP: 100000
 	Armor:
@@ -1425,11 +1526,6 @@ usashipyard:
 		Type: Rectangle
 			TopLeft: -512, 598
 			BottomRight: 512, 1110
-	Refinery:
-	DockHost:
-		Type: Oil
-		DockAngle: 256
-		DockOffset: 0, 0, 0
 
 ##usadeepdrill:
 ##	Inherits: ^Building
@@ -1480,7 +1576,7 @@ usasupportmatrix:
 		BuildPaletteOrder: 4
 		BuildDuration: 625
 		BuildDurationModifier: 100
-		Prerequisites: anypower, ~structures.usa, techcenter, ~faction.superweaponsgeneral, ~!faction.lasergeneral, ~!faction.aircraftgeneral
+		Prerequisites: anypower, ~structures.usa, techcenter, ~faction.superweaponsgeneral, ~!faction.lasergeneral, ~!faction.aircraftgeneral, ~techlevel.high
 		Description: actor-usasupportmatrix.description
 	Valued:
 		Cost: 1200
@@ -1544,7 +1640,7 @@ usatomahawkstorm:
 		Name: actor-usatomahawkstorm.name
 	Buildable:
 		Queue: Tech
-		Prerequisites: anypower, ~structures.usa, ~faction.superweaponsgeneral, advtechcenter, ~!faction.lasergeneral, ~!faction.aircraftgeneral
+		Prerequisites: anypower, ~structures.usa, ~faction.superweaponsgeneral, advtechcenter, ~!faction.lasergeneral, ~!faction.aircraftgeneral, ~techlevel.unrestricted
 		Description: actor-usatomahawkstorm.description
 		BuildLimit: 1
 		BuildPaletteOrder: 500

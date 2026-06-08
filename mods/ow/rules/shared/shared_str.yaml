@@ -3,13 +3,13 @@ FACT:
 	Inherits@con: ^ConYard
 	Inherits@prereqs: ^ConYardPrereqs
 	Inherits@BIB: ^3x4BuildingBib
+	Inherits@botblocker: ^3x4BotBlockerChoose
 	-WithBuildingBib:
 	-Building:
 	D2kBuilding:
 		Footprint: xxX xxx XxX ===
 		Dimensions: 3,4
 		TerrainTypes: Clear,ClearSnow,Road,Creep
-		AllowPlacementOnResources: true
 		RequiresBaseProvider: True
 		BuildSounds: placbldg.aud, build5.aud
 		UndeploySounds: cashturn.aud
@@ -26,22 +26,22 @@ FACT:
 		RequiresCondition: !build-incomplete
 		Sequence: flag
 	Transforms:
-		RequiresCondition: factundeploy && !bot_undeploy_block
+		RequiresCondition: (factundeploy && !bot_undeploy_block) || (bot_undeploy_block && capture_undeploy_override)
 		PauseOnCondition: chrono-vortex || being-captured || being-demolished || build-incomplete
 		IntoActor: mcv
 		Offset: 1,1
 		Facing: 384
 	TransformsIntoMobile:
-		RequiresCondition: factundeploy && !bot_undeploy_block
+		RequiresCondition: (factundeploy && !bot_undeploy_block) || (bot_undeploy_block && capture_undeploy_override)
 		Locomotor: heavywheeled
 		RequiresForceMove: true
 	TransformsIntoPassenger:
-		RequiresCondition: factundeploy && !bot_undeploy_block
+		RequiresCondition: (factundeploy && !bot_undeploy_block) || (bot_undeploy_block && capture_undeploy_override)
 		CargoType: Vehicle
 		RequiresForceMove: true
 	TransformsIntoRepairable:
-		RequiresCondition: factundeploy && !bot_undeploy_block
-		RepairActors: fix
+		RequiresCondition: (factundeploy && !bot_undeploy_block) || (bot_undeploy_block && capture_undeploy_override)
+		RepairActors: fix, gfix, gfix.boss, tshop, weapgarage, unscrepairpad
 		RequiresForceMove: true
 	TransformsIntoTransforms:
 		RequiresCondition: factundeploy && build-incomplete && !bot_undeploy_block
@@ -72,12 +72,12 @@ FACTD:
 	Inherits@prereqs: ^ConYardPrereqs
 	Inherits@con: ^ConYard
 	Inherits@BIB: ^3xBuildingBib
+	Inherits@botblocker: ^3x3BotBlockerChoose
 	-Building:
 	D2kBuilding:
 		Footprint: xxx xxx ===
 		Dimensions: 3,3
 		TerrainTypes: Clear,ClearSnow,Road,Creep
-		AllowPlacementOnResources: true
 		RequiresBaseProvider: True
 		BuildSounds: placbldg.aud, build5.aud
 		UndeploySounds: cashturn.aud
@@ -108,22 +108,22 @@ FACTD:
 		ActorTypes: e1,e1,e1,tecn,tecn,e6
 	BaseBuilding:
 	Transforms:
-		RequiresCondition: factundeploy && !bot_undeploy_block
+		RequiresCondition: (factundeploy && !bot_undeploy_block) || (bot_undeploy_block && capture_undeploy_override)
 		PauseOnCondition: chrono-vortex || being-captured || being-demolished || build-incomplete
 		IntoActor: mcvd
 		Offset: 1,1
 		Facing: 384
 	TransformsIntoMobile:
-		RequiresCondition: factundeploy && !bot_undeploy_block
+		RequiresCondition: (factundeploy && !bot_undeploy_block) || (bot_undeploy_block && capture_undeploy_override)
 		Locomotor: heavywheeled
 		RequiresForceMove: true
 	TransformsIntoPassenger:
-		RequiresCondition: factundeploy && !bot_undeploy_block
+		RequiresCondition: (factundeploy && !bot_undeploy_block) || (bot_undeploy_block && capture_undeploy_override)
 		CargoType: Vehicle
 		RequiresForceMove: true
 	TransformsIntoRepairable:
-		RequiresCondition: factundeploy && !bot_undeploy_block
-		RepairActors: fix
+		RequiresCondition: (factundeploy && !bot_undeploy_block) || (bot_undeploy_block && capture_undeploy_override)
+		RepairActors: fix, gfix, gfix.boss, tshop, weapgarage
 		RequiresForceMove: true
 	Sellable:
 		RequiresCondition: !build-incomplete && !chrono-vortex && !being-captured && !being-demolished
@@ -180,6 +180,8 @@ FACTD:
 			navy: factd.japan
 			mecha: factd.japan
 			economic: factd.japan
+			unsc: factd.gdi
+			covenant: factd.gdi
 	GrantConditionOnPrerequisite@baseshields:
 		Condition: external_shield
 		Prerequisites: upgrade.baseshields
@@ -198,7 +200,7 @@ FOUNDRY:
 	Buildable:
 		Queue: Tech
 		BuildPaletteOrder: 501
-		Prerequisites: conyard, ~techlevel.medium, ~structures.foundryprereq, ~!structures.bothard
+		Prerequisites: conyard, ~techlevel.medium, ~structures.foundryprereq, ~!structures.bothard, ~!structures.unsc
 		Description: actor-foundry.description
 	Valued:
 		Cost: 1500
@@ -262,11 +264,12 @@ PROC:
 	Inherits: ^Building
 	Inherits@ref: ^Refinery
 	Inherits@BIB: ^3x4BuildingBib
+	Inherits@botblocker: ^3x4BotBlockerChoose
 	-WithBuildingBib:
 	Buildable:
 		Queue: Building
 		BuildPaletteOrder: 60
-		Prerequisites: anypower, ~techlevel.infonly, ~structures.procprereq, ~!ai.boss # Allies, Soviet, Nazi
+		Prerequisites: anypower, ~techlevel.infonly, ~structures.procprereq, ~!ai.god, ~!structures.avalon # Allies, Soviet, Nazi
 		Description: actor-proc.description
 	Valued:
 		Cost: 1400
@@ -278,7 +281,7 @@ PROC:
 		DockAngle: 256
 		DockOffset: 0, 1c0, 0
 	StoresPlayerResources:
-		Capacity: 2000
+		Capacity: 1500
 	DrawLineToTarget:
 	CustomSellValue:
 		Value: 300
@@ -302,21 +305,25 @@ PROC:
 		RequiresCondition: uac && !build-incomplete
 
 SILO:
+	Inherits@silo: ^Silo
 	Buildable:
 		Prerequisites: refinery, ~techlevel.infonly, ~structures.procprereq # Allies, Soviet, Nazi
 		Description: actor-silo-description
 		BuildPaletteOrder: 701
 	InfiltrateForCash:
 		Maximum: 5000
+	StoresPlayerResources:
+		Capacity: 1500
 
 PROCD:
 	Inherits: ^DawnBuilding
 	Inherits@ref: ^Refinery
 	Inherits@BIB: ^3x4BuildingBib
+	Inherits@botblocker: ^3x4BotBlockerChoose
 	Buildable:
 		Queue: Building
 		BuildPaletteOrder: 61
-		Prerequisites: anypower, ~techlevel.infonly, ~structures.procdprereq, ~!ai.boss # GDI, Nod, UAC, Fed
+		Prerequisites: anypower, ~techlevel.infonly, ~structures.procdprereq, ~!ai.god # GDI, Nod, UAC, Fed
 		Description: actor-procd.description
 	Valued:
 		Cost: 1400
@@ -351,7 +358,7 @@ PROCD:
 		DragLength: 12
 		DockOffset: -1024,1024,0
 	StoresPlayerResources:
-		Capacity: 2000
+		Capacity: 1500
 	DrawLineToTarget:
 	CustomSellValue:
 		Value: 300
@@ -395,6 +402,7 @@ PROCD:
 
 SILOD:
 	Inherits: ^DawnBuilding
+	Inherits@silo: ^Silo
 	Inherits@shape: ^2x1Shape
 	Selectable:
 		Bounds: 2048, 1024
@@ -431,7 +439,7 @@ SILOD:
 	WithResourceLevelSpriteBody:
 		Sequence: stages
 	StoresPlayerResources:
-		Capacity: 1000
+		Capacity: 1500
 	-SpawnActorsOnSell:
 	Power:
 		Amount: -15
@@ -732,6 +740,9 @@ DOME:
 	ProvidesPrerequisite@nazi:
 		Factions: heydrich, himmler
 		Prerequisite: radar.nazi
+	ProvidesPrerequisite@ukraine:
+		Factions: ukraine
+		Prerequisite: radar.ukraine
 	ExternalCondition@JAMMED:
 		Condition: jammed
 	AirstrikePower@do17bomb:
@@ -750,6 +761,29 @@ DOME:
 		BeaconPoster: pbmbicon
 		SquadSize: 3
 		SquadOffset: 1792,1792,0
+		ArrowSequence: arrow
+		ClockSequence: clock
+		CircleSequence: circles
+		UseDirectionalTarget: True
+		DirectionArrowAnimation: paradirection
+		SupportPowerPaletteOrder: 40
+	AirstrikePower@dronestrike:
+		OrderName: UkraineDroneStrike
+		Prerequisites: radar.ukraine, soviet.drones
+		Icon: dronestrike
+		ChargeInterval: 10500
+		Name: actor-soviet-drones.name
+		Description: actor-soviet-drones.power
+		SelectTargetSpeechNotification: SelectTarget
+		SelectTargetTextNotification: notification-select-target
+		CameraActor: camera
+		CameraRemoveDelay: 150
+		UnitType: badr.dronestrike
+		QuantizedFacings: 8
+		DisplayBeacon: true
+		BeaconPoster: pbmbicon
+		SquadSize: 15
+		SquadOffset: -768,1024,0
 		ArrowSequence: arrow
 		ClockSequence: clock
 		CircleSequence: circles
@@ -816,13 +850,19 @@ HQD:
 	ProvidesPrerequisite@nod3:
 		Factions: nod3
 		Prerequisite: radar.nod3
+	ProvidesPrerequisite@gdi:
+		Factions: gdi, gdi3, steel
+		Prerequisite: radar.gdi
 	ProvidesPrerequisite@zocom:
 		Factions: zocom
 		Prerequisite: radar.zocom
+	ProvidesPrerequisite@fed1:
+		Factions: lunar
+		Prerequisite: radar.lunar
 	AirstrikePower@gdinapalm:
 		PauseOnCondition: disabled
 		OrderName: GDINapalmStrike
-		Prerequisites: techlevel.high, !radar.nod
+		Prerequisites: techlevel.high, radar.gdi
 		Icon: napalm
 		ChargeInterval: 7500
 		Name: Napalm Strike
@@ -888,13 +928,36 @@ HQD:
 		UseDirectionalTarget: True
 		DirectionArrowAnimation: paradirection
 		SupportPowerPaletteOrder: 50
+	AirstrikePower@fed2:
+		PauseOnCondition: disabled
+		OrderName: FedNapalmStrike
+		Prerequisites: techlevel.high, radar.lunar
+		Icon: napalm
+		ChargeInterval: 7500
+		Name: Napalm Strike
+		Description: A Lance squadron drops napalm on your target.
+		SelectTargetSpeechNotification: SelectTarget
+		CameraActor: camera
+		CameraRemoveDelay: 150
+		UnitType: lance.bomber
+		QuantizedFacings: 8
+		DisplayBeacon: true
+		BeaconPoster: napalm
+		SquadSize: 3
+		SquadOffset: 1792,1792,0
+		ArrowSequence: arrow
+		ClockSequence: clock
+		CircleSequence: circles
+		UseDirectionalTarget: True
+		DirectionArrowAnimation: paradirection
+		SupportPowerPaletteOrder: 40
 	WithDeathAnimation:
 		DeathSequence: dead
 		UseDeathTypeSuffix: false
 
 FIX:
 	Buildable:
-		Prerequisites: factory, ~techlevel.medium, ~structures.foundryprereq, ~!ai.boss
+		Prerequisites: factory, ~techlevel.medium, ~structures.foundryprereq, ~!ai.god, ~!structures.unsc
 		BuildPaletteOrder: 113
 	ProximityExternalCondition:
 		Condition: fixsell
@@ -906,7 +969,7 @@ MSLO:
 	Inherits@superweapon: ^Superweapon
 	Buildable:
 		Queue: Tech
-		Prerequisites: techcenter, ~techlevel.unrestricted, ~structures.msloprereq # Soviet, Nazi
+		Prerequisites: techcenter, ~techlevel.unrestricted, ~structures.msloprereq, ~!techlevel.nosuperweapons # Soviet, Nazi
 		BuildLimit: 1
 	NukePower:
 		ChargeInterval: 19500
@@ -918,16 +981,19 @@ MSLO:
 
 SYRD:
 	Inherits@prereqs: ^NavalPrereqs
+	Inherits@Navyspot: ^NavalYardSpot
 	Buildable:
 		Prerequisites: anypower, ~structures.syrdprereq, ~techlevel.low, ~!techlevel.noboats # Allies, GDI, Fed, UAC
 		BuildPaletteOrder: 105
 	GrantExternalConditionToProduced:
 		Condition: produced
 	Building:
-		Footprint: =x= x=x =x=
+		Footprint: =x= x=x ===
 	-SpawnActorsOnSell@uac:
 	-SpawnActorsOnSell@fed:
 	-SpawnActorsOnSell@gla:
+	GivesBuildableArea:
+		AreaTypes: building, fake
 	ProximityExternalCondition:
 		Condition: fixsell
 		Range: 2c0
@@ -942,35 +1008,47 @@ SYRD:
 		ProductionTypes: Ship, Boat, Submarine
 	Exit@4:
 		ProductionTypes: Ship, Boat, Submarine
-	Refinery:
-	DockHost:
-		Type: Oil
-		DockAngle: 256
-		DockOffset: 0, 0, 0
 
 SPEN:
 	Inherits@prereqs: ^NavalPrereqs
+	Inherits@Navyspot: ^NavalYardSpot
 	Buildable:
 		Prerequisites: anypower, ~structures.spenprereq, ~techlevel.low, ~!techlevel.noboats # Soviet, Nod, Nazis
 		BuildPaletteOrder: 106
 	GrantExternalConditionToProduced:
 		Condition: produced
 	Building:
-		Footprint: =x= x=x =x=
+		Footprint: =x= x=x ===
 	-SpawnActorsOnSell@uac:
 	-SpawnActorsOnSell@fed:
 	-SpawnActorsOnSell@gla:
+	GivesBuildableArea:
+		AreaTypes: building, fake
 	ProximityExternalCondition:
 		Condition: fixsell
 		Range: 2c0
 	Reservable:
 	Production:
 		Produces: Ship, Boat, Submarine
-	Refinery:
-	DockHost:
-		Type: Oil
-		DockAngle: 256
-		DockOffset: 0, 0, 0
+
+SYRD.Spot:
+	Inherits: MINE_DUMMY
+	WithSpriteBody:
+	RenderSprites:
+		Image: usaairstriplandingspot
+	Targetable:
+		TargetTypes: Water, NoAutoTarget, NoAITarget, UpgradeThing
+	Reservable:
+	Health:
+		HP: 10000
+	Armor:
+		Type: Wood
+	ExternalCondition:
+		Condition: spen_alive
+	KillsSelf:
+		RequiresCondition: !spen_alive
+		Delay: 50
+		RemoveInstead: true
 
 HPAD:
 	Inherits@prereqs: ^AircraftPrereqs
@@ -984,7 +1062,6 @@ HPAD:
 		Condition: produced
 	Building:
 		TerrainTypes: Clear, ClearSnow, Road, Water, Creep
-		AllowPlacementOnResources: true
 	RequiresBuildableArea:
 		Adjacent: 6
 	GrantConditionOnTerrain:
@@ -1071,7 +1148,7 @@ FTUR:
 # Buildable by allies and UAC
 PBOX:
 	Buildable:
-		Prerequisites: barracks, ~techlevel.low, ~structures.pboxprereq, ~!ai.boss
+		Prerequisites: barracks, ~techlevel.low, ~structures.pboxprereq, ~!ai.god
 	GrantConditionOnPrerequisite:
 		Prerequisites: allies.pointdefense
 		Condition: pointdefense
@@ -1087,7 +1164,7 @@ PBOX:
 # Buildable by allies and UAC
 HBOX:
 	Buildable:
-		Prerequisites: barracks, ~techlevel.medium, ~structures.pboxprereq, ~!ai.boss
+		Prerequisites: barracks, ~techlevel.medium, ~structures.pboxprereq, ~!ai.god
 	GrantConditionOnPrerequisite:
 		Prerequisites: allies.pointdefense
 		Condition: pointdefense
@@ -1124,10 +1201,12 @@ SAM:
 		Footprint: ++
 	DetectCloaked:
 		Range: 5c0
+		DetectionTypes: Cloak, AirCloak
 		RequiresCondition: !disabled
 
 # Buildable by allies, estonia, nod
 GUN:
+	Inherits@AUTOTARGETGround: ^AutoTargetVehiclePriority
 	Buildable:
 		Prerequisites: barracks, ~techlevel.medium, ~structures.gunprereq
 	Valued:
@@ -1136,6 +1215,45 @@ GUN:
 		HP: 50000
 	Power:
 		Amount: -30
+	Power@rockets:
+		RequiresCondition: rockets
+		Amount: -20
+	GrantConditionOnPrerequisite:
+		Prerequisites: allies.pointdefense
+		Condition: pointdefense
+	PointDefense:
+		PointDefenseTypes: pointdefense
+		Armament: laser
+		RequiresCondition: pointdefense
+	Armament@laser:
+		Name: laser
+		Weapon: PointDefenseLaser
+		RequiresCondition: pointdefense
+	GrantConditionOnPrerequisite@rockets:
+		Prerequisites: allies.rockets
+		Condition: rockets
+	WithSpriteTurret@rocket:
+		RequiresCondition: rockets && !build-incomplete
+		Sequence: turret2
+	Turreted@rocket:
+		RequiresCondition: rockets && !build-incomplete
+		Turret: rocketpack
+		TurnSpeed: 32
+		InitialFacing: 192
+		RealignDelay: -1
+		Offset: 0,-128,384
+	Armament@rocket:
+		Turret: rocketpack
+		Name: rocketpack
+		Weapon: TowerMissileTurret
+		RequiresCondition: rockets && !build-incomplete
+	AttackTurreted:
+		Turrets: rocketpack, primary
+		Armaments: rocketpack, primary
+	DamageMultiplier@rockets:
+		Modifier: 80
+		RequiresCondition: rockets
+	-WithTurretAttackAnimation:
 
 # Buildable by soviet and nazi
 IRON:
@@ -1239,7 +1357,6 @@ OUTPOST:
 	Sellable:
 		SkipMakeAnimation: true
 	ProximityExternalCondition@surveyor:
-		RequiresCondition: botowner
 		Condition: surveyor_near_base
 		Range: 8c0
 
@@ -1267,7 +1384,7 @@ ADVTECH:
 	Buildable:
 		Queue: Tech
 		BuildPaletteOrder: 9000
-		Prerequisites: techcenter, ~techlevel.unrestricted, ~structures.foundryprereq, ~!ai.boss
+		Prerequisites: techcenter, ~techlevel.unrestricted, ~structures.foundryprereq, ~!ai.god, ~!structures.unsc
 		BuildLimit: 3
 		Description: actor-advtech.description
 	Valued:
@@ -1319,6 +1436,60 @@ ADVTECH:
 	GrantConditionOnPrerequisite@baseshields:
 		Condition: external_shield
 		Prerequisites: upgrade.baseshields
+	ProvidesPrerequisite@fed:
+		Factions: sword, lunar, silver
+		Prerequisite: advtech.fed
+	ProvidesPrerequisite@sword:
+		Factions: sword
+		Prerequisite: advtech.sword
+	AirstrikePower@fed1:
+		PauseOnCondition: disabled
+		OrderName: FedAirstrike
+		Prerequisites: advtech.fed
+		Icon: parabombs
+		ChargeInterval: 7500
+		Name: Paladin Strike
+		Description: A Paladin drops plasma bombs on your target.
+		SelectTargetSpeechNotification: SelectTarget
+		CameraActor: camera
+		CameraRemoveDelay: 150
+		UnitType: paladin.bomber
+		QuantizedFacings: 8
+		DisplayBeacon: true
+		BeaconPoster: pbmbicon
+		SquadSize: 1
+		ArrowSequence: arrow
+		ClockSequence: clock
+		CircleSequence: circles
+		UseDirectionalTarget: True
+		DirectionArrowAnimation: paradirection
+		SupportPowerPaletteOrder: 40
+	DropPodsPowerOW@fed2:
+		Icon: artillerybarrageicon
+		Prerequisites: advtech.sword
+		Name: Artillery Strike
+		OrderName: artillerybarrage2
+		Description: Launches an artillery strike on the targeted area.
+		UnitTypes: chinaartillerypower, chinaartillerypower1, chinaartillerypower2, chinaartillerypower3, chinaartillerypower4, chinaartillerypower5, chinaartillerypower6, chinaartillerypower7, chinaartillerypower8
+		Cursor: chrono-target
+		Drops: 16,16
+		PodScatter: 9
+		PodFacing: 704
+		PauseOnCondition: disabled
+		CameraActor: camera
+		CameraRemoveDelay: 300
+		Weapon: ArtilleryPowerMarker
+		WeaponDelay: 5
+		ChargeInterval: 12000
+		EntryEffect: explosion
+		EntryEffectSequence: bunkerbustersring
+		LaunchSound: sartweaa.wav
+		IncomingSpeechNotification: ArtilleryBarrageSound
+		SelectTargetSpeechNotification: SelectTarget
+		SelectTargetTextNotification: actor-t-miss.droppodspower-artillery-select-target-text-notification
+		DisplayRadarPing: true
+		DisplayTimerRelationships: Ally, Enemy, Neutral
+		BeaconPoster: artillerybarragebeacon
 
 # Buildable by allies, fed, nod, heydrich
 RADIO.P:
@@ -1373,6 +1544,21 @@ RADIO.P:
 	Sellable:
 		RequiresCondition: !being-captured && !being-demolished
 		SellSounds: cashturn.aud
+	ProduceActorPower:
+		PauseOnCondition: disabled
+		OrderName: Intelligence
+		Name: Intelligence
+		Description: Reveals all Superweapons on the map to all players.
+		Icon: spy
+		Actors: hunter.spy
+		Type: HunterSpy
+		ChargeInterval: 12000
+		DisplayTimerRelationships: Ally, Neutral, Enemy
+		LaunchSound: satlnch1.aud
+	Production:
+		Produces: HunterSpy
+		PauseOnCondition: disabled
+	Exit@1:
 
 ATD:
 	Inherits: ^Defense
@@ -1414,7 +1600,7 @@ ATD:
 		Amount: -60
 	DetectCloaked:
 		RequiresCondition: !disabled
-		DetectionTypes: Underwater
+		DetectionTypes: Underwater, AirCloak
 		Range: 6c0
 	-SpawnActorsOnSell:
 	-SpawnActorsOnSell@uac:
@@ -1493,8 +1679,32 @@ XBAR:
 		Weapon: DemoTrapExplosion2
 		EmptyWeapon: DemoTrapExplosion2
 		DamageSource: Killer
+	GrantConditionOnPrerequisite@thrax:
+		Prerequisites: structures.thrax
+		Condition: thrax
+	GrantConditionOnPrerequisite@thraxbeta:
+		Prerequisites: gla.beta
+		Condition: thraxbeta
+	GrantConditionOnFaction@thrax:
+		Factions: thrax
+		Condition: thrax
+	FireWarheadsOnDeath@thrax:
+		RequiresCondition: thrax && !thraxbeta
+		Weapon: ToxinSCUDExplode
+		EmptyWeapon: ToxinSCUDExplode
+	FireWarheadsOnDeath@thraxbeta:
+		RequiresCondition: thraxbeta
+		Weapon: ToxinSCUDExplodeBeta
+		EmptyWeapon: ToxinSCUDExplodeBeta
 	RenderSprites:
 		Image: barl
+
+
+XBAR3:
+	Inherits: XBAR
+	-Buildable:
+	RenderSprites:
+		Image: brl3
 
 SEAMINE:
 	Inherits: XBAR
@@ -1502,6 +1712,7 @@ SEAMINE:
 	Tooltip:
 		Name: actor-seamine-name
 	Cloak:
+		DetectionTypes: Underwater
 		CloakSound: subshow1.aud
 		UncloakSound: subshow1.aud
 	DetectCloaked:
@@ -1512,7 +1723,7 @@ SEAMINE:
 		EmptyWeapon: SeaMineExplosion
 		DamageSource: Killer
 	Targetable:
-		TargetTypes: Submarine, Underwater
+		TargetTypes: Submarine, Underwater, Seamine
 	WithSpriteBody:
 		Sequence: water
 	RenderSprites:
@@ -1614,6 +1825,13 @@ BRIK:
 	Crushable:
 		CrushClasses: heavywall
 	BlocksProjectiles:
+		RequiresCondition: !fireports
+	BlocksProjectiles@fireports:
+		RequiresCondition: fireports
+		ValidRelationships: Enemy, Neutral
+	GrantConditionOnPrerequisite@fireports:
+		Condition: upgrade.wallfireports
+		Prerequisites: upgrade.wallfireports
 	LineBuild:
 		NodeTypes: concrete
 	LineBuildNode:
@@ -1625,6 +1843,15 @@ BRIK:
 	ProximityExternalCondition:
 		Condition: wallattached
 		Range: 1c600
+	GrantConditionOnPrerequisite@botowner:
+		Condition: botowner
+		Prerequisites: ai.all, ai.perimeter
+	GrantConditionOnPrerequisite@wallrebuild:
+		Condition: upgrade.wallrebuild
+		Prerequisites: upgrade.wallrebuild
+	SpawnActorOnDeath:
+		RequiresCondition: (botowner && surveyor_near_base) || upgrade.wallrebuild
+		Actor: BRIK.AutoReplace
 
 BARB:
 	Inherits: ^Wall
@@ -1805,13 +2032,20 @@ TREEEXT:
 		RequiresCondition: forgor
 		Weapons: ExtractorDogCapture
 		Interval: 125
+	ProximityExternalCondition@protectfromai:
+		ValidRelationships: Neutral, Enemy
+		Condition: no_attack_node
+		Range: 5c0
 
 AGATE:
 	Inherits: ^Building
 	Inherits@disable: ^DisableOnLowPower
+	Selectable:
+		Class: GATE
 	Buildable:
 		Queue: Wall
 		BuildPaletteOrder: 45
+		Description: actor-agate-description
 		Prerequisites: ~techlevel.medium, ~structures.all
 	Building:
 		Footprint: x x x
@@ -1824,8 +2058,13 @@ AGATE:
 	CustomSellValue:
 		Value: 50
 	Tooltip:
-		Name: actor-agate-name
-		Description: Stops infantry and most tanks.\nBlocks some projectiles.
+		RequiresCondition: !exists
+		Name: actor-agate.buildname
+	Tooltip@world:
+		RequiresCondition: exists
+		Name: actor-agate.name
+	GrantCondition@exists:
+		Condition: exists
 	SoundOnDamageTransition:
 		DamagedSounds: crmble2.aud
 		DestroyedSounds: kaboom30.aud
@@ -1835,31 +2074,54 @@ AGATE:
 		Type: Concrete
 	Crushable:
 		CrushClasses: heavywall
-	BlocksProjectiles:
 	-WithSpriteBody:
+	-WithMakeAnimation:
+	-MustBeDestroyed:
+	-GivesBuildableArea:
 	LineBuildNode:
 		Types: concrete
 		Connections: -1,0, 1,0
 	WithGateSpriteBody:
+		RequiresCondition: !nearlaserfencepost
 		WallConnections: -1,0, 3,0
 		Type: concrete
 		OpenSequence: open
+	WithGateSpriteBody@laser:
+		RequiresCondition: nearlaserfencepost
+		WallConnections: -1,0, 3,0
+		Type: laserfence
+		OpenSequence: open
+	ExternalCondition@laser:
+		Condition: nearlaserfencepost
 	HitShape:
+		UseTargetableCellsOffsets: true
 		Type: Rectangle
-			LocalYaw: -128
-			TopLeft: -512, -512
-			BottomRight: 512, 512
-			VerticalTopOffset: 768
+			TopLeft: -1536, -512
+			BottomRight: 1536, 512
 	Gate:
 		PauseOnCondition: disabled
 		OpeningSound: gatesound.aud
 		ClosingSound: gatesound.aud
-		BlocksProjectilesHeight: 768
+		BlocksProjectilesHeight: 1c0
+		BlocksProjectilesValidRelationships: Enemy, Neutral
+		TransitionDelay: 25
+		CloseDelay: 75
 	Replacement:
 		ReplaceableTypes: ConcreteWall
+	GrantConditionOnPrerequisite@botowner:
+		Condition: botowner
+		Prerequisites: ai.all, ai.perimeter
+	GrantConditionOnPrerequisite@wallrebuild:
+		Condition: upgrade.wallrebuild
+		Prerequisites: upgrade.wallrebuild
+	SpawnActorOnDeath:
+		RequiresCondition: (botowner && surveyor_near_base) || upgrade.wallrebuild
+		Actor: AGATE.AutoReplace
 
 VGATE:
 	Inherits: AGATE
+	Tooltip:
+		Name: actor-agate.buildname2
 	Building:
 		Footprint: xxx
 		Dimensions: 1,3
@@ -1868,6 +2130,15 @@ VGATE:
 		Connections: 0,-1, 0,3
 	WithGateSpriteBody:
 		WallConnections: 0,-1, 0,1
+	WithGateSpriteBody@laser:
+		WallConnections: 0,-1, 0,1
+	SpawnActorOnDeath:
+		Actor: VGATE.AutoReplace
+	HitShape:
+		UseTargetableCellsOffsets: true
+		Type: Rectangle
+			TopLeft: -512, -1536
+			BottomRight: 512, 1536
 
 ^concrete:
 	Interactable:
@@ -1936,7 +2207,7 @@ concretec:
 		BuildDuration: 94
 		BuildDurationModifier: 100
 
-EYED:
+EYED.Old:
 	Inherits: ^DawnBuilding
 	Inherits@superweapon: ^Superweapon
 	Inherits@IDISABLE: ^DisableOnLowPowerOrPowerDown
@@ -1950,7 +2221,7 @@ EYED:
 	Buildable:
 		Queue: Tech
 		BuildPaletteOrder: 140
-		Prerequisites: techcenter, ~techlevel.unrestricted, ~structures.eyedprereq # GDI, UAC, Fed, Avalon
+		Prerequisites: techcenter, ~techlevel.unrestricted, ~structures.eyedprereq, ~disabled # GDI, UAC, Fed, Avalon
 		Description: actor-eyed.description
 		BuildLimit: 1
 	Valued:
@@ -2016,7 +2287,7 @@ EYED:
 		Cursor: chrono-target
 		ChargeInterval: 19500
 		Name: Ion Cannon
-		Description: Initiate an Ion Cannon strike.\nApplies instant damage to a small area.
+		Description: actor-eyed.iondesc
 		BeginChargeSpeechNotification: IonCannonCharge
 		EndChargeSpeechNotification: IonCannonReady
 		SelectTargetSpeechNotification: DawnSelectTarget
@@ -2024,7 +2295,7 @@ EYED:
 		OnFireSound: ion_fire2.aud
 		DisplayRadarPing: True
 		CameraActor: camera.small
-		SupportPowerPaletteOrder: 20
+		SupportPowerPaletteOrder: 19
 		WeaponDelay: 0
 		CameraRemoveDelay: 100
 		Effect: explosion
@@ -2039,7 +2310,7 @@ EYED:
 		Cursor: chrono-target
 		ChargeInterval: 19500
 		Name: Illuminator Strike
-		Description: Initiate an orbital Illuminator Strike.\nApplies instant damage to a small area.
+		Description: actor-eyed.illumdesc
 		BeginChargeSpeechNotification: IonCannonCharge
 		EndChargeSpeechNotification: IonCannonReady
 		SelectTargetSpeechNotification: DawnSelectTarget
@@ -2047,7 +2318,7 @@ EYED:
 		OnFireSound: ion_fire2.aud
 		DisplayRadarPing: True
 		CameraActor: camera.small
-		SupportPowerPaletteOrder: 20
+		SupportPowerPaletteOrder: 19
 		WeaponDelay: 0
 		CameraRemoveDelay: 100
 		Effect: explosion
@@ -2061,7 +2332,150 @@ EYED:
 		PauseOnCondition: disabled
 		Icon: bfg10k
 		Name: BFG 10K
-		Description: Call upon an orbital strike with a BFG10k mounted on Phobos.\n Strong vs. Everything
+		Description: actor-eyed.bfgdesc
+		BeginChargeSpeechNotification: IonCannonCharge
+		EndChargeSpeechNotification: IonCannonReady
+		SelectTargetSpeechNotification: DawnSelectTarget
+		InsufficientPowerSpeechNotification: InsufficientPower
+		SupportPowerPaletteOrder: 19
+		DisplayRadarPing: true
+		DisplayBeacon: True
+		BeaconPoster: bfg10k
+		ChargeInterval: 19500
+		UnitTypes: BFG10k
+		Drops: 1,1
+		PodScatter: 1
+		PodFacing: 480
+		EntryEffect: explosion
+		EntryEffectSequence: redeemerexplosion
+		CameraActor: camera
+		CameraRemoveDelay: 400
+		Weapon: BFGZapCluster
+		WeaponDelay: 5
+		DisplayTimerRelationships: Ally, Neutral, Enemy
+	RenderSprites:
+		Image: EYED
+		PlayerPalette: dawn
+	ActorPreviewPlaceBuildingPreview:
+	WithDeathAnimation:
+		DeathSequence: dead
+		UseDeathTypeSuffix: false
+
+# multi charge level test
+EYED:
+	Inherits: ^DawnBuilding
+	Inherits@superweapon: ^Superweapon
+	Inherits@IDISABLE: ^DisableOnLowPowerOrPowerDown
+	Inherits@shape: ^2x2Shape
+	Inherits@BIB: ^2xBuildingBib
+	Selectable:
+		Bounds: 2048, 2048
+		Class: EYED
+	HitShape:
+		UseTargetableCellsOffsets: false
+		TargetableOffsets: 0,0,0, 630,-384,0, 630,384,0, -700,-512,0, -700,512,0
+	Buildable:
+		Queue: Tech
+		BuildPaletteOrder: 140
+		Prerequisites: techcenter, ~techlevel.unrestricted, ~structures.eyedprereq, !eyed # GDI, UAC, Fed, Avalon
+		Description: actor-eyed.description
+		BuildLimit: 1
+	Valued:
+		Cost: 3000
+	Tooltip:
+		Name: actor-eyed.name
+	Building:
+		Footprint: x_ xx ==
+		Dimensions: 2,3
+		LocalCenterOffset: 0,-512,0
+	Targetable:
+		TargetTypes: GroundActor, Structure, C4, DetonateAttack, SpyInfiltrate
+	Health:
+		HP: 150000
+	Armor:
+		Type: Wood
+	RevealsShroud:
+		MinRange: 6c0
+		Range: 10c0
+		RequiresCondition: !disabled
+		RevealGeneratedShroud: False
+	RevealsShroud@Offline:
+		Range: 5c0
+		RequiresCondition: disabled
+	RevealsShroud@GAPGEN:
+		Range: 6c0
+		RequiresCondition: !disabled
+	WithSpriteBody:
+		PauseOnCondition: disabled || jammed
+	ProvidesRadar:
+		RequiresCondition: !jammed && !disabled
+	InfiltrateForSupportPowerReset:
+		Types: SpyInfiltrate
+		PlayerExperience: 10
+	Power:
+		Amount: -200
+	ProvidesPrerequisite@uac:
+		Factions: phobos, deimos, mars
+		Prerequisite: eyed.uac
+	ProvidesPrerequisite@fed:
+		Factions: sword, angels, silver
+		Prerequisite: eyed.fed
+	ProvidesPrerequisite@ion:
+		Factions: gdi, steel, zocom, gdi3, sword, angels, silver
+		Prerequisite: eyed.ion
+	ProvidesPrerequisite@avali:
+		Factions: avalon
+		Prerequisite: eyed.avali
+	ProvidesPrerequisite@buildingname:
+		Prerequisite: eyed
+	ProvidesPrerequisite@radar:
+		Prerequisite: radar
+	ProvidesPrerequisite@dome:
+		Prerequisite: dome
+	ProvidesPrerequisite@hqd:
+		Prerequisite: hqd
+	ProvidesPrerequisite@superweapon:
+		Prerequisite: superweapon
+	ExternalCondition@JAMMED:
+		Condition: jammed
+	RenderSprites:
+		Image: EYED
+		PlayerPalette: dawn
+	WithDeathAnimation:
+		DeathSequence: dead
+		UseDeathTypeSuffix: false
+	SupportPowerChargeBar:
+	IonCannonPower@avali:
+		OrderName: AvaliIonCannon
+		Prerequisites: eyed.avali
+		PauseOnCondition: disabled
+		Icon: ioncannon
+		Cursor: chrono-target
+		ChargeInterval: 19500
+		Name: Illuminator Strike
+		Description: actor-eyed.illumdesc
+		BeginChargeSpeechNotification: IonCannonCharge
+		EndChargeSpeechNotification: IonCannonReady
+		SelectTargetSpeechNotification: DawnSelectTarget
+		InsufficientPowerSpeechNotification: InsufficientPower
+		OnFireSound: ion_fire2.aud
+		DisplayRadarPing: True
+		CameraActor: camera.small
+		SupportPowerPaletteOrder: 20
+		WeaponDelay: 0
+		CameraRemoveDelay: 100
+		Effect: explosion
+		EffectSequence: piff
+		Weapon: AvaliBeamBombardment
+		DisplayTimerRelationships: Ally, Neutral, Enemy
+	DropPodsPowerOW:
+		Prerequisites: eyed.uac
+		OrderName: BFG
+		Cursor: chrono-target
+		PauseOnCondition: disabled
+		Icon: bfg10k
+		Name: BFG 10K
+		Description: actor-eyed.bfgdesc
 		BeginChargeSpeechNotification: IonCannonCharge
 		EndChargeSpeechNotification: IonCannonReady
 		SelectTargetSpeechNotification: DawnSelectTarget
@@ -2081,11 +2495,455 @@ EYED:
 		Weapon: BFGZapCluster
 		WeaponDelay: 5
 		DisplayTimerRelationships: Ally, Neutral, Enemy
+	SpawnActorPower@1:
+		Prerequisites: eyed.ion
+		RequiresCondition: !ioncannon.pause
+		PauseOnCondition: disabled
+		OrderName: NewIon1
+		Icon: ioncannon1
+		Cursor: chrono-target
+		ChargeInterval: 6000
+		Name: Ion Cannon I
+		Description: actor-eyed.iondesc2
+		BeginChargeSpeechNotification: IonCannonCharge
+		EndChargeSpeechNotification: IonCannonReady
+		SelectTargetSpeechNotification: DawnSelectTarget
+		InsufficientPowerSpeechNotification: InsufficientPower
+		IncomingSpeechNotification: IonCannonSoundWeak
+		DisplayRadarPing: True
+		SupportPowerPaletteOrder: 20
+		DisplayTimerRelationships: Ally, Neutral, Enemy
+		Actor: IONACTOR.Lvl1
+	GrantConditionOnPrerequisite@pause:
+		Prerequisites: ioncannon.pause
+		Condition: ioncannon.pause
+	GrantConditionOnPrerequisite@eyed:
+		Prerequisites: eyed.ion
+		Condition: eyed.ion
+	GrantDelayedCondition@upgrade:
+		RequiresCondition: !ioncannon.pause && eyed.ion && !disabled
+		Condition: upgrade_eye
+		Delay: 6000
+	GrantDelayedCondition@upgradedebug:
+		RequiresCondition: haxor
+		Condition: upgrade_eye
+		Delay: 2
+	GrantDelayedCondition@upgradedebugbot:
+		RequiresCondition: botfast
+		Condition: upgrade_eye
+		Delay: 3000
+	GrantConditionOnPrerequisite@debug:
+		Prerequisites: haxor
+		Condition: haxor
+	GrantConditionOnPrerequisite@debugbot:
+		Prerequisites: debug.prodspeedbot, ai.all
+		Condition: botfast
+	TransformOnCondition@upgrade:
+		RequiresCondition: upgrade_eye
+		IntoActor: EYED.Lvl2
+
+EYED.Lvl2:
+	Inherits: EYED
+	-Buildable:
+	TransformOnCondition@upgrade:
+		IntoActor: EYED.Lvl3
+	SpawnActorPower@1:
+		Prerequisites: eyed.ion, !ioncannon.pause
+		ChargeInterval: 50
+		-BeginChargeSpeechNotification:
+		-EndChargeSpeechNotification:
+		AllowMultiple: true
+		DisplayTimerRelationships: None
+	SpawnActorPower@2:
+		Prerequisites: eyed.ion
+		RequiresCondition: !ioncannon.pause
+		PauseOnCondition: disabled
+		OrderName: NewIon2
+		Icon: ioncannon2
+		Cursor: chrono-target
+		ChargeInterval: 6000
+		Name: Ion Cannon II
+		Description: actor-eyed.iondesc2
+		BeginChargeSpeechNotification: IonCannonCharge
+		EndChargeSpeechNotification: IonCannonReady
+		SelectTargetSpeechNotification: DawnSelectTarget
+		InsufficientPowerSpeechNotification: InsufficientPower
+		IncomingSpeechNotification: IonCannonSoundStrong
+		DisplayRadarPing: True
+		SupportPowerPaletteOrder: 21
+		DisplayTimerRelationships: Ally, Neutral, Enemy
+		Actor: IONACTOR.Lvl2
+	GrantConditionOnPrerequisite@fired1:
+		Prerequisites: ioncannon.lvl1fired
+		Condition: ioncannon.lvl1fired
+	TransformOnCondition@fired1:
+		RequiresCondition: ioncannon.lvl1fired
+		IntoActor: EYED
+		SkipMakeAnims: false
+	FreeActor@firingdummy:
+		Actor: EYED.Dummy
+		RequiresCondition: ioncannon.pause
+
+EYED.Lvl3:
+	Inherits: EYED.Lvl2
+	Power:
+		Amount: -250
+	Health:
+		HP: 200000
+	TransformOnCondition@upgrade:
+		IntoActor: EYED.Lvl4
+	SpawnActorPower@2:
+		Prerequisites: eyed.ion, !ioncannon.pause
+		ChargeInterval: 50
+		-BeginChargeSpeechNotification:
+		-EndChargeSpeechNotification:
+		AllowMultiple: true
+		DisplayTimerRelationships: None
+	SpawnActorPower@3:
+		Prerequisites: eyed.ion
+		RequiresCondition: !ioncannon.pause
+		PauseOnCondition: disabled
+		OrderName: NewIon3
+		Icon: ioncannon3
+		Cursor: chrono-target
+		ChargeInterval: 6000
+		Name: Ion Cannon III
+		Description: actor-eyed.iondesc2
+		BeginChargeSpeechNotification: IonCannonCharge
+		EndChargeSpeechNotification: IonCannonReady
+		SelectTargetSpeechNotification: DawnSelectTarget
+		InsufficientPowerSpeechNotification: InsufficientPower
+		IncomingSpeechNotification: IonCannonSoundStrong
+		DisplayRadarPing: True
+		SupportPowerPaletteOrder: 22
+		DisplayTimerRelationships: Ally, Neutral, Enemy
+		Actor: IONACTOR.Lvl3
+	TransformOnCondition@fired1:
+		IntoActor: EYED.Lvl2
+	GrantConditionOnPrerequisite@fired2:
+		Prerequisites: ioncannon.lvl2fired
+		Condition: ioncannon.lvl2fired
+	TransformOnCondition@fired2:
+		RequiresCondition: ioncannon.lvl2fired
+		IntoActor: EYED
+		SkipMakeAnims: false
+	GrantDelayedCondition@upgrade:
+		Delay: 6000
+
+EYED.Lvl4:
+	Inherits: EYED.Lvl3
+	Power:
+		Amount: -300
+	Health:
+		HP: 250000
+	TransformOnCondition@upgrade:
+		IntoActor: EYED.Lvl5
+	SpawnActorPower@3:
+		Prerequisites: eyed.ion, !ioncannon.pause
+		ChargeInterval: 50
+		-BeginChargeSpeechNotification:
+		-EndChargeSpeechNotification:
+		AllowMultiple: true
+		DisplayTimerRelationships: None
+	SpawnActorPower@4:
+		Prerequisites: eyed.ion
+		RequiresCondition: !ioncannon.pause
+		PauseOnCondition: disabled
+		OrderName: NewIon4
+		Icon: ioncannon4
+		Cursor: chrono-target
+		ChargeInterval: 6000
+		Name: Ion Cannon IV
+		Description: actor-eyed.iondesc2
+		BeginChargeSpeechNotification: IonCannonCharge
+		EndChargeSpeechNotification: IonCannonReady
+		SelectTargetSpeechNotification: DawnSelectTarget
+		InsufficientPowerSpeechNotification: InsufficientPower
+		IncomingSpeechNotification: IonCannonSoundStrong
+		DisplayRadarPing: True
+		SupportPowerPaletteOrder: 23
+		DisplayTimerRelationships: Ally, Neutral, Enemy
+		Actor: IONACTOR.Lvl4
+	TransformOnCondition@fired1:
+		IntoActor: EYED.Lvl3
+	TransformOnCondition@fired2:
+		IntoActor: EYED.Lvl2
+	GrantConditionOnPrerequisite@fired3:
+		Prerequisites: ioncannon.lvl3fired
+		Condition: ioncannon.lvl3fired
+	TransformOnCondition@fired3:
+		RequiresCondition: ioncannon.lvl3fired
+		IntoActor: EYED
+		SkipMakeAnims: false
+
+EYED.Lvl5:
+	Inherits: EYED.Lvl4
+	Power:
+		Amount: -350
+	Health:
+		HP: 350000
+	TransformOnCondition@upgrade:
+		IntoActor: EYED.Lvl6
+	SpawnActorPower@4:
+		Prerequisites: eyed.ion, !ioncannon.pause
+		ChargeInterval: 50
+		-BeginChargeSpeechNotification:
+		-EndChargeSpeechNotification:
+		AllowMultiple: true
+		DisplayTimerRelationships: None
+	SpawnActorPower@5:
+		Prerequisites: eyed.ion
+		RequiresCondition: !ioncannon.pause
+		PauseOnCondition: disabled
+		OrderName: NewIon5
+		Icon: ioncannon5
+		Cursor: chrono-target
+		ChargeInterval: 6000
+		Name: Ion Cannon V
+		Description: actor-eyed.iondesc2
+		BeginChargeSpeechNotification: IonCannonCharge
+		EndChargeSpeechNotification: IonCannonReady
+		SelectTargetSpeechNotification: DawnSelectTarget
+		InsufficientPowerSpeechNotification: InsufficientPower
+		IncomingSpeechNotification: IonCannonSoundStrong
+		DisplayRadarPing: True
+		SupportPowerPaletteOrder: 24
+		DisplayTimerRelationships: Ally, Neutral, Enemy
+		Actor: IONACTOR.Lvl5
+	TransformOnCondition@fired1:
+		IntoActor: EYED.Lvl4
+	TransformOnCondition@fired2:
+		IntoActor: EYED.Lvl3
+	TransformOnCondition@fired3:
+		IntoActor: EYED.Lvl2
+	GrantConditionOnPrerequisite@fired4:
+		Prerequisites: ioncannon.lvl4fired
+		Condition: ioncannon.lvl4fired
+	TransformOnCondition@fired4:
+		RequiresCondition: ioncannon.lvl4fired
+		IntoActor: EYED
+		SkipMakeAnims: false
+
+EYED.Lvl6:
+	Inherits: EYED.Lvl5
+	Power:
+		Amount: -400
+	Health:
+		HP: 400000
+	-TransformOnCondition@upgrade:
+	ProvidesPrerequisite@buildingname2:
+		Prerequisite: eyed.lvl6
+	SpawnActorPower@5:
+		Prerequisites: eyed.ion, !ioncannon.pause
+		ChargeInterval: 50
+		-BeginChargeSpeechNotification:
+		-EndChargeSpeechNotification:
+		AllowMultiple: true
+		DisplayTimerRelationships: None
+	SpawnActorPower@6:
+		Prerequisites: eyed.ion
+		RequiresCondition: !ioncannon.pause
+		PauseOnCondition: disabled
+		OrderName: NewIon6
+		Icon: ioncannon6
+		Cursor: chrono-target
+		ChargeInterval: 6000
+		Name: Ion Cannon Maximum Power
+		Description: actor-eyed.iondesc2
+		BeginChargeSpeechNotification: IonCannonCharge
+		EndChargeSpeechNotification: IonCannonReady
+		SelectTargetSpeechNotification: DawnSelectTarget
+		InsufficientPowerSpeechNotification: InsufficientPower
+		IncomingSpeechNotification: IonCannonSoundMax
+		DisplayRadarPing: True
+		SupportPowerPaletteOrder: 25
+		DisplayTimerRelationships: Ally, Neutral, Enemy
+		Actor: IONACTOR.Lvl6
+	TransformOnCondition@fired1:
+		IntoActor: EYED.Lvl5
+	TransformOnCondition@fired2:
+		IntoActor: EYED.Lvl4
+	TransformOnCondition@fired3:
+		IntoActor: EYED.Lvl3
+	TransformOnCondition@fired4:
+		IntoActor: EYED.Lvl2
+	GrantConditionOnPrerequisite@fired5:
+		Prerequisites: ioncannon.lvl5fired
+		Condition: ioncannon.lvl5fired
+	TransformOnCondition@fired5:
+		RequiresCondition: ioncannon.lvl5fired && !upgrade_eye
+		IntoActor: EYED
+	TransformOnCondition@fired5b:
+		RequiresCondition: ioncannon.lvl5fired && upgrade_eye
+		IntoActor: EYED.Lvl2
+		SkipMakeAnims: false
+	GrantConditionOnPrerequisite@fired6:
+		Prerequisites: ioncannon.lvl6fired
+		Condition: ioncannon.lvl6fired
+	TransformOnCondition@fired6:
+		RequiresCondition: ioncannon.lvl6fired
+		IntoActor: EYED
+		SkipMakeAnims: false
+
+IONACTOR.Pause:
+	Inherits: 1TNK.MINE
+	-FireWarheadsOnDeath:
+	-Targetable:
+	Targetable:
+		TargetTypes: Ground
+	KillsSelf:
+		RemoveInstead: true
+		Delay: 50
+	ProvidesPrerequisite@ionpause:
+		Prerequisite: ioncannon.pause
+	-SpawnActorOnDeath:
+
+IONACTOR.Lvl1:
+	Inherits: 1TNK.MINE
+	FireWarheads:
+		Interval: 9000
+		Weapons: IonCannonWeak
+	-FireWarheadsOnDeath:
+	-Targetable:
+	KillsSelf:
+		RemoveInstead: true
+		Delay: 1
+	FreeActor:
+		Actor: camera.5sec
+	FreeActor@2:
+		Actor: IONACTOR.Pause
+	ProvidesPrerequisite@ion:
+		Prerequisite: ioncannon.lvl1fired
+	ProvidesPrerequisite@ionpause:
+		Prerequisite: ioncannon.pause
+	-SpawnActorOnDeath:
+
+IONACTOR.Lvl2:
+	Inherits: IONACTOR.Lvl1
+	FireWarheads:
+		Interval: 9000
+		Weapons: MiniNukeIonCrate
+	ProvidesPrerequisite@ion:
+		Prerequisite: ioncannon.lvl2fired
+
+IONACTOR.Lvl3:
+	Inherits: IONACTOR.Lvl2
+	FireWarheads@2:
+		Interval: 9000
+		Weapons: MiniNukeIonCrateSound
+	ProvidesPrerequisite@ion:
+		Prerequisite: ioncannon.lvl3fired
+
+IONACTOR.Lvl4:
+	Inherits: IONACTOR.Lvl3
+	FireWarheads@3:
+		Interval: 9000
+		Weapons: EMPExplosionCrate
+	FireWarheads@4:
+		Interval: 9000
+		Weapons: Atomic
+	ProvidesPrerequisite@ion:
+		Prerequisite: ioncannon.lvl4fired
+
+IONACTOR.Lvl5:
+	Inherits: IONACTOR.Lvl4
+	FireWarheads@5:
+		Interval: 9000
+		Weapons: WeatherGrenade
+	ProvidesPrerequisite@ion:
+		Prerequisite: ioncannon.lvl5fired
+	KillsSelf:
+		RemoveInstead: false
+	SpawnActorOnDeath:
+		Actor: IONSTORM
+		OwnerType: InternalName
+
+IONACTOR.Lvl6:
+	Inherits: IONACTOR.Lvl1
+	-FireWarheads:
+	ProvidesPrerequisite@ion:
+		Prerequisite: ioncannon.lvl6fired
+	FreeActor@1:
+		Actor: IONACTOR.Lvl6Attack
+
+IONACTOR.Lvl6Attack:
+	Inherits: 1TNK.MINE
+	-Targetable:
+	-FireWarheadsOnDeath:
+	-SpawnActorOnDeath:
+	AmbientSound:
+		Interval: 9000
+		SoundFiles: ion_warmup.ogg
+	AmbientSound@2:
+		Interval: 9000
+		SoundFiles: ion_warmup.ogg
+	AmbientSound@3:
+		Interval: 9000
+		SoundFiles: ion_warmup.ogg
+	FireWarheads@0:
+		Interval: 13
+		StartCooldown: 50
+		Weapons: IonCannonSparkle2
+	FireWarheads@0b:
+		Interval: 7
+		StartCooldown: 140
+		Weapons: IonCannonSparkle
+	FireWarheads@0c:
+		Interval: 32
+		StartCooldown: 162
+		Weapons: IonCannonMaxBeamSmall
+	FireWarheads@0d:
+		Interval: 15
+		StartCooldown: 225
+		Weapons: IonCannonMaxBeam
+	FireWarheads@0e:
+		Interval: 9000
+		StartCooldown: 265
+		Weapons: IonCannonMaxBeamRing
+	FireWarheads@1:
+		Interval: 9000
+		StartCooldown: 278
+		Weapons: MiniNukeIonCrateSound
+	FireWarheads@2:
+		Interval: 9000
+		StartCooldown: 278
+		Weapons: IonSuperNuke
+	KillsSelf:
+		RemoveInstead: true
+		Delay: 280
+	FreeActor:
+		Actor: camera.20sec
+
+EYED.Dummy:
+	Inherits: ^DawnBuilding
+	Inherits@IDISABLE: ^DisableOnLowPowerOrPowerDown
+	Inherits@shape: ^2x2Shape
+	Inherits@BIB: ^2xBuildingBib
+	-Selectable:
+	Interactable:
+		Bounds: 2048, 2048
+	HitShape:
+		UseTargetableCellsOffsets: false
+		TargetableOffsets: 0,0,0, 630,-384,0, 630,384,0, -700,-512,0, -700,512,0
 	RenderSprites:
+		Image: EYED
 		PlayerPalette: dawn
-	ActorPreviewPlaceBuildingPreview:
-	Cloak@stealthgen:
-		Palette: dawncloak
-	WithDeathAnimation:
-		DeathSequence: dead
-		UseDeathTypeSuffix: false
+	Tooltip:
+		Name: actor-eyed.name
+	Building:
+		Footprint: x_ xx ==
+		Dimensions: 2,3
+		LocalCenterOffset: 0,-512,0
+	KillsSelf@0:
+		RemoveInstead: true
+		Delay: 50
+	Health:
+		HP: 100000
+	DamageMultiplier:
+		Modifier: 0
+	-Sellable:
+	-WithMakeAnimation:
+	-MapEditorData:
+	-UpdatesPlayerStatistics:
+	-RepairableBuilding:
+	-WithBuildingRepairDecoration:

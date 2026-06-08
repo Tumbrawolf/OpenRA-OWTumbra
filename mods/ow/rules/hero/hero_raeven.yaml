@@ -5,9 +5,11 @@ btrae.tier1.fastupgrade1:
 		Name: actor-btrae-upgrade.t1u1name
 	Buildable:
 		Description: actor-btrae-upgrade.t1u1desc
-		Prerequisites: ~active.rae, !upgrade.vehfirepower1, !faction.novehicles
+		Prerequisites: ~active.rae, !upgrade.vehfirepower1, !faction.novehicles, ~!hero.talent1
 	RenderSprites:
 		Image: upgrade.vehfirepower1
+	ProvidesPrerequisite@tier:
+		Prerequisite: hero.talent1
 	ProvidesPrerequisite@upgradename:
 		Prerequisite: upgrade.vehfirepower1
 
@@ -18,9 +20,11 @@ btrae.tier1.fastupgrade2:
 		Name: actor-btrae-upgrade.t1u2name
 	Buildable:
 		Description: actor-btrae-upgrade.t1u2desc
-		Prerequisites: ~active.rae, !upgrade.veharmor1, !faction.novehicles
+		Prerequisites: ~active.rae, !upgrade.veharmor1, !faction.novehicles, ~!hero.talent1
 	RenderSprites:
 		Image: upgrade.veharmor1
+	ProvidesPrerequisite@tier:
+		Prerequisite: hero.talent1
 	ProvidesPrerequisite@upgradename:
 		Prerequisite: upgrade.veharmor1
 
@@ -31,9 +35,50 @@ btrae.tier1.cycles:
 		Name: actor-btrae-upgrade.t1u3name
 	Buildable:
 		Description: actor-btrae-upgrade.t1u3desc
-		Prerequisites: ~active.rae
+		Prerequisites: ~active.rae, ~!hero.talent1
 	RenderSprites:
 		Image: upgrade.airfirepower1
+	ProvidesPrerequisite@tier:
+		Prerequisite: hero.talent1
+	ProvidesPrerequisite@upgradename:
+
+# Rae: Improved Actuators
+btrae.tier1.actuators:
+	Inherits: ^HeroUpgradeBaseTier1
+	Tooltip:
+		Name: actor-btrae-upgrade.t1u4name
+	Buildable:
+		Description: actor-btrae-upgrade.t1u4desc
+		Prerequisites: ~active.rae, ~hero.talent1
+		Icon: actuators
+	RenderSprites:
+		Image: btrae.icons
+	ProvidesPrerequisite@upgradename:
+
+# Rae: Ferro-Fibrous Plating
+btrae.tier1.plating:
+	Inherits: ^HeroUpgradeBaseTier1
+	Tooltip:
+		Name: actor-btrae-upgrade.t1u5name
+	Buildable:
+		Description: actor-btrae-upgrade.t1u5desc
+		Prerequisites: ~active.rae, ~hero.talent1
+		Icon: plating
+	RenderSprites:
+		Image: btrae.icons
+	ProvidesPrerequisite@upgradename:
+
+# Rae: Reactive Heavy Plating
+btrae.tier1.heavyplating:
+	Inherits: ^HeroUpgradeBaseTier1
+	Tooltip:
+		Name: actor-btrae-upgrade.t1u6name
+	Buildable:
+		Description: actor-btrae-upgrade.t1u6desc
+		Prerequisites: ~active.rae, ~hero.talent1
+		Icon: plating2
+	RenderSprites:
+		Image: btrae.icons
 	ProvidesPrerequisite@upgradename:
 
 # Driver Courses
@@ -153,13 +198,26 @@ btrae.tier4.lrm:
 btrae.tier4.ppc:
 	Inherits: ^HeroUpgradeBaseTier4
 	Tooltip:
-		Name: actor-btrae-upgrade.t4u4name
+		Name: actor-btrae-upgrade.t4u3name
 	Buildable:
-		Description: actor-btrae-upgrade.t4u4desc
+		Description: actor-btrae-upgrade.t4u3desc
 		Prerequisites: ~active.rae
 		Icon: ioncannon
 	RenderSprites:
 		Image: icon
+	ProvidesPrerequisite@upgradename:
+
+# Rae: Heatsinks
+btrae.tier4.heat:
+	Inherits: ^HeroUpgradeBaseTier4
+	Tooltip:
+		Name: actor-btrae-upgrade.t4u4name
+	Buildable:
+		Description: actor-btrae-upgrade.t4u4desc
+		Prerequisites: ~active.rae
+		Icon: heat
+	RenderSprites:
+		Image: btrae.icons
 	ProvidesPrerequisite@upgradename:
 
 # Construction Bots
@@ -184,11 +242,14 @@ btrae.tier5.iron:
 		Name: actor-btrae-upgrade.t5u2name
 	Buildable:
 		Description: actor-btrae-upgrade.t5u2desc
-		Prerequisites: ~active.rae, ~!terran.armor, ~!soviet.iron, !faction.novehicles
+		Prerequisites: ~active.rae, ~!terran.armor, !soviet.iron, !faction.novehicles
 	RenderSprites:
 		Image: soviet.iron
 	ProvidesPrerequisite@upgradename:
 		Prerequisite: raeven.armor
+	WithProductionIconOverlay:
+		Types: UpgradeComplete
+		Prerequisites: soviet.iron
 
 # Rae: Nuke Artillery
 btrae.tier5.nuke:
@@ -227,9 +288,9 @@ BTRAE.Hero0:
 	RenderSprites:
 		Image: btrae
 	Buildable:
-		Queue: Vehicle
+		Queue: Vehicle, Hero
 		BuildPaletteOrder: 110
-		Prerequisites: ~factory, ~techlevel.unrestricted, !active.rae, ~!hero.tier1, ~hero.rae
+		Prerequisites: ~factory, !active.rae, ~!hero.tier1, ~hero.rae
 		Description: actor-btrae-hero.description
 		BuildDurationModifier: 100
 		BuildDuration: 750
@@ -238,7 +299,7 @@ BTRAE.Hero0:
 		Name: actor-btrae-hero.tier0
 	Mobile:
 		TurnSpeed: 48
-		Speed: 100
+		Speed: 96
 		Voice: Move
 	Guard:
 		Voice: Move
@@ -294,6 +355,12 @@ BTRAE.Hero0:
 		Name: ams
 		Weapon: PointDefenseLaserRae
 		MuzzleSequence: muzzleams
+		LocalOffset: -96,-96,600
+		PauseOnCondition: disabled
+	Armament@hp_AMS2:
+		Name: ams2
+		Weapon: PointDefenseLaserRaeCruise
+		MuzzleSequence: muzzleamsbig
 		LocalOffset: -96,-96,600
 		PauseOnCondition: disabled
 	Armament@hp3_largelaser: # tier 2 weapon choice
@@ -415,21 +482,25 @@ BTRAE.Hero0:
 		AmmoPool: nuke
 		Delay: 575
 	GrantConditionOnAttack@heat1:
+		RequiresCondition: !rae_heatsinks
 		ArmamentNames: primary1, primary2, primary3, upg_largelaser, upg_ppc, upg_nuke
 		Condition: mech_heat
 		RevokeDelay: 33
 		MaximumInstances: 150
 	GrantConditionOnAttack@heat2:
+		RequiresCondition: !rae_heatsinks
 		ArmamentNames: primary1, primary2, primary3, upg_largelaser, upg_ppc, upg_nuke
 		Condition: mech_heat
 		RevokeDelay: 33
 		MaximumInstances: 150
 	GrantConditionOnAttack@heat3:
+		RequiresCondition: !rae_heatsinks
 		ArmamentNames: primary1, primary2, primary3, upg_largelaser, upg_ppc, upg_nuke
 		Condition: mech_heat
 		RevokeDelay: 45
 		MaximumInstances: 150
 	GrantConditionOnAttack@heat4:
+		RequiresCondition: !rae_heatsinks
 		ArmamentNames: primary2, upg_largelaser, upg_ppc, upg_nuke
 		Condition: mech_heat
 		RevokeDelay: 50
@@ -465,16 +536,19 @@ BTRAE.Hero0:
 		RevokeDelay: 100
 		MaximumInstances: 150
 	GrantConditionOnAttack@heat11:
+		RequiresCondition: !rae_heatsinks
 		ArmamentNames: upg_nuke
 		Condition: mech_heat
 		RevokeDelay: 100
 		MaximumInstances: 150
 	GrantConditionOnAttack@heat12:
+		RequiresCondition: !rae_heatsinks
 		ArmamentNames: upg_nuke
 		Condition: mech_heat
 		RevokeDelay: 100
 		MaximumInstances: 150
 	GrantConditionOnAttack@heat13:
+		RequiresCondition: !rae_heatsinks
 		ArmamentNames: upg_nuke
 		Condition: mech_heat
 		RevokeDelay: 100
@@ -531,8 +605,6 @@ BTRAE.Hero0:
 	GrantConditionOnPrerequisite@ecm:
 		Prerequisites: btrae.tier3.ecm
 		Condition: rae_ecm
-	OwnerLostAction:  # remove when this issue is fixed
-		Action: Kill
 	CreatesShroud@ecm:
 		RequiresCondition: rae_ecm
 		Range: 7c0
@@ -568,6 +640,39 @@ BTRAE.Hero0:
 	SpeedMultiplier@nuke:
 		RequiresCondition: rae_nuke
 		Modifier: 80
+	GrantConditionOnPrerequisite@actuators:
+		Prerequisites: btrae.tier1.actuators
+		Condition: rae_actuators
+	SpeedMultiplier@actuators:
+		RequiresCondition: rae_actuators
+		Modifier: 107
+	GrantConditionOnPrerequisite@plating:
+		Prerequisites: btrae.tier1.plating
+		Condition: rae_plating
+	SpeedMultiplier@plating:
+		RequiresCondition: rae_plating
+		Modifier: 114
+	DamageMultiplier@plating:
+		RequiresCondition: rae_plating
+		Modifier: 120
+	GrantConditionOnPrerequisite@heavyplating:
+		Prerequisites: btrae.tier1.heavyplating
+		Condition: rae_heavyplating
+	SpeedMultiplier@heavyplating:
+		RequiresCondition: rae_heavyplating
+		Modifier: 90
+	DamageMultiplier@heavyplating:
+		RequiresCondition: rae_heavyplating
+		Modifier: 90
+	ChangesHealth@heavyplating:
+		RequiresCondition: rae_heavyplating
+		DamageCooldown: 50
+		PercentageStep: 1
+		Delay: 25
+		DamageTypes: BypassShield
+	GrantConditionOnPrerequisite@heatsinks:
+		Prerequisites: btrae.tier4.heat
+		Condition: rae_heatsinks
 	Turreted:
 		TurnSpeed: 36
 		RequiresCondition: !disabled
@@ -579,12 +684,12 @@ BTRAE.Hero0:
 		Condition: moving
 		ValidMovementTypes: Horizontal, Turn
 	WithFacingSpriteBody: # standing still
-		RequiresCondition: !moving && !idling
+		RequiresCondition: !moving && !idle_1a && !idle_2 && !idle_3 && !idle_4a
 	WithFacingSpriteBody@move: # walking
 		RequiresCondition: moving
 		Sequence: move
 	WithSpriteTurret@main: # turret
-		RequiresCondition: !moving && !idling
+		RequiresCondition: !moving && !idle_1a && !idle_2 && !idle_3 && !idle_4a
 	WithSpriteTurret@move: # turret walking
 		RequiresCondition: moving
 		Sequence: turret-move
@@ -592,15 +697,21 @@ BTRAE.Hero0:
 		Condition: idling
 		RequiresCondition: !shooting && !moving
 		CooldownDuration: 150, 250
-		ActiveDuration: 93
+		ActiveDuration: 113
 	GrantRandomPeriodicCondition@idleanim: # anim chooser!
 		Conditions: idle_1,idle_2,idle_3,idle_4
 		RequiresCondition: idling
 		CooldownDuration: 1
+		ActiveDuration: 113
+		StartsGranted: true
+	GrantRandomPeriodicCondition@idleanimshort: # anim chooser!
+		Conditions: idle_1a, idle_4a
+		RequiresCondition: idle_1 || idle_4
+		CooldownDuration: 20
 		ActiveDuration: 94
 		StartsGranted: true
 	WithFacingSpriteBody@idle1: # LOOKING
-		RequiresCondition: idle_1 && !shooting
+		RequiresCondition: idle_1a && !shooting
 		Sequence: idle1
 	WithFacingSpriteBody@idle2: # ITCHY!!
 		RequiresCondition: idle_2 && !shooting
@@ -609,7 +720,7 @@ BTRAE.Hero0:
 		RequiresCondition: idle_3 && !shooting
 		Sequence: idle3
 	WithFacingSpriteBody@idle4: # BOUNCY
-		RequiresCondition: idle_4 && !shooting
+		RequiresCondition: idle_4a && !shooting
 		Sequence: idle4
 	SpawnActorOnDeath@husk:
 		Actor: BTRAE.Husk
@@ -673,6 +784,7 @@ BTRAE.Hero0:
 	WithMuzzleOverlay:
 	ChangesHealth@service:
 		DamageCooldown: 125
+		DamageTypes: BypassShield
 	Voiced: # Tanya voice is a placeholder
 		VoiceSet: TanyaEliteVoice
 	SoundOnDamageTransition:
@@ -686,12 +798,12 @@ BTRAE.Hero1:
 	Inherits: BTRAE.Hero0
 	Inherits@heroTier: ^HeroTier1
 	Buildable:
-		Prerequisites: ~factory, ~techlevel.unrestricted, !active.rae, ~!hero.tier2, ~hero.tier1, ~hero.rae
+		Prerequisites: ~factory, !active.rae, ~!hero.tier2, ~hero.tier1, ~hero.rae
 		BuildDuration: 1500
 	Tooltip:
 		Name: actor-btrae-hero.tier1
 	Health:
-		HP: 100000
+		HP: 90000
 	FirepowerMultiplier@1:
 		Modifier: 70
 	AttackTurreted:
@@ -704,12 +816,12 @@ BTRAE.Hero2:
 	Inherits: BTRAE.Hero1
 	Inherits@heroTier: ^HeroTier2
 	Buildable:
-		Prerequisites: ~factory, ~techlevel.unrestricted, !active.rae, ~!hero.tier3, ~hero.tier2, ~hero.rae
+		Prerequisites: ~factory, !active.rae, ~!hero.tier3, ~hero.tier2, ~hero.rae
 		BuildDuration: 1500
 	Tooltip:
 		Name: actor-btrae-hero.tier2
 	Health:
-		HP: 115000
+		HP: 105000
 	PointDefense:
 		PointDefenseTypes: pointdefense
 		Armament: ams
@@ -734,12 +846,15 @@ BTRAE.Hero3:
 	Inherits: BTRAE.Hero2
 	Inherits@heroTier: ^HeroTier3
 	Buildable:
-		Prerequisites: ~factory, ~techlevel.unrestricted, !active.rae, ~!hero.tier4, ~hero.tier3, ~hero.rae
+		Prerequisites: ~factory, !active.rae, ~!hero.tier4, ~hero.tier3, ~hero.rae
 		BuildDuration: 1500
 	Tooltip:
 		Name: actor-btrae-hero.tier3
 	Health:
-		HP: 130000
+		HP: 120000
+	PointDefense@2:
+		PointDefenseTypes: cruisemissile
+		Armament: ams2
 	AttackTurreted:
 		Armaments: primary1, primary2, primary3, upg_largelaser, upg_srm6, upg_lrm, upg_ppc
 	DetectCloaked:
@@ -753,12 +868,12 @@ BTRAE.Hero4:
 	Inherits: BTRAE.Hero3
 	Inherits@heroTier: ^HeroTier4
 	Buildable:
-		Prerequisites: ~factory, ~techlevel.unrestricted, !active.rae, ~!hero.tier5, ~hero.tier4, ~hero.rae
+		Prerequisites: ~factory, !active.rae, ~!hero.tier5, ~hero.tier4, ~hero.rae
 		BuildDuration: 3000
 	Tooltip:
 		Name: actor-btrae-hero.tier4
 	Health:
-		HP: 145000
+		HP: 135000
 	FireWarheads@boost:
 		Weapons: AEIOUBoostRae
 		Interval: 50
@@ -778,12 +893,12 @@ BTRAE.Hero5:
 	Inherits: BTRAE.Hero4
 	Inherits@heroTier: ^HeroTier5
 	Buildable:
-		Prerequisites: ~factory, ~techlevel.unrestricted, !active.rae, ~hero.tier5, ~hero.rae
-		BuildDuration: 6000
+		Prerequisites: ~factory, !active.rae, ~hero.tier5, ~hero.rae
+		BuildDuration: 4500
 	Tooltip:
 		Name: actor-btrae-hero.tier5
 	Health:
-		HP: 160000
+		HP: 150000
 	AttackTurreted:
 		Armaments: primary1, primary2, primary3, primary4, upg_largelaser, upg_srm6, upg_lrm, upg_ppc, upg_nuke
 	-TransformOnCondition@level:

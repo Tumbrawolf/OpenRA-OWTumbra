@@ -62,7 +62,7 @@ TVULT:
 		RequiresSelection: true
 		RequiresCondition: ammo
 	Rearmable:
-		RearmActors: fix, gfix, tshop
+		RearmActors: fix, gfix, tshop, unscrepairpad
 	GrantConditionOnPrerequisite@bot:
 		Prerequisites: ai.all, tshop
 		Condition: botowner

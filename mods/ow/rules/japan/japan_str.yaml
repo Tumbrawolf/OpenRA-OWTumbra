@@ -114,107 +114,28 @@ AntiMatterPowerActor:
 	-MustBeDestroyed:
 
 japansupplycenter:
-	Inherits: ^Building
+	Inherits: PROC
 	Inherits@jshield: ^JapanBaseShield
-	Inherits@ref: ^Refinery
-	Inherits@BIB: ^3x4BuildingBib
 	Buildable:
 		Queue: Building
 		BuildPaletteOrder: 19
-		Prerequisites: ~structures.japan, anypower, ~!ai.boss, ~!faction.navygeneral
+		Prerequisites: ~structures.japan, anypower, ~!ai.god, ~!faction.navygeneral
 		Description: actor-japansupplycenter.description
-	Valued:
-		Cost: 1400
 	Tooltip:
 		Name: actor-japansupplycenter.name
-	Building:
-		Footprint: _X_ xxx X== ===
-		Dimensions: 3,4
-		LocalCenterOffset: 0,-512,0
-	Selectable:
-		Bounds: 3072, 2133, 0, 170
-		DecorationBounds: 3072, 2986, 0, -85
-	Targetable:
-		TargetTypes: GroundActor, Structure, C4, DetonateAttack, ThiefInfiltrate, SpyInfiltrate
-	Health:
-		HP: 90000
-	Armor:
-		Type: Wood
-	RevealsShroud:
-		MinRange: 4c0
-		Range: 5c0
-		RevealGeneratedShroud: False
-	RevealsShroud@GAPGEN:
-		Range: 4c0
-	Refinery:
-	StoresPlayerResources:
-		Capacity: 2000
-	CustomSellValue:
-		Value: 300
-	FreeActor:
-		Actor: HARV
-		SpawnOffset: 1,2
-		Facing: 256
-	InfiltrateForCash:
-		Percentage: 50
-		Types: SpyInfiltrate, ThiefInfiltrate
-		InfiltratedNotification: CreditsStolen
-		InfiltratedTextNotification: actor-japansupplycenter.infiltrateforcash-infiltrated-text-notification
-	WithIdleOverlay@TOP:
-		RequiresCondition: !build-incomplete
-		Sequence: idle-top
-	Power:
-		Amount: -30
-	WithDeathAnimation:
-		DeathSequence: dead
-		UseDeathTypeSuffix: false
-	ProvidesPrerequisite@buildingname:
-	ProvidesPrerequisite@refinery:
-		Prerequisite: refinery
-	HitShape:
-		Type: Rectangle
-			TopLeft: -1536, -512
-			BottomRight: 1536, 598
-	HitShape@TOP:
-		TargetableOffsets: 1680,0,0
-		Type: Rectangle
-			TopLeft: -512, -1536
-			BottomRight: 512, -512
-	HitShape@BOTTOMLEFT:
-		TargetableOffsets: -1260,-1024,0
-		Type: Rectangle
-			TopLeft: -1536, 598
-			BottomRight: -512, 1280
-	-ActorPreviewPlaceBuildingPreview:
-	SequencePlaceBuildingPreview:
-		Sequence: idle
-		SequenceAlpha: 0.65
-	WithResourceStoragePipsDecoration:
-		Position: BottomLeft
-		Margin: 4, 3
-		RequiresSelection: true
-		PipCount: 17
-		FullSequence: pip-yellow
 	RenderSprites:
 		Image: japansupplycenter
-	DockHost:
-		Type: Unload
-		DockAngle: 256
-		DockOffset: 0,1024,0
 
 japansupplycenternavy:
 	Inherits: japansupplycenter
 	Buildable:
 		Queue: Building
 		BuildPaletteOrder: 19
-		Prerequisites: ~structures.japan, anypower, ~!ai.boss, ~faction.navygeneral
+		Prerequisites: ~structures.japan, anypower, ~!ai.god, ~faction.navygeneral
 		Description: actor-japansupplycenternavy.description
 	Tooltip:
 		Name: actor-japansupplycenternavy.name
 	Building:
-		Footprint: _X_ xxx X== ===
-		Dimensions: 3,4
-		LocalCenterOffset: 0,-512,0
 		TerrainTypes: Clear, ClearSnow, Road, Water, Creep
 	FreeActor:
 		Actor: HARVNAVY
@@ -324,7 +245,7 @@ japanmechabay:
 	Buildable:
 		Queue: Building
 		BuildPaletteOrder: 80
-		Prerequisites: refinery, anypower, barracks, ~structures.japan, ~!structures.bothard
+		Prerequisites: refinery, anypower, barracks, ~structures.japan, ~!structures.bothard, ~techlevel.low
 		Description: actor-japanmechabay.description
 		Icon: icon-japan
 	Valued:
@@ -340,7 +261,7 @@ japanairfield:
 	Buildable:
 		Queue: Building
 		BuildPaletteOrder: 130
-		Prerequisites: refinery, anypower, barracks, ~structures.japan, ~!faction.navygeneral, ~!ai.boss
+		Prerequisites: refinery, anypower, barracks, ~structures.japan, ~!faction.navygeneral, ~!ai.god, ~techlevel.medium
 		Description: actor-japanairfield.description
 	Tooltip:
 		Name: actor-japanairfield.name
@@ -436,7 +357,7 @@ japanairfieldnavy:
 	Buildable:
 		Queue: Building
 		BuildPaletteOrder: 130
-		Prerequisites: refinery, anypower, barracks, ~structures.japan, ~faction.navygeneral, ~!ai.boss
+		Prerequisites: refinery, anypower, barracks, ~structures.japan, ~faction.navygeneral, ~!ai.god, ~techlevel.medium
 		Description: actor-japanairfieldnavy.description
 	Tooltip:
 		Name: actor-japanairfieldnavy.name
@@ -462,6 +383,7 @@ japanshipyard:
 	Inherits: ^Building
 	Inherits@PRIMARY: ^PrimaryBuilding
 	Inherits@prereqs: ^NavalPrereqs
+	Inherits@Navyspot: ^NavalYardSpot
 	Inherits@jshield: ^JapanBaseShield
 	Selectable:
 		Bounds: 3072, 2048
@@ -471,7 +393,7 @@ japanshipyard:
 	Buildable:
 		Queue: Building
 		BuildPaletteOrder: 80
-		Prerequisites: anypower, ~structures.japan, refinery, ~!techlevel.noboats, ~!faction.navygeneral
+		Prerequisites: anypower, ~structures.japan, refinery, ~!techlevel.noboats, ~!faction.navygeneral, ~techlevel.low
 		Description: actor-japanshipyard.description
 	Valued:
 		Cost: 1000
@@ -480,12 +402,11 @@ japanshipyard:
 	Targetable:
 		TargetTypes: WaterActor, Structure, C4, DetonateAttack, SpyInfiltrate
 	Building:
-		Footprint: =x= x=x =x=
+		Footprint: =x= x=x ===
 		Dimensions: 3,3
 		TerrainTypes: Water
 	RequiresBuildableArea:
 		Adjacent: 8
-	-GivesBuildableArea:
 	Health:
 		HP: 100000
 	Armor:
@@ -558,18 +479,13 @@ japanshipyard:
 		Type: Rectangle
 			TopLeft: -512, 598
 			BottomRight: 512, 1110
-	Refinery:
-	DockHost:
-		Type: Oil
-		DockAngle: 256
-		DockOffset: 0, 0, 0
 
 japanshipyardnavy:
 	Inherits: japanshipyard
 	Buildable:
 		Queue: Building
 		BuildPaletteOrder: 80
-		Prerequisites: anypower, ~structures.japan, refinery, ~!techlevel.noboats, ~faction.navygeneral, ~faction.navygeneral
+		Prerequisites: anypower, ~structures.japan, refinery, ~!techlevel.noboats, ~faction.navygeneral, ~faction.navygeneral, ~techlevel.low
 		Description: actor-japanshipyard.description
 	Valued:
 		Cost: 750
@@ -580,7 +496,7 @@ japanshipyardnavy:
 
 japanmainframe:
 	Inherits: ^ScienceBuilding
-	Inherits@IDISABLE: ^DisableOnLowPower
+	Inherits@IDISABLE: ^DisableOnLowPowerOrPowerDown
 	Inherits@shape: ^2x2Shape
 	Inherits@jshield: ^JapanBaseShield
 	Inherits@BIB: ^2xBuildingBib
@@ -589,7 +505,7 @@ japanmainframe:
 	Buildable:
 		Queue: Building
 		BuildPaletteOrder: 140
-		Prerequisites: factory, ~structures.japan, ~techlevel.high, ~!faction.navygeneral
+		Prerequisites: factory, ~structures.japan, ~!faction.navygeneral, ~techlevel.medium
 		Description: actor-japanmainframe.description
 	Valued:
 		Cost: 1500
@@ -610,7 +526,7 @@ japanmainframe:
 	RevealsShroud@GAPGEN:
 		Range: 4c0
 	ProvidesRadar:
-		RequiresCondition: !lowpower
+		RequiresCondition: !disabled
 	SpawnActorPower@Clairvoyance:
 		PauseOnCondition: disabled
 		OrderName: clairvoyance
@@ -645,6 +561,7 @@ japanmainframe:
 		DisplayTimerRelationships: None
 	ParatroopersPower@tenshidrop:
 		OrderName: tenshidrop
+		PauseOnCondition: disabled
 		Prerequisites: ~structures.japan, !faction.economicgeneral, ~!faction.mechageneral
 		Icon: tenshisquadicon
 		ChargeInterval: 12500
@@ -669,6 +586,7 @@ japanmainframe:
 		LaunchSound: AngelDrop_Callout01.aud
 	ParatroopersPower@mechadrop:
 		OrderName: mechadrop
+		PauseOnCondition: disabled
 		Prerequisites: ~structures.japan, !faction.economicgeneral, ~faction.mechageneral
 		Icon: paratank
 		ChargeInterval: 13500
@@ -700,6 +618,7 @@ japanmainframe:
 	ProvidesPrerequisite@buildingname:
 	ProvidesPrerequisite:
 		Prerequisite: techcenter
+		RequiresPrerequisites: techlevel.high
 	ProvidesPrerequisite@radar:
 		Prerequisite: radar
 	RenderSprites:
@@ -710,7 +629,7 @@ japanmainframenavy:
 	Buildable:
 		Queue: Building
 		BuildPaletteOrder: 140
-		Prerequisites: factory, ~structures.japan, ~techlevel.high, ~faction.navygeneral
+		Prerequisites: factory, ~structures.japan, ~faction.navygeneral, ~techlevel.medium
 		Description: actor-japanmainframenavy.description
 	Tooltip:
 		Name: actor-japanmainframenavy.name
@@ -787,7 +706,7 @@ japanpsychicdatacenter:
 		InsufficientPowerSpeechNotification: InsufficientPower
 		OnFireSound: japcurse.aud
 		DisplayRadarPing: True
-		SupportPowerPaletteOrder: 20
+		SupportPowerPaletteOrder: 19
 		Effect: explosion
 		EffectSequence: japancurseanim
 		Weapon: JapanCursePower
@@ -944,6 +863,8 @@ JapanWarpPortalRed:
 	Inherits@shape: ^2x2Shape
 	RenderSprites:
 		Image: japanwarpportalred
+	Targetable:
+		TargetTypes: GroundActor, C4, DetonateAttack, Structure, Defense
 	Buildable:
 		Queue: Defense
 		Prerequisites: ~disabled
@@ -956,7 +877,7 @@ JapanWarpPortalRed:
 	Tooltip:
 		Name: actor-japanwarpportalred.name
 	Health:
-		HP: 150000
+		HP: 75000
 	Armor:
 		Type: Wood
 	TeleportNetwork:
@@ -1117,7 +1038,7 @@ japanlaserbase:
 	Buildable:
 		Queue: Defense
 		BuildPaletteOrder: 70
-		Prerequisites: anypower, ~structures.japan, barracks, ~!faction.navygeneral
+		Prerequisites: anypower, ~structures.japan, barracks, ~!faction.navygeneral, ~techlevel.medium
 		Description: actor-japanlaserbase.description
 	Selectable:
 		Bounds: 2048, 2048
@@ -1179,6 +1100,7 @@ japanlaserbase:
 		Amount: -80
 	DetectCloaked:
 		Range: 6c0
+		DetectionTypes: Cloak, AirCloak
 	-BodyOrientation:
 	ClassicFacingBodyOrientation:
 	RenderSprites:
@@ -1206,7 +1128,7 @@ japanlaserbasenavy:
 	Buildable:
 		Queue: Defense
 		BuildPaletteOrder: 70
-		Prerequisites: anypower, ~structures.japan, barracks, ~faction.navygeneral
+		Prerequisites: anypower, ~structures.japan, barracks, ~faction.navygeneral, ~techlevel.medium
 		Description: actor-japanlaserbasenavy.description
 	Tooltip:
 		Name: actor-japanlaserbasenavy.name
@@ -1243,7 +1165,7 @@ japandecimator:
 		Name: actor-japandecimator.name
 	Buildable:
 		Queue: Tech
-		Prerequisites: techcenter, ~structures.japan, ~!faction.navygeneral
+		Prerequisites: techcenter, ~structures.japan, ~!faction.navygeneral, ~techlevel.unrestricted, ~!techlevel.nosuperweapons
 		BuildLimit: 1
 		Description: actor-japandecimator.description
 		BuildPaletteOrder: 500
@@ -1272,7 +1194,7 @@ japandecimator:
 		OnFireSound: japandecimatoractivate.wav
 		DisplayRadarPing: True
 		CameraActor: camera.small
-		SupportPowerPaletteOrder: 20
+		SupportPowerPaletteOrder: 19
 		WeaponDelay: 0
 		CameraRemoveDelay: 100
 		Effect: explosion
@@ -1293,7 +1215,7 @@ japandecimatornavy:
 	Inherits: japandecimator
 	Buildable:
 		Queue: Tech
-		Prerequisites: techcenter, ~structures.japan, ~faction.navygeneral
+		Prerequisites: techcenter, ~structures.japan, ~faction.navygeneral, ~techlevel.unrestricted
 		BuildLimit: 1
 		Description: actor-japandecimatornavy.description
 		BuildPaletteOrder: 500
@@ -1328,7 +1250,7 @@ japanmindcontrol:
 		Name: actor-japanmindcontrol.name
 	Buildable:
 		Queue: Defense
-		Prerequisites: ~structures.japan, advtechcenter, ~!faction.navygeneral
+		Prerequisites: ~structures.japan, advtechcenter, ~!faction.navygeneral, ~techlevel.unrestricted
 		Description: actor-japanmindcontrol.description
 		BuildPaletteOrder: 71
 	Building:
@@ -1402,7 +1324,7 @@ japanmindcontrolnavy:
 		Name: actor-japanmindcontrolnavy.name
 	Buildable:
 		Queue: Defense
-		Prerequisites: ~structures.japan, advtechcenter, ~faction.navygeneral
+		Prerequisites: ~structures.japan, advtechcenter, ~faction.navygeneral, ~techlevel.unrestricted
 		Description: actor-japanmindcontrolnavy.description
 		BuildPaletteOrder: 71
 	Building:
@@ -1440,7 +1362,7 @@ japantransformerbase:
 	Buildable:
 		Queue: Defense
 		BuildPaletteOrder: 40
-		Prerequisites: ~structures.japan, techcenter
+		Prerequisites: ~structures.japan, techcenter, ~techlevel.high
 		Description: actor-japantransformerbase.description
 	Valued:
 		Cost: 1200
@@ -1565,7 +1487,7 @@ japanballoon:
 	Buildable:
 		Queue: Defense
 		BuildPaletteOrder: 70
-		Prerequisites: ~structures.japan, techcenter
+		Prerequisites: ~structures.japan, radar, ~techlevel.medium
 		Description: actor-japanballoon.description
 	Valued:
 		Cost: 1500
@@ -1608,6 +1530,7 @@ japanballoon:
 	RenderDetectionCircle:
 	DetectCloaked:
 		Range: 5c0
+		DetectionTypes: Cloak, AirCloak
 	WithMuzzleOverlay:
 	-WithSpriteBody:
 	-WithMakeAnimation:
@@ -1674,12 +1597,12 @@ japanoredrill:
 japanwaveforceturret:
 	Inherits: ^Defense
 	Inherits@LOWPOWER: ^DisableOnLowPowerOrPowerDown
-	Inherits@AUTOTARGET: ^AutoTargetAll
+	Inherits@AUTOTARGET: ^AutoTargetGround
 	Inherits@jshield: ^JapanBaseShield
 	Buildable:
 		Queue: Defense
 		BuildPaletteOrder: 70
-		Prerequisites: ~structures.japan, advtechcenter, ~faction.economicgeneral
+		Prerequisites: ~structures.japan, advtechcenter, ~faction.economicgeneral, ~techlevel.unrestricted
 		Description: actor-japanwaveforceturret.description
 	Valued:
 		Cost: 1800
@@ -1772,7 +1695,7 @@ japanberserktower:
 	Buildable:
 		Icon: icon-berserk
 		Queue: Defense
-		Prerequisites: ~structures.japan, advtechcenter, ~faction.economicgeneral
+		Prerequisites: ~structures.japan, advtechcenter, ~faction.economicgeneral, ~techlevel.unrestricted
 		Description: actor-japanberserktower.description
 		BuildPaletteOrder: 72
 	Tooltip:
@@ -1805,7 +1728,7 @@ japanhyperantimatterreactor:
 		Queue: Tech
 			BuildPaletteOrder: 500
 		BuildPaletteOrder: 1
-		Prerequisites: ~structures.japan, techcenter, ~!ai.powerout, ~!faction.navygeneral
+		Prerequisites: ~structures.japan, techcenter, ~!ai.powerout, ~!faction.navygeneral, ~techlevel.high
 		Description: actor-japanhyperantimatterreactor.description
 	Valued:
 		Cost: 1600
@@ -1870,7 +1793,7 @@ japanhyperantimatterreactornavy:
 		Queue: Tech
 			BuildPaletteOrder: 500
 		BuildPaletteOrder: 1
-		Prerequisites: ~structures.japan, techcenter, ~!ai.powerout, ~faction.navygeneral
+		Prerequisites: ~structures.japan, techcenter, ~!ai.powerout, ~faction.navygeneral, ~techlevel.high
 		Description: actor-japanhyperantimatterreactornavy.description
 	Tooltip:
 		Name: actor-japanhyperantimatterreactornavy.name
@@ -1956,7 +1879,7 @@ japanaikokusha:
 	Tooltip:
 		Name: actor-japanaikokusha.name
 	Building:
-		Footprint: xx
+		Footprint: ++
 		Dimensions: 2,1
 		TerrainTypes: Water
 	Health:
@@ -1998,6 +1921,7 @@ japanaikokusha:
 	RenderDetectionCircle:
 	DetectCloaked:
 		Range: 5c0
+		DetectionTypes: Cloak, AirCloak
 	BodyOrientation:
 		UseClassicFacingFudge: True
 	RevealsShroud@GAPGEN:

@@ -237,6 +237,18 @@ oilb:
 	icon:
 		Filename: hospicon.shp
 
+gun:
+	turret2:
+		Filename: ssam.shp
+		Facings: 32
+		ZOffset: 512
+		Offset: 0,-6
+		Scale: 0.75
+
+pbox:
+	death:
+		Filename: pboxdthicon.shp
+
 weap:
 	Defaults:
 		Filename: weap.shp
@@ -278,6 +290,10 @@ hpad:
 		Length: 6
 		Tick: 100
 		ZOffset: -1023
+
+tsla:
+	icon-bomb:
+		Filename: sovietup4icon.shp
 
 bio:
 	Defaults:
@@ -1430,8 +1446,6 @@ agate:
 	damaged-open:
 		Frames: 7
 		ZOffset: -1024
-	make:
-		Length: 6
 	icon:
 		Filename: agateicon.shp
 
@@ -1450,8 +1464,6 @@ vgate:
 	damaged-open:
 		Frames: 7
 		ZOffset: -1024
-	make:
-		Length: 6
 	icon:
 		Filename: vgateicon.shp
 
@@ -2017,12 +2029,15 @@ brik2:
 		Length: 16
 	icon:
 		Filename: brikicon.shp
+	avfence:
+		Filename: avfencicon.shp
 
 ghole1x1:
 	Defaults:
 		Filename: ghole1x1.shp
 	make:
 	idle:
+		Start: 1
 		ZOffset: -1512
 	damaged-idle:
 		Start: 1
@@ -2046,9 +2061,10 @@ ghole2x2:
 		Filename: ghole2x2.shp
 	make:
 	idle:
+		Start: 2
 		ZOffset: -1512
 	damaged-idle:
-		Start: 1
+		Start: 2
 		ZOffset: -1512
 	critical-idle:
 		Start: 2
@@ -2071,9 +2087,10 @@ ghole3x3:
 		Filename: ghole3x3.shp
 	make:
 	idle:
+		Start: 2
 		ZOffset: -1512
 	damaged-idle:
-		Start: 1
+		Start: 2
 		ZOffset: -1512
 	critical-idle:
 		Start: 2
@@ -2096,9 +2113,10 @@ ghole3x2:
 		Filename: ghole3x2.shp
 	make:
 	idle:
+		Start: 2
 		ZOffset: -1512
 	damaged-idle:
-		Start: 1
+		Start: 2
 		ZOffset: -1512
 	critical-idle:
 		Start: 2
@@ -2121,9 +2139,10 @@ gairhole:
 		Filename: gairhole.shp
 	make:
 	idle:
+		Start: 2
 		ZOffset: -1512
 	damaged-idle:
-		Start: 1
+		Start: 2
 		ZOffset: -1512
 	critical-idle:
 		Start: 2
@@ -4287,7 +4306,7 @@ pwarp:
 		Frames: 8,7,6,5,4,3,2
 		Length: *
 	die2:
-		Frames: 0,1
+		Frames: 8,9,10,11,12,13,0,1
 		Length: *
 	bib2:
 		Filename: bib2.tem
@@ -4332,6 +4351,9 @@ pwarp:
 	place-fleet:
 		Filename: pfleet.shp
 		Offset: 0,-10
+	place-miss:
+		Filename: miss.shp
+		Offset: 0,-10
 	place-battery:
 		Filename: psbatt.shp
 	icon-gateway:
@@ -4362,6 +4384,8 @@ pwarp:
 		Filename: psbatticon.shp
 	icon-fleet:
 		Filename: pfleeticon.shp
+	icon-miss:
+		Filename: missicon.shp
 
 pwarpsm:
 	Inherits: pwarp
@@ -4552,7 +4576,7 @@ usastrategycenter:
 		Start: 1
 	hold_the_line:
 		Filename: usastrategycenterhtl.shp
-		Offset: 12,-12a
+		Offset: 12,-12
 	damaged-hold_the_line:
 		Filename: usastrategycenterhtl.shp
 		Start: 1
@@ -4870,32 +4894,7 @@ chinanuclearreactor:
 		Filename: chinanuclearpowericon.shp
 
 chinasupplycenter:
-	idle:
-		Filename: proc.shp
-		ZOffset: -1c511
-	damaged-idle:
-		Filename: proc.shp
-		Start: 1
-		ZOffset: -1c511
-	idle-top:
-		Filename: proctop.shp
-		ZOffset: 0
-	damaged-idle-top:
-		Filename: proctop.shp
-		Start: 1
-		ZOffset: 0
-	make:
-		Filename: procmake.shp
-		Length: *
-	dead:
-		Filename: procdead.shp
-		Tick: 800
-	bib:
-		Filename: bib2.tem
-		TilesetFilenames:
-			SNOW: bib2.sno
-			DESERT: bib2.des
-		Length: *
+	Inherits: proc
 	icon:
 		Filename: chinasupplycentericon.shp
 
@@ -5073,6 +5072,26 @@ chinanuclearsilo:
 	icon:
 		Filename: chinanuclearsiloicon.shp
 
+chinasupernuclearsilo:
+	idle:
+		Filename: chinasupernuclearsilo.shp
+		Offset: 0, -11
+	damaged-idle:
+		Filename: chinasupernuclearsilo.shp
+		Offset: 0, -11
+	make:
+		Filename: chinanuclearsilomake.shp
+		Length: *
+		Offset: 0, -11
+	active:
+		Filename: chinasupernuclearsilo.shp
+		Offset: 0, -11
+	damaged-active:
+		Filename: chinasupernuclearsilo.shp
+		Offset: 0, -11
+	icon:
+		Filename: chinanuclearsiloicon.shp
+
 chinagatlinggun:
 	idle:
 		Filename: gun.shp
@@ -5104,22 +5123,28 @@ chinagatlinggun:
 		Filename: chinagatlinggunicon.shp
 
 chinaspeakertower:
+	Defaults:
+		Filename: chinaspeakertowernew.shp
 	idle:
-		Filename: chinaspeakertower.shp
-		Length: 32
-		Tick: 150
-		Offset: 0,-10
+		Offset: 0,-13
 	damaged-idle:
-		Filename: chinaspeakertower.shp
-		Start: 32
-		Length: 32
-		Tick: 150
-		Offset: 0,-10
+		Start: 1
+		Offset: 0,-13
+	overlay1:
+		Start: 2
+		Length: 3
+		Tick: 334
+		Offset: 0,-13
+	overlay2:
+		Start: 5
+		Length: 3
+		Tick: 334
+		Offset: 0,-13
 	make:
-		Filename: chinaspeakertowermake.shp
-		Length: 9
+		Filename: spmstmake.shp
+		Length: 10
 		Tick: 60
-		Offset: 0,-10
+		Offset: 0,-13
 	bib:
 		TilesetFilenames:
 			SNOW: mbGUN.sno
@@ -5402,32 +5427,7 @@ japanhyperantimatterreactor:
 		Filename: japanhyperantimatterreactoricon.shp
 
 japansupplycenter:
-	idle:
-		Filename: proc.shp
-		ZOffset: -1c511
-	damaged-idle:
-		Filename: proc.shp
-		Start: 1
-		ZOffset: -1c511
-	idle-top:
-		Filename: proctop.shp
-		ZOffset: 0
-	damaged-idle-top:
-		Filename: proctop.shp
-		Start: 1
-		ZOffset: 0
-	make:
-		Filename: procmake.shp
-		Length: *
-	dead:
-		Filename: procdead.shp
-		Tick: 800
-	bib:
-		Filename: bib2.tem
-		TilesetFilenames:
-			SNOW: bib2.sno
-			DESERT: bib2.des
-		Length: *
+	Inherits: proc
 	icon:
 		Filename: japansupplycentericon.shp
 
@@ -5700,19 +5700,19 @@ ctwr:
 
 japanmindcontrol:
 	idle:
-		Filename: chinaspeakertower.shp
+		Filename: japanmindcontrol.shp
 		Length: 32
 		Tick: 150
 		Offset: 0,-10
 	damaged-idle:
-		Filename: chinaspeakertower.shp
+		Filename: japanmindcontrol.shp
 		Start: 32
 		Length: 32
 		Tick: 150
 		Offset: 0,-10
 	make:
-		Filename: chinaspeakertowermake.shp
-		Length: 9
+		Filename: japanmindcontrolmake.shp
+		Length: *
 		Tick: 60
 		Offset: 0,-10
 	bib:
@@ -5917,3 +5917,1101 @@ btpanel:
 		Length: *
 	icon:
 		Filename: btpanelicon.shp
+
+shoopdawhoop:
+	Defaults:
+		Filename: shoopdawhoop.shp
+		Offset: 0,-12
+	idle:
+	damaged-idle:
+	active:
+	damaged-active:
+	dead:
+	make:
+		Filename: oblidmake.shp
+		Length: 13
+	bib:
+		TilesetFilenames:
+			SNOW: mbGUN.sno
+			INTERIOR: mbGUN.int
+			TEMPERAT: mbGUN.tem
+			DESERT: mbGUN.des
+		Length: *
+		Offset: -1,-1
+	icon:
+		Filename: oblidicon.shp
+		Offset: 0,0
+
+dinnerblaster:
+	Defaults:
+		Filename: dinnerblaster.shp
+		Offset: 0,-12
+	idle:
+		Frames: 1
+		Length: 1
+		Tick: 15
+	damaged-idle:
+		Frames: 1
+		Length: 1
+		Tick: 15
+	active:
+		Frames: 1
+		Length: 1
+		Tick: 15
+	damaged-active:
+		Start: 1
+		Length: 1
+		Tick: 15
+	firing:
+		Start: 1
+		Length: 1
+		Tick: 15
+	dead:
+	make:
+		Filename: oblidmake.shp
+		Length: 13
+	bib:
+		TilesetFilenames:
+			SNOW: mbGUN.sno
+			INTERIOR: mbGUN.int
+			TEMPERAT: mbGUN.tem
+			DESERT: mbGUN.des
+		Length: *
+		Offset: -1,-1
+	icon:
+		Filename: oblidicon.shp
+		Offset: 0,0
+
+
+prism:
+	idle:
+		Filename: chinaspeakertower.shp
+		Length: 32
+		Tick: 150
+		Offset: 0,-10
+	damaged-idle:
+		Filename: chinaspeakertower.shp
+		Start: 32
+		Length: 32
+		Tick: 150
+		Offset: 0,-10
+	make:
+		Filename: chinaspeakertowermake.shp
+		Length: 9
+		Tick: 60
+		Offset: 0,-10
+	bib:
+		TilesetFilenames:
+			SNOW: mbGUN.sno
+			INTERIOR: mbGUN.int
+			TEMPERAT: mbGUN.tem
+			DESERT: mbGUN.des
+		Length: *
+		Offset: -1,-1
+	icon:
+		Filename: prismicon.shp
+
+unscfirebase:
+	Defaults:
+		Filename: unscfirebase.shp
+		Offset: 0,-12
+	idle:
+		Start: 0
+	damaged-idle:
+		Start: 0
+	make:
+		Start: 0
+	bib:
+		Filename: bib2.tem
+		TilesetFilenames:
+			SNOW: bib2.sno
+			DESERT: bib2.des
+		Length: *
+	icon:
+		Filename: unscfirebaseicon.shp
+		Offset: 0,0
+
+unscreactor:
+	Defaults:
+		Filename: unscreactor.shp
+		Offset: 0,-12
+	idle:
+		Start: 0
+	damaged-idle:
+		Start: 0
+	idle2:
+		Filename: unscadvancedreactor.shp
+		Start: 0
+	damaged-idle2:
+		Filename: unscadvancedreactor.shp
+		Start: 0
+	make:
+		Filename: unscreactormake.shp
+		Tick: 40
+		Length: *
+	bib:
+		Filename: bib2.tem
+		TilesetFilenames:
+			SNOW: bib2.sno
+			DESERT: bib2.des
+		Length: *
+	icon:
+		Filename: unscreactoricon.shp
+		Offset: 0,0
+
+
+unscbarracks:
+	Defaults:
+		Filename: unscbarracks.shp
+		Offset: 0,-12
+	idle:
+		Start: 0
+		Length: *
+		Tick: 120
+	damaged-idle:
+		Start: 0
+		Length: *
+		Tick: 120
+	make:
+		Filename: unscbarracksmake.shp
+		Tick: 40
+		Length: *
+	bib:
+		Filename: bib2.tem
+		TilesetFilenames:
+			SNOW: bib2.sno
+			DESERT: bib2.des
+		Length: *
+	icon:
+		Filename: unscbarracksicon.shp
+		Offset: 0,0
+
+unscgarage:
+	Defaults:
+		Filename: unscgarage.shp
+		Offset: 0,-12
+	idle:
+		Start: 0
+	damaged-idle:
+		Start: 0
+	make:
+		Filename: unscgaragemake.shp
+		Tick: 40
+		Length: *
+	bib:
+		Filename: bib2.tem
+		TilesetFilenames:
+			SNOW: bib2.sno
+			DESERT: bib2.des
+		Length: *
+	icon:
+		Filename: unscgarageicon.shp
+		Offset: 0,0
+
+unscsupplypad:
+	Defaults:
+		Filename: unscsupplypad.shp
+		Offset: 0,-12
+	idle:
+		Start: 0
+	damaged-idle:
+		Start: 0
+	make:
+		Filename: unscsupplypadmake.shp
+		Tick: 40
+		Length: *
+	bib:
+		Filename: bib2.tem
+		TilesetFilenames:
+			SNOW: bib2.sno
+			DESERT: bib2.des
+		Length: *
+	icon:
+		Filename: unscsupplypadicon.shp
+		Offset: 0,0
+
+unscairpad:
+	Defaults:
+		Filename: unscairpad.shp
+		Offset: 0,-12
+	idle:
+		Start: 0
+	damaged-idle:
+		Start: 0
+	make:
+		Filename: unscairpadmake.shp
+		Tick: 40
+		Length: *
+	bib:
+		Filename: bib2.tem
+		TilesetFilenames:
+			SNOW: bib2.sno
+			DESERT: bib2.des
+		Length: *
+	icon:
+		Filename: unscairpadicon.shp
+		Offset: 0,0
+
+unscarmory:
+	Defaults:
+		Filename: unscarmory.shp
+		Offset: 0,-12
+	idle:
+		Start: 0
+	damaged-idle:
+		Start: 0
+	make:
+		Filename: unscarmorymake.shp
+		Tick: 40
+		Length: *
+	bib:
+		Filename: bib2.tem
+		TilesetFilenames:
+			SNOW: bib2.sno
+			DESERT: bib2.des
+		Length: *
+	icon:
+		Filename: unscarmoryicon.shp
+		Offset: 0,0
+
+unscrepairpad:
+	Defaults:
+		Filename: unscrepairpad.shp
+		Offset: 0,-12
+	idle:
+		Start: 0
+	damaged-idle:
+		Start: 0
+	make:
+		Filename: unscrepairpadmake.shp
+		Tick: 40
+		Length: *
+	bib:
+		Filename: bib2.tem
+		TilesetFilenames:
+			SNOW: bib2.sno
+			DESERT: bib2.des
+		Length: *
+	icon:
+		Filename: unscrepairpadicon.shp
+		Offset: 0,0
+
+unscradartower:
+	Defaults:
+		Filename: unscradartower.shp
+		Offset: 0,-12
+	idle:
+		Start: 0
+	damaged-idle:
+		Start: 0
+	make:
+		Filename: unscradartowermake.shp
+		Tick: 40
+		Length: *
+	bib:
+		Filename: bib2.tem
+		TilesetFilenames:
+			SNOW: bib2.sno
+			DESERT: bib2.des
+		Length: *
+	icon:
+		Filename: unscradartowericon.shp
+		Offset: 0,0
+
+unsccommandcenter:
+	Defaults:
+		Filename: unsccommand.shp
+		Offset: 0,0
+	idle:
+		Start: 0
+	damaged-idle:
+		Start: 0
+	make:
+		Start: 0
+	bib:
+		Filename: bib1.tem
+		TilesetFilenames:
+			SNOW: bib1.sno
+			DESERT: bib1.des
+		Length: *
+	icon:
+		Filename: unscradartowericon.shp
+		Offset: 0,0
+
+unscmac:
+	Defaults:
+		Filename: unscmac.shp
+		Offset: 0,-12
+	idle:
+		Start: 0
+	damaged-idle:
+		Start: 0
+	make:
+		Filename: unscmacmake.shp
+		Tick: 40
+		Length: *
+	power:
+		Filename: invis.shp
+	active:
+		Filename: invis.shp
+	damaged-active:
+		Filename: invis.shp
+	bib:
+		Filename: bib2.tem
+		TilesetFilenames:
+			SNOW: bib2.sno
+			DESERT: bib2.des
+		Length: *
+	icon:
+		Filename: unscmacbuildingicon.shp
+		Offset: 0,0
+
+unscpod:
+	Defaults:
+		Filename: unscpod.shp
+		Offset: 0,-12
+	idle:
+		Start: 0
+	damaged-idle:
+		Start: 0
+	make:
+		Start: 0
+	power:
+		Start: 0
+	active:
+		Start: 0
+	damaged-active:
+		Start: 0
+	bib:
+		TilesetFilenames:
+			SNOW: mbGUN.sno
+			INTERIOR: mbGUN.int
+			TEMPERAT: mbGUN.tem
+			DESERT: mbGUN.des
+		Length: *
+		Offset: -1,-1
+	icon:
+		Filename: unscpodicon.shp
+		Offset: 0,0
+
+unsctalos:
+	Defaults:
+		Filename: unscpodbase.shp
+		Offset: 0,-12
+	idle:
+		Start: 0
+	damaged-idle:
+		Start: 0
+	make:
+		Start: 0
+	power:
+		Start: 0
+	active:
+		Start: 0
+	damaged-active:
+		Start: 0
+	turret:
+		Filename: chinaturrets.shp
+		Start: 352
+		Facings: 32
+		UseClassicFacings: True
+	damaged-turret:
+		Filename: chinaturrets.shp
+		Start: 352
+		Facings: 32
+		UseClassicFacings: True
+	muzzle:
+		Filename: minigun.shp
+		Length: 6
+		Facings: 8
+		Tick: 10
+	bib:
+		TilesetFilenames:
+			SNOW: mbGUN.sno
+			INTERIOR: mbGUN.int
+			TEMPERAT: mbGUN.tem
+			DESERT: mbGUN.des
+		Length: *
+		Offset: -1,-1
+	icon:
+		Filename: unsctalosicon.shp
+		Offset: 0,0
+
+unscsiege:
+	Defaults:
+		Filename: unscpodbase.shp
+		Offset: 0,-12
+	idle:
+		Start: 0
+	damaged-idle:
+		Start: 0
+	make:
+		Start: 0
+	power:
+		Start: 0
+	active:
+		Start: 0
+	damaged-active:
+		Start: 0
+	turret:
+		Filename: unscscorpionturret.shp
+		Offset: 0,-24
+		Facings: 32
+		UseClassicFacings: True
+	damaged-turret:
+		Filename: unscscorpionturret.shp
+		Offset: 0,-24
+		Facings: 32
+		UseClassicFacings: True
+	muzzle:
+		Filename: gunfire2.shp
+		Length: 5
+	bib:
+		TilesetFilenames:
+			SNOW: mbGUN.sno
+			INTERIOR: mbGUN.int
+			TEMPERAT: mbGUN.tem
+			DESERT: mbGUN.des
+		Length: *
+		Offset: -1,-1
+	icon:
+		Filename: unscsiegeicon.shp
+		Offset: 0,0
+
+unscwatchtower:
+	Defaults:
+		Filename: unscwatchtower.shp
+		Offset: 0,-12
+	idle:
+		Start: 0
+	damaged-idle:
+		Start: 0
+	make:
+		Start: 0
+	power:
+		Start: 0
+	active:
+		Start: 0
+	damaged-active:
+		Start: 0
+	bib:
+		TilesetFilenames:
+			SNOW: mbGUN.sno
+			INTERIOR: mbGUN.int
+			TEMPERAT: mbGUN.tem
+			DESERT: mbGUN.des
+		Length: *
+		Offset: -1,-1
+	icon:
+		Filename: unscwatchtowericon.shp
+		Offset: 0,0
+
+unscanaconda:
+	Defaults:
+		Filename: unscpodbase.shp
+		Offset: 0,-12
+	idle:
+		Start: 0
+	damaged-idle:
+		Start: 0
+	make:
+		Start: 0
+	power:
+		Start: 0
+	active:
+		Start: 0
+	damaged-active:
+		Start: 0
+	turret:
+		Filename: unscanacondaturret.shp
+		Offset: 0,-24
+		Facings: 32
+		UseClassicFacings: True
+	damaged-turret:
+		Filename: unscanacondaturret.shp
+		Offset: 0,-24
+		Facings: 32
+		UseClassicFacings: True
+	muzzle:
+		Filename: gunfire2.shp
+		Length: 5
+	bib:
+		TilesetFilenames:
+			SNOW: mbGUN.sno
+			INTERIOR: mbGUN.int
+			TEMPERAT: mbGUN.tem
+			DESERT: mbGUN.des
+		Length: *
+		Offset: -1,-1
+	icon:
+		Filename: unscanacondaicon.shp
+		Offset: 0,0
+
+unscsilo:
+	Defaults:
+		Filename: unscsilo.shp
+		Offset: 0,-12
+	idle:
+		Start: 0
+	damaged-idle:
+		Start: 0
+	make:
+		Filename: unscsilomake.shp
+		Tick: 40
+		Length: *
+	bib:
+		Filename: bib2.tem
+		TilesetFilenames:
+			SNOW: bib2.sno
+			DESERT: bib2.des
+		Length: *
+	icon:
+		Filename: unscsiloicon.shp
+		Offset: 0,0
+
+unscadvtech:
+	Defaults:
+		Filename: unscadvtech.shp
+		Offset: 0,-12
+	idle:
+		Start: 0
+	damaged-idle:
+		Start: 0
+	make:
+		Filename: unscadvtechmake.shp
+		Tick: 40
+		Length: *
+	bib:
+		Filename: bib2.tem
+		TilesetFilenames:
+			SNOW: bib2.sno
+			DESERT: bib2.des
+		Length: *
+	icon:
+		Filename: unscadvtechicon.shp
+		Offset: 0,0
+
+unsculttechcenter:
+	Defaults:
+		Filename: unsculttechcenter.shp
+		Offset: 0,-12
+	idle:
+		Start: 0
+	damaged-idle:
+		Start: 0
+	make:
+		Filename: unsculttechcentermake.shp
+		Tick: 40
+		Length: *
+	bib:
+		Filename: bib2.tem
+		TilesetFilenames:
+			SNOW: bib2.sno
+			DESERT: bib2.des
+		Length: *
+	icon:
+		Filename: unsculttechcentericon.shp
+		Offset: 0,0
+
+unscfoundry:
+	Defaults:
+		Filename: unscfoundry.shp
+		Offset: 0,-12
+	idle:
+		Start: 0
+	damaged-idle:
+		Start: 0
+	make:
+		Filename: unscfoundrymake.shp
+		Tick: 40
+		Length: *
+	bib:
+		Filename: bib2.tem
+		TilesetFilenames:
+			SNOW: bib2.sno
+			DESERT: bib2.des
+		Length: *
+	icon:
+		Filename: unscfoundryicon.shp
+		Offset: 0,0
+
+covenantcitadel:
+	Inherits: ^ProtossFire
+	Defaults:
+		Filename: covenantcitadel.shp
+		Offset: 0,0
+	idle:
+		Start: 0
+	damaged-idle:
+		Start: 0
+	make:
+		Start: 0
+	bib:
+		Filename: bib1.tem
+		TilesetFilenames:
+			SNOW: bib1.sno
+			DESERT: bib1.des
+		Length: *
+	icon:
+		Filename: unscradartowericon.shp
+		Offset: 0,0
+
+covenantfoundation:
+	Inherits: ^ProtossFire
+	Defaults:
+		Filename: covenantfoundation.shp
+		Offset: 0,-12
+	idle:
+		Start: 0
+	damaged-idle:
+		Start: 0
+	make:
+		Start: 0
+	bib:
+		Filename: bib2.tem
+		TilesetFilenames:
+			SNOW: bib2.sno
+			DESERT: bib2.des
+		Length: *
+	icon:
+		Filename: covenantfoundationicon.shp
+		Offset: 0,0
+
+covenanthall:
+	Inherits: ^ProtossFire
+	Defaults:
+		Filename: covenanthall.shp
+		Offset: 0,-12
+	make:
+		Filename: covenanthall.shp
+		Tick: 40
+		Length: *
+	idle:
+		Start: 0
+	damaged-idle:
+		Start: 0
+	bib:
+		Filename: bib2.tem
+		TilesetFilenames:
+			SNOW: bib2.sno
+			DESERT: bib2.des
+		Length: *
+	icon:
+		Filename: covenanthallicon.shp
+		Offset: 0,0
+
+covenantwarehouse:
+	Inherits: ^ProtossFire
+	Defaults:
+		Filename: covenantwarehouse.shp
+		Offset: 0,-12
+	make:
+		Filename: covenantwarehouse.shp
+		Tick: 40
+		Length: *
+	idle:
+		Start: 0
+	damaged-idle:
+		Start: 0
+	bib:
+		Filename: bib2.tem
+		TilesetFilenames:
+			SNOW: bib2.sno
+			DESERT: bib2.des
+		Length: *
+	icon:
+		Filename: covenantwarehouseicon.shp
+		Offset: 0,0
+
+covenantfactory:
+	Inherits: ^ProtossFire
+	Defaults:
+		Filename: covenantfactory.shp
+		Offset: 0,-12
+	make:
+		Filename: covenantfactory.shp
+		Tick: 40
+		Length: *
+	idle:
+		Start: 0
+	damaged-idle:
+		Start: 0
+	bib:
+		Filename: bib2.tem
+		TilesetFilenames:
+			SNOW: bib2.sno
+			DESERT: bib2.des
+		Length: *
+	icon:
+		Filename: covenantfactoryicon.shp
+		Offset: 0,0
+
+covenantsummit:
+	Inherits: ^ProtossFire
+	Defaults:
+		Filename: covenantsummit.shp
+		Offset: 0,-12
+	make:
+		Filename: covenantsummit.shp
+		Tick: 40
+		Length: *
+	idle:
+		Start: 0
+	damaged-idle:
+		Start: 0
+	bib:
+		Filename: bib2.tem
+		TilesetFilenames:
+			SNOW: bib2.sno
+			DESERT: bib2.des
+		Length: *
+	icon:
+		Filename: covenantsummiticon.shp
+		Offset: 0,0
+
+covenanttemple:
+	Inherits: ^ProtossFire
+	Defaults:
+		Filename: covenanttemple.shp
+		Offset: 0,-12
+	make:
+		Filename: covenanttemple.shp
+		Tick: 40
+		Length: *
+	idle:
+		Start: 0
+	damaged-idle:
+		Start: 0
+	bib:
+		Filename: bib2.tem
+		TilesetFilenames:
+			SNOW: bib2.sno
+			DESERT: bib2.des
+		Length: *
+	icon:
+		Filename: covenanttempleicon.shp
+		Offset: 0,0
+
+covenanttheeye:
+	Inherits: ^ProtossFire
+	Defaults:
+		Filename: covenantfoundation.shp
+		Offset: 0,-12
+	eye:
+		Filename: covenanttheeye.shp
+		Frames: 0,1,2,3,2,1
+		Tick: 120
+		Length: *
+		Offset: 0,-12
+	make:
+		Filename: covenantfoundation.shp
+		Tick: 40
+		Length: *
+	idle:
+		Start: 0
+	damaged-idle:
+		Start: 0
+	bib:
+		Filename: bib2.tem
+		TilesetFilenames:
+			SNOW: bib2.sno
+			DESERT: bib2.des
+		Length: *
+	icon:
+		Filename: covenanttheeyeicon.shp
+		Offset: 0,0
+
+covenantrepairpad:
+	Inherits: ^ProtossFire
+	Defaults:
+		Filename: covenantrepairpad.shp
+		Offset: 0,-12
+	make:
+		Filename: covenantrepairpad.shp
+		Tick: 40
+		Length: *
+	idle:
+		Start: 0
+	damaged-idle:
+		Start: 0
+	bib:
+		Filename: bib2.tem
+		TilesetFilenames:
+			SNOW: bib2.sno
+			DESERT: bib2.des
+		Length: *
+	icon:
+		Filename: covenantrepairpadicon.shp
+		Offset: 0,0
+
+covenantprojector:
+	Inherits: ^ProtossFire
+	Defaults:
+		Filename: covenantprojector.shp
+		Offset: 0,-12
+	idle:
+		Start: 0
+	damaged-idle:
+		Start: 0
+	make:
+		Filename: covenantprojector.shp
+		Tick: 40
+		Length: *
+	power:
+		Filename: invis.shp
+	active:
+		Filename: invis.shp
+	damaged-active:
+		Filename: invis.shp
+	bib:
+		Filename: bib2.tem
+		TilesetFilenames:
+			SNOW: bib2.sno
+			DESERT: bib2.des
+		Length: *
+	icon:
+		Filename: covenantprojectoricon.shp
+		Offset: 0,0
+
+covenantsilo:
+	Inherits: ^ProtossFire
+	Defaults:
+		Filename: covenantsilo.shp
+		Offset: 0,-12
+	make:
+		Filename: covenantsilo.shp
+		Tick: 40
+		Length: *
+	idle:
+		Start: 0
+	damaged-idle:
+		Start: 0
+	bib:
+		Filename: bib2.tem
+		TilesetFilenames:
+			SNOW: bib2.sno
+			DESERT: bib2.des
+		Length: *
+	icon:
+		Filename: covenantsiloicon.shp
+		Offset: 0,0
+
+covenantadvtech:
+	Inherits: ^ProtossFire
+	Defaults:
+		Filename: covenantadvtech.shp
+		Offset: 0,-12
+	make:
+		Filename: covenantadvtech.shp
+		Tick: 40
+		Length: *
+	idle:
+		Start: 0
+	damaged-idle:
+		Start: 0
+	bib:
+		Filename: bib2.tem
+		TilesetFilenames:
+			SNOW: bib2.sno
+			DESERT: bib2.des
+		Length: *
+	icon:
+		Filename: covenantadvtechicon.shp
+		Offset: 0,0
+
+covenantulttech:
+	Inherits: ^ProtossFire
+	Defaults:
+		Filename: covenantulttech.shp
+		Offset: 0,-12
+	make:
+		Filename: covenantulttech.shp
+		Tick: 40
+		Length: *
+	idle:
+		Start: 0
+	damaged-idle:
+		Start: 0
+	bib:
+		Filename: bib2.tem
+		TilesetFilenames:
+			SNOW: bib2.sno
+			DESERT: bib2.des
+		Length: *
+	icon:
+		Filename: covenantulttechicon.shp
+		Offset: 0,0
+
+covenantfoundry:
+	Inherits: ^ProtossFire
+	Defaults:
+		Filename: covenantfoundry.shp
+		Offset: 0,-12
+	make:
+		Filename: covenantfoundry.shp
+		Tick: 40
+		Length: *
+	idle:
+		Start: 0
+	damaged-idle:
+		Start: 0
+	bib:
+		Filename: bib2.tem
+		TilesetFilenames:
+			SNOW: bib2.sno
+			DESERT: bib2.des
+		Length: *
+	icon:
+		Filename: covenantfoundryicon.shp
+		Offset: 0,0
+
+covenantshieldgenerator:
+	Inherits: ^ProtossFire
+	Defaults:
+		Filename: covenantshieldgenerator.shp
+		Offset: 0,-12
+	make:
+		Filename: covenantshieldgenerator.shp
+		Tick: 40
+		Length: *
+	idle:
+		Start: 0
+	damaged-idle:
+		Start: 0
+	turret:
+		Filename: invis.shp
+	bib:
+		Filename: bib2.tem
+		TilesetFilenames:
+			SNOW: bib2.sno
+			DESERT: bib2.des
+		Length: *
+	icon:
+		Filename: covenantshieldgeneratoricon.shp
+		Offset: 0,0
+
+covenantmegaturret:
+	Inherits: ^ProtossFire
+	Defaults:
+		Filename: covenantmegaturret.shp
+		Offset: 0,-12
+	idle:
+		Start: 0
+	damaged-idle:
+		Start: 0
+	make:
+		Start: 0
+	power:
+		Start: 0
+	active:
+		Start: 0
+	damaged-active:
+		Start: 0
+	turret:
+		Filename: covenantmegaturretturret.shp
+		Offset: 0,-12
+		Facings: 32
+		UseClassicFacings: True
+		Scale: 2.0
+	damaged-turret:
+		Filename: covenantmegaturretturret.shp
+		Offset: 0,-12
+		Facings: 32
+		UseClassicFacings: True
+		Scale: 2.0
+	muzzle:
+		Filename: gunfire2.shp
+		Length: 5
+	bib:
+		Filename: bib2.tem
+		TilesetFilenames:
+			SNOW: bib2.sno
+			DESERT: bib2.des
+		Length: *
+	icon:
+		Filename: covenantmegaturreticon.shp
+		Offset: 0,0
+
+covenantshade:
+	Inherits: ^ProtossFire
+	Defaults:
+		Filename: invis.shp
+		Offset: 0,-12
+	idle:
+		Start: 0
+	damaged-idle:
+		Start: 0
+	make:
+		Start: 0
+	power:
+		Start: 0
+	active:
+		Start: 0
+	damaged-active:
+		Start: 0
+	turret:
+		Filename: covenantshade.shp
+		Facings: 32
+		UseClassicFacings: True
+	damaged-turret:
+		Filename: covenantshade.shp
+		Facings: 32
+		UseClassicFacings: True
+	muzzle:
+		Filename: minigun.shp
+		Length: 6
+		Facings: 8
+		Tick: 10
+	bib:
+		TilesetFilenames:
+			SNOW: mbGUN.sno
+			INTERIOR: mbGUN.int
+			TEMPERAT: mbGUN.tem
+			DESERT: mbGUN.des
+		Length: *
+		Offset: -1,-1
+	icon:
+		Filename: covenantshadeicon.shp
+		Offset: 0,0
+
+covenantweevil:
+	Inherits: ^ProtossFire
+	Defaults:
+		Filename: covenantweevil.shp
+		Offset: 0,-12
+	idle:
+		Start: 0
+	damaged-idle:
+		Start: 0
+	make:
+		Start: 0
+	power:
+		Start: 0
+	active:
+		Start: 0
+	damaged-active:
+		Start: 0
+	turret:
+		Filename: covenantweevilturret.shp
+		Facings: 32
+		UseClassicFacings: True
+	damaged-turret:
+		Filename: covenantweevilturret.shp
+		Facings: 32
+		UseClassicFacings: True
+	muzzle:
+		Filename: minigun.shp
+		Length: 6
+		Facings: 8
+		Tick: 10
+	bib:
+		TilesetFilenames:
+			SNOW: mbGUN.sno
+			INTERIOR: mbGUN.int
+			TEMPERAT: mbGUN.tem
+			DESERT: mbGUN.des
+		Length: *
+		Offset: -1,-1
+	icon:
+		Filename: covenantweevilicon.shp
+		Offset: 0,0

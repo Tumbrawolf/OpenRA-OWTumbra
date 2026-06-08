@@ -43,9 +43,9 @@ strifeguy.tier2.acolyte:
 strifeguy.tier2.targeter:
 	Inherits: ^HeroUpgradeBaseTier2
 	Tooltip:
-		Name: actor-strifeguy-tier2-marker.name
+		Name: actor-strifeguy-tier2-targeter.name
 	Buildable:
-		Description: actor-strifeguy-tier2-marker.description
+		Description: actor-strifeguy-tier2-targeter.description
 		Prerequisites: ~active.strifeguy
 		Icon: strifeguytargetericon
 	RenderSprites:
@@ -160,10 +160,9 @@ strifeguy.Hero0:
 	RenderSprites:
 		Image: strifeguy
 	Buildable:
-		Queue: Infantry
-		BuildAtProductionType: Soldier
+		Queue: Infantry, Hero
 		BuildPaletteOrder: 50
-		Prerequisites: ~barracks, ~techlevel.unrestricted, !active.strifeguy, ~!hero.tier1, ~hero.strifeguy
+		Prerequisites: ~barracks, !active.strifeguy, ~!hero.tier1, ~hero.strifeguy
 		Description: actor-strifeguy-hero0.description
 		BuildDurationModifier: 100
 		BuildDuration: 750
@@ -242,8 +241,9 @@ strifeguy.Hero0:
 	ChangesHealth@default:
 		PercentageStep: 1
 		Delay: 75
-		StartIfBelow: 101
+		StartIfBelow: 100
 		DamageCooldown: 75
+		DamageTypes: BypassShield
 	GrantConditionOnPrerequisite@targeter:
 		Condition: targeterupgrade
 		Prerequisites: strifeguy.tier2.targeter
@@ -257,7 +257,7 @@ strifeguy.Hero1:
 	Inherits: strifeguy.Hero0
 	Inherits@heroTier: ^HeroTier1
 	Buildable:
-		Prerequisites: ~barracks, ~techlevel.unrestricted, !active.strifeguy, ~!hero.tier2, ~hero.tier1, ~hero.strifeguy
+		Prerequisites: ~barracks, !active.strifeguy, ~!hero.tier2, ~hero.tier1, ~hero.strifeguy
 		BuildDuration: 1500
 	Tooltip:
 		Name: actor-strifeguy-hero1-name
@@ -279,7 +279,7 @@ strifeguy.Hero2:
 	Inherits: strifeguy.Hero1
 	Inherits@heroTier: ^HeroTier2
 	Buildable:
-		Prerequisites: ~barracks, ~techlevel.unrestricted, !active.strifeguy, ~!hero.tier3, ~hero.tier2, ~hero.strifeguy
+		Prerequisites: ~barracks, !active.strifeguy, ~!hero.tier3, ~hero.tier2, ~hero.strifeguy
 	Tooltip:
 		Name: actor-strifeguy-hero2-name
 	Health:
@@ -305,16 +305,16 @@ strifeguy.Hero2:
 		IsCyclic: false
 	InaccuracyMultiplier@disrupter6:
 		RequiresCondition: fullauto >= 3
-		Modifier: 600
+		Modifier: 400
 	InaccuracyMultiplier@disrupter7:
 		RequiresCondition: fullauto >= 9
-		Modifier: 200
+		Modifier: 150
 
 strifeguy.Hero3:
 	Inherits: strifeguy.Hero2
 	Inherits@heroTier: ^HeroTier3
 	Buildable:
-		Prerequisites: ~barracks, ~techlevel.unrestricted, !active.strifeguy, ~!hero.tier4, ~hero.tier3, ~hero.strifeguy
+		Prerequisites: ~barracks, !active.strifeguy, ~!hero.tier4, ~hero.tier3, ~hero.strifeguy
 	Tooltip:
 		Name: actor-strifeguy-hero3-name
 	Health:
@@ -346,10 +346,10 @@ strifeguy.Hero3:
 		IsCyclic: false
 	InaccuracyMultiplier@disrupter6:
 		RequiresCondition: fullauto >= 3
-		Modifier: 600
+		Modifier: 300
 	InaccuracyMultiplier@disrupter7:
 		RequiresCondition: fullauto >= 9
-		Modifier: 200
+		Modifier: 125
 	GrantConditionOnPrerequisite@phosphorous:
 		Condition: phosphorousupgrade
 		Prerequisites: strifeguy.tier3.phosphorous
@@ -358,7 +358,7 @@ strifeguy.Hero4:
 	Inherits: strifeguy.Hero3
 	Inherits@heroTier: ^HeroTier4
 	Buildable:
-		Prerequisites: ~barracks, ~techlevel.unrestricted, !active.strifeguy, ~!hero.tier5, ~hero.tier4, ~hero.strifeguy
+		Prerequisites: ~barracks, !active.strifeguy, ~!hero.tier5, ~hero.tier4, ~hero.strifeguy
 		BuildDuration: 3000
 	Tooltip:
 		Name: actor-strifeguy-hero4-name
@@ -391,10 +391,10 @@ strifeguy.Hero4:
 		IsCyclic: false
 	InaccuracyMultiplier@disrupter6:
 		RequiresCondition: fullauto >= 3
-		Modifier: 600
+		Modifier: 250
 	InaccuracyMultiplier@disrupter7:
 		RequiresCondition: fullauto >= 9
-		Modifier: 200
+		Modifier: 125
 	GrantConditionOnPrerequisite@phosphorous:
 		Condition: phosphorousupgrade
 		Prerequisites: strifeguy.tier3.phosphorous
@@ -404,14 +404,14 @@ strifeguy.Hero4:
 		Prerequisites: strifeguy.tier4.reinforcements
 		Icon: strifereinforcementsicon
 		Cursor: chrono-target
-		ChargeInterval: 4500
+		ChargeInterval: 3000
 		Name: Reinforcements
 		Description: Teleports units from The Front to fight along side Strife Guy.
 		SelectTargetSpeechNotification: SelectTarget
 		InsufficientPowerSpeechNotification: InsufficientPower
 		DisplayRadarPing: True
-		CameraActor: camera.spyplane
-		SupportPowerPaletteOrder: 20
+		CameraActor: camera
+		SupportPowerPaletteOrder: 19
 		WeaponDelay: 0
 		CameraRemoveDelay: 450
 		IncomingSound: DSTELEPT.wav
@@ -421,8 +421,8 @@ strifeguy.Hero5:
 	Inherits: strifeguy.Hero4
 	Inherits@heroTier: ^HeroTier5
 	Buildable:
-		Prerequisites: ~barracks, ~techlevel.unrestricted, !active.strifeguy, ~hero.tier5, ~hero.strifeguy
-		BuildDuration: 6000
+		Prerequisites: ~barracks, !active.strifeguy, ~hero.tier5, ~hero.strifeguy
+		BuildDuration: 4500
 	Tooltip:
 		Name: actor-strifeguy-hero5-name
 	Health:
@@ -445,7 +445,7 @@ strifeguy.Hero5:
 		Weapon: strifeguymgauto
 	Armament@BUS:
 		Weapon: strifeguymgauto
-	GrantConditionOnPrerequisite@targeter:
+	GrantConditionOnPrerequisite@sigil:
 		Condition: sigil
 		Prerequisites: strifeguy.tier5.sigil
 	GrantRandomPeriodicCondition@sigil:
@@ -502,10 +502,11 @@ strifeguytemplar:
 		Queue: Infantry
 		BuildPaletteOrder: 997
 		Prerequisites: ~strifeguy.tier3.templar
+		Description: actor-strifeguytemplar.description
 	Valued:
 		Cost: 1000
 	Tooltip:
-		Name: actor-strifetemplar-name
+		Name: actor-strifeguytemplar.name
 	Health:
 		HP: 50000
 	Armor:
@@ -545,10 +546,11 @@ strifeguycrusader:
 		Queue: Vehicle
 		BuildPaletteOrder: 998
 		Prerequisites: ~strifeguy.tier4.crusader
+		Description: actor-strifeguycrusader.description
 	Valued:
-		Cost: 1600
+		Cost: 1500
 	Tooltip:
-		Name: actor-strifeguycrusader-name
+		Name: actor-strifeguycrusader.name
 	Health:
 		HP: 70000
 	UpdatesPlayerStatistics:
@@ -702,10 +704,11 @@ strifeguyinquisitor:
 		Queue: Vehicle
 		BuildPaletteOrder: 999
 		Prerequisites: ~strifeguy.tier5.inquisitor
+		Description: actor-strifeguyinquisitor.description
 	Valued:
-		Cost: 3000
+		Cost: 2500
 	Tooltip:
-		Name: actor-strifeguyinquisitor-name
+		Name: actor-strifeguyinquisitor.name
 	Health:
 		HP: 120000
 	UpdatesPlayerStatistics:

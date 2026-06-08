@@ -70,13 +70,20 @@ CRATE:
 		NoBaseSelectionShares: 1000
 		Units: avmcv
 	DuplicateUnitCrateAction:
-		SelectionShares: 15
+		SelectionShares: 10
 		MaxAmount: 10
 		MaxDuplicateValue: 6000
 		Sound: clonesnd.aud
-		RequiresCondition: !hero
+		RequiresCondition: !hero && !harvester
+	DuplicateUnitCrateAction@harv:
+		SelectionShares: 10
+		MaxAmount: 4
+		Sound: clonesnd.aud
+		RequiresCondition: !hero && harvester
 	ExternalCondition@hero:
 		Condition: hero
+	ExternalCondition@harvester:
+		Condition: harvester
 	GiveUnitCrateAction@split:
 		SelectionShares: 2
 		Units: 1tnk.split3
@@ -146,11 +153,11 @@ CRATE:
 		Prerequisites: techlevel.medium, radar, vehicles.artyprereq
 	GiveRandomActorCrateAction@1:
 		SelectionShares: 5
-		Prerequisites: techcenter
+		Prerequisites: barracks
 		Type: soldier
 	GiveRandomActorCrateAction@2:
 		SelectionShares: 5
-		Prerequisites: techcenter
+		Prerequisites: factory
 		Type: vehicle
 	GiveRandomActorCrateAction@3:
 		SelectionShares: 1
@@ -199,33 +206,41 @@ CRATE:
 		SelectionShares: 2
 		Units: dukenukem
 		Sound: dukenukembuild5.aud
+		Prerequisites: techlevel.medium
 	GiveUnitCrateAction@judgedredd:
 		SelectionShares: 2
 		Units: judgedredd
 		Sound: dredd1.aud
+		Prerequisites: techlevel.medium
 	GiveUnitCrateAction@corvus:
 		SelectionShares: 2
 		Units: hereticcorvus
 		Sound: WPNUP.wav
+		Prerequisites: techlevel.medium
 	GiveUnitCrateAction@hartman:
 		SelectionShares: 2
 		Units: hartman
 		Sound: hartmanrdy1.aud
+		Prerequisites: techlevel.medium, !environment.nomemes
 	GiveUnitCrateAction@terminator:
 		SelectionShares: 2
 		TimeDelay: 6000
 		Units: terminator
 		Sound: arniekil2.aud
+		Prerequisites: techlevel.medium, !environment.nomemes
 	GiveUnitCrateAction@hunterkiller:
-		SelectionShares: 6
+		SelectionShares: 4
 		Units: 1tnk.hunter
-	GiveUnitCrateAction@bitconnect:
+	GiveUnitCrateAction@hunterkillercrate:
 		SelectionShares: 2
+		Units: 1tnk.huntercrate
+	GiveUnitCrateAction@bitconnect:
+		SelectionShares: 1
 		Units: 1tnk.bitconnect
 		Sound: bitconnect.aud
 	GiveUnitCrateAction@civvies:
 		SelectionShares: 3
-		Units: c1,c2,c3,c4,c5,c6,c7,c8,c9,c10,c1,c2,c3,c4,c5,c10,1tnk.cpanic
+		Units: 1tnk.cpanic,c1,c2,c3,c4,c5,c6,c7,c8,c9,c10,c1,c2,c3,c4,c5,c10
 		Owner: Neutral
 		Sound: iangsela.aud
 	RevealMapCrateAction:
@@ -246,16 +261,31 @@ CRATE:
 		Sound: roadrollerpickup.wav
 		Sequence: armor
 		SelectionShares: 2
+		Prerequisites: !environment.nomemes
 	SupportPowerCrateAction@lightning:
 		Proxy: powerproxy.lightning
 		Sound: thunder-ambient.aud
+		Sequence: speed
+		SelectionShares: 2
+	SupportPowerCrateAction@ioncannon:
+		Proxy: powerproxy.ioncannon
+		Sound: ionchrg1.aud
+		Sequence: speed
+		SelectionShares: 2
+	SupportPowerCrateAction@iondrop:
+		Proxy: powerproxy.iondrop
+		Sound: ionchrg1.aud
+		Sequence: speed
+		SelectionShares: 2
+	SupportPowerCrateAction@emp:
+		Proxy: powerproxy.emp
 		Sequence: speed
 		SelectionShares: 2
 	SupportPowerCrateAction@acolytestrike:
 		Proxy: powerproxy.acolytestrike
 		Sound: DSRADIO.wav
 		Sequence: fpower
-		SelectionShares: 6
+		SelectionShares: 4
 	SupportPowerCrateAction@metalnuke:
 		Proxy: powerproxy.metalnuke
 		Sound: DSRADIO.wav
@@ -271,6 +301,7 @@ CRATE:
 		Sound: johnaeiou.aud
 		Sequence: timequake
 		SelectionShares: 3
+		Prerequisites: !environment.nomemes
 	SupportPowerCrateAction@emergencyairdrop:
 		Proxy: powerproxy.emergencyairdrop
 		Sound: dsitemup.aud
@@ -285,11 +316,52 @@ CRATE:
 		SelectionShares: 2
 		Units: korone
 		Sound: koronetaunt4.wav
+		Prerequisites: !environment.nomemes
 	GiveUnitCrateAction@gamecube:
 		SelectionShares: 2
 		Units: gamecube
 		Sound: gamecube.wav
-		Prerequisites: !gamecube.bugged
+		Prerequisites: !gamecube.bugged, !environment.nomemes
+	GiveUnitCrateAction@firesale:
+		SelectionShares: 4
+		Units: 1tnk.firesale
+		Sequence: dollar
+	GiveUnitCrateAction@glasalvage:
+		SelectionShares: 6
+		Units: crate.gla, crate.gla, crate.gla, crate.gla, crate.gla, crate.gla
+		Prerequisites: structures.gla
+	SupportPowerCrateAction@holyhandgrenade:
+		Proxy: powerproxy.holyhandgrenade
+		Sound: holyhandgrenadetrigger.wav
+		Sequence: speed
+		SelectionShares: 2
+		Prerequisites: !environment.nomemes
+	SupportPowerCrateAction@bananabomb:
+		Proxy: powerproxy.bananabomb
+		Sound: bananaimpact.wav
+		Sequence: speed
+		SelectionShares: 2
+		Prerequisites: !environment.nomemes
+	SupportPowerCrateAction@morshubombs:
+		Proxy: powerproxy.morshubombs
+		Sound: morshubombs.ogg
+		Image: explosion
+		Sequence: morshubombs
+		SelectionShares: 2
+	SupportPowerCrateAction@Chromoshift:
+		Proxy: powerproxy.Chromoshift
+		Sound: ironcur9.aud
+		Sequence: speed
+		SelectionShares: 2
+	SupportPowerCrateAction@Chronoshifty:
+		Proxy: powerproxy.Chronoshifty
+		Sound: ironcur9.aud
+		SelectionShares: 3
+	SupportPowerCrateAction@starfox:
+		Proxy: powerproxy.starfox
+		Sound: starfoxpickup.aud
+		Sequence: speed
+		SelectionShares: 2
 	Crate:
 		Duration: 6000
 
@@ -322,12 +394,25 @@ CRATE.GLA:
 	Inherits: MONEYCRATE
 	Tooltip:
 		Name: actor-crate-gla
+	Crate:
+		Duration: 1500
+		CrushClass: salvage
 	GiveCashCrateAction:
-		Amount: 200
+		Amount: 100
 		SelectionShares: 1
 		UseCashTick: true
+	ExternalCondition@gla:
+		Condition: salvage_upgrade
 	LevelUpCrateAction:
-		SelectionShares: 1
+		SelectionShares: 1000
+		RequiresCondition: salvage_upgrade
+	RenderSprites:
+		Palette: player
+		Image: ammobox3
+	WithCrateBody:
+		XmasImages: idle
+		LandSequence: idle
+		WaterSequence: idle
 
 MONEYCRATESUPPLYDROP:
 	Inherits: ^Crate
@@ -358,7 +443,7 @@ CRATE.FuckYou:
 	GiveUnitCrateAction@supertank:
 		SelectionShares: 2
 		Units: u.tnkcrate
-		Prerequisites: techlevel.unrestricted
+		Prerequisites: techlevel.unrestricted, factory
 		TimeDelay: 6000
 		Owner: Creeps
 	GiveUnitCrateAction@vice:
@@ -421,24 +506,28 @@ CRATE.FuckYou:
 		Units: dukenukem
 		Sound: dukenukembuild5.aud
 		Owner: Creeps
+		Prerequisites: techlevel.medium
 	GiveUnitCrateAction@hartman:
 		SelectionShares: 3
 		TimeDelay: 6000
 		Units: hartman
 		Sound: hartmanrdy1.aud
 		Owner: Creeps
+		Prerequisites: techlevel.medium, !environment.nomemes
 	GiveUnitCrateAction@judgedredd:
 		SelectionShares: 3
 		TimeDelay: 6000
 		Units: judgedredd
 		Sound: dredd1.aud
 		Owner: Creeps
+		Prerequisites: techlevel.medium
 	GiveUnitCrateAction@corvus:
 		SelectionShares: 3
 		TimeDelay: 6000
 		Units: hereticcorvus
 		Sound: WPNUP.wav
 		Owner: Creeps
+		Prerequisites: techlevel.medium
 	GiveUnitCrateAction@wall:
 		SelectionShares: 8
 		Units: 1tnk.brik,1tnk.brik,1tnk.brik,1tnk.brik,1tnk.brik,1tnk.brik,1tnk.brik,1tnk.brik,1tnk.brik,1tnk.brik
@@ -448,6 +537,7 @@ CRATE.FuckYou:
 		TimeDelay: 6000
 		Units: fakecrate
 		Owner: Creeps
+		Prerequisites: advtechcenter
 	GiveUnitCrateAction@oblid:
 		SelectionShares: 5
 		Units: 1tnk.oblid
@@ -458,39 +548,53 @@ CRATE.FuckYou:
 		Units: johnmadden
 		Sound: johnmadden.aud
 		Owner: Creeps
+		Prerequisites: techlevel.medium
 	GiveUnitCrateAction@terminator:
 		SelectionShares: 3
 		TimeDelay: 6000
 		Units: terminator
 		Sound: arniekil2.aud
 		Owner: Creeps
+		Prerequisites: techlevel.medium, !environment.nomemes
 	GiveUnitCrateAction@quake:
 		SelectionShares: 4
 		Units: 1tnk.earthquake
 		Owner: Creeps
+		Prerequisites: !environment.nomemes
 	GiveUnitCrateAction@thx:
 		SelectionShares: 3
 		Units: 1tnk.earthquake.thx
 		Owner: Creeps
+		Prerequisites: factory, !environment.nomemes
 	ExplodeCrateAction@redeemernuke:
 		Weapon: Redeemernuke
 		SelectionShares: 6
 	ExplodeCrateAction@nukedrop:
 		Weapon: TerranCrateNukeDrop
 		SelectionShares: 6
+	ExplodeCrateAction@fartbomb:
+		Weapon: FartExplosion
+		SelectionShares: 6
+		Prerequisites: !environment.nomemes
+	ExplodeCrateAction@tyler:
+		Weapon: DisappearExplosion
+		SelectionShares: 3
 	ExplodeCrateAction@superweapons:
 		Weapon: ExplodeSuperweapons
 		TimeDelay: 6000
 		SelectionShares: 1
+		Prerequisites: superweapon
 	GiveUnitCrateAction@amogus:
 		SelectionShares: 2
 		TimeDelay: 6000
 		Units: amogus,amogus2,amogus3,amogus4,amogus5,amogus2,amogus3,amogus4,amogus5,amogus2,amogus3,amogus4,amogus5,amogus,amogus2,amogus3,amogus4,amogus5,amogus2,amogus3,amogus4,amogus5,amogus2,amogus3,amogus4,amogus5
 		Sound: amogusspawn.aud
 		Owner: Creeps
+		Prerequisites: !environment.nomemes
 	ExplodeCrateAction@bsod:
 		Weapon: BSODnuke
 		SelectionShares: 5
+		Prerequisites: !environment.nomemes
 	ExplodeCrateAction@ChinaCrateNuke:
 		Weapon: ChinaCrateNuke
 		SelectionShares: 5
@@ -499,6 +603,7 @@ CRATE.FuckYou:
 		Units: johncena
 		Sound: bingchilling.wav
 		Owner: Creeps
+		Prerequisites: !environment.nomemes
 	GiveUnitCrateAction@angrydoom:
 		SelectionShares: 5
 		Units: dm7,dm7
@@ -507,13 +612,13 @@ CRATE.FuckYou:
 	GiveRandomActorCrateAction@1:
 		SelectionShares: 7
 		TimeDelay: 6000
-		Prerequisites: techcenter
+		Prerequisites: barracks
 		Type: soldier
 		Owner: Creeps
 	GiveRandomActorCrateAction@2:
-		SelectionShares: 6
+		SelectionShares: 5
 		TimeDelay: 6000
-		Prerequisites: techcenter
+		Prerequisites: factory
 		Type: vehicle
 		Owner: Creeps
 	GiveRandomActorCrateAction@3:
@@ -521,19 +626,19 @@ CRATE.FuckYou:
 		TimeDelay: 6000
 		Type: epic
 		Owner: Creeps
-	GiveUnitCrateAction@berserker:
-		SelectionShares: 4
-		Units: dm7
-		Owner: Creeps
+		Prerequisites: techlevel.medium
 	GiveUnitCrateAction@jarofdirt:
-		SelectionShares: 3
+		SelectionShares: 2
 		Units: jarofdirt
 		Sound: jardirt.ogg
 		Owner: Creeps
+		TimeDelay: 6000
+		Prerequisites: !environment.nomemes
 	ExplodeCrateAction@nggyu:
 		SelectionShares: 2
 		Weapon: RedeemerNukeDelayed
-		Sound: nggyu.wav
+		Sound: nggyu.ogg
+		TimeDelay: 6000
 	GiveUnitCrateAction@ae86:
 		SelectionShares: 2
 		Units: ae86
@@ -541,6 +646,15 @@ CRATE.FuckYou:
 		Owner: Creeps
 	ExplodeCrateAction@MinecraftNuke:
 		Weapon: MinecraftNuke
+		TimeDelay: 6000
+		SelectionShares: 2
+	ExplodeCrateAction@wtfboom:
+		Weapon: WTFBoom
+		TimeDelay: 9000
+		SelectionShares: 2
+	ExplodeSupportPowerCrateAction@morshubombs:
+		Proxy: powerproxy.morshubombs
+		Weapon: MorshuBombs
 		TimeDelay: 6000
 		SelectionShares: 2
 	GiveUnitCrateAction@bitconnect:
@@ -555,41 +669,57 @@ CRATE.FuckYou:
 		Sound: gamecube.wav
 		Prerequisites: !gamecube.bugged
 	GiveUnitCrateAction@jesus:
-		SelectionShares: 3
+		SelectionShares: 2
 		TimeDelay: 6000
 		Units: jesus
 		Sound: jesusspawn.aud
 		Owner: Creeps
+		Prerequisites: !environment.nomemes
 	GiveUnitCrateAction@timspace:
-		SelectionShares: 3
+		SelectionShares: 2
 		TimeDelay: 6000
 		Units: timspace
 		Sound: timspace.ogg
-		Prerequisites: techlevel.unrestricted
+		Prerequisites: techlevel.unrestricted, !environment.nomemes
 		Owner: Creeps
 	GiveUnitCrateAction@garbageman:
 		SelectionShares: 3
 		Units: garbageman
-		Prerequisites: techlevel.unrestricted
+		Prerequisites: techlevel.unrestricted, !environment.nomemes
 		Owner: Creeps
 	GiveUnitCrateAction@creepparadrop:
-		SelectionShares: 3
+		SelectionShares: 2
 		Units: 1tnk.creepparadrop
 		Prerequisites: techlevel.unrestricted
 		Owner: Creeps
 		Sequence: timequake
+		TimeDelay: 6000
 	GiveUnitCrateAction@allyourbase:
-		SelectionShares: 2
+		SelectionShares: 3
 		Units: e6.cunt
 		Owner: Creeps
 	GiveUnitCrateAction@rmbo:
-		SelectionShares: 6
+		SelectionShares: 4
 		Units: rmbo.left
+	GiveUnitCrateAction@rmboinvis:
+		SelectionShares: 3
+		Units: rmbo.invis
+		Owner: Creeps
 	GiveUnitCrateAction@ionstorm:
 		SelectionShares: 2
 		Units: 1tnk.ionstorm
 		Owner: Neutral
 		Sequence: timequake
+	ExplodeCrateAction@maningauze:
+		SelectionShares: 3
+		Weapon: ManInGauzeExplosion
+		Prerequisites: !environment.nomemes
+	GiveUnitCrateAction@shoopdawhoop:
+		SelectionShares: 3
+		Units: 1tnk.shoopdawhoop
+		Owner: Creeps
+		TimeDelay: 6000
+		Prerequisites: !environment.nomemes
 	Crate:
 		Duration: 6000
 	Tooltip:
@@ -619,10 +749,12 @@ CRATE.FuckYou:
 	-AutoTarget:
 	-AutoTargetPriority@DEFAULT:
 	-AutoTargetPriority@ATTACKANYTHING:
+	-AutoTargetPriority@EPIC:
 	-Selectable:
 	-SelectionDecorations:
 	-Tooltip:
 	-RevealsShroud:
+	-RevealsShroud@GAPGEN:
 	-EligibleForRandomActorCrate:
 	RenderSprites:
 		Image: 1tnk
@@ -632,6 +764,8 @@ CRATE.FuckYou:
 	-UpdatesPlayerStatistics:
 	-ActorLostNotification:
 	-MapEditorData:
+	Valued:
+		Cost: 1
 	FireWarheadsOnDeath:
 		Weapon: DemoTrapExplosion2
 	SpawnActorOnDeath:
@@ -640,10 +774,43 @@ CRATE.FuckYou:
 	Targetable@nomind:
 		TargetTypes: NoMindControl
 
+1TNK.RANDOMMINE:
+	Inherits: 1TNK.MINE
+	FireWarheadsOnDeath:
+		Weapon: NoDamageBigExplosion
+	GrantRandomCondition:
+		Conditions: mine,mine,mine,mine,mine,gmine,tree1,tree1,tree1,tree2,monolith,monolith,monolith,bluemonolith
+	SpawnActorOnDeath:
+		RequiresCondition: mine
+		Actor: mine
+		OwnerType: InternalName
+	SpawnActorOnDeath@1:
+		RequiresCondition: gmine
+		Actor: gmine
+		OwnerType: InternalName
+	SpawnActorOnDeath@2:
+		RequiresCondition: tree1
+		Actor: split3
+		OwnerType: InternalName
+	SpawnActorOnDeath@3:
+		RequiresCondition: tree2
+		Actor: split4
+		OwnerType: InternalName
+	SpawnActorOnDeath@4:
+		RequiresCondition: monolith
+		Actor: tmonolith
+		OwnerType: InternalName
+	SpawnActorOnDeath@5:
+		RequiresCondition: bluemonolith
+		Actor: tmonolith.blue
+		OwnerType: InternalName
+
 CRATE.Big:
 	Inherits: 1TNK.DEMO
 	KillsSelf:
 		Delay: 1
+	Mobile:
+		Locomotor: hover
 	FireWarheadsOnDeath:
 		Weapon: E100Cannon
 		DeathTypes: replace
@@ -674,6 +841,8 @@ CRATE.BigLanded:
 		Bounds: 2048,2048
 	Health:
 		HP: 300000
+	Building:
+		TerrainTypes: Clear,ClearSnow,Road,Creep,Water,Beach,Bridge
 	FireWarheadsOnDeath:
 		Weapon: CrateRewardExplosion
 		EmptyWeapon: CrateRewardExplosion
@@ -694,7 +863,9 @@ CRATE.LEVEL:
 	-GiveCashCrateAction:
 	LevelUpCrateAction:
 		SelectionShares: 1
-		Levels: 3
+		Levels: 1
+	Tooltip:
+		Name: actor-crate-level
 
 1TNK.GMINE:
 	Inherits: 1TNK.MINE
@@ -706,17 +877,9 @@ CRATE.LEVEL:
 	Mobile:
 		Locomotor: naval
 	SpawnActorOnDeath:
-		Actor: japanoilderrick.cr
-
-1TNK.OIL2:
-	Inherits: 1TNK.MINE
-	Mobile:
-		Locomotor: naval
-	KillsSelf:
-		Delay: 250
-	SpawnActorOnDeath:
-		Actor: japanoilderrick.cr
-	-FireWarheadsOnDeath:
+		OwnerType: InternalName
+		InternalOwner: Neutral
+		Actor: japanoilderrick.cr2
 
 1TNK.LIGHTNING:
 	Inherits: 1TNK.MINE
@@ -729,6 +892,13 @@ CRATE.LEVEL:
 	-FireWarheadsOnDeath:
 	SpawnActorOnDeath:
 		Actor: hunter
+		OwnerType: Victim
+
+1TNK.HUNTERCRATE:
+	Inherits: 1TNK.MINE
+	-FireWarheadsOnDeath:
+	SpawnActorOnDeath:
+		Actor: hunter.crate
 		OwnerType: Victim
 
 1TNK.SPLIT3:
@@ -762,6 +932,7 @@ CRATE.LEVEL:
 		OwnerType: InternalName
 		InternalOwner: Creeps
 		RequiresLobbyCreeps: true
+	-FireWarheadsOnDeath:
 
 1TNK.BITCONNECT:
 	Inherits: 1TNK.MINE
@@ -843,7 +1014,6 @@ LIGHTNING:
 
 GRAVE:
 	Inherits: ^TechBuilding
-	Inherits@AUTOTARGET: ^AutoTargetAll
 	Targetable:
 		TargetTypes: GroundActor, C4, DetonateAttack, Structure, Defense
 	Health:
@@ -881,11 +1051,9 @@ GRAVE:
 		Actor: ZOMBIE
 		AllowRespawn: true
 		RequiresCondition: produceunit
-	AutoTarget:
-		InitialStance: AttackAnything
-	AttackOmni:
-	Armament:
-		Weapon: ZombiehHole
+	FireWarheads:
+		Weapons: ZombieHole
+		Interval: 60
 	ExternalCondition@ambushhole:
 		Condition: produceunit
 	ProximityExternalCondition:
@@ -908,9 +1076,26 @@ Zombie:
 		Prerequisites: ~barracks, ~bio
 		Description: actor-zombie.description
 	Health:
-		HP: 25000
+		HP: 36000
 	Mobile:
 		Speed: 42
+	GrantRandomCondition@speed:
+		Conditions: 1,2,3,4,5,6
+	SpeedMultiplier@1:
+		RequiresCondition: 1
+		Modifier: 90
+	SpeedMultiplier@2:
+		RequiresCondition: 2
+		Modifier: 95
+	SpeedMultiplier@3:
+		RequiresCondition: 3
+		Modifier: 105
+	SpeedMultiplier@4:
+		RequiresCondition: 4
+		Modifier: 110
+	SpeedMultiplier@5:
+		RequiresCondition: 5
+		Modifier: 115
 	AutoTarget:
 		InitialStance: AttackAnything
 		ScanRadius: 256
@@ -935,10 +1120,13 @@ DukeNukem:
 	Inherits: ^Soldier
 	Inherits: ^EpicUnit
 	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	Selectable:
+		Bounds: 1000, 1000, 0, 0
+		DecorationBounds: 1200, 1200, 0, 0
 	Buildable:
 		Queue: Infantry
 		BuildPaletteOrder: 0
-		Prerequisites: ~OBL.CratePowers
+		Prerequisites: ~disabled
 	Valued:
 		Cost: 10000
 	Tooltip:
@@ -1072,10 +1260,13 @@ JudgeDredd:
 	Inherits: ^Soldier
 	Inherits: ^EpicUnit
 	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	Selectable:
+		Bounds: 1000, 1000, 0, 0
+		DecorationBounds: 1200, 1200, 0, 0
 	Buildable:
 		Queue: Infantry
 		BuildPaletteOrder: 0
-		Prerequisites: ~OBL.CratePowers
+		Prerequisites: ~disabled
 	Valued:
 		Cost: 10000
 	Tooltip:
@@ -1177,11 +1368,8 @@ FAKECRATE:
 		Speed: 8
 		Locomotor: foot2
 	RevealsShroud:
-		MinRange: 7c0
 		Range: 8c0
-		RevealGeneratedShroud: False
-	RevealsShroud@GAPGEN:
-		Range: 7c0
+		ValidRelationships: Ally, Enemy, Neutral
 	Turreted:
 	AttackTurreted:
 		RequiresCondition: !opening
@@ -1293,10 +1481,20 @@ FakeCrateReward:
 		NoBaseSelectionShares: 1000
 		Units: tcommand.air
 	DuplicateUnitCrateAction:
-		SelectionShares: 10
+		SelectionShares: 15
 		MaxAmount: 10
-		MinAmount: 1
-		MaxDuplicateValue: 5000
+		MaxDuplicateValue: 6000
+		Sound: clonesnd.aud
+		RequiresCondition: !hero && !harvester
+	DuplicateUnitCrateAction@harv:
+		SelectionShares: 15
+		MaxAmount: 4
+		Sound: clonesnd.aud
+		RequiresCondition: !hero && harvester
+	ExternalCondition@hero:
+		Condition: hero
+	ExternalCondition@harvester:
+		Condition: harvester
 	GiveUnitCrateAction@split:
 		SelectionShares: 10
 		Units: 1tnk.split3
@@ -1319,7 +1517,7 @@ amogus:
 	Buildable:
 		Queue: Infantry
 		BuildPaletteOrder: 0
-		Prerequisites: ~OBL.CratePowers
+		Prerequisites: ~disabled
 	Valued:
 		Cost: 1000
 	Tooltip:
@@ -1330,7 +1528,7 @@ amogus:
 		Bounds: 512, 725, -42, -170
 		DecorationBounds: 512, 725, -42, -170
 	Health:
-		HP: 100000
+		HP: 50000
 	Mobile:
 		Speed: 100
 		Voice: Move
@@ -1419,6 +1617,9 @@ ColonyDrop:
 		LandableTerrainTypes: Clear, ClearSnow, Road, Creep, Bridge, Water, Ore, Gems, Rough, Tiberium, BlueTiberium, Radiation, Beach
 	WithMuzzleOverlay:
 	-ActorLostNotification:
+	RevealsShroud:
+		Range: 12c0
+		ValidRelationships: Ally, Enemy, Neutral
 	Contrail:
 		Offset: 0,0,0
 		StartColor: d4552f
@@ -1484,6 +1685,10 @@ ColonyDrop:
 		Delay: 50
 	-EjectOnDeath:
 	Interactable:
+	Valued:
+		Cost: 100
+	GainsExperienceMultiplier:
+		Modifier: 0
 
 powerproxy.colonydrop:
 	GrantDelayedCondition:
@@ -1492,6 +1697,7 @@ powerproxy.colonydrop:
 	DropPodsPowerOW:
 		PauseOnCondition: !randomise
 		Icon: colonydropicon
+		SupportPowerPaletteOrder: 1
 		Name: Colony Drop
 		OrderName: colonydrop
 		Description: Drops a colony onto targeted area.
@@ -1520,6 +1726,7 @@ powerproxy.colonydrop:
 powerproxy.roadroller:
 	DropPodsPowerOW@roadroller:
 		Icon: roadrollericon
+		SupportPowerPaletteOrder: 1
 		Name: Road Roller
 		OrderName: roadroller
 		Description: ROAD ROLLA DAAAAAAAAAA
@@ -1590,6 +1797,9 @@ roadroller.dropped:
 		HP: 300000
 	Tooltip:
 		Name: actor-roadroller-dropped-name
+	RevealsShroud:
+		Range: 8c0
+		ValidRelationships: Ally, Enemy, Neutral
 	AutoTarget:
 		InitialStance: AttackAnything
 		ScanRadius: 32
@@ -1650,6 +1860,7 @@ roadroller.leave:
 	-Targetable@REPAIR:
 	-UpdatesPlayerStatistics:
 	-Buildable:
+	-Power:
 	RejectsOrders:
 	Tooltip:
 		Name: actor-roadroller-leave-name
@@ -1740,8 +1951,8 @@ powerproxy.lightning:
 		SelectTargetSpeechNotification: DawnSelectTarget
 		InsufficientPowerSpeechNotification: InsufficientPower
 		DisplayRadarPing: True
-		CameraActor: camera.spyplane
-		SupportPowerPaletteOrder: 20
+		CameraActor: camera
+		SupportPowerPaletteOrder: 2
 		CameraRemoveDelay: 450
 		DisplayTimerRelationships: Ally, Neutral, Enemy
 		AllowMultiple: true
@@ -1762,7 +1973,7 @@ powerproxy.smite:
 		SelectTargetSpeechNotification: DawnSelectTarget
 		InsufficientPowerSpeechNotification: InsufficientPower
 		DisplayRadarPing: True
-		SupportPowerPaletteOrder: 20
+		SupportPowerPaletteOrder: 1
 		DisplayTimerRelationships: Ally, Neutral, Enemy
 		AllowMultiple: true
 		OneShot: true
@@ -1783,6 +1994,14 @@ camera.5sec:
 	KillsSelf:
 		RemoveInstead: true
 		Delay: 125
+
+camera.20sec:
+	Inherits: CAMERA
+	KillsSelf:
+		RemoveInstead: true
+		Delay: 500
+	RevealsShroud:
+		Range: 15c0
 
 1TNK.CRATE:
 	Inherits: 1TNK.MINE
@@ -1813,7 +2032,7 @@ JohnCena:
 	Buildable:
 		Queue: Infantry
 		BuildPaletteOrder: 0
-		Prerequisites: ~OBL.CratePowers
+		Prerequisites: ~disabled
 	Valued:
 		Cost: 10000
 	Tooltip:
@@ -1825,7 +2044,8 @@ JohnCena:
 	Mobile:
 		Speed: 70
 	RevealsShroud:
-		Range: 6c0
+		Range: 8c0
+		ValidRelationships: Ally, Enemy, Neutral
 	Passenger:
 		CustomPipType: red
 	AttackFrontal:
@@ -1904,6 +2124,9 @@ JAROFDIRT:
 	AnnounceOnSeen:
 		PingRader: true
 	-Voiced:
+	RevealsShroud:
+		Range: 8c0
+		ValidRelationships: Ally, Enemy, Neutral
 	Wanders:
 		WanderMoveRadius: 3
 	FireWarheadsOnDeath:
@@ -1956,7 +2179,7 @@ OLDDK:
 	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
 	Inherits@InfPro: ^AutoTargetVehiclePriority
 	Buildable:
-		Prerequisites: ~ai.boss, ulttechcenter
+		Prerequisites: ~ai.god, ulttechcenter
 		Description: Dark Knight Super unit, Practicaly a nuke on legs. \n Strong vs Anything Close \n Weak vs Anything fast or ranged.
 		Queue: Infantry
 		BuildLimit: 1
@@ -2079,6 +2302,8 @@ OLDDK:
 	SpawnActorOnDeath@fire:
 		Actor: strifeflameguy
 		DeathType: FireDeath
+	GrantCondition@noberserk:
+		Condition: no_transform
 
 strifeflameguy:
 	Inherits@1: ^ExistsInWorld
@@ -2110,11 +2335,12 @@ strifeflameguy:
 
 strifeacolytebasic:
 	Inherits: ^NewStrifeGuy
+	Inherits@highHP: ^HighHPInfantry
 	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
 	Buildable:
 		Queue: Infantry
 		BuildPaletteOrder: 0
-		Prerequisites: ~OBL.CratePowers
+		Prerequisites: ~disabled
 	Valued:
 		Cost: 750
 	Tooltip:
@@ -2164,8 +2390,8 @@ powerproxy.acolytestrike:
 		SelectTargetSpeechNotification: SelectTarget
 		InsufficientPowerSpeechNotification: InsufficientPower
 		DisplayRadarPing: True
-		CameraActor: camera.spyplane
-		SupportPowerPaletteOrder: 20
+		CameraActor: camera
+		SupportPowerPaletteOrder: 1
 		WeaponDelay: 0
 		CameraRemoveDelay: 450
 		DisplayTimerRelationships: Ally, Neutral, Enemy
@@ -2178,10 +2404,13 @@ hereticcorvus:
 	Inherits: ^NewStrifeGuy
 	Inherits: ^EpicUnit
 	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	Selectable:
+		Bounds: 1000, 1000, 0, 0
+		DecorationBounds: 1200, 1200, 0, 0
 	Buildable:
 		Queue: Infantry
 		BuildPaletteOrder: 0
-		Prerequisites: ~OBL.CratePowers
+		Prerequisites: ~disabled
 	Valued:
 		Cost: 10000
 	Tooltip:
@@ -2389,6 +2618,7 @@ cratemetal:
 powerproxy.metalnuke:
 	DropPodsPowerOW:
 		Icon: metalnukeicon
+		SupportPowerPaletteOrder: 1
 		Name: ???
 		OrderName: metalnuke
 		Description: Drops ??? onto an area.mp3
@@ -2418,10 +2648,10 @@ powerproxy.metalnuke2:
 	Inherits: powerproxy.metalnuke
 	GrantDelayedCondition:
 		Condition: randomise
-		Delay: 1, 750
+		Delay: 1, 1000
 	DropPodsPowerOW:
 		PauseOnCondition: !randomise
-		ChargeInterval: 11250
+		ChargeInterval: 15000
 		OneShot: false
 		AllowMultiple: true
 
@@ -2430,7 +2660,7 @@ ae86:
 	Buildable:
 		Queue: Vehicle
 		BuildPaletteOrder: 0
-		Prerequisites: ~OBL.CratePowers
+		Prerequisites: ~disabled
 	Valued:
 		Cost: 10000
 	Tooltip:
@@ -2508,7 +2738,7 @@ korone:
 	Buildable:
 		Queue: Infantry
 		BuildPaletteOrder: 0
-		Prerequisites: ~OBL.CratePowers
+		Prerequisites: ~disabled
 	Valued:
 		Cost: 10000
 	Tooltip:
@@ -2638,7 +2868,7 @@ THXEARTHQUAKE:
 	-WithMakeAnimation:
 	AmbientSound:
 		-RequiresCondition:
-		SoundFiles: thx.wav
+		SoundFiles: thx.ogg
 		Interval: 9000
 	-KillsSelf:
 	Tooltip:
@@ -2714,7 +2944,7 @@ TERMINATOR:
 	Tooltip:
 		Name: Terminator Model 800
 	Health:
-		HP: 500000
+		HP: 400000
 	Armament@PRIMARY:
 		Weapon: TerminatorMinigun
 		LocalOffset: 300,150,683
@@ -2914,7 +3144,7 @@ powerproxy.earthquake:
 		Name: Earthquake
 		Description: Does an earthquake at the location. Useless vs Infantry
 		DisplayRadarPing: True
-		SupportPowerPaletteOrder: 20
+		SupportPowerPaletteOrder: 2
 		DisplayTimerRelationships: Ally, Neutral, Enemy
 		AllowMultiple: true
 		OneShot: true
@@ -2950,11 +3180,13 @@ jesus:
 	Buildable:
 		Queue: Infantry
 		BuildPaletteOrder: 0
-		Prerequisites: ~OBL.CratePowers
+		Prerequisites: ~disabled
 	Tooltip:
-		Name: actor-jesus.name
+		Name: actor-jesus-name
 	Health:
 		HP: 200000
+	Valued:
+		Cost: 3000
 	Mobile:
 		Speed: 48
 		Locomotor: floater
@@ -3055,6 +3287,9 @@ TIMSPACE:
 	RenderSprites:
 		Image: sputnik_big
 	-WithSpriteTurret:
+	RevealsShroud:
+		Range: 8c0
+		ValidRelationships: Ally, Enemy, Neutral
 	WithFacingSpriteBody:
 		Sequence: ground
 
@@ -3079,6 +3314,9 @@ TIMSPACE.Leave:
 		Delay: 33
 	Wanders@leave:
 		RequiresCondition: leavetimer
+	RevealsShroud:
+		Range: 6c0
+		ValidRelationships: Ally, Enemy, Neutral
 	Aircraft:
 		Speed: 192
 		CruiseAltitude: 32c0
@@ -3177,7 +3415,7 @@ GARBAGEMAN:
 		Delay: 25
 		StartIfBelow: 50
 		DamageCooldown: 500
-
+	-VoiceAnnouncement:
 
 1TNK.CREEPPARADROP:
 	Inherits: 1TNK.MINE
@@ -3276,7 +3514,7 @@ powerproxy.fakenuke:
 		EndChargeTextNotification: notification-abomb-ready
 		IncomingTextNotification: notification-abomb-launch-detected
 		DisplayRadarPing: True
-		CameraActor: camera.spyplane
+		CameraActor: camera
 		SupportPowerPaletteOrder: 71
 		CameraRemoveDelay: 450
 		DisplayTimerRelationships: Ally, Neutral, Enemy
@@ -3370,6 +3608,10 @@ FAKENUKELANDED:
 		Chance: 50
 	SoundOnDamageTransition:
 		DamagedSounds: nuyell21.aud
+	-GrantConditionOnCapture: 
+	-GrantConditionIfOwnerIsNeutral@cap:
+	-ExternalCondition@bot_recapture:
+	-Targetable@bot_recapture:
 
 E6.CUNT:
 	Inherits: E6
@@ -3384,7 +3626,9 @@ E6.CUNT:
 		Image: e6
 	RevealsShroud:
 		Range: 32c0
-	-Buildable:
+	Buildable:
+		BuildPaletteOrder: 12000
+		Prerequisites: ~disabled
 	Valued:
 		Cost: 800
 	Health:
@@ -3394,7 +3638,7 @@ E6.CUNT:
 		Duration: 3000
 	Targetable@noauto:
 		RequiresCondition: spawned
-		TargetTypes: NoAutoTarget, NoAITarget
+		TargetTypes: NoAutoTarget
 	GrantCondition@botcapture:
 		Condition: botcapture
 	AutoTargetPriority@1:
@@ -3402,7 +3646,7 @@ E6.CUNT:
 	Armament:
 		RequiresCondition: botcapture
 		Weapon: HackyCaptureAttackCrate
-		TargetRelationships: Enemy, Neutral
+		TargetRelationships: Enemy
 		FireDelay: 125
 	-Armament@2:
 	GrantConditionOnAttack@die:
@@ -3530,6 +3774,29 @@ RMBO.Left:
 		Name: bus
 		Weapon: CommandoSniperLeft
 		MuzzleSequence: garrison-muzzle
+	Armament@killall:
+		Name: secondary
+		RequiresCondition: use_bs_weapon && use_bs_weapon2
+		Weapon: CommandoSniperChain
+	GrantConditionOnAttack@killself:
+		ArmamentNames: secondary
+		Condition: killme
+		RevokeDelay: 9000
+	KillsSelf@killself:
+		RequiresCondition: killme
+		DamageTypes: ElectricityDeath
+		Delay: 1500
+	GrantRandomPeriodicCondition@killall:
+		Conditions: use_bs_weapon,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x
+		ActiveDuration: 75
+		CooldownDuration: 75
+		StartsGranted: true
+	GrantRandomPeriodicCondition@killall2:
+		Conditions: use_bs_weapon2,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x
+		ActiveDuration: 75
+		CooldownDuration: 75
+		StartsGranted: true
+		ShowSelectionBar: true
 	WithInfantryBody:
 		DefaultAttackSequence: shoot
 		StandSequences: stand,stand2
@@ -3541,15 +3808,9 @@ RMBO.Left:
 	VoiceAnnouncement:
 		RequiresCondition: announce
 		Voice: Build
-	GrantDelayedCondition@left:
-		RequiresCondition: attacking
-		Condition: announcehit
-		Delay: 4
-		RevokeOnDisabled: true
-		RevokeOnPaused: true
-	VoiceAnnouncement@left:
-		RequiresCondition: announcehit
+	AnnounceOnKill:
 		Voice: Kill2
+		Interval: 10
 	Voiced:
 		VoiceSet: CommandoVoice
 	ProducibleWithLevel:
@@ -3569,6 +3830,88 @@ RMBO.Left:
 		MaxMoveDelay: 75
 	RenderSprites:
 		Image: RMBO
+	GrantTimedCondition:
+		Condition: spawned
+		Duration: 375
+	Targetable@noauto:
+		RequiresCondition: spawned
+		TargetTypes: NoAutoTarget
+
+RMBO.Invis:
+	Inherits: RMBO
+	Buildable:
+		Queue: Infantry
+		BuildAtProductionType: Soldier
+		BuildPaletteOrder: 12000
+		Prerequisites: ~disabled
+		Description: actor-rmbo.description
+	Tooltip:
+		Name: actor-rmbo.name
+	RevealsShroud:
+		Range: 24c0
+	Valued:
+		Cost: 1200
+	Health:
+		HP: 50000
+	RenderSprites:
+		Image: RMBO
+	AttackFrontal:
+		RequiresCondition: allow_attack
+	Armament@PRIMARY:
+		Weapon: CommandoSniperLeft
+		ForceTargetRelationships: Enemy
+		RequiresCondition: allow_attack
+	Armament@GARRISONED:
+		Name: garrisoned
+		Weapon: CommandoSniperLeft
+		MuzzleSequence: garrison-muzzle
+		RequiresCondition: allow_attack
+	Armament@BUS:
+		Name: bus
+		Weapon: CommandoSniperLeft
+		MuzzleSequence: garrison-muzzle
+		RequiresCondition: allow_attack
+	-Crushable:
+	AttackWander:
+		WanderMoveRadius: 16
+		MinMoveDelay: 25
+		MaxMoveDelay: 75
+	GrantConditionOnAttack@attack:
+		Condition: attacking
+		RevokeDelay: 75
+	GrantPeriodicCondition@allowattack:
+		Condition: allow_attack
+		ActiveDuration: 50
+		CooldownDuration: 1000
+	GrantDelayedCondition@left:
+		RequiresCondition: attacking
+		Condition: announcehit
+		Delay: 4
+		RevokeOnDisabled: true
+		RevokeOnPaused: true
+	VoiceAnnouncement@left:
+		RequiresCondition: announcehit
+		Voice: Kill2
+	GrantRandomCondition@fpsdoug:
+		Conditions: z,z,z,z,z,z,z,fpsdoug
+	-DamageMultiplier@fpsdoug:
+	-FirepowerMultiplier@fpsdoug:
+	GrantDelayedCondition@produced:
+		Condition: produced
+		Delay: 8
+	RangeMultiplier@invis:
+		Modifier: 250
+	Targetable:
+		RequiresCondition: !cloaked
+		TargetTypes: GroundActor, Infantry, Disguise
+	Cloak:
+		InitialDelay: 0
+		CloakDelay: 125
+		CloakSound: gstealof.aud
+		DetectionTypes: Undetectable
+		UncloakOn: Attack
+		CloakedCondition: cloaked
+
 
 IONSTORM:
 	Inherits: XBAR
@@ -3599,3 +3942,837 @@ IONSTORM:
 		Interval: 5000
 		Weapons: CrateLightningZap2
 		RequiresCondition: !prereq
+
+
+1TNK.MANINGAUZE:
+	Inherits: 1TNK.MINE
+	SpawnActorOnDeath:
+		Actor: maningauze
+		OwnerType: InternalName
+		InternalOwner: Creeps
+	SpawnActorOnDeath@2:
+		Actor: maningauze.rock
+		OwnerType: InternalName
+		InternalOwner: Creeps
+	SpawnActorOnDeath@3:
+		Actor: maningauze.prereq
+		OwnerType: Victim
+		InternalOwner: Creeps
+
+MANINGAUZE:
+	Inherits: ^Building
+	Inherits@AUTOTARGET: ^AutoTargetGround
+	Targetable@AI:
+		TargetTypes: NoAITarget, Defense
+	Tooltip:
+		Name: actor-maningauze.name
+		RequiresCondition: !hidden_by_rock
+	Tooltip@rock:
+		Name: actor-maningauze.rock
+		RequiresCondition: hidden_by_rock
+	Building:
+	Buildable:
+		Queue: Wall
+		BuildPaletteOrder: 15000
+		Prerequisites: ~disabled
+		Description: actor-maningauze.description
+	Valued:
+		Cost: 5000
+	Health:
+		HP: 200000
+	Armor:
+		Type: Heavy
+	RevealsShroud:
+		MinRange: 8c0
+		Range: 10c0
+		RevealGeneratedShroud: False
+		ValidRelationships: Neutral, Enemy, Ally
+		RequiresCondition: !hidden_by_rock
+	RevealsShroud@GAPGEN:
+		Range: 8c0
+		ValidRelationships: Neutral, Enemy, Ally
+		RequiresCondition: !hidden_by_rock
+	RevealsShroud@GAUZE:
+		Range: 32c0
+	-SpawnActorsOnSell:
+	-WithMakeAnimation:
+	-Sellable:
+	FreeActor@rock:
+		Actor: MANINGAUZE.Rock
+	DamageMultiplier@rock:
+		RequiresCondition: hidden_by_rock
+		Modifier: 0
+	WithSpriteBody:
+		RequiresCondition: !hidden_by_rock
+	ExternalCondition@rock:
+		Condition: hidden_by_rock
+	AmbientSound@1:
+		SoundFiles: ramsesintro.ogg
+		Interval: 90000
+	AmbientSound@2:
+		SoundFiles: maningauze.ogg
+		Delay: 286
+	AmbientSound@3:
+		SoundFiles: maningauze.ogg
+		Delay: 286
+	AmbientSound@4:
+		SoundFiles: maningauzem.ogg
+		Delay: 286
+	FireWarheadsOnDeath:
+		Weapon: CrateRewardExplosion
+		EmptyWeapon: CrateRewardExplosion
+		DamageSource: Killer
+		DeathTypes: DefaultDeath, ExplosionDeath, ElectricityDeath, FireDeath, TiberiumDeath, BulletDeath
+	ProximityExternalCondition@rock:
+		Condition: hidden_by_player
+		Range: 1c0
+		ValidRelationships: Neutral, Enemy, Ally
+	Armament:
+		Weapon: CommandoSniperLeftNoSound
+		TargetRelationships: Neutral, Enemy, Ally
+	AttackTurreted:
+	Turreted:
+
+MANINGAUZE.Rock:
+	Inherits: ^Building
+	Targetable:
+		TargetTypes: GroundActor, C4, DetonateAttack, Structure, Defense
+	Targetable@AI:
+		RequiresCondition: spawned
+		TargetTypes: NoAITarget
+	GrantTimedCondition:
+		Condition: spawned
+		Duration: 1500
+	Tooltip:
+		Name: actor-maningauze.rock
+	Building:
+	Valued:
+		Cost: 2500
+	Health:
+		HP: 300000
+	Armor:
+		Type: Heavy
+	WithBuildingBib:
+		HasMinibib: true
+	-SpawnActorsOnSell:
+	-WithMakeAnimation:
+	ProximityExternalCondition@rock:
+		Condition: hidden_by_rock
+		Range: 1c0
+		ValidRelationships: Neutral, Enemy, Ally
+	FireWarheads@1:
+		Weapons: CommandoSniperLeftNoSound
+		Interval: 50
+
+MANINGAUZE.Prereq:
+	Inherits: ^Building
+	Targetable@AI:
+		TargetTypes: NoAITarget, Defense
+	Tooltip:
+		Name: actor-maningauze.rock
+	Building:
+	Valued:
+		Cost: 0
+	Health:
+		HP: 150000
+	DamageMultiplier@rock:
+		Modifier: 0
+	Armor:
+		Type: Heavy
+	-SpawnActorsOnSell:
+	-WithMakeAnimation:
+	-WithSpriteBody:
+	-Sellable:
+	ExternalCondition@rock:
+		Condition: hidden_by_player
+	KillsSelf@rock:
+		Delay: 5
+		RequiresCondition: !hidden_by_player
+	ProvidesPrerequisite@buildingname:
+		Prerequisite: slab.exist
+	RenderSprites:
+		Image: maningauze
+
+1TNK.shoopdawhoop:
+	Inherits: 1TNK.MINE
+	SpawnActorOnDeath:
+		Actor: shoopdawhoop
+		SkipMakeAnimations: false
+		OwnerType: Victim
+
+shoopdawhoop:
+	Inherits: OBLID
+	Inherits@AUTOTARGET: ^AutoTargetAll
+	-AmbientSound:
+	Buildable:
+		BuildPaletteOrder: 0
+		Prerequisites: ~disabled
+	Valued:
+		Cost: 2000
+	Tooltip:
+		Name: actor-shoopdawhoop-cr-name
+	Health:
+		HP: 1000000
+	Power:
+		Amount: 0
+	DetectCloaked:
+		Range: 12c0
+		RequiresCondition: !disabled
+	ProvidesPrerequisite@buildingname:
+	RevealsShroud:
+		Range: 12c0
+		ValidRelationships: Ally, Enemy, Neutral
+	RenderSprites:
+		Image: shoopdawhoop
+	RangeMultiplier@1:
+		Modifier: 120
+	Armament:
+		Weapon: SolBarrageShoop
+		PauseOnCondition: ammo < 15
+		LocalOffset: 0,0,1024
+		FireDelay: 97
+		AmmoUsage: 15
+	Armament@1:
+		Weapon: ShoopDaWhoopSound
+		PauseOnCondition: ammo < 15
+		AmmoUsage: 0
+	Armament@2:
+		Weapon: SolBarrageSoundShoop
+		PauseOnCondition: ammo < 15
+		AmmoUsage: 0
+	Armament@3:
+		Weapon: SolBarrageBeam1Shoop
+		PauseOnCondition: ammo < 15
+		FireDelay: 97
+		AmmoUsage: 0
+	Armament@4:
+		Weapon: SolBarrageBeam2Shoop
+		PauseOnCondition: ammo < 15
+		FireDelay: 25
+		AmmoUsage: 0
+	Armament@5:
+		Weapon: SolBarrageBeam3Shoop
+		PauseOnCondition: ammo < 15
+		FireDelay: 50
+		AmmoUsage: 0
+	Armament@6:
+		Weapon: SolBarrageBeam4Shoop
+		PauseOnCondition: ammo < 15
+		FireDelay: 75
+		AmmoUsage: 0
+	AmmoPool:
+		Ammo: 15
+		ReloadDelay: 150
+		AmmoCondition: ammo
+		InitialAmmo: 15
+	KillsSelf:
+		Delay: 50
+		RequiresCondition: !ammo
+	FireWarheadsOnDeath:
+		Weapon: SkyEmpressCannon
+		EmptyWeapon: SkyEmpressCannon
+
+1TNK.dinnerblaster:
+	Inherits: 1TNK.MINE
+	SpawnActorOnDeath:
+		Actor: dinnerblaster
+		SkipMakeAnimations: false
+		OwnerType: Victim
+
+dinnerblaster:
+	Inherits: OBLID
+	Inherits@AUTOTARGET: ^AutoTargetAll
+	Buildable:
+		BuildPaletteOrder: 0
+		Prerequisites: ~disabled
+	Valued:
+		Cost: 2000
+	Tooltip:
+		Name: actor-dinnerblaster-cr-name
+	Health:
+		HP: 1000000
+	Power:
+		Amount: 0
+	DetectCloaked:
+		Range: 12c0
+		RequiresCondition: !disabled
+	ProvidesPrerequisite@buildingname:
+	RevealsShroud:
+		MinRange: 6c0
+		Range: 15c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 6c0
+	RenderSprites:
+		Image: dinnerblaster
+	RangeMultiplier@1:
+		Modifier: 120
+	AmbientSound:
+		RequiresCondition: charging
+		SoundFiles: obelpowr.aud
+		Interval: 30, 40
+	Armament:
+		Weapon: strifeguycrusadermissile
+		LocalOffset: 0,0,1024
+	FireWarheadsOnDeath:
+		Weapon: Redeemernuke
+		EmptyWeapon: Redeemernuke
+	WithAttackAnimation:
+		Sequence: firing
+	WithAttackOverlay:
+		Sequence: firing
+	WithSpriteBody:
+	-WithChargeSpriteBody:
+
+powerproxy.iondrop:
+	DropPodsPowerOW:
+		Icon: ioncannon
+		SupportPowerPaletteOrder: 1
+		Name: Crate Ion Cannon
+		OrderName: colonydrop
+		Description: actor-eyed.iondesc
+		UnitTypes: IONDROP
+		Cursor: chrono-target
+		Drops: 1,1
+		PodScatter: 1
+		PodFacing: 512
+		CameraActor: camera
+		CameraRemoveDelay: 750
+		Weapon: usarailguncharging
+		WeaponDelay: 5
+		ChargeInterval: 7500
+		EntryEffect: explosion
+		EntryEffectSequence: redeemerexplosion
+		LaunchSound: colonydropentry.wav
+		SelectTargetTextNotification: actor-powerproxy-colonydrop-droppodspower-colonydrop-select-target-text-notification
+		BeginChargeSpeechNotification: IonCannonCharge
+		EndChargeSpeechNotification: IonCannonReady
+		SelectTargetSpeechNotification: DawnSelectTarget
+		InsufficientPowerSpeechNotification: InsufficientPower
+		IncomingSpeechNotification: ColonyDropSound
+		DisplayRadarPing: true
+		DisplayTimerRelationships: Ally, Enemy, Neutral
+		BeaconPoster: artillerybarragebeacon
+		OneShot: true
+		AllowMultiple: true
+
+IONDROP:
+	Inherits: ColonyDrop
+	Tooltip:
+		Name: actor-iondrop-name
+	FallsToEarth:
+		Explosion: TerranNuke
+		Moves: true
+		Velocity: 80
+		MaximumSpinSpeed: 0
+	FireWarheadsOnDeath@1:
+		Weapon: EMPExplosion
+		EmptyWeapon: EMPExplosion
+
+powerproxy.ioncannon:
+	SpawnActorPower:
+		OrderName: CrateSmite
+		Icon: ioncannon
+		Cursor: chrono-target
+		ChargeInterval: 7500
+		Name: Crate Ion Cannon
+		Description: actor-eyed.iondesc
+		BeginChargeSpeechNotification: IonCannonCharge
+		EndChargeSpeechNotification: IonCannonReady
+		SelectTargetSpeechNotification: DawnSelectTarget
+		InsufficientPowerSpeechNotification: InsufficientPower
+		DisplayRadarPing: True
+		SupportPowerPaletteOrder: 1
+		DisplayTimerRelationships: Ally, Neutral, Enemy
+		AllowMultiple: true
+		OneShot: true
+		Actor: powerproxy.ionactor
+
+powerproxy.ionactor:
+	Inherits: 1TNK.MINE
+	FireWarheadsOnDeath:
+		Weapon: MiniNukeIonCrateSound
+	KillsSelf:
+		Delay: 2
+	FreeActor:
+		Actor: camera.5sec
+	-SpawnActorOnDeath:
+
+powerproxy.emp:
+	SpawnActorPower:
+		OrderName: EMPPower2
+		Icon: emp
+		Cursor: chrono-target
+		ChargeInterval: 10500
+		Name: Crate E.M. Pulse
+		Description: actor-t-miss.empdesc
+		SelectTargetSpeechNotification: SelectTarget
+		InsufficientPowerSpeechNotification: InsufficientPower
+		DisplayRadarPing: True
+		SupportPowerPaletteOrder: 1
+		DisplayTimerRelationships: Ally, Neutral, Enemy
+		AllowMultiple: true
+		OneShot: true
+		Actor: powerproxy.empactor
+
+powerproxy.empactor:
+	Inherits: 1TNK.MINE
+	FireWarheadsOnDeath:
+		Weapon: EMPExplosionCrate
+	KillsSelf:
+		Delay: 2
+	FreeActor:
+		Actor: camera.5sec
+	-SpawnActorOnDeath:
+
+1TNK.firesale:
+	Inherits: 1TNK.MINE
+	-FireWarheadsOnDeath:
+	SpawnActorOnDeath:
+		Actor: FIRESALE.Dummy
+		SkipMakeAnimations: false
+		OwnerType: Victim
+
+FIRESALE.Dummy:
+	Inherits: MINE_DUMMY
+	ProduceActorPower:
+		Name: actor-firesale.name
+		PauseOnCondition: never
+		Description: actor-firesale.desc
+		Icon: firesale
+		Actors: c1
+		Type: NoType
+		ChargeInterval: 500
+		BeginChargeSound: firesale.ogg
+		BeginChargeTextNotification: actor-firesale.name
+		OrderName: Firesale
+		SupportPowerPaletteOrder: 1
+		DisplayTimerRelationships: Ally, Enemy, Neutral
+	ProduceActorPower@1:
+		Name: actor-firesale.name
+		PauseOnCondition: never
+		Description: actor-firesale.desc
+		Icon: firesale
+		Actors: c1
+		Type: NoType
+		ChargeInterval: 500
+		BeginChargeTextNotification: actor-firesale.name
+		OrderName: Firesale2
+		SupportPowerPaletteOrder: 1
+	ProduceActorPower@2:
+		Name: actor-firesale.name
+		PauseOnCondition: never
+		Description: actor-firesale.desc
+		Icon: firesale
+		Actors: c1
+		Type: NoType
+		ChargeInterval: 500
+		BeginChargeTextNotification: actor-firesale.name
+		OrderName: Firesale3
+		SupportPowerPaletteOrder: 1
+	ProvidesPrerequisite:
+		Prerequisite: prodspeed.firesale
+	KillsSelf:
+		RemoveInstead: true
+		Delay: 500
+
+HUNTER.Crate:
+	Inherits: HUNTER
+	RenderSprites:
+		Palette: effect
+		Image: scrate
+	Armament@PRIMARY:
+		Weapon: HunterSeekerBombCrate
+
+powerproxy.holyhandgrenade:
+	DropPodsPowerOW@holyhandgrenade:
+		Icon: holyhandgrenadeicon
+		SupportPowerPaletteOrder: 1
+		Name: Holy Hand Grenade
+		OrderName: holyhandgrenade
+		Description: Holy Hand Grenade
+		UnitTypes: holyhandgrenade
+		Cursor: chrono-target
+		Drops: 1,1
+		PodScatter: 1
+		PodFacing: 704
+		PauseOnCondition: disabled
+		CameraActor: camera
+		CameraRemoveDelay: 750
+		Weapon: usarailguncharging
+		WeaponDelay: 5
+		ChargeInterval: 2500
+		EntryEffect: explosion
+		EntryEffectSequence: redeemerexplosion
+		LaunchSound: holyhandgrenadethrow.wav
+		SelectTargetSpeechNotification: SelectTarget
+		SelectTargetTextNotification: actor-powerproxy-holyhandgrenade-droppodspower-holyhandgrenade-select-target-text-notification
+		DisplayRadarPing: true
+		BeaconPoster: artillerybarragebeacon
+		OneShot: true
+		AllowMultiple: true
+
+holyhandgrenade:
+	Inherits: ^Plane
+	Health:
+		HP: 200000
+	Aircraft:
+		TurnSpeed: 20
+		Speed: 300
+		CruiseAltitude: 16c0
+		MaximumPitch: 50
+		LandableTerrainTypes: Clear, ClearSnow, Road, Creep, Bridge, Water, Ore, Gems, Rough, Tiberium, BlueTiberium, Radiation, Beach
+	WithMuzzleOverlay:
+	-ActorLostNotification:
+	-Selectable:
+	AttackAircraft:
+	Armament:
+		Weapon: TerranGoliath
+	Tooltip:
+		Name: actor-holyhandgrenade-name
+	RejectsOrders:
+	-SpawnActorOnDeath:
+	FallsToEarth:
+		Explosion: 125mmoverlord
+		Moves: true
+		Velocity: 450
+		MaximumSpinSpeed: 0
+	FireProjectilesOnDeath@1:
+		Weapons: holyhandgrenadeproj
+		Pieces: 1,1
+		Range: 3c0, 7c0
+	-EjectOnDeath:
+	Interactable:
+
+powerproxy.bananabomb:
+	DropPodsPowerOW@bananabomb:
+		Icon: bananabombicon
+		SupportPowerPaletteOrder: 1
+		Name: Holy Hand Grenade
+		OrderName: bananabomb
+		Description: Holy Hand Grenade
+		UnitTypes: bananabomb
+		Cursor: chrono-target
+		Drops: 1,1
+		PodScatter: 1
+		PodFacing: 704
+		PauseOnCondition: disabled
+		CameraActor: camera
+		CameraRemoveDelay: 750
+		Weapon: usarailguncharging
+		WeaponDelay: 5
+		ChargeInterval: 2500
+		EntryEffect: explosion
+		EntryEffectSequence: redeemerexplosion
+		LaunchSound: holyhandgrenadethrow.wav
+		SelectTargetSpeechNotification: SelectTarget
+		SelectTargetTextNotification: actor-powerproxy-bananabomb-droppodspower-bananabomb-select-target-text-notification
+		DisplayRadarPing: true
+		BeaconPoster: artillerybarragebeacon
+		OneShot: true
+		AllowMultiple: true
+
+bananabomb:
+	Inherits: ^Plane
+	Health:
+		HP: 200000
+	Aircraft:
+		TurnSpeed: 20
+		Speed: 300
+		CruiseAltitude: 16c0
+		MaximumPitch: 50
+		LandableTerrainTypes: Clear, ClearSnow, Road, Creep, Bridge, Water, Ore, Gems, Rough, Tiberium, BlueTiberium, Radiation, Beach
+	WithMuzzleOverlay:
+	-ActorLostNotification:
+	-Selectable:
+	AttackAircraft:
+	Armament:
+		Weapon: TerranGoliath
+	Tooltip:
+		Name: actor-bananabomb-name
+	RejectsOrders:
+	-SpawnActorOnDeath:
+	FallsToEarth:
+		Explosion: 125mmoverlord
+		Moves: true
+		Velocity: 450
+		MaximumSpinSpeed: 0
+	FireProjectilesOnDeath@1:
+		Weapons: bananabombproj
+		Pieces: 1,1
+		Range: 2c0, 5c0
+	-EjectOnDeath:
+	Interactable:
+
+powerproxy.morshubombs:
+	DropPodsPowerOW:
+		Icon: artillerybarrageicon
+		Name: Morshu's Bombs
+		OrderName: artillerybarrage3
+		Description: Launches an artillery strike on the targeted area.
+		UnitTypes: chinaartillerypower, chinaartillerypower1, chinaartillerypower2, chinaartillerypower3, chinaartillerypower4, chinaartillerypower5, chinaartillerypower6, chinaartillerypower7, chinaartillerypower8
+		Cursor: chrono-target
+		Drops: 16,16
+		PodScatter: 9
+		PodFacing: 704
+		PauseOnCondition: disabled
+		CameraActor: camera
+		CameraRemoveDelay: 300
+		Weapon: ArtilleryPowerMarker
+		WeaponDelay: 5
+		ChargeInterval: 4500
+		EntryEffect: explosion
+		EntryEffectSequence: bunkerbustersring
+		LaunchSound: sartweaa.wav
+		IncomingSpeechNotification: ArtilleryBarrageSound
+		SelectTargetSpeechNotification: SelectTarget
+		SelectTargetTextNotification: actor-t-miss.droppodspower-artillery-select-target-text-notification
+		DisplayRadarPing: true
+		DisplayTimerRelationships: Ally, Enemy, Neutral
+		BeaconPoster: artillerybarragebeacon
+		OneShot: true
+		AllowMultiple: true
+
+powerproxy.Chromoshift:
+	ChronoshiftPower@Chromoshift:
+		OrderName: Chromoshift
+		Icon: chrono
+		ChargeInterval: 2000
+		AllowMultiple: True
+		OneShot: True
+		Name: actor-pdox.chronoshiftpower-advancedchronoshift-name
+		Description: Steal Their Chromosones
+		SelectTargetSpeechNotification: SelectTarget
+		InsufficientPowerSpeechNotification: InsufficientPower
+		BeginChargeSpeechNotification: ChronosphereCharging
+		EndChargeSpeechNotification: ChronosphereReady
+		SelectTargetTextNotification: notification-select-target
+		InsufficientPowerTextNotification: notification-insufficient-power
+		BeginChargeTextNotification: notification-chronosphere-charging
+		EndChargeTextNotification: notification-chronosphere-charging
+		Duration: 1
+		KillCargo: true
+		DisplayRadarPing: True
+		SupportPowerPaletteOrder: 30
+		Dimensions: 5, 5
+		Footprint: __x__ _xxx_ xxxxx _xxx_ __x__
+
+powerproxy.Chronoshifty:
+	ChronoshiftPower@Chronoshifty:
+		OrderName: Chronoshifty
+		Icon: chrono
+		ChargeInterval: 2000
+		AllowMultiple: True
+		OneShot: True
+		Name: actor-pdox.chronoshiftpower-advancedchronoshift-name
+		Description: Chronoshift Crate
+		SelectTargetSpeechNotification: SelectTarget
+		InsufficientPowerSpeechNotification: InsufficientPower
+		BeginChargeSpeechNotification: ChronosphereCharging
+		EndChargeSpeechNotification: ChronosphereReady
+		SelectTargetTextNotification: notification-select-target
+		InsufficientPowerTextNotification: notification-insufficient-power
+		BeginChargeTextNotification: notification-chronosphere-charging
+		EndChargeTextNotification: notification-chronosphere-charging
+		Duration: 2000
+		KillCargo: true
+		DisplayRadarPing: True
+		SupportPowerPaletteOrder: 30
+		Dimensions: 5, 5
+		Footprint: __x__ _xxx_ xxxxx _xxx_ __x__
+
+starfoxarwingfox:
+	Inherits: ^Plane
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	Valued:
+		Cost: 2250
+	Tooltip:
+		Name: actor-starfoxarwingfox.name
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Health:
+		HP: 100000
+	RevealsShroud:
+		MinRange: 11c0
+		Range: 13c0
+		Type: GroundPosition
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 11c0
+		Type: GroundPosition
+	GrantDelayedCondition@1:
+		Delay: 375
+		Condition: weaponup1
+	GrantDelayedCondition@2:
+		Delay: 750
+		Condition: weaponup2
+	Armament@1:
+		Weapon: ArwingShot1
+		LocalOffset: 0,-640,0, 0,640,0
+		LocalYaw: -40, 24
+		PauseOnCondition: weaponup1
+	Armament@2a:
+		Weapon: ArwingShot1
+		LocalOffset: 0,-640,0
+		LocalYaw: -40, 24
+		PauseOnCondition: weaponup2
+		RequiresCondition: weaponup1
+	Armament@2b:
+		Weapon: ArwingShot1
+		LocalOffset: 0,640,0
+		LocalYaw: -40, 24
+		PauseOnCondition: weaponup2
+		RequiresCondition: weaponup1
+	Armament@3a:
+		Weapon: ArwingShot2
+		LocalOffset: 0,-640,0
+		LocalYaw: -40, 24
+		RequiresCondition: weaponup2
+	Armament@3b:
+		Weapon: ArwingShot2
+		LocalOffset: 0,640,0
+		LocalYaw: -40, 24
+		RequiresCondition: weaponup2
+	AttackAircraft:
+		FacingTolerance: 20
+		PersistentTargeting: false
+		OpportunityFire: false
+	Aircraft:
+		CruiseAltitude: 2560
+		InitialFacing: 192
+		TurnSpeed: 16
+		Speed: 223
+		RepulsionSpeed: 40
+		MaximumPitch: 56
+		CanHover: false
+		CanSlide: false
+		IdleBehavior: None
+	Guard:
+	AutoTarget:
+		InitialStance: AttackAnything
+		MinimumScanTimeInterval: 1
+		MaximumScanTimeInterval: 1
+	Selectable:
+		Bounds: 1536, 1194, 0, 85
+		DecorationBounds: 1706, 1237, 0, 42
+	Contrail@1:
+		Offset: -598,-383,0
+		StartColorAlpha: 128
+	Contrail@2:
+		Offset: -598,383,0
+		StartColorAlpha: 128
+	SpawnActorOnDeath:
+		RequiresCondition: !active
+		Actor: starfox.Husk
+	LeavesTrails:
+		Offsets: -853,0,171
+		MovingInterval: 2
+		Image: smokey
+		SpawnAtLastPosition: False
+		Type: CenterPosition
+		RequiresCondition: enable-smoke
+	ProducibleWithLevel:
+		Prerequisites: aircraft.upgraded
+	GrantConditionOnDamageState@SmokeTrail:
+		Condition: enable-smoke
+	WithProductionIconOverlay:
+		Types: Veterancy
+		Prerequisites: aircraft.upgraded
+	RenderSprites:
+		Image: starfoxarwing
+	GrantPeriodicCondition:
+		RequiresCondition: !extend_time
+		Condition: active
+		CooldownDuration: 1125
+		ActiveDuration: 26
+		ShowSelectionBar: true
+		CooldownColor: 97FFFC
+	GrantPeriodicCondition@extended:
+		RequiresCondition: extend_time
+		Condition: active
+		CooldownDuration: 1500
+		ActiveDuration: 26
+		ShowSelectionBar: true
+		CooldownColor: 97FFFC
+	GrantCondition:
+		RequiresCondition: active
+		Condition: remove_me
+	KillsSelf@active:
+		RequiresCondition: remove_me
+		Delay: 25
+		DamageTypes: RemoveHyperion
+	SpawnActorOnDeath@flyaway:
+		RequiresCondition: remove_me
+		Actor: starfoxarwingfox.Leave
+		DeathType: RemoveHyperion
+
+starfoxarwingfox.Leave:
+	Inherits: starfoxarwingfox
+	RenderSprites:
+		Image: starfoxarwing
+	RejectsOrders:
+	Aircraft:
+		Speed: 256
+		CruiseAltitude: 8c0
+		LandableTerrainTypes: Clear, ClearSnow, Road, Creep
+		IdleBehavior: LeaveMap
+		AltitudeVelocity: 72
+	-Berserkable@JapanBerserkerPower:
+	-GrantPeriodicCondition:
+	-GrantPeriodicCondition@extended:
+	-KillsSelf@active:
+	KillsSelf:
+		Delay: 500
+		RemoveInstead: true
+
+starfoxarwingfox.Spawn:
+	Inherits: starfoxarwingfox.Leave
+	-AttackAircraft:
+	AttackBomber:
+	Aircraft:
+		Speed: 223
+		CruiseAltitude: 2c512
+		IdleBehavior: None
+	AmmoPool:
+		Ammo: 10
+		InitialAmmo: 10
+	GrantConditionOnAttack:
+		Condition: attack
+		RevokeDelay: 9000
+	KillsSelf:
+		Delay: 0
+		RequiresCondition: attack
+		RemoveInstead: false
+	SpawnActorOnDeath:
+		Actor: starfoxarwingfox
+	GrantCondition@produce:
+		Condition: produced
+
+powerproxy.starfox:
+	AirstrikePower:
+		OrderName: Starfox
+		Icon: starfoxarwingicon
+		ChargeInterval: 1500
+		Name: Starfox Team
+		Description: Call upon the Starfox Team to fight for 45 seconds. \n\n Strong vs Everything
+		SelectTargetSpeechNotification: SelectTarget
+		SelectTargetTextNotification: actor-t-miss.airstrikepower-hyperion-select-target-text-notification
+		CameraActor: camera
+		CameraRemoveDelay: 25
+		UnitType: starfoxarwingfox.spawn
+		QuantizedFacings: 8
+		DisplayBeacon: true
+		BeaconPoster: hyperion
+		SquadSize: 4
+		SquadOffset: 1792,1792,0
+		ArrowSequence: arrow
+		ClockSequence: clock
+		CircleSequence: circles
+		UseDirectionalTarget: True
+		DirectionArrowAnimation: paradirection
+		SupportPowerPaletteOrder: 5
+		DisplayTimerRelationships: Ally, Enemy, Neutral
+		PauseOnCondition: disabled
+		OneShot: true
+		AllowMultiple: true
+		LaunchSound: starfoxenter.aud

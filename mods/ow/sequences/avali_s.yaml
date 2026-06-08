@@ -11,7 +11,7 @@ avfact:
 	make:
 		Filename: avfactmake.shp
 		Length: *
-		Tick: 60
+		Tick: 80
 	icon:
 		Offset: 0,0
 		Filename: avmcvicon.shp
@@ -25,6 +25,18 @@ avtent:
 	damaged-idle:
 		Start: 6
 	make:
+		Length: *
+		Tick: 80
+		Combine:
+			0:
+				Filename: ionsfx_2.shp
+				Length: *
+				Offset: 0, -78
+			1:
+				Filename: avtentmake.shp
+				Length: 16
+				Tick: 60
+	make2:
 		Filename: avtentmake.shp
 		Length: 16
 		Tick: 60
@@ -41,6 +53,17 @@ avtowr:
 	damaged-idle:
 		Start: 4
 	make:
+		Length: *
+		Tick: 80
+		Combine:
+			0:
+				Filename: ionsfx_2.shp
+				Length: *
+				Offset: 0, -78
+			1:
+				Filename: avtowrmake.shp
+				Length: *
+	make2:
 		Filename: avtowrmake.shp
 		Length: *
 		Tick: 100
@@ -67,6 +90,18 @@ avpowr1:
 		Length: *
 		Tick: 120
 	make:
+		Length: *
+		Tick: 80
+		Combine:
+			0:
+				Filename: ionsfx_2.shp
+				Length: *
+				Offset: 0, -78
+			1:
+				Filename: av1pwrmake.shp
+				Length: *
+				Tick: 60
+	make2:
 		Filename: av1pwrmake.shp
 		Length: *
 		Tick: 60
@@ -92,6 +127,17 @@ avpowr2:
 		Length: *
 		Tick: 120
 	make:
+		Length: *
+		Tick: 80
+		Combine:
+			0:
+				Filename: ionsfx_2.shp
+				Length: *
+				Offset: 0, -78
+			1:
+				Filename: av2pwrmake.shp
+				Length: *
+	make2:
 		Filename: av2pwrmake.shp
 		Length: *
 		Tick: 60
@@ -124,12 +170,168 @@ avpowr3:
 		Offset: -2,-8
 		ZOffset: 1
 	make:
+		Length: *
+		Tick: 80
+		Combine:
+			0:
+				Filename: ionsfx_2.shp
+				Length: *
+				Offset: 0, -78
+			1:
+				Filename: avxpwrmake.shp
+				Length: *
+	make2:
 		Filename: avxpwrmake.shp
 		Length: *
 		Tick: 60
 	icon:
 		Filename: avxpwricon.shp
 
+avproc:
+	Inherits: proc
+	make:
+		Length: *
+		Tick: 80
+		Combine:
+			0:
+				Filename: ionsfx_2.shp
+				Length: *
+				Offset: 0, -78
+			1:
+				Filename: procmake.shp
+				Length: *
+
+avweap:
+	Inherits: weap
+	make:
+		Length: *
+		Tick: 80
+		Combine:
+			0:
+				Filename: ionsfx_2.shp
+				Length: *
+				Offset: 0, -78
+			1:
+				Filename: weapmake.shp
+				Length: *
+
+avradar:
+	Inherits: hqd
+	make:
+		Length: *
+		Tick: 80
+		Combine:
+			0:
+				Filename: ionsfx_2.shp
+				Length: *
+				Offset: 0, -78
+			1:
+				Filename: hqdmake.shp
+				Length: *
+
+avpad:
+	Inherits: hpad
+	make:
+		Length: *
+		Tick: 80
+		Combine:
+			0:
+				Filename: ionsfx_2.shp
+				Length: *
+				Offset: 0, -78
+			1:
+				Filename: hpadmake.shp
+				Length: *
+
+avtech:
+	Inherits: atek
+	make:
+		Length: *
+		Tick: 80
+		Combine:
+			0:
+				Filename: ionsfx_2.shp
+				Length: *
+				Offset: 0, -78
+			1:
+				Filename: atekmake.shp
+				Length: *
+
+avfrost:
+	Inherits: oregen
+	make:
+		Length: *
+		Tick: 80
+		Combine:
+			0:
+				Filename: ionsfx_2.shp
+				Length: *
+				Offset: 0, -78
+			1:
+				Filename: oregenmake.shp
+				Length: *
+
+avpbox:
+	Inherits: pbox
+	make:
+		Length: *
+		Tick: 80
+		Combine:
+			0:
+				Filename: ionsfx_2.shp
+				Length: *
+				Offset: 0, -78
+			1:
+				Filename: pboxmake.shp
+				Length: *
+
+avgun:
+	Inherits: gun
+	make:
+		Length: *
+		Tick: 80
+		Combine:
+			0:
+				Filename: ionsfx_2.shp
+				Length: *
+				Offset: 0, -78
+			1:
+				Filename: gunmake.shp
+				Length: *
+
+avdefnode:
+	Inherits: iron
+	active:
+		Reverses: true
+	make:
+		Length: *
+		Tick: 80
+		Offset: 0,0
+		Combine:
+			0:
+				Filename: ionsfx_2.shp
+				Length: *
+				Offset: 0, -78
+			1:
+				Filename: ironmake.shp
+				Length: *
+				Offset: 0, -4
+
+
+avlfence:
+	Defaults:
+		Filename: avbrik.shp
+	idle:
+	disabled-x:
+		Start: 10
+		Filename: brik.shp
+	disabled-y:
+		Start: 5
+		Filename: brik.shp
+	enabled-x:
+		Start: 10
+	enabled-y:
+		Start: 5
 
 avinf1:
 	Defaults:
@@ -443,6 +645,27 @@ av1tnk:
 
 av1tnk.destroyed:
 	Inherits: av1tnk
+	idle:
+		ZOffset: -512
+	turret:
+		ZOffset: -512
+
+av2tnk:
+	Defaults:
+		Filename: av2tnk.png
+	idle:
+		Facings: 32
+	turret:
+		Start: 32
+		Facings: 32
+	muzzle:
+		Filename: gunfire2.shp
+		Length: 5
+	icon:
+		Filename: av1tnkicon.shp
+
+av2tnk.destroyed:
+	Inherits: av2tnk
 	idle:
 		ZOffset: -512
 	turret:

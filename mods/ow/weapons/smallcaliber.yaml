@@ -5,6 +5,7 @@
 	Report: aacanon3.aud
 	ValidTargets: AirborneActor
 	Projectile: InstantHit
+		Inaccuracy: 512
 	Warhead@1Dam: SpreadDamage
 		Spread: 213
 		Damage: 900
@@ -20,11 +21,11 @@
 ZSU-23:
 	Inherits: ^AACannon
 	Burst: 2
-	BurstDelays: 0
+	BurstDelays: 1
 	ReloadDelay: 6
 	Range: 10c0
 	Warhead@1Dam: SpreadDamage
-		Damage: 750
+		Damage: 675
 
 FLAK-23-AA:
 	Inherits: ^AACannon
@@ -40,10 +41,10 @@ FLAK-23-AG:
 	Warhead@1Dam: SpreadDamage
 		Damage: 2000
 		Versus:
-			None: 60
-			Wood: 10
+			None: 75
+			Wood: 15
 			Light: 60
-			Heavy: 20
+			Heavy: 33
 			Concrete: 20
 		ValidTargets: AirborneActor, GroundActor, WaterActor
 	Warhead@2Eff: CreateEffect
@@ -412,13 +413,19 @@ M1Carbine_N:
 M1Carbine_G:
 	Inherits: M1Carbine
 	Report: irebweaa.wav,irebweab.wav,irebweac.wav,irebwead.wav,irebweae.wav
+	ReloadDelay: 14
+	Burst: 3
+	BurstDelays: 3
+	Warhead@1Dam: SpreadDamage
+		Damage: 390
 
 # GLA rifle gun - Bus
 M1Carbine_GBus:
-	Inherits: M1Carbine_G
+	Inherits: M1Carbine
+	Report: irebweaa.wav,irebweab.wav,irebweac.wav,irebwead.wav,irebweae.wav
 	Range: 6c0
 	Burst: 2
-	BurstDelays: 2
+	BurstDelays: 3
 
 # RA rifle gun - Bus
 M1Carbine_Bus:
@@ -430,9 +437,9 @@ M1Carbine_Bus:
 # GLA rifle gun multi
 M1Carbine_G2:
 	Inherits: M1Carbine_G
-	ReloadDelay: 32
-	Burst: 4
-	BurstDelays: 4
+	ReloadDelay: 26
+	Burst: 5
+	BurstDelays: 3
 	Warhead@1Dam: SpreadDamage
 		Damage: 1250
 		Versus:
@@ -828,8 +835,9 @@ WolverineVulcan:
 		Versus:
 			None: 100
 			Wood: 1
-			Light: 30
-			Heavy: 20
+			Light: 50
+			Heavy: 30
+			Concrete: 10
 		ValidTargets: Barrel, Infantry, Cyborg
 		DamageTypes: Prone50Percent, Sniper75Percent, TriggerProne, DefaultDeath, Sniper
 	Warhead@2Eff: CreateEffect
@@ -846,19 +854,28 @@ WolverineVulcan:
 		ValidTargets: GroundActor
 	Warhead@HighHP: SpreadDamage
 		Spread: 42
-		Damage: 5000
+		Damage: 10000
 		Versus:
 			None: 100
 			Wood: 1
-			Light: 30
-			Heavy: 20
+			Light: 50
+			Heavy: 30
+			Concrete: 10
 		ValidTargets: HighHPInfantry
 		InvalidTargets: BeingHealed
 		DamageTypes: Prone50Percent, Sniper75Percent, TriggerProne, DefaultDeath, Sniper
 	Warhead@takecover: SpreadDamage
-		Spread: 512
+		Spread: 1c0
 		Damage: 10
+		Falloff: 100,100,100,100,100
 		Delay: 1
+		ValidTargets: Infantry
+		DamageTypes: TriggerProne, DefaultDeath, TriggerSniperProne
+	Warhead@takecover2: SpreadDamage
+		Spread: 1c0
+		Damage: -10
+		Falloff: 100,100,100,100,100
+		Delay: 2
 		ValidTargets: Infantry
 		DamageTypes: TriggerProne, DefaultDeath, TriggerSniperProne
 
@@ -870,16 +887,16 @@ SilencedPPK:
 
 Colt45:
 	Inherits: ^SnipeWeapon
-	ReloadDelay: 7
+	ReloadDelay: 3
 	Range: 7c0
 	Report: gun5.aud
 	Warhead@1Dam: SpreadDamage
-		Damage: 6000
+		Damage: 2750
 		DamageTypes: Prone50Percent, TriggerProne, DefaultDeath, Sniper
 	Warhead@HighHP: SpreadDamage
-		Damage: 2500
+		Damage: 1200
 	Warhead@takecover: SpreadDamage
-		Spread: 256
+		Spread: 512
 
 Sniper:
 	Inherits: ^SnipeWeapon
@@ -910,12 +927,72 @@ CommandoSniperLeft:
 		Amount: 2
 		Weapon: CommandoSniperLeftHit
 		AimTargetStances: Neutral, Enemy, Ally
-		AimChance: 100
+		AimChance: 80
+		AllowDirectHit: true
+		TargetActorCenter: true
+		ValidTargets: GroundActor, WaterActor, AirborneActor, Ground, Water
+
+CommandoSniperLeftNoSound:
+	Inherits: CommandoSniperLeft
+	Report: baud.aud
+	Range: 32c0
+	ValidTargets: GroundActor, WaterActor, AirborneActor, Ground, Water
 
 CommandoSniperLeftHit:
 	Inherits: CommandoSniper
 	Range: 128c0
 	Report: baud.aud
+	ValidTargets: Infantry, Cyborg
+
+CommandoSniperChain:
+	Inherits: CommandoSniper
+	ReloadDelay: 500
+	Range: 25c0
+	Projectile: LaserZap
+		Color: FFFFFF
+		Width: 12
+		Duration: 10
+	-Warhead@2Eff:
+	Warhead@1Dam: SpreadDamage
+		Damage: 1
+	Warhead@HighHP: SpreadDamage
+		Damage: 1
+	Warhead@2cluster: FireShrapnel
+		Delay: 1
+		Amount: 1
+		Weapon: CommandoSniperChainHit
+		AimTargetStances: Neutral, Enemy, Ally
+		AimChance: 100
+		AllowDirectHit: true
+		AffectsParent: true
+		TargetActorCenter: true
+		ValidTargets: GroundActor, WaterActor, AirborneActor, Ground, Water
+
+CommandoSniperChainHit:
+	Inherits: CommandoSniper
+	Range: 128c0
+	Report: baud.aud
+	Projectile: LaserZap
+		Color: FFFFFF
+		Width: 12
+		Duration: 10
+	ValidTargets: Infantry, Cyborg
+	Warhead@1Dam: SpreadDamage
+		Damage: 100000
+	Warhead@2cluster: FireShrapnel
+		Delay: 1
+		Amount: 1
+		Weapon: CommandoSniperChainHit
+		AimTargetStances: Neutral, Enemy, Ally
+		AimChance: 100
+		AllowDirectHit: true
+		TargetActorCenter: true
+		ValidTargets: GroundActor, WaterActor, AirborneActor, Ground, Water
+		AffectsParent: true
+	Warhead@3hit: CreateEffect
+		Explosions: hitmarker
+		ImpactSounds: HITSOUND.wav
+		ValidTargets: Infantry
 
 DeadeyeSniper:
 	Inherits: ^SnipeWeapon
@@ -2095,7 +2172,7 @@ strifeguymg:
 		Versus:
 			None: 120
 			Wood: 20
-			Light: 30
+			Light: 40
 			Heavy: 30
 			Concrete: 20
 		DamageTypes: Prone50Percent, TriggerProne, BulletDeath
@@ -2111,11 +2188,11 @@ strifeguymgauto:
 		Blockable: true
 		Inaccuracy: 128
 	Warhead@1Dam: SpreadDamage
-		Damage: 3000
+		Damage: 2250
 		Versus:
 			None: 120
 			Wood: 20
-			Light: 30
+			Light: 40
 			Heavy: 30
 			Concrete: 20
 		DamageTypes: Prone50Percent, TriggerProne, BulletDeath

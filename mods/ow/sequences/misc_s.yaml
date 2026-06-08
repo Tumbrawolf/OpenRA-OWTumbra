@@ -114,6 +114,10 @@ explosion:
 	cloudb:
 		Filename: cloud1d_blue.shp
 		Tick: 100
+	cloudsmoke:
+		Scale: 0.75
+		Filename: cloudsmoke.shp
+		Tick: 100
 	bfg:
 		Filename: bfg.shp
 		Start: 2
@@ -198,6 +202,10 @@ explosion:
 		Filename: ring1.shp
 		ZRamp: 1
 		Tick: 100
+	ionbeamdawn:
+		Filename: ionsfx.shp
+		Length: *
+		Offset: 0, -78
 	ionbeam:
 		Filename: ionbeam.shp
 		Offset: 0, -60, 60
@@ -228,6 +236,60 @@ explosion:
 		Offset: 0, -660, 60
 		ZRamp: 1
 		Tick: 100
+	ionbeam1fat:
+		Filename: ionbeamfat.shp
+		Offset: 0, -60, 60
+		ZRamp: 1
+		BlendMode: Additive
+		Alpha: 0.5
+		Tick: 100
+		ZOffset: 2400
+	ionbeam2fat:
+		Filename: ionbeamfat.shp
+		Offset: 0, -180, 60
+		ZRamp: 1
+		BlendMode: Additive
+		Alpha: 0.5
+		Tick: 100
+		ZOffset: 2400
+	ionbeam3fat:
+		Filename: ionbeamfat.shp
+		Offset: 0, -300, 60
+		ZRamp: 1
+		BlendMode: Additive
+		Alpha: 0.5
+		Tick: 100
+		ZOffset: 2400
+	ionbeam4fat:
+		Filename: ionbeamfat.shp
+		Offset: 0, -420, 60
+		ZRamp: 1
+		BlendMode: Additive
+		Alpha: 0.5
+		Tick: 100
+		ZOffset: 2400
+	ionbeam5fat:
+		Filename: ionbeamfat.shp
+		Offset: 0, -540, 60
+		ZRamp: 1
+		BlendMode: Additive
+		Alpha: 0.5
+		Tick: 100
+		ZOffset: 2400
+	ionbeam6fat:
+		Filename: ionbeamfat.shp
+		Offset: 0, -660, 60
+		ZRamp: 1
+		BlendMode: Additive
+		Alpha: 0.5
+		Tick: 100
+		ZOffset: 2400
+	ionringfat:
+		Filename: ring1.shp
+		ZRamp: 1
+		Tick: 200
+		Scale: 4.0
+		BlendMode: Additive
 	avaliionring:
 		Filename: avionring.shp
 		ZRamp: 1
@@ -267,6 +329,18 @@ explosion:
 		BlendMode: Additive
 		ZRamp: 1
 		Tick: 50
+	pulse_explosion2:
+		Filename: pulsefx1.shp
+		BlendMode: Additive
+		ZRamp: 1
+		Tick: 200
+		Scale: 6.0
+	pulse_explosion_red:
+		Filename: pulsefx1_red.shp
+		BlendMode: Additive
+		ZRamp: 1
+		Tick: 150
+		Scale: 2.0
 	timestop:
 		Filename: pulsefx1_bfg.shp
 		BlendMode: Additive
@@ -350,6 +424,14 @@ explosion:
 		Offset: 0, -160
 	particlebeam2:
 		Filename: particlebeam.shp
+		Length: *
+		Offset: 0, -280
+	glassingbeam1:
+		Filename: covenantglassingbeam.shp
+		Length: *
+		Offset: 0, -160
+	glassingbeam2:
+		Filename: covenantglassingbeam.shp
 		Length: *
 		Offset: 0, -280
 	mediholysuperland:
@@ -580,6 +662,9 @@ explosion:
 		Filename: flash.shp
 	particle_ring:
 		Filename: particlering.shp
+	particle_ring2:
+		Filename: particlering.shp
+		Scale: 2.0
 	fuelbomb:
 		Filename: moab.shp
 		Tick: 100
@@ -659,6 +744,24 @@ explosion:
 		BlendMode: Additive
 		Offset: 0, -8, 30
 		Tick: 25
+	dukenukemexplosionmed2:
+		Filename: dukenukemexplosionmed2.shp
+		BlendMode: Additive
+		Offset: 0, -8, 30
+		ZOffset: 2048
+		Tick: 90
+	dukenukemexplosion_green:
+		Filename: dukeexplo_green.png
+		BlendMode: Additive
+		Offset: 0, -8, 30
+		ZOffset: 2048
+		Tick: 90
+	dukenukemexplosion_blue:
+		Filename: dukeexplo_blue.png
+		BlendMode: Additive
+		Offset: 0, -8, 30
+		ZOffset: 2048
+		Tick: 90
 	corsair_blast:
 		Filename: pcorsairhit.shp
 	corsair_disrupt:
@@ -1020,7 +1123,38 @@ explosion:
 		Tick: 100
 		BlendMode: Additive
 		ZOffset: 512
+	ionsparkle1:
+		Filename: laserhit2.shp
+		Length: *
+		Frames: 7,6,5,4,3,2,1,0
+		Tick: 110
+		BlendMode: Additive
+		ZOffset: 512
+	ionsparkle2:
+		Filename: laserhit1.shp
+		Length: *
+		Frames: 7,6,5,4,3,2,1,0
+		Tick: 100
+		BlendMode: Additive
+		ZOffset: 512
+	ionsparkle3:
+		Filename: laserhit2.shp
+		Length: *
+		Frames: 7,6,5,4,3,2,1,0
+		Tick: 80
+		BlendMode: Additive
+		ZOffset: 512
+		Scale: 0.5
+	ionsparkle4:
+		Filename: laserhit3.shp
+		Length: *
+		Frames: 7,6,5,4,3,2,1,0
+		Tick: 125
+		BlendMode: Additive
+		ZOffset: 512
 	fakeexplosion:
+		Filename: invis.shp
+	idle: 
 		Filename: invis.shp
 	strifeteleport:
 		Filename: strifeteleport.shp
@@ -1276,6 +1410,292 @@ explosion:
 		Length: *
 		Tick: 1000
 		Frames: 4,0,0,1,1,1,2,2,2,3,4
+	holyhandgrenadesprite:
+		Filename: holyhandgrenade.shp
+		Frames: 7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7
+		ZOffset: 2048
+		Tick: 50
+	holyhandgrenadetrail:
+		Filename: holyhandgrenadetrail.shp
+		BlendMode: Additive
+		Length: *
+		Tick: 12
+	needlerexplosion:
+		Filename: needlerexplosion.shp
+		Length: *
+		Tick: 75
+		BlendMode: Additive
+		ZOffset: 512
+	needlerexplosionweak:
+		Filename: needlerexplosion.shp
+		Length: *
+		Tick: 75
+		BlendMode: Additive
+		ZOffset: 512
+		Scale: 0.75
+	fuelrodtrail:
+		Filename: fuelrodtrail.shp
+		Length: *
+		Tick: 75
+		BlendMode: Additive
+		ZOffset: 512
+	fuelrodexplosion:
+		Filename: fuelrodexplosion.shp
+		Length: *
+		Tick: 75
+		BlendMode: Additive
+		ZOffset: 512
+	beamriflehit:
+		Filename: beamriflehit.shp
+		Length: *
+		Tick: 75
+		BlendMode: Additive
+		ZOffset: 512
+	unscplasmagrenade:
+		Filename: japanplasmaring.shp
+		Length: *
+		Tick: 75
+		Scale: 0.4
+		BlendMode: Additive
+		ZOffset: 512
+	spartanlaserhit:
+		Filename: japanplasmaringupgrade.shp
+		Length: *
+		Tick: 100
+		Scale: 1.5
+		BlendMode: Additive
+		ZOffset: 512
+	gravityhammerhit:
+		Filename: japanplasmaring.shp
+		Length: *
+		Tick: 100
+		Scale: 1.5
+		BlendMode: Additive
+		ZOffset: 512
+	vulpdnd:
+		Filename: vulpdnd.shp
+		Length: *
+		Offset: 0, -38
+		BlendMode: DoubleMultiplicative
+		Scale: 1.25
+		Tick: 80
+	vulpdnd_loop:
+		Filename: vulpdnd.shp
+		Length: *
+		Start: 2
+		Reverses: true
+		Offset: 0, -38
+		BlendMode: DoubleMultiplicative
+		ZOffset: -512
+		Scale: 1.25
+		Tick: 80
+	flashbang_ice:
+		Filename: flash.shp
+		Tick: 80
+		Scale: 2.0
+		BlendMode: Screen
+	icesmoke1:
+		Filename: icesmoke.shp
+		Tick: 80
+		BlendMode: Additive
+		Length: 12
+		AlphaFade: true
+	icesmoke2:
+		Filename: icesmoke.shp
+		Tick: 80
+		BlendMode: Additive
+		Start: 12
+		Length: 16
+		AlphaFade: true
+	icesmoke3:
+		Filename: icesmoke.shp
+		Tick: 80
+		BlendMode: Additive
+		Start: 28
+		Length: 16
+		AlphaFade: true
+	icesmoke1_sm:
+		Filename: icesmoke.shp
+		BlendMode: Additive
+		Length: 12
+		Scale: 0.5
+		AlphaFade: true
+	icesmoke2_sm:
+		Filename: icesmoke.shp
+		BlendMode: Additive
+		Start: 12
+		Length: 16
+		Scale: 0.5
+		AlphaFade: true
+	icesmoke3_sm:
+		Filename: icesmoke.shp
+		BlendMode: Additive
+		Start: 28
+		Length: 16
+		Scale: 0.5
+		AlphaFade: true
+	icespikecrush:
+		Filename: icespikecrush.shp
+		Tick: 80
+		BlendMode: Additive
+	iceshockwave:
+		Filename: iceshockwave.shp
+		Tick: 80
+		BlendMode: Additive
+	iceshockwave_large:
+		Filename: iceshockwave.shp
+		Tick: 120
+		BlendMode: Additive
+		Scale: 2.5
+		AlphaFade: true
+	icespikeup:
+		Filename: icespikeup.shp
+		Tick: 80
+		Frames: 0,1,5,4,4,4,4,4,4,4,4,4,4,5,4,3,2,1,0
+		ZOffset: 1023
+		Scale: 0.75
+	deathstrikeshockwave:
+		Filename: iceshockwavered.shp
+		Tick: 80
+		BlendMode: DoubleMultiplicative
+	bloodboil:
+		Filename: iceshockwavered.shp
+		Tick: 80
+		BlendMode: DoubleMultiplicative
+		Scale: 2.0
+		ZOffset: -512
+	bloodcloud1:
+		Filename: icesmoke_red.shp
+		Tick: 80
+		BlendMode: Multiplicative
+		Length: 12
+		AlphaFade: true
+	bloodcloud2:
+		Filename: icesmoke_red.shp
+		Tick: 80
+		BlendMode: Multiplicative
+		Start: 12
+		Length: 16
+		AlphaFade: true
+	bloodcloud3:
+		Filename: icesmoke_red.shp
+		Tick: 80
+		BlendMode: Multiplicative
+		Start: 28
+		Length: 16
+		AlphaFade: true
+	bloodsplat1:
+		Filename: msblood1.shp
+		Tick: 60
+		Scale: 0.75
+	bloodsplat2:
+		Filename: msblood2.shp
+		Tick: 60
+		Scale: 0.75
+	bloodsplat3:
+		Filename: msblood3.shp
+		Tick: 60
+		Scale: 0.75
+	maccannonbeam1:
+		Filename: unscmaccannonproj.shp
+		Offset: 0, -60, 60
+		ZRamp: 1
+		Tick: 100
+		BlendMode: Additive
+		AlphaFade: true
+	maccannonbeam2:
+		Filename: unscmaccannonproj.shp
+		Offset: 0, -180, 60
+		ZRamp: 1
+		Tick: 100
+		BlendMode: Additive
+		AlphaFade: true
+	maccannonbeam3:
+		Filename: unscmaccannonproj.shp
+		Offset: 0, -300, 60
+		ZRamp: 1
+		Tick: 100
+		BlendMode: Additive
+		AlphaFade: true
+	maccannonbeam4:
+		Filename: unscmaccannonproj.shp
+		Offset: 0, -420, 60
+		ZRamp: 1
+		Tick: 100
+		BlendMode: Additive
+		AlphaFade: true
+	maccannonbeam5:
+		Filename: unscmaccannonproj.shp
+		Offset: 0, -540, 60
+		ZRamp: 1
+		Tick: 100
+		BlendMode: Additive
+		AlphaFade: true
+	maccannonbeam6:
+		Filename: unscmaccannonproj.shp
+		Offset: 0, -660, 60
+		ZRamp: 1
+		Tick: 100
+		BlendMode: Additive
+		AlphaFade: true
+	maccannonexplosion:
+		Filename: moab.shp
+		Tick: 100
+		Scale: 1.0
+	unsccolonyshipmaccharge:
+		Filename: unsccolonyshipmaccharge.shp
+		Length: *
+		Tick: 100
+		Scale: 1.5
+		BlendMode: Additive
+		ZOffset: 512
+	wtfboom:
+		Filename: wtfboom.shp
+		Tick: 2000
+	wtfboomcrate:
+		Filename: scrate.shp
+		Start: 1
+		Length: 1
+		Tick: 7500
+	morshubombs:
+		Filename: morshubombs.shp
+		Tick: 334
+	covenantplasmaexplosion:
+		Filename: mediicewyvernexplosion.shp
+		Offset: 0, -30, 30
+		ZRamp: 1
+		Tick: 120
+		Scale: 0.3
+		BlendMode: Additive
+	covenantmegaturretexplosion:
+		Filename: covenantmegaturretexplosion.shp
+		Length: *
+		Frames: 2,1,0,0,1,1,2,2,3,3,3
+		Tick: 80
+		ZOffset: 9000
+		Scale: 1.0
+	laserhitmedfade:
+		Filename: laserhit3.shp
+		Length: *
+		Tick: 35
+		BlendMode: Additive
+		ZOffset: 512
+		Scale: 1.25
+		AlphaFade: true
+	laserhitsmallfade:
+		Filename: laserhit2.shp
+		Length: *
+		Tick: 45
+		BlendMode: Additive
+		ZOffset: 512
+		AlphaFade: true
+	japanplasmaringfade:
+		Filename: japanplasmaring.shp
+		Length: *
+		Tick: 75
+		BlendMode: Additive
+		ZOffset: 512
+		AlphaFade: true
 
 pips:
 	Defaults:
@@ -1314,6 +1734,9 @@ pips:
 	pip-blue:
 		Filename: pips2.shp
 		Start: 5
+	pip-oil:
+		Filename: pips2.shp
+		Start: 6
 	pip-disguise:
 		Filename: pip-disguise.shp
 		Length: *
@@ -1407,6 +1830,11 @@ pips:
 	chinapropagandapipboosted:
 		Filename: chinapropagandapip.shp
 		Start: 0
+	sword:
+		Filename: vulpspecpip.shp
+	shield:
+		Filename: vulpspecpip.shp
+		Start: 1
 
 resources:
 	Defaults:
@@ -1527,6 +1955,18 @@ icon:
 		Filename: nstrikeicon.shp
 	ioncannon:
 		Filename: ionicnh.shp
+	ioncannon1:
+		Filename: ionicon1.shp
+	ioncannon2:
+		Filename: ionicon2.shp
+	ioncannon3:
+		Filename: ionicon3.shp
+	ioncannon4:
+		Filename: ionicon4.shp
+	ioncannon5:
+		Filename: ionicon5.shp
+	ioncannon6:
+		Filename: ionicon6.shp
 	kodiac:
 		Filename: tskodiacicon.shp
 	nuke:
@@ -1781,10 +2221,56 @@ icon:
 		Filename: maverickparabomb6icon.shp
 	maverickparabomb7:
 		Filename: maverickparabomb7icon.shp
+	upkeep1:
+		Filename: upkeepicon.shp
+	upkeep2:
+		Filename: upkeepicon.shp
+		Start: 1
+	upkeep3:
+		Filename: upkeepicon.shp
+		Start: 2
+	firesale:
+		Filename: firesaleicon.shp
+	holyhandgrenadeicon:
+		Filename: holyhandgrenadeicon.shp
+	bananabombicon:
+		Filename: bananabombicon.shp
+	dronestrike:
+		Filename: sovietup5icon.shp
 	idle:
 		Scale: 0.1
 		Filename: tbunker.shp
 		Start: 10
+	masterchiefsprinterpackicon:
+		Filename: masterchiefsprinterpackicon.shp
+	masterchieftitaniumalloyicon:
+		Filename: masterchieftitaniumalloyicon.shp
+	masterchiefcornealimplantsicon:
+		Filename: masterchiefcornealimplantsicon.shp
+	masterchiefplasmagrenadeicon:
+		Filename: masterchiefplasmagrenadeicon.shp
+	masterchiefjammericon:
+		Filename: masterchiefjammericon.shp
+	masterchiefregeneratoricon:
+		Filename: masterchiefregeneratoricon.shp
+	masterchiefcloakingdeviceicon:
+		Filename: masterchiefcloakingdeviceicon.shp
+	masterchiefbubbleshieldicon:
+		Filename: masterchiefbubbleshieldicon.shp
+	masterchiefpowerdrainicon:
+		Filename: masterchiefpowerdrainicon.shp
+	masterchiefinvulnerabilityicon:
+		Filename: masterchiefinvulnerabilityicon.shp
+	masterchiefmarkviarmoricon:
+		Filename: masterchiefmarkviarmoricon.shp
+	masterchiefautoturreticon:
+		Filename: masterchiefautoturreticon.shp
+	magneticacceleratorcannonicon:
+		Filename: magneticacceleratorcannonicon.shp
+	unscodstdroppodicon:
+		Filename: unscodstdroppodicon.shp
+	starfoxarwingicon:
+		Filename: starfoxarwingicon.shp
 
 beacon:
 	Defaults:
@@ -2506,6 +2992,11 @@ zlitning:
 	idle:
 		Filename: 125mm_bl.shp
 
+125mm_wh:
+	Inherits: 125mm
+	idle:
+		Filename: 125mm_wh.shp
+
 railgunshot:
 	idle:
 		Filename: railgunshot.shp
@@ -2524,7 +3015,8 @@ rank:
 hordebonus-overlay:
 	Defaults:
 		Length: *
-		BlendMode: Additive
+		BlendMode: Alpha
+		Alpha: 0.7
 		ZOffset: -512
 	vehicle:
 		Filename: chinahordebonus.shp
@@ -2544,6 +3036,16 @@ hordebonus-overlay:
 	infantryupgrade2:
 		Filename: chinahordebonusupgrade2inf.shp
 		Offset: 0, 0
+	masterchiefregenerator:
+		Filename: masterchiefregenerator.shp
+		Offset: 0, 12
+	masterchiefregeneratorinf:
+		Filename: masterchiefregeneratorinf.shp
+		Offset: 0, 0
+	masterchiefbubbleshieldeffect:
+		Filename: masterchiefbubbleshieldeffect.shp
+		Offset: 0, 4
+		Scale: 2.0
 
 berserk-overlay:
 	Defaults:
@@ -2737,6 +3239,40 @@ roadrollerpart7:
 		ZOffset: 1024
 		Scale: 0.8
 
+holyhandgrenade:
+	idle:
+		Filename: holyhandgrenade.shp
+		Length: *
+		Tick: 12
+		ZOffset: 1024
+	turret:
+		Filename: invis.shp
+	muzzle:
+		Filename: invis.shp
+
+bananabomb:
+	idle:
+		Filename: bananabomb.shp
+		Length: *
+		Tick: 12
+		ZOffset: 1024
+		Scale: 1.25
+	turret:
+		Filename: invis.shp
+	muzzle:
+		Filename: invis.shp
+
+bananabombsmall:
+	idle:
+		Filename: bananabomb.shp
+		Length: *
+		Tick: 12
+		ZOffset: 1024
+	turret:
+		Filename: invis.shp
+	muzzle:
+		Filename: invis.shp
+
 plasmaprojsmall:
 	idle:
 		Filename: plasmaprojsmall.shp
@@ -2833,6 +3369,27 @@ hugecrater:
 		Length: *
 		Tick: 333
 		Combine:
+			0000:
+				Filename: hugecrater.shp
+				TilesetFilenames:
+					SNOW: hugecrater_sno.shp
+					DESERT: hugecrater_des.shp
+				Frames: 0
+				Scale: 0.2
+			000:
+				Filename: hugecrater.shp
+				TilesetFilenames:
+					SNOW: hugecrater_sno.shp
+					DESERT: hugecrater_des.shp
+				Frames: 0
+				Scale: 0.2
+			00:
+				Filename: hugecrater.shp
+				TilesetFilenames:
+					SNOW: hugecrater_sno.shp
+					DESERT: hugecrater_des.shp
+				Frames: 0
+				Scale: 0.2
 			0:
 				Filename: hugecrater.shp
 				TilesetFilenames:
@@ -2870,6 +3427,9 @@ hugecrater:
 				Scale: 0.8
 			5:
 				Filename: hugecrater.shp
+				TilesetFilenames:
+					SNOW: hugecrater_sno.shp
+					DESERT: hugecrater_des.shp
 				Frames: 0
 				Scale: 0.95
 	idle:
@@ -3050,6 +3610,11 @@ firemaceproj2:
 	idle:
 		Filename: corvusfiremace2.shp
 		Scale: 0.5
+
+firemaceproj1tiny:
+	idle:
+		Filename: corvusfiremace1.shp
+		Scale: 0.25
 
 metalnuke:
 	idle:
@@ -3330,3 +3895,261 @@ overlay:
 		Start: 1
 	target-invalid:
 		Start: 2
+
+iondrop:
+	idle:
+		Filename: ionfall.shp
+		ZOffset: 1024
+		Scale: 0.75
+	idle-overlay1:
+		Filename: fire1.shp
+		Length: *
+		Offset: 0,0
+		ZOffset: 2024
+		Scale: 3.0
+	idle-overlay2:
+		Filename: fire2.shp
+		Length: *
+		Offset: -16,-3
+		ZOffset: 1023
+		Scale: 2.0
+	idle-overlay3:
+		Filename: fire3.shp
+		Length: *
+		Offset: 32,-9
+		ZOffset: 1023
+		Scale: 2.25
+	idle-overlay4:
+		Filename: fire4.shp
+		Length: *
+		Offset: -8,-5
+		ZOffset: 1023
+		Scale: 2.75
+	idle-overlay5:
+		Filename: fire1.shp
+		Length: *
+		Offset: -12,4
+		ZOffset: 2024
+		Scale: 3.0
+	idle-overlay6:
+		Filename: fire2.shp
+		Length: *
+		Offset: 15,-2
+		ZOffset: 1023
+		Scale: 2.0
+	idle-overlay7:
+		Filename: fire3.shp
+		Length: *
+		Offset: -6,4
+		ZOffset: 1023
+		Scale: 2.25
+	idle-overlay8:
+		Filename: fire4.shp
+		Length: *
+		Offset: 0,4
+		ZOffset: 1023
+		Scale: 2.75
+
+masterchiefplasmaproj:
+	idle:
+		Filename: masterchiefplasmaproj1.shp
+		Length: *
+		Tick: 25
+		Scale: 0.75
+
+masterchieffuelrodproj:
+	idle:
+		Filename: masterchiefplasmaproj1.shp
+		Length: *
+		Tick: 25
+
+masterchiefneedlerproj:
+	idle:
+		Filename: medivoidproj.shp
+		Facings: 32
+		ZOffset: 1023
+
+masterchief.weaponhack:
+	Defaults:
+		Filename: invis.shp
+	idle:
+	masterchiefpistolicon:
+		Filename: masterchiefpistolicon.shp
+	masterchiefplasmapistolicon:
+		Filename: masterchiefplasmapistolicon.shp
+	masterchiefshotgunicon:
+		Filename: masterchiefshotgunicon.shp
+	masterchiefneedlericon:
+		Filename: masterchiefneedlericon.shp
+	masterchiefplasmarifleicon:
+		Filename: masterchiefplasmarifleicon.shp
+	masterchiefassaultrifleicon:
+		Filename: masterchiefassaultrifleicon.shp
+	masterchiefsnipericon:
+		Filename: masterchiefsnipericon.shp
+	masterchiefplasmacarbineicon:
+		Filename: masterchiefplasmacarbineicon.shp
+	masterchiefenergyswordicon:
+		Filename: masterchiefenergyswordicon.shp
+	masterchiefrocketlaunchericon:
+		Filename: masterchiefrocketlaunchericon.shp
+	masterchieffuelrodcannonicon:
+		Filename: masterchieffuelrodcannonicon.shp
+	masterchiefbruteshoticon:
+		Filename: masterchiefbruteshoticon.shp
+	masterchiefsentinelbeamicon:
+		Filename: masterchiefsentinelbeamicon.shp
+	masterchiefgravityhammericon:
+		Filename: masterchiefgravityhammericon.shp
+	masterchiefspartanlasericon:
+		Filename: masterchiefspartanlasericon.shp
+	masterchiefflamethrowericon:
+		Filename: masterchiefflamethrowericon.shp
+	masterchiefcloakingdeviceicon:
+		Filename: masterchiefcloakingdeviceicon.shp
+	masterchiefinvulnerabilityicon:
+		Filename: masterchiefinvulnerabilityicon.shp
+
+masterchiefplasmarifleproj:
+	idle:
+		Filename: plasmaprojsmall.shp
+		Length: *
+		Tick: 25
+		Scale: 0.75
+
+vulpkmicon:
+	Defaults:
+		Filename: vulpkmicon.shp
+		Length: *
+		Tick: 80
+	idle:
+	rune:
+		Filename: vulppillarrune.shp
+		Reverses: true
+		Tick: 40
+
+vulpsnowflake:
+	Defaults: 
+		Filename: vulpsnowflake.shp
+		BlendMode: Screen
+	idle:
+		Length: *
+	1:
+		Start: 0
+	2:
+		Start: 1
+	3:
+		Start: 2
+	4:
+		Start: 3
+	5:
+		Start: 4
+
+vulpbone:
+	Defaults:
+		Filename: vulpbone2.shp
+		Length: *
+	1:
+		Frames: 0,1,2,3,4
+	2:
+		Frames: 1,2,3,4,0
+	3:
+		Frames: 2,3,4,0,1
+	4:
+		Frames: 3,4,0,1,2
+	5:
+		Frames: 4,0,1,2,3
+
+masterchiefbubbleshield:
+	idle:
+		Filename: masterchiefbubbleshield.shp
+		Length: *
+	make:
+		Filename: masterchiefbubbleshield.shp
+		Length: *
+	icon:
+		Filename: masterchiefbubbleshieldicon.shp
+
+unscdroppod:
+	idle:
+		Filename: unscdroppod.shp
+		Scale: 0.35
+		ZOffset: 1024
+
+covenantghostdeathproj:
+	idle:
+		Filename: covenantghostdamaged.shp
+		Facings: 32
+		ZOffset: 1024
+		Offset: 0,-10
+	fire1:
+		Filename: bluefire1.shp
+		Length: *
+		ZOffset: 1023
+
+covenantconcussionrifleproj:
+	idle:
+		Filename: covenantplasmalauncherproj.shp
+		Length: *
+		Tick: 25
+		Scale: 0.75
+
+
+starfoxproj1:
+	idle:
+		Filename: 125mmgreen.shp
+		Facings: 32
+		ZOffset: 1023
+
+starfoxproj2:
+	idle:
+		Filename: 125mmblue.shp
+		Facings: 32
+		ZOffset: 1023
+
+covenantplasmalauncherproj:
+	idle:
+		Filename: 125mmblue.shp
+		Facings: 32
+		ZOffset: 1023
+		Scale: 0.75
+
+covenantspikerproj:
+	idle:
+		Filename: 125mm.shp
+		Facings: 32
+		ZOffset: 1023
+		Scale: 0.75
+
+covenantbruteplasmarifleproj:
+	idle:
+		Filename: covenantbruteplasmarifleproj.shp
+		Length: *
+		Tick: 25
+		Scale: 0.75
+
+covenantwraithproj:
+	idle:
+		Filename: plasmaprojsmall.shp
+		Length: *
+		Tick: 40
+		Scale: 1.1
+
+covenantrevenantproj:
+	idle:
+		Filename: covenantbruteplasmarifleproj.shp
+		Length: *
+		Tick: 40
+		
+covenantmegaturretproj:
+	idle:
+		Filename: covenantmegaturretproj.shp
+		Length: *
+		Tick: 120
+		Scale: 0.5
+
+hack.glassing_beam:
+	idle:
+		Filename: covenantglassingbeam.shp
+		Length: *
+		Offset: 0, -40

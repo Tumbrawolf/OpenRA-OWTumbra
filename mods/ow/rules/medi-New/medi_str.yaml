@@ -515,6 +515,7 @@ techcenterblacksmith:
 		Amount: 100
 	DetectCloaked:
 		Range: 6c0
+		DetectionTypes: Cloak, AirCloak
 		RequiresCondition: !disabled
 	## Neutral Powers
 	AirstrikePower@ElementalAirstrike:
@@ -1146,6 +1147,7 @@ Archertower:
 		Offset: 128,128,384
 		HasMinibib: true
 	DetectCloaked:
+		DetectionTypes: Cloak, AirCloak
 		Range: 6c0
 	RenderSprites:
 		Image: archertower
@@ -1378,6 +1380,7 @@ wizardtower:
 		Amount: -100
 	DetectCloaked:
 		Range: 6c0
+		DetectionTypes: Cloak, AirCloak
 		RequiresCondition: !disabled
 	ProvidesPrerequisite@buildingname:
 	RenderSprites:

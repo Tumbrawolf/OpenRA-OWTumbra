@@ -903,7 +903,7 @@ HELLD3:
 	RevealsShroud:
 		Range: 6c0
 	Repairable:
-		RepairActors: fix
+		RepairActors: fix, gfix, gfix.boss, tshop, weapgarage
 	Passenger:
 		Weight: 5
 		CustomPipType: red
@@ -1274,7 +1274,7 @@ HELLD8:
 		CustomPipType: red
 	-Crushable:
 	Repairable:
-		RepairActors: fix
+		RepairActors: fix, gfix, gfix.boss, tshop, weapgarage
 	Armament@PRIMARY1:
 		Weapon: DoomSpider
 	Armament@PRIMARY2:
@@ -1297,10 +1297,9 @@ HELLD8:
 		Weapon: SpiderNuke
 		EmptyWeapon: SpiderNuke
 		Chance: 100
-	ProximityExternalCondition:
-		Condition: squadboost
-		Range: 8c0
-		AffectsParent: false
+	FireWarheads@officer:
+		Weapons: SquadBoostSpider
+		Interval: 50
 	WithDecoration@officer2:
 		Image: pips
 		Sequence: pip-bonus

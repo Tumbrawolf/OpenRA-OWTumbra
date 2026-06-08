@@ -185,8 +185,8 @@ DRONE:
 		InitialStanceAI: Defend
 	DetectCloaked:
 		Range: 4c0
-	#	PauseOnCondition: disabled
-	#	Condition: !disabled
+		DetectionTypes: Cloak, Underwater
+		RequiresCondition: !disabled
 	-MustBeDestroyed:
 	Cloak:
 		InitialDelay: 40
@@ -234,7 +234,7 @@ MORNSTAR:
 		Range: 5c0
 	Armament:
 		Weapon: MonMis
-		LocalOffset: 213,128,0, 213,-128,0
+		LocalOffset: 213,128,256, 213,-128,256
 		PauseOnCondition: disabled
 	AttackTurreted:
 		PauseOnCondition: disabled
@@ -441,6 +441,7 @@ FCRU:
 	Selectable:
 		Bounds: 1877, 1877, 0, -512
 		DecorationBounds: 1877, 1877, 0, -512
+	-Cloneable:
 
 SOLC:
 	Inherits@EPIC: ^EpicUnit
@@ -772,7 +773,7 @@ SOLCDEPL:
 		CargoType: Vehicle
 		RequiresForceMove: true
 	TransformsIntoRepairable:
-		RepairActors: fix
+		RepairActors: fix, gfix, gfix.boss, tshop, weapgarage
 		RequiresForceMove: true
 	-Capturable:
 	-CaptureManager:

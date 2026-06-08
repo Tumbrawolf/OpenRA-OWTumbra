@@ -36,7 +36,7 @@ A10:
 		Prerequisites: ~hpad, ~techlevel.medium, ~aircraft.gdi, ~!aircraft.gdi3
 		Description: actor-a10.description
 	Valued:
-		Cost: 2000
+		Cost: 1800
 	Tooltip:
 		Name: actor-a10.name
 	UpdatesPlayerStatistics:
@@ -476,7 +476,7 @@ TSKODIAC:
 		Queue: Aircraft
 		BuildAtProductionType: Helicopter
 		BuildPaletteOrder: 900
-		Prerequisites: ~hpad, ulttechcenter, ~techlevel.unrestricted, ~aircraft.gdi3, ~!kodiakexist
+		Prerequisites: ~hpad, ulttechcenter, ~techlevel.unrestricted, ~aircraft.gdi3, !kodiakexist
 		Description: actor-tskodiac.description
 		BuildLimit: 1
 	Valued:

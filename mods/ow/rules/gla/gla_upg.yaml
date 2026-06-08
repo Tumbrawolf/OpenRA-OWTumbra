@@ -21,16 +21,16 @@
 # shoes aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 # shoes aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 # shoes aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-upgrade.glashoes:
+gla.shoes:
 	Inherits: ^UpgradeBaseExt
 	Tooltip:
 		Name: actor-upgrade-glashoes.name
 	Buildable:
 		Description: actor-upgrade-glashoes.description
 		BuildPaletteOrder: 10007
-		Prerequisites: ~infantry.gla, advtechcenter, ~!upgrade.glashoes
+		Prerequisites: ~infantry.gla, refinery
 	ProductionCostMultiplier@upgrade:
-		Multiplier: 2500
+		Multiplier: 4000
 	ProvidesPrerequisite@upgradename:
 	Voiced:
 		VoiceSet: Worker2Voice
@@ -39,6 +39,43 @@ upgrade.glashoes:
 		Voice: Upgrade
 	ExternalCondition@PRODUCED:
 		Condition: produced
+	WithProductionIconOverlay:
+		Types: UpgradeComplete
+		Prerequisites: gla.shoes
+
+gla.scorprockets:
+	Inherits: ^UpgradeBaseExt
+	Tooltip:
+		Name: actor-gla-scorprockets.name
+	Buildable:
+		Description: actor-gla-scorprockets.description
+		BuildPaletteOrder: 10008
+		Prerequisites: ~structures.gla, factory, ~techlevel.medium
+		BuildDuration: 4000
+	ProvidesPrerequisite@upgradename:
+	ProductionCostMultiplier@upgrade:
+		Multiplier: 3000
+	WithProductionIconOverlay:
+		Types: UpgradeComplete
+		Prerequisites: gla.scorprockets
+
+gla.junk:
+	Inherits: ^UpgradeBaseExt
+	Tooltip:
+		Name: actor-gla-junk.name
+	Buildable:
+		Description: actor-gla-junk.description
+		BuildPaletteOrder: 10009
+		Prerequisites: ~structures.gla, fix, ~techlevel.medium
+		BuildDuration: 4000
+	ProvidesPrerequisite@upgradename:
+	ProductionCostMultiplier@upgrade:
+		Multiplier: 5000
+	RenderSprites:
+		Image: fix
+	WithProductionIconOverlay:
+		Types: UpgradeComplete
+		Prerequisites: gla.junk
 
 gla.beta:
 	Inherits: ^UpgradeBaseExt
@@ -46,12 +83,15 @@ gla.beta:
 		Name: actor-gla-beta.name
 	Buildable:
 		Description: actor-gla-beta.description
-		BuildPaletteOrder: 10008
-		Prerequisites: ~!gla.beta, ~structures.gla, techcenter, ~techlevel.high
+		BuildPaletteOrder: 10010
+		Prerequisites: ~structures.gla, techcenter, ~techlevel.high
 		BuildDuration: 6000
 	ProvidesPrerequisite@upgradename:
 	ProductionCostMultiplier@upgrade:
-		Multiplier: 10000
+		Multiplier: 7500
+	WithProductionIconOverlay:
+		Types: UpgradeComplete
+		Prerequisites: gla.beta
 
 gla.pay:
 	Inherits: ^UpgradeBaseExt
@@ -59,12 +99,15 @@ gla.pay:
 		Name: actor-gla-pay.name
 	Buildable:
 		Description: actor-gla-pay.description
-		BuildPaletteOrder: 10009
-		Prerequisites: ~!gla.pay, ~structures.gla, advtechcenter, ~techlevel.unrestricted
+		BuildPaletteOrder: 10011
+		Prerequisites: ~structures.gla, advtechcenter, ~techlevel.high
 		BuildDuration: 4000
 	ProvidesPrerequisite@upgradename:
 	ProductionCostMultiplier@upgrade:
 		Multiplier: 5000
+	WithProductionIconOverlay:
+		Types: UpgradeComplete
+		Prerequisites: gla.pay
 
 gla.aprockets:
 	Inherits: ^UpgradeBaseExt
@@ -72,9 +115,50 @@ gla.aprockets:
 		Name: actor-gla-aprockets.name
 	Buildable:
 		Description: actor-gla-aprockets.description
-		BuildPaletteOrder: 10010
-		Prerequisites: ~!gla.aprockets, ~structures.gla, advtechcenter, ~techlevel.unrestricted
+		BuildPaletteOrder: 10012
+		Prerequisites: ~structures.gla, advtechcenter, ~techlevel.unrestricted
 		BuildDuration: 4000
 	ProvidesPrerequisite@upgradename:
 	ProductionCostMultiplier@upgrade:
 		Multiplier: 5000
+	WithProductionIconOverlay:
+		Types: UpgradeComplete
+		Prerequisites: gla.aprockets
+
+gla.demotraps:
+	Inherits: ^UpgradeBaseExt
+	Tooltip:
+		Name: actor-gla-demotraps.name
+	Buildable:
+		Description: actor-gla-demotraps.description
+		BuildPaletteOrder: 10013
+		Prerequisites: ~structures.demo, hero.tier1, ~techlevel.medium
+		BuildDuration: 4000
+		Icon: icon-demo
+	ProvidesPrerequisite@upgradename:
+	ProductionCostMultiplier@upgrade:
+		Multiplier: 5000
+	WithProductionIconOverlay:
+		Types: UpgradeComplete
+		Prerequisites: gla.demotraps
+	RenderSprites:
+		Image: barl
+
+gla.marauder:
+	Inherits: ^UpgradeBaseExt
+	Tooltip:
+		Name: actor-gla-marauder.name
+	Buildable:
+		Description: actor-gla-marauder.description
+		BuildPaletteOrder: 10014
+		Prerequisites: ~structures.gla, factory, hero.tier2, ~techlevel.medium, ~!structures.kassad
+		BuildDuration: 3000
+		Icon: icon-gla
+	ProvidesPrerequisite@upgradename:
+	ProductionCostMultiplier@upgrade:
+		Multiplier: 2000
+	WithProductionIconOverlay:
+		Types: UpgradeComplete
+		Prerequisites: gla.marauder
+	RenderSprites:
+		Image: mtnkd

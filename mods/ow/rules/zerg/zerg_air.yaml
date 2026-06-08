@@ -12,12 +12,16 @@ ZOVERLORD:
 	-RejectsOrders@freeroam:
 	-Wanders@freeroam:
 	Valued:
-		Cost: 900
+		Cost: 450
 	Power:
 		Amount: 80
 	Tooltip:
 		Name: actor-zoverlord.name
 	UpdatesPlayerStatistics:
+	GivesExperienceMultiplier@value:
+		Modifier: 200
+	ProductionCostMultiplier@value:
+		Multiplier: 200
 	Health:
 		HP: 30000
 	RevealsShroud:
@@ -52,7 +56,7 @@ ZOVERLORD:
 		Weapon: ZergAirUnitDeath
 		EmptyWeapon: ZergAirUnitDeath
 	DetectCloaked:
-		DetectionTypes: Cloak
+		DetectionTypes: Cloak, AirCloak, Underwater
 		Range: 6c0
 	RenderDetectionCircle:
 	Voiced:
@@ -131,7 +135,7 @@ ZMUTA:
 	UpdatesPlayerStatistics:
 		AddToArmyValue: true
 	Health:
-		HP: 10000
+		HP: 17500
 	Power:
 		Amount: -10
 	RevealsShroud:
@@ -221,7 +225,7 @@ ZQUEEN:
 	UpdatesPlayerStatistics:
 		AddToArmyValue: true
 	Health:
-		HP: 15000
+		HP: 25000
 	Power:
 		Amount: -15
 	RevealsShroud:
@@ -314,7 +318,7 @@ ZGUARDIAN:
 	UpdatesPlayerStatistics:
 		AddToArmyValue: true
 	Health:
-		HP: 28000
+		HP: 35000
 	Power:
 		Amount: -15
 	RevealsShroud:
@@ -400,7 +404,7 @@ ZSCOURGE:
 	UpdatesPlayerStatistics:
 		AddToArmyValue: true
 	Health:
-		HP: 3000
+		HP: 5000
 	Power:
 		Amount: -5
 	RevealsShroud:

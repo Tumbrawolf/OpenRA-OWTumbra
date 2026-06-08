@@ -139,6 +139,18 @@ Player:
 		LowPowerModifier: 200
 		SpeedUp: True
 		BuildTimeSpeedReduction: 100, 80, 70, 60, 50, 40, 30
+	ClassicProductionQueue@Hero:
+		Type: Hero
+		Group: Infantry
+		DisplayOrder: 4
+		BuildDurationModifier: 50
+		ReadyAudio: UnitReady
+		BlockedAudio: NoBuild
+		LimitedAudio: BuildingInProgress
+		QueuedAudio: Training
+		OnHoldAudio: OnHold
+		CancelledAudio: Cancelled
+		QueueLimit: 1
 	DamageNotifier:
 		AllyNotification: AllyBaseAttack
 		ValidTargets: BaseBuilding
@@ -150,12 +162,16 @@ Player:
 	PowerManager:
 		AdviceInterval: 40000
 	-ProvidesTechPrerequisite@unrestricted:
+	ProvidesTechPrerequisite@high:
+		Name: options-tech-level.no-superweapons
+		Prerequisites: techlevel.infonly, techlevel.low, techlevel.medium, techlevel.high, techlevel.nosuperweapons
+		Id: nosuperweapons
 	ProvidesTechPrerequisite@noepic:
-		Name: actor-player.providestechprerequisite-noepic-name
+		Name: options-tech-level.noepic
 		Prerequisites: techlevel.infonly, techlevel.low, techlevel.medium, techlevel.high, techlevel.unrestricted, techlevel.noepic
 		Id: noepic
 	ProvidesTechPrerequisite@unrestricted:
-		Name: actor-player.providestechprerequisite-unrestricted-name
+		Name: options-tech-level.unrestricted
 		Prerequisites: techlevel.infonly, techlevel.low, techlevel.medium, techlevel.high, techlevel.unrestricted
 		Id: unrestricted
 	#ProvidesTechPrerequisite@boss:
@@ -180,9 +196,23 @@ Player:
 		ID: noupgrades
 		Label: actor-player.lobbyprerequisitecheckbox-noupg-label
 		Description: actor-player.lobbyprerequisitecheckbox-noupg-description
-		Enabled: False
+		Enabled: true
 		DisplayOrder: 11
 		Prerequisites: techlevel.noupgrades
+	LobbyPrerequisiteCheckbox@nosuperewapons:
+		ID: nosuperweap
+		Label: actor-player.lobbyprerequisitecheckbox-superweapons-label
+		Description: actor-player.lobbyprerequisitecheckbox-superweapons-description
+		Enabled: false
+		DisplayOrder: 11
+		Prerequisites: techlevel.nosuperweapons
+	LobbyPrerequisiteCheckbox@techbuildings:
+		ID: techbuildings
+		Label: actor-player.lobbyprerequisitecheckbox-techbuildings-label
+		Description: actor-player.lobbyprerequisitecheckbox-techbuildings-description
+		Enabled: True
+		DisplayOrder: 11
+		Prerequisites: techlevel.techrespamn
 	LobbyPrerequisiteCheckbox@herotest:
 		ID: herotest
 		Label: actor-player.lobbyprerequisitecheckbox-herotest-label
@@ -204,13 +234,6 @@ Player:
 		Enabled: False
 		DisplayOrder: 14
 		Prerequisites: techlevel.monoliths
-	LobbyPrerequisiteCheckbox@techbuildings:
-		ID: techbuildings
-		Label: actor-player.lobbyprerequisitecheckbox-techbuildings-label
-		Description: actor-player.lobbyprerequisitecheckbox-techbuildings-description
-		Enabled: True
-		DisplayOrder: 15
-		Prerequisites: techlevel.techrespamn
 	LobbyPrerequisiteCheckbox@notib:
 		ID: notib
 		Label: actor-player.lobbyprerequisitecheckbox-notib-label
@@ -274,12 +297,33 @@ Player:
 		Enabled: false
 		DisplayOrder: 25
 		Prerequisites: techcenter, advtechcenter, techlevel.alltech, anypower
+	LobbyPrerequisiteCheckbox@gradualtech:
+		ID: gradualtech
+		Label: actor-player.lobbyprerequisitecheckbox-gradualtech-label
+		Description: actor-player.lobbyprerequisitecheckbox-gradualtech-description
+		Enabled: false
+		DisplayOrder: 26
+		Prerequisites: techlevel.gradualtech
+	LobbyPrerequisiteCheckbox@newmines:
+		ID: newmines
+		Label: actor-player.lobbyprerequisitecheckbox-newmines-label
+		Description: actor-player.lobbyprerequisitecheckbox-newmines-description
+		Enabled: false
+		DisplayOrder: 27
+		Prerequisites: environment.newmines
+	LobbyPrerequisiteCheckbox@memes:
+		ID: memes
+		Label: actor-player.lobbyprerequisitecheckbox-memes-label
+		Description: actor-player.lobbyprerequisitecheckbox-memes-description
+		Enabled: false
+		DisplayOrder: 9
+		Prerequisites: environment.nomemes
 	LobbyPrerequisiteCheckbox@daynight:
 		ID: enviro2
 		Label: actor-player.lobbyprerequisitecheckbox-daynight-label
 		Description: actor-player.lobbyprerequisitecheckbox-daynight-description
 		Enabled: true
-		DisplayOrder: 26
+		DisplayOrder: 40
 		Prerequisites: environment.days
 	LobbyPrerequisiteDropdown@morecrates:
 		ID: morecratesdropdown
@@ -318,6 +362,20 @@ Player:
 			prodspeed.fast: actor-player.lobbyprerequisitecheckbox-prodspeed-label2
 			prodspeed.faster: actor-player.lobbyprerequisitecheckbox-prodspeed-label3
 			prodspeed.fastest: actor-player.lobbyprerequisitecheckbox-prodspeed-label4
+	LobbyPrerequisiteDropdown@resourcemultiplier:
+		ID: resourcemultiplier
+		Label: actor-player.lobbyprerequisitecheckbox-resourcemultiplier-dropdown
+		Description: actor-player.lobbyprerequisitecheckbox-resourcemultiplier-description
+		DisplayOrder: 5
+		Default: resources.normal
+		Values:
+			resources.50percent: actor-player.lobbyprerequisitecheckbox-resourcemultiplier-label1
+			resources.75percent: actor-player.lobbyprerequisitecheckbox-resourcemultiplier-label2
+			resources.normal: actor-player.lobbyprerequisitecheckbox-resourcemultiplier-label3
+			resources.125percent: actor-player.lobbyprerequisitecheckbox-resourcemultiplier-label4
+			resources.150percent: actor-player.lobbyprerequisitecheckbox-resourcemultiplier-label5
+			resources.200percent: actor-player.lobbyprerequisitecheckbox-resourcemultiplier-label6
+			resources.250percent: actor-player.lobbyprerequisitecheckbox-resourcemultiplier-label7
 	LobbyPrerequisiteDropdown@heroXP:
 		ID: heroxp
 		Label: actor-player.lobbyprerequisitecheckbox-heroxp-dropdown
@@ -329,8 +387,26 @@ Player:
 			heroxp.normal: actor-player.lobbyprerequisitecheckbox-heroxp-label2
 			heroxp.fast: actor-player.lobbyprerequisitecheckbox-heroxp-label3
 			heroxp.faster: actor-player.lobbyprerequisitecheckbox-heroxp-label4
+	DeveloperMode:
+		CheckboxDisplayOrder: 50
+		Cash: 1000000
+	LobbyPrerequisiteCheckbox@debug1:
+		ID: debug1
+		Label: actor-player.lobbyprerequisitecheckbox-debugspeed-label
+		Description: actor-player.lobbyprerequisitecheckbox-debugspeed-description
+		Enabled: false
+		DisplayOrder: 51
+		Prerequisites: debug.prodspeedbot
+	LobbyPrerequisiteCheckbox@debug2:
+		ID: debug2
+		Label: actor-player.lobbyprerequisitecheckbox-debuglistactors-label
+		Description: actor-player.lobbyprerequisitecheckbox-debuglistactors-description
+		Enabled: false
+		DisplayOrder: 52
+		Prerequisites: debug.listactors
+		Visible: false
 	PlayerResources:
-		SelectableCash: 5000, 10000, 20000, 25000, 30000, 40000, 50000, 100000, 10000000
+		SelectableCash: 5000, 7500, 10000, 20000, 25000, 30000, 40000, 50000, 100000, 10000000
 		DefaultCash: 10000
 		ResourceValues:
 			Ore: 25
@@ -349,6 +425,14 @@ Player:
 		Type: Teleport
 	MissionObjectives:
 		GameOverDelay: 5000
+	ProductionIconOverlayManager@2:
+		Type: ReturnTheSlab
+		Image: maningauze
+		Sequence: icon
+	ProductionIconOverlayManager@upgradedone:
+		Type: UpgradeComplete
+		Image: upgradecheckmark
+		Sequence: checked
 
 #	DeveloperMode:
 #		FastBuild: true

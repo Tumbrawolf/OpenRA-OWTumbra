@@ -9,7 +9,11 @@ TSCV:
 		Description: actor-tscv.description
 		BuildDurationModifier: 150
 	Valued:
-		Cost: 400
+		Cost: 200
+	GivesExperienceMultiplier@value:
+		Modifier: 200
+	ProductionCostMultiplier@value:
+		Multiplier: 200
 	Tooltip:
 		Name: actor-tscv.name
 	Selectable:
@@ -77,6 +81,7 @@ TSCV:
 			Gems: pip-red
 			Tiberium: pip-green
 			BlueTiberium: pip-blue
+			Oil: pip-oil
 	RepairsBridges:
 	CaptureManager:
 	Infiltrates:
@@ -113,6 +118,14 @@ TSCV:
 	StoresResources:
 		Capacity: 8
 		Resources: Ore,Gems,Tiberium,BlueTiberium,Oil
+	GrantConditionOnPrerequisite@hatetib:
+		Prerequisites: ai.hatetib
+		Condition: ai.hatetib
+	ProximityExternalCondition@hatetib:
+		RequiresCondition: ai.hatetib
+		Range: 8c0
+		ValidRelationships: Neutral, Enemy
+		Condition: makecreeps
 
 ^CanTakeStimpacks:
 	WithDecoration@stimpack:
@@ -170,6 +183,17 @@ TSCV:
 	GrantConditionOnPrerequisite@mengsokkk:
 		Prerequisites: infantry.mengsk
 		Condition: no_stims
+	ChangesHealth@stimpack:
+		RequiresCondition: active_stimpack && health_stimpack && !shielded
+		DamageTypes: BypassShield
+		StartIfBelow: 101
+		Delay: 22
+	ChangesHealth@stimpackshield:
+		RequiresCondition: active_stimpack && health_stimpack && shielded
+		DamageTypes: BypassShield
+		StartIfBelow: 101
+		Delay: 22
+		Step: -17500
 
 TMARINE:
 	Inherits: ^DoomSoldier
@@ -275,10 +299,7 @@ TMARINE:
 		Interval: 300,750
 		RequiresCondition: active_stimpack && (talkative || nothing2)
 	ChangesHealth@stimpack:
-		RequiresCondition: active_stimpack && health_stimpack
 		Step: -175
-		Delay: 22
-		StartIfBelow: 101
 	GrantConditionOnHealth@stimpack:
 		MinHP: 4500
 		Condition: health_stimpack
@@ -481,10 +502,7 @@ TFIREBAT:
 		Interval: 300,750
 		RequiresCondition: active_stimpack && (talkative || nothing2)
 	ChangesHealth@stimpack:
-		RequiresCondition: active_stimpack && health_stimpack
 		Step: -243
-		Delay: 22
-		StartIfBelow: 101
 	GrantConditionOnHealth@stimpack:
 		MinHP: 6250
 		Condition: health_stimpack
@@ -690,12 +708,12 @@ TGHOST:
 		Name: actor-tghost.name
 		RequiresCondition: !nuke_armed
 	Tooltip@2:
-		GenericName: actor-tghost.2--generic-name
-		Name: actor-tghost.2--name
+		GenericName: actor-tghost.generic-name
+		Name: actor-tghost.2-name
 		RequiresCondition: nuke_armed && (!nuke_built || !nuke_ammo)
 	Tooltip@3:
-		GenericName: actor-tghost.3--generic-name
-		Name: actor-tghost.3--name
+		GenericName: actor-tghost.generic-name
+		Name: actor-tghost.3-name
 		RequiresCondition: nuke_armed && nuke_built
 	RevealsShroud:
 		MinRange: 7c0
@@ -1022,10 +1040,8 @@ TRAYNOR:
 		Interval: 300,750
 		RequiresCondition: active_stimpack
 	ChangesHealth@stimpack:
-		RequiresCondition: active_stimpack && health_stimpack
 		Step: -175
 		Delay: 25
-		StartIfBelow: 101
 	GrantConditionOnHealth@stimpack:
 		MinHP: 28000
 		Condition: health_stimpack

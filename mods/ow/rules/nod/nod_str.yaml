@@ -5,10 +5,13 @@ nod.tiberium:
 	Buildable:
 		Description: actor-nod-tiberium.description
 		BuildPaletteOrder: 12006
-		Prerequisites: ~!nod.tiberium, refinery, ~upgrade.nodtiberium, ~techlevel.unrestricted
+		Prerequisites: refinery, ~upgrade.nodtiberium, ~techlevel.unrestricted
 	ProvidesPrerequisite@upgradename:
 	ProductionCostMultiplier@upgrade:
 		Multiplier: 5000
+	WithProductionIconOverlay:
+		Types: UpgradeComplete
+		Prerequisites: nod.tiberium
 
 nod.fanatic:
 	Inherits: ^UpgradeBaseExt
@@ -17,11 +20,14 @@ nod.fanatic:
 	Buildable:
 		Description: actor-nod-fanatic.description
 		BuildPaletteOrder: 12007
-		Prerequisites: ~!nod.fanatic, ~structures.nod, advtechcenter, ~techlevel.unrestricted
+		Prerequisites: ~structures.nod, advtechcenter, ~techlevel.unrestricted
 		BuildDuration: 4000
 	ProvidesPrerequisite@upgradename:
 	ProductionCostMultiplier@upgrade:
 		Multiplier: 7500
+	WithProductionIconOverlay:
+		Types: UpgradeComplete
+		Prerequisites: nod.fanatic
 
 nod.marked:
 	Inherits: ^UpgradeBaseExt
@@ -30,9 +36,8 @@ nod.marked:
 	Buildable:
 		Description: actor-nod-faction.description1
 		BuildPaletteOrder: 30000
-		Queue: Wall
-		Prerequisites: ~!nod.marked, ~structures.nodbase, advtechcenter, ~techlevel.unrestricted
-		BuildDuration: 10000
+		Prerequisites: ~structures.nodbase, advtechcenter, ~techlevel.unrestricted, hero.tier4
+		BuildDuration: 7500
 	ProvidesPrerequisite@upgradename:
 	ProvidesPrerequisite@special:
 		Prerequisite: structures.marked
@@ -44,6 +49,9 @@ nod.marked:
 		Prerequisite: vehicles.marked
 	Valued:
 		Cost: 25000
+	WithProductionIconOverlay:
+		Types: UpgradeComplete
+		Prerequisites: nod.marked
 
 nod.bhand:
 	Inherits: ^UpgradeBaseExt
@@ -52,9 +60,8 @@ nod.bhand:
 	Buildable:
 		Description: actor-nod-faction.description2
 		BuildPaletteOrder: 30000
-		Queue: Wall
-		Prerequisites: ~!nod.bhand, ~structures.nodbase, advtechcenter, ~techlevel.unrestricted
-		BuildDuration: 10000
+		Prerequisites: ~structures.nodbase, advtechcenter, ~techlevel.unrestricted, hero.tier4
+		BuildDuration: 7500
 	ProvidesPrerequisite@upgradename:
 	ProvidesPrerequisite@special:
 		Prerequisite: structures.bhand
@@ -66,6 +73,9 @@ nod.bhand:
 		Prerequisite: vehicles.bhand
 	Valued:
 		Cost: 25000
+	WithProductionIconOverlay:
+		Types: UpgradeComplete
+		Prerequisites: nod.bhand
 
 nod.separatist:
 	Inherits: ^UpgradeBaseExt
@@ -74,9 +84,8 @@ nod.separatist:
 	Buildable:
 		Description: actor-nod-faction.description3
 		BuildPaletteOrder: 30000
-		Queue: Wall
-		Prerequisites: ~!nod.separatist, ~structures.nodbase, advtechcenter, ~techlevel.unrestricted
-		BuildDuration: 10000
+		Prerequisites: ~structures.nodbase, advtechcenter, ~techlevel.unrestricted, hero.tier4
+		BuildDuration: 7500
 	ProvidesPrerequisite@upgradename:
 	ProvidesPrerequisite@special:
 		Prerequisite: structures.nod3
@@ -88,6 +97,9 @@ nod.separatist:
 		Prerequisite: vehicles.nod3
 	Valued:
 		Cost: 25000
+	WithProductionIconOverlay:
+		Types: UpgradeComplete
+		Prerequisites: nod.separatist
 
 HANDD:
 	Inherits: ^DawnBuilding
@@ -268,7 +280,7 @@ TMPLD:
 	Buildable:
 		Queue: Tech
 		BuildPaletteOrder: 150
-		Prerequisites: techcenter, ~techlevel.unrestricted, ~structures.nod
+		Prerequisites: techcenter, ~techlevel.unrestricted, ~structures.nod, ~!techlevel.nosuperweapons
 		Description: actor-tmpld.description
 		BuildLimit: 1
 	Valued:
@@ -452,12 +464,14 @@ SAMD:
 		DeathSequencePalette: dawn
 	DetectCloaked:
 		Range: 5c0
+		DetectionTypes: Cloak, AirCloak
 		RequiresCondition: !disabled
 
 OBLID:
 	Inherits: ^Defense
 	Inherits@IDISABLE: ^DisableOnLowPowerOrPowerDown
 	Inherits@AUTOTARGET: ^AutoTargetGround
+	Inherits@AUTOTARGETGround: ^AutoTargetVehiclePriority
 	Buildable:
 		Queue: Defense
 		BuildPaletteOrder: 80

@@ -12,7 +12,10 @@ upgrade.tankgeneral:
 	ProvidesPrerequisite@upgradename:
 	ExternalCondition@PRODUCED:
 		Condition: produced
-		
+	WithProductionIconOverlay:
+		Types: UpgradeComplete
+		Prerequisites: upgrade.tankgeneral
+
 upgrade.nukegeneral:
 	Inherits: ^UpgradeBaseExt
 	Tooltip:
@@ -27,7 +30,10 @@ upgrade.nukegeneral:
 	ProvidesPrerequisite@upgradename:
 	ExternalCondition@PRODUCED:
 		Condition: produced
-		
+	WithProductionIconOverlay:
+		Types: UpgradeComplete
+		Prerequisites: upgrade.nukegeneral
+
 upgrade.infantrygeneral:
 	Inherits: ^UpgradeBaseExt
 	Tooltip:
@@ -42,29 +48,33 @@ upgrade.infantrygeneral:
 	ProvidesPrerequisite@upgradename:
 	ExternalCondition@PRODUCED:
 		Condition: produced
+	WithProductionIconOverlay:
+		Types: UpgradeComplete
+		Prerequisites: upgrade.infantrygeneral
 
 upgrade.patriotism:
 	Inherits: ^UpgradeBaseExt
 	Tooltip:
 		Name: actor-upgrade-patriotism.name
 	Buildable:
-		Queue: Wall
 		Description: actor-upgrade-patriotism.description
 		BuildPaletteOrder: 10000
 		Prerequisites: ~structures.china, advtechcenter, ~!faction.nukegeneral, ~!faction.tankgeneral, ~faction.infantrygeneral
-		BuildDuration: 5000
+		BuildDuration: 4000
 	ProductionCostMultiplier@upgrade:
-		Multiplier: 10000
+		Multiplier: 8000
 	ProvidesPrerequisite@upgradename:
 	ExternalCondition@PRODUCED:
 		Condition: produced
+	WithProductionIconOverlay:
+		Types: UpgradeComplete
+		Prerequisites: upgrade.patriotism
 
 upgrade.nationalism:
 	Inherits: ^UpgradeBaseExt
 	Tooltip:
 		Name: actor-upgrade-nationalism.name
 	Buildable:
-		Queue: Wall
 		Description: actor-upgrade-nationalism.description
 		BuildPaletteOrder: 10000
 		Prerequisites: ~structures.china, advtechcenter, ~!faction.infantrygeneral
@@ -74,13 +84,15 @@ upgrade.nationalism:
 	ProvidesPrerequisite@upgradename:
 	ExternalCondition@PRODUCED:
 		Condition: produced
+	WithProductionIconOverlay:
+		Types: UpgradeComplete
+		Prerequisites: upgrade.nationalism
 
 upgrade.propaganda:
 	Inherits: ^UpgradeBaseExt
 	Tooltip:
 		Name: actor-upgrade-propaganda.name
 	Buildable:
-		Queue: Wall
 		Description: actor-upgrade-propaganda.description
 		BuildPaletteOrder: 10000
 		Prerequisites: ~structures.china, techcenter
@@ -92,61 +104,69 @@ upgrade.propaganda:
 	ProvidesPrerequisite@upgradename:
 	ExternalCondition@PRODUCED:
 		Condition: produced
+	WithProductionIconOverlay:
+		Types: UpgradeComplete
+		Prerequisites: upgrade.propaganda
 
 upgrade.infantrytraininglvl1:
 	Inherits: ^UpgradeBaseExt
 	Tooltip:
 		Name: actor-upgrade-infantrytraininglvl1.name
 	Buildable:
-		Queue: Wall
 		Description: actor-upgrade-infantrytraininglvl1.description
 		BuildPaletteOrder: 10013
 		Prerequisites: ~structures.china, techcenter, ~!faction.infantrygeneral
-		BuildDuration: 3750
+		BuildDuration: 2000
 	ProductionCostMultiplier@upgrade:
-		Multiplier: 7500
+		Multiplier: 4000
 	ProvidesPrerequisite@upgradename:
 	ExternalCondition@PRODUCED:
 		Condition: produced
+	WithProductionIconOverlay:
+		Types: UpgradeComplete
+		Prerequisites: upgrade.infantrytraininglvl1
 
 upgrade.vehicletraininglvl1:
 	Inherits: ^UpgradeBaseExt
 	Tooltip:
 		Name: actor-upgrade-vehicletraininglvl1.name
 	Buildable:
-		Queue: Wall
 		Description: actor-upgrade-vehicletraininglvl1.description
 		BuildPaletteOrder: 10014
 		Prerequisites: ~structures.china, techcenter, ~!faction.tankgeneral, ~!faction.infantrygeneral
-		BuildDuration: 3750
+		BuildDuration: 2500
 	ProductionCostMultiplier@upgrade:
-		Multiplier: 7500
+		Multiplier: 5000
 	ProvidesPrerequisite@upgradename:
 	ExternalCondition@PRODUCED:
 		Condition: produced
+	WithProductionIconOverlay:
+		Types: UpgradeComplete
+		Prerequisites: upgrade.vehicletraininglvl1
 
 upgrade.infantrytraininglvl2:
 	Inherits: ^UpgradeBaseExt
 	Tooltip:
 		Name: actor-upgrade-infantrytraininglvl2.name
 	Buildable:
-		Queue: Wall
 		Description: actor-upgrade-infantrytraininglvl2.description
 		BuildPaletteOrder: 10015
 		Prerequisites: ~structures.china, advtechcenter, ~upgrade.infantrytraininglvl1, ~!faction.nukegeneral, ~!faction.tankgeneral, ~faction.infantrygeneral
-		BuildDuration: 4000
+		BuildDuration: 3500
 	ProductionCostMultiplier@upgrade:
-		Multiplier: 8000
+		Multiplier: 7000
 	ProvidesPrerequisite@upgradename:
 	ExternalCondition@PRODUCED:
 		Condition: produced
+	WithProductionIconOverlay:
+		Types: UpgradeComplete
+		Prerequisites: upgrade.infantrytraininglvl1
 
 upgrade.vehicletraininglvl2:
 	Inherits: ^UpgradeBaseExt
 	Tooltip:
 		Name: actor-upgrade-vehicletraininglvl2.name
 	Buildable:
-		Queue: Wall
 		Description: actor-upgrade-vehicletraininglvl2.description
 		BuildPaletteOrder: 10016
 		Prerequisites: ~structures.china, advtechcenter, ~upgrade.vehicletraininglvl1, ~!faction.nukegeneral, ~!faction.infantrygeneral, ~faction.tankgeneral
@@ -156,79 +176,107 @@ upgrade.vehicletraininglvl2:
 	ProvidesPrerequisite@upgradename:
 	ExternalCondition@PRODUCED:
 		Condition: produced
+	WithProductionIconOverlay:
+		Types: UpgradeComplete
+		Prerequisites: upgrade.vehicletraininglvl2
 
 upgrade.artillerytraininglvl1:
 	Inherits: ^UpgradeBaseExt
 	Tooltip:
 		Name: actor-upgrade-artillerytraininglvl1.name
 	Buildable:
-		Queue: Wall
 		Description: actor-upgrade-artillerytraininglvl1.description
 		BuildPaletteOrder: 10017
 		Prerequisites: ~structures.china, techcenter, ~!faction.tankgeneral
-		BuildDuration: 3750
+		BuildDuration: 2500
 	ProductionCostMultiplier@upgrade:
-		Multiplier: 7500
+		Multiplier: 5000
 	ProvidesPrerequisite@upgradename:
 	ExternalCondition@PRODUCED:
 		Condition: produced
+	WithProductionIconOverlay:
+		Types: UpgradeComplete
+		Prerequisites: upgrade.artillerytraininglvl1
 
 upgrade.uraniumtanks:
 	Inherits: ^UpgradeBaseExt
 	Tooltip:
 		Name: actor-upgrade-uraniumtanks.name
 	Buildable:
-		Queue: Wall
 		Description: actor-upgrade-uraniumtanks.description
 		BuildPaletteOrder: 10018
 		Prerequisites: ~structures.china, techcenter, chinanuclearsilo, ~!faction.nukegeneral, ~!faction.infantrygeneral
-		BuildDuration: 3000
+		BuildDuration: 2000
 	ProductionCostMultiplier@upgrade:
-		Multiplier: 6000
+		Multiplier: 4000
 	ProvidesPrerequisite@upgradename:
 	ExternalCondition@PRODUCED:
 		Condition: produced
+	WithProductionIconOverlay:
+		Types: UpgradeComplete
+		Prerequisites: upgrade.uraniumtanks
 
 upgrade.uraniumshells:
 	Inherits: ^UpgradeBaseExt
 	Tooltip:
 		Name: actor-upgrade-uraniumshells.name
 	Buildable:
-		Queue: Wall
 		Description: actor-upgrade-uraniumshells.description
 		BuildPaletteOrder: 10019
 		Prerequisites: ~structures.china, techcenter, chinanuclearsilo, ~!faction.nukegeneral, ~!faction.infantrygeneral
-		BuildDuration: 4000
+		BuildDuration: 3500
 	ProductionCostMultiplier@upgrade:
-		Multiplier: 8000
+		Multiplier: 7000
 	ProvidesPrerequisite@upgradename:
 	ExternalCondition@PRODUCED:
 		Condition: produced
+	WithProductionIconOverlay:
+		Types: UpgradeComplete
+		Prerequisites: upgrade.uraniumshells
 
 upgrade.isotopes:
 	Inherits: ^UpgradeBaseExt
 	Tooltip:
 		Name: actor-upgrade-isotopes.name
 	Buildable:
-		Queue: Wall
 		Description: actor-upgrade-isotopes.description
 		BuildPaletteOrder: 10020
 		Prerequisites: ~structures.china, advtechcenter, ~faction.nukegeneral, ~!faction.infantrygeneral, ~!faction.tankgeneral
-		BuildDuration: 4000
+		BuildDuration: 3000
 	ProductionCostMultiplier@upgrade:
-		Multiplier: 8000
+		Multiplier: 6000
 	ProvidesPrerequisite@upgradename:
 	ProvidesPrerequisite@upgradename2:
 		Prerequisite: gdi.suits
 	ExternalCondition@PRODUCED:
 		Condition: produced
+	WithProductionIconOverlay:
+		Types: UpgradeComplete
+		Prerequisites: upgrade.isotopes
+
+upgrade.nukerockets:
+	Inherits: ^UpgradeBaseExt
+	Tooltip:
+		Name: actor-upgrade-nukerockets.name
+	Buildable:
+		Description: actor-upgrade-nukerockets.description
+		BuildPaletteOrder: 10021
+		Prerequisites: ~structures.china, techcenter, ~faction.nukegeneral, ~!faction.infantrygeneral, ~!faction.tankgeneral
+		BuildDuration: 750
+	ProductionCostMultiplier@upgrade:
+		Multiplier: 1500
+	ProvidesPrerequisite@upgradename:
+	ExternalCondition@PRODUCED:
+		Condition: produced
+	WithProductionIconOverlay:
+		Types: UpgradeComplete
+		Prerequisites: upgrade.nukerockets
 
 upgrade.autoloader:
 	Inherits: ^UpgradeBaseExt
 	Tooltip:
 		Name: actor-upgrade-autoloader.name
 	Buildable:
-		Queue: Wall
 		Description: actor-upgrade-autoloader.description
 		BuildPaletteOrder: 10021
 		Prerequisites: ~structures.china, advtechcenter, ~!faction.nukegeneral, ~!faction.infantrygeneral, ~faction.tankgeneral
@@ -238,19 +286,42 @@ upgrade.autoloader:
 	ProvidesPrerequisite@upgradename:
 	ExternalCondition@PRODUCED:
 		Condition: produced
+	WithProductionIconOverlay:
+		Types: UpgradeComplete
+		Prerequisites: upgrade.autoloader
 
 upgrade.firstaidkits:
 	Inherits: ^UpgradeBaseExt
 	Tooltip:
 		Name: actor-upgrade-firstaidkits.name
 	Buildable:
-		Queue: Wall
 		Description: actor-upgrade-firstaidkits.description
-		BuildPaletteOrder: 10021
+		BuildPaletteOrder: 10022
 		Prerequisites: ~structures.china, techcenter, ~!faction.nukegeneral, ~faction.infantrygeneral, ~!faction.tankgeneral
-		BuildDuration: 2500
+		BuildDuration: 1000
 	ProductionCostMultiplier@upgrade:
-		Multiplier: 5000
+		Multiplier: 2500
 	ProvidesPrerequisite@upgradename:
 	ExternalCondition@PRODUCED:
 		Condition: produced
+	WithProductionIconOverlay:
+		Types: UpgradeComplete
+		Prerequisites: upgrade.firstaidkits
+
+upgrade.unethicaltesting:
+	Inherits: ^UpgradeBaseExt
+	Tooltip:
+		Name: actor-upgrade-unethicaltesting.name
+	Buildable:
+		Description: actor-upgrade-unethicaltesting.description
+		BuildPaletteOrder: 10023
+		Prerequisites: ~structures.china, advtechcenter, ~!faction.nukegeneral, ~faction.infantrygeneral, ~!faction.tankgeneral
+		BuildDuration: 3500
+	ProductionCostMultiplier@upgrade:
+		Multiplier: 7500
+	ProvidesPrerequisite@upgradename:
+	ExternalCondition@PRODUCED:
+		Condition: produced
+	WithProductionIconOverlay:
+		Types: UpgradeComplete
+		Prerequisites: upgrade.unethicaltesting

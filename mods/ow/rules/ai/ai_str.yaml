@@ -53,7 +53,7 @@ PSUPOR.bot: #additional queues for HARD AI
 	Inherits: PSUPOR
 	Inherits@BotQueue_Infantry: ^BotQueue_Infantry
 	Buildable:
-		Prerequisites: conyard, ~techlevel.medium, ~structures.protoss, ~structures.bothard, ~!ai.boss
+		Prerequisites: conyard, ~techlevel.medium, ~structures.protoss, ~structures.bothard, ~!ai.god
 	Tooltip:
 		Name: actor-psupor-bot-name
 	RenderSprites:
@@ -89,7 +89,7 @@ PYLED.bot:
 	RenderSprites:
 		Image: pyled
 	Buildable:
-		Prerequisites: anypower, ~techlevel.infonly, ~structures.pyledprereq, ~structures.bothard, ~!ai.boss # GDI, UAC
+		Prerequisites: anypower, ~techlevel.infonly, ~structures.pyledprereq, ~structures.bothard, ~!ai.god # GDI, UAC
 	ProvidesPrerequisite@buildingname:
 		Prerequisite: pyled
 
@@ -99,7 +99,7 @@ BARR.bot:
 	RenderSprites:
 		Image: barr
 	Buildable:
-		Prerequisites: anypower, ~techlevel.infonly, ~structures.barrprereq, ~structures.bothard, ~!ai.boss # Fed, Soviet
+		Prerequisites: anypower, ~techlevel.infonly, ~structures.barrprereq, ~structures.bothard, ~!ai.god # Fed, Soviet
 	ProvidesPrerequisite@buildingname:
 		Prerequisite: barr
 
@@ -110,7 +110,7 @@ TENT.bot:
 	RenderSprites:
 		Image: tent
 	Buildable:
-		Prerequisites: anypower, ~techlevel.infonly, ~structures.allies, ~structures.bothard, ~!ai.boss
+		Prerequisites: anypower, ~techlevel.infonly, ~structures.allies, ~structures.bothard, ~!ai.god
 	ProvidesPrerequisite@buildingname:
 		Prerequisite: tent
 
@@ -120,7 +120,7 @@ HANDD.bot:
 	RenderSprites:
 		Image: handd
 	Buildable:
-		Prerequisites: anypower, ~techlevel.infonly, ~structures.nod, ~structures.bothard, ~!ai.boss
+		Prerequisites: anypower, ~techlevel.infonly, ~structures.nod, ~structures.bothard, ~!ai.god
 	ProvidesPrerequisite@buildingname:
 		Prerequisite: handd
 
@@ -130,7 +130,7 @@ NHAND.bot:
 	RenderSprites:
 		Image: nhand
 	Buildable:
-		Prerequisites: anypower, ~techlevel.infonly, ~structures.nazi, ~structures.bothard, ~!ai.boss
+		Prerequisites: anypower, ~techlevel.infonly, ~structures.nazi, ~structures.bothard, ~!ai.god
 	ProvidesPrerequisite@buildingname:
 		Prerequisite: nhand
 
@@ -138,7 +138,7 @@ GTENT.bot:
 	Inherits: GTENT
 	Inherits@BotQueue_Infantry: ^BotQueue_Infantry
 	Buildable:
-		Prerequisites: ~structures.gla, ~techlevel.infonly, ~structures.bothard, ~!ai.boss
+		Prerequisites: ~structures.gla, ~techlevel.infonly, ~structures.bothard, ~!ai.god
 	SpawnActorOnDeath:
 		Actor: GTENT.Hole2
 	ProvidesPrerequisite@buildingname:
@@ -156,7 +156,7 @@ PGATEW.bot:
 	RenderSprites:
 		Image: pgatew
 	Buildable:
-		Prerequisites: anypower, ~techlevel.infonly, ~structures.protoss, ~structures.bothard, ~!ai.boss
+		Prerequisites: anypower, ~techlevel.infonly, ~structures.protoss, ~structures.bothard, ~!ai.god
 	ProvidesPrerequisite@buildingname:
 		Prerequisite: pgatew
 
@@ -170,7 +170,7 @@ ZPOOL.bot:
 		Dimensions: 2,3
 		LocalCenterOffset: 0,-512,0
 	Buildable:
-		Prerequisites: anypower, ~techlevel.infonly, ~structures.zerg, ~structures.bothard, ~!ai.boss
+		Prerequisites: anypower, ~techlevel.infonly, ~structures.zerg, ~structures.bothard, ~!ai.god
 	ProvidesPrerequisite@buildingname:
 		Prerequisite: zpool
 	Exit@1:
@@ -184,7 +184,7 @@ chinabarracks.bot:
 	Inherits: chinabarracks
 	Inherits@BotQueue_Infantry: ^BotQueue_Infantry
 	Buildable:
-		Prerequisites: anypower, ~techlevel.infonly, ~structures.china, ~structures.bothard, ~!ai.boss
+		Prerequisites: anypower, ~techlevel.infonly, ~structures.china, ~structures.bothard, ~!ai.god
 	ProvidesPrerequisite@buildingname:
 		Prerequisite: chinabarracks
 
@@ -192,7 +192,7 @@ usabarracks.bot:
 	Inherits: usabarracks
 	Inherits@BotQueue_Infantry: ^BotQueue_Infantry
 	Buildable:
-		Prerequisites: anypower, ~techlevel.infonly, ~structures.usa, ~structures.bothard, ~!ai.boss
+		Prerequisites: anypower, ~techlevel.infonly, ~structures.usa, ~structures.bothard, ~!ai.god
 	ProvidesPrerequisite@buildingname:
 		Prerequisite: usabarracks
 
@@ -200,17 +200,29 @@ japanbarracks.bot:
 	Inherits: japanbarracks
 	Inherits@BotQueue_Infantry: ^BotQueue_Infantry
 	Buildable:
-		Prerequisites: anypower, ~techlevel.infonly, ~structures.japan, ~structures.bothard, ~!ai.boss
+		Prerequisites: anypower, ~techlevel.infonly, ~structures.japan, ~structures.bothard, ~!ai.god
 	ProvidesPrerequisite@buildingname:
 		Prerequisite: japanbarracks
+
+unscbarracks.bot:
+	Inherits: unscbarracks
+	Inherits@BotQueue_Infantry: ^BotQueue_Infantry
+	Buildable:
+		Prerequisites: anypower, ~techlevel.infonly, ~structures.unsc, ~structures.bothard, ~!ai.god
+	ProvidesPrerequisite@buildingname:
+		Prerequisite: unscbarracks
+	RenderSprites:
+		Image: unscbarracks
 
 AVTENT.bot:
 	Inherits: AVTENT
 	Inherits@BotQueue_Infantry: ^BotQueue_Infantry
 	Buildable:
-		Prerequisites: anypower, ~techlevel.infonly, ~structures.avalon, ~structures.bothard, ~!ai.boss
+		Prerequisites: anypower, ~techlevel.infonly, ~structures.avalon, ~structures.bothard, ~!ai.god
 	ProvidesPrerequisite@buildingname:
 		Prerequisite: avtent
+	RenderSprites:
+		Image: avtent
 
 HPAD.bot:
 	Inherits: HPAD
@@ -218,7 +230,7 @@ HPAD.bot:
 	RenderSprites:
 		Image: hpad
 	Buildable:
-		Prerequisites: radar, ~techlevel.low, ~structures.hpadprereqbot, ~structures.bothard, ~!ai.boss
+		Prerequisites: radar, ~techlevel.low, ~structures.hpadprereqbot, ~structures.bothard, ~!ai.god
 		BuildLimit: 3
 	ProvidesPrerequisite@buildingname:
 		Prerequisite: hpad
@@ -238,6 +250,8 @@ HPAD.bot:
 	GrantConditionOnFaction@gdi:
 		Condition: autorep
 		Factions: gdi3, angels
+	Production:
+		Produces: Aircraft, Plane, Helicopter, ProtossCarrier
 
 PSTARG.bot:
 	Inherits: PSTARG
@@ -245,7 +259,7 @@ PSTARG.bot:
 	RenderSprites:
 		Image: pstarg
 	Buildable:
-		Prerequisites: radar, ~techlevel.medium, ~structures.protoss, ~structures.bothard, ~ai.boss
+		Prerequisites: radar, ~techlevel.medium, ~structures.protoss, ~structures.bothard, ~ai.god
 		BuildLimit: 2
 	ProvidesPrerequisite@buildingname:
 		Prerequisite: pstarg
@@ -256,7 +270,7 @@ BARR.boss:
 	Inherits: BARR.bot
 	Buildable:
 		Queue: Tech
-		Prerequisites: ~techlevel.infonly, ~ai.boss
+		Prerequisites: ~techlevel.infonly, ~ai.god
 	Tooltip:
 		Name: actor-barr-boss-name
 	Building:
@@ -305,6 +319,47 @@ BARR.boss:
 		DockWait: 0
 	ResourceValueMultiplier@boss:
 		Modifier: 500
+	FreeActor:
+		Actor: GHARV
+		SpawnOffset: 1,2
+	FreeActor@1:
+		Actor: GHARV
+		SpawnOffset: 1,2
+		RequiresCondition: !build-incomplete
+	FreeActor@2:
+		Actor: GHARV
+		SpawnOffset: 2,2
+		RequiresCondition: !build-incomplete
+	GrantConditionOnPrerequisite@herotier1:
+		Prerequisites: hero.tier1
+		Condition: herotier1
+	GrantConditionOnPrerequisite@herotier2:
+		Prerequisites: hero.tier2
+		Condition: herotier2
+	GrantConditionOnPrerequisite@herotier3:
+		Prerequisites: hero.tier3
+		Condition: herotier3
+	GrantConditionOnPrerequisite@herotier4:
+		Prerequisites: hero.tier4
+		Condition: herotier4
+	GrantConditionOnPrerequisite@herotier5:
+		Prerequisites: hero.tier5
+		Condition: herotier5
+	Production@herotier1:
+		Produces: HeroUpgrade1
+		RequiresCondition: herotier1
+	Production@herotier2:
+		Produces: HeroUpgrade2
+		RequiresCondition: herotier2
+	Production@herotier3:
+		Produces: HeroUpgrade3
+		RequiresCondition: herotier3
+	Production@herotier4:
+		Produces: HeroUpgrade4
+		RequiresCondition: herotier4
+	Production@herotier5:
+		Produces: HeroUpgrade5
+		RequiresCondition: herotier5
 
 WEAP.bot:
 	Inherits: WEAP
@@ -312,7 +367,7 @@ WEAP.bot:
 	RenderSprites:
 		Image: weap
 	Buildable:
-		Prerequisites: refinery, barracks, ~techlevel.low, ~structures.weapprereq, ~structures.bothard, ~!ai.boss # Allies, Soviet, Fed, UAC
+		Prerequisites: refinery, barracks, ~techlevel.low, ~structures.weapprereq, ~structures.bothard, ~!ai.god # Allies, Soviet, Fed, UAC
 	ProvidesPrerequisite@buildingname:
 		Prerequisite: weap
 
@@ -320,7 +375,7 @@ WEAPD.bot:
 	Inherits: WEAPD
 	Inherits@BotQueue_Infantry: ^BotQueue_Vehicle
 	Buildable:
-		Prerequisites: refinery, barracks, ~techlevel.low, ~structures.weapdprereq_bot, ~structures.bothard, ~!ai.boss
+		Prerequisites: refinery, barracks, ~techlevel.low, ~structures.weapdprereq_bot, ~structures.bothard, ~!ai.god
 	ProvidesPrerequisite@buildingname:
 		Prerequisite: weapd
 
@@ -330,7 +385,7 @@ AFLDD.bot:
 	RenderSprites:
 		Image: afldd
 	Buildable:
-		Prerequisites: refinery, barracks, ~techlevel.low, ~structures.nod, ~structures.bothard, ~!ai.boss
+		Prerequisites: refinery, barracks, ~techlevel.low, ~structures.nod, ~structures.bothard, ~!ai.god
 	ProvidesPrerequisite@buildingname:
 		Prerequisite: afldd
 
@@ -340,7 +395,7 @@ GAIR.bot:
 	RenderSprites:
 		Image: gair
 	Buildable:
-		Prerequisites: refinery, barracks, ~techlevel.low, ~structures.gla, ~structures.bothard, ~!ai.boss
+		Prerequisites: refinery, barracks, ~techlevel.low, ~structures.gla, ~structures.bothard, ~!ai.god
 	SpawnActorOnDeath:
 		Actor: GAIR.Hole2
 	ProvidesPrerequisite@buildingname:
@@ -357,7 +412,7 @@ PROBOT.bot:
 	RenderSprites:
 		Image: probot
 	Buildable:
-		Prerequisites: pcyber, refinery, barracks, ~structures.protoss, ~techlevel.low, ~structures.bothard, ~!ai.boss
+		Prerequisites: pcyber, refinery, barracks, ~structures.protoss, ~techlevel.low, ~structures.bothard, ~!ai.god
 	ProvidesPrerequisite@buildingname:
 		Prerequisite: probot
 
@@ -365,22 +420,24 @@ AVWEAP.bot:
 	Inherits: AVWEAP
 	Inherits@BotQueue_Infantry: ^BotQueue_Vehicle
 	Buildable:
-		Prerequisites: refinery, barracks, ~techlevel.low, ~structures.avalon, ~structures.bothard, ~!ai.boss
+		Prerequisites: refinery, barracks, ~techlevel.low, ~structures.avalon, ~structures.bothard, ~!ai.god
 	ProvidesPrerequisite@buildingname:
 		Prerequisite: avweap
+	RenderSprites:
+		Image: avweap
 
 BTTERMINAL.bot:
 	Inherits: BTTERMINAL
 	Inherits@BotQueue_Infantry: ^BotQueue_Vehicle
 	Buildable:
-		Prerequisites: refinery, barracks, ~techlevel.low, ~structures.battletech, ~structures.bothard, ~!ai.boss
+		Prerequisites: refinery, barracks, ~techlevel.low, ~structures.battletech, ~structures.bothard, ~!ai.god
 
 WEAP.boss:
 	Inherits: WEAP.bot
 	Tooltip:
 		Name: actor-weap-boss-name
 	Buildable:
-		Prerequisites: refinery, barracks, ~techlevel.low,	~ai.boss
+		Prerequisites: refinery, barracks, ~techlevel.low,	~ai.god
 	ProvidesPrerequisite@buildingname1:
 		Prerequisite: weapd
 	ProvidesPrerequisite@buildingname2:
@@ -407,37 +464,37 @@ ATEK.bot:
 	RenderSprites:
 		Image: atek
 	ProvidesPrerequisite@boss1:
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: atek
 	ProvidesPrerequisite@boss2:
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: stek
 	ProvidesPrerequisite@boss3:
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: atek.nz
 	ProvidesPrerequisite@boss4:
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: atek.gla
 	ProvidesPrerequisite@boss5:
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: atek.gdi
 	ProvidesPrerequisite@boss6:
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: stek.nod
 	ProvidesPrerequisite@boss7:
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: ftek
 	ProvidesPrerequisite@boss8:
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: dmb3
 	ProvidesPrerequisite@boss9:
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: castle
 	ProvidesPrerequisite@boss10:
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: manasupply
 	ProvidesPrerequisite@boss11:
-		RequiresPrerequisites: ai.boss
+		RequiresPrerequisites: ai.god
 		Prerequisite: zlair
 	ProvidesPrerequisite@adun:
 		Prerequisite: padun
@@ -515,7 +572,7 @@ ATEK.bot:
 		Dimensions: 5, 5
 		Footprint: _xxx_ xxxxx xxxxx xxxxx _xxx_
 
-# Special structure for Boss AI, comes with a random weapon. DEATHBOX
+# Special structure for Boss AI, comes with a random weapon. DEATHBOX DEATH BOX !!!!!!!!
 PBOX.boss:
 	Inherits: PBOX
 	Tooltip:
@@ -523,6 +580,7 @@ PBOX.boss:
 		Description: actor-pbox-boss-desc
 	Buildable:
 		Prerequisites: barracks, ~ai.harder
+		Icon: death
 	-AttackGarrisoned:
 	Health:
 		HP: 90000
@@ -543,11 +601,11 @@ PBOX.boss:
 		CooldownDuration: 250,750
 		ActiveDuration: 250
 	GrantRandomPeriodicCondition@2nd:
-		Conditions: boss1, boss2, boss3, boss4, boss5, boss6, boss7, boss8, boss9, boss10, boss1, boss3, boss4, boss5, boss7, boss8, boss9, boss10, boss11, boss12, boss13, boss14, boss15, boss16, boss17, boss18, boss19, boss20, boss21, boss22, boss23, boss23, boss24, boss25, boss26, boss27, boss28, boss29, boss30, boss31, boss32, boss33, boss34, boss35, boss36, boss37, boss38, boss39, boss40, boss41, boss42, boss43, boss44, boss45, boss46, boss47, boss48, boss49
+		Conditions: boss1, boss2, boss3, boss4, boss5, boss6, boss7, boss8, boss9, boss10, boss1, boss3, boss4, boss5, boss7, boss8, boss9, boss10, boss11, boss12, boss13, boss14, boss15, boss16, boss17, boss18, boss19, boss20, boss21, boss22, boss23, boss23, boss24, boss25, boss26, boss27, boss28, boss29, boss30, boss31, boss32, boss33, boss34, boss35, boss36, boss37, boss38, boss39, boss40, boss41, boss42, boss43, boss44, boss45, boss46, boss47, boss48, boss49, boss50
 		CooldownDuration: 250,750
 		ActiveDuration: 250
 	AttackTurreted@boss:
-		Armaments: main, boss1, boss2, boss3, boss3b, boss4, boss5, boss6, boss7, boss8, boss9, boss10, boss11, boss12, boss13, boss14, boss15, boss16, boss17, boss18, boss19, boss20, boss21, boss22, boss23, boss23, boss24, boss25, boss26, boss27, boss28, boss29, boss30, boss31, boss32, boss33, boss34, boss35, boss36, boss37, boss38, boss39, boss40, boss41, boss42, boss43, boss44, boss46, boss47, boss48, boss49
+		Armaments: main, boss1, boss2, boss3, boss3b, boss4, boss5, boss6, boss7, boss8, boss9, boss10, boss11, boss12, boss13, boss14, boss15, boss16, boss17, boss18, boss19, boss20, boss21, boss22, boss23, boss23, boss24, boss25, boss26, boss27, boss28, boss29, boss30, boss31, boss32, boss33, boss34, boss35, boss36, boss37, boss38, boss39, boss40, boss41, boss42, boss43, boss44, boss46, boss47, boss48, boss49, boss50
 	Armament@main:
 		Weapon: Vulcan
 		LocalOffset: 256,0,256
@@ -1003,6 +1061,11 @@ PBOX.boss:
 	FirepowerMultiplier@boss49:
 		RequiresCondition: boss49
 		Modifier: 50
+	Armament@boss50:
+		Weapon: SilverCruiseMissile
+		LocalOffset: 256,0,1024
+		RequiresCondition: boss50 && bossai
+		Name: boss50
 	AmmoPool@a:
 		Name: ammo_a
 		Armaments: boss39
@@ -1042,7 +1105,7 @@ GFIX.boss:
 	Inherits: GFIX
 	Buildable:
 		BuildLimit: 2
-		Prerequisites: factory, ~ai.boss, ~techlevel.medium
+		Prerequisites: factory, ~ai.god, ~techlevel.medium
 	SpawnActorOnDeath:
 		Actor: GFIX.Hole2
 	Armament:
@@ -1091,7 +1154,8 @@ usafirebaseai:
 usafirebaseaiboss:
 	Inherits: usafirebase
 	Buildable:
-		Prerequisites: ~ai.boss, ~structures.usa, usawarfactory
+		Prerequisites: ~ai.god, factory
+		BuildLimit: 4
 	FreeActor@1:
 		Actor: PBOX.boss
 		SpawnOffset: 0,0
@@ -1172,6 +1236,11 @@ japanlaserbaseai:
 		Actor: firebasebunker.ai
 		SpawnOffset: 2,0
 
+GOD.MISS:
+	Inherits: T.MISS
+	Buildable:
+		Prerequisites: ~ai.god, advtechcenter, !ulttechcenter
+
 # Gives bots access to prefab structures
 ^ConYardPrereqs:
 	ProvidesPrerequisite@PREFABA:
@@ -1192,6 +1261,17 @@ japanlaserbaseai:
 	ProvidesPrerequisite@superAI_2:
 		RequiresCondition: ai.hard_b
 		Prerequisite: techcenter
+	GrantConditionOnBotOwner@godAI:
+		Bots: boss
+		Condition: godowner
+	FreeActor@creep0:
+		RequiresCondition: godowner
+		Actor: HatcheryBib
+		SpawnOffset: 0,0
+	ProximityExternalCondition@creepalive:
+		RequiresCondition: godowner
+		Condition: creepalive
+		Range: 4c0
 
 # a building that when placed is replaced with a power plant and barracks
 ^PrefabBuilding:
@@ -2416,3 +2496,716 @@ bossfaction.battletech:
 		Prerequisite: vehicles.battletech
 	ProvidesPrerequisite@infantry:
 		Prerequisite: infantry.battletech
+
+^PerimeterUpgrade:
+	Inherits: ^ZergEvolve
+	Buildable:
+		Queue: ConYardPerimeter
+		Description: actor-perimeterupgrade.desc
+		BuildDuration: 1500
+		Prerequisites: ~upgrade.buildrepair1, ~disabled
+		IconPaletteIsPlayerPalette: false
+		IconPalette: chrome
+	Valued:
+		Cost: 100
+	ProductionTimeMultiplier@early:
+		Prerequisites: !conyard.perimeterearly
+		Multiplier: 5
+	ProductionCostMultiplier@bot:
+		Prerequisites: ai.all
+		Multiplier: 10
+	ProductionCostMultiplier@techlevel:
+		Prerequisites: !techlevel.medium
+		Multiplier: 750
+	ProductionCostMultiplier:
+		Prerequisites: techlevel.medium
+		Multiplier: 2000
+	RenderSprites:
+		Image: brik
+
+upgrade.perimeter_varianta:
+	Inherits: ^PerimeterUpgrade
+	Tooltip:
+		Name: actor-perimeterupgrade.var-a
+
+upgrade.perimeter_variantb:
+	Inherits: ^PerimeterUpgrade
+	Tooltip:
+		Name: actor-perimeterupgrade.var-b
+
+^BotBuildBlocker:
+	Building:
+		Dimensions: 2,2
+		Footprint: == ==
+	KillsSelfOnParentDeath:
+		RemoveInstead: true
+		Delay: 3
+
+3x4BotBlocker:
+	Inherits: ^BotBuildBlocker
+	Building:
+		Dimensions: 4,5
+		Footprint: ==== =__= =__= =__= =__=
+
+3x3BotBlocker:
+	Inherits: ^BotBuildBlocker
+	Building:
+		Dimensions: 4,4
+		Footprint: ==== =__= =__= =__=
+
+3x2BotBlocker:
+	Inherits: ^BotBuildBlocker
+	Building:
+		Dimensions: 4,3
+		Footprint: ==== =__= =__=
+
+2x3BotBlocker:
+	Inherits: ^BotBuildBlocker
+	Building:
+		Dimensions: 3,4
+		Footprint: === =_= =_= =_=
+
+2x2BotBlocker:
+	Inherits: ^BotBuildBlocker
+	Building:
+		Dimensions: 3,3
+		Footprint: === =_= =_=
+
+2x1BotBlocker:
+	Inherits: ^BotBuildBlocker
+	Building:
+		Dimensions: 3,2
+		Footprint: === ===
+
+BRIK.Spawn:
+	Inherits: 1TNK.MINE
+	-FireWarheadsOnDeath:
+	KillsSelf:
+		Delay: 2
+		DamageTypes: Replace
+	GrantConditionOnTerrain:
+		TerrainTypes: Water, Rock, Beach, Oremine, TibTree, TibTreeBlue, TibMonolith, TibMonolithBlue, River, Brush, Tree, Wall
+		Condition: invalid
+	GrantConditionOnTerrain@resource:
+		TerrainTypes: Ore, Gems, Tiberium, BlueTiberium
+		Condition: destroy_resource
+	GrantConditionOnPrerequisite@estonia:
+		Prerequisites: structures.estonia
+		Condition: estonia
+	FireWarheadsOnDeath@resource:
+		RequiresCondition: destroy_resource
+		Weapon: DestroyResource1x1
+	-SpawnActorOnDeath:
+	SpawnActorOnDeathCA:
+		RequiresCondition: !invalid && !estonia
+		Actor: brik
+		OwnerType: Victim
+		DeathType: Replace
+		IgnoreBlockingActors: false
+	SpawnActorOnDeathCA@estonia:
+		RequiresCondition: !invalid && estonia
+		Actor: brik.est
+		DeathType: Replace
+		IgnoreBlockingActors: false
+
+AnyWall.Spawn:
+	Inherits: BRIK.Spawn
+	ProvidesPrerequisite@alwaysconc:
+		Factions: estonia, zagara
+		Prerequisite: place.onlyconc
+	ProvidesPrerequisite@alwaysconc_player:
+		RequiresPrerequisites: !ai.all, techlevel.medium
+		Prerequisite: place.onlyconc
+	SpawnActorOnDeathCA:
+		RequiresCondition: !invalid && !estonia && conc
+	SpawnActorOnDeathCA@estonia:
+		RequiresCondition: !invalid && estonia && conc
+	GrantConditionOnPrerequisite@conc: # always do bricks if Estonia or Zagara
+		Condition: conc
+		Prerequisites: place.brik
+	GrantConditionOnPrerequisite@conc2: # always do bricks if Estonia or Zagara
+		Condition: conc
+		Prerequisites: place.onlyconc
+	GrantConditionOnPrerequisite@chain:
+		Condition: chain
+		Prerequisites: place.chain, !place.onlyconc
+	GrantConditionOnPrerequisite@barb:
+		Condition: barb
+		Prerequisites: place.barb, !place.onlyconc
+	GrantConditionOnPrerequisite@sbag:
+		Condition: sbag
+		Prerequisites: place.sbag, !place.onlyconc
+	SpawnActorOnDeathCA@chain:
+		RequiresCondition: !invalid && chain
+		Actor: cycl
+		DeathType: Replace
+		IgnoreBlockingActors: false
+	SpawnActorOnDeathCA@barb:
+		RequiresCondition: !invalid && barb
+		Actor: fenc
+		DeathType: Replace
+		IgnoreBlockingActors: false
+	SpawnActorOnDeathCA@sbag:
+		RequiresCondition: !invalid && sbag
+		Actor: sbag
+		DeathType: Replace
+		IgnoreBlockingActors: false
+
+BRIK.AutoReplace:
+	Inherits: BRIK.Spawn
+	Mobile:
+		PauseOnCondition: surveyor_near_base
+	Interactable:
+		Bounds: 1024,1024
+	Targetable:
+		TargetTypes: NoAITarget, Ground
+	Mine:
+		CrushClasses: crate
+		DetonateClasses: crate
+		AvoidFriendly: true
+		BlockFriendly: false
+	ExternalCondition:
+		Condition: surveyor_near_base
+	GrantPeriodicCondition:
+		Condition: nothing
+		CooldownDuration: 745
+		ShowSelectionBar: true
+	GrantConditionOnPlayerResources: 
+		Threshold: 25
+		Condition: allow_rebuild
+	GrantConditionOnPrerequisite@bot:
+		Prerequisites: ai.all
+		Condition: botowner
+	CashTrickler:
+		Amount: -25
+		InitialDelay: 749
+	KillsSelf:
+		Delay: 750
+	KillsSelf@remove:
+		RequiresCondition: !surveyor_near_base || (!allow_rebuild && !botowner)
+		Delay: 4
+		RemoveInstead: true
+
+AGATE.Spawn:
+	Inherits: BRIK.Spawn
+	-GrantConditionOnPrerequisite@estonia:
+	-SpawnActorOnDeathCA@estonia:
+	GrantConditionOnPrerequisite@techlevel:
+		Prerequisites: techlevel.medium
+		Condition: techallow
+	KillsSelf:
+		RequiresCondition: techallow
+		Delay: 2
+		DamageTypes: Replace
+	KillsSelf@2:
+		RequiresCondition: !techallow
+		Delay: 2
+		RemoveInstead: true
+	FireWarheadsOnDeath@resource1:
+		RequiresCondition: destroy_resource
+		Weapon: DestroyResource1x1
+		Offset: -1024,0,0
+	FireWarheadsOnDeath@resource2:
+		RequiresCondition: destroy_resource
+		Weapon: DestroyResource1x1
+		Offset: 1024,0,0
+	SpawnActorOnDeathCA:
+		Actor: agate
+
+AGATE.AutoReplace:
+	Inherits: BRIK.AutoReplace
+	-GrantConditionOnPrerequisite@estonia:
+	-SpawnActorOnDeathCA@estonia:
+	FireWarheadsOnDeath@resource1:
+		RequiresCondition: destroy_resource
+		Weapon: DestroyResource1x1
+		Offset: -1024,0,0
+	FireWarheadsOnDeath@resource2:
+		RequiresCondition: destroy_resource
+		Weapon: DestroyResource1x1
+		Offset: 1024,0,0
+	SpawnActorOnDeathCA:
+		Actor: agate
+
+VGATE.Spawn:
+	Inherits: AGATE.Spawn
+	FireWarheadsOnDeath@resource1:
+		Offset: 0,-1024,0
+	FireWarheadsOnDeath@resource2:
+		Offset: 0,1024,0
+	SpawnActorOnDeathCA:
+		Actor: vgate
+
+VGATE.AutoReplace:
+	Inherits: AGATE.AutoReplace
+	FireWarheadsOnDeath@resource1:
+		Offset: 0,-1024,0
+	FireWarheadsOnDeath@resource2:
+		Offset: 0,1024,0
+	SpawnActorOnDeathCA:
+		Actor: vgate
+
+# This disallows structures to be placed where the wall will be spawned
+AIPerimeterPlaceholder_VariantA:
+	Inherits: ^Building
+	RenderSprites:
+		Image: usaairstriplandingspot
+	-WithMakeAnimation:
+	-GivesBuildableArea:
+	-MapEditorData:
+	Building:
+		Dimensions: 21,21
+		Footprint: ===================== =___________________= =___________________= =___________________= =___________________= =___________________= =___________________= =___________________= =___________________= =___________________= =___________________= =___________________= =___________________= =___________________= =___________________= =___________________= =___________________= =___________________= =___________________= =___________________= =====================
+	KillsSelf:
+		RequiresCondition: !wall_placed
+		Delay: 25
+	GrantConditionOnPrerequisite:
+		Prerequisites: aiperimeterspawner
+		Condition: wall_placed
+	Health:
+		HP: 1000
+	DamageMultiplier@1:
+		Modifier: 0
+
+^PerimeterSpawner:
+	Inherits: MINE_DUMMY
+	ProvidesPrerequisite@name:
+		Prerequisite: aiperimeterspawner
+	GrantRandomCondition:
+		Conditions: conc, chain, barb, sbag
+	GrantRandomCondition@non-conc:
+		Conditions: chain_b, barb_b, sbag_b
+	GrantRandomCondition@concorchain:
+		Conditions: conc_c, chain_c
+	GrantRandomCondition@sbagwire:
+		Conditions: barb_d, sbag_d
+	ProvidesPrerequisite@conc:
+		RequiresCondition: conc
+		Prerequisite: place.brik
+	ProvidesPrerequisite@chain:
+		RequiresCondition: chain
+		Prerequisite: place.chain
+	ProvidesPrerequisite@barb:
+		RequiresCondition: barb
+		Prerequisite: place.barb
+	ProvidesPrerequisite@sbag:
+		RequiresCondition: sbag
+		Prerequisite: place.sbag
+	FreeActor@0:
+		Actor: AIPerimeterPlaceholder_VariantA
+		SpawnOffset: -10,-10
+	KillsSelf:
+		RequiresCondition: place_wall == 31
+		Delay: 1
+		RemoveInstead: true
+	Targetable@self:
+		TargetTypes: AIPerimeterSpawner
+	ExternalCondition@wall:
+		Condition: place_wall
+	FireWarheads@wall:
+		Weapons: AIPerimeterCondition
+		Interval: 25
+
+AIPerimeterSpawner_VariantA:
+	Inherits: ^PerimeterSpawner
+	FreeActor@0:
+		Actor: AIPerimeterPlaceholder_VariantA
+	KillsSelf:
+		RequiresCondition: place_wall == 31
+	FreeActor@1:
+		RequiresCondition: place_wall == 1
+		Actor: AnyWall.Spawn
+		SpawnOffset: -10,-10
+	FreeActor@2:
+		RequiresCondition: place_wall == 2
+		Actor: AnyWall.Spawn
+		SpawnOffset: -9,-10
+	FreeActor@3:
+		RequiresCondition: place_wall == 2
+		Actor: AnyWall.Spawn
+		SpawnOffset: -8,-10
+	FreeActor@4:
+		RequiresCondition: place_wall == 2
+		Actor: AnyWall.Spawn
+		SpawnOffset: -7,-10
+	FreeActor@5:
+		RequiresCondition: place_wall == 3
+		Actor: AnyWall.Spawn
+		SpawnOffset: -6,-10
+	FreeActor@6:
+		RequiresCondition: place_wall == 3
+		Actor: AnyWall.Spawn
+		SpawnOffset: -5,-10
+	FreeActor@7:
+		RequiresCondition: place_wall == 3
+		Actor: AnyWall.Spawn
+		SpawnOffset: -4,-10
+	FreeActor@8:
+		RequiresCondition: place_wall == 4
+		Actor: AnyWall.Spawn
+		SpawnOffset: -3,-10
+	FreeActor@9:
+		RequiresCondition: place_wall == 4
+		Actor: AnyWall.Spawn
+		SpawnOffset: -2,-10
+	FreeActor@10:
+		RequiresCondition: place_wall == 4
+		Actor: AnyWall.Spawn
+		SpawnOffset: 2,-10
+	FreeActor@11:
+		RequiresCondition: place_wall == 5
+		Actor: AGATE.Spawn
+		SpawnOffset: -1,-10
+	FreeActor@12:
+		RequiresCondition: place_wall == 6
+		Actor: AnyWall.Spawn
+		SpawnOffset: 3,-10
+	FreeActor@13:
+		RequiresCondition: place_wall == 6
+		Actor: AnyWall.Spawn
+		SpawnOffset: 4,-10
+	FreeActor@14:
+		RequiresCondition: place_wall == 6
+		Actor: AnyWall.Spawn
+		SpawnOffset: 5,-10
+	FreeActor@15:
+		RequiresCondition: place_wall == 7
+		Actor: AnyWall.Spawn
+		SpawnOffset: 6,-10
+	FreeActor@16:
+		RequiresCondition: place_wall == 7
+		Actor: AnyWall.Spawn
+		SpawnOffset: 7,-10
+	FreeActor@17:
+		RequiresCondition: place_wall == 7
+		Actor: AnyWall.Spawn
+		SpawnOffset: 8,-10
+	FreeActor@18:
+		RequiresCondition: place_wall == 8
+		Actor: AnyWall.Spawn
+		SpawnOffset: 9,-10
+	FreeActor@19:
+		RequiresCondition: place_wall == 8
+		Actor: AnyWall.Spawn
+		SpawnOffset: 10,-10
+	FreeActor@20:
+		RequiresCondition: place_wall == 8
+		Actor: AnyWall.Spawn
+		SpawnOffset: 10,-9
+	FreeActor@21:
+		RequiresCondition: place_wall == 9
+		Actor: AnyWall.Spawn
+		SpawnOffset: 10,-8
+	FreeActor@22:
+		RequiresCondition: place_wall == 9
+		Actor: AnyWall.Spawn
+		SpawnOffset: 10,-7
+	FreeActor@23:
+		RequiresCondition: place_wall == 9
+		Actor: AnyWall.Spawn
+		SpawnOffset: 10,-6
+	FreeActor@24:
+		RequiresCondition: place_wall == 10
+		Actor: AnyWall.Spawn
+		SpawnOffset: 10,-5
+	FreeActor@25:
+		RequiresCondition: place_wall == 10
+		Actor: AnyWall.Spawn
+		SpawnOffset: 10,-4
+	FreeActor@26:
+		RequiresCondition: place_wall == 10
+		Actor: AnyWall.Spawn
+		SpawnOffset: 10,-3
+	FreeActor@27:
+		RequiresCondition: place_wall == 11
+		Actor: AnyWall.Spawn
+		SpawnOffset: 10,-2
+	FreeActor@28:
+		RequiresCondition: place_wall == 11
+		Actor: AnyWall.Spawn
+		SpawnOffset: 10,2
+	FreeActor@29:
+		RequiresCondition: place_wall == 11
+		Actor: AnyWall.Spawn
+		SpawnOffset: 10,3
+	FreeActor@30:
+		RequiresCondition: place_wall == 12
+		Actor: VGATE.Spawn
+		SpawnOffset: 10,-1
+	FreeActor@31:
+		RequiresCondition: place_wall == 13
+		Actor: AnyWall.Spawn
+		SpawnOffset: 10,4
+	FreeActor@32:
+		RequiresCondition: place_wall == 13
+		Actor: AnyWall.Spawn
+		SpawnOffset: 10,5
+	FreeActor@33:
+		RequiresCondition: place_wall == 13
+		Actor: AnyWall.Spawn
+		SpawnOffset: 10,6
+	FreeActor@34:
+		RequiresCondition: place_wall == 14
+		Actor: AnyWall.Spawn
+		SpawnOffset: 10,7
+	FreeActor@35:
+		RequiresCondition: place_wall == 14
+		Actor: AnyWall.Spawn
+		SpawnOffset: 10,8
+	FreeActor@36:
+		RequiresCondition: place_wall == 14
+		Actor: AnyWall.Spawn
+		SpawnOffset: 10,9
+	FreeActor@37:
+		RequiresCondition: place_wall == 15
+		Actor: AnyWall.Spawn
+		SpawnOffset: 10,10
+	FreeActor@38:
+		RequiresCondition: place_wall == 15
+		Actor: AnyWall.Spawn
+		SpawnOffset: 9,10
+	FreeActor@39:
+		RequiresCondition: place_wall == 15
+		Actor: AnyWall.Spawn
+		SpawnOffset: 8,10
+	FreeActor@40:
+		RequiresCondition: place_wall == 16
+		Actor: AnyWall.Spawn
+		SpawnOffset: 7,10
+	FreeActor@41:
+		RequiresCondition: place_wall == 16
+		Actor: AnyWall.Spawn
+		SpawnOffset: 6,10
+	FreeActor@42:
+		RequiresCondition: place_wall == 16
+		Actor: AnyWall.Spawn
+		SpawnOffset: 5,10
+	FreeActor@43:
+		RequiresCondition: place_wall == 17
+		Actor: AnyWall.Spawn
+		SpawnOffset: 4,10
+	FreeActor@44:
+		RequiresCondition: place_wall == 17
+		Actor: AnyWall.Spawn
+		SpawnOffset: 3,10
+	FreeActor@45:
+		RequiresCondition: place_wall == 17
+		Actor: AnyWall.Spawn
+		SpawnOffset: 2,10
+	FreeActor@46:
+		RequiresCondition: place_wall == 18
+		Actor: AGATE.Spawn
+		SpawnOffset: -1,10
+	FreeActor@47:
+		RequiresCondition: place_wall == 19
+		Actor: AnyWall.Spawn
+		SpawnOffset: -2,10
+	FreeActor@48:
+		RequiresCondition: place_wall == 19
+		Actor: AnyWall.Spawn
+		SpawnOffset: -3,10
+	FreeActor@49:
+		RequiresCondition: place_wall == 19
+		Actor: AnyWall.Spawn
+		SpawnOffset: -4,10
+	FreeActor@49b:
+		RequiresCondition: place_wall == 20
+		Actor: AnyWall.Spawn
+		SpawnOffset: -5,10
+	FreeActor@50:
+		RequiresCondition: place_wall == 20
+		Actor: AnyWall.Spawn
+		SpawnOffset: -6,10
+	FreeActor@51:
+		RequiresCondition: place_wall == 20
+		Actor: AnyWall.Spawn
+		SpawnOffset: -7,10
+	FreeActor@52:
+		RequiresCondition: place_wall == 21
+		Actor: AnyWall.Spawn
+		SpawnOffset: -8,10
+	FreeActor@53:
+		RequiresCondition: place_wall == 21
+		Actor: AnyWall.Spawn
+		SpawnOffset: -9,10
+	FreeActor@54:
+		RequiresCondition: place_wall == 21
+		Actor: AnyWall.Spawn
+		SpawnOffset: -10,10
+	FreeActor@55:
+		RequiresCondition: place_wall == 22
+		Actor: AnyWall.Spawn
+		SpawnOffset: -10,9
+	FreeActor@56:
+		RequiresCondition: place_wall == 22
+		Actor: AnyWall.Spawn
+		SpawnOffset: -10,8
+	FreeActor@57:
+		RequiresCondition: place_wall == 22
+		Actor: AnyWall.Spawn
+		SpawnOffset: -10,7
+	FreeActor@58:
+		RequiresCondition: place_wall == 23
+		Actor: AnyWall.Spawn
+		SpawnOffset: -10,6
+	FreeActor@59:
+		RequiresCondition: place_wall == 23
+		Actor: AnyWall.Spawn
+		SpawnOffset: -10,5
+	FreeActor@60:
+		RequiresCondition: place_wall == 23
+		Actor: AnyWall.Spawn
+		SpawnOffset: -10,4
+	FreeActor@61:
+		RequiresCondition: place_wall == 24
+		Actor: AnyWall.Spawn
+		SpawnOffset: -10,3
+	FreeActor@62:
+		RequiresCondition: place_wall == 24
+		Actor: AnyWall.Spawn
+		SpawnOffset: -10,2
+	FreeActor@63:
+		RequiresCondition: place_wall == 24
+		Actor: AnyWall.Spawn
+		SpawnOffset: -10,-2
+	FreeActor@64:
+		RequiresCondition: place_wall == 25
+		Actor: VGATE.Spawn
+		SpawnOffset: -10,-1
+	FreeActor@65:
+		RequiresCondition: place_wall == 26
+		Actor: AnyWall.Spawn
+		SpawnOffset: -10,-3
+	FreeActor@66:
+		RequiresCondition: place_wall == 26
+		Actor: AnyWall.Spawn
+		SpawnOffset: -10,-4
+	FreeActor@67:
+		RequiresCondition: place_wall == 26
+		Actor: AnyWall.Spawn
+		SpawnOffset: -10,-5
+	FreeActor@68:
+		RequiresCondition: place_wall == 27
+		Actor: AnyWall.Spawn
+		SpawnOffset: -10,-6
+	FreeActor@69:
+		RequiresCondition: place_wall == 27
+		Actor: AnyWall.Spawn
+		SpawnOffset: -10,-7
+	FreeActor@70:
+		RequiresCondition: place_wall == 27
+		Actor: AnyWall.Spawn
+		SpawnOffset: -10,-8
+	FreeActor@71:
+		RequiresCondition: place_wall == 27
+		Actor: AnyWall.Spawn
+		SpawnOffset: -10,-9
+	FreeActor@72:
+		RequiresCondition: place_wall == 28
+		Actor: AnyWall.Spawn
+		SpawnOffset: -9,-9
+	FreeActor@73:
+		RequiresCondition: place_wall == 29
+		Actor: AnyWall.Spawn
+		SpawnOffset: 9,9
+	FreeActor@74:
+		RequiresCondition: place_wall == 30
+		Actor: AnyWall.Spawn
+		SpawnOffset: -9,9
+	FreeActor@75:
+		RequiresCondition: place_wall == 31
+		Actor: AnyWall.Spawn
+		SpawnOffset: 9,-9
+
+AIPerimeterPlaceholder_VariantB:
+	Inherits: AIPerimeterPlaceholder_VariantA
+	Building:
+		Footprint: ===================== =___________________= =___________________= =___________________==___________________= =___________________= =_____===___===_____= =_____=_______=_____= =_____=_______=_____= =___________________= =___________________= =___________________= =_____=_______=_____= =_____=_______=_____= =_____===___===_____= =___________________= =___________________= =___________________= =___________________= =___________________= =====================
+
+# Since it has mostly the same shape as Variant A, it only needs new FreeActor traits to spawn the inner wall.
+AIPerimeterSpawner_VariantB:
+	Inherits: AIPerimeterSpawner_VariantA
+	KillsSelf:
+		RequiresCondition: place_wall == 34
+	FreeActor@0:
+		Actor: AIPerimeterPlaceholder_VariantB
+	FreeActor@72: # inner walls
+		RequiresCondition: place_wall == 28
+		Actor: AnyWall.Spawn
+		SpawnOffset: -4,-4
+	FreeActor@73:
+		RequiresCondition: place_wall == 29
+		Actor: AnyWall.Spawn
+		SpawnOffset: -3,-4
+	FreeActor@74:
+		RequiresCondition: place_wall == 30
+		Actor: AnyWall.Spawn
+		SpawnOffset: -2,-4
+	FreeActor@75:
+		RequiresCondition: place_wall == 29
+		Actor: AnyWall.Spawn
+		SpawnOffset: -4,-3
+	FreeActor@76:
+		RequiresCondition: place_wall == 30
+		Actor: AnyWall.Spawn
+		SpawnOffset: -4,-2
+	FreeActor@77:
+		RequiresCondition: place_wall == 31
+		Actor: AnyWall.Spawn
+		SpawnOffset: 4,-4
+	FreeActor@78:
+		RequiresCondition: place_wall == 32
+		Actor: AnyWall.Spawn
+		SpawnOffset: 3,-4
+	FreeActor@79:
+		RequiresCondition: place_wall == 33
+		Actor: AnyWall.Spawn
+		SpawnOffset: 2,-4
+	FreeActor@80:
+		RequiresCondition: place_wall == 32
+		Actor: AnyWall.Spawn
+		SpawnOffset: 4,-3
+	FreeActor@81:
+		RequiresCondition: place_wall == 33
+		Actor: AnyWall.Spawn
+		SpawnOffset: 4,-2
+	FreeActor@82:
+		RequiresCondition: place_wall == 28
+		Actor: AnyWall.Spawn
+		SpawnOffset: 4,4
+	FreeActor@83:
+		RequiresCondition: place_wall == 29
+		Actor: AnyWall.Spawn
+		SpawnOffset: 3,4
+	FreeActor@84:
+		RequiresCondition: place_wall == 30
+		Actor: AnyWall.Spawn
+		SpawnOffset: 2,4
+	FreeActor@85:
+		RequiresCondition: place_wall == 29
+		Actor: AnyWall.Spawn
+		SpawnOffset: 4,3
+	FreeActor@86:
+		RequiresCondition: place_wall == 30
+		Actor: AnyWall.Spawn
+		SpawnOffset: 4,2
+	FreeActor@87:
+		RequiresCondition: place_wall == 31
+		Actor: AnyWall.Spawn
+		SpawnOffset: -4,4
+	FreeActor@88:
+		RequiresCondition: place_wall == 32
+		Actor: AnyWall.Spawn
+		SpawnOffset: -3,4
+	FreeActor@89:
+		RequiresCondition: place_wall == 33
+		Actor: AnyWall.Spawn
+		SpawnOffset: -2,4
+	FreeActor@90:
+		RequiresCondition: place_wall == 32
+		Actor: AnyWall.Spawn
+		SpawnOffset: -4,3
+	FreeActor@91:
+		RequiresCondition: place_wall == 33
+		Actor: AnyWall.Spawn
+		SpawnOffset: -4,2

@@ -15,9 +15,9 @@
 	ChangesHealth@creepzagara:
 		RequiresCondition: (oncreep || burrowed) && zagara_regen
 		PercentageStep: 1
-		Delay: 75
+		Delay: 33
 		StartIfBelow: 100
-		DamageCooldown: 75
+		DamageCooldown: 25
 	GrantConditionOnPowerState@freeroam:
 		Condition: lowpower
 		ValidPowerStates: Low, Critical
@@ -35,6 +35,7 @@
 		Interval: -1
 		Delay: 0
 		RequiresCondition: nydus_alive
+	IgnoresDisguise: 
 
 ^ZergUnitWeapon:
 	Inherits@zerg: ^ZergUnit
@@ -75,9 +76,11 @@ ZZERGLING:
 		DecorationBounds: 512, 512, 0, 100
 		Class: ZZERGLING
 	Valued:
-		Cost: 160
-	GivesExperience:
-		Experience: 80
+		Cost: 80
+	ProductionCostMultiplier@default:
+		Multiplier: 200
+	GainsExperienceMultiplier@default:
+		Modifier: 50
 	UpdatesPlayerStatistics:
 		AddToArmyValue: true
 	Tooltip:
@@ -161,20 +164,20 @@ ZZERGLING:
 		Condition: shoes
 	SpeedMultiplier@shoes:
 		RequiresCondition: shoes
-		Modifier: 120
+		Modifier: 133
 	ReloadDelayMultiplier@shoes:
 		RequiresCondition: shoes
 		Modifier: 75
-	ExternalCondition@zergling:
-		Condition: zerglingdouble
-	FreeActor@zergling:
-		RequiresCondition: !zerglingdouble
-		Actor: ZZERGLING2
-		SpawnOffset: 0,0
-	FreeActor@zergling_ai:
-		RequiresCondition: botowner && random1
-		Actor: ZZERGLING2
-		SpawnOffset: 0,0
+	#ExternalCondition@zergling: # now handled by Barracks/Hatchery themselves!
+	#	Condition: zerglingdouble
+	#FreeActor@zergling:
+	#	RequiresCondition: !zerglingdouble
+	#	Actor: ZZERGLING2
+	#	SpawnOffset: 0,0
+	#FreeActor@zergling_ai:
+	#	RequiresCondition: botowner && random1
+	#	Actor: ZZERGLING2
+	#	SpawnOffset: 0,0
 	GrantConditionOnPrerequisite@ai1:
 		Condition: botowner
 		Prerequisites: ai.easy
@@ -225,16 +228,12 @@ ZZERGLING2:
 	Inherits: ZZERGLING
 	RenderSprites:
 		Image: zzergling
-	-ExternalCondition@zergling:
-	-FreeActor@zergling:
-	-FreeActor@zergling_ai:
+	#-ExternalCondition@zergling:
+	#-FreeActor@zergling:
+	#-FreeActor@zergling_ai:
 	-Buildable:
-	Valued:
-		Cost: 160
 	-GivesBounty:
 	UpdatesPlayerStatistics:
-		AddToArmyValue: false
-		AddToAssetsValue: false
 		OverrideActor: zzergling
 	-Power:
 
@@ -252,10 +251,10 @@ ZZERGLING.b2:
 	Inherits: ZZERGLING.b
 
 ZDRONE.ENG:
-	Inherits: ZZERGLING
+	Inherits: ZDRONE
 	Inherits@engineer: ^EngineerBehaviour
 	RenderSprites:
-		Image: zzergling
+		Image: zdrone
 	Buildable:
 		BuildPaletteOrder: 9000
 		Prerequisites: ~barracks, ~structures.zerg, ~techlevel.infonly, ~ai.all
@@ -283,6 +282,11 @@ ZDRONE.ENG:
 		WanderMoveRadius: 3
 		MinMoveDelay: 175
 		MaxMoveDelay: 400
+	-Harvester:
+	-WithStoresResourcesPipsDecoration:
+	-TransferResourcesOnTransform:
+	-WithHarvestAnimation:
+	-WithDockingAnimation:
 
 ZHYDRA:
 	Inherits: ^Infantry
@@ -803,7 +807,7 @@ ZTORRASQUE.Corpse:
 		Condition: currenthp
 	ChangesHealth@health2:
 		PercentageStep: 10
-		StartIfBelow: 101
+		StartIfBelow: 100
 		Delay: 25
 		DamageCooldown: 25
 
@@ -977,8 +981,8 @@ ZDEVOURING:
 		-RequiresCondition:
 	FirepowerMultiplier@devouringone:
 		Modifier: 180
-	-FreeActor@zergling:
-	-FreeActor@zergling_ai:
+	#-FreeActor@zergling:
+	#-FreeActor@zergling_ai:
 	DamageMultiplier@iar1:
 		Modifier: 85
 	DamageMultiplier@iar2:
@@ -1118,16 +1122,16 @@ ZBANELING:
 	SpeedMultiplier@shoes:
 		RequiresCondition: shoes
 		Modifier: 120
-	ExternalCondition@zergling:
-		Condition: zerglingdouble
-	FreeActor@zergling:
-		RequiresCondition: !zerglingdouble
-		Actor: ZBANELING2
-		SpawnOffset: 0,0
-	FreeActor@zergling_ai:
-		RequiresCondition: botowner && random1
-		Actor: ZBANELING2
-		SpawnOffset: 0,0
+	#ExternalCondition@zergling:
+	#	Condition: zerglingdouble
+	#FreeActor@zergling:
+	#	RequiresCondition: !zerglingdouble
+	#	Actor: ZBANELING2
+	#	SpawnOffset: 0,0
+	#FreeActor@zergling_ai:
+	#	RequiresCondition: botowner && random1
+	#	Actor: ZBANELING2
+	#	SpawnOffset: 0,0
 	GrantConditionOnPrerequisite@ai1:
 		Condition: botowner
 		Prerequisites: ai.easy
@@ -1183,9 +1187,9 @@ ZBANELING2:
 	Inherits: ZBANELING
 	RenderSprites:
 		Image: zbaneling
-	-ExternalCondition@zergling:
-	-FreeActor@zergling:
-	-FreeActor@zergling_ai:
+	#-ExternalCondition@zergling:
+	#-FreeActor@zergling:
+	#-FreeActor@zergling_ai:
 	-Buildable:
 	Valued:
 		Cost: 160

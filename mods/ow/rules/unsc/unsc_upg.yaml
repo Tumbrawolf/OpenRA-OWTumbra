@@ -1,0 +1,215 @@
+unsc.fraggrenades:
+	Inherits: ^UpgradeBaseExt
+	Tooltip:
+		Name: actor-unsc-fraggrenades.name
+	Buildable:
+		Description: actor-unsc-fraggrenades.description
+		BuildPaletteOrder: 10014
+		Prerequisites: ~structures.unsc, techcenter
+		BuildDuration: 2500
+	ProductionCostMultiplier@upgrade:
+		Multiplier: 5000
+	ProvidesPrerequisite@upgradename:
+	ExternalCondition@PRODUCED:
+		Condition: produced
+	WithProductionIconOverlay:
+		Types: UpgradeComplete
+		Prerequisites: unsc.fraggrenades
+
+unsc.covenantweapons:
+	Inherits: ^UpgradeBaseExt
+	Tooltip:
+		Name: actor-unsc-covenantweapons.name
+	Buildable:
+		Description: actor-unsc-covenantweapons.description
+		BuildPaletteOrder: 10014
+		Prerequisites: ~structures.unsc, advtechcenter
+		BuildDuration: 2500
+	ProductionCostMultiplier@upgrade:
+		Multiplier: 5000
+	ProvidesPrerequisite@upgradename:
+	ExternalCondition@PRODUCED:
+		Condition: produced
+	WithProductionIconOverlay:
+		Types: UpgradeComplete
+		Prerequisites: unsc.covenantweapons
+
+unsc.megabarrage:
+	Inherits: ^UpgradeBaseExt
+	Tooltip:
+		Name: actor-unsc-megabarrage.name
+	Buildable:
+		Description: actor-unsc-megabarrage.description
+		BuildPaletteOrder: 10015
+		Prerequisites: ~structures.unsc, techcenter
+		BuildDuration: 1750
+	ProductionCostMultiplier@upgrade:
+		Multiplier: 3500
+	ProvidesPrerequisite@upgradename:
+	ExternalCondition@PRODUCED:
+		Condition: produced
+	WithProductionIconOverlay:
+		Types: UpgradeComplete
+		Prerequisites: unsc.megabarrage
+
+unsc.mlrssystem:
+	Inherits: ^UpgradeBaseExt
+	Tooltip:
+		Name: actor-unsc-mlrssystem.name
+	Buildable:
+		Description: actor-unsc-mlrssystem.description
+		BuildPaletteOrder: 10016
+		Prerequisites: ~structures.unsc, advtechcenter
+		BuildDuration: 2000
+	ProductionCostMultiplier@upgrade:
+		Multiplier: 4000
+	ProvidesPrerequisite@upgradename:
+	ExternalCondition@PRODUCED:
+		Condition: produced
+	WithProductionIconOverlay:
+		Types: UpgradeComplete
+		Prerequisites: unsc.mlrssystem
+
+unsc.smokesystem:
+	Inherits: ^UpgradeBaseExt
+	Tooltip:
+		Name: actor-unsc-smokesystem.name
+	Buildable:
+		Description: actor-unsc-smokesystem.description
+		BuildPaletteOrder: 10016
+		Prerequisites: ~structures.unsc, techcenter
+		BuildDuration: 2000
+	ProductionCostMultiplier@upgrade:
+		Multiplier: 4000
+	ProvidesPrerequisite@upgradename:
+	ExternalCondition@PRODUCED:
+		Condition: produced
+	WithProductionIconOverlay:
+		Types: UpgradeComplete
+		Prerequisites: unsc.smokesystem
+
+unsc.warthogweapons:
+	Inherits: ^UpgradeBaseExt
+	Tooltip:
+		Name: actor-unsc-warthogweapons.name
+	Buildable:
+		Description: actor-unsc-warthogweapons.description
+		BuildPaletteOrder: 10016
+		Prerequisites: ~structures.unsc, techcenter
+		BuildDuration: 2000
+	ProductionCostMultiplier@upgrade:
+		Multiplier: 4000
+	ProvidesPrerequisite@upgradename:
+	ExternalCondition@PRODUCED:
+		Condition: produced
+	WithProductionIconOverlay:
+		Types: UpgradeComplete
+		Prerequisites: unsc.warthogweapons
+
+unsc.chaffpod:
+	Inherits: ^UpgradeBaseExt
+	Tooltip:
+		Name: actor-unsc-chaffpod.name
+	Buildable:
+		Description: actor-unsc-chaffpod.description
+		BuildPaletteOrder: 10017
+		Prerequisites: ~structures.unsc, techcenter
+		BuildDuration: 3000
+	ProductionCostMultiplier@upgrade:
+		Multiplier: 3000
+	ProvidesPrerequisite@upgradename:
+	ExternalCondition@PRODUCED:
+		Condition: produced
+	WithProductionIconOverlay:
+		Types: UpgradeComplete
+		Prerequisites: unsc.chaffpod
+
+unsc.phoenix:
+	Inherits: ^UpgradeBaseExt
+	Tooltip:
+		Name: actor-unsc-phoenix.name
+	Buildable:
+		Description: actor-unsc-phoenix.description
+		BuildPaletteOrder: 10018
+		Prerequisites: ~structures.unsc, advtechcenter
+		BuildDuration: 5000
+	ProductionCostMultiplier@upgrade:
+		Multiplier: 5000
+	ProvidesPrerequisite@upgradename:
+	ExternalCondition@PRODUCED:
+		Condition: produced
+	WithProductionIconOverlay:
+		Types: UpgradeComplete
+		Prerequisites: unsc.phoenix
+
+unsc.plating:
+	Inherits: ^UpgradeBaseExt
+	Tooltip:
+		Name: actor-unsc-plating.name
+	Buildable:
+		Description: actor-unsc-plating.description
+		BuildPaletteOrder: 10019
+		Prerequisites: ~structures.unsc, techcenter
+		BuildDuration: 2500
+	ProductionCostMultiplier@upgrade:
+		Multiplier: 2500
+	ProvidesPrerequisite@upgradename:
+	ExternalCondition@PRODUCED:
+		Condition: produced
+	WithProductionIconOverlay:
+		Types: UpgradeComplete
+		Prerequisites: unsc.plating
+
+unsc.heatoutput:
+	Inherits: ^UpgradeBaseExt
+	Tooltip:
+		Name: actor-unsc-heatoutput.name
+	Buildable:
+		Description: actor-unsc-heatoutput.description
+		BuildPaletteOrder: 10020
+		Prerequisites: ~structures.unsc, techcenter
+		BuildDuration: 3500
+	ProductionCostMultiplier@upgrade:
+		Multiplier: 3500
+	ProvidesPrerequisite@upgradename:
+	ExternalCondition@PRODUCED:
+		Condition: produced
+	WithProductionIconOverlay:
+		Types: UpgradeComplete
+		Prerequisites: unsc.heatoutput
+
+unsc.armouredwarthog:
+	Inherits: ^UpgradeBaseExt
+	Tooltip:
+		Name: actor-unsc-armouredwarthog.name
+	Buildable:
+		Description: actor-unsc-armouredwarthog.description
+		BuildPaletteOrder: 10020
+		Prerequisites: ~structures.unsc, techcenter
+		BuildDuration: 3500
+	ProductionCostMultiplier@upgrade:
+		Multiplier: 3500
+	ProvidesPrerequisite@upgradename:
+	ExternalCondition@PRODUCED:
+		Condition: produced
+	WithProductionIconOverlay:
+		Types: UpgradeComplete
+		Prerequisites: unsc.armouredwarthog
+
+unsc.odst:
+	Inherits: ^UpgradeBaseExt
+	Tooltip:
+		Name: actor-unsc-odst.name
+	Buildable:
+		Description: actor-unsc-odst.description
+		BuildPaletteOrder: 10020
+		Prerequisites: ~structures.unsc, ulttechcenter
+		BuildDuration: 5000
+	ProductionCostMultiplier@upgrade:
+		Multiplier: 5000
+	ProvidesPrerequisite@upgradename:
+	ExternalCondition@PRODUCED:
+		Condition: produced
+	WithProductionIconOverlay:
+		Types: UpgradeComplete
+		Prerequisites: unsc.odst

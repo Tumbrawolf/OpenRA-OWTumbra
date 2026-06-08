@@ -1,0 +1,1661 @@
+# Sprinter pack (Movement 20%)
+masterchief.tier1.sprinterpack:
+	Inherits: ^HeroUpgradeBaseTier1
+	Tooltip:
+		Name: actor-masterchief-tier1-sprinterpack.name
+	Buildable:
+		Description: actor-masterchief-tier1-sprinterpack.description
+		Prerequisites: ~active.masterchief
+		Icon: masterchiefsprinterpackicon
+	RenderSprites:
+		Image: icon
+	ProvidesPrerequisite@buildingname:
+
+# Armor upgrade (20%)
+masterchief.tier1.titaniumalloy:
+	Inherits: ^HeroUpgradeBaseTier1
+	Tooltip:
+		Name: actor-masterchief-tier1-titaniumalloy.name
+	Buildable:
+		Description: actor-masterchief-tier1-titaniumalloy.description
+		Prerequisites: ~active.masterchief
+		Icon: masterchieftitaniumalloyicon
+	RenderSprites:
+		Image: icon
+	ProvidesPrerequisite@buildingname:
+
+# Increased vision range (25%)
+masterchief.tier2.cornealimplants:
+	Inherits: ^HeroUpgradeBaseTier2
+	Tooltip:
+		Name: actor-masterchief-tier2-cornealimplants.name
+	Buildable:
+		Description: actor-masterchief-tier2-cornealimplants.description
+		Prerequisites: ~active.masterchief
+		Icon: masterchiefcornealimplantsicon
+	RenderSprites:
+		Image: icon
+	ProvidesPrerequisite@buildingname:
+
+# Plasma Grenades (25%)
+masterchief.tier2.plasmagrenade:
+	Inherits: ^HeroUpgradeBaseTier2
+	Tooltip:
+		Name: actor-masterchief-tier2-plasmagrenade.name
+	Buildable:
+		Description: actor-masterchief-tier2-plasmagrenade.description
+		Prerequisites: ~active.masterchief
+		Icon: masterchiefplasmagrenadeicon
+	RenderSprites:
+		Image: icon
+	ProvidesPrerequisite@buildingname:
+
+# creates shroud
+masterchief.tier3.jammer:
+	Inherits: ^HeroUpgradeBaseTier3
+	Tooltip:
+		Name: actor-masterchief-tier3-jammer.name
+	Buildable:
+		Description: actor-masterchief-tier3-jammer.description
+		Prerequisites: ~active.masterchief
+		Icon: masterchiefjammericon
+	RenderSprites:
+		Image: icon
+	ProvidesPrerequisite@buildingname:
+
+# regen nearby units and self
+masterchief.tier3.regenerator:
+	Inherits: ^HeroUpgradeBaseTier3
+	Tooltip:
+		Name: actor-masterchief-tier3-regenerator.name
+	Buildable:
+		Description: actor-masterchief-tier3-regenerator.description
+		Prerequisites: ~active.masterchief
+		Icon: masterchiefregeneratoricon
+	RenderSprites:
+		Image: icon
+	ProvidesPrerequisite@buildingname:
+
+# invisibility
+masterchief.tier4.cloakingdevice:
+	Inherits: ^HeroUpgradeBaseTier4
+	Tooltip:
+		Name: actor-masterchief-tier4-cloakingdevice.name
+	Buildable:
+		Description: actor-masterchief-tier4-cloakingdevice.description
+		Prerequisites: ~active.masterchief
+		Icon: masterchiefcloakingdeviceicon
+	RenderSprites:
+		Image: icon
+	ProvidesPrerequisite@buildingname:
+
+# shield thing
+masterchief.tier4.bubbleshield:
+	Inherits: ^HeroUpgradeBaseTier4
+	Tooltip:
+		Name: actor-masterchief-tier4-bubbleshield.name
+	Buildable:
+		Description: actor-masterchief-tier4-bubbleshield.description
+		Prerequisites: ~active.masterchief
+		Icon: masterchiefbubbleshieldicon
+	RenderSprites:
+		Image: icon
+
+# Power Drain
+masterchief.tier4.powerdrain:
+	Inherits: ^HeroUpgradeBaseTier4
+	Tooltip:
+		Name: actor-masterchief-tier4-powerdrain.name
+	Buildable:
+		Description: actor-masterchief-tier4-powerdrain.description
+		Prerequisites: ~active.masterchief
+		Icon: masterchiefpowerdrainicon
+	RenderSprites:
+		Image: icon
+
+
+# Invulnerability - 15 seconds
+masterchief.tier5.invulnerability:
+	Inherits: ^HeroUpgradeBaseTier5
+	Tooltip:
+		Name: actor-masterchief-tier5-invulnerability.name
+	Buildable:
+		Description: actor-masterchief-tier5-invulnerability.description
+		Prerequisites: ~active.masterchief
+		Icon: masterchiefinvulnerabilityicon
+	RenderSprites:
+		Image: icon
+	ProvidesPrerequisite@buildingname:
+
+# Armor Upgrade
+masterchief.tier5.markviarmor:
+	Inherits: ^HeroUpgradeBaseTier5
+	Tooltip:
+		Name: actor-masterchief-tier5-markviarmor.name
+	Buildable:
+		Description: actor-masterchief-tier5-markviarmor.description
+		Prerequisites: ~active.masterchief
+		Icon: masterchiefmarkviarmoricon
+	RenderSprites:
+		Image: icon
+
+masterchief.tier5.autoturret:
+	Inherits: ^HeroUpgradeBaseTier5
+	Tooltip:
+		Name: actor-masterchief-tier5-autoturret.name
+	Buildable:
+		Description: actor-masterchief-tier5-autoturret.description
+		Prerequisites: ~active.masterchief
+		Icon: masterchiefautoturreticon
+	RenderSprites:
+		Image: icon
+
+
+active.masterchief:
+	Interactable:
+	Tooltip:
+		Name: actor-active-masterchief-name
+
+masterchief.allpick:
+	Inherits: ^HeroPickBase
+	RenderSprites:
+		Image: masterchief
+	Buildable:
+		Prerequisites: ~techlevel.hero, ~!hero.chosen
+		Description: actor-masterchief-hero0.description
+	Valued:
+		Cost: 0
+	Tooltip:
+		Name: actor-masterchief-hero0.name
+	ProvidesPrerequisite@hero:
+		Prerequisite: hero.chosen
+	ProvidesPrerequisite@pickme:
+		Prerequisite: hero.masterchief
+
+masterchief.Hero0:
+	Inherits: ^NewStrifeGuy
+	Inherits@Hero: ^Hero
+	Inherits@heroTier: ^HeroTier0
+	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
+	-GainsExperience:
+	ProductionQueue@ability:
+		Type: HeroAbility
+		Group: Special
+	Production@ability:
+		Produces: HeroAbility
+	RenderSprites:
+		Image: masterchief
+	Buildable:
+		Queue: Infantry, Hero
+		BuildPaletteOrder: 50
+		Prerequisites: ~barracks, !active.masterchief, ~!hero.tier1, ~hero.masterchief
+		Description: actor-masterchief-hero0.description
+		BuildDurationModifier: 100
+		BuildDuration: 750
+		BuildLimit: 1
+	ProductionBar@WeaponsQueue:
+		ProductionType: HeroAbility
+	Exit@1:
+		ExitCell: 1,1
+		ProductionTypes: masterchiefweapon
+	Selectable:
+		Bounds: 1536, 1536, 0, 0
+		DecorationBounds: 1536, 1536, 0, 0
+	Tooltip:
+		Name: actor-masterchief-hero0.name
+		RequiresCondition: !in_world
+	Tooltip@real:
+		Name: actor-masterchief-hero0.real--name
+		RequiresCondition: in_world
+	GrantCondition@real:
+		Condition: in_world
+	Mobile:
+		Speed: 72
+		TurnSpeed: 90
+		Locomotor: foot2
+		Voice: Move
+		PauseOnCondition: attack-cooldown
+	AttackFrontal:
+		Armaments: primary, secondary, spartanlaser
+	Guard:
+		Voice: Move
+	Health:
+		HP: 20000
+	RevealsShroud:
+		MinRange: 6c0
+		Range: 8c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 6c0
+	-ExternalCondition@wander:
+	Passenger:
+		CustomPipType: red
+		Voice: Move
+		Weight: 2
+	Armament@PRIMARY:
+		Weapon: MasterChiefRifle
+		PauseOnCondition: masterchiefpistolcondition || masterchiefplasmapistolcondition || masterchiefshotguncondition || masterchiefneedlercondition || masterchiefplasmariflecondition || masterchiefassaultriflecondition || masterchiefsnipercondition || masterchiefplasmacarbinecondition || masterchiefrocketlaunchercondition || masterchieffuelrodcannoncondition || masterchiefbruteshotcondition || masterchiefsentinelbeamcondition || masterchiefenergyswordcondition || masterchiefspartanlasercondition || masterchiefflamethrowercondition || masterchiefgravityhammercondition
+	Armament@GARRISONED:
+		Name: garrisoned
+		Weapon: MasterChiefRifle
+		MuzzleSequence: garrison-muzzle
+		PauseOnCondition: masterchiefpistolcondition || masterchiefplasmapistolcondition || masterchiefshotguncondition || masterchiefneedlercondition || masterchiefplasmariflecondition || masterchiefassaultriflecondition || masterchiefsnipercondition || masterchiefplasmacarbinecondition || masterchiefrocketlaunchercondition || masterchieffuelrodcannoncondition || masterchiefbruteshotcondition || masterchiefsentinelbeamcondition || masterchiefenergyswordcondition || masterchiefspartanlasercondition || masterchiefflamethrowercondition || masterchiefgravityhammercondition
+	Armament@BUS:
+		Name: bus
+		Weapon: MasterChiefRifle
+		PauseOnCondition: masterchiefpistolcondition || masterchiefplasmapistolcondition || masterchiefshotguncondition || masterchiefneedlercondition || masterchiefplasmariflecondition || masterchiefassaultriflecondition || masterchiefsnipercondition || masterchiefplasmacarbinecondition || masterchiefrocketlaunchercondition || masterchieffuelrodcannoncondition || masterchiefbruteshotcondition || masterchiefsentinelbeamcondition || masterchiefenergyswordcondition || masterchiefspartanlasercondition || masterchiefflamethrowercondition || masterchiefgravityhammercondition
+	Armament@TRACER:
+		Weapon: MasterChiefRifleTracer
+		LocalOffset: 564,96,128
+		PauseOnCondition: masterchiefpistolcondition || masterchiefplasmapistolcondition || masterchiefshotguncondition || masterchiefneedlercondition || masterchiefplasmariflecondition || masterchiefassaultriflecondition || masterchiefsnipercondition || masterchiefplasmacarbinecondition || masterchiefrocketlaunchercondition || masterchieffuelrodcannoncondition || masterchiefbruteshotcondition || masterchiefsentinelbeamcondition || masterchiefenergyswordcondition || masterchiefspartanlasercondition || masterchiefflamethrowercondition || masterchiefgravityhammercondition
+	Armament@SECONDARY:
+		Name: secondary
+		Weapon: masterchieffraggrenade
+		FireDelay: 15
+		LocalOffset: 564,0,0
+		PauseOnCondition: !grenadeammoempty || masterchiefpistolcondition || masterchiefplasmapistolcondition || masterchiefshotguncondition || masterchiefneedlercondition || masterchiefplasmariflecondition || masterchiefassaultriflecondition || masterchiefsnipercondition || masterchiefplasmacarbinecondition || masterchiefrocketlaunchercondition || masterchieffuelrodcannoncondition || masterchiefbruteshotcondition || masterchiefsentinelbeamcondition || masterchiefenergyswordcondition || masterchiefspartanlasercondition || masterchiefflamethrowercondition || masterchiefgravityhammercondition || masterchiefplasmagrenade
+	AmmoPool@grenade:
+		Name: grenadeammo
+		Armaments: secondary
+		AmmoCondition: grenadeammoempty
+		Ammo: 4
+		InitialAmmo: 2
+	ReloadAmmoPool@grenade:
+		AmmoPool: grenadeammo
+		Delay: 250
+		Sound: masterchiefgrenadereload1.aud, masterchiefgrenadereload2.aud, masterchiefgrenadereload3.aud
+	WithAmmoPipsDecoration@a:
+		Position: BottomLeft
+		Margin: 4, 3
+		RequiresSelection: true
+		PipCount: 4
+		FullSequence: pip-red
+		AmmoPools: grenadeammo
+	Armament@PRIMARYpistol:
+		Weapon: MasterChiefPistol
+		RequiresCondition: masterchiefpistolcondition
+	Armament@GARRISONEDpistol:
+		Name: garrisoned
+		Weapon: MasterChiefPistol
+		MuzzleSequence: garrison-muzzle
+		RequiresCondition: masterchiefpistolcondition
+	Armament@BUSpistol:
+		Name: bus
+		Weapon: MasterChiefPistol
+		RequiresCondition: masterchiefpistolcondition
+	Armament@PRIMARYplasmapistol:
+		Weapon: MasterChiefPlasmaPistol
+		LocalOffset: 564,96,128
+		RequiresCondition: masterchiefplasmapistolcondition
+		PauseOnCondition: masterchiefchargedplasmapistolcondition
+	Armament@GARRISONEDplasmapistol:
+		Name: garrisoned
+		Weapon: MasterChiefPlasmaPistol
+		LocalOffset: 564,96,128
+		MuzzleSequence: garrison-muzzle
+		RequiresCondition: masterchiefplasmapistolcondition
+		PauseOnCondition: masterchiefchargedplasmapistolcondition
+	Armament@BUSplasmapistol:
+		Name: bus
+		Weapon: MasterChiefPlasmaPistol
+		LocalOffset: 564,96,128
+		RequiresCondition: masterchiefplasmapistolcondition
+		PauseOnCondition: masterchiefchargedplasmapistolcondition
+	GrantRandomPeriodicCondition@plasmapistol:
+		Conditions: fake1, fake2, fake3, fake4, masterchiefchargedplasmapistolcondition
+		CooldownDuration: 1
+		ActiveDuration: 125
+		RequiresCondition: masterchiefplasmapistolcondition
+	Armament@PRIMARYplasmapistolchargedsound:
+		Weapon: MasterChiefPlasmaPistolChargedSound
+		LocalOffset: 564,96,128
+		RequiresCondition: masterchiefchargedplasmapistolcondition
+	Armament@PRIMARYplasmapistolcharged:
+		FireDelay: 45
+		Weapon: MasterChiefPlasmaPistolCharged
+		LocalOffset: 564,96,128
+		RequiresCondition: masterchiefchargedplasmapistolcondition
+	Armament@GARRISONEDplasmapistolcharged:
+		FireDelay: 45
+		Name: garrisoned
+		Weapon: MasterChiefPlasmaPistolCharged
+		LocalOffset: 564,96,128
+		MuzzleSequence: garrison-muzzle
+		RequiresCondition: masterchiefchargedplasmapistolcondition
+	Armament@BUSplasmapistolcharged:
+		FireDelay: 45
+		Name: bus
+		Weapon: MasterChiefPlasmaPistolCharged
+		LocalOffset: 564,96,128
+		RequiresCondition: masterchiefchargedplasmapistolcondition
+	Armament@PRIMARYplasmapistolchargedoverheat:
+		FireDelay: 55
+		Weapon: MasterChiefPlasmaPistolChargedOverheat
+		LocalOffset: 564,96,128
+		RequiresCondition: masterchiefchargedplasmapistolcondition
+	Armament@PRIMARYshotgun:
+		Weapon: MasterChiefShotgun
+		RequiresCondition: masterchiefshotguncondition
+	Armament@PRIMARYshotguntracer:
+		Weapon: MasterChiefShotgunTracer
+		LocalOffset: 564,96,128
+		RequiresCondition: masterchiefshotguncondition
+	Armament@GARRISONEDshotgun:
+		Name: garrisoned
+		Weapon: MasterChiefShotgun
+		MuzzleSequence: garrison-muzzle
+		RequiresCondition: masterchiefshotguncondition
+	Armament@BUSshotgun:
+		Name: bus
+		Weapon: MasterChiefShotgun
+		RequiresCondition: masterchiefshotguncondition
+	Armament@PRIMARYneedler:
+		Weapon: MasterChiefNeedler
+		LocalOffset: 564,96,128
+		RequiresCondition: masterchiefneedlercondition
+	Armament@GARRISONEDneedler:
+		Name: garrisoned
+		Weapon: MasterChiefNeedler
+		MuzzleSequence: garrison-muzzle
+		LocalOffset: 564,96,128
+		RequiresCondition: masterchiefneedlercondition
+	Armament@BUSneedler:
+		Name: bus
+		Weapon: MasterChiefNeedler
+		LocalOffset: 564,96,128
+		RequiresCondition: masterchiefneedlercondition
+	Armament@PRIMARYPlasmaRifle:
+		Weapon: masterchiefplasmarifle
+		LocalOffset: 564,96,128
+		RequiresCondition: masterchiefplasmariflecondition
+	Armament@GARRISONEDPlasmaRifle:
+		Name: garrisoned
+		Weapon: masterchiefplasmarifle
+		MuzzleSequence: garrison-muzzle
+		LocalOffset: 564,96,128
+		RequiresCondition: masterchiefplasmariflecondition
+	Armament@BUSPlasmaRifle:
+		Name: bus
+		Weapon: masterchiefplasmarifle
+		LocalOffset: 564,96,128
+		RequiresCondition: masterchiefplasmariflecondition
+	Armament@PRIMARYAssaultRifle:
+		Weapon: MasterChiefAssaultRifle
+		LocalOffset: 564,96,128
+		RequiresCondition: masterchiefassaultriflecondition
+	Armament@AssaultRifleTRACER:
+		Weapon: MasterChiefAssaultRifleTracer
+		LocalOffset: 564,96,128
+		RequiresCondition: masterchiefassaultriflecondition
+	Armament@GARRISONEDAssaultRifle:
+		Name: garrisoned
+		Weapon: MasterChiefAssaultRifle
+		MuzzleSequence: garrison-muzzle
+		LocalOffset: 564,96,128
+		RequiresCondition: masterchiefassaultriflecondition
+	Armament@BUSAssaultRifle:
+		Name: bus
+		Weapon: MasterChiefAssaultRifle
+		LocalOffset: 564,96,128
+		RequiresCondition: masterchiefassaultriflecondition
+	Armament@PRIMARYSniper:
+		Weapon: MasterChiefSniper
+		LocalOffset: 564,96,128
+		RequiresCondition: masterchiefsnipercondition
+	Armament@GARRISONEDSniper:
+		Name: garrisoned
+		Weapon: MasterChiefSniper
+		MuzzleSequence: garrison-muzzle
+		LocalOffset: 564,96,128
+		RequiresCondition: masterchiefsnipercondition
+	Armament@BUSSniper:
+		Name: bus
+		Weapon: MasterChiefSniper
+		LocalOffset: 564,96,128
+		RequiresCondition: masterchiefsnipercondition
+	Armament@PRIMARYPlasmaCarbine:
+		Weapon: MasterChiefPlasmaCarbine
+		LocalOffset: 564,96,128
+		RequiresCondition: masterchiefplasmacarbinecondition
+	Armament@GARRISONEDPlasmaCarbine:
+		Name: garrisoned
+		Weapon: MasterChiefPlasmaCarbine
+		MuzzleSequence: garrison-muzzle
+		LocalOffset: 564,96,128
+		RequiresCondition: masterchiefplasmacarbinecondition
+	Armament@BUSPlasmaCarbine:
+		Name: bus
+		Weapon: MasterChiefPlasmaCarbine
+		LocalOffset: 564,96,128
+		RequiresCondition: masterchiefplasmacarbinecondition
+	Armament@PRIMARYEnergySword:
+		Weapon: masterchiefenergysword
+		ReloadingCondition: attack-cooldown
+		RequiresCondition: masterchiefenergyswordcondition
+	AttackLeap:
+		Voice: Attack
+		PauseOnCondition: attack-cooldown
+		RequiresCondition: masterchiefenergyswordcondition
+	AmbientSound@EnergySword:
+		SoundFiles: masterchiefenergyswordloop.aud
+		RequiresCondition: masterchiefenergyswordcondition
+		Interval: 175
+	WithColoredOverlay@EnergySword:
+		RequiresCondition: masterchiefenergyswordcondition
+		Color: 00fbff40
+	DamageMultiplier@EnergySword:
+		Modifier: 80
+		RequiresCondition: masterchiefenergyswordcondition
+	SpeedMultiplier@EnergySword:
+		Modifier: 140
+		RequiresCondition: masterchiefenergyswordcondition
+	Armament@PRIMARYrocketlauncher:
+		Weapon: MasterChiefRocketLauncher
+		LocalOffset: 564,96,128
+		RequiresCondition: masterchiefrocketlaunchercondition
+	Armament@GARRISONEDrocketlauncher:
+		Name: garrisoned
+		Weapon: MasterChiefRocketLauncher
+		MuzzleSequence: garrison-muzzle
+		LocalOffset: 564,96,128
+		RequiresCondition: masterchiefrocketlaunchercondition
+	Armament@BUSrocketlauncher:
+		Name: bus
+		Weapon: MasterChiefRocketLauncher
+		LocalOffset: 564,96,128
+		RequiresCondition: masterchiefrocketlaunchercondition
+	Armament@PRIMARYFuelRodCannon:
+		Weapon: MasterChiefFuelRodCannon
+		LocalOffset: 564,96,128
+		RequiresCondition: masterchieffuelrodcannoncondition
+	Armament@GARRISONEDFuelRodCannon:
+		Name: garrisoned
+		Weapon: MasterChiefFuelRodCannon
+		MuzzleSequence: garrison-muzzle
+		LocalOffset: 564,96,128
+		RequiresCondition: masterchieffuelrodcannoncondition
+	Armament@BUSFuelRodCannon:
+		Name: bus
+		Weapon: MasterChiefFuelRodCannon
+		LocalOffset: 564,96,128
+		RequiresCondition: masterchieffuelrodcannoncondition
+	Armament@PRIMARYbruteshot:
+		Weapon: masterchiefbruteshot
+		LocalOffset: 564,96,128
+		RequiresCondition: masterchiefbruteshotcondition
+	Armament@GARRISONEDbruteshot:
+		Name: garrisoned
+		Weapon: masterchiefbruteshot
+		MuzzleSequence: garrison-muzzle
+		LocalOffset: 564,96,128
+		RequiresCondition: masterchiefbruteshotcondition
+	Armament@BUSbruteshot:
+		Name: bus
+		Weapon: masterchiefbruteshot
+		LocalOffset: 564,96,128
+		RequiresCondition: masterchiefbruteshotcondition
+	Armament@PRIMARYsentinelbeam:
+		Weapon: masterchiefsentinelbeam
+		LocalOffset: 564,96,128
+		RequiresCondition: masterchiefsentinelbeamcondition
+	Armament@GARRISONEDsentinelbeam:
+		Name: garrisoned
+		Weapon: masterchiefsentinelbeam
+		MuzzleSequence: garrison-muzzle
+		LocalOffset: 564,96,128
+		RequiresCondition: masterchiefsentinelbeamcondition
+	Armament@BUSsentinelbeam:
+		Name: bus
+		Weapon: masterchiefsentinelbeam
+		LocalOffset: 564,96,128
+		RequiresCondition: masterchiefsentinelbeamcondition
+	Armament@PRIMARYSpartanLaser:
+		Name: spartanlaser
+		Weapon: MasterChiefSpartanLaserAttackEffect
+		LocalOffset: 564,96,128
+		RequiresCondition: masterchiefspartanlasercondition
+		AmmoUsage: 0
+		PauseOnCondition: !spartanammo
+	Armament@PRIMARYSpartanLaser2:
+		Name: spartanlaser
+		FireDelay: 100
+		Weapon: MasterChiefSpartanLaserAttackLaser
+		LocalOffset: 564,96,128
+		RequiresCondition: masterchiefspartanlasercondition
+		PauseOnCondition: !spartanammo
+	Armament@PRIMARYSpartanLaser3:
+		Name: spartanlaser
+		FireDelay: 100
+		LocalOffset: 564,96,128
+		Weapon: MasterChiefSpartanLaserAttackLaserHit
+		RequiresCondition: masterchiefspartanlasercondition
+		AmmoUsage: 0
+		PauseOnCondition: !spartanammo
+	AmmoPool@SpartanLaser:
+		Name: spartanammo
+		Armaments: spartanlaser
+		AmmoCondition: spartanammo
+	ReloadAmmoPool@SpartanLaser:
+		AmmoPool: spartanammo
+		Delay: 125
+	Armament@PRIMARYflamethrower:
+		Weapon: masterchiefflamethrower
+		LocalOffset: 564,96,128
+		RequiresCondition: masterchiefflamethrowercondition
+	Armament@GARRISONEDflamethrower:
+		Name: garrisoned
+		Weapon: masterchiefflamethrower
+		MuzzleSequence: garrison-muzzle
+		LocalOffset: 564,96,128
+		RequiresCondition: masterchiefflamethrowercondition
+	Armament@BUSflamethrower:
+		Name: bus
+		Weapon: masterchiefflamethrower
+		LocalOffset: 564,96,128
+		RequiresCondition: masterchiefflamethrowercondition
+	Armament@PRIMARYGravityHammer:
+		Weapon: masterchiefgravityhammer
+		ReloadingCondition: attack-cooldown
+		RequiresCondition: masterchiefgravityhammercondition
+	AttackLeap@GravityHammer:
+		Voice: Attack2
+		PauseOnCondition: attack-cooldown
+		RequiresCondition: masterchiefgravityhammercondition
+	DamageMultiplier@GravityHammer:
+		Modifier: 50
+		RequiresCondition: masterchiefgravityhammercondition
+	SpeedMultiplier@GravityHammer:
+		Modifier: 140
+		RequiresCondition: masterchiefgravityhammercondition
+	WithInfantryBody:
+		DefaultAttackSequence: shoot
+		StandSequences: stand
+	GrantConditionOnMovement@move:
+		Condition: moving
+	ProducibleWithLevel:
+		Prerequisites: barracks.upgraded
+	Voiced:
+		VoiceSet: MasterChiefVoice
+	AmbientSound@talky:
+		SoundFiles: MasterChiefIdle1.aud,MasterChiefIdle2.aud,MasterChiefIdle3.aud,MasterChiefIdle4.aud,MasterChiefIdle5.aud,MasterChiefIdle6.aud
+		Delay: 150
+		Interval: 750, 1000
+	ExternalCondition@PRODUCED:
+		Condition: produced
+	VoiceAnnouncement:
+		RequiresCondition: produced
+		Voice: Build
+	AnnounceOnKill:
+	ProvidesPrerequisite@inthefield:
+		Prerequisite: active.masterchief
+	AttackWander:
+		RequiresCondition: wander
+	TransformOnCondition@level:
+		RequiresCondition: force_deploy
+		IntoActor: masterchief.Hero1
+		ForceHealthPercentage: 100
+	ExperienceTrickler:
+		RequiresCondition: hero-level <= 4
+		Amount: 500
+		Interval: 25
+	ChangesHealth@default:
+		PercentageStep: 1
+		Delay: 75
+		StartIfBelow: 100
+		DamageCooldown: 75
+		DamageTypes: BypassShield
+		RequiresCondition: shielded && !damaged_shield
+	SoundOnDamageTransition:
+		DamagedSounds: MasterChiefPain1.wav, MasterChiefPain2.wav, MasterChiefPain3.wav, MasterChiefPain4.wav
+	Shielded:
+		MaxStrength: 60000
+		RegenAmount: 6000
+		RegenInterval: 9
+		RegenDelay: 200
+		RequiresCondition: !emp_shields && !defense_matrix
+		HideBarWhenFull: false
+	ShieldRegenMultiplier@healup:
+		Modifier: 5
+		RequiresCondition: heal_up
+	AmbientSound@Shields:
+		SoundFiles: masterchiefshieldempty.wav
+		RequiresCondition: !shielded
+		Interval: 57
+	AmbientSound@ShieldsDamaged:
+		Delay: 200
+		SoundFiles: masterchiefshieldcharge.wav
+		RequiresCondition: shielded && damaged_shield
+		Interval: 300
+	GrantConditionOnPrerequisite@pistol:
+		Condition: masterchiefpistolcondition
+		Prerequisites: masterchiefpistol
+	GrantConditionOnPrerequisite@plasmapistol:
+		Condition: masterchiefplasmapistolcondition
+		Prerequisites: masterchiefplasmapistol
+	GrantConditionOnPrerequisite@shotgun:
+		Condition: masterchiefshotguncondition
+		Prerequisites: masterchiefshotgun
+	GrantConditionOnPrerequisite@needler:
+		Condition: masterchiefneedlercondition
+		Prerequisites: masterchiefneedler
+	GrantConditionOnPrerequisite@plasmarifle:
+		Condition: masterchiefplasmariflecondition
+		Prerequisites: masterchiefplasmarifle
+	GrantConditionOnPrerequisite@assaultrifle:
+		Condition: masterchiefassaultriflecondition
+		Prerequisites: masterchiefassaultrifle
+	GrantConditionOnPrerequisite@sniper:
+		Condition: masterchiefsnipercondition
+		Prerequisites: masterchiefsniper
+	GrantConditionOnPrerequisite@plasmacarbine:
+		Condition: masterchiefplasmacarbinecondition
+		Prerequisites: masterchiefplasmacarbine
+	GrantConditionOnPrerequisite@energysword:
+		Condition: masterchiefenergyswordcondition
+		Prerequisites: masterchiefenergysword
+	GrantConditionOnPrerequisite@rocketlauncher:
+		Condition: masterchiefrocketlaunchercondition
+		Prerequisites: masterchiefrocketlauncher
+	GrantConditionOnPrerequisite@fuelrodcannon:
+		Condition: masterchieffuelrodcannoncondition
+		Prerequisites: masterchieffuelrodcannon
+	GrantConditionOnPrerequisite@bruteshot:
+		Condition: masterchiefbruteshotcondition
+		Prerequisites: masterchiefbruteshot
+	GrantConditionOnPrerequisite@sentinelbeam:
+		Condition: masterchiefsentinelbeamcondition
+		Prerequisites: masterchiefsentinelbeam
+	GrantConditionOnPrerequisite@spartanlaser:
+		Condition: masterchiefspartanlasercondition
+		Prerequisites: masterchiefspartanlaser
+	GrantConditionOnPrerequisite@flamethrower:
+		Condition: masterchiefflamethrowercondition
+		Prerequisites: masterchiefflamethrower
+	GrantConditionOnPrerequisite@gravityhammer:
+		Condition: masterchiefgravityhammercondition
+		Prerequisites: masterchiefgravityhammer
+	GrantConditionOnPrerequisite@sprinterpack:
+		Condition: masterchiefsprinterpackcondition
+		Prerequisites: masterchief.tier1.sprinterpack
+	SpeedMultiplier@sprinterpack:
+		Modifier: 120
+		RequiresCondition: masterchiefsprinterpackcondition
+	GrantConditionOnPrerequisite@titaniumalloy:
+		Condition: masterchieftitaniumalloycondition
+		Prerequisites: masterchief.tier1.titaniumalloy
+	DamageMultiplier@titaniumalloy:
+		Modifier: 80
+		RequiresCondition: masterchieftitaniumalloycondition
+	GrantConditionOnPrerequisite@cornealimplants:
+		Condition: masterchiefcornealimplantscondition
+		Prerequisites: masterchief.tier2.cornealimplants
+	RevealsShroudMultiplier@cornealimplants:
+		Modifier: 125
+		RequiresCondition: masterchiefcornealimplantscondition
+	DetectCloaked:
+		Range: 5c256
+		DetectionTypes: Cloak, AirCloak, Underwater
+		RequiresCondition: masterchiefcornealimplantscondition
+	GrantConditionOnPrerequisite@plasmagrenade:
+		Condition: masterchiefplasmagrenadecondition
+		Prerequisites: masterchief.tier2.plasmagrenade
+	GrantRandomPeriodicCondition@plasmagrenade:
+		Conditions: masterchiefplasmagrenade, fake1
+		CooldownDuration: 1
+		ActiveDuration: 50
+		RequiresCondition: masterchiefplasmagrenadecondition
+	Armament@plasmagrenade:
+		Name: secondary
+		Weapon: masterchiefplasmagrenade
+		FireDelay: 15
+		LocalOffset: 564,0,0
+		PauseOnCondition: !grenadeammoempty || masterchiefpistolcondition || masterchiefplasmapistolcondition || masterchiefshotguncondition || masterchiefneedlercondition || masterchiefplasmariflecondition || masterchiefassaultriflecondition || masterchiefsnipercondition || masterchiefplasmacarbinecondition || masterchiefrocketlaunchercondition || masterchieffuelrodcannoncondition || masterchiefbruteshotcondition || masterchiefsentinelbeamcondition || masterchiefenergyswordcondition || masterchiefspartanlasercondition || masterchiefflamethrowercondition || masterchiefgravityhammercondition
+		RequiresCondition: masterchiefplasmagrenade
+	GrantConditionOnPrerequisite@jammer:
+		Condition: masterchiefjammercondition
+		Prerequisites: masterchief.tier3.jammer
+	CreatesShroud@jammer:
+		Range: 4c0
+		RequiresCondition: masterchiefjammercondition
+	GrantConditionOnPrerequisite@regenerator:
+		Condition: masterchiefregeneratorcondition
+		Prerequisites: masterchief.tier3.regenerator
+	ProximityExternalCondition@regenerator:
+		Condition: masterchiefregeneratorspreader
+		Range: 3c0
+		RequiresCondition: masterchiefregeneratorcondition
+	WithIdleOverlay@regenerator:
+		Image: hordebonus-overlay
+		Sequence: masterchiefregenerator
+		Palette: effect
+		RequiresCondition: masterchiefregeneratorcondition
+		IsDecoration: True
+	GrantConditionOnPrerequisite@cloakingdevice:
+		Condition: masterchiefcloakingdevicecondition
+		Prerequisites: masterchiefcloakingdevice
+	Cloak@masterchiefcloakingdevice:
+		InitialDelay: 1
+		CloakDelay: 60
+		CloakSound: masterchiefcloakingdeviceon1.aud, masterchiefcloakingdeviceon2.aud
+		UncloakSound: masterchiefcloakingdeviceoff1.aud, masterchiefcloakingdeviceoff2.aud
+		UncloakOn: Attack, Unload, Infiltrate, Demolish
+		CloakTypes: Cloak
+		IsPlayerPalette: true
+		RequiresCondition: masterchiefcloakingdevicecondition && !cloak-force-disabled
+	GrantConditionOnPrerequisite@powerdrain:
+		Condition: masterchiefpowerdraincondition
+		Prerequisites: masterchief.tier4.powerdrain
+	Armament@powerdrain:
+		Weapon: masterchiefpowerdrain
+		FireDelay: 15
+		LocalOffset: 564,0,0
+		PauseOnCondition: masterchiefpistolcondition || masterchiefplasmapistolcondition || masterchiefshotguncondition || masterchiefneedlercondition || masterchiefplasmariflecondition || masterchiefassaultriflecondition || masterchiefsnipercondition || masterchiefplasmacarbinecondition || masterchiefrocketlaunchercondition || masterchieffuelrodcannoncondition || masterchiefbruteshotcondition || masterchiefsentinelbeamcondition || masterchiefenergyswordcondition || masterchiefspartanlasercondition || masterchiefflamethrowercondition || masterchiefgravityhammercondition
+		RequiresCondition: masterchiefpowerdraincondition
+	GivesBuildableArea@masterchief:
+		AreaTypes: masterchief
+	GrantConditionOnPrerequisite@invincibility:
+		Condition: masterchiefinvincibilitycondition
+		Prerequisites: masterchiefinvincibility
+	WithColoredOverlay@ironshroud:
+		RequiresCondition: masterchiefinvincibilitycondition
+		Color: FFD70040
+	DamageMultiplier@ironshroud:
+		RequiresCondition: masterchiefinvincibilitycondition
+		Modifier: 0
+	GrantConditionOnPrerequisite@markviarmor:
+		Condition: masterchiefmarkviarmorcondition
+		Prerequisites: masterchief.tier5.markviarmor
+	SpeedMultiplier@markviarmor:
+		Modifier: 120
+		RequiresCondition: masterchiefmarkviarmorcondition
+	DamageMultiplier@markviarmor:
+		Modifier: 80
+		RequiresCondition: masterchiefmarkviarmorcondition
+	RevealsShroudMultiplier@markviarmor:
+		Modifier: 125
+		RequiresCondition: masterchiefmarkviarmorcondition
+	FirepowerMultiplier@markviarmor:
+		Modifier: 110
+		RequiresCondition: masterchiefmarkviarmorcondition
+	RangeMultiplier@markviarmor:
+		Modifier: 110
+		RequiresCondition: masterchiefmarkviarmorcondition
+	GrantConditionOnPrerequisite@autoturret:
+		Condition: masterchiefautoturretcondition
+		Prerequisites: masterchief.tier5.autoturret
+	MobSpawnerMaster:
+		Actors: masterchiefautoturret
+		InitialActorCount: 1
+		NoRegeneration: true
+		RespawnTicks: 250
+		ExitByBudding: true
+		SlavesHaveFreeWill: false
+		AggregateHealth: false
+		SlaveDisposalOnKill: KillSlaves
+		RequiresCondition: masterchiefautoturretcondition
+
+masterchiefautoturret:
+	Inherits: ^Helicopter
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	Tooltip:
+		Name: actor-masterchiefautoturret.name
+	UpdatesPlayerStatistics:
+		AddToArmyValue: false
+	Valued:
+		Cost: 5000
+	Health:
+		HP: 10000
+	RevealsShroud:
+		MinRange: 4c0
+		Range: 6c0
+		Type: GroundPosition
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 6c0
+		Type: GroundPosition
+	Armament@PRIMARY:
+		Weapon: masterchiefsentinelbeam
+		LocalOffset: 300,0,-16
+		MuzzleSequence: muzzle
+	AttackAircraft:
+		FacingTolerance: 80
+		PersistentTargeting: false
+		AttackType: Hover
+		OpportunityFire: true
+	Aircraft:
+		TurnSpeed: 16
+		Speed: 112
+	AutoTarget:
+		InitialStance: HoldFire
+		InitialStanceAI: HoldFire
+	WithMuzzleOverlay:
+	LeavesTrails:
+		Offsets: -427,0,0
+		Image: smokey
+		MovingInterval: 3
+		SpawnAtLastPosition: False
+		Type: CenterPosition
+		RequiresCondition: enable-smoke
+		TrailWhileStationary: True
+		StationaryInterval: 3
+	ProducibleWithLevel:
+		Prerequisites: aircraft.upgraded
+	Selectable:
+		DecorationBounds: 1621, 1365
+	GrantConditionOnDamageState@SmokeTrail:
+		Condition: enable-smoke
+	WithProductionIconOverlay:
+		Types: Veterancy
+		Prerequisites: aircraft.upgraded
+	MobSpawnerSlave:
+		DamageTypes: DefaultDeath
+		MasterDeadCondition: killme
+	-SpawnActorOnDeath:
+	-Voiced:
+
+masterchief.Hero1:
+	Inherits: masterchief.Hero0
+	Inherits@heroTier: ^HeroTier1
+	Buildable:
+		Prerequisites: ~barracks, !active.masterchief, ~!hero.tier2, ~hero.tier1, ~hero.masterchief
+		BuildDuration: 1500
+	Tooltip:
+		Name: actor-masterchief-hero1-name
+	Health:
+		HP: 30000
+	TransformOnCondition@level:
+		IntoActor: masterchief.Hero2
+	FirepowerMultiplier@1:
+		Modifier: 110
+	-ExperienceTrickler:
+	Shielded:
+		MaxStrength: 80000
+		RegenAmount: 8000
+
+masterchief.Hero2:
+	Inherits: masterchief.Hero1
+	Inherits@heroTier: ^HeroTier2
+	Buildable:
+		Prerequisites: ~barracks, !active.masterchief, ~!hero.tier3, ~hero.tier2, ~hero.masterchief
+	Tooltip:
+		Name: actor-masterchief-hero2-name
+	Health:
+		HP: 40000
+	TransformOnCondition@level:
+		IntoActor: masterchief.Hero3
+	FirepowerMultiplier@1:
+		Modifier: 120
+	Shielded:
+		MaxStrength: 100000
+		RegenAmount: 10000
+
+masterchief.Hero3:
+	Inherits: masterchief.Hero2
+	Inherits@heroTier: ^HeroTier3
+	Buildable:
+		Prerequisites: ~barracks, !active.masterchief, ~!hero.tier4, ~hero.tier3, ~hero.masterchief
+	Tooltip:
+		Name: actor-masterchief-hero3-name
+	Health:
+		HP: 50000
+	TransformOnCondition@level:
+		IntoActor: masterchief.Hero4
+	FirepowerMultiplier@1:
+		Modifier: 130
+	SpeedMultiplier@1:
+		Modifier: 120
+	Shielded:
+		MaxStrength: 125000
+		RegenAmount: 12000
+
+masterchief.Hero4:
+	Inherits: masterchief.Hero3
+	Inherits@heroTier: ^HeroTier4
+	Buildable:
+		Prerequisites: ~barracks, !active.masterchief, ~!hero.tier5, ~hero.tier4, ~hero.masterchief
+		BuildDuration: 3000
+	Tooltip:
+		Name: actor-masterchief-hero4-name
+	Health:
+		HP: 75000
+	TransformOnCondition@level:
+		IntoActor: masterchief.Hero5
+	FirepowerMultiplier@1:
+		Modifier: 140
+	Shielded:
+		MaxStrength: 150000
+		RegenAmount: 15000
+	ParatroopersPower:
+		OrderName: MasterChiefParadrop
+		Icon: paratroopers
+		ChargeInterval: 7500
+		Name: UNSC Marine Corps
+		Description: A Pelican drops a squad of UNSC Marine anywhere on the map.
+		UnitType: unscpelican
+		DropItems: UNSCMarine, UNSCMarine, UNSCMarine, UNSCMarine, UNSCMarine
+		SquadSize: 1
+		Cordon: 256
+		ReinforcementsArrivedSpeechNotification: ReinforcementsArrived
+		SelectTargetSpeechNotification: SelectTarget
+		AllowImpassableCells: false
+		QuantizedFacings: 8
+		CameraActor: camera.paradrop
+		DisplayBeacon: true
+		BeaconPoster: pinficon
+		ArrowSequence: arrow
+		ClockSequence: clock
+		CircleSequence: circles
+		UseDirectionalTarget: True
+		DirectionArrowAnimation: paradirection
+		SupportPowerPaletteOrder: 50
+
+masterchief.Hero5:
+	Inherits: masterchief.Hero4
+	Inherits@heroTier: ^HeroTier5
+	Buildable:
+		Prerequisites: ~barracks, !active.masterchief, ~hero.tier5, ~hero.masterchief
+		BuildDuration: 4500
+	Tooltip:
+		Name: actor-masterchief-hero5-name
+	Health:
+		HP: 100000
+	-TransformOnCondition@level:
+	-GrantPeriodicCondition@deploy:
+	-GainsExperienceMultiplier@1:
+	FirepowerMultiplier@1:
+		Modifier: 150
+	-DamageMultiplier@tierup:
+	Shielded:
+		MaxStrength: 200000
+		RegenAmount: 20000
+
+masterchief.weapon.pistol:
+	Inherits@1: ^SpriteActor
+	HitShape:
+	Interactable:
+	HiddenUnderShroud:
+	RenderSprites:
+		Palette: terrain
+		Image: masterchief.weaponhack
+	Targetable:
+		TargetTypes: MasterChiefWeaponThing
+	Health:
+		HP: 9000000
+	Immobile:
+		OccupiesSpace: false
+	ProvidesPrerequisite@buildingname:
+	Buildable:
+		Queue: HeroAbility
+		BuildAtProductionType: masterchiefweapon
+		BuildPaletteOrder: 12500
+		BuildDuration: 1
+		Prerequisites: ~active.masterchief, !masterchief.weapon.cooldown2, !masterchief.weapon.cooldown
+		Description: actor-masterchief.pistoldesc
+		Icon: masterchiefpistolicon
+	Tooltip:
+		Name: actor-masterchief.pistol
+	FreeActor@cooldown:
+		Actor: masterchief.weapon.cooldown
+	KillsSelf:
+		Delay: 375
+		RemoveInstead: true
+	ProvidesPrerequisite@pistol:
+		Prerequisite: masterchiefpistol
+
+masterchief.weapon.plasmapistol:
+	Inherits@1: ^SpriteActor
+	HitShape:
+	Interactable:
+	HiddenUnderShroud:
+	RenderSprites:
+		Palette: terrain
+		Image: masterchief.weaponhack
+	Targetable:
+		TargetTypes: MasterChiefWeaponThing
+	Health:
+		HP: 9000000
+	Immobile:
+		OccupiesSpace: false
+	ProvidesPrerequisite@buildingname:
+	Buildable:
+		Queue: HeroAbility
+		BuildAtProductionType: masterchiefweapon
+		BuildPaletteOrder: 12501
+		BuildDuration: 1
+		Prerequisites: ~active.masterchief, !masterchief.weapon.cooldown2, !masterchief.weapon.cooldown
+		Description: actor-masterchief.plasmapistoldesc
+		Icon: masterchiefplasmapistolicon
+	Tooltip:
+		Name: actor-masterchief.plasmapistol
+	FreeActor@cooldown:
+		Actor: masterchief.weapon.cooldown
+	KillsSelf:
+		Delay: 250
+		RemoveInstead: true
+	ProvidesPrerequisite@pistol:
+		Prerequisite: masterchiefplasmapistol
+
+masterchief.weapon.shotgun:
+	Inherits@1: ^SpriteActor
+	HitShape:
+	Interactable:
+	HiddenUnderShroud:
+	RenderSprites:
+		Palette: terrain
+		Image: masterchief.weaponhack
+	Targetable:
+		TargetTypes: MasterChiefWeaponThing
+	Health:
+		HP: 9000000
+	Immobile:
+		OccupiesSpace: false
+	ProvidesPrerequisite@buildingname:
+	Buildable:
+		Queue: HeroAbility
+		BuildAtProductionType: masterchiefweapon
+		BuildPaletteOrder: 12503
+		BuildDuration: 1
+		Prerequisites: ~active.masterchief, !masterchief.weapon.cooldown2, !masterchief.weapon.cooldown, ~hero.tier1
+		Description: actor-masterchief.shotgundesc
+		Icon: masterchiefshotgunicon
+	Tooltip:
+		Name: actor-masterchief.shotgun
+	FreeActor@cooldown:
+		Actor: masterchief.weapon.cooldown
+	KillsSelf:
+		Delay: 375
+		RemoveInstead: true
+	ProvidesPrerequisite@pistol:
+		Prerequisite: masterchiefshotgun
+
+masterchief.weapon.needler:
+	Inherits@1: ^SpriteActor
+	HitShape:
+	Interactable:
+	HiddenUnderShroud:
+	RenderSprites:
+		Palette: terrain
+		Image: masterchief.weaponhack
+	Targetable:
+		TargetTypes: MasterChiefWeaponThing
+	Health:
+		HP: 9000000
+	Immobile:
+		OccupiesSpace: false
+	ProvidesPrerequisite@buildingname:
+	Buildable:
+		Queue: HeroAbility
+		BuildAtProductionType: masterchiefweapon
+		BuildPaletteOrder: 12504
+		BuildDuration: 1
+		Prerequisites: ~active.masterchief, !masterchief.weapon.cooldown2, !masterchief.weapon.cooldown, ~hero.tier1
+		Description: actor-masterchief.needlerdesc
+		Icon: masterchiefneedlericon
+	Tooltip:
+		Name: actor-masterchief.needler
+	FreeActor@cooldown:
+		Actor: masterchief.weapon.cooldown
+	KillsSelf:
+		Delay: 375
+		RemoveInstead: true
+	ProvidesPrerequisite@pistol:
+		Prerequisite: masterchiefneedler
+
+masterchief.weapon.plasmarifle:
+	Inherits@1: ^SpriteActor
+	HitShape:
+	Interactable:
+	HiddenUnderShroud:
+	RenderSprites:
+		Palette: terrain
+		Image: masterchief.weaponhack
+	Targetable:
+		TargetTypes: MasterChiefWeaponThing
+	Health:
+		HP: 9000000
+	Immobile:
+		OccupiesSpace: false
+	ProvidesPrerequisite@buildingname:
+	Buildable:
+		Queue: HeroAbility
+		BuildAtProductionType: masterchiefweapon
+		BuildPaletteOrder: 12505
+		BuildDuration: 1
+		Prerequisites: ~active.masterchief, !masterchief.weapon.cooldown2, !masterchief.weapon.cooldown, ~hero.tier2
+		Description: actor-masterchief.plasmarifledesc
+		Icon: masterchiefplasmarifleicon
+	Tooltip:
+		Name: actor-masterchief.plasmarifle
+	FreeActor@cooldown:
+		Actor: masterchief.weapon.cooldown
+	KillsSelf:
+		Delay: 375
+		RemoveInstead: true
+	ProvidesPrerequisite@pistol:
+		Prerequisite: masterchiefplasmarifle
+
+masterchief.weapon.assaultrifle:
+	Inherits@1: ^SpriteActor
+	HitShape:
+	Interactable:
+	HiddenUnderShroud:
+	RenderSprites:
+		Palette: terrain
+		Image: masterchief.weaponhack
+	Targetable:
+		TargetTypes: MasterChiefWeaponThing
+	Health:
+		HP: 9000000
+	Immobile:
+		OccupiesSpace: false
+	ProvidesPrerequisite@buildingname:
+	Buildable:
+		Queue: HeroAbility
+		BuildAtProductionType: masterchiefweapon
+		BuildPaletteOrder: 12506
+		BuildDuration: 1
+		Prerequisites: ~active.masterchief, !masterchief.weapon.cooldown2, !masterchief.weapon.cooldown, ~hero.tier2
+		Description: actor-masterchief.assaultrifledesc
+		Icon: masterchiefassaultrifleicon
+	Tooltip:
+		Name: actor-masterchief.assaultrifle
+	FreeActor@cooldown:
+		Actor: masterchief.weapon.cooldown
+	KillsSelf:
+		Delay: 375
+		RemoveInstead: true
+	ProvidesPrerequisite@pistol:
+		Prerequisite: masterchiefassaultrifle
+
+masterchief.weapon.sniper:
+	Inherits@1: ^SpriteActor
+	HitShape:
+	Interactable:
+	HiddenUnderShroud:
+	RenderSprites:
+		Palette: terrain
+		Image: masterchief.weaponhack
+	Targetable:
+		TargetTypes: MasterChiefWeaponThing
+	Health:
+		HP: 9000000
+	Immobile:
+		OccupiesSpace: false
+	ProvidesPrerequisite@buildingname:
+	Buildable:
+		Queue: HeroAbility
+		BuildAtProductionType: masterchiefweapon
+		BuildPaletteOrder: 12507
+		BuildDuration: 1
+		Prerequisites: ~active.masterchief, !masterchief.weapon.cooldown2, !masterchief.weapon.cooldown, ~hero.tier3
+		Description: actor-masterchief.sniperdesc
+		Icon: masterchiefsnipericon
+	Tooltip:
+		Name: actor-masterchief.sniper
+	FreeActor@cooldown:
+		Actor: masterchief.weapon.cooldown2
+	KillsSelf:
+		Delay: 375
+		RemoveInstead: true
+	ProvidesPrerequisite@pistol:
+		Prerequisite: masterchiefsniper
+
+masterchief.weapon.plasmacarbine:
+	Inherits@1: ^SpriteActor
+	HitShape:
+	Interactable:
+	HiddenUnderShroud:
+	RenderSprites:
+		Palette: terrain
+		Image: masterchief.weaponhack
+	Targetable:
+		TargetTypes: MasterChiefWeaponThing
+	Health:
+		HP: 9000000
+	Immobile:
+		OccupiesSpace: false
+	ProvidesPrerequisite@buildingname:
+	Buildable:
+		Queue: HeroAbility
+		BuildAtProductionType: masterchiefweapon
+		BuildPaletteOrder: 12508
+		BuildDuration: 1
+		Prerequisites: ~active.masterchief, !masterchief.weapon.cooldown2, !masterchief.weapon.cooldown, ~hero.tier3
+		Description: actor-masterchief.plasmacarbinedesc
+		Icon: masterchiefplasmacarbineicon
+	Tooltip:
+		Name: actor-masterchief.plasmacarbine
+	FreeActor@cooldown:
+		Actor: masterchief.weapon.cooldown
+	KillsSelf:
+		Delay: 375
+		RemoveInstead: true
+	ProvidesPrerequisite@pistol:
+		Prerequisite: masterchiefplasmacarbine
+
+
+masterchief.weapon.energysword:
+	Inherits@1: ^SpriteActor
+	HitShape:
+	Interactable:
+	HiddenUnderShroud:
+	RenderSprites:
+		Palette: terrain
+		Image: masterchief.weaponhack
+	Targetable:
+		TargetTypes: MasterChiefWeaponThing
+	Health:
+		HP: 9000000
+	Immobile:
+		OccupiesSpace: false
+	ProvidesPrerequisite@buildingname:
+	Buildable:
+		Queue: HeroAbility
+		BuildAtProductionType: masterchiefweapon
+		BuildPaletteOrder: 12509
+		BuildDuration: 1
+		Prerequisites: ~active.masterchief, !masterchief.weapon.cooldown2, !masterchief.weapon.cooldown, ~hero.tier3
+		Description: actor-masterchief.energysworddesc
+		Icon: masterchiefenergyswordicon
+	Tooltip:
+		Name: actor-masterchief.energysword
+	FreeActor@cooldown:
+		Actor: masterchief.weapon.cooldown
+	KillsSelf:
+		Delay: 375
+		RemoveInstead: true
+	ProvidesPrerequisite@pistol:
+		Prerequisite: masterchiefenergysword
+
+masterchief.weapon.rocketlauncher:
+	Inherits@1: ^SpriteActor
+	HitShape:
+	Interactable:
+	HiddenUnderShroud:
+	RenderSprites:
+		Palette: terrain
+		Image: masterchief.weaponhack
+	Targetable:
+		TargetTypes: MasterChiefWeaponThing
+	Health:
+		HP: 9000000
+	Immobile:
+		OccupiesSpace: false
+	ProvidesPrerequisite@buildingname:
+	Buildable:
+		Queue: HeroAbility
+		BuildAtProductionType: masterchiefweapon
+		BuildPaletteOrder: 12510
+		BuildDuration: 1
+		Prerequisites: ~active.masterchief, !masterchief.weapon.cooldown, ~hero.tier4
+		Description: actor-masterchief.rocketlauncherdesc
+		Icon: masterchiefrocketlaunchericon
+	Tooltip:
+		Name: actor-masterchief.rocketlauncher
+	FreeActor@cooldown:
+		Actor: masterchief.weapon.cooldown2
+	KillsSelf:
+		Delay: 375
+		RemoveInstead: true
+	ProvidesPrerequisite@pistol:
+		Prerequisite: masterchiefrocketlauncher
+
+masterchief.weapon.fuelrodcannon:
+	Inherits@1: ^SpriteActor
+	HitShape:
+	Interactable:
+	HiddenUnderShroud:
+	RenderSprites:
+		Palette: terrain
+		Image: masterchief.weaponhack
+	Targetable:
+		TargetTypes: MasterChiefWeaponThing
+	Health:
+		HP: 9000000
+	Immobile:
+		OccupiesSpace: false
+	ProvidesPrerequisite@buildingname:
+	Buildable:
+		Queue: HeroAbility
+		BuildAtProductionType: masterchiefweapon
+		BuildPaletteOrder: 12511
+		BuildDuration: 1
+		Prerequisites: ~active.masterchief, !masterchief.weapon.cooldown, ~hero.tier4
+		Description: actor-masterchief.fuelrodcannondesc
+		Icon: masterchieffuelrodcannonicon
+	Tooltip:
+		Name: actor-masterchief.fuelrodcannon
+	FreeActor@cooldown:
+		Actor: masterchief.weapon.cooldown3
+	KillsSelf:
+		Delay: 375
+		RemoveInstead: true
+	ProvidesPrerequisite@pistol:
+		Prerequisite: masterchieffuelrodcannon
+
+masterchief.weapon.bruteshot:
+	Inherits@1: ^SpriteActor
+	HitShape:
+	Interactable:
+	HiddenUnderShroud:
+	RenderSprites:
+		Palette: terrain
+		Image: masterchief.weaponhack
+	Targetable:
+		TargetTypes: MasterChiefWeaponThing
+	Health:
+		HP: 9000000
+	Immobile:
+		OccupiesSpace: false
+	ProvidesPrerequisite@buildingname:
+	Buildable:
+		Queue: HeroAbility
+		BuildAtProductionType: masterchiefweapon
+		BuildPaletteOrder: 12512
+		BuildDuration: 1
+		Prerequisites: ~active.masterchief, !masterchief.weapon.cooldown, ~hero.tier4
+		Description: actor-masterchief.bruteshotdesc
+		Icon: masterchiefbruteshoticon
+	Tooltip:
+		Name: actor-masterchief.bruteshot
+	FreeActor@cooldown:
+		Actor: masterchief.weapon.cooldown2
+	KillsSelf:
+		Delay: 375
+		RemoveInstead: true
+	ProvidesPrerequisite@pistol:
+		Prerequisite: masterchiefbruteshot
+
+masterchief.weapon.sentinelbeam:
+	Inherits@1: ^SpriteActor
+	HitShape:
+	Interactable:
+	HiddenUnderShroud:
+	RenderSprites:
+		Palette: terrain
+		Image: masterchief.weaponhack
+	Targetable:
+		TargetTypes: MasterChiefWeaponThing
+	Health:
+		HP: 9000000
+	Immobile:
+		OccupiesSpace: false
+	ProvidesPrerequisite@buildingname:
+	Buildable:
+		Queue: HeroAbility
+		BuildAtProductionType: masterchiefweapon
+		BuildPaletteOrder: 12513
+		BuildDuration: 1
+		Prerequisites: ~active.masterchief, !masterchief.weapon.cooldown, ~hero.tier5
+		Description: actor-masterchief.sentinelbeamdesc
+		Icon: masterchiefsentinelbeamicon
+	Tooltip:
+		Name: actor-masterchief.sentinelbeam
+	FreeActor@cooldown:
+		Actor: masterchief.weapon.cooldown2
+	KillsSelf:
+		Delay: 375
+		RemoveInstead: true
+	ProvidesPrerequisite@pistol:
+		Prerequisite: masterchiefsentinelbeam
+
+masterchief.weapon.gravityhammer:
+	Inherits@1: ^SpriteActor
+	HitShape:
+	Interactable:
+	HiddenUnderShroud:
+	RenderSprites:
+		Palette: terrain
+		Image: masterchief.weaponhack
+	Targetable:
+		TargetTypes: MasterChiefWeaponThing
+	Health:
+		HP: 9000000
+	Immobile:
+		OccupiesSpace: false
+	ProvidesPrerequisite@buildingname:
+	Buildable:
+		Queue: HeroAbility
+		BuildAtProductionType: masterchiefweapon
+		BuildPaletteOrder: 12514
+		BuildDuration: 1
+		Prerequisites: ~active.masterchief, !masterchief.weapon.cooldown, ~hero.tier5
+		Description: actor-masterchief.gravityhammerdesc
+		Icon: masterchiefgravityhammericon
+	Tooltip:
+		Name: actor-masterchief.gravityhammer
+	FreeActor@cooldown:
+		Actor: masterchief.weapon.cooldown3
+	KillsSelf:
+		Delay: 375
+		RemoveInstead: true
+	ProvidesPrerequisite@pistol:
+		Prerequisite: masterchiefgravityhammer
+
+masterchief.weapon.spartanlaser:
+	Inherits@1: ^SpriteActor
+	HitShape:
+	Interactable:
+	HiddenUnderShroud:
+	RenderSprites:
+		Palette: terrain
+		Image: masterchief.weaponhack
+	Targetable:
+		TargetTypes: MasterChiefWeaponThing
+	Health:
+		HP: 9000000
+	Immobile:
+		OccupiesSpace: false
+	ProvidesPrerequisite@buildingname:
+	Buildable:
+		Queue: HeroAbility
+		BuildAtProductionType: masterchiefweapon
+		BuildPaletteOrder: 12515
+		BuildDuration: 1
+		Prerequisites: ~active.masterchief, !masterchief.weapon.cooldown, ~hero.tier5
+		Description: actor-masterchief.spartanlaserdesc
+		Icon: masterchiefspartanlasericon
+	Tooltip:
+		Name: actor-masterchief.spartanlaser
+	FreeActor@cooldown:
+		Actor: masterchief.weapon.cooldown3
+	KillsSelf:
+		Delay: 375
+		RemoveInstead: true
+	ProvidesPrerequisite@pistol:
+		Prerequisite: masterchiefspartanlaser
+
+masterchief.weapon.flamethrower:
+	Inherits@1: ^SpriteActor
+	HitShape:
+	Interactable:
+	HiddenUnderShroud:
+	RenderSprites:
+		Palette: terrain
+		Image: masterchief.weaponhack
+	Targetable:
+		TargetTypes: MasterChiefWeaponThing
+	Health:
+		HP: 9000000
+	Immobile:
+		OccupiesSpace: false
+	ProvidesPrerequisite@buildingname:
+	Buildable:
+		Queue: HeroAbility
+		BuildAtProductionType: masterchiefweapon
+		BuildPaletteOrder: 12516
+		BuildDuration: 1
+		Prerequisites: ~active.masterchief, !masterchief.weapon.cooldown, ~hero.tier5
+		Description: actor-masterchief.flamethrowerdesc
+		Icon: masterchiefflamethrowericon
+	Tooltip:
+		Name: actor-masterchief.flamethrower
+	FreeActor@cooldown:
+		Actor: masterchief.weapon.cooldown2
+	KillsSelf:
+		Delay: 375
+		RemoveInstead: true
+	ProvidesPrerequisite@pistol:
+		Prerequisite: masterchiefflamethrower
+
+masterchief.ability.cloakingdevice:
+	Inherits@1: ^SpriteActor
+	HitShape:
+	Interactable:
+	HiddenUnderShroud:
+	RenderSprites:
+		Palette: terrain
+		Image: masterchief.weaponhack
+	Targetable:
+		TargetTypes: MasterChiefWeaponThing
+	Health:
+		HP: 9000000
+	Immobile:
+		OccupiesSpace: false
+	ProvidesPrerequisite@buildingname:
+	Buildable:
+		Queue: HeroAbility
+		BuildAtProductionType: masterchiefweapon
+		BuildPaletteOrder: 12516
+		BuildDuration: 1
+		Prerequisites: ~active.masterchief, !masterchief.ability.cooldown, ~masterchief.tier4.cloakingdevice
+		Description: actor-masterchief.cloakingdevicedesc
+		Icon: masterchiefcloakingdeviceicon
+	Tooltip:
+		Name: actor-masterchief.cloakingdevicename
+	FreeActor@cooldown:
+		Actor: masterchief.ability.cooldown
+	KillsSelf:
+		Delay: 1125
+		RemoveInstead: true
+	AmbientSound@talky:
+		SoundFiles: masterchiefcloakingdevicepickup.aud
+		Delay: 1
+		Interval: 10000,20000
+	ProvidesPrerequisite@pistol:
+		Prerequisite: masterchiefcloakingdevice
+
+masterchiefbubbleshield:
+	Inherits: ^Building
+	Buildable:
+		Queue: HeroAbility
+		BuildAtProductionType: masterchiefweapon
+		BuildPaletteOrder: 12516
+		BuildDuration: 1
+		BuildLimit: 1
+		Prerequisites: ~active.masterchief, !masterchief.ability.cooldown, ~masterchief.tier4.bubbleshield
+		Description: actor-masterchief.bubbleshielddesc
+		Icon: icon
+	Tooltip:
+		Name: actor-masterchief.bubbleshieldname
+	Building:
+	Health:
+		HP: 25000
+	Armor:
+		Type: Heavy
+	RevealsShroud:
+		MinRange: 1c0
+		Range: 2c512
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 2c0
+	-BodyOrientation:
+	ClassicFacingBodyOrientation:
+	RenderSprites:
+		Image: masterchiefbubbleshield
+	RequiresBuildableArea:
+		Adjacent: 2
+		AreaTypes: masterchief
+	ProximityExternalCondition@bubbleshield:
+		Condition: masterchiefbubbleshieldcondition
+		Range: 3c0
+	ProximityExternalCondition@bubbleshield2:
+		Condition: external_shield
+		Range: 3c0
+	ProximityExternalCondition@bubbleshield3:
+		Condition: shield_regen
+		Range: 2c0
+	WithIdleOverlay@bubbleshield:
+		Image: hordebonus-overlay
+		Sequence: masterchiefbubbleshieldeffect
+		Palette: effect
+		IsDecoration: True
+	KillsSelf:
+		Delay: 1125
+	AmbientSound@activate:
+		SoundFiles: masterchiefbubbleshieldactivate.aud
+		Delay: 1
+		Interval: 10000,20000
+	AmbientSound@activate2:
+		SoundFiles: masterchiefbubbleshieldloop.aud
+		Delay: 25
+		Interval: 190
+
+masterchief.ability.invincibility:
+	Inherits@1: ^SpriteActor
+	HitShape:
+	Interactable:
+	HiddenUnderShroud:
+	RenderSprites:
+		Palette: terrain
+		Image: masterchief.weaponhack
+	Targetable:
+		TargetTypes: MasterChiefWeaponThing
+	Health:
+		HP: 9000000
+	Immobile:
+		OccupiesSpace: false
+	ProvidesPrerequisite@buildingname:
+	Buildable:
+		Queue: HeroAbility
+		BuildAtProductionType: masterchiefweapon
+		BuildPaletteOrder: 12516
+		BuildDuration: 1
+		Prerequisites: ~active.masterchief, !masterchief.ability.cooldown, ~masterchief.tier5.invulnerability
+		Description: actor-masterchief.invincibilitydesc
+		Icon: masterchiefinvulnerabilityicon
+	Tooltip:
+		Name: actor-masterchief.invincibilityname
+	FreeActor@cooldown:
+		Actor: masterchief.ability.cooldown
+	KillsSelf:
+		Delay: 250
+		RemoveInstead: true
+	AmbientSound@talky:
+		SoundFiles: masterchiefinvulnerabilitypickup.aud
+		Delay: 1
+		Interval: 10000,20000
+	ProvidesPrerequisite@pistol:
+		Prerequisite: masterchiefinvincibility
+
+# 20 seconds
+masterchief.weapon.cooldown:
+	Inherits: ^HeroAbilityCooldown
+	KillsSelf:
+		Delay: 500
+	ProvidesPrerequisite@weaponcooldown:
+		Prerequisite: masterchief.weapon.cooldown
+
+# 40 seconds
+masterchief.weapon.cooldown2:
+	Inherits: ^HeroAbilityCooldown
+	KillsSelf:
+		Delay: 1000
+	ProvidesPrerequisite@weaponcooldown:
+		Prerequisite: masterchief.weapon.cooldown
+
+# 60 seconds
+masterchief.weapon.cooldown3:
+	Inherits: ^HeroAbilityCooldown
+	KillsSelf:
+		Delay: 1500
+	ProvidesPrerequisite@weaponcooldown:
+		Prerequisite: masterchief.weapon.cooldown
+
+# 120 seconds
+masterchief.ability.cooldown:
+	Inherits: ^HeroAbilityCooldown
+	KillsSelf:
+		Delay: 2250
+	ProvidesPrerequisite@weaponcooldown:
+		Prerequisite: masterchief.ability.cooldown

@@ -1,8 +1,6 @@
 
 ## player.yaml
 actor-player =
-   .providestechprerequisite-noepic-name = Advanced Tech
-   .providestechprerequisite-unrestricted-name = Super Tech
    .providestechprerequisite-boss-name = Boss Mode
    .lobbyprerequisitecheckbox-noboats-label = No Boats
    .lobbyprerequisitecheckbox-noboats-description = Check to disable boats.
@@ -37,9 +35,9 @@ actor-player =
    .lobbyprerequisitecheckbox-morecrates-label5 = Maximum+ Crates
    .lobbyprerequisitecheckbox-upkeep-label = Upkeep
    .lobbyprerequisitecheckbox-upkeep-description = The higher your army value, the less money you earn.
-      $30,000: -30% resource, -15% build speed
-      $50,000: -50% resource, -30% build speed
-      $70,000: -70% resource, -50% build speed
+      $40,000: -30% resource, -15% build speed
+      $70,000: -50% resource, -30% build speed
+      $100,000: -70% resource, -50% build speed
    .lobbyprerequisitecheckbox-weather-label = Weather (Incomplete)
    .lobbyprerequisitecheckbox-weather-description = This is incomplete and just enables a permanent lightning storm. Uses LUA script.
    .lobbyprerequisitecheckbox-daynight-label = Day/Night Cycle
@@ -47,13 +45,13 @@ actor-player =
    .upkeep-warning1 = WARNING: Low Upkeep
    .upkeep-warning2 = ALERT: Medium Upkeep
    .upkeep-warning3 = CRITICAL: High Upkeep
-   .upkeep-desc1 = Army value is above $30,000, which reduces your build time by 15% and earned resources by 30% 
+   .upkeep-desc1 = Army value is above $40,000, which reduces your build time by 15% and earned resources by 30% 
 
       (This support power does nothing)
-   .upkeep-desc2 = Army value is above $50,000, which reduces your build time by 30% and earned resources by 50% 
+   .upkeep-desc2 = Army value is above $70,000, which reduces your build time by 30% and earned resources by 50% 
 
       (This support power does nothing)
-   .upkeep-desc3 = Army value is above $70,000, which reduces your build time by 50% and earned resources by 70% 
+   .upkeep-desc3 = Army value is above $100,000, which reduces your build time by 50% and earned resources by 70% 
 
       (This support power does nothing)
    .lobbyprerequisitecheckbox-turtledebuff-label = Turtle Debuff
@@ -90,13 +88,42 @@ actor-player =
    .lobbyprerequisitecheckbox-heroxp-label4 = Faster
    .lobbyprerequisitecheckbox-alltech-label = All Tech
    .lobbyprerequisitecheckbox-alltech-description = Tech and Adv Tech from the get go
+   .lobbyprerequisitecheckbox-gradualtech-label = Gradual Tech
+   .lobbyprerequisitecheckbox-gradualtech-description = Best used with Infantry Only tech level. 
+     
+     Tech Levels are gained by your Hero's level
+     Gained by either player score, levelling the hero directly,
+     or by waiting 10 minutes.
+
+     Can be used without Heroes enabled.
+   .lobbyprerequisitecheckbox-debugspeed-label = Debug Bot Speed
+   .lobbyprerequisitecheckbox-debugspeed-description = Allows bots to build structures in record time
+   .lobbyprerequisitecheckbox-debuglistactors-label = Debug Hidden Actors
+   .lobbyprerequisitecheckbox-debuglistactors-description = Writes to LUA log every 5 minutes
+   .lobbyprerequisitecheckbox-resourcemultiplier-dropdown = Resource Value
+   .lobbyprerequisitecheckbox-resourcemultiplier-description = Adjust how much resources are worth.
+   .lobbyprerequisitecheckbox-resourcemultiplier-label1 = 50%
+   .lobbyprerequisitecheckbox-resourcemultiplier-label2 = 75%
+   .lobbyprerequisitecheckbox-resourcemultiplier-label3 = 100%
+   .lobbyprerequisitecheckbox-resourcemultiplier-label4 = 125%
+   .lobbyprerequisitecheckbox-resourcemultiplier-label5 = 150%
+   .lobbyprerequisitecheckbox-resourcemultiplier-label6 = 200%
+   .lobbyprerequisitecheckbox-resourcemultiplier-label7 = 250%
+   .lobbyprerequisitecheckbox-newmines-label = Randomise Resource Nodes
+   .lobbyprerequisitecheckbox-newmines-description = Deletes the resource nodes on the map
+    and replaces them in random places.
+   .lobbyprerequisitecheckbox-memes-label = No Memes
+   .lobbyprerequisitecheckbox-memes-description = Disables meme crates.
+   .lobbyprerequisitecheckbox-superweapons-label = No Superweapons
+   .lobbyprerequisitecheckbox-superweapons-description = Disables Superweapons regardless of tech level.
 
 options-tech-level =
     .infantry-only = Infantry Only
     .low = Low
     .medium = Medium
-    .no-superweapons = No Superweapons
-    .unrestricted = Unrestricted
+    .no-superweapons = High (No Superweapons)
+    .noepic = Advanced Tech
+    .unrestricted = Super Tech
 
 checkbox-kill-bounties =
     .label = Kill Bounties
@@ -117,6 +144,18 @@ notification-low-power = Low power.
 notification-base-under-attack = Base under attack.
 notification-ally-under-attack = Our ally is under attack.
 notification-silos-needed = Silos needed.
+
+## ai.yaml
+bot-name =
+    .easy = Easy
+    .medium = Medium
+    .hard = Hard
+    .harder = Harder
+    .boss = Boss
+    .god = God
+    .tech = Tech Rusher
+    .dummy = MCV Only
+    .dummy2 = Builder
 
 ## ai_str.yaml
 actor-foundry-bot-name = Automation Facility
@@ -151,6 +190,12 @@ actor-prefab-b =
 actor-bossfaction = 
    .description = Enables a new faction.
    .name = Faction
+
+actor-perimeterupgrade = 
+   .desc = Build a preset fortification around
+    your construction yard.
+   .var-a = Build Perimeter: Variant A - Square Basic
+   .var-b = Build Perimeter: Variant B - Square Inner
 
 ## ai_veh.yaml
 actor-apc-ai1-description = AI prefilled APC.
@@ -212,8 +257,19 @@ actor-allies-training2 =
 
 actor-allies-pointdefense =
    .name = Point Defense Systems
-   .description = Equips Pillboxes with laser point-defense
-   against missiles.
+   .description = Equips Pillboxes, AA-Guns and Turrets with 
+    laser point-defense against missiles.
+
+actor-allies-rockets =
+   .name = Turret Rocket Packs
+   .description = Equips Turrets with anti-infantry
+    and anti-vehicle rockets.
+
+    Increases power draw to 50. Increases health by 20%.
+
+actor-allies-prism =
+   .name = Prism Technology
+   .description = Unlocks the Prism Tower.
 
 actor-atek-description = Provides Allied advanced technologies.
 
@@ -235,6 +291,18 @@ actor-bio-afake =
    .description =
     Looks like a Weather Machine.
     Maximum of one can be built.
+
+actor-prism =
+   .name = Prism Tower
+   .description = 
+   Advanced base defense.
+   Requires power to operate.
+
+   Towers placed near one another will 
+    boost damage when attacking.
+      Strong vs Vehicles and Infantry
+      Weak vs Aircraft
+
 
 ## allies_veh.yaml
 actor-1tnk-description = Fast tank, good for scouting.
@@ -292,6 +360,15 @@ actor-avcarrier =
    .botdesc = Secondary unit type for AI to use with attack forces
 
 actor-avinter-name = Repair Drone
+
+actor-avmother =
+   .description = [EPIC]
+    Avalonian epic support ship with
+    with area cloak and lasers.
+    Can teleport on deploy.
+    Speed: 24
+      Strong vs Everything
+   .name = Illuminate Mothership
 
 ## avali_inf.yaml
 actor-avinf1 =
@@ -398,6 +475,21 @@ actor-avgun =
       Weak vs Infantry, Aircraft
    .name = Turret
 
+actor-avdefnode =
+   .description = When charged, automatically activates 
+    when taking damage from a superweapon.
+
+    Creates a large invulnerability field for 20 seconds.
+   .name = Auto-Defense Matrix
+
+actor-avlpost =
+   .description = An energy forcefield that blocks enemy
+    projectiles. Can be disabled and re-enabled to attack
+    trespassers.
+
+   .name = Hardlight Generator
+   .node = Hardlight Wall
+
 ## avali_veh.yaml
 actor-avmcv =
    .description = Deploys to provide construction.
@@ -418,12 +510,22 @@ actor-avdrone =
       Strong vs Vehicles, Structures
 
 actor-av1tnk =
-   .description = Illuminate Main Battle Tank.
+   .description = Illuminate Main Battle tank.
     Can hover over water.
     Speed: 82
       Strong vs Vehicles
       Weak vs Infantry, Aircraft
    .name = Predator Tank
+   .husk = Husk (Predator Tank)
+
+actor-av2tnk =
+   .description = Illuminate Medium range tank.
+    Can hover over water.
+    Speed: 82
+      Strong vs Infantry, Light armor
+      Weak vs Tanks, Aircraft
+   .name = Refractor Tank
+   .husk = Husk (Refractor Tank)
 
 actor-avarty =
    .name = Impaler Mech
@@ -445,13 +547,27 @@ actor-avqtnk =
 
 ## avali_upg.yaml
 actor-avalon-carrier =
-   .name = Doubled Repair Cycles
+   .name = Researech Doubled Repair Cycles
    .description = Increases Carrier repair amount.
 
 actor-avalon-terra =
-   .name = Terraformer Modules
+   .name = Install Terraformer Modules
    .description = Avalon-owned structures will now generate frost.
 
+actor-avalon-shields =
+   .name = Provide Personal Shields
+   .description = Provides Avali infantry forces with shields.
+   
+   Mutually exclusive with Vehicular Shields
+   .name2 = Install Vehicular Shields
+   .desc2 = Provides Avali vehicle forces with shields. 
+   
+   Mutually exclusive with Personal Shields
+
+actor-avalon-infspeed =
+   .name = Train Sprint Tactics
+   .description = Avali infantry movement speed increased
+     by 30%
 
 ## china_air.yaml
 actor-chinamig =
@@ -523,6 +639,21 @@ actor-chinamortar =
    .description = The mortar team can use their bulky mortar to lob artillery over significant distances.
    .name = Mortar
    .hordebonus--name = Mortar (Nationalism)
+
+actor-chinaecmtroop =
+   .description = The ECM Trooper is a Chinese support infantry unit who can disable enemy vehicles.
+   .name = ECM Trooper
+   .hordebonus--name = ECM Trooper (Nationalism)
+
+actor-chinasniper =
+   .description = The Chinese Sniper uses a QBU-88 sniper rifle that was modified to shoot both anti-personel and armor-piercing bullets.
+   .name = Red Hat
+   .hordebonus--name = Red Hat (Nationalism)
+
+actor-chinaofficer =
+   .description =  The Officer is a Chinese support infantry unit that provides frenzy for nearby troops.
+   .name = Officer
+   .hordebonus--name = Officer (Nationalism)
 
 ## china_shp.yaml
 actor-chinainfernoship =
@@ -702,6 +833,10 @@ actor-upgrade-isotopes =
    .name = Isotopes Stability
    .description = Isotope stability prevents the collateral damage from harming friendly units with radiation.
 
+actor-upgrade-nukerockets =
+   .name = Nuke Rockets
+   .description = Tank Hunters will now shoot nuclear rockets spreading radiation.
+
 actor-upgrade-autoloader =
    .name = Autoloader
    .description = Increases firerate of Battlemasters & Hopper Tanks by 20%.
@@ -709,6 +844,10 @@ actor-upgrade-autoloader =
 actor-upgrade-firstaidkits =
    .name = First Aid Kits
    .description = Allows infantry to heal in between battles if they have been critically injured.
+
+actor-upgrade-unethicaltesting =
+   .name = Unethical Testing
+   .description = Top Secret "Ethical" testing has allowed infantry to become 33% faster and damage resistant.
 
 ## china_veh.yaml
 actor-chinabattlemaster =
@@ -1084,12 +1223,24 @@ meta-hero =
    .tooltipdescription-3-description = Level 3
    .tooltipdescription-4-description = Level 4
    .tooltipdescription-5-description = Level 5
+   .tooltipdescription-6-description = Level 6
+   .tooltipdescription-7-description = Level 7
+   .tooltipdescription-8-description = Level 8
+   .tooltipdescription-9-description = Level 9
+   .tooltipdescription-10-description = Level 10
 
 meta-herotier1-tooltipdescription-tier1-description = Tier 1
 meta-herotier2-tooltipdescription-tier1-description = Tier 2
 meta-herotier3-tooltipdescription-tier1-description = Tier 3
 meta-herotier4-tooltipdescription-tier1-description = Tier 4
 meta-herotier5-tooltipdescription-tier1-description = Tier 5
+
+actor-herotier = 
+   .tier1 = Player score of 250, or Tier 1 Hero
+   .tier2 = Player score of 750, or Tier 2 Hero
+   .tier3 = Player score of 1500, or Tier 3 Hero
+   .tier4 = Player score of 2500, or Tier 4 Hero
+   .tier5 = Player score of 4000, or Tier 5 Hero
 
 ## crates.yaml
 actor-crate-gla = Salvage
@@ -1098,6 +1249,8 @@ actor-moneycratesupplydrop-name = Supply Drop Money Crate
 actor-crate-fuckyou =
    .name = Crate
    .generic-name = Crate
+
+actor-crate-level = Level-Up Crate
 
 actor-grave-name = Haunted Mausoleum
 
@@ -1113,6 +1266,7 @@ actor-judgedredd-name = Judge Dredd
 actor-fakecrate-name = Crate
 actor-amogus-name = Sussy Baka
 actor-colonydrop-name = why the fuck are you mousing over this, you have more important things to do if this is coming down
+actor-iondrop-name = Ion Cannon Satellite?!
 actor-powerproxy-colonydrop-droppodspower-colonydrop-select-target-text-notification = Select target.
 actor-powerproxy-roadroller-droppodspower-roadroller-select-target-text-notification = Select target.
 actor-roadroller-name = KONO DIO DA!
@@ -1123,11 +1277,20 @@ actor-johncena-name = John Cena (you cant see me)
 actor-jarofdirt-name = Captain Jack Sparrow
 actor-korone-name = Inugami Korone
 actor-jesus-name = Jesus
+actor-jesus-name2 = Training Dummy
 actor-garbageman-name = GARBAGE DAY
+actor-shoopdawhoop-cr-name = SHOOP DA WHOOP
+actor-powerproxy-holyhandgrenade-droppodspower-holyhandgrenade-select-target-text-notification = Select target.
+actor-holyhandgrenade-name = Holy Hand Grenade
+actor-starfoxarwingfox.name = Starfox Arwing
 
 actor-proxynuke-description = Launches a dud atomic bomb
     at the target location to 
     strike fear in your enemies.
+
+actor-firesale = 
+   .name = fire sale!
+   .desc = Build speed increased by 85% !
 
 ## defaults.yaml
 meta-flyingbuilding =
@@ -1226,6 +1389,15 @@ actor-fe4 =
 actor-fe6 =
    .description = Infiltrates and captures
     enemy structures.
+      Unarmed
+   .name = Tech Knight
+
+actor-fe6pl =
+   .description = Infiltrates and captures
+    enemy structures.
+ 
+   Also fixes nearby vehicles and 
+    doesn't afraid of anything. 
       Unarmed
    .name = Tech Knight
 
@@ -1507,6 +1679,7 @@ actor-d6-hotwire-name = Hotwire
 actor-gdi-speed =
    .name = Research Reactor Engines
    .description = Increases movement speed of tanks and aircraft.
+   .descavali = Increases movement speed of aircraft.
 
 actor-gdi-suits =
    .name = Supply Hazard Suits
@@ -1525,9 +1698,32 @@ actor-atek-gdi =
    .name = GDI Tech Center
 
 actor-eyed =
-   .description = Provides radar and Orbital Ion Cannon support power.
+   .description = Provides radar and access to your faction's superweapon.
+
+    GDI & Federation: Ion Cannon
+    Avalon: Illuminator Strike
+    UAC: BFG10K
+
     Requires power to operate.
    .name = Adv. Com. Center
+   .iondesc = Initiate an Ion Cannon strike.
+   
+    Applies instant damage to a small area.
+   .illumdesc = Initiate an orbital Illuminator Strike.
+   
+    Applies instant damage to a small area.
+   .bfgdesc = Call upon an orbital strike with a BFG10k mounted on Phobos.
+   
+    Strong vs. Everything
+   .iondesc2 = Initiate an Ion Cannon strike.
+   
+    Level I: Moderate damage in a small area.
+    Level II: Massive damage in a small area.
+    Level III: Massive damage in a larger area.
+    Level IV: Inflicts a large EMP effect.
+    Level V: Creates a 5 minute Ion Storm.
+    Level Maximum: Desecrate the target area for 10 minutes.
+
 
 actor-atwr =
    .name = Advanced Guard Tower
@@ -1684,6 +1880,7 @@ actor-gharv =
     Speed: 64
       Unarmed
    .name = Worker
+   .hole = Hole Worker
 
 actor-ghijack =
    .description = Steals enemy credits.
@@ -1803,8 +2000,29 @@ actor-gla-pay =
 
 actor-gla-aprockets =
    .name = AP Rockets
-   .description = Upgrade rocket buggies and RPG troops
+   .description = Upgrade all rocket weapons
      with increased damage.
+
+actor-gla-scorprockets =
+   .name = Scorpion Rocket
+   .description = Upgrade Scorpion tanks with 
+     a high-explosive, slow reload rocket.
+
+   Increases cost of the tank by 10%.
+
+actor-gla-demotraps =
+   .name = Demolition
+   .description = All units and structures will
+    explode violently on death, with reduced
+    damage to friendly units.
+
+actor-gla-marauder =
+   .name = Marauder Tank
+   .description = Enable production of the Marauder Tank.
+
+actor-gla-junk =
+   .name = Junk Repair
+   .description = Improves self-repair for vehicles.
 
 ## gla_veh.yaml
 actor-gmgg =
@@ -1847,7 +2065,29 @@ actor-gftrk =
       Weak vs Tanks
    .name = Toxin Truck
 
-actor-1tnk-g-name = GLA Light Tank
+actor-1tnk-g =
+   .description = Fast tank, good for scouting.
+
+   Can be upgraded with Scorpion rockets.
+
+   Ranking this unit up upgrades their weapons.
+   Can collect salvage.
+    Speed: 112
+      Strong vs Light armor
+      Weak vs Infantry, Tanks, Aircraft
+   .name = Scorpion Tank
+   .husk = Husk (Scorpion Tank)
+
+actor-2tnk-g =
+   .description = Fast medium tank.
+
+   Ranking this unit up upgrades their weapons.
+   Can collect salvage.
+    Speed: 112
+      Strong vs Vehicles
+      Weak vs Infantry, Aircraft
+   .name = Marauder Tank
+   .husk = Husk (Marauder Tank)
 
 actor-bggyd-g =
    .description = Fast anti-armour buggy.
@@ -1873,9 +2113,9 @@ actor-mnly-g =
 actor-bbus =
    .description = Unarmed infantry transport.
     Infantry can fire from inside.
-    Speed: 88 
-      Strong vs Infantry, Light armor
-      Weak vs Tanks, Aircraft
+
+    Can collect salvage.
+    Speed: 96
    .botdesc = AI only, comes pre-filled
    .name = Battle Bus
    .forgotten = Fortified Bus
@@ -1883,6 +2123,9 @@ actor-bbus =
 
 actor-gtechnical =
    .description = Fast scout & anti-infantry vehicle.
+
+   Ranking this unit up upgrades their weapons.
+   Can collect salvage.
    Speed: 170
       Strong vs Infantry
       Weak vs Vehicles, Aircraft
@@ -1934,6 +2177,7 @@ actor-usamoabplane-husk-empty-name = Stealth Bomber
 actor-usamoabplane-husk-loaded-name = Stealth Bomber
 actor-vechiclechinook-husk-name = Halo
 actor-usalasercrusader-husk-name = Husk (Laser Crusader)
+actor-usalaserpaladintank-husk-name = Husk (Laser Paladin)
 actor-supplychinook-husk-name = Chinook
 actor-tvult-husk-name = Husk (Vulture)
 actor-tstank-husk-name = Husk (Siege Tank)
@@ -1964,7 +2208,17 @@ actor-avfrigate-husk-name = Illuminate Frigate
 actor-avbomber-husk-name = Illuminate Bomber
 actor-avcarrier-husk-name = Illuminate Warpship Carrier
 actor-avcarrier-groundhusk-name = Husk (Carrier)
-actor-av1tnk-husk-name = Husk (Predator Tank)
+actor-unscscorpion-husk-name = Husk (M808B Scorpion)
+actor-unscgrizzly-husk-name = Husk (M850 Grizzly)
+actor-covenantghost-husk-name = Husk (Karo'etba-pattern Ghost)
+actor-covenantwraith-husk-name = Husk (Zurdo-pattern Wraith)
+actor-covenantskyhunter-husk-name = Husk (Ogab'd-pattern anti-aircraft Wraith)
+actor-covenantbanshee-husk-name = Husk (Oghal-pattern Banshee)
+actor-covenantrevenant-husk-name = Husk (Rizvum-pattern Revenant)
+actor-covenantlich-husk-name = Husk (Kmiro'sish-pattern Lich)
+actor-covenantspirit-husk-name = Husk (Dextro Xur-pattern Spirit)
+actor-covenantphantom-husk-name = Husk (Ru'swum-pattern Phantom Spirit)
+actor-covenantscarab-husk-name = Husk (Protos-pattern Scarab)
 
 ## japan_air.yaml
 actor-japanchoppervx =
@@ -3148,8 +3402,7 @@ actor-pobser-name = Observatory
 
 actor-psupor-warp =
    .description = Autonomous building construction. 
-    Increases build speed of Structures and
-    Defense by 1 stage (max 10).
+    Increases warp in time for Protoss structures.
    .name = Warp (Foundry)
 
 actor-psupor-name = Protoss Foundry
@@ -3190,9 +3443,11 @@ actor-pstarg-warp =
 actor-pstarg-name = Stargate
 
 actor-pfleet-warp =
-   .description = Provides access to your faction's epic unit or ability.
+   .description = Provides access to the Protoss Carrier.
     
       Special Ability: Provides money
+       and clones basic Infantry.
+   
      Limit of one.
    .name = Warp (Fleet Beacon)
 
@@ -3401,7 +3656,7 @@ actor-proc =
 
 actor-silo-description = Stores excess refined
     Ore, Tiberium and Gems.
-     Capacity: 2500
+     Capacity: 1500
 
 actor-procd =
    .description = Refines Ore, Tiberium and Gems
@@ -3411,7 +3666,7 @@ actor-procd =
 actor-silod =
    .description = Stores excess refined
     Ore, Tiberium and Gems.
-     Capacity: 3500
+     Capacity: 1500
    .name = Silo
 
 actor-barr-name = Barracks
@@ -3515,8 +3770,23 @@ actor-oreext2 =
       Unarmed
    .name = Advanced Ore Extractor
 
-actor-agate-name = Gate
+actor-agate = 
+   .description = Stops infantry and most tanks.
+    Blocks some projectiles.
+   .name = Gate
+   .buildname = Horizontal Gate
+   .buildname2 = Vertical Gate
 
+
+actor-fix =
+    .name = Service Depot
+    .description =
+    Repairs vehicles for credits.
+
+    .gladesc = 
+    Repairs vehicles for credits.
+
+    Also enables self-repair for GLA vehicles.
 meta-concrete =
    .name = Pavement
    .generic-name = Cement
@@ -3536,12 +3806,22 @@ actor-concretec-name = Pavement 10x10
 actor-t-miss =
    .description = Provides access to your faction's epic unit or ability.
     
-      Special Ability: Provides money. Clones infantry.
+      Special Ability: Provides money. Choose what type of unit to clone.
      Limit of one.
+   
+      Sell with an chosen cloning type, to remove the type and choose another.
    .name = Super Tech Center
+   .warpname = (Warp) Super Tech Centre
+   .veh = Vehicle Super Tech Center
    .navy = Navy Super Tech Center
    .inf = Infantry Super Tech Center
    .air = Aircraft Super Tech Center
+   .str = Structure Super Tech Center
+   .socket = Unchosen Super Tech Type
+   .water = placement in Water
+   .land = placement on Land
+   .sell = 
+   Sell to change Super Tech type.
    .produceactorpower-devouringone-end-charge-text-notification = Devouring Ones ready.
    .produceactorpower-devouringone-ready-text-notification = Reinforcements have arrived.
    .produceactorpower-devouringone-blocked-text-notification = No room for new unit.
@@ -3549,6 +3829,44 @@ actor-t-miss =
    .airstrikepower-nuclearparabombs-select-target-text-notification = Select target.
    .airstrikepower-antimatterbombdrop-select-target-text-notification = Select target.
    .airstrikepower-hyperion-select-target-text-notification = Select target.
+   .empdesc = Initiate an EMP strike. Inflicts no damage but disables all power plants
+    within a 16 cell radius for 40 seconds. 
+
+    Disables vehicles in a 10 cell radius for 20.
+
+    Airborne aircraft are destroyed.
+
+actor-cmiss =
+   .veh = Vehicle Duplication
+   .vehdesc = Enables 2nd vehicle queue. 
+    Provides discount and increased 
+    build speed to vehicles.
+   .navy = Navy Duplication
+   .navydesc = Enables 2nd navy queue. 
+    Provides discount and increased 
+    build speed to naval units.
+   .inf = Infantry Cloning
+   .infdesc = Enables 2nd infantry queue. 
+    Provides discount and increased 
+    build speed to infantry.
+   .air = Aircraft Duplication
+   .airdesc = Enables 2nd aircraft queue. 
+    Provides discount and increased 
+    build speed to aircraft.
+   .str = Structure Duplication
+   .strdesc = Enables 2nd building, defense, utility, tech and upgrade queues.
+    Provides discount and increased 
+    build speed to structures.  
+   .none = Duplication Not Chosen
+
+actor-t-missair-description = Provides access to your faction's epic unit or ability.
+    
+      Special Ability: Provides money
+     Limit of one.
+actor-t-missinf-description = Provides access to your faction's epic unit or ability.
+    
+      Special Ability: Provides money
+     Limit of one.
 
 actor-haxor =
    .description = Become the God AI, makes your 
@@ -3620,15 +3938,6 @@ actor-obl-haxtiberium =
 actor-obl-cratepowers =
    .description = Crate Powers
    .name = Crate Powers
-
-actor-t-missair-description = Provides access to your faction's epic unit or ability.
-    
-      Special Ability: Provides money
-     Limit of one.
-actor-t-missinf-description = Provides access to your faction's epic unit or ability.
-    
-      Special Ability: Provides money
-     Limit of one.
 
 ## shared_veh.yaml
 actor-mcv-description = Deploys into another Construction Yard.
@@ -3740,14 +4049,43 @@ actor-e4deso =
    .name = Desolator
 
 ## soviet_str.yaml
-actor-soviet-iron =
+actor-soviet-teslabomb =
+   .name = Tesla Overcharge
+   .description = Nuclear Research has found an inexplicable
+    way to overcharge Tesla Coils with explosives.
+
+    Deals splash damage but reduces attack range.
+
+actor-soviet-iron1 =
    .name = Iron Blanket Protocol
-   .description = Increases armor of all Structures and Tanks by 20% with reactive plating.
+   .description = Increases armor of all Tanks by 15%.
+
+actor-soviet-iron =
+   .name = Iron Blanket Protocol II
+   .description = Increases armor of all Structures and Tanks 
+   by a further 20%, with self repair.
+
+actor-soviet-teslapower =
+   .name = Tesla Transmission
+   .description = Tesla Research has enabled wireless transmission
+   of power. Reduces Tesla Coil power use by 25%
 
 actor-soviet-tesla =
    .name = Improved Coils
    .description = A new alloy was discovered for use in electrical coils,
      increasing damage and range of Tesla weapons.
+
+actor-soviet-training =
+   .name = Ethical Training
+   .description = All units will now be trained as rank 1.
+
+actor-soviet-drones =
+   .name = Drone Strike
+   .description = Enables the use of the Drone Strike support
+    power from the Radar Dome.
+   .power = Launch a drone strike at the targeted area.
+
+    Large squadron, but easily shot down.
 
 actor-tsla-est =
    .description = Advanced base defense, disables current target.
@@ -3756,6 +4094,14 @@ actor-tsla-est =
       Strong vs Vehicles, Infantry
       Weak vs Aircraft
    .name = EMP Tesla Coil
+
+actor-tsla-ukr =
+   .description = Advanced base defense, deals splash damage.
+    Requires power to operate.
+    Can detect cloaked units.
+      Strong vs Vehicles, Infantry
+      Weak vs Aircraft
+   .name = Explosive Tesla Coil
 
 actor-brik-est =
    .description = Stop units and blocks enemy fire.
@@ -3827,8 +4173,10 @@ actor-u-tnk =
 ## techbuildings.yaml
 actor-miss =
    .name = Communications Center
-   .tooltipdescription-ally-description = Increases visual range of all units.
-   .tooltipdescription-other-description = Capture to give increase visual range of all units.
+   .tooltipdescription-ally-description = Increases vision range of all units.
+   Deploys spy drones, and has a radar scan ability.
+   .tooltipdescription-other-description = Capture to increase vision range of all units.
+   Also deploys spy drones, and has a radar scan ability.
 
 actor-miss-husk =
    .name = Communications Center (Dead)
@@ -4035,10 +4383,8 @@ actor-tghost =
     Can use stealth, and launch spot for the Missile Silo.
    .generic-name = Ghost
    .name = Ghost
-   .2--generic-name = Ghost
-   .2--name = Ghost - Target Painting (No Nuke)
-   .3--generic-name = Ghost
-   .3--name = Ghost - Target Painting
+   .2-name = Ghost - Target Painting (No Nuke)
+   .3-name = Ghost - Target Painting
 
 actor-traynor =
    .description = Leader of Raynor's Raiders armed with a modified
@@ -4055,13 +4401,20 @@ actor-active-raynor-name = Super Tech Center
 actor-traynor-hero0 =
    .description = [HERO]
 
-    Role: Infantry support
+   Role: Infantry support
 
-    Leader of Raynor's Raiders armed with a modified
+   Leader of Raynor's Raiders armed with a modified
      C-14 Gauss Rifle.
-    Speed: 72
+
+   Tier 1 unlocks infantry Officer squad boost.
+   Tier 2 unlocks ability to place spider mines.
+   Tier 3 unlocks 2nd attack: grenade launcher.
+   Tier 4 unlocks increased damage output.
+   Tier 5 unlocks Hyperion.
+
+   Speed: 72
       Strong vs Infantry, Aircraft
-      Weak vs Vehicles 
+      Weak vs Heavy armor 
     
     Equipped with Stimpacks.
    .name = Jim Raynor (Tier 0)
@@ -4618,6 +4971,19 @@ actor-upgrade-buildfirepower3 =
    .name = Structure Weapons Upgrade III
    .description = Improve defensive structure damage by 42%
 
+actor-upgrade-wallrebuild =
+   .name = Wall Regeneration
+   .description = Walls will auto-replace when destroyed
+    as long as they are near a Construction Yard, and
+    the segment location is not crossed or blocked.
+
+    Each Wall segment costs $25
+
+actor-upgrade-wallfireports =
+   .name = Firing Ports
+   .description = Allows your units to fire over 
+    your walls.
+
 actor-upgrade-infarmor1 =
    .name = Infantry Armour Upgrade I
    .description = Improve infantry armour by 15%
@@ -4716,17 +5082,17 @@ actor-upgrade-navfirepower3 =
 
 actor-upgrade-shieldarmor1 =
    .name = Plasma Shields Upgrade I
-   .description = Improve shield health 15% and
+   .description = Improve shield health 10% and
       regeneration by 33%
 
 actor-upgrade-shieldarmor2 =
    .name = Plasma Shields Upgrade II
-   .description = Improve shield health 30% and
+   .description = Improve shield health 20% and
       regeneration by 66%
 
 actor-upgrade-shieldarmor3 =
    .name = Plasma Shields Upgrade III
-   .description = Improve shield health 45% and
+   .description = Improve shield health 30% and
       regeneration by 100%
 
 actor-techlevelshields =
@@ -4883,6 +5249,12 @@ actor-usaairfield =
 actor-usastrategycenter =
    .description = Strategic Center, provides upgrades.
    .name = Strategy Center
+   .socket = Unchosen Strategy
+   .sell = 
+   Sell to change Strategy
+   .bom = Strategy Center - Bombardment
+   .htl = Strategy Center - Hold the Line
+   .snd = Strategy Center - Search and Destroy
 
 actor-usaminedropactor =
    .description = Highly explosive proximity trap.
@@ -5003,17 +5375,27 @@ actor-upgrade-lasergeneral =
 actor-upgrade-searchanddestroy =
    .name = Search and Destroy
    .description = Increases weapon range & sight range of all friendly ground units by 10%.
-    Installs sensors that enabled the detection of stealthed units within a large radius around the strategy center.
+    
+    Installs sensors that enabled the detection of 
+    stealthed units within a large radius around the Strategy Center.
+
+    Costs additional power.
 
 actor-upgrade-holdtheline =
    .name = Hold the Line
    .description = Increases armor of all friendly ground units by 10%.
-    Reinforces the strategy center with sandbags to increase its resilience.
+    
+    Reinforces the Strategy Center with sandbags to increase its resilience.
+
+    Costs additional power.
 
 actor-upgrade-bombardment =
    .name = Bombardment
    .description = Increases damage of all friendly ground units by 10%.
-    Deploys an artillery piece from the strategy center for defense.
+    
+    Deploys an artillery piece for the Strategy Center for defense.
+
+    Costs additional power.
 
 ## usa_veh.yaml
 actor-usacrusader =
@@ -5033,6 +5415,28 @@ actor-usapaladin =
       Weak vs Infantry, Aircraft
    .name = Paladin Tank
    .upgrade--name = Paladin Tank (Upgraded)
+
+actor-usalaserpaladin =
+   .description = USA main battle tank.
+    Equipped with an laser cannon
+    and point defense laser.
+    Vehicle is affected by Low and Critical power levels.
+    Power Usage: 6
+    Speed: 85
+      Strong vs Vehicles
+      Weak vs Infantry, Aircraft
+   .name = Laser Paladin Tank
+
+actor-usalibra =
+   .description = USA laser artillery tank.
+    Equipped with a large oval-shaped cannon that fires a beam at very high precision
+    and point defense laser.
+    Vehicle is affected by Low and Critical power levels.
+    Power Usage: 8
+    Speed: 45
+      Strong vs Vehicles
+      Weak vs Infantry, Aircraft
+   .name = Libra
 
 actor-usahumvee =
    .description = Lightly armed infantry transport.
@@ -5078,6 +5482,8 @@ actor-usamicrowave =
 actor-usalasercrusader =
    .description = USA main battle tank.
     Equipped with a High-energy directed pulse laser cannon.
+    Vehicle is affected by Low and Critical power levels.
+    Power Usage: 4
     Speed: 85
       Strong vs Vehicles
       Weak vs Infantry, Aircraft
@@ -5090,6 +5496,8 @@ actor-usarailgun =
 
 actor-usadisrupter =
    .description = General Townes personal project. The ultimate laser equipped tank.
+    Vehicle is affected by Low and Critical power levels.
+    Power Usage: 30
     Speed: 35
       Strong vs Vehicles
       Weak vs Infantry, Aircraft
@@ -5386,10 +5794,17 @@ actor-zkerrigan-hero0 =
    .description = [HERO]
 
     Role: Damage dealer, Infantry support
-    
     The Queen of the Swarm.
-      Speed: 112
-      Strong vs ground units.
+
+    Tier 1 unlocks infantry Officer squad boost.
+    Tier 2 replaces melee attack with ranged
+      attack that can also target air.
+    Tier 3 unlocks 2nd attack: explosive charge.
+    Tier 4 unlocks 3rd attack: plague bomb.
+    Tier 5 unlocks Zergling spawns while in combat.
+    
+     Speed: 112
+     Strong vs ground units.
    .name = Kerrigan (Tier 0)
    .real--name = Kerrigan
 
@@ -5398,10 +5813,18 @@ actor-zkerrigan-hero1-name = Kerrigan (Tier 1)
 actor-zkerrigan-hero2 =
    .description = [HERO]
     
-    The Queen of the Swarm
-     Now has a ranged attack.
-      Speed: 96
-      Strong vs everything.
+    Role: Damage dealer, Infantry support
+    The Queen of the Swarm.
+
+    Tier 1 unlocks infantry Officer squad boost.
+    Tier 2 replaces melee attack with ranged
+      attack that can also target air.
+    Tier 3 unlocks 2nd attack: explosive charge.
+    Tier 4 unlocks 3rd attack: plague bomb.
+    Tier 5 unlocks Zergling spawns while in combat.
+    
+     Speed: 96
+     Strong vs everything.
    .name = Kerrigan (Tier 2)
 
 actor-zkerrigan-hero3-name = Kerrigan (Tier 3)
@@ -5417,6 +5840,15 @@ actor-zzagara =
    Excellent base defense and expansion.
    Is more powerful when standing on Creep.
    Creep speed bonus to all units while alive.
+
+    Tier 1 unlocks infantry Officer squad boost
+      with a massive range, Transfusion, and
+      the ability to place Hydralisk eggs.
+    Tier 2 unlocks lifesteal.
+    Tier 3 unlocks Mutalisk eggs.
+    Tier 4 unlocks Swarm Frenzy.
+    Tier 5 unlocks Ultralisk eggs.
+
       Speed: 72
       Strong vs ground units
    .name = Zagara
@@ -5447,6 +5879,92 @@ actor-zegg =
    .zergling = Spawn Zerglings (45 sec cooldown)
    .hydra = Spawn Hydralisk (45 sec cooldown)
    .muta = Spawn Mutalisk (90 sec cooldown)
+   .ultra = Spawn Ultralisk (120 sec cooldown)
+
+actor-zagara-tier1-fastupgrade1 =
+   .name = Enhanced Muscle Tissue
+   .description = Gain Structure Firepower I instantly.
+
+actor-zagara-tier1-fastupgrade2 =
+   .name = Hardened Epidermis
+   .description = Gain Structure Armor I instantly.
+
+actor-zagara-tier1-zagarmor =
+   .name1 = Broodmother's Carapace A: Light
+   .desc1 = Changes Zagara's armor type to Light.
+     Balanced resistance to anti-infantry and 
+      anti-armor weapons.
+
+     Increase movement speed by 10%
+   .name2 = Broodmother's Carapace B: Heavy
+   .desc2 = Changes Zagara's armor type to Heavy.
+     Massive resistance to anti-infantry weapons,
+      but weaker to anti-armor.
+   .name3 = Broodmother's Carapace C: None
+   .desc3 = Evolve Zagara's current armor.
+     Massive resistance to anti-vehicle weapons,
+      but remains weaker to anti-infantry.
+
+     Increase movement speed by 25%
+
+actor-zagara-tier2-costcut =
+   .name = Accelerated Evolution
+   .description = Produce units for 10% cheaper and 20% faster.
+
+actor-zagara-tier2-firespeed =
+   .name = Adrenal Glands
+   .description = Improves infantry attack speed by 10%.
+
+actor-zagara-tier3-fastupgrade1 =
+   .name = Enhanced Muscle Tissue II
+   .description = Gain Structure Firepower II instantly.
+
+actor-zagara-tier3-fastupgrade2 =
+   .name = Hardened Epidermis II
+   .description = Gain Structure Armor II instantly.
+
+actor-zagara-tier3-range =
+   .name = Mutate Optical Enhancements
+   .description = Increase view and attack range of defensive
+     structures by 10%.
+
+actor-zagara-tier3-zagdamage =
+   .name1 = Broodmother's Touch
+   .desc1 = Increases life-steal from 20% to 40%
+     Increases healing abilities by 100%
+   .name2 = Broodmother's Reach
+   .desc2 = Increases damage done by 50% and 
+     range by 1 cell.
+
+actor-zagara-tier4-support1 =
+   .name = Frenzy
+   .description = Enables Zerg Frenzy support power. 
+    
+    Boosts a group of units by 20%.
+    Cooldown: 5:00
+
+actor-zagara-tier4-support2 =
+   .name = Regenerative Cells
+   .description = Increases HP regen of all Zerg units by 100%. 
+
+actor-zagara-tier4-fastupgrade1 =
+   .name = Enhanced Muscle Tissue III
+   .description = Gain Structure Firepower III instantly.
+
+actor-zagara-tier4-fastupgrade2 =
+   .name = Hardened Epidermis III
+   .description = Gain Structure Armor III instantly.
+
+actor-zagara-tier5-option1 =
+   .name = 'Fortress' Mutation 
+   .description = Increases Zagara's armor by 25%.
+   Increases structure armor and damage by a further 20%.
+
+actor-zagara-tier5-option2 =
+   .name = Heart of the Swarm
+   .description = Produce units for a further 10% cheaper and 20% faster.
+
+   Totaling 20% and 40%.
 
 ## zerg_str.yaml
 actor-zhatchery =
@@ -5529,7 +6047,6 @@ actor-zspire =
     
     Must be placed on creep.
    .name = Spire
-   .2--name = Greater Spire
 
 actor-zgspire-up =
    .name = Evolve to Greater Spire
@@ -5584,6 +6101,20 @@ actor-znydus-entry =
 actor-nydus-teleport-name = Nydus Canal Entry
 
 ## zerg_upg.yaml
+actor-zerg-gcarapace =
+   .name1 = Evolve Ground Carapace I
+   .description1 = Improve ground zerg
+    and infantry armour by 15%
+   .name2 = Evolve Ground Carapace II
+   .description2 = Improve ground zerg
+    and infantry armour by 30%
+
+actor-zerg-fcarapace =
+   .name1 = Evolve Flyer Carapace I
+   .description1 = Improve flyer armour by 18%
+   .name2 = Evolve Flyer Carapace II
+   .description2 = Improve flyer armour by 36%
+
 actor-zerg-zergling =
    .name = Evolve Zerglings
    .description = Improve Zergling attack and movement speed.
@@ -5624,9 +6155,18 @@ actor-kerrigan-tier2-fastupgrade2 =
    .name = Hardened Skeletons
    .description = Gain Infantry Armor I instantly.
 
+actor-kerrigan-tier2-bomb =
+   .name = Bio Bomb
+   .description = Kerrigan gains an attack to slow 
+     enemies down.
+
 actor-kerrigan-tier3-carapace =
    .name = Mutating Carapace
-   .description = Increases Kerrigan's life-steal from 15% to 30%
+   .description = Increases Kerrigan's life-steal from 15% to 25%
+
+actor-kerrigan-tier3-overreach =
+   .name = Swarming Overreach
+   .description = Increases Kerrigan's attack range by 1 cell.
 
 actor-kerrigan-tier4-torrasque =
    .name = Ultralisk Evolution: Torrasque
@@ -5636,64 +6176,13 @@ actor-kerrigan-tier4-torrasque =
     When killed, can be revived after 10 seconds, 
      once every 60 seconds.
 
-actor-zagara-tier1-fastupgrade1 =
-   .name = Enhanced Muscle Tissue
-   .description = Gain Structure Firepower I instantly.
-
-actor-zagara-tier1-fastupgrade2 =
-   .name = Hardened Epidermis
-   .description = Gain Structure Armor I instantly.
-
-actor-zagara-tier2-costcut =
-   .name = Accelerated Evolution
-   .description = Produce units for 10% cheaper and 20% faster.
-
-actor-zagara-tier2-firespeed =
-   .name = Adrenal Glands
-   .description = Improves infantry attack speed by 10%.
-
-actor-zagara-tier3-fastupgrade1 =
-   .name = Enhanced Muscle Tissue II
-   .description = Gain Structure Firepower II instantly.
-
-actor-zagara-tier3-fastupgrade2 =
-   .name = Hardened Epidermis II
-   .description = Gain Structure Armor II instantly.
-
-actor-zagara-tier3-range =
-   .name = Mutate Optical Enhancements
-   .description = Increase view and attack range of defensive
-     structures by 10%.
-
-actor-zagara-tier4-support1 =
-   .name = Frenzy
-   .description = Enables Zerg Frenzy support power. 
+actor-kerrigan-tier4-bloodlust =
+   .name = Bloodlust
+   .description = When entering combat, Kerrigan will cast
+     the Frenzy effect on herself and all nearby allies
+     for 15 seconds.
     
-    Boosts a group of units by 20%.
-    Cooldown: 5:00
-
-actor-zagara-tier4-support2 =
-   .name = Regenerative Cells
-   .description = Increases HP regen of all Zerg units by 100%. 
-
-actor-zagara-tier4-fastupgrade1 =
-   .name = Enhanced Muscle Tissue III
-   .description = Gain Structure Firepower III instantly.
-
-actor-zagara-tier4-fastupgrade2 =
-   .name = Hardened Epidermis III
-   .description = Gain Structure Armor III instantly.
-
-actor-zagara-tier5-option1 =
-   .name = 'Fortress' Mutation 
-   .description = Increases Zagara's HP by 100%.
-   Increases structure armor and damage by a further 20%.
-
-actor-zagara-tier5-option2 =
-   .name = Heart of the Swarm
-   .description = Produce units for a further 10% cheaper and 20% faster.
-
-   Totaling 20% and 40%.
+   Can only occur once every 75 seconds.
 
 notification-shield-projection-charging = Shield projection charging.
 notification-shield-projection-ready = Shield projection ready.
@@ -6015,26 +6504,24 @@ actor-strifeguy-tier4-crusader =
    .name = Crusader Construction
    .description = Allows construction of Crusader units.
 
-actor-strifeguy-tier5-invulnerability =
-   .name = Invulnerability
-   .description = Doom Guy will become invincible for 15 seconds when attacked.
+actor-strifeguy-tier5-inquisitor =
+   .name = Inquisitor Construction
+   .description = Allows construction of Inquisitor units.
 
-actor-strifeguy-tier5-chainsaw =
-   .name = Chainsaw
-   .description = Upon death, Doom Guy will revive as a berserker wielding a chainsaw.
-   RIP AND TEAR TILL THE JOB IS DONE!
+actor-strifeguy-tier5-sigil =
+   .name = Sigil
+   .description = Wield the ultimate sentient weapon, The Sigil of the One God.
 
-actor-strifeguy-tier5-berserk =
-   .name = Berserk
-   .description = Upon death, Doom Guy will revive as a beserker and punch things until he dies.
-
-actor-strifeguy-tier5-overdrive =
-   .name = Overdrive
-   .description = Doom Guy will have increased firerate and movement speed for 30 seconds.
-
-actor-strifetemplar-name = Templar
-actor-strifeguycrusader-name = Crusader
+actor-strifeguytemplar =
+    .name = Templar 
+    .description = The Templar are men in big, heavy suits with life support devices equipped with a Mauler and with nothing to lose.
+actor-strifeguycrusader =
+    .name = Crusader
+    .description = The Crusader is a constructed bipedal robot equipped with a flamethrower.
 actor-strifeguybasic-name = Front Soldier
+actor-strifeguyinquisitor =
+    .name = Inquisitor
+    .description = The Inquisitor is a powerful bipedal robot equipped with a grenade launcher and a Mauler blaster.
 
 actor-maverick-hero0 =
    .description = [HERO]
@@ -6168,6 +6655,245 @@ actor-maverick-tier5-parabomb7 =
    .description = Replaces the standard parabomb with a hate filled bomb.
    This weapon causes enemy units to turn against everyone and everything.
    The risk of carrying such a experimental weapon causes Maverick to take an extra 25% damage.
+
+actor-masterchief-hero0 =
+   .description = [HERO]
+
+    Role: Powerful Infantry Unit
+
+    Master Chief Petty Officer John-117, also known as Master Chief, is a SPARTAN-II commando of the UNSC Naval Special Warfare Command.
+
+    Weapons can be changed via the Hero Upgrade menu.
+
+    Starts with Battlerifle and can stockpile 4 grenades.
+
+    Speed: 90
+      Strong vs Infantry, Vehicles
+
+   .name = Master Chief  (Tier 0)
+   .real--name = Master Chief 
+
+actor-masterchief-hero1-name = Master Chief  (Tier 1)
+actor-masterchief-hero2-name = Master Chief  (Tier 2)
+actor-masterchief-hero3-name = Master Chief  (Tier 3)
+actor-masterchief-hero4-name = Master Chief  (Tier 4)
+actor-masterchief-hero5-name = Master Chief  (Tier 5)
+
+actor-masterchief-tier1-sprinterpack =
+    .name = Sprinter Pack
+    .description = Increases movement speed by 20%
+
+actor-masterchief-tier1-titaniumalloy =
+    .name = Titanium Alloy
+    .description = Increases armor by 20%
+
+actor-masterchief-tier2-cornealimplants =
+    .name = Corneal Implants
+    .description = Increases vision range by 20%
+
+actor-masterchief-tier2-plasmagrenade =
+    .name = Plasma Grenades
+    .description = Add a chance to replace frag grenades with plasma grenades.
+
+    Plasma grenades do more damage to shields.
+
+actor-masterchief-tier3-jammer =
+    .name = Jammer
+    .description = Produces a gap shroud around the Master Chief.
+
+actor-masterchief-tier3-regenerator =
+    .name = Regenerator
+    .description = Adds a health regeneration buff to the Master Chief.
+
+    Nearby units will also gain health regen.
+
+actor-masterchief-tier4-cloakingdevice =
+    .name = Active Camo
+    .description = Adds the ability to provide active camo to the Master Chief.
+
+actor-masterchief-tier4-bubbleshield =
+    .name = Bubble Shield
+    .description = Adds the ability to construct a bubble shield around the Master Chief.
+
+actor-masterchief-tier4-powerdrain =
+    .name = Power Drain
+    .description = The Master Chief will throw an EMP grenade that will disable units and structures.
+
+actor-masterchief-tier5-invulnerability =
+    .name = Invincibility
+    .description = Adds the ability to provide invincibility to the Master Chief.
+
+actor-masterchief-tier5-markviarmor =
+    .name = Mark VI Armor
+    .description = Upgrade armor provides buffs to all statistics.
+
+actor-masterchief-tier5-autoturret =
+    .name = Forerunner Auto Turret
+    .description = A forerunner auto turret will  assist the Master Chief.
+
+actor-masterchief =
+   .pistol = M6C Magnum
+   .pistoldesc = Arm the Master Chief with a M6C Magnum
+
+   Reduces Damage
+   Reduces Firerate
+   Increases Range
+
+   .plasmapistol = Type-25 Plasma Pistol
+   .plasmapistoldesc = Arm the Master Chief with a Type-25 Plasma Pistol
+
+   Overall Reduced Damage
+   Heavily Increased Damage to Shields
+   Increased Firerate
+   Reduced Range
+
+   Master Chief has a change to overcharge the Plasma Pistol and fire a charged shot:
+
+   Increased Radius Damage
+   Increased Damage to Shields
+   Delay in firing after overheating
+
+   .plasmapistol = Type-25 Plasma Pistol
+   .plasmapistoldesc = Arm the Master Chief with a Type-25 Plasma Pistol
+
+   Reduced Damage
+   Heavily Increased Damage to Shields
+   Increased Firerate
+   Reduced Range
+
+   Master Chief has a change to overcharge the Plasma Pistol and fire a charged shot:
+
+   Increased Radius Damage
+   Increased Damage to Shields
+
+   .shotgun = M90 Shotgun
+   .shotgundesc = Arm the Master Chief with a M90 Shotgun
+
+    Reduced Range
+    Increased Damage
+    Increased Damage Spread
+
+   .needler = Type-33 Needler
+   .needlerdesc = Arm the Master Chief with a Type-33 Needler
+
+    Reduced Damage
+    Increased Firespeed
+    Increased Firerange
+    Spread Damage
+
+    Needler will cause an explosion if a unit is hit multiple times in a short period of time
+
+   .plasmarifle = Okarda'phaa-pattern plasma rifle
+   .plasmarifledesc = Arm the Master Chief with a Okarda'phaa-pattern plasma rifle
+
+    Reduced Damage
+    Increased Firespeed
+    Heavily Increased damage to Shields
+
+   .assaultrifle = MA5B assault rifle
+   .assaultrifledesc = Arm the Master Chief with a MA5B assault rifle
+
+   60 Round magazine
+
+    Reduced Damage
+    Increased Firespeed
+    Decreased Accuracy
+    Long reload time
+
+   .sniper = SRS99C-S2 AM sniper rifle
+   .sniperdesc = Arm the Master Chief with a SRS99C-S2 AM sniper rifle
+
+    Heavily Increased Firerange
+    Heavily Increased Damage
+    Can only target Infantry
+    Long reload time
+
+   .plasmacarbine = Vostu-pattern carbine
+   .plasmacarbinedesc = Arm the Master Chief with a Vostu-pattern carbine
+
+    Increased Firerange
+    Increased Firerate
+    Increased Damage to Shields
+
+   .energysword = Type-1 energy sword
+   .energysworddesc = Arm the Master Chief with a Type-1 energy sword
+
+    Will leap to units when attacking
+    Short range
+    Damage reduction and movement speed increased while weapon is equipped
+    Can only target Infantry
+
+   .rocketlauncher = M41 rocket launcher
+   .rocketlauncherdesc = Arm the Master Chief with a M41 rocket launcher
+
+   2 Burst Salvo
+   Increased Damage to vehicles and buildings
+   Increased Firerange
+   Can target aircraft
+
+   .fuelrodcannon = Fuel Rod Cannon
+   .fuelrodcannondesc = Arm the Master Chief with a Fuel Rod Cannon
+
+   4 Burst Salvo
+   Heavily Increased Firerange
+   Heavily Increased Damage
+   Spread damage
+   Long reload time
+
+   .bruteshot = Jovokada Workshop Brute Shot
+   .bruteshotdesc = Arm the Master Chief with a Jovokada Workshop Brute Shot
+
+   8 Burst Salvo
+   Increased Damage to Infantry and Vehicles
+   Spread Damage
+
+   .sentinelbeam = Sentinel beam
+   .sentinelbeamdesc = Arm the Master Chief with a Sentinel beam
+
+   Increased Firerate
+   Increased Damage to Shields
+
+   .gravityhammer = Akelus Workshop Gravity Hammer
+   .gravityhammerdesc = Arm the Master Chief with a Akelus Workshop Gravity Hammer
+
+    Will leap to units when attacking
+    Long range
+    Damage reduction and movement speed increased while weapon is equipped
+    Can only target Infantry
+    Spread damage that causes heavy damage
+    Long reload time
+
+   .spartanlaser = M6/R Spartan Laser
+   .spartanlaserdesc = Arm the Master Chief with a M6/R Spartan Laser
+
+   Heavily Increased Firerange
+   Heavily Increased Damage
+   Increased Damage to Shields
+   Spread damage
+   Long reload time
+
+   .flamethrower = M7057 Flamethrower
+   .flamethrowerdesc = Arm the Master Chief with a M7057 flamethrower
+
+   Increased Damage to Infantry
+   Increased Firerate
+   Decreased Firerange
+   Spread Damage
+
+   .bubbleshieldname = Z-4190 Bubble Shield
+   .bubbleshielddesc = Places a Shield generator that provides shields to nearby units.
+
+   Will self destruct after 30 seconds.
+   Build limit 1.
+
+   .cloakingdevicename = Active camouflage
+   .cloakingdevicedesc = Covenant active camouflage conceals by bending and refracting light around the surface of the camouflaged object.
+
+   .invincibilityname = Invincibility
+   .invincibilitydesc = Provides 10 seconds of invincibility.
+
+actor-masterchiefautoturret =
+   .name = Forerunner Automated Turret
 
 ## forgotten
 actor-frge1 =
@@ -6317,11 +7043,12 @@ actor-btrae-hero =
 
    Tier 1 unlocks 2nd attack.
    Tier 2 unlocks anti-missile system and UAV.
-   Tier 3 unlocks stealth detection and 3rd attack.
+   Tier 3 unlocks stealth detection, 3rd attack,
+     and anti-cruise missile system.
    Tier 4 unlocks area vehicle boosting.
    Tier 5 unlocks 4th attack and emergency airdrop.
 
-     Speed: 100
+     Speed: 96
      Strong vs Everything
    .name = Rae Ven 3L
    .tier0 = Rae Ven 3L (Tier 0)
@@ -6340,6 +7067,15 @@ actor-btrae-upgrade =
    .t1u3name = Rae: Improved Cycles
    .t1u3desc = Increase Rae's fire rate by 20%.
       But will generate more heat.
+   .t1u4name = Rae: Improved Actuators
+   .t1u4desc = Increase Rae's movement speed by 7%.
+   .t1u5name = Rae: Ferro-Fibrous Plating
+   .t1u5desc = Increase Rae's movement speed by 14%,
+      but reduces armor by 20%
+   .t1u6name = Rae: Reactive Heavy Plating
+   .t1u6desc = Increase Rae's armor by 10% and 
+      enables auto-repairs, but decreases movement
+      speed by 10%.
    .t2u1name = Driving Courses
    .t2u1desc = Increase vehicle movement speed by 10%.
    .t2u3name = Rae: SRM 6
@@ -6366,10 +7102,13 @@ actor-btrae-upgrade =
    .t4u2desc = Install a 10-salvo long range missile pack on Rae.
       Slot: 2 (replaces a laser)
       Generates moderate heat. Increases vision range.
-   .t4u4name = Rae: Light PPC
-   .t4u4desc = Install a long range PPC on Rae.
+   .t4u3name = Rae: Light PPC
+   .t4u3desc = Install a long range PPC on Rae.
       Slot: 2 (replaces a laser)
       Generates high heat. Increases vision range.
+   .t4u4name = Rae: Clan Heatsinks
+   .t4u4desc = Install upgraded heatsinks on Rae.
+      Reduces overall heat generated by weapons.
    .t5u1name = Construction Bots
    .t5u1desc = Produce vehicles for 10% cheaper and 20% faster. 
    .t5u2name = Layered Armor
@@ -6384,6 +7123,163 @@ actor-btrae-uav =
    .desc = Launch a UAV for 2 minutes.
       Receives Rae's BAP or ECM upgrades.
       Detects cloaked units.
+
+
+actor-phaedk-hero =
+   .description = [HERO]
+
+   Role: Tank or Damage Dealer
+   
+     Death Knight, melee attacker with some
+     area-of-effects and self healing.
+
+     Uses Runes to use stronger attacks, which
+     generate Runic Power. Runic Power is used
+     for self-healing or debuffing.
+
+     She may be in the Frost DPS spec, or Blood
+       Tanking spec.
+   
+     Each tier unlocks 2 upgrades for either or both specs.
+
+     Starting Frost attacks: Basic melee, Obliterate, 
+       Howling Blast, Frost Strike, Death Strike.
+
+     Starting Blood attacks: Basic melee, Heart Strike
+       Blood Boil, Marrowrend, Death Strike.
+
+   Tier 1 unlocks Death & Decay and Death's Advance
+   Tier 2 unlocks Remorseless Winter and Lichborne
+   Tier 3 unlocks additional hero upgrades
+   Tier 4 unlocks powerful hero upgrades
+   Tier 5 unlocks Frostwyrm's Fury and Second Wind
+
+     Speed: 96
+     Strong vs Ground units
+     Weak vs Aircraft
+   .name = Phaerah
+   .husk = Phaerah (Corpse)
+   .tier0 = Phaerah (Tier 0)
+   .tier1 = Phaerah (Tier 1)
+   .tier2 = Phaerah (Tier 2)
+   .tier3 = Phaerah (Tier 3)
+   .tier4 = Phaerah (Tier 4)
+   .tier5 = Phaerah (Tier 5)
+   .frostwyrm = Frostwyrm's Fury
+   .frostwyrmdesc = Call upon the wrath of an undead
+     Frostwyrm to blast icey breath in a 16 cell path.
+
+     Deals massive damage, and freezes units and infantry.
+   .raise = Second Wind
+   .raisedesc = When killed, resurrect a few moments later
+     with 60% health.
+   .blood = Blood (Tank) Spec
+   .blooddesc = Increases armor by 20% and reduces 
+   damage by 20%.
+
+   Heart Strike: 1 rune, cone area melee attack.
+      Reduces enemy movement speed for 8 sec.
+   Blood Boil: Area of effect attack and debuff:
+      Inflicts corrosion for 6 seconds.
+   Marrowrend: 2 runes, moderate damage, and grants 
+      Phae with a 10% damage reduction.
+   Death Strike: 45 Runic Power, deals moderate damage
+      and damage done will heal Phaerah times 5.
+
+   Tier 1: Death & Decay: deals damage over time in a 
+      large area. It also demoralises infantry and slows 
+      vehicles.
+   Tier 1: Death's Advance: Increases Phae's movement 
+      for 8 seconds.
+   Tier 2: Lichborne, increases Phaerah's armor and 
+      leech for 10 seconds.
+
+   .frost = Frost (DPS) Spec
+   .frostdesc = Maximmise damage output.
+
+   Obliterate: 2 runes, small area of effect high damage
+      melee attack.
+   Howling Blast: 1 rune, ranged ice attack, slows targets.
+   Frost Strike: 35 runic power, moderate damage, slows targets.
+   Death Strike: 45 Runic Power, deals moderate damage
+      and damage done will heal Phaerah times 5.
+   
+   Tier 1: Death & Decay: deals damage over time in a 
+      large area. It also demoralises infantry and slows 
+      vehicles.
+   Tier 1: Death's Advance: Increases Phae's movement 
+      for 8 seconds.
+   Tier 2: Remorseless Winter: 1 rune, deals moderate 
+      area of effect damage and slows nearby enemies.
+
+
+actor-phaerah-upgrade = 
+   .t1u1name = Killing Machine (Frost)
+   .t1u1desc = Phaerah's basic attack has a chance
+     to grant Killing Machine. This increases damage
+     done by Obliterate by 400%
+   .t1u2name = Runic Mastery (All Specs)
+   .t1u2desc = Increases recharge time for Phaerah's
+     Runes by 45%
+   .t1u3name = Runic Empowerment (All Specs)
+   .t1u3desc = When Phaerah uses Runic Power, one
+     Rune is refunded.
+   .t1u4name = Vampiric Aura I (All Specs)
+   .t1u4desc = Increases life-steal by 33%
+   .t2u4name = Vampiric Aura II (All Specs)
+   .t2u4desc = Increases life-steal by a further 33%
+   .t2u1name = Veteran of the Third War I (All Specs)
+   .t2u1desc = Increases armor 7%
+   .t3u1name = Veteran of the Third War II (All Specs)
+   .t3u1desc = Increases armor 14%
+   .t2u2name = March of Darkness (All Specs)
+   .t2u2desc = Death's Advance occurs more frequently
+     and increases speed boost by 50%
+   .t2u3name = Rime (Frost)
+   .t2u3desc = Phaerah's Frost Strike triggers
+     Rime. This increases damage done by Howling 
+     Blast by 200%
+   .t3u2name = Runic Attenuation (All Specs)
+   .t3u2desc = Runic Power grows passively up to 30.
+   .t3u3name = Ice Cold (Frost)
+   .t3u3desc = Reduce damage taken by Fire and 
+     Toxic attacks by 33%
+   .t3u4name = Improved Death Strike (Blood)
+   .t3u4desc = Death Strike costs 10 less Runic Power,
+     and instead heals for 6 times the damage done.
+   .t3u5name = Arctic Assault (Frost)
+   .t3u5desc = Killng Machine when consumed sends a wave of 
+     icey glaciers in a line.
+   .t4u1name = Bone Collector (Blood)
+   .t4u1desc = Death Strike also generates boneshield. When the
+     shield is drained, it will cause an explosion of damage.
+   .t4u2name = Pillar of Frost (Frost)
+   .t4u2desc = Increase damage done by 20% when entering
+     combat, for 12 seconds. Cooldown 45 seconds.
+   .t4u3name = Icey Death Torrent (Frost)
+   .t4u3desc = Basic attack has a chance of blasting
+     nearby enemies with a wave of frost.
+   .t4u4name = Will of the Necropolis (All Specs)
+   .t4u4desc = Damage taken while below 30% health is 
+     reduced by 50%.
+   .t5u1name = Empower Rune Weapon (Frost)
+   .t5u1desc = Damaging enemies has a low chance to freeze
+     them solid for 3 seconds.
+   .t5u2name = Blood Draw (Blood)
+   .t5u2desc = When falling below 30% health, cast Bloodboil
+     and recover 50% health. Cooldown 45 seconds.
+   .t5u3name = Null Magic (All Specs)
+   .t5u3desc = Reduce damage caused by Fire, Explosions, 
+     Electricity and Toxin by 20%.
+   .t5u4name = Obliteration (Frost)
+   .t5u4desc = While Pillar of Frost is active, Frost Strike
+     and Howling Blast always grants Killing Machine and 
+     generates 1 rune.
+
+actor-maningauze =
+   .description = Obnoxious record player. RETURN THE SLAB!
+   .name = Record Player
+   .rock = Suspiciously Loud Rock
 
 player-factions =
    .england = England: Espionage
@@ -6437,8 +7333,6 @@ player-factions =
      Special Ability: Cheaper Aircraft
      Special Units: Orca Gunship, Orca Bomber, Orca Carryall
      Super Unit: Flagship Kodiak
-     
-     No Cruiser or Destroyer
    .nod = Nod: Hit & Run Tactics, Tiberium
      Utility: GPS Satellite
      Superweapons: Hunter-Seeker, Atomic Bomb
@@ -6622,7 +7516,7 @@ player-factions =
      Superweapon: Nuclear Missile
      Super Ability: Artillery Strike
    .nuke = General Tsing Shi Tao
-     Special Units: Nuclear based units
+     Special Units: Nuclear based units & Deathhand
      Superweapon: Super Nuclear Missile
      Super Ability: Nuclear Parabombs
    .japan = Neo Japanese Empire
@@ -6698,6 +7592,31 @@ player-factions =
       Special units: 'Mech Lances
      
       Drawbacks: Resource intensive, but many options.
+    .unsc = UNSC Marine Corps
+      "Provide combined arms expeditionary forces and security detachments."
+
+      The UNSC Marine Corps is a branch of the United Nations Space Command responsible
+      for conducting land-based expeditionary amphibious and airborne combat operations,
+      using the mobility provided by the UNSC Navy to rapidly deliver forces.
+
+      Speciality: Infantry & Aircraft
+      Superweapon: MAC
+      Special units: Sgt Johnson & Colony Ship
+      Abilities: ODST Drop
+
+    .covenant = Covenant Empire [WIP]
+      "Creatures of the Covenant: the path is broad, and we shall walk it side by side!"
+      — The High Prophet of Truth
+
+      The Covenant is a massive religious hegemony of multiple alien species that completely controls a large portion of the Orion Arm in the Milky Way Galaxy.
+      Originally a mutual alliance between the San'Shyuum and the Sangheili, the Covenant expanded to include six other species (Huragok, Mgalekgolo, Unggoy, Kig-Yar, Yanme'e, and Jiralhanae)
+      united in the worship of the mythified Forerunners and the Halo Array.
+
+      Speciality: Multipurpose
+      Superweapon: ???
+      Special units: ???
+      Abilities: ???
+
    .civ = [incomplete] Civilians: Support
      Special Unit: Nothing
      Super Unit: President
@@ -6804,3 +7723,843 @@ actor-iron =
     for 20 seconds.
     .grantexternalconditionpower-ironcurtain-description2 = Grants invulnerability to a large group of units
     for 20 seconds.
+
+## unsc_str.yaml
+
+actor-unsccommandcenter =
+   .description = A prefabricated base of operations used by the UNSC Marine Corps in combat zones or locations that are otherwise hostile.
+
+   "The United Nations Space Command makes extensive use of military bases.
+   They are often flexible, using various designs, terrain, and functions in their setup,
+   allowing their occupants the best degree of flexibility possible.
+   Incorporating existing and specialty equipment, ranging from old 20th Century bunkers to Forerunner mesas,
+   to repurposed colony starter units, there are many different types."
+
+   .name = UNSC Command Center
+
+actor-unscfirebase =
+   .description = Firebase platforms are a prerequisite required for allowing construction of UNSC buildings.
+   Each Firebase has its on production queue and any buildings constructed can be sold back into a firebase platform.
+   .name = UNSC Firebase
+
+actor-unscreactor =
+   .description = UNSC Reactors provide the energy needed to access the advanced buildings, units and technology upgrades.
+
+   "Prefabricated firebases contain a fusion reactor powered by reactions between hydrogen isotopes."
+
+   .name = UNSC Reactor
+   .nameup = UNSC Advanced Reactor
+
+actor-unscreactor-up =
+   .description = Upgrades the reactor into an advanced reactor, doubling power output.
+   .name = Advanced Reactor Upgrade
+
+actor-unscbarracks =
+   .description = The Barracks trains the bulk of the UNSC infantry units. Infantry technology upgrades can also be found here.
+   
+   "Army and Marine Corps troopers are detached ("chopped") from their parent unit aboard the Spirit of Fire
+   and deployed to reinforce key firebases on the Ark's surface,
+   replacing injured personnel who are then medevac‘d out of the combat zone."
+
+   .name = UNSC Barracks
+
+actor-unscgarage =
+   .description = The Garage constructs the ground vehicles for the UNSC army. Vehicle technology upgrades can also be found here.
+   
+   "A tank's a tank, light-bulb." - Sgt Johnson.
+
+   .name = UNSC Garage
+
+actor-unscsupplypad =
+   .description = The supply pad refines resources gathered by harvesters.
+
+   "Supply Pads allow the firebase to receive a constant flow of Supplies from the Spirit of Fire.
+   These are vital logistical ports for UNSC combat operations,
+   and the force commander should carefully weigh the cost of delaying their construction."
+
+   .name = UNSC Supply Pad
+
+actor-unscairpad =
+   .description = The Airpad assembles UNSC aircraft for battle. Aircraft technology upgrades can also be found here.
+
+   "Expeditionary airpads house the maintenance crews and equipment needed to assemble, repair, refuel, and rearm UNSC aircraft.
+   Airpads also support the force commander with sensor feeds and intelligence uplinks which allow for proper battlespace deconfliction,
+   kill chain assignment, and other aerospace management tasks."
+
+   .name = UNSC Airpad
+
+actor-unscarmory =
+   .description = Tech building. Unlocks advanced technology & construction of the MAG superweapon.
+
+   "The Armory contains specialized machinery and robotic assemblers needed to support the logistical upgrades Isabel has added to the Spirit of Fire,
+   as well as additional communication and sensor systems to expand the force commander's option when assembling battle groups"
+
+   .name = UNSC Armory
+
+actor-unscrepairpad =
+   .description = The repair pad repairs damaged vehicles.
+
+   "After too many incidents from on field repairs in the battlezone, UNSC forces had to utilize a firebase zone for repairing damaged vehicles.
+   This greatly reduced the incident count."
+
+   .name = UNSC Repair Pad
+
+actor-unscradartower =
+   .description = Provides radar. Also allows usage of emergency support powers.
+
+   "The radar tower is a key constuction for UNSC forces.
+   Allowing communication at further distances is key for strategic actions,
+   as well as preparing counters for advancing Covenant forces."
+
+   .name = UNSC Radar Tower
+
+actor-unscmac =
+   .description = The UNSC superweapon. Utilizing the MAC unleashes a barrage of multi-ton projectiles at extraordinarily high velocities from the bow of a capital ship from orbit.
+
+    "Nils Thune: "Space? Those things even make noise in zero-gee?"
+    Ponder: "If you’re inside a MAC ship when the cannon fires? I don’t know if you’re a religious man, Governor. But it’s a little like a church bell—"
+    — Governor Thune and Captain Ponder discussing MACs."
+
+   .name = UNSC Magnetic Accelerator Cannon
+
+actor-unscpod =
+   .description = The Talos is a fairly modular weapons platform, capable of targeting and firing on enemy targets automatically or via manned use of a remote battle network uplink.
+
+   It is used as a Talos platform to construct turrets.
+   Each Talos platform has its on production queue and any defenses constructed can be sold back into a Talos platform.
+
+   .name = M5 Talos
+
+actor-unsctalos =
+   .description = The M5 Talos Weapons Station an automated stationary weapons platform armed with a M202 XP machine gun.
+
+      Strong vs Infantry, Aircraft
+      Weak vs Vehicles
+
+   .name = M5 Talos Weapon Station
+
+actor-unscsiege =
+   .description = Equipped with a 152mm M4131 rapid-fire howitzer. 
+
+      Strong vs Vehicles
+      Weak vs Infantry, Aircraft
+
+    "Siege Turrets are long-range artillery systems built to counter enemy bombardment platforms
+    that would otherwise be out of range of standard Turrets.
+    These structures occupy a turret slot."
+
+   .name = M5 Talos Siege Turret
+
+actor-unscwatchtower =
+   .description = Watchtowers are fully-automated structures, capable of detecting cloaked enemies.
+
+   .name = M5 Talos Watchtower
+
+actor-unscanaconda =
+   .description = Equipped with two Anaconda surface-to-air missile launchers are installed on both sides of a base turret to repel attacking aircraft
+
+      Strong vs Aircraft
+      Weak vs Infantry, Vehicles
+
+   .name = M5 Talos Anaconda
+
+actor-unscsilo =
+   .description = Stores additional credits
+
+   .name = UNSC Silo
+
+actor-unscadvtech =
+   .description = Unlocks advanced technology
+   .name = UNSC Advanced Tech Centre
+
+actor-unsculttechcenter =
+   .description = Unlocks super advanced technology and epic unit
+   .name = UNSC Super Tech Centre
+
+actor-unscfoundry =
+   .description = Increases build speed much more than standard foundrys.
+   .name = UNSC Foundry
+
+
+## unsc_inf.yaml
+actor-unscmarine =
+   .description = Main UNSC infantry unit [Mid Range]. Can come armed with the following weapons:
+
+   MA5B Assault Rifle -  Standard damage and range, fires in short 5 round bursts
+   BR55 Battle Rifle - Standard damage and range, fires in short 3 round bursts
+
+   Marines can also be upgraded to carry frag grenades, increasing damage to vehicles.
+
+   If the Covenant weapons upgrade is researched, marines can also be armed with the following weapons:
+
+   Okarda'phaa-pattern plasma rifle - Standard range, higher damage to shields
+   Type-33 Needler - Longer range, Burst damage when needles are stacked onto a single unit
+
+   Speed: 62
+      Strong vs Infantry
+      Weak vs Vehicles, Aircraft
+   .name = UNSC Marine
+
+actor-unscfrontrunner =
+   .description = Main UNSC infantry unit [Short Range]. Can come armed with the following weapons:
+
+   M6C Magnum - Longer range, less damage
+   M90 Shotgun - Shorter range, more damage
+
+   Marines can also be upgraded to carry frag grenades, increasing damage to vehicles.
+
+   If the Covenant weapons upgrade is researched, marines can also be armed with the following weapons:
+
+   Type-25 Plasma Pistol - Shorter Range, higher damage to shields
+
+   Speed: 70
+      Strong vs Infantry
+      Weak vs Vehicles, Aircraft
+   .name = UNSC Marine
+
+actor-unscheavyweaponsmarine =
+   .description = Anti-vehicle UNSC Marine. Can come armed with the following weapons:
+
+   M41 Rocket Launcher - Standard range, able to attack air
+   M301 Grenade Launcher - Standard range, increased damage to infantry
+
+   If the Covenant weapons upgrade is researched, marines can also be armed with the following weapons:
+
+   Jovokada Workshop Brute Shot - Standard range, incrased damage to infantry
+   Fuel Rod Cannon - Increased range, longer reload, increased spread damage
+
+   Speed: 62
+      Strong vs Aircraft, Vehicles
+      Weak vs Infantry
+   .name = UNSC Heavy-Weapons Marine
+
+actor-unscsniper =
+   .description = UNSC Sniper. Cloaked when stationary. Can come armed with the following weapons:
+
+   SRS99C-S2 AM sniper rifle - Standard range and damage
+
+   If the Covenant weapons upgrade is researched, snipers can also be armed with the following weapons:
+
+   Vostu-pattern carbine - Shorter range, can target vehicles.
+   Sulok-pattern beam rifle - Shorter range, can target vehicles and aircraft.
+
+   Speed: 62
+      Strong vs Infantry
+      Weak vs Vehicles, Aircraft
+   .name = UNSC Sniper
+
+actor-unschellbringer =
+   .description = UNSC Hellbringer. Armed with an M7057 Flamethrower
+
+   Hellbringers can be upgraded to carry flashbangs that disorientate infantry.
+
+   Speed: 62
+      Strong vs Infantry, Vehicles
+      Weak vs Aircraft
+   .name = UNSC Hellbringer
+
+actor-unscsgtjohnson =
+   .description = Sergeant Major Avery Junior Johnson. Armed with an SRS99C-S2 AM sniper rifle with AP rounds.
+
+   "Dear humanity: We regret being alien bastards. We regret coming to Earth. And we most definitely regret that the Corps just blew up our raggedy-ass fleet!"
+
+   Speed: 62
+      Strong vs Infantry, Vehicles
+      Weak vs Aircraft
+   .name = Sergeant Johnson
+
+actor-unscodstmarine =
+   .description = Elite special operations infantry unit [Mid Range]. Can come armed with the following weapons:
+
+   MA5B Assault Rifle -  Standard damage and range, fires in short 5 round bursts
+   BR55 Battle Rifle - Standard damage and range, fires in short 3 round bursts
+
+   Marines can also be upgraded to carry frag grenades, increasing damage to vehicles.
+
+   If the Covenant weapons upgrade is researched, marines can also be armed with the following weapons:
+
+   Okarda'phaa-pattern plasma rifle - Standard range, higher damage to shields
+   Type-33 Needler - Longer range, Burst damage when needles are stacked onto a single unit
+
+   Speed: 62
+      Strong vs Infantry
+      Weak vs Vehicles, Aircraft
+   .name = ODST Marine
+
+actor-unscodstfrontrunner =
+   .description = Elite special operations infantry unit [Short Range]. Can come armed with the following weapons:
+
+   M6C Magnum - Longer range, less damage
+   M90 Shotgun - Shorter range, more damage
+
+   Marines can also be upgraded to carry frag grenades, increasing damage to vehicles.
+
+   If the Covenant weapons upgrade is researched, marines can also be armed with the following weapons:
+
+   Type-25 Plasma Pistol - Shorter Range, higher damage to shields
+
+   Speed: 70
+      Strong vs Infantry
+      Weak vs Vehicles, Aircraft
+   .name = ODST Marine
+
+actor-unscodstheavyweaponsmarine =
+   .description = Elite special operations Anti-vehicle unit. Can come armed with the following weapons:
+
+   M41 Rocket Launcher - Standard range, able to attack air
+   M301 Grenade Launcher - Standard range, increased damage to infantry
+
+   If the Covenant weapons upgrade is researched, marines can also be armed with the following weapons:
+
+   Jovokada Workshop Brute Shot - Standard range, incrased damage to infantry
+   Fuel Rod Cannon - Increased range, longer reload, increased spread damage
+
+   Speed: 62
+      Strong vs Aircraft, Vehicles
+      Weak vs Infantry
+   .name = ODST Heavy-Weapons Marine
+
+actor-unscodstsniper =
+   .description = Elite special operations Sniper. Cloaked when stationary. Can come armed with the following weapons:
+
+   SRS99C-S2 AM sniper rifle - Standard range and damage
+
+   If the Covenant weapons upgrade is researched, snipers can also be armed with the following weapons:
+
+   Vostu-pattern carbine - Shorter range, can target vehicles.
+   Sulok-pattern beam rifle - Shorter range, can target vehicles and aircraft.
+
+   Speed: 62
+      Strong vs Infantry
+      Weak vs Vehicles, Aircraft
+   .name = ODST Sniper
+
+actor-unscodsthellbringer =
+   .description = Elite special operations Hellbringer. Armed with an M7057 Flamethrower
+
+   Hellbringers can be upgraded to carry flashbangs that disorientate infantry.
+
+   Speed: 62
+      Strong vs Infantry, Vehicles
+      Weak vs Aircraft
+   .name = ODST Hellbringer
+
+## unsc_air.yaml
+actor-unscdarter =
+   .description = Collects Ore, Tiberium and Gems for processing.
+    Speed: 96 
+      Unarmed
+   .name = D82-EST Darter
+
+actor-unschornet =
+   .description = The AV-14 Attack VTOL (colloquially nicknamed the Hornet), is a VTOL attack aerodyne manufactured by Misriah Armory.
+
+   Armed with a 20mm GAU-23/AW/Linkless Feed Autocannon
+   and 2 M651 missile launchers
+
+   When Chaff Pod is researched, Hornet will be able to shoot down incoming missiles.
+
+    Speed: 96 
+      Strong vs Infantry, Vehicles
+      Weak vs Aircraft
+   .name = AV-14B Hornet
+
+actor-unschornet =
+   .description = The AV-14 Attack VTOL (colloquially nicknamed the Hornet), is a VTOL attack aerodyne manufactured by Misriah Armory.
+
+   Armed with a 20mm GAU-23/AW/Linkless Feed Autocannon
+   and 2 M651 missile launchers
+
+   When Chaff Pod is researched, the Hornet will be able to shoot down incoming missiles.
+
+    Speed: 112
+      Strong vs Infantry, Vehicles
+      Weak vs Aircraft
+   .name = AV-14B Hornet
+
+actor-unscsparrowhawk =
+   .description = The Sparrowhawk is a VTOL aerodyne used to hunt tanks and support ground operations.
+
+   Armed with 2 wing-mounted GAU-23/AW/Linkless Feed Autocannons
+   and 1 chin-mounted M6 Grindell/Galilean Nonlinear Cannon
+
+    Speed: 96 
+      Strong vs Infantry, Vehicles
+      Weak vs Aircraft
+   .name = AV-22 Sparrowhawk
+
+actor-unscvulture =
+   .description = The AC-220 Gunship, colloquially known as the Vulture, is a heavy gunship manufactured by Ushuaia Armory and fielded by the UNSC.
+
+   Armed with 4 GAU-23/AW/Linkless Feed Autocannons
+   and 2 A-74 Sylver VLS pods
+
+   If Phoenix is researched, enables the use of the "Phoenix missile".
+
+   If Mega Barrage is researched, the rocket barrage is doubled.
+
+    Speed: 64
+      Strong vs Infantry, Vehicles
+      Weak vs Aircraft
+   .name = AC-220 Vulture
+
+## unsc_veh.yaml
+
+actor-unscwarthog =
+   .description = UNSC Warthog, main vehicle fleet for offensive and defensive capabilities. Can be armed with the following weapons:
+
+   M41 Chaingun - High firerate, effective on infantry
+   M39 Rocket turret - Effective on ground vehicles and aircraft
+   M7057 flamethrower - Effective on groups of infantry
+
+   If Warthog Weapons is researched, the warthog can also be armed with:
+
+   M68 Gauss cannon - Longer range, higher damage
+   M79 Missile launcher - Rocket barrage, long reload time
+
+   "The Warthog is as much a part of the UNSC as boots, guns, and tasteless coffee."
+
+   If Armoured Warthog is researched, the warthog has 20% damage reduction.
+
+    Speed: 135 
+      Strong vs Infantry
+      Weak vs Vehicles, Aircraft
+   .name =  M12 FAV Warthog
+
+actor-unscmongoose =
+   .description = UNSC Mongoose, best used for reconnaissance.
+
+   "The (M274) is definitely the most Buddhist land-based motive system in the UNSC’s arsenal… I’ll just let that sit with you for a while."
+    — Unnamed E2-BAG/1/7 serviceman.
+
+    Speed: 155
+      Unarmed
+   .name =  M274 Mongoose
+
+actor-unscscorpion =
+   .description = UNSC Scorpion, main battle tank. Armed with a M512 90mm Smooth Bore High Velocity Cannon and coaxial M231 Medium Machine Gun.
+
+   If Smoke System is researched, the Scorpion can fire out smoke grenades to disrupt enemy infantry.
+
+   "This here is 66 tons of straight-up, HE-spewin', dee-vine intervention!"
+    — Avery Johnson during the Battle of Mombasa.
+
+    Speed: 65
+      Strong vs Infantry, Vehicles
+      Weak vs Aircraft
+   .name =  M808B Scorpion
+
+actor-unscgrizzly =
+   .description = UNSC Grizzly, the heaviest armored vehicle in service with the UNSC military, and is usually deployed in situations that require devastating firepower and a resilient design in a single, mobile package.
+
+   Armed with twin M310 120mm smooth-bore high-velocity cannons and a coaxial M247T 7.62mm machine gun
+
+   If MLRS System is researched, the Grizzly will be armed with missile launchers.
+
+   "Ah, Grizzly tanks. Forge's pet project."
+    — Serina on Sergeant Forge's fixation with Grizzlies.
+
+    Speed: 35
+      Strong vs Infantry, Vehicles
+      Weak vs Aircraft
+   .name =  M850 Grizzly
+
+actor-unsccobra =
+   .description = UNSC Cobra, is a hybrid anti-matériel and anti-fortification vehicle built by the Misriah Armory.
+
+   While undeployed it can traverse and fire its 2 M66 30mm light railguns
+   While deployed it will lockdown and fire its M98 105mm light railgun, causing a massive explosion
+
+   If Deflection Plating is researched, while deployed it will recieve a 50% damage decrease due to additional hardened steel deflection plating.
+
+   If Heat Output is researched, the M98 105mm light railgun will have its damage radius increased by 25%.
+
+    Speed: 95
+      Strong vs Vehicles, Structures
+      Weak vs Infantry, Aircraft
+   .name =  SP42 Cobra
+
+actor-unscwolverine =
+   .description = UNSC Wolverine, Specialized anti-aircraft vehicle. The Wolverine is a tactical air defense vehicle.
+
+   Fitted with 2 70mm M260 Multiple Launch Rocket Systems
+   And a 60mm XM511 Heavy Grenade Launcher to engage ground targets
+
+   It is recommended that the Wolverine avoid engaging armored vehicles.
+
+   If Mega Barrage is researched, the rocket barrage is doubled.
+
+    Speed: 135
+      Strong vs Aircraft
+      Weak vs Infantry, Vehicles
+   .name =  M9 Wolverine
+
+## unsc_upg.yaml
+actor-unsc-fraggrenades =
+   .name = Frag Grenades
+   .description = Infantry units are now armed with Frag Grenades.
+
+   If Covenant Weapons is researched, they have a chance to be Plasma Grenades
+
+   "The M9 is a high-explosive, dual-purpose grenade utilized by all branches of the UNSC.
+   Skilled users can bounce the grenade to get hard-to-reach targets and bypass obstacles"
+
+actor-unsc-covenantweapons =
+   .name = Covenant Weapons
+   .description = Infantry units will now have a chance to be armed with Covenant Weapons.
+
+actor-unsc-megabarrage =
+   .name = Mega Barrage
+   .description = All rocket barrage units will now shoot double the rockets.
+
+   Units affected:
+   Wolverine
+   Vulture
+   Anaconda
+
+actor-unsc-mlrssystem =
+   .name = MLRS System
+   .description = Grizzly Tanks will now shoot rockets at enemies.
+
+actor-unsc-smokesystem =
+   .name = Smoke System
+   .description = Scorpion Tanks will now shoot smoke grenades at infantry.
+
+   This causes infantry to have less range and decrease accuracy.
+
+actor-unsc-warthogweapons =
+   .name = Warthog Weapons
+   .description = Warthogs will now have an increased arsenal of weapons
+
+actor-unsc-chaffpod =
+   .name = Chaff Pod
+   .description = Hornets will now be able to shoot down incoming missiles
+
+actor-unsc-phoenix =
+   .name = Phoenix Missile
+   .description = Vultures will now shoot a powerful missile.
+
+actor-unsc-plating =
+   .name = Deflection Plating
+   .description = Cobras will now have 20% damage reduction when deployed.
+
+actor-unsc-heatoutput =
+   .name = Heat Output
+   .description = Deployed shots from Cobras will now have increased damage radius.
+
+actor-unsc-armouredwarthog =
+   .name = Armoured Warthog
+   .description = Warthogs will now have 20% damage reduction.
+
+actor-unsc-odst =
+   .name = ODST
+   .description = Offensive infantry units are now trained as ODSTs
+
+    Major Antonio Silva: "Most of the crew—not to mention your fellow jarheads—will be leaving the ship in lifeboats.
+       They'll ride to the surface in air-conditioned comfort, sipping wine, and nibbling on appetizers.
+       Not you, however. Oh no, you're going to leave the Pillar of Autumn in a different method. Tell me boys and girls... how will you leave?"
+    Shock Troopers: "We go feet first, sir!"
+
+## covenant_veh.yaml
+
+actor-covenantghost =
+   .description = The Ghost is a one-man gravity-effect vehicle, primarily used in a reconnaissance and close infantry support or rapid attack role.
+
+   Armed with Two Class-2 directed energy cannons.
+
+   While not firing, the Ghost has increased movement speed.
+
+   If [BLANK] is researched, Ghosts will become shielded.
+
+    Speed: 135 
+      Strong vs Infantry, Vehicles
+      Weak vs Aircraft
+   .name =  Karo'etba-pattern Ghost
+
+actor-covenantchopper =
+   .description = Choppers are light scout and assault vehicles. Their design consists of a set of bladed wheels, behind which a driver’s seat is attached.
+
+   Armed with Two Paegaas Workshop Spikers.
+
+   If [BLANK] is researched, the weapons will be more explosive.
+
+    Speed: 213
+    Strong vs Infantry
+      Weak vs Aircraft
+   .name =  Barukaza Workshop Chopper
+
+actor-covenantwraith =
+   .description = The Zurdo-pattern Wraith is the primary armored ground vehicle used by the Covenant.
+
+   The Covenant deploys Wraiths in tactical ground engagements,
+   where they serve in both anti-infantry and anti-armor roles.
+   The Wraith's firepower also makes it ideal for destroying structures.
+
+   Armed with a Type-26 35cm Directed Energy Mortar & 1 Type-26 Directed Energy Weapon Emplacement
+
+    Speed: 75
+      Strong vs Vehicles, Buildings
+      Weak vs Aircraft, Infantry
+   .name =  Zurdo-pattern Wraith
+
+actor-covenantskyhunter =
+   .description = The Ogab'd-pattern Wraith is an anti-air variant of the Zurdo-pattern Wraith.
+
+   The role of the Ogab'd in the Covenant arsenal fits in below the larger scale sky strikers of the Covenant's heavy artillery loadout.
+   They are typically deployed as an air defence solution in theatres where the limitations of time or environmental factors make the establishment of larger assets
+
+   Armed with 6 rapid-fire heavy flak cannons & 1 Type-26 Directed Energy Weapon Emplacement
+
+    Speed: 75
+      Strong vs Aircraft
+      Weak vs Infantry, Vehicles
+   .name =  Ogab'd-pattern anti-aircraft Wraith
+
+actor-covenantrevenant =
+   .description = The Rizvum is a lightly armored vehicle that is designed to provide artillery support for infantry forces.
+
+   The Revenant is designed to provide fire support rather than direct force deployment.
+   The Revenant is very fast and maneuverable, well armored, and well armed.
+   Like most Covenant vehicles, the Revenant owes its mobility to a boosted gravity propulsion drive
+
+   Armed with a Class-2 medium plasma mortar.
+
+    Speed: 110
+      Strong vs Infantry
+      Weak vs Vehicles, Aircraft
+   .name =  Rizvum-pattern Revenant
+
+actor-covenantscarab =
+   .description = The Protos-pattern Fortress Breaker is a type of Covenant Scarab quadrupedal mining platform and combat walker.
+
+    "We've all run the simulations. They're tough, but they ain't invincible!"
+    — Sergeant Major Avery Johnson
+
+    Speed: 48
+      Strong vs Vehicles, Infantry
+      Weak vs Aircraft
+   .name =  Protos-pattern Scarab
+
+## covenant_air.yaml
+
+actor-covenantbanshee =
+   .description = The Oghal-pattern Banshee is commonly employed in Covenant service as a standard aircraft.
+
+   Armed with 2× DEML-AW, Plasma Bolt/Diffused (Class-2)s
+
+   If [BLANK] is researched, the Banshee will also be armed 1× HAAW/M, Heavy Fuel Rod (Class-3)
+
+    Speed: 170
+      Strong vs Vehicles
+      Weak vs Infantry, Aircraft
+   .name = Oghal-pattern Banshee
+
+actor-covenantlich =
+   .description = Collects Ore, Tiberium and Gems for processing.
+    Speed: 96 
+      Unarmed
+   .name = Kmiro'sish-pattern Lich
+
+actor-covenantphantom =
+   .description = The Ru'swum-pattern Phantom was common among the Covenant fleets associated with the hierarch decrees.
+
+   The Phantom is capable of transporting a large amount of infantry and vehicles.
+
+    Speed: 128
+      Strong vs Infantry
+      Weak vs Aircraft, Vehicles
+   .name = Ru'swum-pattern Phantom
+
+## covenant_inf.yaml
+
+actor-covenantgrunt =
+   .description = The Unggoy (Grunt) are a sapient species of squat bipedal xeno-arthropodal vertebroid lifeforms from the planet Balaho.
+
+   Unggoy are, in general, poor soldiers in terms of skill and combat ability.
+   They are poor shots when not focused, are physically weak, and are tactically inept as a rule.
+
+   Unggoy can be trained with the following weapons:
+
+   Type-25 Plasma Pistol - Higher damage to shields
+   Type-33 Needler - Longer range, Burst damage when needles are stacked onto a single unit
+
+   If the Armament weapons upgrade is researched, Unggoy can also be armed with the following weapons:
+
+   Fuel Rod Cannon - Increased range, longer reload, increased spread damage
+   Kopasa'mada-pattern plasma launcher - 4 bolt semi-automatic burst, can target aircraft
+
+    Speed: 70
+      Strong vs Infantry
+      Weak vs Vehicles, Aircraft
+   .name = Unggoy (Grunt)
+
+actor-covenantelite =
+   .description = The Sangheili (Elite) are a saurian sapient species known for their warrior culture and combat skill.
+
+   Sangheili are intelligent, agile, and extremely strong, and are often characterized by their bravery and honor.
+   Sangheili warriors augment these natural abilities further through use of energy shields integrated into their armor. 
+
+   Sangheili can be trained with the following weapons:
+
+   Okarda'phaa-pattern plasma rifle - Standard range, higher damage to shields
+   Type-33 Needler - Longer range, Burst damage when needles are stacked onto a single unit
+   Kopasa'mada-pattern plasma launcher - 4 bolt semi-automatic burst, can target aircraft
+   Domotos-pattern energy sword - Become melee with damage resistance and speed
+   Vostu-pattern carbine - Longer range battle rifle
+   Elo'Nakada-pattern concussion rifle - Explosive plasma bolts
+
+    Speed: 70
+      Strong vs Infantry, Vehicles
+      Weak vs Aircraft
+   .name = Sangheili (Elite)
+
+actor-covenantjackal =
+   .description = The Kig-Yar (Jackal) are a dinosaur-like saurian species, known for their keen aim.
+
+   Kig-Yar can be trained with the following weapons:
+
+   Vostu-pattern carbine - Long Range battle rifle
+   Gadulo-pattern needle rifle - Needle-type Sniper Rifle
+   Sulok-pattern beam rifle - Shorter range, can target vehicles and aircraft
+
+    Speed: 70
+      Strong vs Infantry, Vehicles
+      Weak vs Aircraft
+   .name = Kig-Yar (Jackal)
+
+
+actor-covenantbrute =
+   .description = The Jiralhanae (Brute) are a mostly carnivorous sapient species of pseudo-ursine mammals
+
+   Jiralhanae typically place a greater emphasis on brutality than wisdom; they are considered to be a savage species on the whole.
+   Due to heavy gravity on their home planet, they are immensely strong.
+
+   Jiralhanae can be trained with the following weapons:
+
+   Paegaas Workshop Spiker - Short range projectile weapon
+   Jovokada Workshop brute shot - Grenade launcher, strong against vehicles
+   Ukala Workshop Mauler - Short range shotgun
+   Kewu R'shi'k-pattern plasma rifle - Strong against shields
+   Akelus Workshop gravity hammer - Heavy melee weapon
+
+    Speed: 60
+      Strong vs Infantry, Vehicles
+      Weak vs Aircraft
+   .name = Jiralhanae (Brute)
+
+
+actor-covenanthunter =
+   .description = The Mgalekgolo (Brute) is a gestalt of Lekgolo, which are small worm-like creatures that group together to exponentially increase their intelligence,
+   strength, and maneuverability.
+
+   Of the myriad Lekgolo collectives, the best known is the Mgalekgolo or Hunter, a bipedal form that is used for heavy assault.
+
+   Mgalekgolo are armed with an Assault cannon similar to a fuel rod cannon, this can be fired in a burst or as a beam attack.
+
+    Speed: 60
+      Strong vs Infantry, Vehicles
+      Weak vs Aircraft
+   .name = Mgalekgolo (Hunter)
+
+## covenant_str.yaml
+
+actor-covenantcitadel =
+   .description = The citadel is a basic command structure deployed during interplanetary warfare or occupation campaigns.
+
+   "Once established, a large gravity lift pad is established in the front of the base,
+   which can be used to move troops and vehicles to the front lines of the battle.
+   The citadel does not appear to have any physical openings for which to enter or exit the base—troops simply use teleporters to enter and exit the base.
+   When threatened, the base can lock down, which will establish a shield around the teleporter into the base to prevent unauthorised entry or exit into or out of the base"
+
+   .name = Covenant Citadel
+
+actor-covenantfoundation =
+   .description = Foundation platforms are a prerequisite required for allowing construction of Covenant buildings.
+   Each Foundation has its on production queue and any buildings constructed can be sold back into a Foundation platform.
+   .name = Covenant Foundation
+
+actor-covenanthall =
+   .description = The Hall serves as the location where Covenant infantry are trained.
+
+   "The Covenant Hall rallies infantry units to the cause"
+
+   .name = Covenant Hall
+
+actor-covenantfactory =
+   .description = In addition to being a warehouse, the factory is also manufactures ground-based vehicles in the Covenants arsenal
+
+   "Most Covenant vehicles are pieced together and upgraded at the Factory."
+
+   .name = Covenant Factory
+
+actor-covenantwarehouse =
+   .description = The Warehouse is a Covenant structure where resources are brought down from Lich aircraft.
+
+   .name = Covenant Warehouse
+
+actor-covenantsummit =
+   .description = Summits are capable of mass-manufacturing, maintaining and upgrading a large variety of Covenant vehicles.
+
+   .name = Covenant Summit
+
+actor-covenanttemple =
+   .description = The temple is a cultural and scientific structure.
+
+   "Temples allow the Covenant to access advanced buildings, units and technology upgrades."
+
+   .name = Covenant Temple
+
+actor-covenanttheeye =
+   .description = Provides radar.
+
+   .name = Covenant Eye
+
+actor-covenantprojector =
+   .description = Covenant Superweapon that gives access to the Glassing Beam ability.
+
+       "You are, all of you, vermin. Cowering in the dirt thinking, what, I wonder? That you might escape the coming fire? No. Your world will burn until its surface is but glass!"
+    — The Prophet of Truth, to humans regarding Earth
+
+   .name = Covenant Projector
+
+actor-covenantsilo =
+   .description = Stores additional credits
+
+   .name = Covenant Silo
+
+actor-covenantadvtech =
+   .description = Unlocks advanced technology
+   .name = Covenant Advanced Tech Centre
+
+actor-covenantulttech =
+   .description = Unlocks super advanced technology and epic unit
+   .name = Covenant Super Tech Centre
+
+actor-covenantfoundry =
+   .description = Increases build speed much more than standard foundrys
+   .name = Covenant Foundry
+
+actor-covenantshade =
+   .description = Anti-infantry gun turret
+   .name = Covenant Preksheda-pattern Shade
+
+actor-covenantweevil =
+   .description = Anti-air artillery
+   .name = Zo'op-pattern Weevil
+
+actor-covenantmegaturret =
+   .description = [EPIC]
+
+   The Mantis is an automated Covenant ground-based stationary emplacement and the most storied extreme-range artillery piece in the service of the empire.
+
+       "They're setting up a battery. That thing'll tear the Dawn apart..."
+    — An Orbital Drop Shock Trooper
+
+   .name = Skar'wa-pattern Mantis
+
+actor-covenantshieldgenerator =
+   .description = The shield generator is a structure that provides shield protection for nearby units and buildings.
+
+   "Generates a large bubble shield to protect the base"
+
+   .name = Covenant Shield Generator

@@ -661,7 +661,7 @@ japansurveyorboat:
 	Buildable:
 		Queue: Ship
 		BuildPaletteOrder: 20
-		Prerequisites: ~ships.japan, ~!faction.economicgeneral, ~!faction.mechageneral, ~faction.navygeneral
+		Prerequisites: ~ships.surveyorboat
 		Description: actor-japansurveyorboat.description
 	Valued:
 		Cost: 1000
@@ -755,9 +755,7 @@ japankaga:
 		DecorationBounds: 3600, 1877
 	DetectCloaked:
 		Range: 6c0
-	DetectCloaked@2:
-		DetectionTypes: Underwater
-		Range: 6c0
+		DetectionTypes: Cloak, AirCloak, Underwater
 	ProductionQueue@3:
 		Type: Aircraft
 		DisplayOrder: 2
