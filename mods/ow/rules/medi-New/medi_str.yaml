@@ -5,7 +5,6 @@
 
 ^TaxGen:
 	Inherits: MINE_DUMMY
-	-RevealsShroud:
 	-Interactable:
 	-Targetable:
 	ExternalCondition@anchor:
@@ -2149,7 +2148,6 @@ medigarrisontower:
 
 ^TransmuteProbe:
 	Inherits: MINE_DUMMY
-	-RevealsShroud:
 	-Interactable:
 	-Targetable:
 

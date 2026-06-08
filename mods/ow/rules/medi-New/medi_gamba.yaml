@@ -49,7 +49,6 @@ gamblinghall:
 GamblingCodeT1:
 	Inherits@gamba: ^GamblingCodeT1
 	Inherits@dummy: MINE_DUMMY
-	-RevealsShroud:
 	-Interactable:
 	-Targetable:
 	Buildable:
@@ -65,7 +64,6 @@ GamblingCodeT1:
 GamblingCodeT2:
 	Inherits@gamba: ^GamblingCodeT2
 	Inherits@dummy: MINE_DUMMY
-	-RevealsShroud:
 	-Interactable:
 	-Targetable:
 	Buildable:
@@ -81,7 +79,6 @@ GamblingCodeT2:
 GamblingCodeT3:
 	Inherits@gamba: ^GamblingCodeT3
 	Inherits@dummy: MINE_DUMMY
-	-RevealsShroud:
 	-Interactable:
 	-Targetable:
 	Buildable:
@@ -97,7 +94,6 @@ GamblingCodeT3:
 GamblingCodeT4:
 	Inherits@gamba: ^GamblingCodeT4
 	Inherits@dummy: MINE_DUMMY
-	-RevealsShroud:
 	-Interactable:
 	-Targetable:
 	Buildable:
