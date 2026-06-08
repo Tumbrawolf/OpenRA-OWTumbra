@@ -138,7 +138,7 @@ upgrade.mediworkerboots:
 		Filename: mediworkerbootsicon.shp
 
 ##Non Magic units get enchanted blades, attack faster.
-upgrade.medimagicweapons:
+upgrade.medimagicwep:
 	icon:
 		Filename: medimagicweaponsicon.shp
 
@@ -151,52 +151,52 @@ upgrade.medimagiclogs:
 upgrade.medivision:
 	icon:
 		Filename: medivisionicon.shp
-	
+
 ##units can see stealth from longer
 upgrade.mediblessing:
 	icon:
 		Filename: mediblessingicon.shp
-	
+
 ##units get imunity to debuffs when neer paladin or monuments
 upgrade.mediholyshield:
 	icon:
 		Filename: mediholyshieldicon.shp
-	
+
 ##removes slaves, cheaper workers, removes worker tech needs
 upgrade.mediabolish:
 	icon:
 		Filename: mediabolishicon.shp
-	
+
 ##magic units get bonus damage
 upgrade.medipuremagic:
 	icon:
 		Filename: medipuremagicicon.shp
-	
+
 ##shields for magic units
 upgrade.medimagearmor:
 	icon:
 		Filename: medimagearmoricon.shp
-	
+
 ##arcane towers can now hold wizards and are cheaper
 upgrade.mediwizardtower:
 	icon:
 		Filename: mediwizardtowericon.shp
-	
+
 ##Slaves carry more
 upgrade.medislavedrive:
 	icon:
 		Filename: medislavedriveicon.shp
-	
+
 ##Creatures take less damage and regen missing HP
 upgrade.mediblackblood:
 	icon:
 		Filename: mediblackbloodicon.shp
-	
+
 ##Undead units may respawn
 upgrade.medinecromancy:
 	icon:
 		Filename: medinecromancyicon.shp
-		
+
 ##Tax collector is buildable
 upgrade.medideathandtaxes:
 	icon:

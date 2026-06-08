@@ -7,13 +7,6 @@ gamblinghall:
 	Inherits: ^PlayableCivBuilding
 	Inherits@tax: ^TaxableLow
 	-SpawnActorsOnSell:
-	Buildable:
-		IconPalette: tsunit
-		Queue: Building
-		Prerequisites: ~structures.medi, techcenter
-		Description: Gambling House. Any infantry can capture it.\nProduces gambling tokens for random cash payouts.
-		BuildPaletteOrder: 20
-		BuildDuration: 500
 	Valued:
 		Cost: 3000
 	Tooltip:
@@ -51,7 +44,6 @@ gamblinghall:
 		Prerequisite: gamblinghall
 	RenderSprites:
 		Image: gamblinghall
-		PlayerPalette: tsunit
 
 ##Buildable gambling tokens
 GamblingCodeT1:

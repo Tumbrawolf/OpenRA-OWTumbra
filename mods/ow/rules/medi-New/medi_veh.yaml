@@ -20,15 +20,48 @@
 	Armor:
 		Type: Light
 	Power:
-		Amount: 20
+		Amount: 0
 
 ^Medibeast:
 	Inherits: ^Vehicle
 	Mobile:
+		TurnSpeed: 160
 		Speed: 100
 		Locomotor: foot
 	Power:
-		Amount: 30
+		Amount: -30
+	GrantConditionOnPrerequisite@blackblood:
+		Prerequisites: upgrade.mediblackblood
+		Condition: blackblood
+	ChangesHealth@blackblood:
+		PercentageStep: 1
+		Delay: 25
+		StartIfBelow: 100
+		DamageCooldown: 150
+		RequiresCondition: blackblood && !corrode
+	ExternalCondition@stunned:
+		Condition: stunned
+	SpeedMultiplier@stunned:
+		RequiresCondition: stunned
+		Modifier: 0
+
+^MediDog:
+	Power:
+		Amount: -30
+	GrantConditionOnPrerequisite@blackblood:
+		Prerequisites: upgrade.mediblackblood
+		Condition: blackblood
+	ChangesHealth@blackblood:
+		PercentageStep: 1
+		Delay: 25
+		StartIfBelow: 100
+		DamageCooldown: 150
+		RequiresCondition: blackblood && !corrode
+	ExternalCondition@stunned:
+		Condition: stunned
+	SpeedMultiplier@stunned:
+		RequiresCondition: stunned
+		Modifier: 0
 ###############################################################################
 ###################################   MCV   ###################################
 ###############################################################################
@@ -44,7 +77,7 @@ MCVM:
 	Transforms:
 		IntoActor: mediconyard
 	RenderSprites:
-		Image: mcvmedi
+		Image: mcvm
 
 ###############################################################################
 ##############################   Utility and Misc   ###########################
@@ -377,7 +410,7 @@ SiegeTower:
 	Buildable:
 		Queue: Vehicle
 		BuildPaletteOrder: 120
-		Prerequisites: ~vehicles.medi, advtechcenter, ~techlevel.high
+		Prerequisites: ~vehicles.medi, techcenter, ~techlevel.high
 		Description: Tough infantry transport.\n  Can Fire while moving \nStrength varies with occupants
 	Selectable:
 		Bounds: 2986, 2474
@@ -451,7 +484,7 @@ SiegeTower:
 #################################   Shared Units   ##############################
 ###############################################################################
 
-##Werewolf
+##Werewolf, Vehicle version of beserker, attacks faster the longer it is in combat
 werewolf:
 	Inherits@Medibeast: ^Medibeast
 	Inherits@GAINSEXPERIENCE: ^GainsExperience
@@ -501,6 +534,12 @@ werewolf:
 		VoiceSet: SwordmanVoice
 	ConvertsDamageToHealth:
 		DamagePercentConverted: 15
+	GrantConditionOnAttack@rampage:
+		Condition: wolfrush
+		MaximumInstances: 5
+	ReloadDelayMultiplier@rampage:
+		RequiresCondition: wolfrush
+		Modifier: 85
 
 ###############################################################################
 #################################   Holy Units   ##############################
@@ -512,7 +551,7 @@ giantbear:
 	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
 	Buildable:
 		IconPalette: tsunit
-		Prerequisites: ~vehicles.medi
+		Prerequisites: ~vehicles.mediholy
 		Description: Berserkers Wish they were him. \n Strong vs infantry
 		Queue: Vehicle
 		BuildPaletteOrder: 409
@@ -525,6 +564,18 @@ giantbear:
 		Type: Light
 	Health:
 		HP: 50000
+	GrantConditionOnHealth@Move:
+		Condition: BerLowHPM
+		MaxHP: 30000
+	GrantConditionOnHealth@Attack:
+		Condition: BerLowHPA
+		MaxHP: 20000
+	SpeedMultiplier@ber:
+		RequiresCondition: BerLowHPM
+		Modifier: 200
+	FirepowerMultiplier@ber:
+		RequiresCondition: BerLowHPA
+		Modifier: 120
 	AttackFrontal:
 		Armaments: primary, primary1
 		FacingTolerance: 0
@@ -547,49 +598,97 @@ giantbear:
 ##Giant Wolf, Attack dog with more HP
 giantwolf:
 	Inherits@Medibeast: ^Medibeast
-	Inherits@DOG: DOG
-	Health:
-		HP: 6000
-	RenderSprites:
-		Image: giantwolf
-
-
-###############################################################################
-#################################   Cult Units   ##############################
-###############################################################################
-
-##Dirgo, Regens HP, Slower attack speed more HP, more damage per hit
-dirgo:
-	Inherits@Medibeast: ^Medibeast
 	Inherits@GAINSEXPERIENCE: ^GainsExperience
 	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
 	Buildable:
 		IconPalette: tsunit
-		Prerequisites: ~vehicles.medi
-		Description: Berserkers Wish they were him. \n Strong vs infantry
+		Prerequisites: ~vehicles.mediholy
+		Description: Fast attack beast. Deadly against infantry.
 		Queue: Vehicle
 		BuildPaletteOrder: 409
 		BuildDuration: 150
 	Valued:
 		Cost: 800
 	Tooltip:
-		Name: Berserker
+		Name: Giant Wolf
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Health:
+		HP: 30000
 	Armor:
 		Type: Light
+	Mobile:
+		Speed: 140
+		Locomotor: foot
+		PauseOnCondition: attack-cooldown || eating
+	AutoTarget:
+		InitialStance: AttackAnything
+		ScanRadius: 8
+	Armament:
+		Name: primary
+		Weapon: DogJaw
+		ReloadingCondition: attack-cooldown
+	AttackLeap:
+		Voice: Attack
+		PauseOnCondition: attacking || attack-cooldown
+	GrantConditionOnAttack:
+		Condition: eating
+		RevokeDelay: 20
+	GrantConditionWhileAiming:
+		Condition: run
+	WithMoveAnimation:
+		MoveSequence: run
+	WithAttackAnimation:
+		Sequence: shoot
+	WithDeathAnimation:
+		DeathSequence: die
+	DamageMultiplier@gooddog:
+		Modifier: 90
+	RenderSprites:
+		Image: giantwolf
+	Voiced:
+		VoiceSet: SwordmanVoice
+
+
+###############################################################################
+#################################   Cult Units   ##############################
+###############################################################################
+
+##Dirgo, Regens HP when not corroded, Slow attack speed but hits really hard per hit, cannot target infantry
+dirgo:
+	Inherits@Medibeast: ^Medibeast
+	Inherits@GAINSEXPERIENCE: ^GainsExperience
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	Buildable:
+		IconPalette: tsunit
+		Prerequisites: ~vehicles.medicult
+		Description: Slow but devastating. Regens unless corroded. Cannot target infantry.
+		Queue: Vehicle
+		BuildPaletteOrder: 409
+		BuildDuration: 150
+	Valued:
+		Cost: 1000
+	Tooltip:
+		Name: Dirgo
+	Armor:
+		Type: Heavy
 	Health:
-		HP: 50000
+		HP: 70000
+	ChangesHealth@regen:
+		PercentageStep: 1
+		Delay: 25
+		StartIfBelow: 100
+		DamageCooldown: 150
+		RequiresCondition: !corrode
 	AttackFrontal:
-		Armaments: primary, primary1
+		Armaments: primary
 		FacingTolerance: 0
 	Armament:
 		Name: primary
-		Weapon: GiantbearBite
+		Weapon: Dirgo
 		FireDelay: 3
-	Armament@2:
-		Name: primary1
-		Weapon: GiantbearBite
-		FireDelay: 2
-		RequiresCondition: BerLowHPA
+	AutoTargetPriority@noInf:
+		ValidTargets: Vehicle, Structure, Defense, Ship, AirborneActor
 	ConvertsDamageToHealth:
 		DamagePercentConverted: 15
 	RenderSprites:
@@ -602,103 +701,133 @@ giantspider:
 	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
 	Buildable:
 		IconPalette: tsunit
-		Prerequisites: ~vehicles.medi
-		Description: Berserkers Wish they were him. \n Strong vs infantry
+		Prerequisites: ~vehicles.medicult
+		Description: Stealthy. Corrosive bite. Slow but deadly.
 		Queue: Vehicle
 		BuildPaletteOrder: 409
-		BuildDuration: 150
+		BuildDuration: 200
 	Valued:
-		Cost: 800
+		Cost: 900
 	Tooltip:
-		Name: Berserker
+		Name: Giant Spider
 	Armor:
 		Type: Light
 	Health:
 		HP: 50000
+	Mobile:
+		Speed: 60
+		Locomotor: foot
+	Cloak:
+		InitialDelay: 50
+		CloakDelay: 100
+		CloakSound: stlthon1.aud
+		UncloakSound: stlthof1.aud
+		UncloakOn: Attack, Unload, Damage
 	AttackFrontal:
-		Armaments: primary, primary1
+		Armaments: primary
 		FacingTolerance: 0
 	Armament:
 		Name: primary
-		Weapon: GiantbearBite
+		Weapon: GiantSpider
 		FireDelay: 3
-	Armament@2:
-		Name: primary1
-		Weapon: GiantbearBite
-		FireDelay: 2
-		RequiresCondition: BerLowHPA
 	ConvertsDamageToHealth:
 		DamagePercentConverted: 15
 	RenderSprites:
 		Image: giantspider
 
-##Medusa, Stuns infantry on death
+##Medusa, Ranged magic attack, explodes stunning infantry on death (infantry only)
 medusa:
 	Inherits@Medibeast: ^Medibeast
 	Inherits@GAINSEXPERIENCE: ^GainsExperience
 	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
 	Buildable:
 		IconPalette: tsunit
-		Prerequisites: ~vehicles.medi
-		Description: Berserkers Wish they were him. \n Strong vs infantry
+		Prerequisites: ~vehicles.medicult
+		Description: Ranged magic attack. Explodes on death stunning nearby infantry.
 		Queue: Vehicle
 		BuildPaletteOrder: 409
-		BuildDuration: 150
+		BuildDuration: 200
 	Valued:
-		Cost: 800
+		Cost: 900
 	Tooltip:
-		Name: Berserker
+		Name: Medusa
 	Armor:
 		Type: Light
 	Health:
 		HP: 50000
-	AttackFrontal:
-		Armaments: primary, primary1
-		FacingTolerance: 0
-	Armament:
+	AttackTurreted:
+		Armaments: primary, stunattack
+		Turrets: T1
+	Turreted@T1:
+		Turret: T1
+		TurnSpeed: 256
+		Offset: 0,0,256
+	Armament@primary:
 		Name: primary
-		Weapon: GiantbearBite
-		FireDelay: 3
-	Armament@2:
-		Name: primary1
-		Weapon: GiantbearBite
-		FireDelay: 2
-		RequiresCondition: BerLowHPA
+		Turret: T1
+		Weapon: Medusa
+	Armament@stunattack:
+		Name: stunattack
+		Turret: T1
+		Weapon: MedusaStunBlast
+	GrantConditionOnAttack@stunblast:
+		Condition: medusastuncast
+		ArmamentNames: stunattack
+		RevokeDelay: 20
+	WithAttackAnimation@stun:
+		Sequence: shoot2
+		RequiresCondition: medusastuncast
+	FireWarheadsOnDeath@stun:
+		Type: CenterPosition
+		Weapon: MedusaDeathStun
+		EmptyWeapon: MedusaDeathStun
 	ConvertsDamageToHealth:
 		DamagePercentConverted: 15
 	RenderSprites:
 		Image: medusa
 
-##Minotaur, Vehicle version of beserker
+##Minotaur, Vehicle version of berserker
 minotaur:
 	Inherits@Medibeast: ^Medibeast
 	Inherits@GAINSEXPERIENCE: ^GainsExperience
 	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
 	Buildable:
 		IconPalette: tsunit
-		Prerequisites: ~vehicles.medi
-		Description: Berserkers Wish they were him. \n Strong vs infantry
+		Prerequisites: ~vehicles.medicult
+		Description: Vehicle berserker. Gains speed and power at low HP.
 		Queue: Vehicle
 		BuildPaletteOrder: 409
 		BuildDuration: 150
 	Valued:
 		Cost: 800
 	Tooltip:
-		Name: Berserker
+		Name: Minotaur
 	Armor:
 		Type: Light
 	Health:
 		HP: 50000
+	GrantConditionOnHealth@Move:
+		Condition: BerLowHPM
+		MaxHP: 30000
+	GrantConditionOnHealth@Attack:
+		Condition: BerLowHPA
+		MaxHP: 20000
+	SpeedMultiplier@ber:
+		RequiresCondition: BerLowHPM
+		Modifier: 200
+	FirepowerMultiplier@ber:
+		RequiresCondition: BerLowHPA
+		Modifier: 120
 	AttackFrontal:
 		Armaments: primary, primary1
 		FacingTolerance: 0
 	Armament:
 		Name: primary
-		Weapon: GiantbearBite
+		Weapon: MinotaurStrike
 		FireDelay: 3
 	Armament@2:
 		Name: primary1
-		Weapon: GiantbearBite
+		Weapon: MinotaurStrike
 		FireDelay: 2
 		RequiresCondition: BerLowHPA
 	ConvertsDamageToHealth:
@@ -706,75 +835,82 @@ minotaur:
 	RenderSprites:
 		Image: minotaur
 
-##Rrongol, Fast, Can Crit
+##Rrongol, Fast, Can Crit, gains temp FirepowerMultiplier 200 on random timer
 rrongol:
 	Inherits@Medibeast: ^Medibeast
 	Inherits@GAINSEXPERIENCE: ^GainsExperience
 	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
 	Buildable:
 		IconPalette: tsunit
-		Prerequisites: ~vehicles.medi
-		Description: Berserkers Wish they were him. \n Strong vs infantry
+		Prerequisites: ~vehicles.medicult
+		Description: Fast beast. Periodically enters a crit frenzy doubling damage.
 		Queue: Vehicle
 		BuildPaletteOrder: 409
 		BuildDuration: 150
+		BuildLimit: 1
 	Valued:
-		Cost: 800
+		Cost: 1000
 	Tooltip:
-		Name: Berserker
+		Name: Rrongol
 	Armor:
 		Type: Light
 	Health:
 		HP: 50000
+	Mobile:
+		Speed: 160
+		Locomotor: foot
+	GrantPeriodicCondition@crit:
+		Condition: rrongol-crits
+		ActiveDuration: 100
+		CooldownDuration: 350, 600
+	FirepowerMultiplier@crit:
+		RequiresCondition: rrongol-crits
+		Modifier: 200
 	AttackFrontal:
-		Armaments: primary, primary1
+		Armaments: primary
 		FacingTolerance: 0
 	Armament:
 		Name: primary
-		Weapon: GiantbearBite
+		Weapon: RrongolStrike
 		FireDelay: 3
-	Armament@2:
-		Name: primary1
-		Weapon: GiantbearBite
-		FireDelay: 2
-		RequiresCondition: BerLowHPA
 	ConvertsDamageToHealth:
 		DamagePercentConverted: 15
 	RenderSprites:
 		Image: rrongol
 
-##Troll, Regens HP
+##Troll, Regens HP unless corroded
 troll:
 	Inherits@Medibeast: ^Medibeast
 	Inherits@GAINSEXPERIENCE: ^GainsExperience
 	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
 	Buildable:
 		IconPalette: tsunit
-		Prerequisites: ~vehicles.medi
-		Description: Berserkers Wish they were him. \n Strong vs infantry
+		Prerequisites: ~vehicles.medicult
+		Description: Powerful melee beast. Regenerates HP unless corroded.
 		Queue: Vehicle
 		BuildPaletteOrder: 409
 		BuildDuration: 150
 	Valued:
 		Cost: 800
 	Tooltip:
-		Name: Berserker
+		Name: Troll
 	Armor:
 		Type: Light
 	Health:
 		HP: 50000
+	ChangesHealth@regen:
+		PercentageStep: 1
+		Delay: 25
+		StartIfBelow: 100
+		DamageCooldown: 150
+		RequiresCondition: !corrode
 	AttackFrontal:
-		Armaments: primary, primary1
+		Armaments: primary
 		FacingTolerance: 0
 	Armament:
 		Name: primary
-		Weapon: GiantbearBite
+		Weapon: TrollStrike
 		FireDelay: 3
-	Armament@2:
-		Name: primary1
-		Weapon: GiantbearBite
-		FireDelay: 2
-		RequiresCondition: BerLowHPA
 	ConvertsDamageToHealth:
 		DamagePercentConverted: 15
 	RenderSprites:
@@ -785,7 +921,7 @@ troll:
 ###############################################################################
 
 
-##Daemonwood, Tanky Regen
+##Daemonwood, Tanky Regen unless corroded
 daemonwood:
 	Inherits@Medibeast: ^Medibeast
 	Inherits@GAINSEXPERIENCE: ^GainsExperience
@@ -793,42 +929,43 @@ daemonwood:
 	Buildable:
 		IconPalette: tsunit
 		Queue: Vehicle
-		Prerequisites: ~vehicles.medi, advtechcenter
+		Prerequisites: ~vehicles.mediwizards, advtechcenter
 		BuildPaletteOrder: 401
-		Description: Long-range artillery.\n  Strong vs Vehicles, Buildings\n  Weak vs Infantry
+		Description: Tanky creature. Regenerates HP unless corroded.
 	Valued:
-		Cost: 900
+		Cost: 1000
 	Tooltip:
-		Name: Cannon
+		Name: Daemonwood
 	UpdatesPlayerStatistics:
 		AddToArmyValue: true
 	Health:
-		HP: 20000
+		HP: 80000
 	Armor:
 		Type: Heavy
 	WithMoveAnimation:
 		MoveSequence: run
 	AutoTarget:
 		InitialStance: Defend
-		ScanRadius: 11
-	RevealsShroud:
-		MinRange: 4c0
-		Range: 5c0
-		RevealGeneratedShroud: False
-	RevealsShroud@GAPGEN:
-		Range: 4c0
+		ScanRadius: 8
+	ChangesHealth@regen:
+		PercentageStep: 1
+		Delay: 20
+		StartIfBelow: 100
+		DamageCooldown: 125
+		RequiresCondition: !corrode
+	AttackFrontal:
+		Armaments: primary
+		FacingTolerance: 0
 	Armament:
-		Weapon: CannonShot
-		LocalOffset: 624,0,208
+		Name: primary
+		Weapon: DaemonwoodStrike
+		FireDelay: 3
 	WithAttackAnimation:
 		Sequence: shoot
 	WithDeathAnimation:
 		DeathSequence: die
-	AttackFrontal:
-		Armaments: primary
-		FacingTolerance: 0
-	ProducibleWithLevel:
-		Prerequisites: vehicles.upgraded
+	ConvertsDamageToHealth:
+		DamagePercentConverted: 10
 	RenderSprites:
 		Image: daemonwood
 	Voiced:
@@ -843,7 +980,7 @@ rockgolem:
 	Buildable:
 		IconPalette: tsunit
 		Queue: Vehicle
-		Prerequisites: ~vehicles.medi, advtechcenter
+		Prerequisites: ~vehicles.mediwizards, advtechcenter
 		BuildPaletteOrder: 401
 		Description: Long-range artillery.\n  Strong vs Vehicles, Buildings\n  Weak vs Infantry
 	Valued:
@@ -889,6 +1026,7 @@ rockgolem:
 #Damages self to half HP on spawn, can explode only once full healed.#
 splitgolem:
 	Inherits: rockgolem
+	-Buildable
 	GrantConditionOnHealth@BrokenGolem:
 		Condition: BrokenGolem
 		MaxHP: 20000
@@ -914,46 +1052,48 @@ splitgolem:
 rustspitter:
 	Inherits: ^Medibeast
 	Inherits@GAINSEXPERIENCE: ^GainsExperience
-	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
+	Inherits@AUTOTARGET: ^AutoTargetAll
 	Buildable:
 		IconPalette: tsunit
 		Queue: Vehicle
-		Prerequisites: ~vehicles.medi, advtechcenter
+		Prerequisites: ~vehicles.mediwizards, advtechcenter
 		BuildPaletteOrder: 401
-		Description: Long-range artillery.\n  Strong vs Vehicles, Buildings\n  Weak vs Infantry
+		Description: Corrosive spitter. Excellent anti-air. Corrodes everything it hits.
 	Valued:
 		Cost: 900
 	Tooltip:
-		Name: Cannon
+		Name: Rust Spitter
 	UpdatesPlayerStatistics:
 		AddToArmyValue: true
 	Health:
-		HP: 20000
+		HP: 25000
 	Armor:
-		Type: Heavy
+		Type: Light
 	WithMoveAnimation:
 		MoveSequence: run
 	AutoTarget:
-		InitialStance: Defend
-		ScanRadius: 11
+		InitialStance: AttackAnything
+		ScanRadius: 10
+	AutoTargetPriority@air:
+		ValidTargets: AirborneActor
+		Priority: 2
 	RevealsShroud:
-		MinRange: 4c0
-		Range: 5c0
-		RevealGeneratedShroud: False
-	RevealsShroud@GAPGEN:
-		Range: 4c0
+		Range: 9c0
+	AttackTurreted:
+		Armaments: primary
+		Turrets: T1
+	Turreted@T1:
+		Turret: T1
+		TurnSpeed: 512
+		Offset: 0,0,256
 	Armament:
-		Weapon: CannonShot
-		LocalOffset: 624,0,208
+		Name: primary
+		Turret: T1
+		Weapon: RustSpitterStrike
 	WithAttackAnimation:
 		Sequence: shoot
 	WithDeathAnimation:
 		DeathSequence: die
-	AttackFrontal:
-		Armaments: primary
-		FacingTolerance: 0
-	ProducibleWithLevel:
-		Prerequisites: vehicles.upgraded
 	RenderSprites:
 		Image: rustspitter
 	Voiced:
@@ -968,8 +1108,9 @@ urlshekk:
 	Buildable:
 		IconPalette: tsunit
 		Queue: Vehicle
-		Prerequisites: ~vehicles.medi, advtechcenter
+		Prerequisites: ~vehicles.mediwizards, advtechcenter
 		BuildPaletteOrder: 401
+		BuildLimit: 1
 		Description: Ranged Elite, Attacks change on cycle, Anti Tank, Anti Infantry, Anti Structure
 	Valued:
 		Cost: 1200
@@ -1034,7 +1175,7 @@ moculus:
 	-SpawnActorOnDeath:
 	Buildable:
 		IconPalette: tsunit
-		Prerequisites: ~aircraft.medi
+		Prerequisites: ~aircraft.mediwizards
 		Description: Beholder of magic
 		Queue: Aircraft
 		BuildLimit: 1
@@ -1166,3 +1307,98 @@ moculus:
 		VoiceSet: MediDeathKnightVoice
 	ConvertsDamageToHealth:
 		DamagePercentConverted: 20
+
+###############################################################################
+################################## Test Spawner ################################
+###############################################################################
+
+MediVehicleTest:
+	Inherits: barrackswg
+	Buildable:
+		IconPalette: tsunit
+		Queue: Building
+		Prerequisites: ~structures.medi
+		Description: Spawns all medi vehicles for testing
+		BuildPaletteOrder: 9999
+		BuildDuration: 1
+	Valued:
+		Cost: 0
+	Tooltip:
+		Name: Vehicle Test Spawner
+	KillsSelf:
+		Delay: 5
+		RemoveInstead: true
+	## Row 0 (y=0)
+	FreeActor@v01:
+		Actor: MCVM
+		SpawnOffset: 0,0
+	FreeActor@v02:
+		Actor: TRUKMedi
+		SpawnOffset: 3,0
+	FreeActor@v03:
+		Actor: catapult
+		SpawnOffset: 6,0
+	FreeActor@v04:
+		Actor: Trebuchet
+		SpawnOffset: 9,0
+	FreeActor@v05:
+		Actor: Hwacha
+		SpawnOffset: 12,0
+	## Row 1 (y=3)
+	FreeActor@v06:
+		Actor: Ballista
+		SpawnOffset: 0,3
+	FreeActor@v07:
+		Actor: Cannon
+		SpawnOffset: 3,3
+	FreeActor@v08:
+		Actor: SiegeTower
+		SpawnOffset: 6,3
+	FreeActor@v09:
+		Actor: werewolf
+		SpawnOffset: 9,3
+	FreeActor@v10:
+		Actor: giantbear
+		SpawnOffset: 12,3
+	## Row 2 (y=6)
+	FreeActor@v11:
+		Actor: giantwolf
+		SpawnOffset: 0,6
+	FreeActor@v12:
+		Actor: dirgo
+		SpawnOffset: 3,6
+	FreeActor@v13:
+		Actor: giantspider
+		SpawnOffset: 6,6
+	FreeActor@v14:
+		Actor: medusa
+		SpawnOffset: 9,6
+	FreeActor@v15:
+		Actor: minotaur
+		SpawnOffset: 12,6
+	## Row 3 (y=9)
+	FreeActor@v16:
+		Actor: rrongol
+		SpawnOffset: 0,9
+	FreeActor@v17:
+		Actor: troll
+		SpawnOffset: 3,9
+	FreeActor@v18:
+		Actor: daemonwood
+		SpawnOffset: 6,9
+	FreeActor@v19:
+		Actor: rockgolem
+		SpawnOffset: 9,9
+	FreeActor@v20:
+		Actor: splitgolem
+		SpawnOffset: 12,9
+	## Row 4 (y=12)
+	FreeActor@v21:
+		Actor: rustspitter
+		SpawnOffset: 0,12
+	FreeActor@v22:
+		Actor: urlshekk
+		SpawnOffset: 3,12
+	FreeActor@v23:
+		Actor: moculus
+		SpawnOffset: 6,12

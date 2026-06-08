@@ -179,7 +179,7 @@ GiantEagle:
 		Queue: Aircraft
 		BuildAtProductionType: Helicopter
 		BuildPaletteOrder: 20
-		Prerequisites: ~aircraft.medi
+		Prerequisites: ~aircraft.mediholy
 		Description: Giant Eagle
 	Valued:
 		Cost: 1500
@@ -246,7 +246,7 @@ Harpy:
 		BuildAtProductionType: Helicopter
 		BuildPaletteOrder: 20
 		BuildDuration: 1000
-		Prerequisites: ~aircraft.medi
+		Prerequisites: ~aircraft.medicult, advtechcenter
 		Description: Magical Attack beast. \n Regenerates Ammo \n Strong vs Tanks \n  Weak vs Infantry Light armor, Aircraft
 	Valued:
 		Cost: 2000
@@ -287,7 +287,7 @@ Vendral:
 		Queue: Aircraft
 		BuildAtProductionType: Helicopter
 		BuildPaletteOrder: 65
-		Prerequisites: ~aircraft.medi
+		Prerequisites: ~aircraft.medicult, ulttechcenter
 		BuildLimit: 1
 		Description: Airborn beast who rules the sky, \n  Strong vs All
 	Valued:
@@ -361,11 +361,16 @@ MediDragon:
 	Inherits: ^Plane
 	Inherits@MediLowPower: ^MediLowPower
 	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
+	Power:
+		Amount: -25
+	SpeedMultiplier@lowpower:
+		RequiresCondition: lowpower
+		Modifier: 70
 	Buildable:
 		Queue: Aircraft
 		BuildAtProductionType: Helicopter
 		BuildPaletteOrder: 65
-		Prerequisites: ~aircraft.medi
+		Prerequisites: ~aircraft.mediwizards
 		BuildLimit: 4
 		Description: Airborn Fighter of the Medieval era, \n  Strong vs Infantry, Light armor, Aircraft\n  Weak vs Tanks
 	Valued:
@@ -389,13 +394,15 @@ MediDragon:
 		RequiresCondition: !lowpower
 	AttackAircraft:
 		Armaments: primary, secondary
-		FacingTolerance: 250
+		FacingTolerance: 512
 		PersistentTargeting: True
-		AttackType: Strafe
-		OpportunityFire: False
 	Aircraft:
 		TurnSpeed: 15
 		Speed: 130
+		CruiseAltitude: 1280
+		VTOL: true
+		CanHover: true
+		LandableTerrainTypes: Clear, ClearSnow, Rough, Road, Ore, Beach, Gems, Creep, Tiberium, BlueTiberium
 	RevealsShroud:
 		MinRange: 6c0
 		Range: 11c0
@@ -403,8 +410,8 @@ MediDragon:
 		Type: GroundPosition
 		RevealGeneratedShroud: False
 	AutoTarget:
-		InitialStance: Defend
-		InitialStanceAI: Defend
+		InitialStance: AttackAnything
+		InitialStanceAI: AttackAnything
 	AmmoPool:
 		Armaments: primary
 		Ammo: 10
@@ -436,6 +443,12 @@ MediDragon:
 ##Medi Airstrikes
 MediDragonBomber:
 	Inherits: ^Plane
+	Inherits@MediLowPower: ^MediLowPower
+	Power:
+		Amount: -25
+	SpeedMultiplier@lowpower:
+		RequiresCondition: lowpower
+		Modifier: 70
 	Valued:
 		Cost: 2500
 	Tooltip:
@@ -504,7 +517,7 @@ wyvern:
 		BuildAtProductionType: Helicopter
 		BuildPaletteOrder: 20
 		BuildDuration: 1000
-		Prerequisites: ~aircraft.medi
+		Prerequisites: ~aircraft.mediwizards
 		Description: Magical Attack beast. \n Regenerates Ammo \n Strong vs Tanks \n  Weak vs Infantry Light armor, Aircraft
 	Valued:
 		Cost: 2000
@@ -595,3 +608,56 @@ medizeplin:
 	RenderSprites:
 		Image: mblimp
 	-Voiced:
+
+###############################################################################
+################################## Test Spawner ################################
+###############################################################################
+
+MediAircraftTest:
+	Inherits: barrackswg
+	Buildable:
+		IconPalette: tsunit
+		Queue: Building
+		Prerequisites: ~structures.medi
+		Description: Spawns all medi aircraft for testing
+		BuildPaletteOrder: 9999
+		BuildDuration: 1
+	Valued:
+		Cost: 0
+	Tooltip:
+		Name: Aircraft Test Spawner
+	KillsSelf:
+		Delay: 5
+		RemoveInstead: true
+	## Row 0 (y=0)
+	FreeActor@a01:
+		Actor: gyro
+		SpawnOffset: 0,0
+	FreeActor@a02:
+		Actor: gryphon
+		SpawnOffset: 3,0
+	FreeActor@a03:
+		Actor: GiantEagle
+		SpawnOffset: 6,0
+	FreeActor@a04:
+		Actor: Harpy
+		SpawnOffset: 9,0
+	FreeActor@a05:
+		Actor: Vendral
+		SpawnOffset: 12,0
+	## Row 1 (y=3)
+	FreeActor@a06:
+		Actor: MediDragon
+		SpawnOffset: 0,3
+	FreeActor@a07:
+		Actor: MediDragonBomber
+		SpawnOffset: 3,3
+	FreeActor@a08:
+		Actor: MediDragonBomberZoomies
+		SpawnOffset: 6,3
+	FreeActor@a09:
+		Actor: wyvern
+		SpawnOffset: 9,3
+	FreeActor@a10:
+		Actor: medizeplin
+		SpawnOffset: 12,3

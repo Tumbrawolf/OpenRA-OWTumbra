@@ -2296,10 +2296,10 @@ factm:
 		Filename: factm.shp
 	place:
 		Scale: 0.33
-		Start: 1
+		Start: 0
 	build:
 		Scale: 0.33
-		Start: 1
+		Start: 0
 		Length: 1
 		Tick: 100
 	idle:
@@ -2318,7 +2318,7 @@ factm:
 		Tick: 100
 	dead:
 		Scale: 0.33
-		Start: 1
+		Start: 2
 		Tick: 800
 	make:
 		Filename: factmmake.shp
@@ -2427,15 +2427,19 @@ refinarymarket:
 	idle:
 		Scale: 0.29
 		Start: 8
+		Offset: 0,10,0
 	idle-top:
 		Scale: 0.29
 		Start: 8
+		Offset: 0,10,0
 	idle-uac:
 		Scale: 0.29
 		Start: 8
+		Offset: 0,10,0
 	damaged-idle:
 		Scale: 0.29
 		Start: 10
+		Offset: 0,10,0
 	dead:
 		Scale: 0.29
 		Start: 11
@@ -2461,21 +2465,26 @@ barrackswg:
 		Scale: 0.3
 		Start: 0
 		Length: 4
+		Offset: -10,0,0
 	idle:
 		Scale: 0.3
 		Start: 3
 		Length: 1
+		Offset: -10,0,0
 	damaged-idle:
 		Scale: 0.3
 		Start: 6
 		Length: 1
+		Offset: -10,0,0
 	dead:
 		Scale: 0.3
 		Start: 7
 		Tick: 800
+		Offset: -10,0,0
 	make:
 		Scale: 0.3
 		Start: 4
+		Offset: -10,0,0
 	bib:
 		TilesetFilenames:
 			SNOW: bib3.sno
@@ -2521,25 +2530,25 @@ dwarfsettlement:
 	Defaults:
 		Filename: mdwarfsettle.shp
 	place:
-		Scale: 0.25
+		Scale: 0.33
 		Start: 1
 		Length: 1
 		Tick: 300
 	idle:
-		Scale: 0.25
+		Scale: 0.33
 		Start: 1
-		Length: 6
-		Tick: 300
+		Length: 5
+		Tick: 250
 	build-top:
 		Scale: 0.25
 		Start: 1
-		Length: 6
-		Tick: 300
+		Length: 5
+		Tick: 250
 	damaged-idle:
 		Scale: 0.25
 		Start: 8
 		Length: 1
-		Tick: 300
+		Tick: 250
 	dead:
 		Scale: 0.25
 		Start: 9
@@ -2547,8 +2556,8 @@ dwarfsettlement:
 	make:
 		Scale: 0.25
 		Start: 1
-		Length: 7
-		Tick: 300
+		Length: 5
+		Tick: 250
 	icon:
 		Filename: mdwarfsettleicon.shp
 
@@ -2580,14 +2589,60 @@ mcreatureholy:
 	Inherits: animalden
 	Defaults:
 		Filename: mcreatureholy.shp
+	place:
+		Scale: 0.115
+		Start: 0
+	idle:
+		Scale: 0.115
+		Start: 0
+	damaged-idle:
+		Scale: 0.115
+		Start: 1
+	dead:
+		Scale: 0.115
+		Start: 1
+		Tick: 800
+	make:
+		Scale: 0.115
+		Start: 0
+	bib:
+		TilesetFilenames:
+			SNOW: bib3.sno
+			INTERIOR: bib3.int
+			TEMPERAT: bib3.tem
+			DESERT: bib3.des
+		Length: *
 	icon:
 		Filename: mcreatureholyicon.shp
 		
 #
-mcreatureWiz:
+mcreaturewiz:
 	Inherits: animalden
 	Defaults:
 		Filename: mcreatureWiz.shp
+	place:
+		Scale: 0.115
+		Start: 0
+	idle:
+		Scale: 0.115
+		Start: 0
+	damaged-idle:
+		Scale: 0.115
+		Start: 2
+	dead:
+		Scale: 0.115
+		Start: 2
+		Tick: 800
+	make:
+		Scale: 0.115
+		Start: 0
+	bib:
+		TilesetFilenames:
+			SNOW: bib3.sno
+			INTERIOR: bib3.int
+			TEMPERAT: bib3.tem
+			DESERT: bib3.des
+		Length: *
 	icon:
 		Filename: mcreatureWizicon.shp
 
@@ -2596,6 +2651,29 @@ mcreaturecult:
 	Inherits: animalden
 	Defaults:
 		Filename: mcreaturecult.shp
+	place:
+		Scale: 0.115
+		Start: 0
+	idle:
+		Scale: 0.115
+		Start: 0
+	damaged-idle:
+		Scale: 0.115
+		Start: 2
+	dead:
+		Scale: 0.115
+		Start: 2
+		Tick: 800
+	make:
+		Scale: 0.115
+		Start: 0
+	bib:
+		TilesetFilenames:
+			SNOW: bib3.sno
+			INTERIOR: bib3.int
+			TEMPERAT: bib3.tem
+			DESERT: bib3.des
+		Length: *
 	icon:
 		Filename: mcreatureculticon.shp
 
@@ -2678,35 +2756,35 @@ medigraveyard:
 	Defaults:
 		Filename: mgraveyard.shp
 	place:
-		Scale: 0.4
+		Scale: 0.8
 		Start: 0
 		Length: 1
 		Tick: 1200
 	idle:
-		Scale: 0.4
+		Scale: 0.8
 		Start: 0
 		Length: 1
 		Tick: 1200
 	idle-top:
-		Scale: 0.4
+		Scale: 0.8
 		Start: 0
 		Length: 1
 		Tick: 1200
 	idle-uac:
-		Scale: 0.4
+		Scale: 0.8
 		Start: 0
 		Length: 1
 		Tick: 1200
 	damaged-idle:
-		Scale: 0.4
+		Scale: 0.8
 		Start: 1
 		Tick: 1200
 	dead:
-		Scale: 0.4
+		Scale: 0.8
 		Start: 1
 		Tick: 800
 	make:
-		Scale: 0.4
+		Scale: 0.8
 		Start: 0
 		Tick: 1200
 	icon:
@@ -2758,21 +2836,21 @@ advtechcenterlibrary:
 	Defaults:
 		Filename: madvtechcenter.shp
 	place:
-		Scale: 0.2
+		Scale: 0.4
 		Start: 0
 	idle:
-		Scale: 0.2
+		Scale: 0.4
 		Start: 1
 		Length: 6
 	damaged-idle:
-		Scale: 0.2
+		Scale: 0.4
 		Start: 7
 	dead:
-		Scale: 0.2
+		Scale: 0.4
 		Start: 7
 		Tick: 800
 	make:
-		Scale: 0.2
+		Scale: 0.4
 		Start: 1
 		Length: 6
 	bib:
@@ -2790,20 +2868,20 @@ brashnards:
 	Defaults:
 		Filename: msupertech.shp
 	place:
-		Scale: 0.2
+		Scale: 0.4
 		Start: 0
 	idle:
-		Scale: 0.2
+		Scale: 0.4
 		Start: 0
 	damaged-idle:
-		Scale: 0.2
+		Scale: 0.4
 		Start: 1
 	dead:
-		Scale: 0.2
+		Scale: 0.4
 		Start: 2
 		Tick: 800
 	make:
-		Scale: 0.2
+		Scale: 0.4
 		Start: 0
 	bib:
 		TilesetFilenames:
@@ -2820,24 +2898,29 @@ radarwg:
 	Defaults:
 		Filename: mwizguild.shp
 	place:
-		Scale: 0.2
+		Scale: 0.25
 		Start: 0
 		Length: 1
+		Offset: -15,0,0
 	idle:
-		Scale: 0.2
+		Scale: 0.25
 		Start: 0
 		Length: 1
+		Offset: -15,0,0
 	damaged-idle:
-		Scale: 0.2
+		Scale: 0.25
 		Start: 1
+		Offset: -15,0,0
 	dead:
-		Scale: 0.2
+		Scale: 0.25
 		Start: 2
 		Tick: 800
+		Offset: -15,0,0
 	make:
-		Scale: 0.2
+		Scale: 0.25
 		Start: 0
 		Length: 1
+		Offset: -15,0,0
 	bib:
 		TilesetFilenames:
 			SNOW: bib3.sno
@@ -3061,22 +3144,22 @@ monumentgazebo:
 	Defaults:
 		Filename: mmonument.shp
 	place:
-		Scale: 0.2
+		Scale: 0.4
 		Start: 0
 		Length: 1
 	idle:
-		Scale: 0.2
+		Scale: 0.4
 		Start: 0
 		Length: 1
 	damaged-idle:
-		Scale: 0.2
+		Scale: 0.4
 		Start: 1
 	dead:
-		Scale: 0.2
+		Scale: 0.4
 		Start: 2
 		Tick: 800
 	make:
-		Scale: 0.2
+		Scale: 0.4
 		Start: 0
 		Length: 1
 	bib:
@@ -3095,23 +3178,24 @@ gamblinghall:
 		Filename: mgamblinghall.shp
 	place:
 		Scale: 0.2
-		Start: 0
+		Start: 2
 		Length: 1
 	make:
 		Scale: 0.2
 		Start: 0
-		Length: 1
-		Tick: 1200
+		Length: 2
 	idle:
 		Scale: 0.2
-		Start: 0
-		Length: 1
+		Start: 2
+		Length: 2
 	damaged-idle:
 		Scale: 0.2
-		Start: 1
+		Start: 4
+		Length: 1
 	dead:
 		Scale: 0.2
-		Start: 2
+		Start: 6
+		Length: 1
 		Tick: 800
 	bib:
 		TilesetFilenames:
@@ -3128,23 +3212,23 @@ elvenhideout:
 	Defaults:
 		Filename: melven.shp
 	place:
-		Scale: 0.2
+		Scale: 0.34
 		Start: 0
 		Length: 1
 	make:
-		Scale: 0.2
+		Scale: 0.34
 		Start: 0
 		Length: 1
 		Tick: 1200
 	idle:
-		Scale: 0.2
+		Scale: 0.34
 		Start: 0
 		Length: 1
 	damaged-idle:
-		Scale: 0.2
+		Scale: 0.34
 		Start: 1
 	dead:
-		Scale: 0.2
+		Scale: 0.34
 		Start: 2
 		Tick: 800
 	bib:
@@ -3162,22 +3246,26 @@ spittervine:
 	Defaults:
 		Filename: mspittervine.shp
 	place:
-		Scale: 0.2
+		Scale: 0.6
 		Start: 0
 		Length: 1
+		Offset: -5,-5,0
 	idle:
-		Scale: 0.2
+		Scale: 0.6
 		Start: 0
 		Length: 1
+		Offset: -5,-5,0
 	damaged-idle:
-		Scale: 0.2
+		Scale: 0.6
 		Start: 1
+		Offset: -5,-5,0
 	make:
-		Scale: 0.2
+		Scale: 0.6
 		Start: 0
 		Length: 1
+		Offset: -5,-5,0
 	dead:
-		Scale: 0.2
+		Scale: 0.6
 		Start: 2
 		Tick: 800
 	bib:
@@ -3196,34 +3284,32 @@ spittervine:
 
 #cover redundancy#
 mediarrowtower:
-	Inherits: Archertower
-Archertower4:
-	Inherits: Archertower
+	Inherits: archertower
 
 ##Archer Tower
-Archertower:
+archertower:
 	Defaults:
 		Filename: mArchertower.shp
 	place:
-		Scale: 0.15
+		Scale: 0.17
 		Start: 1
 	idle:
-		Scale: 0.15
+		Scale: 0.17
 		Start: 1
-		Offset: 0,-50,0
+		Offset: 0,-25,0
 	damaged-idle:
-		Scale: 0.15
+		Scale: 0.17
 		Start: 2
-		Offset: 0,-50,0
+		Offset: 0,-25,0
 	dead:
-		Scale: 0.15
+		Scale: 0.17
 		Start: 2
 		Tick: 800
-		Offset: 0,-50,0
+		Offset: 0,-25,0
 	make:
-		Scale: 0.15
+		Scale: 0.17
 		Start: 1
-		Offset: 0,-50,0
+		Offset: 0,-25,0
 	build-top:
 		Scale: 0.15
 		Start: 1
@@ -3235,38 +3321,40 @@ Archertower:
 			DESERT: bib3.des
 		Length: *
 	icon:
-		Filename: mArchertowericon.shp
+		Filename: marchertowericon.shp
 	icon-gun:
-		Filename: mArchertowericon.shp
+		Filename: marchertowericon.shp
 
 ##Guardhouse
 guardhouse:
 	Defaults:
 		Filename: mguardhouse.shp
 	place:
-		Scale: 0.2
+		Scale: 0.35
 		Start: 0
 	idle:
-		Scale: 0.2
+		Scale: 0.35
 		Start: 5
-		Length: 7
-		Offset: 0,-50,0
+		Length: 5
+		Tick: 80
+		Offset: -25,-15,0
 	damaged-idle:
-		Scale: 0.2
+		Scale: 0.35
 		Start: 11
-		Offset: 0,-50,0
+		Tick: 80
+		Offset: -25,-15,0
 	dead:
-		Scale: 0.2
+		Scale: 0.35
 		Start: 12
 		Tick: 800
-		Offset: 0,-50,0
+		Offset: -25,-15,0
 	make:
-		Scale: 0.2
+		Scale: 0.35
 		Start: 0
 		Length: 5
-		Offset: 0,-50,0
+		Offset: -25,-15,0
 	build-top:
-		Scale: 0.2
+		Scale: 0.3
 		Start: 0
 		Length: 5
 	bib:
@@ -3288,29 +3376,29 @@ wizardtower:
 	place:
 		Start: 6
 		Scale: 0.75
-		Offset: -20,-12,0
+		Offset: -20,-10,0
 	idle:
 		Start: 6
 		Scale: 0.75
-		Offset: -20,-12,0
+		Offset: -20,-10,0
 	damaged-idle:
 		Start: 7
 		Scale: 0.75
-		Offset: -20,-12,0
+		Offset: -20,-10,0
 	dead:
 		Start: 7
 		Tick: 800
 		Scale: 0.75
-		Offset: -20,-12,0
+		Offset: -20,-10,0
 	make:
 		Start: 1
 		Scale: 0.75
-		Offset: -20,-12,0
+		Offset: -20,-10,0
 	build-top:
 		Start: 0
 		Length: 5
 		Scale: 0.75
-		Offset: -20,-12,0
+		Offset: -20,-10,0
 	bib:
 		TilesetFilenames:
 			SNOW: bib3.sno
@@ -3326,27 +3414,27 @@ balistatower:
 	Defaults:
 		Filename: mbalistatower.shp
 	place:
-		Scale: 0.2
+		Scale: 0.28
 		Start: 1
 	idle:
-		Scale: 0.2
+		Scale: 0.28
 		Start: 1
-		Offset: 0,-50,0
+		Offset: 0,-40,0
 	damaged-idle:
-		Scale: 0.2
+		Scale: 0.28
 		Start: 2
-		Offset: 0,-50,0
+		Offset: 0,-40,0
 	dead:
-		Scale: 0.2
+		Scale: 0.28
 		Start: 2
 		Tick: 800
-		Offset: 0,-50,0
+		Offset: 0,-40,0
 	make:
-		Scale: 0.2
+		Scale: 0.28
 		Start: 1
-		Offset: 0,-50,0
+		Offset: 0,-40,0
 	build-top:
-		Scale: 0.2
+		Scale: 0.28
 		Start: 1
 	bib:
 		TilesetFilenames:
@@ -3366,17 +3454,23 @@ medieyetower:
 		Filename: meye.shp
 	place:
 		Start: 1
+		Offset: 0,-10,0
 	idle:
 		Start: 1
+		Offset: 0,-10,0
 	damaged-idle:
 		Start: 2
+		Offset: 0,-10,0
 	dead:
 		Start: 2
 		Tick: 800
+		Offset: 0,-10,0
 	make:
 		Start: 1
+		Offset: 0,-10,0
 	build-top:
 		Start: 1
+		Offset: 0,-10,0
 	bib:
 		TilesetFilenames:
 			SNOW: bib3.sno
@@ -3456,82 +3550,6 @@ mediscouttower:
 		Filename: mediscouttowericon.shp
 	icon-gun:
 		Filename: mediscouttowericon.shp
-
-mediarrowtower2:
-	Defaults:
-		Filename: mediarrowtower2.shp
-	place:
-		Scale: 0.2
-		Start: 1
-	idle:
-		Scale: 0.2
-		Start: 1
-		Offset: 0,-50,0
-	damaged-idle:
-		Scale: 0.2
-		Start: 2
-		Offset: 0,-50,0
-	dead:
-		Scale: 0.2
-		Start: 2
-		Tick: 800
-		Offset: 0,-50,0
-	make:
-		Scale: 0.2
-		Start: 1
-		Offset: 0,-50,0
-	build-top:
-		Scale: 0.2
-		Start: 1
-	bib:
-		TilesetFilenames:
-			SNOW: bib3.sno
-			INTERIOR: bib3.int
-			TEMPERAT: bib3.tem
-			DESERT: bib3.des
-		Length: *
-	icon:
-		Filename: mediarrowtowericon.shp
-	icon-gun:
-		Filename: mediarrowtowericon.shp
-
-mediarrowtower3:
-	Defaults:
-		Filename: mediarrowtower3.shp
-	place:
-		Scale: 0.2
-		Start: 1
-	idle:
-		Scale: 0.2
-		Start: 1
-		Offset: 0,-50,0
-	damaged-idle:
-		Scale: 0.2
-		Start: 2
-		Offset: 0,-50,0
-	dead:
-		Scale: 0.2
-		Start: 2
-		Tick: 800
-		Offset: 0,-50,0
-	make:
-		Scale: 0.2
-		Start: 1
-		Offset: 0,-50,0
-	build-top:
-		Scale: 0.2
-		Start: 1
-	bib:
-		TilesetFilenames:
-			SNOW: bib3.sno
-			INTERIOR: bib3.int
-			TEMPERAT: bib3.tem
-			DESERT: bib3.des
-		Length: *
-	icon:
-		Filename: mediarrowtowericon.shp
-	icon-gun:
-		Filename: mediarrowtowericon.shp
 
 medicannontower:
 	Defaults:

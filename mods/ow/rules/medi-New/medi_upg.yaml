@@ -43,7 +43,7 @@ upgrade.mediWorkerboots:
 
 ##Non Magic units get enchanted blades, attack faster.
 ##magicweapons
-upgrade.mediMagicWeapons:
+upgrade.medimagicwep:
 	Inherits: ^UpgradeBaseExt
 	Tooltip:
 		Name: Magic Weapons
@@ -52,7 +52,7 @@ upgrade.mediMagicWeapons:
 		Description: Enchant your weapons for faster attack speed
 		BuildPaletteOrder: 10007
 		BuildDuration: 1000
-		Prerequisites: ~structures.medi, ~!upgrade.mediMagicWeapons, ~techcenter
+		Prerequisites: ~structures.medi, ~!upgrade.medimagicwep, ~techcenter
 	ProductionCostMultiplier@upgrade:
 		Multiplier: 2000
 	ProvidesPrerequisite@upgradename:
@@ -67,7 +67,7 @@ upgrade.medimagiclogs:
 		Name: Magic Logs
 	Buildable:
 		IconPalette: tsunit
-		Description: Enchant your Buildings for bonus Shields and slow regen while shields are up
+		Description: Enchant your Buildings for bonus Shields and slow hp regen while shields are up
 		BuildPaletteOrder: 10007
 		BuildDuration: 1000
 		Prerequisites: ~structures.medi, ~!upgrade.medimagiclogs, ~techcenter
@@ -82,10 +82,10 @@ upgrade.medimagiclogs:
 upgrade.medivision:
 	Inherits: ^UpgradeBaseExt
 	Tooltip:
-		Name: Magic Logs
+		Name: True Vision
 	Buildable:
 		IconPalette: tsunit
-		Description: Enchant your Buildings for bonus Shields and slow regen while shields are up
+		Description: Enhances your vision powers
 		BuildPaletteOrder: 10007
 		BuildDuration: 1000
 		Prerequisites: ~structures.medi, ~!upgrade.medivision, ~techcenter
@@ -174,7 +174,7 @@ upgrade.mediabolish:
 ##################################   wizard   #################################
 ###############################################################################
 
-##magic units get bonus damage
+##Wizard units get bonus damage and range
 ##puremagic
 upgrade.mediPureMagic:
 	Inherits: ^UpgradeBaseExt
@@ -200,7 +200,7 @@ upgrade.medimagearmor:
 		Name: Mage Armor
 	Buildable:
 		IconPalette: tsunit
-		Description: Provides longer duration and faster cooldown on vision ability of the eye
+		Description: Shields for Wizards
 		BuildPaletteOrder: 10007
 		BuildDuration: 1000
 		Prerequisites: ~structures.mediwizards, ~!upgrade.medimagearmor, ~techcenter
@@ -278,7 +278,7 @@ upgrade.medinecromancy:
 		Name: Necromancy
 	Buildable:
 		IconPalette: tsunit
-		Description: Undead units may respawn.
+		Description: Undead units have small chance to respawn once per life.
 		BuildPaletteOrder: 10007
 		BuildDuration: 1000
 		Prerequisites: ~structures.medicult, ~!upgrade.medinecromancy, ~techcenter

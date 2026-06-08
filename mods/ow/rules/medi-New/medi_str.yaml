@@ -23,28 +23,28 @@ taxgen.low:
 	SeedsResource:
 		ResourceType: TributeLow
 		Interval: 400
-		MaxRange: 3
+		MaxRange: 6
 
 taxgen.mid:
 	Inherits: ^TaxGen
 	SeedsResource:
 		ResourceType: TributeMid
 		Interval: 500
-		MaxRange: 3
+		MaxRange: 6
 
 taxgen.high:
 	Inherits: ^TaxGen
 	SeedsResource:
 		ResourceType: TributeHigh
 		Interval: 600
-		MaxRange: 3
+		MaxRange: 6
 
 taxgen.super:
 	Inherits: ^TaxGen
 	SeedsResource:
 		ResourceType: TributeSuper
 		Interval: 750
-		MaxRange: 3
+		MaxRange: 6
 
 ^TaxableBase:
 	ProximityExternalCondition@taxgen:
@@ -83,9 +83,9 @@ taxgen.super:
 
 ##Main MCV Building
 mediconyard:
-	Inherits@prereqs: ^ConYardPrereqs
-	Inherits@con: ^ConYard
-	Inherits@BIB: ^3xBuildingBib
+	Inherits: FACTD
+	-WithIdleOverlay@soviet:
+	-SpawnActorsOnSell:
 	Valued:
 		Cost: 2000
 	Tooltip:
@@ -94,7 +94,7 @@ mediconyard:
 	Transforms:
 		RequiresCondition: factundeploy && !bot_undeploy_block
 		PauseOnCondition: chrono-vortex || being-captured || being-demolished || build-incomplete
-		IntoActor: MCVM
+		IntoActor: mcvm
 	TransformsIntoMobile:
 		RequiresCondition: factundeploy && !bot_undeploy_block
 		Locomotor: heavywheeled
@@ -116,14 +116,23 @@ mediconyard:
 	ProvidesPrerequisite@buildingname:
 	ProvidesPrerequisite@medi:
 		Prerequisite: structures.medi
+	ProvidesPrerequisite@mediwizards:
+		Prerequisite: structures.mediwizards
+		Factions: mediwizards
+	ProvidesPrerequisite@medicult:
+		Prerequisite: structures.medicult
+		Factions: medicult
+	ProvidesPrerequisite@mediholy:
+		Prerequisite: structures.mediholy
+		Factions: mediholy
 	RenderSprites:
 		Image: factm
 
-##No Power Foundry
 ##foundrymed
 foundrymedi:
 	Inherits: FOUNDRY
 	Inherits@tax: ^TaxableLow
+	Inherits@IDISABLE: ^DisableOnLowPowerOrPowerDown
 	Valued:
 		Cost: 2000
 	Buildable:
@@ -132,7 +141,7 @@ foundrymedi:
 		Prerequisites: conyard, ~techlevel.medium, ~structures.medi, ~!structures.bothard
 		Description: Autonomous building construction. \nIncreases build speed of Structures and\nDefense by 1 stage (max 10).
 	Power:
-		Amount: 0
+		Amount: -100
 	RenderSprites:
 		Image: foundry
 
@@ -267,7 +276,7 @@ refinarymarket:
 	Valued:
 		Cost: 1600
 	Power:
-		Amount: 50
+		Amount: 0
 	Targetable:
 		TargetTypes: GroundActor, C4, DetonateAttack, Structure
 	ProvidesPrerequisite@buildingname:
@@ -291,7 +300,11 @@ barrackswg:
 	Tooltip:
 		Name: Medieval Barracks
 	Building:
+		Footprint: == ==
+		Dimensions: 2,2
 		BuildSounds: medibuild1.aud, medibuildjobdone1.aud, medibuildplace1.aud
+	Selectable:
+		Bounds: 2048, 2048
 	Power:
 		Amount: 0
 	RenderSprites:
@@ -339,7 +352,7 @@ dwarfsettlement:
 	Building:
 		BuildSounds: medibuild1.aud, medibuildjobdone1.aud, medibuildplace1.aud
 	Power:
-		Amount: -50
+		Amount: 0
 	RenderSprites:
 		Image: dwarfsettlement
 	ProvidesPrerequisite@medi:
@@ -445,7 +458,7 @@ dragonlair:
 		Image: dragonlair
 		PlayerPalette: tsunit
 	Power:
-		Amount: -50
+		Amount: 0
 	RallyPoint:
 		ForceSetType: Helicopter
 	CommandBarBlacklist:
@@ -496,8 +509,9 @@ techcenterblacksmith:
 		Prerequisite: techcenter
 	RenderSprites:
 		Image: techcenterblacksmith
+	Inherits@IDISABLE: ^DisableOnLowPowerOrPowerDown
 	Power:
-		Amount: -100
+		Amount: 100
 	DetectCloaked:
 		Range: 6c0
 		RequiresCondition: !disabled
@@ -590,6 +604,7 @@ techcenterblacksmith:
 advtechcenterlibrary:
 	Inherits: ADVTECH
 	Inherits@tax: ^TaxableHigh
+	Inherits@IDISABLE: ^DisableOnLowPowerOrPowerDown
 	Buildable:
 		IconPalette: tsunit
 		Queue: Tech
@@ -693,30 +708,24 @@ advtechcenterlibrary:
 		Weapon: ChainsPowerWep
 		DisplayTimerRelationships: None
 	## Wizard Powers
-	DropPodsPowerOW@meteorstorm:
-		Icon: medivoidportalicon
-		Name: Meteor Storm
-		OrderName: meteorstorm
-		Description: Rain fireballs and meteors on the target area.\nFireballs devastate units, meteors crush buildings.
-		UnitTypes: meteorstorm_fire, meteorstorm_meteor, meteorstorm_fire1, meteorstorm_meteor1, meteorstorm_fire2, meteorstorm_meteor2
-		Cursor: chrono-target
-		Drops: 25,30
-		PodScatter: 10
-		PodFacing: 704
-		PauseOnCondition: disabled
-		CameraActor: camera
-		CameraRemoveDelay: 300
-		Weapon: ArtilleryPowerMarker
-		WeaponDelay: 5
-		ChargeInterval: 10000
-		EntryEffect: explosion
-		EntryEffectSequence: bunkerbustersring
-		LaunchSound: InterceptorMissile01.wav
-		SelectTargetSpeechNotification: SelectTarget
-		DisplayRadarPing: true
-		DisplayTimerRelationships: Ally, Enemy, Neutral
-		BeaconPoster: artillerybarragebeacon
+	IonCannonPower@FrostNova:
+		OrderName: FrostNova
 		Prerequisites: ~structures.mediwizards
+		PauseOnCondition: disabled
+		Icon: medivoidportalicon
+		Cursor: chrono-target
+		ChargeInterval: 4000
+		Name: Frost Nova
+		Description: Blankets the target area in freezing cold, slowing enemy movement and attacks
+		SelectTargetSpeechNotification: SelectTarget
+		InsufficientPowerSpeechNotification: InsufficientPower
+		OnFireSound: medicurse.aud
+		DisplayRadarPing: True
+		SupportPowerPaletteOrder: 20
+		Effect: explosion
+		EffectSequence: frostnova
+		Weapon: FrostNovaWep
+		DisplayTimerRelationships: None
 
 ##Super Tech
 ##Brashnards (Super Tech)
@@ -725,6 +734,7 @@ brashnards:
 	Inherits@tax: ^TaxableSuper
 	Inherits@shape: ^3x3Shape
 	Inherits@BIB: ^3xBuildingBib
+	Inherits@IDISABLE: ^DisableOnLowPowerOrPowerDown
 	Selectable:
 		Bounds: 4096, 3072
 	Buildable:
@@ -871,12 +881,12 @@ radarwg:
 		BuildLimit: 2
 		BuildPaletteOrder: 6
 	Building:
-		Footprint: x x x
-		Dimensions: 1,3
+		Footprint: == ==
+		Dimensions: 2,2
 		BuildSounds: medibuild1.aud, medibuildjobdone1.aud, medibuildplace1.aud
 	Selectable:
-		Bounds: 1024, 3072
-		DecorationBounds: 1024, 3072, 0, 0
+		Bounds: 2048, 2048
+		DecorationBounds: 2048, 2048, 0, 0
 	SelectionDecorations:
 	WithBuildingBib:
 		HasMinibib: true
@@ -985,20 +995,28 @@ Archertower:
 	DetectCloaked:
 		Range: 6c0
 	RenderSprites:
-		Image: mediarrowtower
+		Image: archertower
+	GrantConditionOnPrerequisite@arrowupgrade:
+		Prerequisites: upgrade.mediarrow
+		Condition: arrowupgrade
 	Armament@base:
 		Name: base
 		Turret: T1
 		Weapon: Archertowershot
+	Armament@extra:
+		Name: extra
+		Turret: T1
+		Weapon: Archertowershot
+		RequiresCondition: arrowupgrade
 	AttackTurreted:
 		Turrets: T1
-		Armaments: base
+		Armaments: base, extra
 		RequiresCondition: !build-incomplete
 	-BodyOrientation:
 	ClassicFacingBodyOrientation:
 		QuantizedFacings: 8
 	Power:
-		Amount: -25
+		Amount: 0
 
 ##Archer Tower redundancy?
 Archertower4:
@@ -1221,7 +1239,7 @@ balistatower:
 	Inherits: ^Defense
 	Inherits@tax: ^TaxableLow
 	Power:
-		Amount: -50
+		Amount: 0
 	Buildable:
 		IconPalette: tsunit
 		Queue: Defense
@@ -1278,7 +1296,7 @@ TheEye:
 	Tooltip:
 		Name: The Eye
 	Buildable:
-		Queue: Tech
+		Queue: Defense
 		Prerequisites: ~structures.medi, advtechcenter, ~techlevel.medium
 		Description: Grants Vision in large area
 		BuildPaletteOrder: 6
@@ -1298,7 +1316,7 @@ TempleofLunord:
 		Description: Allows production of creatures.
 		BuildPaletteOrder: 4
 	RenderSprites:
-		Image: creaturestl
+		Image: mcreatureholy
 
 ###############################################################################
 #################################   Cult   ###############################
@@ -1313,7 +1331,7 @@ Templeofkrypta:
 		Description: Allows production of creatures.
 		BuildPaletteOrder: 4
 	RenderSprites:
-		Image: creaturestk
+		Image: mcreaturecult
 
 ##Barracks
 GoblinCamp:
@@ -1353,8 +1371,11 @@ Graveyard:
 		IconPalette: tsunit
 		Prerequisites: ~structures.medicult, advtechcenter, ~!ai.boss, ~techlevel.infonly
 		Description: Produces undead to defend the area
+	Health:
+		HP: 50000
+	-RenderRangeCircle:
 	Power:
-		Amount: -300
+		Amount: 0
 	GrantPeriodicCondition@Undeadspawner1:
 		Condition: Undeadspawner
 		CooldownDuration: 300, 500
@@ -1383,6 +1404,9 @@ Graveyard:
 		Actor: Skeleton2
 		AllowRespawn: True
 		RequiresCondition: Undeadspawner4
+	Selectable:
+		Bounds: 4096, 4096
+		DecorationBounds: 4096, 4096
 	RenderSprites:
 		Image: medigraveyard
 
@@ -1399,7 +1423,7 @@ TempleofKrolm:
 		Description: Allows production of creatures.
 		BuildPaletteOrder: 4
 	RenderSprites:
-		Image: animalden
+		Image: mcreaturewiz
 
 ###############################################################################
 ###################################  Nukes   ##################################
@@ -1662,6 +1686,10 @@ monumentgazebo:
 	Inherits@AUTOTARGET: ^AutoTargetAll
 	-Targetable:
 	-Capturable:
+	-CapturableProgressBar:
+	-CapturableProgressBlink:
+	Health:
+		HP: 9000000
 	DamageMultiplier:
 		Modifier: 0
 	ChangesHealth@Monumentregen:
@@ -1674,11 +1702,12 @@ monumentgazebo:
 		Armaments: base
 		RequiresCondition: !build-incomplete
 	Turreted@T1:
-		Turret:	T1
+		Turret: T1
 		TurnSpeed: 1023
 		Offset: 128,128,384
 	Armament:
 		Name: base
+		Turret: T1
 		Weapon: monumentheal
 		Cursor: heal
 		TargetRelationships: Enemy, Neutral, Ally
@@ -1692,12 +1721,11 @@ spittervine:
 	Inherits: ^Defense
 	Inherits@tax: ^TaxableMid
 	Power:
-		Amount: -50
+		Amount: 0
 	Tooltip:
 		Name: Spitter vine
 	Health:
 		HP: 35000
-	-Capturable:
 	SpawnActorOnDeath@revive:
 		Actor: spittervine.dead
 	AttackTurreted:
@@ -1737,21 +1765,26 @@ spittervine:
 
 ## Dormant state - revives after 60 seconds
 spittervine.dead:
-	Inherits: spittervine
+	Inherits: ^Building
 	-Targetable:
-	-SpawnActorOnDeath@revive:
-	SpawnActorOnDeath@revive2:
-		Actor: spittervine
-	Health:
-		HP: 10000
 	Tooltip:
 		Name: Spitter Vine (Dormant)
+	Health:
+		HP: 10000
+	SpawnActorOnDeath@revive2:
+		Actor: spittervine
+	Building:
+		Footprint: +
+		BuildSounds: medibuild1.aud, medibuildjobdone1.aud, medibuildplace1.aud
+	Selectable:
+		Bounds: 1024, 1024
+		DecorationBounds: 1024, 1024, 0, 0
+	Armor:
+		Type: Wood
 	KillsSelf:
 		Delay: 1500
-	-AttackTurreted:
-	-Armament@PRIMARY:
-	-Turreted@PRIMARY:
-	-DetectCloaked:
+	RenderSprites:
+		Image: spittervine
 	WithSpriteBody:
 		Sequence: dead
 
@@ -1879,14 +1912,39 @@ zombierainpod4:
 		Velocity: 230
 		MaximumSpinSpeed: 0
 
+## Invisible marker placed at each void laser impact; rises undead after a random delay
+VoidRiseMarker:
+	Inherits: MINE_DUMMY
+	Immobile:
+		OccupiesSpace: false
+	BodyOrientation:
+		QuantizedFacings: 0
+	HitShape:
+	Health:
+		HP: 999999
+	GrantRandomCondition:
+		Conditions: spawn-nothing, spawn-zombie, spawn-skeleton
+	GrantDelayedCondition:
+		Condition: rise-time
+		Delay: 500, 5000
+	SpawnActorOnDeath@zombie:
+		Actor: SummonedZombie
+		RequiresCondition: spawn-zombie
+	SpawnActorOnDeath@skeleton:
+		Actor: Skeleton
+		RequiresCondition: spawn-skeleton
+	KillsSelf:
+		RequiresCondition: rise-time
+
 ##  Spawns Void archers for owner, gives powers.
 elvenhideout:
 	Inherits: guardhouse
+	-Buildable:
 	GrantPeriodicCondition@Voidarcher:
 		Condition: Voidarcherspawn
 		CooldownDuration: 500, 1000
 	FreeActor@Voidarcher:
-		Actor: VOIDARCHER
+		Actor: VOIDARCHER_SPAWN
 		AllowRespawn: True
 		RequiresCondition: Voidarcherspawn
 	-GrantPeriodicCondition@Guardhousespawner:
@@ -1900,7 +1958,6 @@ elvenhideout:
 		PlayerPalette: tsunit
 
 ## Redundant ##
-
 medigarrisontower:
 	Inherits: guardhouse
 	-Buildable
@@ -2135,3 +2192,116 @@ TransmuteSpawnerWizard:
 	FreeActor@w08:
 		Actor: TransmuteProbeWizard
 		SpawnOffset: 1,1
+
+###############################################################################
+##########################   Debug Test Spawner   #############################
+###############################################################################
+
+## Place this in debug mode to spawn all medi buildings in a grid.
+## 5-wide grid, 7-cell spacing. Spawner removes itself after 5 ticks.
+MediAllBuildingsTest:
+	Inherits: barrackswg
+	Buildable:
+		IconPalette: tsunit
+		Queue: Building
+		Prerequisites: ~structures.medi
+		Description: Spawns all medi buildings in a grid for testing
+		BuildPaletteOrder: 9999
+		BuildDuration: 1
+	Valued:
+		Cost: 0
+	Tooltip:
+		Name: Building Test Spawner
+	KillsSelf:
+		Delay: 5
+		RemoveInstead: true
+	## Row 0 (y=0)
+	FreeActor@b01:
+		Actor: mediconyard
+		SpawnOffset: 0,0
+	FreeActor@b02:
+		Actor: barrackswg
+		SpawnOffset: 7,0
+	FreeActor@b03:
+		Actor: refinarymarket
+		SpawnOffset: 14,0
+	FreeActor@b04:
+		Actor: slavecampgc
+		SpawnOffset: 21,0
+	FreeActor@b05:
+		Actor: dragonlair
+		SpawnOffset: 28,0
+	## Row 1 (y=7)
+	FreeActor@b06:
+		Actor: foundrymedi
+		SpawnOffset: 0,7
+	FreeActor@b07:
+		Actor: dwarfsettlement
+		SpawnOffset: 7,7
+	FreeActor@b08:
+		Actor: techcenterblacksmith
+		SpawnOffset: 14,7
+	FreeActor@b09:
+		Actor: advtechcenterlibrary
+		SpawnOffset: 21,7
+	FreeActor@b10:
+		Actor: brashnards
+		SpawnOffset: 28,7
+	## Row 2 (y=14)
+	FreeActor@b11:
+		Actor: radarwg
+		SpawnOffset: 0,14
+	FreeActor@b12:
+		Actor: Archertower
+		SpawnOffset: 7,14
+	FreeActor@b13:
+		Actor: guardhouse
+		SpawnOffset: 14,14
+	FreeActor@b14:
+		Actor: wizardtower
+		SpawnOffset: 21,14
+	FreeActor@b15:
+		Actor: balistatower
+		SpawnOffset: 28,14
+	## Row 3 (y=21)
+	FreeActor@b16:
+		Actor: TheEye
+		SpawnOffset: 0,21
+	FreeActor@b17:
+		Actor: gamblinghall
+		SpawnOffset: 7,21
+	FreeActor@b18:
+		Actor: elvenhideout
+		SpawnOffset: 14,21
+	FreeActor@b19:
+		Actor: monumentgazebo
+		SpawnOffset: 21,21
+	FreeActor@b20:
+		Actor: Graveyard
+		SpawnOffset: 28,21
+	## Row 4 (y=28)
+	FreeActor@b21:
+		Actor: outpostmedi
+		SpawnOffset: 0,28
+	FreeActor@b22:
+		Actor: spittervine
+		SpawnOffset: 7,28
+	FreeActor@b23:
+		Actor: GATEOFLIGHT
+		SpawnOffset: 14,28
+	FreeActor@b24:
+		Actor: MediDarkCrystal
+		SpawnOffset: 21,28
+	FreeActor@b25:
+		Actor: FireStormMedi
+		SpawnOffset: 28,28
+	## Row 5 (y=35)
+	FreeActor@b26:
+		Actor: Templeofkrypta
+		SpawnOffset: 0,35
+	FreeActor@b27:
+		Actor: TempleofLunord
+		SpawnOffset: 7,35
+	FreeActor@b28:
+		Actor: TempleofKrolm
+		SpawnOffset: 14,35

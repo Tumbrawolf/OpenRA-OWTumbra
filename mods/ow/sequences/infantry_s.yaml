@@ -1,4 +1,4 @@
-e1:
+﻿e1:
 	Defaults:
 		Filename: e1.shp
 	stand3:
@@ -5223,7 +5223,7 @@ mworker:
 		Length: 8
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 		Tick: 100
 	idle1:
@@ -5231,7 +5231,7 @@ mworker:
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 		Tick: 100
 	idle2:
@@ -5239,7 +5239,7 @@ mworker:
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 		Tick: 100
 	stand:
@@ -5247,7 +5247,7 @@ mworker:
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 		Tick: 100
 	die1:
@@ -5255,7 +5255,7 @@ mworker:
 		Length: 3
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 		Tick: 100
 	die2:
@@ -5263,7 +5263,7 @@ mworker:
 		Length: 3
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 		Tick: 100
 	die3:
@@ -5271,7 +5271,7 @@ mworker:
 		Length: 3
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 		Tick: 100
 	die4:
@@ -5279,7 +5279,7 @@ mworker:
 		Length: 3
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 		Tick: 100
 	die5:
@@ -5298,14 +5298,14 @@ mworker:
 		Tick: 120
 		ZOffset: -511
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	shoot:
 		Start: 98
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 		Tick: 100
 	dock:
@@ -5313,7 +5313,7 @@ mworker:
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 		Tick: 100
 	dock-loop:
@@ -5321,7 +5321,7 @@ mworker:
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 		Tick: 100
 	garrison-muzzle:
@@ -5349,56 +5349,56 @@ mscout:
 		Length: 8
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	idle1:
 		Start: 64
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	idle2:
 		Start: 64
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	stand:
 		Start: 64
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	die1:
 		Start: 64
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	die2:
 		Start: 64
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	die3:
 		Start: 64
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	die4:
 		Start: 64
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	die5:
 		Filename: s_bang34.shp
@@ -5415,14 +5415,14 @@ mscout:
 		Tick: 120
 		ZOffset: -511
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	shoot:
 		Start: 96
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	garrison-muzzle:
 		Filename: minigun.shp
@@ -5438,45 +5438,45 @@ msurveyor:
 		Tick: 80
 	stand:
 		Facings: 8
-		Offset: 0,-20,0
+		Offset: 0,-10,0
 		FlipX: true
 	idle1:
 		Facings: 8
-		Offset: 0,-20,0
+		Offset: 0,-10,0
 		FlipX: true
 	idle2:
 		Facings: 8
-		Offset: 0,-20,0
+		Offset: 0,-10,0
 		FlipX: true
 	run:
 		Start: 8
 		Length: 10
 		Facings: 8
-		Offset: 0,-20,0
+		Offset: 0,-10,0
 		FlipX: true
 	die1:
 		Start: 88
 		Length: 15
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 0,-10,0
 		FlipX: true
 	die2:
 		Start: 88
 		Length: 15
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 0,-10,0
 		FlipX: true
 	die3:
 		Start: 88
 		Length: 15
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 0,-10,0
 		FlipX: true
 	die4:
 		Start: 88
 		Length: 15
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 0,-10,0
 		FlipX: true
 	die5:
 		Filename: s_bang34.shp
@@ -5493,7 +5493,7 @@ msurveyor:
 		Tick: 100
 		ZOffset: -511
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 0,-10,0
 		FlipX: true
 	icon:
 		Filename: msurveyoricon.shp
@@ -5507,56 +5507,56 @@ mtax:
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	run:
 		Start: 0
 		Length: 8
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	idle1:
 		Start: 64
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	idle2:
 		Start: 64
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	die1:
 		Start: 128
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	die2:
 		Start: 128
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	die3:
 		Start: 128
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	die4:
 		Start: 128
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	die5:
 		Filename: s_bang34.shp
@@ -5573,14 +5573,14 @@ mtax:
 		Tick: 120
 		ZOffset: -511
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	shoot:
 		Start: 96
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	garrison-muzzle:
 		Filename: minigun.shp
@@ -5598,48 +5598,56 @@ mknight:
 		Facings: 8
 		Scale: 0.4
 		Offset: 0,-20,0
+		FlipX: true
 	run:
 		Start: 0
 		Length: 7
 		Facings: 8
 		Scale: 0.4
 		Offset: 0,-20,0
+		FlipX: true
 	idle1:
 		Start: 64
 		Length: 4
 		Facings: 8
 		Scale: 0.4
 		Offset: 0,-20,0
+		FlipX: true
 	idle2:
 		Start: 64
 		Length: 4
 		Facings: 8
 		Scale: 0.4
 		Offset: 0,-20,0
+		FlipX: true
 	die1:
 		Start: 96
 		Length: 4
 		Facings: 8
 		Scale: 0.4
 		Offset: 0,-20,0
+		FlipX: true
 	die2:
 		Start: 96
 		Length: 4
 		Facings: 8
 		Scale: 0.4
 		Offset: 0,-20,0
+		FlipX: true
 	die3:
 		Start: 96
 		Length: 4
 		Facings: 8
 		Scale: 0.4
 		Offset: 0,-20,0
+		FlipX: true
 	die4:
 		Start: 96
 		Length: 4
 		Facings: 8
 		Scale: 0.4
 		Offset: 0,-20,0
+		FlipX: true
 	die5:
 		Filename: s_bang34.shp
 		Length: *
@@ -5657,12 +5665,14 @@ mknight:
 		ZOffset: -511
 		Scale: 0.4
 		Offset: 0,-20,0
+		FlipX: true
 	shoot:
 		Start: 128
 		Length: 8
 		Facings: 8
 		Scale: 0.4
 		Offset: 0,-20,0
+		FlipX: true
 	garrison-muzzle:
 		Filename: minigun.shp
 		Length: 6
@@ -5760,56 +5770,56 @@ mberserk:
 	stand:
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	run:
 		Start: 0
 		Length: 8
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	idle1:
 		Start: 64
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	idle2:
 		Start: 64
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	die1:
 		Start: 160
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	die2:
 		Start: 160
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	die3:
 		Start: 160
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	die4:
 		Start: 160
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	die5:
 		Filename: s_bang34.shp
@@ -5827,21 +5837,21 @@ mberserk:
 		Tick: 120
 		ZOffset: -511
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	shoot:
 		Start: 96
 		Length: 8
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	shoot2:
 		Start: 128
 		Length: 8
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	garrison-muzzle:
 		Filename: minigun.shp
@@ -5858,56 +5868,56 @@ mwizard:
 	stand:
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	run:
 		Start: 0
 		Length: 8
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	idle1:
 		Start: 64
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	idle2:
 		Start: 64
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	die1:
 		Start: 64
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	die2:
 		Start: 64
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	die3:
 		Start: 64
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	die4:
 		Start: 64
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	die5:
 		Filename: s_bang34.shp
@@ -5925,21 +5935,21 @@ mwizard:
 		Tick: 120
 		ZOffset: -511
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	shoot:
 		Start: 96
 		Length: 8
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	shoot2:
 		Start: 96
 		Length: 8
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	garrison-muzzle:
 		Filename: minigun.shp
@@ -5958,56 +5968,56 @@ mlwizard:
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	run:
 		Start: 0
 		Length: 8
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	idle1:
 		Start: 72
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	idle2:
 		Start: 72
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	die1:
 		Start: 136
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	die2:
 		Start: 136
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	die3:
 		Start: 136
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	die4:
 		Start: 136
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	die5:
 		Filename: s_bang34.shp
@@ -6025,21 +6035,21 @@ mlwizard:
 		Tick: 120
 		ZOffset: -511
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	shoot:
 		Start: 104
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	shoot2:
 		Start: 104
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	garrison-muzzle:
 		Filename: minigun.shp
@@ -6058,56 +6068,56 @@ mfwizard:
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	run:
 		Start: 0
 		Length: 8
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	idle1:
 		Start: 72
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	idle2:
 		Start: 72
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	die1:
 		Start: 136
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	die2:
 		Start: 136
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	die3:
 		Start: 136
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	die4:
 		Start: 136
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	die5:
 		Filename: s_bang34.shp
@@ -6125,21 +6135,21 @@ mfwizard:
 		Tick: 120
 		ZOffset: -511
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	shoot:
 		Start: 104
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	shoot2:
 		Start: 104
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	garrison-muzzle:
 		Filename: minigun.shp
@@ -6156,56 +6166,56 @@ marcher:
 	stand:
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	run:
 		Start: 0
 		Length: 8
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	idle1:
 		Start: 64
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	idle2:
 		Start: 64
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	die1:
 		Start: 160
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	die2:
 		Start: 160
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	die3:
 		Start: 160
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	die4:
 		Start: 160
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	die5:
 		Filename: s_bang34.shp
@@ -6223,21 +6233,21 @@ marcher:
 		Tick: 120
 		ZOffset: -511
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	shoot:
 		Start: 96
 		Length: 8
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	shoot2:
 		Start: 128
 		Length: 8
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	garrison-muzzle:
 		Filename: minigun.shp
@@ -6254,56 +6264,56 @@ mpriest:
 	stand:
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	run:
 		Start: 0
 		Length: 8
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	idle1:
 		Start: 64
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	idle2:
 		Start: 64
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	die1:
 		Start: 160
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	die2:
 		Start: 160
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	die3:
 		Start: 160
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	die4:
 		Start: 160
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	die5:
 		Filename: s_bang34.shp
@@ -6321,21 +6331,21 @@ mpriest:
 		Tick: 120
 		ZOffset: -511
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	shoot:
 		Start: 96
 		Length: 8
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	shoot2:
 		Start: 128
 		Length: 8
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	garrison-muzzle:
 		Filename: minigun.shp
@@ -6352,56 +6362,56 @@ mpaladin:
 	stand:
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-24,0
 		FlipX: true
 	run:
 		Start: 0
 		Length: 8
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-24,0
 		FlipX: true
 	idle1:
 		Start: 64
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-24,0
 		FlipX: true
 	idle2:
 		Start: 64
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-24,0
 		FlipX: true
 	die1:
 		Start: 160
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-24,0
 		FlipX: true
 	die2:
 		Start: 160
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-24,0
 		FlipX: true
 	die3:
 		Start: 160
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-24,0
 		FlipX: true
 	die4:
 		Start: 160
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-24,0
 		FlipX: true
 	die5:
 		Filename: s_bang34.shp
@@ -6419,21 +6429,21 @@ mpaladin:
 		Tick: 120
 		ZOffset: -511
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-24,0
 		FlipX: true
 	shoot:
 		Start: 96
 		Length: 8
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-24,0
 		FlipX: true
 	shoot2:
 		Start: 128
 		Length: 8
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-24,0
 		FlipX: true
 	garrison-muzzle:
 		Filename: minigun.shp
@@ -6450,56 +6460,56 @@ mdwarf:
 	stand:
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 2,-20,0
 		FlipX: true
 	run:
 		Start: 0
 		Length: 8
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 2,-20,0
 		FlipX: true
 	idle1:
 		Start: 64
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 2,-20,0
 		FlipX: true
 	idle2:
 		Start: 64
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 2,-20,0
 		FlipX: true
 	die1:
 		Start: 160
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 2,-20,0
 		FlipX: true
 	die2:
 		Start: 160
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 2,-20,0
 		FlipX: true
 	die3:
 		Start: 160
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 2,-20,0
 		FlipX: true
 	die4:
 		Start: 160
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 2,-20,0
 		FlipX: true
 	die5:
 		Filename: s_bang34.shp
@@ -6517,21 +6527,21 @@ mdwarf:
 		Tick: 120
 		ZOffset: -511
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 2,-20,0
 		FlipX: true
 	shoot:
 		Start: 96
 		Length: 8
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 2,-20,0
 		FlipX: true
 	shoot2:
 		Start: 128
 		Length: 8
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 2,-20,0
 		FlipX: true
 	garrison-muzzle:
 		Filename: minigun.shp
@@ -6547,57 +6557,57 @@ medipaladin:
 		Tick: 80
 	stand:
 		Facings: 8
-		Scale: 0.4
-		Offset: 0,-20,0
+		Scale: 0.96
+		Offset: 0,-10,0
 		FlipX: true
 	run:
 		Start: 0
 		Length: 8
 		Facings: 8
-		Scale: 0.4
-		Offset: 0,-20,0
+		Scale: 0.96
+		Offset: 0,-10,0
 		FlipX: true
 	idle1:
 		Start: 64
 		Length: 4
 		Facings: 8
-		Scale: 0.4
-		Offset: 0,-20,0
+		Scale: 0.96
+		Offset: 0,-10,0
 		FlipX: true
 	idle2:
 		Start: 64
 		Length: 4
 		Facings: 8
-		Scale: 0.4
-		Offset: 0,-20,0
+		Scale: 0.96
+		Offset: 0,-10,0
 		FlipX: true
 	die1:
 		Start: 160
 		Length: 4
 		Facings: 8
-		Scale: 0.4
-		Offset: 0,-20,0
+		Scale: 0.96
+		Offset: 0,-10,0
 		FlipX: true
 	die2:
 		Start: 160
 		Length: 4
 		Facings: 8
-		Scale: 0.4
-		Offset: 0,-20,0
+		Scale: 0.96
+		Offset: 0,-10,0
 		FlipX: true
 	die3:
 		Start: 160
 		Length: 4
 		Facings: 8
-		Scale: 0.4
-		Offset: 0,-20,0
+		Scale: 0.96
+		Offset: 0,-10,0
 		FlipX: true
 	die4:
 		Start: 160
 		Length: 4
 		Facings: 8
-		Scale: 0.4
-		Offset: 0,-20,0
+		Scale: 0.96
+		Offset: 0,-10,0
 		FlipX: true
 	die5:
 		Filename: s_bang34.shp
@@ -6614,22 +6624,22 @@ medipaladin:
 		Facings: 8
 		Tick: 120
 		ZOffset: -511
-		Scale: 0.4
-		Offset: 0,-20,0
+		Scale: 0.96
+		Offset: 0,-10,0
 		FlipX: true
 	shoot:
 		Start: 96
 		Length: 8
 		Facings: 8
-		Scale: 0.4
-		Offset: 0,-20,0
+		Scale: 0.96
+		Offset: 0,-10,0
 		FlipX: true
 	shoot2:
 		Start: 128
 		Length: 8
 		Facings: 8
-		Scale: 0.4
-		Offset: 0,-20,0
+		Scale: 0.96
+		Offset: 0,-10,0
 		FlipX: true
 	garrison-muzzle:
 		Filename: minigun.shp
@@ -6648,63 +6658,63 @@ mgrat:
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 0,-14,0
 		FlipX: true
 	run:
 		Start: 0
 		Length: 8
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 0,-14,0
 		FlipX: true
 	walk:
 		Start: 0
 		Length: 8
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 0,-14,0
 		FlipX: true
 	idle1:
 		Start: 72
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 0,-14,0
 		FlipX: true
 	idle2:
 		Start: 72
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 0,-14,0
 		FlipX: true
 	die1:
 		Start: 136
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 0,-14,0
 		FlipX: true
 	die2:
 		Start: 136
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 0,-14,0
 		FlipX: true
 	die3:
 		Start: 136
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 0,-14,0
 		FlipX: true
 	die4:
 		Start: 136
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 0,-14,0
 		FlipX: true
 	die5:
 		Filename: s_bang34.shp
@@ -6722,21 +6732,21 @@ mgrat:
 		Tick: 120
 		ZOffset: -511
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 0,-14,0
 		FlipX: true
 	shoot:
 		Start: 104
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 0,-14,0
 		FlipX: true
 	shoot2:
 		Start: 104
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 0,-14,0
 		FlipX: true
 	garrison-muzzle:
 		Filename: minigun.shp
@@ -6755,56 +6765,56 @@ mratman:
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 0,-26,0
 		FlipX: true
 	run:
 		Start: 0
 		Length: 8
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 0,-26,0
 		FlipX: true
 	idle1:
 		Start: 72
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 0,-26,0
 		FlipX: true
 	idle2:
 		Start: 72
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 0,-26,0
 		FlipX: true
 	die1:
 		Start: 136
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 0,-26,0
 		FlipX: true
 	die2:
 		Start: 136
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 0,-26,0
 		FlipX: true
 	die3:
 		Start: 136
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 0,-26,0
 		FlipX: true
 	die4:
 		Start: 136
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 0,-26,0
 		FlipX: true
 	die5:
 		Filename: s_bang34.shp
@@ -6822,21 +6832,21 @@ mratman:
 		Tick: 120
 		ZOffset: -511
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 0,-26,0
 		FlipX: true
 	shoot:
 		Start: 104
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 0,-26,0
 		FlipX: true
 	shoot2:
 		Start: 104
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 0,-26,0
 		FlipX: true
 	garrison-muzzle:
 		Filename: minigun.shp
@@ -6855,56 +6865,56 @@ mgoblinwarrior:
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 0,-26,0
 		FlipX: true
 	run:
 		Start: 0
 		Length: 8
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 0,-26,0
 		FlipX: true
 	idle1:
 		Start: 72
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 0,-26,0
 		FlipX: true
 	idle2:
 		Start: 72
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 0,-26,0
 		FlipX: true
 	die1:
 		Start: 136
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 0,-26,0
 		FlipX: true
 	die2:
 		Start: 136
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 0,-26,0
 		FlipX: true
 	die3:
 		Start: 136
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 0,-26,0
 		FlipX: true
 	die4:
 		Start: 136
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 0,-26,0
 		FlipX: true
 	die5:
 		Filename: s_bang34.shp
@@ -6922,21 +6932,21 @@ mgoblinwarrior:
 		Tick: 120
 		ZOffset: -511
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 0,-26,0
 		FlipX: true
 	shoot:
 		Start: 104
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 0,-26,0
 		FlipX: true
 	shoot2:
 		Start: 104
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 0,-26,0
 		FlipX: true
 	garrison-muzzle:
 		Filename: minigun.shp
@@ -6955,56 +6965,56 @@ mgoblinchamp:
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 0,-26,0
 		FlipX: true
 	run:
 		Start: 0
 		Length: 8
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 0,-26,0
 		FlipX: true
 	idle1:
 		Start: 72
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 0,-26,0
 		FlipX: true
 	idle2:
 		Start: 72
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 0,-26,0
 		FlipX: true
 	die1:
 		Start: 136
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 0,-26,0
 		FlipX: true
 	die2:
 		Start: 136
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 0,-26,0
 		FlipX: true
 	die3:
 		Start: 136
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 0,-26,0
 		FlipX: true
 	die4:
 		Start: 136
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 0,-26,0
 		FlipX: true
 	die5:
 		Filename: s_bang34.shp
@@ -7022,21 +7032,21 @@ mgoblinchamp:
 		Tick: 120
 		ZOffset: -511
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 0,-26,0
 		FlipX: true
 	shoot:
 		Start: 104
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 0,-26,0
 		FlipX: true
 	shoot2:
 		Start: 104
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 0,-26,0
 		FlipX: true
 	garrison-muzzle:
 		Filename: minigun.shp
@@ -7055,56 +7065,56 @@ mgoblinpriest:
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 0,-26,0
 		FlipX: true
 	run:
 		Start: 0
 		Length: 8
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 0,-26,0
 		FlipX: true
 	idle1:
 		Start: 72
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 0,-26,0
 		FlipX: true
 	idle2:
 		Start: 72
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 0,-26,0
 		FlipX: true
 	die1:
 		Start: 136
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 0,-26,0
 		FlipX: true
 	die2:
 		Start: 136
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 0,-26,0
 		FlipX: true
 	die3:
 		Start: 136
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 0,-26,0
 		FlipX: true
 	die4:
 		Start: 136
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 0,-26,0
 		FlipX: true
 	die5:
 		Filename: s_bang34.shp
@@ -7122,21 +7132,21 @@ mgoblinpriest:
 		Tick: 120
 		ZOffset: -511
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 0,-26,0
 		FlipX: true
 	shoot:
 		Start: 104
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 0,-26,0
 		FlipX: true
 	shoot2:
 		Start: 104
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 0,-26,0
 		FlipX: true
 	garrison-muzzle:
 		Filename: minigun.shp
@@ -7155,56 +7165,56 @@ mgoblinarcher:
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 0,-26,0
 		FlipX: true
 	run:
 		Start: 0
 		Length: 8
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 0,-26,0
 		FlipX: true
 	idle1:
 		Start: 72
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 0,-26,0
 		FlipX: true
 	idle2:
 		Start: 72
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 0,-26,0
 		FlipX: true
 	die1:
 		Start: 136
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 0,-26,0
 		FlipX: true
 	die2:
 		Start: 136
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 0,-26,0
 		FlipX: true
 	die3:
 		Start: 136
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 0,-26,0
 		FlipX: true
 	die4:
 		Start: 136
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 0,-26,0
 		FlipX: true
 	die5:
 		Filename: s_bang34.shp
@@ -7222,21 +7232,21 @@ mgoblinarcher:
 		Tick: 120
 		ZOffset: -511
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 0,-26,0
 		FlipX: true
 	shoot:
 		Start: 104
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 0,-26,0
 		FlipX: true
 	shoot2:
 		Start: 104
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 0,-26,0
 		FlipX: true
 	garrison-muzzle:
 		Filename: minigun.shp
@@ -7255,56 +7265,56 @@ mwitchking:
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	run:
 		Start: 0
 		Length: 8
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	idle1:
 		Start: 72
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	idle2:
 		Start: 72
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	die1:
 		Start: 136
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	die2:
 		Start: 136
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	die3:
 		Start: 136
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	die4:
 		Start: 136
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	die5:
 		Filename: s_bang34.shp
@@ -7322,21 +7332,21 @@ mwitchking:
 		Tick: 120
 		ZOffset: -511
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	shoot:
 		Start: 104
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	shoot2:
 		Start: 104
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	garrison-muzzle:
 		Filename: minigun.shp
@@ -7355,56 +7365,56 @@ mskeleton:
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	run:
 		Start: 0
 		Length: 8
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	idle1:
 		Start: 72
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	idle2:
 		Start: 72
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	die1:
 		Start: 136
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	die2:
 		Start: 136
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	die3:
 		Start: 136
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	die4:
 		Start: 136
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	die5:
 		Filename: s_bang34.shp
@@ -7422,21 +7432,21 @@ mskeleton:
 		Tick: 120
 		ZOffset: -511
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	shoot:
 		Start: 104
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	shoot2:
 		Start: 104
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	garrison-muzzle:
 		Filename: minigun.shp
@@ -7455,56 +7465,63 @@ mzombie:
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
+		FlipX: true
+	idle:
+		Start: 72
+		Length: 4
+		Facings: 8
+		Scale: 0.4
+		Offset: 4,-20,0
 		FlipX: true
 	run:
 		Start: 0
 		Length: 8
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	idle1:
 		Start: 72
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	idle2:
 		Start: 72
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	die1:
 		Start: 136
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	die2:
 		Start: 136
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	die3:
 		Start: 136
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	die4:
 		Start: 136
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	die5:
 		Filename: s_bang34.shp
@@ -7522,21 +7539,21 @@ mzombie:
 		Tick: 120
 		ZOffset: -511
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	shoot:
 		Start: 104
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	shoot2:
 		Start: 104
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	garrison-muzzle:
 		Filename: minigun.shp
@@ -7630,56 +7647,56 @@ mvoidarcher:
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	run:
 		Start: 0
 		Length: 8
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	idle1:
 		Start: 72
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	idle2:
 		Start: 72
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	die1:
 		Start: 136
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	die2:
 		Start: 136
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	die3:
 		Start: 136
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	die4:
 		Start: 136
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	die5:
 		Filename: s_bang34.shp
@@ -7697,21 +7714,21 @@ mvoidarcher:
 		Tick: 120
 		ZOffset: -511
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	shoot:
 		Start: 104
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	shoot2:
 		Start: 104
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	garrison-muzzle:
 		Filename: minigun.shp
@@ -7730,49 +7747,49 @@ mmonk:
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 	run:
 		Start: 0
 		Length: 8
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 	idle1:
 		Start: 72
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 	idle2:
 		Start: 72
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 	die1:
 		Start: 136
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 	die2:
 		Start: 136
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 	die3:
 		Start: 136
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 	die4:
 		Start: 136
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 	die5:
 		Filename: s_bang34.shp
 		Length: *
@@ -7789,19 +7806,19 @@ mmonk:
 		Tick: 120
 		ZOffset: -511
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 	shoot:
 		Start: 104
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 	shoot2:
 		Start: 104
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 	garrison-muzzle:
 		Filename: minigun.shp
 		Length: 6
@@ -7819,56 +7836,56 @@ mdryad:
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	run:
 		Start: 0
 		Length: 8
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	idle1:
 		Start: 72
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	idle2:
 		Start: 72
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	die1:
 		Start: 136
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	die2:
 		Start: 136
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	die3:
 		Start: 136
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	die4:
 		Start: 136
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	die5:
 		Filename: s_bang34.shp
@@ -7886,21 +7903,21 @@ mdryad:
 		Tick: 120
 		ZOffset: -511
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	shoot:
 		Start: 104
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	shoot2:
 		Start: 104
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	garrison-muzzle:
 		Filename: minigun.shp
@@ -7919,56 +7936,56 @@ mvampire:
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	run:
 		Start: 0
 		Length: 8
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	idle1:
 		Start: 72
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	idle2:
 		Start: 72
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	die1:
 		Start: 136
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	die2:
 		Start: 136
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	die3:
 		Start: 136
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	die4:
 		Start: 136
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	die5:
 		Filename: s_bang34.shp
@@ -7986,21 +8003,21 @@ mvampire:
 		Tick: 120
 		ZOffset: -511
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	shoot:
 		Start: 104
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	shoot2:
 		Start: 104
 		Length: 4
 		Facings: 8
 		Scale: 0.4
-		Offset: 0,-20,0
+		Offset: 4,-20,0
 		FlipX: true
 	garrison-muzzle:
 		Filename: minigun.shp

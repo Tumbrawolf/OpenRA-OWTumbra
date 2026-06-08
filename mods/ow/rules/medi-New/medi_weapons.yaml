@@ -343,15 +343,19 @@ goblinsword:
 	Report: swordmanattack1.aud,swordmanattack2.aud,swordmanattack3.aud,swordmanattack4.aud,swordmanattack5.aud,swordmanattack6.aud,swordmanattack7.aud,swordmanattack8.aud,swordmanattack9.aud,swordmanattack10.aud,swordmanattack11.aud,swordmanattack12.aud
 	Warhead@1Dam: SpreadDamage
 		Damage: 3000
+	Warhead@corrode: GrantExternalCondition
+		Delay: 1
+		Condition: corrode
+		Range: 1c0
+		Duration: 200
+		ValidTargets: GroundActor, WaterActor
 ##
 #Sword used by ratman
 ##
 ratsword:
-	Inherits: Sword
+	Inherits: Tankbustersword
 	ReloadDelay: 35
 	Report: swordmanattack1.aud,swordmanattack2.aud,swordmanattack3.aud,swordmanattack4.aud,swordmanattack5.aud,swordmanattack6.aud,swordmanattack7.aud,swordmanattack8.aud,swordmanattack9.aud,swordmanattack10.aud,swordmanattack11.aud,swordmanattack12.aud
-	Warhead@1Dam: SpreadDamage
-		Damage: 4000
 ##
 #Sword used by goblinchampion
 ##
@@ -361,6 +365,12 @@ championgoblinsword:
 	Report: swordmanattack1.aud,swordmanattack2.aud,swordmanattack3.aud,swordmanattack4.aud,swordmanattack5.aud,swordmanattack6.aud,swordmanattack7.aud,swordmanattack8.aud,swordmanattack9.aud,swordmanattack10.aud,swordmanattack11.aud,swordmanattack12.aud
 	Warhead@1Dam: SpreadDamage
 		Damage: 4000
+	Warhead@corrode: GrantExternalCondition
+		Delay: 1
+		Condition: corrode
+		Range: 1c0
+		Duration: 250
+		ValidTargets: GroundActor, WaterActor
 ##
 #Basic archer attack, shared with goblin archer
 ##
@@ -382,6 +392,12 @@ Infantryarrow:
 ##
 goblinarcher:
 	Inherits: Infantryarrow
+	Warhead@corrode: GrantExternalCondition
+		Delay: 1
+		Condition: corrode
+		Range: 1c0
+		Duration: 200
+		ValidTargets: GroundActor, WaterActor, AirborneActor
 ##
 #Used by Priest, Monk and Goblin Priest
 ##
@@ -430,6 +446,12 @@ monumentheal:
 		Damage: -5000
 		ValidRelationships: Enemy, Neutral, Ally
 		ValidTargets: GroundActor, WaterActor, AirborneActor
+	Warhead@bless: GrantExternalCondition
+		ValidTargets: GroundActor, WaterActor, AirborneActor
+		ValidRelationships: Ally
+		Condition: MediBlessCondition
+		Range: 10c0
+		Duration: 125
 ##
 #Used by Void archer
 ##
@@ -598,6 +620,13 @@ Tankbustersword:
 			Heavy: 110
 			Concrete: 100
 		DamageTypes: DefaultDeath
+	Warhead@zapstack: GrantExternalCondition
+		ValidTargets: GroundActor, WaterActor, Underwater, AirborneActor
+		InvalidTargets: Infantry
+		ValidRelationships: Enemy, Neutral
+		Condition: zapstack
+		Duration: 200
+		Range: 1c0
 ##
 #Used by Tank Buster when leaping
 ##
@@ -710,6 +739,12 @@ witchking:
 		Explosions: napalm
 		ImpactSounds: firebl3.aud
 		ValidTargets: Ground, GroundActor, Water, WaterActor, Trees, Air, AirborneActor
+	Warhead@corrode: GrantExternalCondition
+		Delay: 1
+		Condition: corrode
+		Range: 1c0
+		Duration: 200
+		ValidTargets: GroundActor, WaterActor, AirborneActor
 ##
 #Used by UrlShekk on infantry
 ##
@@ -845,11 +880,11 @@ WizBall:
 		Damage: 7000
 		ValidTargets: GroundActor, WaterActor, Air, AirborneActor
 		Versus:
-			None: 36
-			Wood: 88
-			Light: 88
-			Heavy: 120
-			Concrete: 60
+			None: 30
+			Wood: 70
+			Light: 100
+			Heavy: 130
+			Concrete: 40
 		DamageTypes: Prone50Percent, TriggerProne, ExplosionDeath
 	Warhead@ArcBoat2Smu: LeaveSmudge
 		SmudgeType: Scorch
@@ -876,11 +911,11 @@ WizFireBall:
 		Damage: 6000
 		ValidTargets: GroundActor, WaterActor
 		Versus:
-			None: 50
-			Wood: 88
-			Light: 88
-			Heavy: 120
-			Concrete: 60
+			None: 120
+			Wood: 100
+			Light: 100
+			Heavy: 40
+			Concrete: 80
 		DamageTypes: Prone50Percent, TriggerProne, ExplosionDeath
 	Warhead@3Eff: CreateEffect
 		Explosions: large_napalm
@@ -956,6 +991,7 @@ Wizzap:
 		Footprint: xxx x_x xxx
 	Warhead@zapstack: GrantExternalCondition
 		ValidTargets: GroundActor, WaterActor, Underwater, AirborneActor
+		InvalidTargets: Infantry
 		ValidRelationships: Enemy, Neutral
 		Condition: zapstack
 		Duration: 200
@@ -982,6 +1018,7 @@ wizzapcluster:
 		ImpactActors: true
 	Warhead@zapstack: GrantExternalCondition
 		ValidTargets: GroundActor, WaterActor, Underwater, AirborneActor
+		InvalidTargets: Infantry
 		ValidRelationships: Enemy, Neutral
 		Condition: zapstack
 		Duration: 200
@@ -1036,36 +1073,6 @@ ZombieSpawner:
 		Actors: Knight,Knight,Knight,Knight,Knight,Knight,Knight
 		
 ###############################################################################
-##############################   Condition Attacks   ##########################
-###############################################################################
-##
-#Used by 
-##
-CurseEyeWep:
-	ReloadDelay: 500
-	Range: 8c0
-	Projectile: InstantHit
-	Warhead@curtain: GrantExternalCondition
-		ValidTargets: GroundActor, Trees, WaterActor, Underwater, AirborneActor
-		ValidRelationships: Enemy, Neutral
-		Condition: MediCurseCondition
-		Range: 4c0
-		Duration: 600
-##
-#Used by 
-##
-BlessEyeWep:
-	ReloadDelay: 500
-	Range: 8c0
-	Projectile: InstantHit
-	Warhead@curtain: GrantExternalCondition
-		ValidTargets: GroundActor, Trees, WaterActor, Underwater, AirborneActor
-		ValidRelationships: Enemy, Neutral
-		Condition: MediBlessCondition
-		Range: 4c0
-		Duration: 600
-
-###############################################################################
 ################################   Powers Attacks   ###########################
 ###############################################################################
 #
@@ -1109,6 +1116,12 @@ medihealorder:
 		Explosions: medihealeffect
 		ImpactSounds: mediholyheal.aud
 		ImpactActors: false
+	Warhead@bless: GrantExternalCondition
+		ValidTargets: Repair, Heal, StructureRepair
+		ValidRelationships: Ally
+		Condition: MediBlessCondition
+		Range: 5c0
+		Duration: 125
 #
 ChainsPowerWep:
 	ReloadDelay: 300
@@ -1132,16 +1145,16 @@ CursePowerWep:
 		Range: 4c0
 		Duration: 600
 #
-BlessPowerWep:
+FrostNovaWep:
 	ReloadDelay: 500
-	Range: 8c0
+	Range: 6c0
 	Projectile: InstantHit
-	Warhead@curtain: GrantExternalCondition
+	Warhead@chill: GrantExternalCondition
 		ValidTargets: GroundActor, Trees, WaterActor, Underwater, AirborneActor
 		ValidRelationships: Enemy, Neutral
-		Condition: MediBlessCondition
+		Condition: chilled
 		Range: 4c0
-		Duration: 600
+		Duration: 400
 ##
 #Used by Dragon Bomber
 ##
@@ -1195,197 +1208,95 @@ MediHolyWeapon:
 	Warhead@Voidcluster1: FireCluster
 		Weapon: MediHolyWeaponSmall
 		RandomClusterCount: 1
-		Dimensions: 2,2
-		Footprint: xx xx
+		Dimensions: 7,7
+		Footprint: xxxxxxx xxxxxxx xxxxxxx xxxxxxx xxxxxxx xxxxxxx xxxxxxx
 		Delay: 25
-	Warhead@Voidcluster1b: FireCluster
-		Weapon: MediHolyWeaponSmall
-		RandomClusterCount: 1
-		Dimensions: 2,2
-		Footprint: xx xx
-		Delay: 37
-	Warhead@Voidcluster1c: FireCluster
-		Weapon: MediHolyWeaponSmall
-		RandomClusterCount: 1
-		Dimensions: 2,2
-		Footprint: xx xx
-		Delay: 45
 	Warhead@Voidcluster2: FireCluster
 		Weapon: MediHolyWeaponSmall
 		RandomClusterCount: 1
-		Dimensions: 3,3
-		Footprint: xxx xxx xxx
-		Delay: 50
-	Warhead@Voidcluster2b: FireCluster
-		Weapon: MediHolyWeaponSmall
-		RandomClusterCount: 1
-		Dimensions: 3,3
-		Footprint: xxx xxx xxx
-		Delay: 62
-	Warhead@Voidcluster2c: FireCluster
-		Weapon: MediHolyWeaponSmall
-		RandomClusterCount: 1
-		Dimensions: 3,3
-		Footprint: xxx xxx xxx
-		Delay: 70
+		Dimensions: 7,7
+		Footprint: xxxxxxx xxxxxxx xxxxxxx xxxxxxx xxxxxxx xxxxxxx xxxxxxx
+		Delay: 45
 	Warhead@Voidcluster3: FireCluster
 		Weapon: MediHolyWeaponSmall
 		RandomClusterCount: 1
-		Dimensions: 4,4
-		Footprint: xxxx xxxx xxxx xxxx
-		Delay: 75
-	Warhead@Voidcluster3b: FireCluster
-		Weapon: MediHolyWeaponSmall
-		RandomClusterCount: 1
-		Dimensions: 4,4
-		Footprint: xxxx xxxx xxxx xxxx
-		Delay: 84
-	Warhead@Voidcluster3c: FireCluster
-		Weapon: MediHolyWeaponSmall
-		RandomClusterCount: 1
-		Dimensions: 4,4
-		Footprint: xxxx xxxx xxxx xxxx
-		Delay: 96
+		Dimensions: 7,7
+		Footprint: xxxxxxx xxxxxxx xxxxxxx xxxxxxx xxxxxxx xxxxxxx xxxxxxx
+		Delay: 62
 	Warhead@Voidcluster4: FireCluster
 		Weapon: MediHolyWeaponSmall
-		RandomClusterCount: 2
-		Dimensions: 4,4
-		Footprint: xxxx xxxx xxxx xxxx
-		Delay: 100
-	Warhead@Voidcluster4b: FireCluster
-		Weapon: MediHolyWeaponSmall
-		RandomClusterCount: 2
-		Dimensions: 4,4
-		Footprint: xxxx xxxx xxxx xxxx
-		Delay: 107
-	Warhead@Voidcluster4c: FireCluster
-		Weapon: MediHolyWeaponSmall
-		RandomClusterCount: 2
-		Dimensions: 4,4
-		Footprint: xxxx xxxx xxxx xxxx
-		Delay: 119
+		RandomClusterCount: 1
+		Dimensions: 7,7
+		Footprint: xxxxxxx xxxxxxx xxxxxxx xxxxxxx xxxxxxx xxxxxxx xxxxxxx
+		Delay: 80
+	Warhead@BigSword: FireCluster
+		Weapon: MediHolySuperSword
+		Dimensions: 1,1
+		Footprint: x
+		Delay: 330
 	Warhead@Voidcluster5: FireCluster
 		Weapon: MediHolyWeaponSmall
-		RandomClusterCount: 2
-		Dimensions: 5,5
-		Footprint: xxxxx xxxxx xxxxx xxxxx xxxxx
-		Delay: 125
-	Warhead@Voidcluster5b: FireCluster
-		Weapon: MediHolyWeaponSmall
-		RandomClusterCount: 2
-		Dimensions: 5,5
-		Footprint: xxxxx xxxxx xxxxx xxxxx xxxxx
-		Delay: 134
-	Warhead@Voidcluster5c: FireCluster
-		Weapon: MediHolyWeaponSmall
-		RandomClusterCount: 2
-		Dimensions: 5,5
-		Footprint: xxxxx xxxxx xxxxx xxxxx xxxxx
-		Delay: 143
+		RandomClusterCount: 1
+		Dimensions: 7,7
+		Footprint: xxxxxxx xxxxxxx xxxxxxx xxxxxxx xxxxxxx xxxxxxx xxxxxxx
+		Delay: 100
 	Warhead@Voidcluster6: FireCluster
 		Weapon: MediHolyWeaponSmall
-		RandomClusterCount: 2
-		Dimensions: 5,5
-		Footprint: xxxxx xxxxx xxxxx xxxxx xxxxx
-		Delay: 150
-	Warhead@Voidcluster6b: FireCluster
-		Weapon: MediHolyWeaponSmall
-		RandomClusterCount: 2
-		Dimensions: 5,5
-		Footprint: xxxxx xxxxx xxxxx xxxxx xxxxx
-		Delay: 158
-	Warhead@Voidcluster6c: FireCluster
-		Weapon: MediHolyWeaponSmall
-		RandomClusterCount: 2
-		Dimensions: 5,5
-		Footprint: xxxxx xxxxx xxxxx xxxxx xxxxx
-		Delay: 168
+		RandomClusterCount: 1
+		Dimensions: 7,7
+		Footprint: xxxxxxx xxxxxxx xxxxxxx xxxxxxx xxxxxxx xxxxxxx xxxxxxx
+		Delay: 115
 	Warhead@Voidcluster7: FireCluster
 		Weapon: MediHolyWeaponSmall
-		RandomClusterCount: 2
-		Dimensions: 5,5
-		Footprint: xxxxx xxxxx xxxxx xxxxx xxxxx
-		Delay: 175
-	Warhead@Voidcluster7b: FireCluster
-		Weapon: MediHolyWeaponSmall
-		RandomClusterCount: 2
-		Dimensions: 6,6
-		Footprint: xxxxxx xxxxxx xxxxxx xxxxxx xxxxxx xxxxxx
-		Delay: 190
-	Warhead@Voidcluster7c: FireCluster
-		Weapon: MediHolyWeaponSmall
-		RandomClusterCount: 2
-		Dimensions: 6,6
-		Footprint: xxxxxx xxxxxx xxxxxx xxxxxx xxxxxx xxxxxx
-		Delay: 196
+		RandomClusterCount: 1
+		Dimensions: 7,7
+		Footprint: xxxxxxx xxxxxxx xxxxxxx xxxxxxx xxxxxxx xxxxxxx xxxxxxx
+		Delay: 132
 	Warhead@Voidcluster8: FireCluster
 		Weapon: MediHolyWeaponSmall
-		RandomClusterCount: 2
-		Dimensions: 6,6
-		Footprint: xxxxxx xxxxxx xxxxxx xxxxxx xxxxxx xxxxxx
-		Delay: 200
-	Warhead@Voidcluster8b: FireCluster
-		Weapon: MediHolyWeaponSmall
-		RandomClusterCount: 2
-		Dimensions: 6,6
-		Footprint: xxxxxx xxxxxx xxxxxx xxxxxx xxxxxx xxxxxx
-		Delay: 210
-	Warhead@Voidcluster8c: FireCluster
-		Weapon: MediHolyWeaponSmall
-		RandomClusterCount: 2
-		Dimensions: 6,6
-		Footprint: xxxxxx xxxxxx xxxxxx xxxxxx xxxxxx xxxxxx
-		Delay: 224
+		RandomClusterCount: 1
+		Dimensions: 7,7
+		Footprint: xxxxxxx xxxxxxx xxxxxxx xxxxxxx xxxxxxx xxxxxxx xxxxxxx
+		Delay: 150
 	Warhead@Voidcluster9: FireCluster
 		Weapon: MediHolyWeaponSmall
-		RandomClusterCount: 2
-		Dimensions: 6,6
-		Footprint: xxxxxx xxxxxx xxxxxx xxxxxx xxxxxx xxxxxx
-		Delay: 230
-	Warhead@Voidcluster9b: FireCluster
-		Weapon: MediHolyWeaponSmall
-		Dimensions: 6,6
-		Footprint: xxxxxx xxxxxx xxxxxx xxxxxx xxxxxx xxxxxx
-		Delay: 240
-	Warhead@Voidcluster9c: FireCluster
-		Weapon: MediHolyWeaponSmall
-		RandomClusterCount: 2
-		Dimensions: 6,6
-		Footprint: xxxxxx xxxxxx xxxxxx xxxxxx xxxxxx xxxxxx
-		Delay: 248
+		RandomClusterCount: 1
+		Dimensions: 7,7
+		Footprint: xxxxxxx xxxxxxx xxxxxxx xxxxxxx xxxxxxx xxxxxxx xxxxxxx
+		Delay: 168
 	Warhead@Voidcluster10: FireCluster
 		Weapon: MediHolyWeaponSmall
-		RandomClusterCount: 2
+		RandomClusterCount: 1
 		Dimensions: 7,7
 		Footprint: xxxxxxx xxxxxxx xxxxxxx xxxxxxx xxxxxxx xxxxxxx xxxxxxx
-		Delay: 260
-	Warhead@Voidcluster10b: FireCluster
-		Weapon: MediHolyWeaponSmall
-		RandomClusterCount: 2
-		Dimensions: 7,7
-		Footprint: xxxxxxx xxxxxxx xxxxxxx xxxxxxx xxxxxxx xxxxxxx xxxxxxx
-		Delay: 268
-	Warhead@Voidcluster10c: FireCluster
-		Weapon: MediHolyWeaponSmall
-		RandomClusterCount: 2
-		Dimensions: 7,7
-		Footprint: xxxxxxx xxxxxxx xxxxxxx xxxxxxx xxxxxxx xxxxxxx xxxxxxx
-		Delay: 280
+		Delay: 185
 	Warhead@Voidcluster11: FireCluster
 		Weapon: MediHolyWeaponSmall
-		RandomClusterCount: 2
+		RandomClusterCount: 1
 		Dimensions: 7,7
 		Footprint: xxxxxxx xxxxxxx xxxxxxx xxxxxxx xxxxxxx xxxxxxx xxxxxxx
-		Delay: 290
-	Warhead@Voidcluster11b: FireCluster
+		Delay: 210
+	Warhead@Voidcluster12: FireCluster
 		Weapon: MediHolyWeaponSmall
-		RandomClusterCount: 2
+		RandomClusterCount: 1
 		Dimensions: 7,7
 		Footprint: xxxxxxx xxxxxxx xxxxxxx xxxxxxx xxxxxxx xxxxxxx xxxxxxx
-		Delay: 305
-	Warhead@Voidcluster11c: FireCluster
+		Delay: 230
+	Warhead@Voidcluster13: FireCluster
 		Weapon: MediHolyWeaponSmall
-		RandomClusterCount: 2
+		RandomClusterCount: 1
+		Dimensions: 7,7
+		Footprint: xxxxxxx xxxxxxx xxxxxxx xxxxxxx xxxxxxx xxxxxxx xxxxxxx
+		Delay: 248
+	Warhead@Voidcluster14: FireCluster
+		Weapon: MediHolyWeaponSmall
+		RandomClusterCount: 1
+		Dimensions: 7,7
+		Footprint: xxxxxxx xxxxxxx xxxxxxx xxxxxxx xxxxxxx xxxxxxx xxxxxxx
+		Delay: 275
+	Warhead@Voidcluster15: FireCluster
+		Weapon: MediHolyWeaponSmall
+		RandomClusterCount: 1
 		Dimensions: 7,7
 		Footprint: xxxxxxx xxxxxxx xxxxxxx xxxxxxx xxxxxxx xxxxxxx xxxxxxx
 		Delay: 311
@@ -1450,6 +1361,55 @@ MediHolyWeaponSmall:
 		Intensity: 2
 		Multiplier: 1,1
 		Delay: 75
+
+MediHolySuperSword:
+	ValidTargets: Ground, Water, GroundActor, WaterActor, Underwater, AirborneActor, Trees
+	Projectile: Bullet
+		Speed: 2c0
+	Warhead@1Effect: CreateEffect
+		Explosions: holylonglarge3
+		ExplosionPalette: player
+		UsePlayerPalette: true
+		ImpactActors: false
+	Warhead@2Effect: CreateEffect
+		Delay: 22
+		Explosions: holylonglarge2
+		ExplosionPalette: player
+		UsePlayerPalette: true
+		ImpactActors: false
+	Warhead@3Effect: CreateEffect
+		Delay: 44
+		Explosions: holylonglarge1
+		ExplosionPalette: player
+		UsePlayerPalette: true
+		ImpactActors: false
+	Warhead@98Eff_impact: CreateEffect
+		ImpactSounds: holyswordhit1.aud,holyswordhit2.aud,holyswordhit3.aud,holyswordhit4.aud,holyswordhit5.aud,holyswordhit6.aud
+		Delay: 66
+		ImpactActors: false
+	Warhead@1Dam_impact: SpreadDamage
+		Delay: 66
+		Spread: 8c0
+		Damage: 15000
+		Falloff: 1000, 368, 135, 50, 18, 7, 0
+		ValidTargets: GroundActor, WaterActor, Underwater, AirborneActor, Trees
+		Versus:
+			Concrete: 25
+			Shield: 200
+		AffectsParent: true
+		DamageTypes: Prone50Percent, TriggerProne, FireDeath, Incendiary
+	Warhead@2Res_impact: DestroyResource
+		Size: 5
+		Delay: 66
+	Warhead@2Eff: CreateEffect
+		Delay: 66
+		Explosions: large_napalm
+		ImpactActors: false
+	Warhead@13Smu_areanuke3: LeaveSmudge
+		SmudgeType: Scorch
+		ValidTargets: Ground, Infantry
+		Size: 5
+		Delay: 66
 
 ###############################################################################
 ##############################  Evil Nuke Attacks   ###########################
@@ -1540,6 +1500,12 @@ MediVoidWeapon:
 		Duration: 50
 		Delay: 138
 		FlashType: Red
+	Warhead@SpawnMarkers: FireCluster
+		Weapon: MediVoidMarkerWeapon
+		RandomClusterCount: 30
+		Dimensions: 18,18
+		Footprint: xxxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxx
+		Delay: 80
 #
 ##Damage Ion
 MediVoidWeaponSmall:
@@ -1661,6 +1627,17 @@ MediVoidWeaponSmallMark:
 			Heavy: 60
 			Concrete: 30
 		DamageTypes: Prone50Percent, ElectricityDeath
+#
+##Scatter-spawns VoidRiseMarker actors independently of damage lasers
+MediVoidMarkerWeapon:
+	ValidTargets: Ground, Water, GroundActor, WaterActor, Underwater, AirborneActor, Trees
+	Projectile: Bullet
+		Speed: 2c0
+	Warhead@SpawnMarker: SpawnActor
+		Range: 0
+		ForceGround: true
+		Actors: VoidRiseMarker
+		OwnerType: InternalName
 
 ###############################################################################
 ##############################   Mage Nuke Attacks   ##########################
@@ -1676,19 +1653,21 @@ MageSuperWeapon:
 		ImpactActors: false
 	Warhead@1Smu: LeaveSmudge
 		SmudgeType: Crater
-		Size: 5
+		Size: 10
 		Delay: 150
-	Warhead@1a: HealthPercentageDamage
-		Spread: 3c0
-		Damage: 75
+	Warhead@1a: SpreadDamage
+		Spread: 6c0
+		Damage: 1400
+		Falloff: 1000, 368, 135, 50, 18, 7, 0
 		Delay: 150
 		ValidTargets: GroundActor, WaterActor
+		DamageTypes: Prone50Percent, TriggerProne
 	Warhead@22FlashEffect: FlashEffect
 		Duration: 20
 		Delay: 150
 		FlashType: Catalyst
 	Warhead@1b: CreateEffect
-		Explosions: elementalsuperexplosion
+		Explosions: elementalsuperexplosion2
 		ImpactSounds: elementalbang.aud
 		ImpactActors: false
 		Delay: 150
@@ -1699,15 +1678,17 @@ MageSuperWeapon:
 		Delay: 150
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Crater
-		Size: 7
+		Size: 14
 		Delay: 200
-	Warhead@2a: HealthPercentageDamage
-		Spread: 7c0
-		Damage: 30
+	Warhead@2a: SpreadDamage
+		Spread: 14c0
+		Damage: 2100
+		Falloff: 1000, 368, 135, 50, 18, 7, 0
 		Delay: 200
 		ValidTargets: GroundActor, WaterActor
+		DamageTypes: Prone50Percent, TriggerProne
 	Warhead@2b: CreateEffect
-		Explosions: elementalsuperexplosion
+		Explosions: elementalsuperexplosion3
 		ImpactSounds: elementalbang.aud
 		ImpactActors: false
 		Delay: 200
@@ -1718,15 +1699,17 @@ MageSuperWeapon:
 		Delay: 200
 	Warhead@3Smu: LeaveSmudge
 		SmudgeType: Crater
-		Size: 9
+		Size: 18
 		Delay: 250
-	Warhead@3a: HealthPercentageDamage
-		Spread: 9c0
-		Damage: 30
+	Warhead@3a: SpreadDamage
+		Spread: 18c0
+		Damage: 3150
+		Falloff: 1000, 368, 135, 50, 18, 7, 0
 		Delay: 250
 		ValidTargets: GroundActor, WaterActor
+		DamageTypes: Prone50Percent, TriggerProne
 	Warhead@3b: CreateEffect
-		Explosions: elementalsuperexplosion
+		Explosions: elementalsuperexplosion4
 		ImpactSounds: elementalbang.aud
 		ImpactActors: false
 		Delay: 250
@@ -1737,15 +1720,17 @@ MageSuperWeapon:
 		Delay: 250
 	Warhead@4Smu: LeaveSmudge
 		SmudgeType: Crater
-		Size: 11
+		Size: 22
 		Delay: 300
-	Warhead@4a: HealthPercentageDamage
-		Spread: 11c0
-		Damage: 30
+	Warhead@4a: SpreadDamage
+		Spread: 22c0
+		Damage: 4550
+		Falloff: 1000, 368, 135, 50, 18, 7, 0
 		Delay: 300
 		ValidTargets: GroundActor, WaterActor
+		DamageTypes: Prone50Percent, TriggerProne
 	Warhead@4b: CreateEffect
-		Explosions: elementalsuperexplosion
+		Explosions: elementalsuperexplosion5
 		ImpactSounds: elementalbang.aud
 		ImpactActors: false
 		Delay: 300
@@ -2328,28 +2313,60 @@ GiantWolfBite:
 ##
 Dirgo:
 	Inherits: ratsword
-	ReloadDelay: 30
+	ReloadDelay: 120
 	Report: swordmanattack1.aud,swordmanattack2.aud,swordmanattack3.aud,swordmanattack4.aud,swordmanattack5.aud,swordmanattack6.aud,swordmanattack7.aud,swordmanattack8.aud,swordmanattack9.aud,swordmanattack10.aud,swordmanattack11.aud,swordmanattack12.aud
 	Warhead@1Dam: SpreadDamage
-		Damage: 5000
+		Damage: 18000
+		ValidTargets: Vehicle, Structure, Defense, Ship, AirborneActor, WaterActor
 ##
 #Used by GiantSpider
 ##
 GiantSpider:
 	Inherits: ratsword
-	ReloadDelay: 30
+	ReloadDelay: 60
 	Report: swordmanattack1.aud,swordmanattack2.aud,swordmanattack3.aud,swordmanattack4.aud,swordmanattack5.aud,swordmanattack6.aud,swordmanattack7.aud,swordmanattack8.aud,swordmanattack9.aud,swordmanattack10.aud,swordmanattack11.aud,swordmanattack12.aud
 	Warhead@1Dam: SpreadDamage
 		Damage: 5000
+	Warhead@corrode: GrantExternalCondition
+		Delay: 1
+		Condition: corrode
+		Range: 1c0
+		Duration: 300
+		ValidTargets: GroundActor, WaterActor
 ##
 #Used by Medusa
 ##
 Medusa:
-	Inherits: ratsword
-	ReloadDelay: 30
-	Report: swordmanattack1.aud,swordmanattack2.aud,swordmanattack3.aud,swordmanattack4.aud,swordmanattack5.aud,swordmanattack6.aud,swordmanattack7.aud,swordmanattack8.aud,swordmanattack9.aud,swordmanattack10.aud,swordmanattack11.aud,swordmanattack12.aud
-	Warhead@1Dam: SpreadDamage
-		Damage: 5000
+	Inherits: WizBall
+	ReloadDelay: 75
+	Range: 6c0
+	ValidTargets: Ground, Water, GroundActor, WaterActor, AirborneActor
+
+MedusaDeathStun:
+	ValidTargets: GroundActor, WaterActor
+	Projectile: InstantHit
+	Warhead@stun: GrantExternalCondition
+		Condition: stunned
+		Range: 4c0
+		Duration: 250
+		ValidTargets: Infantry
+	Warhead@eff: CreateEffect
+		Explosions: bunkerbustersring
+		ValidTargets: Ground, GroundActor
+
+MedusaStunBlast:
+	ReloadDelay: 750
+	Range: 6c0
+	ValidTargets: Ground, Water, GroundActor, WaterActor, AirborneActor
+	Projectile: InstantHit
+	Warhead@stun: GrantExternalCondition
+		Condition: stunned
+		Range: 3c0
+		Duration: 250
+		ValidTargets: Infantry
+	Warhead@eff: CreateEffect
+		Explosions: bunkerbustersring
+		ValidTargets: Ground, GroundActor
 ##
 #Used by Minotaur
 ##
@@ -2408,11 +2425,26 @@ SplitGolemStrike:
 #Used by RustSpitter
 ##
 RustSpitterStrike:
-	Inherits: ratsword
-	ReloadDelay: 30
-	Report: swordmanattack1.aud,swordmanattack2.aud,swordmanattack3.aud,swordmanattack4.aud,swordmanattack5.aud,swordmanattack6.aud,swordmanattack7.aud,swordmanattack8.aud,swordmanattack9.aud,swordmanattack10.aud,swordmanattack11.aud,swordmanattack12.aud
+	Inherits: Spitterbarb
+	ReloadDelay: 15
+	Range: 8c0
+	ValidTargets: Ground, Water, GroundActor, WaterActor, AirborneActor
 	Warhead@1Dam: SpreadDamage
-		Damage: 5000
+		Spread: 512
+		Damage: 4000
+		ValidTargets: GroundActor, WaterActor, AirborneActor
+		Versus:
+			None: 150
+			Light: 120
+			Heavy: 80
+			Concrete: 30
+		DamageTypes: Prone50Percent, TriggerProne
+	Warhead@corrode: GrantExternalCondition
+		Delay: 1
+		Condition: corrode
+		Range: 1c0
+		Duration: 200
+		ValidTargets: GroundActor, WaterActor, AirborneActor
 ##
 #Used by UrlShekk
 ##

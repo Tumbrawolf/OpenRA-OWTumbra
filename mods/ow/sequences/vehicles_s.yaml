@@ -1,4 +1,4 @@
-ftrk:
+﻿ftrk:
 	Defaults:
 		Filename: ftrk.shp
 	turret2:
@@ -886,7 +886,7 @@ mgg:
 #################################################################################################################
 
 ##Used for MCV and Caravan, - Need to replace one of the 2
-MCVM:
+mcvm:
 	Defaults:
 		Filename: mcvmv.shp
 	idle:
@@ -1030,23 +1030,28 @@ werewolf:
 	idle:
 		Start: 0
 		Facings: 8
+		Length: 8
 		Scale: 0.3
+		FlipX: true
 	run:
-		Start: 0
+		Start: 64
 		Length: 8
 		Facings: 8
 		Tick: 100
 		Scale: 0.3
+		FlipX: true
 	shoot:
-		Start: 104
-		Length: 4
+		Start: 96
+		Length: 5
 		Facings: 8
 		Tick: 100
 		Scale: 0.3
+		FlipX: true
 	die:
-		Start: 168
-		Length: 4
+		Start: 136
+		Length: 7
 		Scale: 0.3
+		FlipX: true
 	icon:
 		Filename: mwerewolficon.shp
 
@@ -1055,7 +1060,8 @@ giantbear:
 	Defaults:
 		Filename: mgiantbear.shp
 	idle:
-		Start: 0
+		Start: 64
+		Length: 8
 		Facings: 8
 		Scale: 0.3
 	run:
@@ -1065,13 +1071,13 @@ giantbear:
 		Tick: 100
 		Scale: 0.3
 	shoot:
-		Start: 104
+		Start: 96
 		Length: 4
 		Facings: 8
 		Tick: 100
 		Scale: 0.3
 	die:
-		Start: 168
+		Start: 136
 		Length: 4
 		Scale: 0.3
 	icon:
@@ -1082,26 +1088,30 @@ giantwolf:
 	Defaults:
 		Filename: mgiantwolf.shp
 	idle:
-		Start: 72
+		Start: 64
 		Length: 4
 		Facings: 8
 		Scale: 0.3
+		FlipX: true
 	run:
 		Start: 0
 		Length: 8
 		Facings: 8
 		Tick: 100
 		Scale: 0.3
+		FlipX: true
 	shoot:
-		Start: 104
+		Start: 96
 		Length: 4
 		Facings: 8
 		Tick: 100
 		Scale: 0.3
+		FlipX: true
 	die:
 		Start: 136
 		Length: 4
 		Scale: 0.3
+		FlipX: true
 	icon:
 		Filename: mgiantwolficon.shp
 
@@ -1137,26 +1147,30 @@ giantspider:
 	Defaults:
 		Filename: mgiantspider.shp
 	idle:
-		Start: 72
+		Start: 64
 		Length: 4
 		Facings: 8
 		Scale: 0.3
+		FlipX: true
 	run:
 		Start: 0
 		Length: 8
 		Facings: 8
 		Tick: 100
 		Scale: 0.3
+		FlipX: true
 	shoot:
-		Start: 104
+		Start: 96
 		Length: 4
 		Facings: 8
 		Tick: 100
 		Scale: 0.3
+		FlipX: true
 	die:
-		Start: 136
+		Start: 128
 		Length: 4
 		Scale: 0.3
+		FlipX: true
 	icon:
 		Filename: mgiantspidericon.shp
 
@@ -1165,7 +1179,8 @@ medusa:
 	Defaults:
 		Filename: mmedusa.shp
 	idle:
-		Start: 0
+		Start: 64
+		Length: 5
 		Facings: 8
 		Scale: 0.3
 	run:
@@ -1180,9 +1195,15 @@ medusa:
 		Facings: 8
 		Tick: 100
 		Scale: 0.3
+	shoot2:
+		Start: 144
+		Length: 6
+		Facings: 8
+		Tick: 100
+		Scale: 0.3
 	die:
-		Start: 168
-		Length: 4
+		Start: 136
+		Length: 8
 		Scale: 0.3
 	icon:
 		Filename: mmedusaicon.shp
@@ -1192,8 +1213,9 @@ minotaur:
 	Defaults:
 		Filename: mminotaur.shp
 	idle:
-		Start: 0
+		Start: 72
 		Facings: 8
+		Length: 4
 		Scale: 0.3
 	run:
 		Start: 0
@@ -1202,8 +1224,8 @@ minotaur:
 		Tick: 100
 		Scale: 0.3
 	shoot:
-		Start: 104
-		Length: 4
+		Start: 106
+		Length: 8
 		Facings: 8
 		Tick: 100
 		Scale: 0.3
@@ -1219,7 +1241,8 @@ rrongol:
 	Defaults:
 		Filename: mrrongol.shp
 	idle:
-		Start: 0
+		Start: 72
+		Length: 4
 		Facings: 8
 		Scale: 0.3
 	run:
@@ -1235,8 +1258,8 @@ rrongol:
 		Tick: 100
 		Scale: 0.3
 	die:
-		Start: 168
-		Length: 4
+		Start: 136
+		Length: 6
 		Scale: 0.3
 	icon:
 		Filename: mrrongolicon.shp
@@ -1246,8 +1269,9 @@ troll:
 	Defaults:
 		Filename: mtroll.shp
 	idle:
-		Start: 0
+		Start: 72
 		Facings: 8
+		Length: 8
 		Scale: 0.3
 	run:
 		Start: 0
@@ -1262,8 +1286,8 @@ troll:
 		Tick: 100
 		Scale: 0.3
 	die:
-		Start: 168
-		Length: 4
+		Start: 137
+		Length: 6
 		Scale: 0.3
 	icon:
 		Filename: mtrollicon.shp
@@ -1273,25 +1297,29 @@ daemonwood:
 	Defaults:
 		Filename: mdaemonwood.shp
 	idle:
-		Start: 0
+		Start: 64
 		Facings: 8
 		Scale: 0.3
+		FlipX: true
 	run:
 		Start: 0
 		Length: 8
 		Facings: 8
 		Tick: 100
 		Scale: 0.3
+		FlipX: true
 	shoot:
-		Start: 104
+		Start: 96
 		Length: 4
 		Facings: 8
 		Tick: 100
 		Scale: 0.3
+		FlipX: true
 	die:
-		Start: 168
-		Length: 4
+		Start: 144
+		Length: 8
 		Scale: 0.3
+		FlipX: true
 	icon:
 		Filename: mdaemonwoodicon.shp
 
@@ -1304,22 +1332,27 @@ rockgolem:
 		Length: 4
 		Facings: 8
 		Scale: 0.3
+		FlipX: true
 	run:
 		Start: 0
+		Length: 12
+		Facings: 8
+		Tick: 100
+		Scale: 0.3
+		FlipX: true
+	shoot:
+		Start: 96
 		Length: 8
 		Facings: 8
 		Tick: 100
 		Scale: 0.3
-	shoot:
-		Start: 104
-		Length: 4
-		Facings: 8
-		Tick: 100
-		Scale: 0.3
+		FlipX: true
 	die:
-		Start: 136
-		Length: 4
+		Start: 160
+		Length: 10
+		Facings: 1
 		Scale: 0.3
+		FlipX: true
 	icon:
 		Filename: mrockgolemicon.shp
 
@@ -1328,25 +1361,12 @@ splitgolem:
 	Defaults:
 		Filename: mrockgolem.shp
 	idle:
-		Start: 72
-		Length: 4
-		Facings: 8
 		Scale: 0.2
 	run:
-		Start: 0
-		Length: 8
-		Facings: 8
-		Tick: 100
 		Scale: 0.2
 	shoot:
-		Start: 104
-		Length: 4
-		Facings: 8
-		Tick: 100
 		Scale: 0.2
 	die:
-		Start: 136
-		Length: 4
 		Scale: 0.2
 	icon:
 		Filename: mrockgolemicon.shp
@@ -1356,26 +1376,30 @@ rustspitter:
 	Defaults:
 		Filename: mrustspitter.shp
 	idle:
-		Start: 72
+		Start: 64
 		Length: 4
 		Facings: 8
 		Scale: 0.3
+		FlipX: true
 	run:
 		Start: 0
 		Length: 8
 		Facings: 8
 		Tick: 100
 		Scale: 0.3
+		FlipX: true
 	shoot:
-		Start: 104
+		Start: 96
 		Length: 4
 		Facings: 8
 		Tick: 100
 		Scale: 0.3
+		FlipX: true
 	die:
-		Start: 136
-		Length: 1
+		Start: 96
+		Length: 4
 		Scale: 0.3
+		FlipX: true
 	icon:
 		Filename: mrustspittericon.shp
 
@@ -1384,7 +1408,8 @@ urlshekk:
 	Defaults:
 		Filename: murlshekk.shp
 	idle:
-		Start: 0
+		Start: 96
+		Length: 4
 		Facings: 8
 		Scale: 0.3
 	run:
@@ -1394,13 +1419,13 @@ urlshekk:
 		Tick: 100
 		Scale: 0.3
 	shoot:
-		Start: 104
+		Start: 64
 		Length: 4
 		Facings: 8
 		Tick: 100
 		Scale: 0.3
 	die:
-		Start: 168
+		Start: 128
 		Length: 4
 		Scale: 0.3
 	icon:
@@ -1410,24 +1435,36 @@ moculus:
 	Defaults:
 		Filename: moculus.shp
 	idle:
-		Start: 0
+		Start: 64
+		Length: 5
 		Facings: 8
+		Scale: 0.5
+		Offset: -15,0,0
 	move:
 		Start: 0
 		Facings: 8
+		Length: 8
+		Scale: 0.5
+		Offset: -15,0,0
 	run:
 		Start: 0
 		Length: 8
 		Facings: 8
 		Tick: 100
+		Scale: 0.5
+		Offset: -15,0,0
 	shoot:
 		Start: 104
 		Length: 4
 		Facings: 8
 		Tick: 100
+		Scale: 0.5
+		Offset: -15,0,0
 	die:
 		Start: 168
 		Length: 4
+		Scale: 0.5
+		Offset: -15,0,0
 	icon:
 		Filename: moculusicon.shp
 

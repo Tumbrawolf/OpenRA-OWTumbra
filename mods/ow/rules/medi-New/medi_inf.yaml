@@ -1,4 +1,4 @@
-
+﻿
 ###############################################################################
 ###############################  Inherits    ##################################
 ###############################################################################
@@ -17,6 +17,11 @@
 
 ^MediSoldier:
 	Inherits: ^Infantry
+	ExternalCondition@stunned:
+		Condition: stunned
+	SpeedMultiplier@stunned:
+		RequiresCondition: stunned
+		Modifier: 0
 	UpdatesPlayerStatistics:
 	MustBeDestroyed:
 	ProximityCaptor:
@@ -45,20 +50,28 @@
 ^Wizards:
 	Inherits: ^MediSoldier
 	##magic units get bonus damage
+	Power:
+		Amount: -50
 	GrantConditionOnPrerequisite@medipure:
 		Prerequisites: upgrade.mediPureMagic
 		Condition: medipure
-	GrantConditionOnPrerequisite@medimagearmor:
+	FirepowerMultiplier@medipure:
+		RequiresCondition: medipure
+		Modifier: 125
+	GrantConditionOnPrerequisite@magearmor:
 		Prerequisites: upgrade.medimagearmor
 		Condition: medimagearmor
+	DamageMultiplier@magearmor:
+		RequiresCondition: medimagearmor
+		Modifier: 70
 	GrantConditionOnPrerequisite@mediwiztow:
 		Prerequisites: upgrade.mediWizardTower
 		Condition: mediwiztow
-	Power:
-		Amount: 50
 
 ^Undead:
-	##magic units get bonus damage
+	FirepowerMultiplier@undead:
+		Modifier: 120
+		RequiresCondition: Necromancy
 	GrantConditionOnPrerequisite@Necromancy:
 		Prerequisites: upgrade.medinecromancy
 		Condition: Necromancy
@@ -115,7 +128,6 @@ mediSLAVE:
 		TargetTypes: TiberiumImmune
 	RenderSprites:
 		Image: mslave
-		PlayerPalette: ra2
 	WithStoresResourcesPipsDecoration:
 		Position: BottomLeft
 		RequiresSelection: true
@@ -126,6 +138,13 @@ mediSLAVE:
 	GrantConditionOnPrerequisite@mediworkboot:
 		Prerequisites: upgrade.mediWorkerboots
 		Condition: shoes
+	GrantConditionOnPrerequisite@slavedrive:
+		Prerequisites: upgrade.medislavedrive
+		Condition: slavedrive
+	StoresResources@slavedrive:
+		Capacity: 5
+		Resources: Ore, Gems, Tiberium, BlueTiberium
+		RequiresCondition: slavedrive
 	Power:
 		Amount: 5
 
@@ -137,7 +156,7 @@ MEDIWORKER:
 		IconPalette: tsunit
 		Queue: Infantry
 		BuildAtProductionType: Soldier
-		Prerequisites: ~infantry.medi, techcenter, ~!upgrade.mediabolish
+		Prerequisites: ~infantry.medi, techcenter, ~!upgrade.mediabolish, ~!infantry.medicult
 		Description: Collects Ore, Tiberium and Gems for processing.\nCan repair buildngs and vehicles.
 		BuildPaletteOrder: 403
 		BuildDuration: 400
@@ -189,7 +208,7 @@ MEDIWORKER2:
 	Inherits@MEDIWORKER: MEDIWORKER
 	Buildable:
 		IconPalette: tsunit
-		Prerequisites: ~infantry.medi, ~upgrade.mediabolish
+		Prerequisites: ~infantry.medi, ~upgrade.mediabolish, ~!infantry.medicult
 		BuildDuration: 250
 	Valued:
 		Cost: 400
@@ -227,7 +246,7 @@ TaxCollector:
 	Inherits@sprite: ^TSMedi
 	Buildable:
 		IconPalette: tsunit
-		Prerequisites: ~infantry.medi
+		Prerequisites: ~infantry.medi, upgrade.mediDeathandtaxes
 		Description: Tax Collector
 		Queue: Infantry
 		BuildAtProductionType: Soldier
@@ -294,7 +313,7 @@ Knight:
 	Inherits@InfPro: ^AutoTargetInfantryPriority
 	Buildable:
 		IconPalette: tsunit
-		Prerequisites: ~infantry.medi
+		Prerequisites: ~infantry.medi, ~!infantry.medicult
 		Description: Mediaval Knight \n  Strong vs infantry\n Weak vs anything else
 		Queue: Infantry
 		BuildAtProductionType: Soldier
@@ -337,6 +356,12 @@ guardhouseguard:
 	Tooltip:
 		Name: Guard for the Guard House
 	-Buildable:
+	-Selectable:
+	Interactable:
+	-SelectionDecorations:
+	AutoTarget:
+		InitialStance: AttackAnything
+		ScanRadius: 30
 	Health:
 		HP: 30000
 	Mobile:
@@ -355,7 +380,7 @@ BERSERKER:
 	-Crushable:
 	Buildable:
 		IconPalette: tsunit
-		Prerequisites: ~infantry.medi, advtechcenter
+		Prerequisites: ~infantry.medi, advtechcenter, ~!infantry.medicult
 		Description: He carries the anger of a thousand small dwarfs.\n Strong vs infantry, Vehicles\n Weak vs Air, Snipers, Buildings
 		Queue: Infantry
 		BuildAtProductionType: Soldier
@@ -403,7 +428,7 @@ BERSERKER:
 		DamagePercentConverted: 15
 
 ##AOE anti vehicle
-##arcanewizard
+##arcanewizard AOE anti vehicle
 arcanewizard:
 	Inherits@Wizards: ^Wizards
 	Inherits@MediLowPower: ^MediLowPower
@@ -416,7 +441,7 @@ arcanewizard:
 		RequiresCondition: lowpower
 	Buildable:
 		IconPalette: tsunit
-		Prerequisites: ~infantry.mediholy, advtechcenter
+		Prerequisites: ~infantry.mediholy, advtechcenter, ~!infantry.medicult
 		Description: War Mage fires penetrating magic \n Strong vs Vehicles Weak vs Infantry
 		Queue: Infantry
 		BuildAtProductionType: Soldier
@@ -440,12 +465,12 @@ arcanewizard:
 		Weapon: WizBall
 	RenderSprites:
 		Image: mwizard
-		PlayerPalette: tsunit
 	Voiced:
 		VoiceSet: SwordmanVoice
 	Passenger:
 		CargoType: arcanewizard
 		CargoCondition: arcanewizard
+		RequiresCondition: mediwiztow
 
 ##basic ranged unit
 ##crossbow
@@ -457,7 +482,7 @@ Archer:
 		AddToArmyValue: true
 	Buildable:
 		IconPalette: tsunit
-		Prerequisites: ~infantry.medi, ~!infantry.mediholy, techcenter
+		Prerequisites: ~infantry.medi, ~!infantry.mediholy, techcenter, ~!infantry.medicult
 		Description: Mediaval Crossbowman \n  Strong vs infantry\n Weak vs anything else
 		Queue: Infantry
 		BuildAtProductionType: Soldier
@@ -495,6 +520,56 @@ Archer:
 		Image: marcher
 	Voiced:
 		VoiceSet: CrossbowmanVoice
+
+##TankBuster Melee Unit Leap attack on tanks
+TankBuster:
+	Inherits@Knight: Knight
+	-AttackFrontal:
+	AttackLeap:
+		Voice: Attack
+		PauseOnCondition: attack-cooldown
+	Inherits@MediLowPower: ^MediLowPower
+	Inherits@InfPro: ^AutoTargetVehiclePriority
+	Buildable:
+		IconPalette: tsunit
+		Prerequisites: ~infantry.medi, techcenter, ~!infantry.medicult
+		Description: Smash big things with big hammer.\n Strong vs Vehicles \n Weak vs Air, infantry
+		Queue: Infantry
+		BuildAtProductionType: Soldier
+		BuildPaletteOrder: 413
+		BuildDuration: 800
+	Selectable:
+		Bounds: 1194, 1365, 0, -682
+		DecorationBounds: 1194, 1365, 0, -682
+	Valued:
+		Cost: 1200
+	Tooltip:
+		Name: Holy Paladin
+	Health:
+		HP: 70000
+	Armor:
+		Type: Heavy
+	ChangesHealth@pallyboost:
+		PercentageStep: 2
+		Delay: 50
+		StartIfBelow: 50
+		DamageCooldown: 100
+	Armament:
+		Weapon: Tankbustersword
+		ReloadingCondition: attack-cooldown
+	WithInfantryBody:
+		StandSequences: stand
+	RenderSprites:
+		Image: mdwarf
+		PlayerPalette: player
+	Voiced:
+		VoiceSet: PaladinVoiceMedi
+	-Crushable:
+	ProximityExternalCondition@PallyBoost:
+		Condition: PallyBoost
+		Range: 10c512
+	WithRangeCircle@PallyBoost:
+		Range: 10c512
 
 ###############################################################################
 ############################### Holy Units ####################################
@@ -554,8 +629,8 @@ PRIEST:
 	RenderSprites:
 		Image: mpriest
 
-##slow regen in combat, fast regen outside combat
-##paladin
+
+##paladin slow regen in combat if not corroded, fast regen outside combat
 MEDIPALADIN:
 	Inherits@Knight: Knight
 	Inherits@MediLowPower: ^MediLowPower
@@ -580,72 +655,24 @@ MEDIPALADIN:
 		HP: 70000
 	Armor:
 		Type: Heavy
-	ChangesHealth@pallyregencombat:
-		PercentageStep: 2
-		Delay: 50
-		StartIfBelow: 50
-		DamageCooldown: 100
-	ChangesHealth@pallyregenpassive:
-		Step: 200
-		Delay: 50
+	ChangesHealth@combat:
+		PercentageStep: 1
+		Delay: 100
 		StartIfBelow: 100
 		DamageCooldown: 0
+		RequiresCondition: !corrode
+	ChangesHealth@passive:
+		PercentageStep: 2
+		Delay: 10
+		StartIfBelow: 100
+		DamageCooldown: 500
+		RequiresCondition: !corrode
 	Armament:
 		Weapon: PaladinSword
 	WithInfantryBody:
 		StandSequences: stand
 	RenderSprites:
 		Image: mpaladin
-		PlayerPalette: tsunit
-	Voiced:
-		VoiceSet: PaladinVoiceMedi
-	-Crushable:
-	ProximityExternalCondition@PallyBoost:
-		Condition: PallyBoost
-		Range: 10c512
-	WithRangeCircle@PallyBoost:
-		Range: 10c512
-
-##TankBuster Melee Unit Leap attack on tanks
-TankBuster:
-	Inherits@Knight: Knight
-	-AttackFrontal:
-	AttackLeap:
-		Voice: Attack
-		PauseOnCondition: attack-cooldown
-	Inherits@MediLowPower: ^MediLowPower
-	Inherits@InfPro: ^AutoTargetVehiclePriority
-	Buildable:
-		IconPalette: tsunit
-		Prerequisites: ~infantry.mediholy, advtechcenter
-		Description: Smash big things with big hammer.\n Strong vs Vehicles \n Weak vs Air, infantry
-		Queue: Infantry
-		BuildAtProductionType: Soldier
-		BuildPaletteOrder: 413
-		BuildDuration: 800
-	Selectable:
-		Bounds: 1194, 1365, 0, -682
-		DecorationBounds: 1194, 1365, 0, -682
-	Valued:
-		Cost: 1200
-	Tooltip:
-		Name: Holy Paladin
-	Health:
-		HP: 70000
-	Armor:
-		Type: Heavy
-	ChangesHealth@pallyboost:
-		PercentageStep: 2
-		Delay: 50
-		StartIfBelow: 50
-		DamageCooldown: 100
-	Armament:
-		Weapon: Tankbustersword
-		ReloadingCondition: attack-cooldown
-	WithInfantryBody:
-		StandSequences: stand
-	RenderSprites:
-		Image: mdwarf
 		PlayerPalette: tsunit
 	Voiced:
 		VoiceSet: PaladinVoiceMedi
@@ -727,7 +754,7 @@ ShieldHero:
 		Range: 11c0
 	RenderSprites:
 		Image: medipaladin
-		PlayerPalette: tsunit
+		PlayerPalette: player
 	Voiced:
 		VoiceSet: PaladinVoiceMedi
 
@@ -744,14 +771,13 @@ BlackPhantom:
 		Description: Collects Ore, Tiberium and Gems for processing.\nCan repair buildngs and vehicles.
 	RenderSprites:
 		Image: mblackphantom
-		PlayerPalette: tsunit
 
 ##Ratman
 Ratman:
-	Inherits@Knight: Knight
+	Inherits@TankBuster: TankBuster
 	Buildable:
 		IconPalette: tsunit
-		Prerequisites: ~infantry.medi, advtechcenter
+		Prerequisites: ~infantry.medicult, techcenter
 		Description: Toxic ratman from the sewers.\n Strong vs infantry \n Weak vs Air, Snipers, Buildings, Vehicles
 		Queue: Infantry
 		BuildAtProductionType: Soldier
@@ -759,9 +785,7 @@ Ratman:
 	Valued:
 		Cost: 300
 	Tooltip:
-		Name: Ratman. \n Strong vs infantry\n Weak vs anything else
-	Health:
-		HP: 20000
+		Name: Ratman. 
 	Mobile:
 		Speed: 80
 		PauseOnCondition: attack-cooldown
@@ -773,10 +797,13 @@ Ratman:
 
 ##GiantRat
 Giantrat:
+	Inherits@mediDog: ^MediDog
 	Inherits@Dog: DOG
+	DamageMultiplier:
+		Modifier: 120
 	Buildable:
 		IconPalette: tsunit
-		Prerequisites: ~infantry.medi, advtechcenter
+		Prerequisites: ~infantry.medicult
 		Description: Toxic Rat from the sewers.\n Strong vs infantry \n Weak vs Anything else
 		Queue: Infantry
 		BuildAtProductionType: Soldier
@@ -791,7 +818,7 @@ GoblinWarrior:
 	Inherits@Knight: Knight
 	Buildable:
 		IconPalette: tsunit
-		Prerequisites: ~infantry.medi, advtechcenter
+		Prerequisites: ~infantry.medicult
 		Description: Goblin Warrior.\n Strong vs infantry \n Weak vs Air, Snipers, Buildings, Vehicles
 		Queue: Infantry
 		BuildAtProductionType: Soldier
@@ -809,7 +836,7 @@ GoblinChampion:
 	Inherits@BERSERKER: BERSERKER
 	Buildable:
 		IconPalette: tsunit
-		Prerequisites: ~infantry.medi, advtechcenter
+		Prerequisites: ~infantry.medicult, advtechcenter
 		Description: Goblin Champion.\n Strong vs infantry, Vehicles\n Weak vs Air, Snipers, Buildings
 		Queue: Infantry
 		BuildAtProductionType: Soldier
@@ -828,7 +855,7 @@ GoblinPriest:
 	Inherits@PRIEST: PRIEST
 	Buildable:
 		IconPalette: tsunit
-		Prerequisites: ~infantry.medi, advtechcenter
+		Prerequisites: ~infantry.medicult, techcenter
 		Description: Goblin Priest. Heals units
 		Queue: Infantry
 		BuildAtProductionType: Soldier
@@ -845,7 +872,7 @@ GoblinArcher:
 	Inherits@Archer: Archer
 	Buildable:
 		IconPalette: tsunit
-		Prerequisites: ~infantry.medi, advtechcenter
+		Prerequisites: ~infantry.medicult, techcenter
 		Description: Goblin Archer.\n Strong vs infantry \n Weak vs Air, Snipers, Buildings, Vehicles
 		Queue: Infantry
 		BuildAtProductionType: Soldier
@@ -864,7 +891,7 @@ Witchking:
 	Inherits@arcanewizard: arcanewizard
 	Buildable:
 		IconPalette: tsunit
-		Prerequisites: ~infantry.mediwizards, advtechcenter
+		Prerequisites: ~infantry.medicult, advtechcenter
 		Description: Witch King, Master Necromancer \n Strong vs Infantry & Vehicles Weak vs Buildings
 		Queue: Infantry
 		BuildAtProductionType: Soldier
@@ -905,7 +932,6 @@ Witchking:
 		RequiresCondition: SummonUndead && Zombiespawn
 	RenderSprites:
 		Image: mwitchking
-		PlayerPalette: tsunit
 
 ##Skeleton
 Skeleton:
@@ -921,10 +947,16 @@ Skeleton:
 		Weapon: SkeletonSword
 	RenderSprites:
 		Image: mskeleton
-		PlayerPalette: tsunit
+		PlayerPalette: player
 
 Skeleton2:
 	Inherits@Knight: Skeleton
+	-Selectable:
+	Interactable:
+	-SelectionDecorations:
+	AutoTarget:
+		InitialStance: AttackAnything
+		ScanRadius: 30
 	KillsSelf:
 		Delay: 250,500
 
@@ -942,7 +974,7 @@ SummonedZombie:
 		Weapon: SummonedZombieBite
 	RenderSprites:
 		Image: mzombie
-		PlayerPalette: tsunit
+		PlayerPalette: player
 
 ##Death knight Super Unit
 MEDIDEATHKNIGHT:
@@ -953,7 +985,7 @@ MEDIDEATHKNIGHT:
 	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
 	Inherits@InfPro: ^AutoTargetVehiclePriority
 	Buildable:
-		Prerequisites: ~infantry.medicult, advtechcenter, ulttechcenter
+		Prerequisites: ~infantry.medicult, ulttechcenter
 		Description: Dark Knight Super unit, Practicaly a nuke on legs. \n Strong vs Anything Close \n Weak vs Anything fast or ranged.
 		Queue: Infantry
 		BuildLimit: 1
@@ -1031,7 +1063,7 @@ VOIDARCHER:
 	Inherits@Archer: Archer
 	Buildable:
 		IconPalette: tsunit
-		Prerequisites: ~infantry.mediwizards, advtechcenter
+		Prerequisites: ~infantry.mediwizards, techcenter
 		Description: Dark magic archer \n Strong vs Light Vehicles, Infantry \n Weak vs Tanks
 		Queue: Infantry
 		BuildAtProductionType: Soldier
@@ -1055,10 +1087,19 @@ VOIDARCHER:
 		Weapon: Voidarchershot3
 	RenderSprites:
 		Image: mvoidarcher
-		PlayerPalette: tsunit
 
-##Chain high damage to Vehicles, chance to EMP on stacks
-##lightningwizard
+VOIDARCHER_SPAWN:
+	Inherits: VOIDARCHER
+	-Buildable:
+	-Selectable:
+	Interactable:
+	-SelectionDecorations:
+	AutoTarget:
+		InitialStance: AttackAnything
+		ScanRadius: 30
+
+##
+##lightningwizard Chain high damage to Vehicles, chance to EMP on stacks
 lightningwizard:
 	Inherits@arcanewizard: arcanewizard
 	Buildable:
@@ -1086,14 +1127,14 @@ lightningwizard:
 	Passenger:
 		CargoType: lightningwizard
 		CargoCondition: lightningwizard
+		RequiresCondition: mediwiztow
 	RenderSprites:
 		Image: mlwizard
-		PlayerPalette: tsunit
 	Power:
 		Amount: 75
 
-##AOE anti infantry and buildings
-##firewizard
+
+##firewizard AOE anti infantry and buildings
 firewizard:
 	Inherits@arcanewizard: arcanewizard
 	Buildable:
@@ -1121,16 +1162,16 @@ firewizard:
 	Passenger:
 		CargoType: firewizard
 		CargoCondition: firewizard
+		RequiresCondition: mediwiztow
 	RenderSprites:
 		Image: mfwizard
-		PlayerPalette: tsunit
 
 ##Healer - Monk
 Monk:
 	Inherits@PRIEST: PRIEST
 	Buildable:
 		IconPalette: tsunit
-		Prerequisites: ~infantry.medi, advtechcenter
+		Prerequisites: ~infantry.medi, techcenter
 		Description: Human Monk. Heals units
 		Queue: Infantry
 		BuildAtProductionType: Soldier
@@ -1155,7 +1196,7 @@ Dryad:
 		Queue: Infantry
 		BuildAtProductionType: Soldier
 		BuildPaletteOrder: 404
-		Prerequisites: ~infantry.mediholy, techcenter
+		Prerequisites: ~infantry.medi, techcenter, ~!infantry.medicult
 		Description: Dryad Repairs structures.
 	Valued:
 		Cost: 1500
@@ -1194,13 +1235,17 @@ Dryad:
 		ValidTargets: Structure, GroundActor
 	RenderSprites:
 		Image: mdryad
-		PlayerPalette: tsunit
 
 ##Vampire : Lifesteal goes up as HP gets lower, Regen goes down as HP gets lower
 Vampire:
 	Inherits@Knight: Knight
 	-Crushable:
-	-Buildable:
+	Buildable:
+		Queue: Infantry
+		BuildAtProductionType: Soldier
+		BuildPaletteOrder: 404
+		Prerequisites: ~infantry.medi, techcenter, ~!infantry.mediholy
+		Description: Dryad Repairs structures.
 	Selectable:
 		Bounds: 1194, 1365, 0, -682
 		DecorationBounds: 1194, 1365, 0, -682
@@ -1218,7 +1263,7 @@ Vampire:
 		StandSequences: stand
 	RenderSprites:
 		Image: mvampire
-		PlayerPalette: tsunit
+		PlayerPalette: player
 	GrantConditionOnAttack:
 		Condition: InCombat
 		RevokeDelay: 50
@@ -1264,3 +1309,130 @@ Vampire:
 	ConvertsDamageToHealth@4:
 		DamagePercentConverted: 25
 		RequiresCondition: under25hp
+
+###############################################################################
+################################## Test Spawner ################################
+###############################################################################
+
+MediInfantryTest:
+	Inherits: barrackswg
+	Buildable:
+		IconPalette: tsunit
+		Queue: Building
+		Prerequisites: ~structures.medi
+		Description: Spawns all medi infantry for testing
+		BuildPaletteOrder: 9999
+		BuildDuration: 1
+	Valued:
+		Cost: 0
+	Tooltip:
+		Name: Infantry Test Spawner
+	KillsSelf:
+		Delay: 5
+		RemoveInstead: true
+	## Row 0 (y=0)
+	FreeActor@i01:
+		Actor: mediSLAVE
+		SpawnOffset: 0,0
+	FreeActor@i02:
+		Actor: MEDIWORKER
+		SpawnOffset: 2,0
+	FreeActor@i03:
+		Actor: MEDIWORKER2
+		SpawnOffset: 4,0
+	FreeActor@i04:
+		Actor: SURVEYORMEDI
+		SpawnOffset: 6,0
+	FreeActor@i05:
+		Actor: TaxCollector
+		SpawnOffset: 8,0
+	## Row 1 (y=2)
+	FreeActor@i06:
+		Actor: Knight
+		SpawnOffset: 0,2
+	FreeActor@i07:
+		Actor: guardhouseguard
+		SpawnOffset: 2,2
+	FreeActor@i08:
+		Actor: BERSERKER
+		SpawnOffset: 4,2
+	FreeActor@i09:
+		Actor: arcanewizard
+		SpawnOffset: 6,2
+	FreeActor@i10:
+		Actor: Archer
+		SpawnOffset: 8,2
+	## Row 2 (y=4)
+	FreeActor@i11:
+		Actor: TankBuster
+		SpawnOffset: 0,4
+	FreeActor@i12:
+		Actor: PRIEST
+		SpawnOffset: 2,4
+	FreeActor@i13:
+		Actor: MEDIPALADIN
+		SpawnOffset: 4,4
+	FreeActor@i14:
+		Actor: ShieldHero
+		SpawnOffset: 6,4
+	FreeActor@i15:
+		Actor: BlackPhantom
+		SpawnOffset: 8,4
+	## Row 3 (y=6)
+	FreeActor@i16:
+		Actor: Ratman
+		SpawnOffset: 0,6
+	FreeActor@i17:
+		Actor: Giantrat
+		SpawnOffset: 2,6
+	FreeActor@i18:
+		Actor: GoblinWarrior
+		SpawnOffset: 4,6
+	FreeActor@i19:
+		Actor: GoblinChampion
+		SpawnOffset: 6,6
+	FreeActor@i20:
+		Actor: GoblinArcher
+		SpawnOffset: 8,6
+	## Row 4 (y=8)
+	FreeActor@i21:
+		Actor: GoblinPriest
+		SpawnOffset: 0,8
+	FreeActor@i22:
+		Actor: Witchking
+		SpawnOffset: 2,8
+	FreeActor@i23:
+		Actor: Skeleton
+		SpawnOffset: 4,8
+	FreeActor@i24:
+		Actor: Skeleton2
+		SpawnOffset: 6,8
+	FreeActor@i25:
+		Actor: SummonedZombie
+		SpawnOffset: 8,8
+	## Row 5 (y=10)
+	FreeActor@i26:
+		Actor: MEDIDEATHKNIGHT
+		SpawnOffset: 0,10
+	FreeActor@i27:
+		Actor: VOIDARCHER
+		SpawnOffset: 2,10
+	FreeActor@i28:
+		Actor: VOIDARCHER_SPAWN
+		SpawnOffset: 4,10
+	FreeActor@i29:
+		Actor: lightningwizard
+		SpawnOffset: 6,10
+	FreeActor@i30:
+		Actor: firewizard
+		SpawnOffset: 8,10
+	## Row 6 (y=12)
+	FreeActor@i31:
+		Actor: Monk
+		SpawnOffset: 0,12
+	FreeActor@i32:
+		Actor: Dryad
+		SpawnOffset: 2,12
+	FreeActor@i33:
+		Actor: Vampire
+		SpawnOffset: 4,12

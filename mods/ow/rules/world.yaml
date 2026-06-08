@@ -1020,24 +1020,6 @@
 				Name: Snow
 				Palette: player
 				Sequences: snow00,snow01,snow02,snow03,snow04,snow05,snow06,snow07,snow08,snow09,snow10,snow11,snow12,snow13,snow14,snow15,snow16,snow17,snow18,snow19
-	ResourceRenderer@5:
-		ResourceTypes:
-			TributeLow:
-				Name: Tribute (Low)
-				Palette: player
-				Sequences: gem01,gem02,gem03,gem04
-			TributeMid:
-				Name: Tribute (Mid)
-				Palette: player
-				Sequences: gem01,gem02,gem03,gem04
-			TributeHigh:
-				Name: Tribute (High)
-				Palette: player
-				Sequences: gem01,gem02,gem03,gem04
-			TributeSuper:
-				Name: Tribute (Super)
-				Palette: player
-				Sequences: gem01,gem02,gem03,gem04
 	ControlGroups:
 
 World:
@@ -1153,8 +1135,14 @@ World:
 	StartingUnits@mcvonlydawn:
 		Class: none
 		ClassName: actor-world.startingunits-mcvonlydawn-class-name
-		Factions: gdi, steel, zocom, gdi3, nod, marked, bhand, nod3, fed, sword, angels, silver, china, tank, nuke, infantry, japan, mecha, economic, navy, medicult, mediholy, mediwizards, forgotten, btsphere, btclan, btmerc
+		Factions: gdi, steel, zocom, gdi3, nod, marked, bhand, nod3, fed, sword, angels, silver, china, tank, nuke, infantry, japan, mecha, economic, navy, forgotten, btsphere, btclan, btmerc
 		BaseActor: mcvd
+		SupportActors: upgrade.spawn
+	StartingUnits@mcvonlymedi:
+		Class: none
+		ClassName: actor-world.startingunits-mcvonlydawn-class-name
+		Factions: mediwizards, medicult, mediholy
+		BaseActor: MCVM
 		SupportActors: upgrade.spawn
 	StartingUnits@mcvonlyciv:
 		Class: none
