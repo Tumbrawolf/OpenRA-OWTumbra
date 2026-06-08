@@ -248,6 +248,7 @@ refinarymarket:
 	Inherits@tax: ^TaxableLow
 	Inherits: GPROC
 	-SpawnActorsOnSell:
+	-SpawnActorOnDeath:
 	GrantConditionOnPrerequisite@mediabolish:
 		Condition: mediabolish
 		Prerequisites: ~!upgrade.mediabolish
