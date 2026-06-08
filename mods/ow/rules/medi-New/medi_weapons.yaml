@@ -1155,6 +1155,316 @@ FrostNovaWep:
 		Condition: chilled
 		Range: 4c0
 		Duration: 400
+#
+##Used by Cult Soul Harvest power: marks enemies, who spawn undead from their corpse on death
+SoulHarvestWep:
+	ReloadDelay: 500
+	Range: 6c0
+	Projectile: InstantHit
+	Warhead@dam: SpreadDamage
+		Spread: 3c0
+		Damage: 3000
+		Falloff: 100, 50, 25
+		ValidTargets: GroundActor, WaterActor
+		ValidRelationships: Enemy, Neutral
+		DamageTypes: Prone50Percent, TriggerProne, ExplosionDeath
+	Warhead@mark: GrantExternalCondition
+		ValidTargets: GroundActor, Trees, WaterActor, Underwater, AirborneActor
+		ValidRelationships: Enemy, Neutral
+		Condition: soulmarked
+		Range: 4c0
+		Duration: 1000
+	Warhead@Eff: CreateEffect
+		Explosions: undeath
+		Image: explosion
+		ImpactActors: false
+#
+##Used by Cult Chaos Storm power: scatters markers that detonate with a random elemental effect
+ChaosStormMarkerWeapon:
+	ValidTargets: Ground, Water, GroundActor, WaterActor, Underwater, AirborneActor, Trees
+	Projectile: Bullet
+		Speed: 2c0
+	Warhead@SpawnMarker: SpawnActor
+		Range: 0
+		ForceGround: true
+		Actors: ChaosStormMarker
+		OwnerType: InternalName
+#
+ChaosStormWep:
+	ValidTargets: Ground, Water, GroundActor, WaterActor, Underwater, AirborneActor, Trees
+	Range: 8c0
+	Projectile: InstantHit
+	Warhead@Eff: CreateEffect
+		Explosions: chaosburst
+		Image: explosion
+		ImpactActors: false
+	Warhead@SpawnMarkers: FireCluster
+		Weapon: ChaosStormMarkerWeapon
+		RandomClusterCount: 8
+		Dimensions: 6,6
+		Footprint: xxxxxx xxxxxx xxxxxx xxxxxx xxxxxx xxxxxx
+#
+##Random detonation effects fired by ChaosStormMarker
+ChaosStormFireImpact:
+	ValidTargets: Ground, GroundActor, Trees, Water, WaterActor, Underwater, Air, AirborneActor
+	Warhead@Dam: SpreadDamage
+		Spread: 1c512
+		Damage: 6000
+		Falloff: 100, 50
+		ValidRelationships: Enemy, Neutral
+		DamageTypes: Prone50Percent, TriggerProne, FireDeath, Incendiary
+	Warhead@Eff: CreateEffect
+		Explosions: napalm
+		ImpactSounds: flamer2.aud
+		ImpactActors: false
+#
+ChaosStormLightningImpact:
+	ValidTargets: GroundActor, Trees, WaterActor, Underwater, AirborneActor
+	Warhead@Dam: SpreadDamage
+		Spread: 1c512
+		Damage: 5000
+		Falloff: 100, 50
+		ValidRelationships: Enemy, Neutral
+		DamageTypes: Prone50Percent, TriggerProne, ElectricityDeath
+	Warhead@Stun: GrantExternalCondition
+		ValidTargets: GroundActor, WaterActor, Underwater, AirborneActor
+		ValidRelationships: Enemy, Neutral
+		Condition: disabled
+		Range: 1c512
+		Duration: 60
+	Warhead@Eff: CreateEffect
+		Explosions: electricburst
+		Image: explosion
+		ImpactActors: false
+#
+ChaosStormCurseImpact:
+	ValidTargets: GroundActor, Trees, WaterActor, Underwater, AirborneActor
+	Warhead@Curse: GrantExternalCondition
+		ValidTargets: GroundActor, Trees, WaterActor, Underwater, AirborneActor
+		ValidRelationships: Enemy, Neutral
+		Condition: MediCurseCondition
+		Range: 2c0
+		Duration: 400
+	Warhead@Eff: CreateEffect
+		Explosions: chaosorbeffect
+		Image: explosion
+		ImpactActors: false
+#
+##Used by Holy Sanctuary power: grants brief total damage immunity to allies, infantry included
+SanctuaryWep:
+	ReloadDelay: 500
+	Range: 6c0
+	Projectile: InstantHit
+	ValidTargets: Ground, GroundActor, Trees, Water, WaterActor, Underwater, Air, AirborneActor
+	Warhead@shield: GrantExternalCondition
+		ValidTargets: Ground, GroundActor, Trees, Water, WaterActor, Underwater, Air, AirborneActor
+		ValidRelationships: Ally
+		Condition: medisanctuary
+		Range: 3c0
+		Duration: 250
+	Warhead@Eff: CreateEffect
+		Explosions: medisanctuaryshield
+		Image: explosion
+		ImpactActors: false
+#
+##Used by Holy Petrify power: stuns and shatters enemy armor briefly
+PetrifyWep:
+	ReloadDelay: 500
+	Range: 6c0
+	Projectile: InstantHit
+	Warhead@stun: GrantExternalCondition
+		ValidTargets: GroundActor, Trees, WaterActor, Underwater, AirborneActor
+		ValidRelationships: Enemy, Neutral
+		Condition: disabled
+		Range: 4c0
+		Duration: 100
+	Warhead@crystal: GrantExternalCondition
+		ValidTargets: GroundActor, Trees, WaterActor, Underwater, AirborneActor
+		ValidRelationships: Enemy, Neutral
+		Condition: petrified
+		Range: 4c0
+		Duration: 350
+	Warhead@Eff: CreateEffect
+		Explosions: crystalburst
+		Image: explosion
+		ImpactActors: false
+#
+##Used by Wizard Ice Spike Barrage power: a piercing burst of icy spikes, the offensive twin to Frost Nova
+IceSpikeBarrageWep:
+	Inherits: ^ElectricBoltWeapon
+	ReloadDelay: 100
+	Range: 6c0
+	Report: plasma1.aud
+	ValidTargets: Ground, Water, GroundActor, WaterActor, Air, AirborneActor
+	Projectile: ElectricBolt
+		Duration: 20
+		Blockable: True
+	Warhead@1Dam: SpreadDamage
+		Spread: 1c0
+		Damage: 9000
+		Falloff: 100, 75, 50, 25
+		ValidTargets: GroundActor, WaterActor
+		ValidRelationships: Enemy, Neutral
+		DamageTypes: Prone50Percent, TriggerProne, FrostDeath
+	Warhead@chill: GrantExternalCondition
+		ValidTargets: GroundActor, Trees, WaterActor, Underwater, AirborneActor
+		ValidRelationships: Enemy, Neutral
+		Condition: chilled
+		Range: 1c512
+		Duration: 200
+	Warhead@Eff: CreateEffect
+		Explosions: icespikeeffect
+		Image: explosion
+		ImpactActors: false
+#
+##Used by Wizard Chain Lightning power: arcs between clustered enemies, briefly stunning each
+ChainLightningWep:
+	Inherits: ^ElectricBoltWeapon
+	ReloadDelay: 100
+	Range: 6c0
+	Report: plasma1.aud
+	ValidTargets: Ground, Water, GroundActor, WaterActor, Air, AirborneActor
+	Projectile: ElectricBolt
+		Duration: 20
+		Blockable: True
+	Warhead@1Dam: SpreadDamage
+		Spread: 256
+		Damage: 4000
+		ValidTargets: GroundActor, WaterActor
+		ValidRelationships: Enemy, Neutral
+		DamageTypes: Prone50Percent, TriggerProne, ElectricityDeath
+	Warhead@stun: GrantExternalCondition
+		ValidTargets: GroundActor, WaterActor, Underwater, AirborneActor
+		ValidRelationships: Enemy, Neutral
+		Condition: disabled
+		Range: 256
+		Duration: 50
+	Warhead@Eff: CreateEffect
+		Explosions: electricburst
+		Image: explosion
+		ImpactActors: false
+	Warhead@arc: FireShrapnel
+		Amount: 2
+		Weapon: ChainLightningArc
+		AimTargetStances: Enemy, Neutral
+		AimChance: 75
+#
+ChainLightningArc:
+	Inherits: ^ElectricBoltWeapon
+	Range: 4c0
+	Projectile: ElectricBolt
+		Duration: 14
+		Blockable: True
+	Warhead@1Dam: SpreadDamage
+		Spread: 256
+		Damage: 2500
+		ValidTargets: GroundActor, WaterActor
+		ValidRelationships: Enemy, Neutral
+		DamageTypes: Prone50Percent, TriggerProne, ElectricityDeath
+	Warhead@stun: GrantExternalCondition
+		ValidTargets: GroundActor, WaterActor, Underwater, AirborneActor
+		ValidRelationships: Enemy, Neutral
+		Condition: disabled
+		Range: 256
+		Duration: 50
+	Warhead@Eff: CreateEffect
+		Explosions: electricburst
+		Image: explosion
+		ImpactActors: false
+#
+##Used by the Toxic Cloud power: a lingering corrosive gas field that ticks DoT and weakens armor
+ToxicCloudWep:
+	ValidTargets: Ground, Water, GroundActor, WaterActor, Underwater, AirborneActor, Trees
+	Range: 8c0
+	Projectile: InstantHit
+	Warhead@Eff: CreateEffect
+		Explosions: poisonorbeffect
+		Image: explosion
+		ImpactActors: false
+	Warhead@pulse1: SpreadDamage
+		Delay: 25
+		Spread: 3c0
+		Damage: 1200
+		Falloff: 100, 75, 50
+		ValidTargets: GroundActor, WaterActor
+		ValidRelationships: Enemy, Neutral
+		DamageTypes: Prone50Percent, TriggerProne, PoisonDeath
+	Warhead@mark1: GrantExternalCondition
+		Delay: 25
+		ValidTargets: GroundActor, Trees, WaterActor, Underwater, AirborneActor
+		ValidRelationships: Enemy, Neutral
+		Condition: poisoned
+		Range: 3c0
+		Duration: 200
+	Warhead@pulse2: SpreadDamage
+		Delay: 100
+		Spread: 3c0
+		Damage: 1200
+		Falloff: 100, 75, 50
+		ValidTargets: GroundActor, WaterActor
+		ValidRelationships: Enemy, Neutral
+		DamageTypes: Prone50Percent, TriggerProne, PoisonDeath
+	Warhead@mark2: GrantExternalCondition
+		Delay: 100
+		ValidTargets: GroundActor, Trees, WaterActor, Underwater, AirborneActor
+		ValidRelationships: Enemy, Neutral
+		Condition: poisoned
+		Range: 3c0
+		Duration: 200
+	Warhead@Eff2: CreateEffect
+		Delay: 100
+		Explosions: poisoncloudeffect
+		Image: explosion
+		ImpactActors: false
+	Warhead@pulse3: SpreadDamage
+		Delay: 175
+		Spread: 3c0
+		Damage: 1200
+		Falloff: 100, 75, 50
+		ValidTargets: GroundActor, WaterActor
+		ValidRelationships: Enemy, Neutral
+		DamageTypes: Prone50Percent, TriggerProne, PoisonDeath
+	Warhead@mark3: GrantExternalCondition
+		Delay: 175
+		ValidTargets: GroundActor, Trees, WaterActor, Underwater, AirborneActor
+		ValidRelationships: Enemy, Neutral
+		Condition: poisoned
+		Range: 3c0
+		Duration: 200
+#
+##Used by the Pillars of Fire power: drops scattered heavy fire-pillar impacts across the target area
+PillarOfFireImpact:
+	ValidTargets: Ground, GroundActor, Trees, Water, WaterActor, Underwater, Air, AirborneActor
+	Warhead@Dam: SpreadDamage
+		Spread: 1c512
+		Damage: 9000
+		Falloff: 100, 75, 50, 25
+		ValidTargets: GroundActor, WaterActor
+		ValidRelationships: Enemy, Neutral
+		Versus:
+			Wood: 100
+			Light: 75
+			Heavy: 75
+			Concrete: 100
+		DamageTypes: Prone50Percent, TriggerProne, FireDeath, Incendiary
+	Warhead@Smu: LeaveSmudge
+		SmudgeType: Crater
+		InvalidTargets: Vehicle, Structure, Wall, Husk, Trees
+	Warhead@Eff: CreateEffect
+		Explosions: firepillareffect
+		Image: explosion
+		ImpactSounds: flamer2.aud
+		ImpactActors: false
+#
+PillarsOfFireWep:
+	ValidTargets: Ground, Water, GroundActor, WaterActor, Underwater, AirborneActor, Trees
+	Range: 8c0
+	Projectile: InstantHit
+	Warhead@Pillars: FireCluster
+		Weapon: PillarOfFireImpact
+		RandomClusterCount: 6
+		Dimensions: 5,5
+		Footprint: xxxxx xxxxx xxxxx xxxxx xxxxx
 ##
 #Used by Dragon Bomber
 ##

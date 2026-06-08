@@ -127,6 +127,7 @@ mediconyard:
 		Factions: mediholy
 	RenderSprites:
 		Image: factm
+		PlayerPalette: player
 
 ##foundrymed
 foundrymedi:
@@ -661,6 +662,44 @@ advtechcenterlibrary:
 		EffectSequence: medismiteproj
 		Weapon: SmitePowerWep
 		DisplayTimerRelationships: None
+	IonCannonPower@ToxicCloud:
+		OrderName: ToxicCloud
+		Prerequisites: ~structures.medi
+		PauseOnCondition: disabled
+		Icon: medivoidportalicon
+		Cursor: chrono-target
+		ChargeInterval: 6000
+		Name: Toxic Cloud
+		Description: Drenches an area in corrosive gas, dealing lingering damage and weakening armor
+		SelectTargetSpeechNotification: SelectTarget
+		InsufficientPowerSpeechNotification: InsufficientPower
+		OnFireSound: medicurse.aud
+		DisplayRadarPing: True
+		SupportPowerPaletteOrder: 20
+		Effect: explosion
+		EffectSequence: poisonorbeffect
+		EffectPalette: tsunit2
+		Weapon: ToxicCloudWep
+		DisplayTimerRelationships: None
+	IonCannonPower@PillarsOfFire:
+		OrderName: PillarsOfFire
+		Prerequisites: ~structures.medi
+		PauseOnCondition: disabled
+		Icon: medivoidportalicon
+		Cursor: chrono-target
+		ChargeInterval: 6000
+		Name: Pillars of Fire
+		Description: Drops scattered columns of flame across the target area, devastating clusters and structures
+		SelectTargetSpeechNotification: SelectTarget
+		InsufficientPowerSpeechNotification: InsufficientPower
+		OnFireSound: medicurse.aud
+		DisplayRadarPing: True
+		SupportPowerPaletteOrder: 20
+		Effect: explosion
+		EffectSequence: firepillareffect
+		EffectPalette: tsunit2
+		Weapon: PillarsOfFireWep
+		DisplayTimerRelationships: None
 	## Cult Powers
 	SpawnActorPower@Undead:
 		OrderName: Undead Magic
@@ -688,6 +727,44 @@ advtechcenterlibrary:
 		DisplayTimerRelationships: None
 		Dimensions: 3, 3
 		Footprint: _x_ xxx _x_
+	IonCannonPower@SoulHarvest:
+		OrderName: SoulHarvest
+		Prerequisites: ~structures.medicult
+		PauseOnCondition: disabled
+		Icon: medivoidportalicon
+		Cursor: chrono-target
+		ChargeInterval: 5000
+		Name: Soul Harvest
+		Description: Marks enemies in an area; marked units rise again as undead when slain
+		SelectTargetSpeechNotification: SelectTarget
+		InsufficientPowerSpeechNotification: InsufficientPower
+		OnFireSound: medicurse.aud
+		DisplayRadarPing: True
+		SupportPowerPaletteOrder: 20
+		Effect: explosion
+		EffectSequence: undeath
+		EffectPalette: tsunit2
+		Weapon: SoulHarvestWep
+		DisplayTimerRelationships: None
+	IonCannonPower@ChaosStorm:
+		OrderName: ChaosStorm
+		Prerequisites: ~structures.medicult
+		PauseOnCondition: disabled
+		Icon: medivoidportalicon
+		Cursor: chrono-target
+		ChargeInterval: 6000
+		Name: Chaos Storm
+		Description: Scatters unstable motes across an area that detonate with random elemental fury
+		SelectTargetSpeechNotification: SelectTarget
+		InsufficientPowerSpeechNotification: InsufficientPower
+		OnFireSound: medicurse.aud
+		DisplayRadarPing: True
+		SupportPowerPaletteOrder: 20
+		Effect: explosion
+		EffectSequence: chaosburst
+		EffectPalette: tsunit2
+		Weapon: ChaosStormWep
+		DisplayTimerRelationships: None
 	## Holy Powers
 	IonCannonPower@ChainsPower:
 		OrderName: ChainsPower
@@ -707,6 +784,44 @@ advtechcenterlibrary:
 		EffectSequence: mediholychains
 		Weapon: ChainsPowerWep
 		DisplayTimerRelationships: None
+	IonCannonPower@Sanctuary:
+		OrderName: Sanctuary
+		Prerequisites: ~structures.mediholy
+		PauseOnCondition: disabled
+		Icon: medivoidportalicon
+		Cursor: chrono-target
+		ChargeInterval: 6000
+		Name: Sanctuary
+		Description: Grants allied units and structures in an area brief total immunity to damage
+		SelectTargetSpeechNotification: SelectTarget
+		InsufficientPowerSpeechNotification: InsufficientPower
+		OnFireSound: mediholyheal.aud
+		DisplayRadarPing: True
+		SupportPowerPaletteOrder: 20
+		Effect: explosion
+		EffectSequence: medisanctuaryshield
+		EffectPalette: tsunit2
+		Weapon: SanctuaryWep
+		DisplayTimerRelationships: None
+	IonCannonPower@Petrify:
+		OrderName: Petrify
+		Prerequisites: ~structures.mediholy
+		PauseOnCondition: disabled
+		Icon: medivoidportalicon
+		Cursor: chrono-target
+		ChargeInterval: 5000
+		Name: Petrify
+		Description: Turns enemies in an area to crystal, stunning them and shattering their armor
+		SelectTargetSpeechNotification: SelectTarget
+		InsufficientPowerSpeechNotification: InsufficientPower
+		OnFireSound: mediholychainsound.wav
+		DisplayRadarPing: True
+		SupportPowerPaletteOrder: 20
+		Effect: explosion
+		EffectSequence: crystalburst
+		EffectPalette: tsunit2
+		Weapon: PetrifyWep
+		DisplayTimerRelationships: None
 	## Wizard Powers
 	IonCannonPower@FrostNova:
 		OrderName: FrostNova
@@ -725,6 +840,44 @@ advtechcenterlibrary:
 		Effect: explosion
 		EffectSequence: frostnova
 		Weapon: FrostNovaWep
+		DisplayTimerRelationships: None
+	IonCannonPower@IceSpikeBarrage:
+		OrderName: IceSpikeBarrage
+		Prerequisites: ~structures.mediwizards
+		PauseOnCondition: disabled
+		Icon: medivoidportalicon
+		Cursor: chrono-target
+		ChargeInterval: 4500
+		Name: Ice Spike Barrage
+		Description: Hurls a piercing volley of ice spikes that shatters armor and chills survivors
+		SelectTargetSpeechNotification: SelectTarget
+		InsufficientPowerSpeechNotification: InsufficientPower
+		OnFireSound: medicurse.aud
+		DisplayRadarPing: True
+		SupportPowerPaletteOrder: 20
+		Effect: explosion
+		EffectSequence: icespikeeffect
+		EffectPalette: tsunit2
+		Weapon: IceSpikeBarrageWep
+		DisplayTimerRelationships: None
+	IonCannonPower@ChainLightning:
+		OrderName: ChainLightning
+		Prerequisites: ~structures.mediwizards
+		PauseOnCondition: disabled
+		Icon: medivoidportalicon
+		Cursor: chrono-target
+		ChargeInterval: 4500
+		Name: Chain Lightning
+		Description: Arcs lightning between clustered enemies, stunning and damaging each in turn
+		SelectTargetSpeechNotification: SelectTarget
+		InsufficientPowerSpeechNotification: InsufficientPower
+		OnFireSound: medicurse.aud
+		DisplayRadarPing: True
+		SupportPowerPaletteOrder: 20
+		Effect: explosion
+		EffectSequence: electricburst
+		EffectPalette: tsunit2
+		Weapon: ChainLightningWep
 		DisplayTimerRelationships: None
 
 ##Super Tech
@@ -1309,7 +1462,7 @@ TheEye:
 
 ##Medieval creatures
 TempleofLunord:
-	Inherits: AnimalDen
+	Inherits@AnimalDen: AnimalDen
 	Buildable:
 		IconPalette: tsunit
 		Prerequisites: barracks, ~structures.medi, ~!ai.hard, ~techlevel.low, ~structures.mediholy
@@ -1324,7 +1477,7 @@ TempleofLunord:
 
 ##Medieval creatures
 Templeofkrypta:
-	Inherits: AnimalDen
+	Inherits@AnimalDen: AnimalDen
 	Buildable:
 		IconPalette: tsunit
 		Prerequisites: barracks, ~structures.medi, ~!ai.hard, ~techlevel.low, ~structures.medicult
@@ -1332,6 +1485,7 @@ Templeofkrypta:
 		BuildPaletteOrder: 4
 	RenderSprites:
 		Image: mcreaturecult
+		PlayerPalette: ra2
 
 ##Barracks
 GoblinCamp:
@@ -1935,6 +2089,33 @@ VoidRiseMarker:
 		RequiresCondition: spawn-skeleton
 	KillsSelf:
 		RequiresCondition: rise-time
+
+## Invisible marker scattered by Chaos Storm; detonates with a random elemental effect after a short fuse
+ChaosStormMarker:
+	Inherits: MINE_DUMMY
+	Immobile:
+		OccupiesSpace: false
+	BodyOrientation:
+		QuantizedFacings: 0
+	HitShape:
+	Health:
+		HP: 999999
+	GrantRandomCondition:
+		Conditions: chaos-fire, chaos-lightning, chaos-curse
+	GrantDelayedCondition:
+		Condition: detonate-time
+		Delay: 50, 250
+	FireWarheadsOnDeath@fire:
+		Weapon: ChaosStormFireImpact
+		RequiresCondition: chaos-fire
+	FireWarheadsOnDeath@lightning:
+		Weapon: ChaosStormLightningImpact
+		RequiresCondition: chaos-lightning
+	FireWarheadsOnDeath@curse:
+		Weapon: ChaosStormCurseImpact
+		RequiresCondition: chaos-curse
+	KillsSelf:
+		RequiresCondition: detonate-time
 
 ##  Spawns Void archers for owner, gives powers.
 elvenhideout:

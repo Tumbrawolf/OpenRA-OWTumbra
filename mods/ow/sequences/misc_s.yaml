@@ -465,6 +465,61 @@ explosion:
 		Filename: frostnova.shp
 		BlendMode: Additive
 		Tick: 120
+	undeath:
+		Filename: undeath.shp
+		Palette: tsunit2
+		BlendMode: Additive
+		Tick: 120
+	chaosburst:
+		Filename: chaos.shp
+		Palette: tsunit2
+		BlendMode: Additive
+		Tick: 120
+	chaosorbeffect:
+		Filename: chaosorb.shp
+		Palette: tsunit2
+		BlendMode: Additive
+		Tick: 120
+	greenchaoseffect:
+		Filename: greenchaos.shp
+		Palette: tsunit2
+		BlendMode: Additive
+		Tick: 120
+	medisanctuaryshield:
+		Filename: Shield.shp
+		Palette: tsunit2
+		BlendMode: Additive
+		Tick: 120
+	crystalburst:
+		Filename: crystalburst.shp
+		Palette: tsunit2
+		BlendMode: Additive
+		Tick: 120
+	icespikeeffect:
+		Filename: icespike.shp
+		Palette: tsunit2
+		BlendMode: Additive
+		Tick: 120
+	electricburst:
+		Filename: electricburst.shp
+		Palette: tsunit2
+		BlendMode: Additive
+		Tick: 120
+	poisonorbeffect:
+		Filename: poisonorb.shp
+		Palette: tsunit2
+		BlendMode: Additive
+		Tick: 120
+	poisoncloudeffect:
+		Filename: poison.shp
+		Palette: tsunit2
+		BlendMode: Additive
+		Tick: 120
+	firepillareffect:
+		Filename: firepillar.shp
+		Palette: tsunit2
+		BlendMode: Additive
+		Tick: 120
 	frostgeyser:
 		Filename: frostgeyser.shp
 		BlendMode: Additive

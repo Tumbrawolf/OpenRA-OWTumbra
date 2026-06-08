@@ -16,7 +16,7 @@
 		CrushedSequencePalette: tsunit
 
 ^MediSoldier:
-	Inherits: ^Infantry
+	Inherits@Infantry: ^Infantry
 	ExternalCondition@stunned:
 		Condition: stunned
 	SpeedMultiplier@stunned:
@@ -48,7 +48,8 @@
 		Amount: 10
 
 ^Wizards:
-	Inherits: ^MediSoldier
+	Inherits@MediSoldier: ^MediSoldier
+	-GrantConditionOnPrerequisite@medimagicwep:
 	##magic units get bonus damage
 	Power:
 		Amount: -50
@@ -78,6 +79,10 @@
 	Power:
 		Amount: -10
 
+
+	^Goblintraits:
+		inherits@MediSoldier: MediSoldier
+		-ExternalCondition@corrode:
 ###############################################################################
 ##########################   Harvesters and Utility   #########################
 ###############################################################################
@@ -85,7 +90,7 @@
 ##starting harvester
 ##medislave
 mediSLAVE:
-	Inherits: GHARV
+	Inherits@gharve: GHARV
 	-SpeedMultiplier@shoes:
 	Buildable:
 		IconPalette: tsunit
@@ -218,7 +223,7 @@ MEDIWORKER2:
 ##builds outposts
 ##medisurveyor
 SURVEYORMEDI:
-	Inherits: TSENGI.O
+	Inherits@TSENGI: TSENGI.O
 	Inherits@MediSoldier: ^MediSoldier
 	Buildable:
 		IconPalette: tsunit
@@ -241,7 +246,7 @@ SURVEYORMEDI:
 ##Tax collector, passive income
 ##TaxCollector
 TaxCollector:
-	Inherits: ^Soldier
+	Inherits@Soldier: ^Soldier
 	Inherits@selection: ^SelectableEconomicUnit
 	Inherits@sprite: ^TSMedi
 	Buildable:
@@ -1089,7 +1094,7 @@ VOIDARCHER:
 		Image: mvoidarcher
 
 VOIDARCHER_SPAWN:
-	Inherits: VOIDARCHER
+	Inherits@VOIDARCHER: VOIDARCHER
 	-Buildable:
 	-Selectable:
 	Interactable:
@@ -1315,7 +1320,7 @@ Vampire:
 ###############################################################################
 
 MediInfantryTest:
-	Inherits: barrackswg
+	Inherits@barrackswg: barrackswg
 	Buildable:
 		IconPalette: tsunit
 		Queue: Building

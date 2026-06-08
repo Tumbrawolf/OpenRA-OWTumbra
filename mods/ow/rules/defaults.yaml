@@ -178,10 +178,10 @@
 	ExternalCondition@corrode:
 		Condition: corrode
 	DamageMultiplier@corrode:
-		RequiresCondition: corrode && !gdi_suits && !medishield
+		RequiresCondition: corrode && !gdi_suits && !medishield && !medishieldreq
 		Modifier: 110
 	WithColoredOverlay@corrode:
-		RequiresCondition: corrode && !gdi_suits && !medishield
+		RequiresCondition: corrode && !gdi_suits && !medishield && !medishieldreq
 		Color: 00800040
 	ExternalCondition@carrier:
 		Condition: carriertarget
@@ -214,7 +214,7 @@
 		Prerequisites: gdi.suits
 		Condition: gdi_suits
 	DamageMultiplier@corrode:
-		RequiresCondition: corrode && gdi_suits && !medishield
+		RequiresCondition: corrode && gdi_suits && !medishield && !medishieldreq
 		Modifier: 75
 	GrantConditionOnPrerequisite@fanatics:
 		Prerequisites: nod.fanatic
@@ -2514,7 +2514,7 @@
 	ExternalCondition@corrode:
 		Condition: corrode
 	DamageMultiplier@corrode:
-		RequiresCondition: corrode
+		RequiresCondition: corrode 
 		Modifier: 75
 	WithColoredOverlay@corrode:
 		RequiresCondition: corrode
@@ -3639,7 +3639,10 @@
 	GrantConditionOnPrerequisite@medishield:
 		Prerequisites: upgrade.medishield
 		Condition: medishield
-	
+	##Sanctuary: brief total damage immunity from Holy support power
+	ExternalCondition@medisanctuary:
+		Condition: medisanctuary
+
 ^MediConditionsnegative:
 	###Too many stacks will Stun the unit
 	ExternalCondition@zapstacks:
@@ -3653,6 +3656,15 @@
 	###Frost Debuff, slows movement and attack speed
 	ExternalCondition@chilled:
 		Condition: chilled
+	###Soul Mark: spawns undead from the corpse on death
+	ExternalCondition@soulmarked:
+		Condition: soulmarked
+	###Petrify Debuff: turned to crystal, takes more damage
+	ExternalCondition@petrified:
+		Condition: petrified
+	###Poison Debuff: lingering damage weakens armor
+	ExternalCondition@poisoned:
+		Condition: poisoned
 
 ##Infantry
 ^MediConditionsI:
@@ -3701,6 +3713,49 @@
 	ReloadDelayMultiplier@chilledR:
 		RequiresCondition: chilled
 		Modifier: 130
+	###Soul Mark: spawns a skeleton from the corpse on death
+	SpawnActorOnDeath@soulmarked:
+		Actor: Skeleton
+		RequiresCondition: soulmarked
+	###Petrify Debuff: turned to crystal, takes more damage while stunned
+	DamageMultiplier@petrifiedD:
+		RequiresCondition: petrified
+		Modifier: 130
+	WithIdleOverlay@petrified:
+		Image: explosion
+		Sequence: crystalburst
+		Palette: tsunit2
+		RequiresCondition: petrified
+		IsDecoration: True
+	GrantCondition@petrified:
+		Condition: disabled
+		RequiresCondition: petrified
+	###Poison Debuff: lingering damage corrodes armor
+	ChangesHealth@poisoned:
+		RequiresCondition: poisoned && !healed
+		PercentageStep: 15
+		StartIfBelow: 110
+	WithIdleOverlay@poisoned:
+		Image: explosion
+		Sequence: poisonorbeffect
+		Palette: tsunit2
+		RequiresCondition: poisoned && !healed
+		IsDecoration: True
+	GrantCondition@poisoned:
+		Condition: corrode
+		RequiresCondition: poisoned && !healed
+	##Sanctuary: brief total damage resist from Holy support power
+	DamageMultiplier@medisanctuaryD:
+		RequiresCondition: medisanctuary
+		Modifier: 30
+	WithIdleOverlay@medisanctuary:
+		Image: explosion
+		Sequence: medisanctuaryshield
+		Palette: tsunit2
+		RequiresCondition: medisanctuary
+		IsDecoration: True
+	TimedConditionBar@medisanctuary:
+		Condition: medisanctuary
 	##units can see stealth from longer
 	DetectCloakedMultiplier@mediblessed:
 		Modifier: 150
@@ -3712,10 +3767,6 @@
 	GrantCondition@medishield3:
 		Condition: medishield
 		RequiresCondition: medishieldreq && PallyBoost
-	##Holy shield: corrode immunity when upgrade is purchased
-	DamageMultiplier@medishield_corrode:
-		RequiresCondition: medishieldreq && corrode
-		Modifier: 0
 	##Magic weapons: non-magic units attack faster
 	ReloadDelayMultiplier@medimagicwep:
 		RequiresCondition: medimagicwep
@@ -3805,6 +3856,32 @@
 	ReloadDelayMultiplier@chilledR:
 		RequiresCondition: chilled
 		Modifier: 130
+	###Soul Mark: spawns a zombie from the wreck on death
+	SpawnActorOnDeath@soulmarked:
+		Actor: SummonedZombie
+		RequiresCondition: soulmarked
+	###Petrify Debuff: turned to crystal, takes more damage while stunned
+	DamageMultiplier@petrifiedD:
+		RequiresCondition: petrified
+		Modifier: 130
+	WithIdleOverlay@petrified:
+		Image: explosion
+		Sequence: crystalburst
+		Palette: tsunit2
+		RequiresCondition: petrified
+		IsDecoration: True
+	##Sanctuary: brief total damage immunity from Holy support power
+	DamageMultiplier@medisanctuaryD:
+		RequiresCondition: medisanctuary
+		Modifier: 30
+	WithIdleOverlay@medisanctuary:
+		Image: explosion
+		Sequence: medisanctuaryshield
+		Palette: tsunit2
+		RequiresCondition: medisanctuary
+		IsDecoration: True
+	TimedConditionBar@medisanctuary:
+		Condition: medisanctuary
 	##units can see stealth from longer
 	DetectCloakedMultiplier@mediblessed:
 		Modifier: 150
@@ -3868,6 +3945,18 @@
 	DamageMultiplier@MediCurseConditionD:
 		RequiresCondition: MediCurseCondition
 		Modifier: 110
+	##Sanctuary: brief total damage immunity from Holy support power
+	DamageMultiplier@medisanctuaryD:
+		RequiresCondition: medisanctuary
+		Modifier: 30
+	WithIdleOverlay@medisanctuary:
+		Image: explosion
+		Sequence: medisanctuaryshield
+		Palette: tsunit2
+		RequiresCondition: medisanctuary
+		IsDecoration: True
+	TimedConditionBar@medisanctuary:
+		Condition: medisanctuary
 	##units can see stealth from longer
 	DetectCloakedMultiplier@mediblessed:
 		Modifier: 150
