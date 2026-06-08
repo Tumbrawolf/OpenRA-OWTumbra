@@ -977,6 +977,10 @@ Player:
 			fed.shields: 200
 			avalon.carrier: 200
 			avalon.terra: 200
+			avalon.airarmor1: 200
+			avalon.airarmor2: 200
+			avalon.shields: 200
+			avalon.shieldsvehicle: 200
 			bossfaction.gdi: 1
 			bossfaction.nod: 1
 			bossfaction.usa: 1

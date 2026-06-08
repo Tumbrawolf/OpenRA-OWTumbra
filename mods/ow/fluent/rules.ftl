@@ -547,13 +547,27 @@ actor-avqtnk =
 
 ## avali_upg.yaml
 actor-avalon-carrier =
-   .name = Doubled Repair Cycles
+   .name = Researech Doubled Repair Cycles
    .description = Increases Carrier repair amount.
 
 actor-avalon-terra =
-   .name = Terraformer Modules
+   .name = Install Terraformer Modules
    .description = Avalon-owned structures will now generate frost.
 
+actor-avalon-shields =
+   .name = Provide Personal Shields
+   .description = Provides Avali infantry forces with shields.
+   
+   Mutually exclusive with Vehicular Shields
+   .name2 = Install Vehicular Shields
+   .desc2 = Provides Avali vehicle forces with shields. 
+   
+   Mutually exclusive with Personal Shields
+
+actor-avalon-infspeed =
+   .name = Train Sprint Tactics
+   .description = Avali infantry movement speed increased
+     by 30%
 
 ## china_air.yaml
 actor-chinamig =
@@ -1665,6 +1679,7 @@ actor-d6-hotwire-name = Hotwire
 actor-gdi-speed =
    .name = Research Reactor Engines
    .description = Increases movement speed of tanks and aircraft.
+   .descavali = Increases movement speed of aircraft.
 
 actor-gdi-suits =
    .name = Supply Hazard Suits

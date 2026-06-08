@@ -424,6 +424,9 @@ avalon.terra:
 avalon.carrier:
 	icon:
 		Filename: avup2icon.shp
+avalon.infspeed:
+	icon:
+		Filename: avup3icon.shp
 
 raynor.mercmunitions:
 	icon:

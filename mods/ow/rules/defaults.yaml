@@ -1111,6 +1111,9 @@
 	GrantConditionOnPrerequisite@raynorshield:
 		Prerequisites: infantry.shields, active.raynor
 		Condition: external_shield
+	GrantConditionOnPrerequisite@avalishield:
+		Prerequisites: infantry.shields, avalon.shields
+		Condition: external_shield
 	Targetable@parachute:
 		RequiresCondition: parachute
 		TargetTypes: AirborneActor
@@ -2378,6 +2381,9 @@
 	SpeedMultiplier@rae_speed:
 		RequiresCondition: upgrade_speed10
 		Modifier: 110
+	GrantConditionOnPrerequisite@avalishield:
+		Prerequisites: vehicle.shields, avalon.shieldsvehicle
+		Condition: external_shield
 	GrantConditionOnPrerequisite@botowner:
 		Condition: botowner
 		Prerequisites: ai.all
@@ -2589,6 +2595,9 @@
 	TemporaryOwnerManager:
 	GrantConditionOnPrerequisite@gdi_speed:
 		Prerequisites: gdi.speed
+		Condition: gdi_speed
+	GrantConditionOnPrerequisite@avali_speed:
+		Prerequisites: avali.airspeed
 		Condition: gdi_speed
 	SpeedMultiplier@gdi_speed:
 		RequiresCondition: gdi_speed

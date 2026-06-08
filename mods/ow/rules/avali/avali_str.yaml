@@ -258,7 +258,7 @@ AVRADAR:
 		TargetableOffsets: 0,0,0, 630,-384,0, 630,384,0, -700,-512,0, -700,512,0
 	Buildable:
 		Queue: Building
-		BuildPaletteOrder: 90
+		BuildPaletteOrder: 109
 		Prerequisites: refinery, ~techlevel.medium, ~structures.avalon
 		Description: actor-avradar.description
 	Valued:
@@ -647,11 +647,13 @@ AVDEFNODE:
 AVLPOST:
 	Inherits: ^Building
 	Inherits@IDISABLE: ^DisableOnLowPowerOrPowerDown
+	-SeedsResource@frost:
 	Buildable:
 		Queue: Wall
 		BuildPaletteOrder: 30
 		Prerequisites: anypower, barracks, ~structures.avalon, ~techlevel.low
 		Description: actor-avlpost.description
+		Icon: avfence
 	Valued:
 		Cost: 200
 	Tooltip:
@@ -668,7 +670,7 @@ AVLPOST:
 	LineBuildNode:
 		Types: avalifencenode
 	Power:
-		Amount: -25
+		Amount: -50
 	RevealsShroud:
 		Range: 4c0
 	LineBuildSegmentExternalCondition:
@@ -711,9 +713,6 @@ AVLFENCE:
 	GrantConditionOnLineBuildDirection@Y:
 		Direction: Y
 		Condition: laserfence-direction-y
-	Power:
-		Amount: -5
-		RequiresCondition: active-posts == 2
 	-WithWallSpriteBody:
 	ExternalCondition@ACTIVE:
 		Condition: active-posts

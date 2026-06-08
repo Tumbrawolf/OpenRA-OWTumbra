@@ -2029,6 +2029,8 @@ brik2:
 		Length: 16
 	icon:
 		Filename: brikicon.shp
+	avfence:
+		Filename: avfencicon.shp
 
 ghole1x1:
 	Defaults:

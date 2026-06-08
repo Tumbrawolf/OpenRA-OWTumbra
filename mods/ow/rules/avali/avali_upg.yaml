@@ -1,3 +1,83 @@
+# Infantry speed 30%
+avalon.infspeed:
+	Inherits: ^UpgradeBaseExt
+	Tooltip:
+		Name: actor-avalon-infspeed.name
+	Buildable:
+		Description: actor-avalon-infspeed.description
+		BuildPaletteOrder: 10200
+		Prerequisites: !infantry.speed2, ~structures.avalon, barracks, ~techlevel.medium
+	ProvidesPrerequisite@upgradename:
+	ProvidesPrerequisite@speed1:
+		Prerequisite: infantry.speed1
+	ProvidesPrerequisite@speed2:
+		Prerequisite: infantry.speed2
+	ProductionCostMultiplier@upgrade:
+		Multiplier: 5000
+	RenderSprites:
+		Image: avalon.infspeed
+	WithProductionIconOverlay:
+		Types: UpgradeComplete
+		Prerequisites: infantry.speed2
+
+# Aircraft armour 1
+avalon.airarmor1:
+	Inherits: ^UpgradeBaseExt
+	Tooltip:
+		Name: actor-upgrade-airarmor1.name
+	Buildable:
+		Description: actor-upgrade-airarmor1.description
+		BuildPaletteOrder: 10200
+		Prerequisites: ~!upgrade.airarmor1, ~structures.avalon, techcenter, ~techlevel.high
+	ProvidesPrerequisite@upgradename:
+	ProvidesPrerequisite@upgradename2:
+		Prerequisite: upgrade.airarmor1
+	ProductionCostMultiplier@upgrade:
+		Multiplier: 5000
+	RenderSprites:
+		Image: upgrade.airarmor1
+	WithProductionIconOverlay:
+		Types: UpgradeComplete
+		Prerequisites: upgrade.airarmor1
+
+# Aircraft armour 2
+avalon.airarmor2:
+	Inherits: ^UpgradeBaseExt
+	Tooltip:
+		Name: actor-upgrade-airarmor2.name
+	Buildable:
+		Description: actor-upgrade-airarmor2.description
+		BuildPaletteOrder: 10200
+		Prerequisites: ~upgrade.airarmor1, !upgrade.airarmor2, ~structures.avalon, advtechcenter, ~techlevel.unrestricted, hero.tier2
+	ProvidesPrerequisite@upgradename:
+	ProvidesPrerequisite@upgradename2:
+		Prerequisite: upgrade.airarmor2
+	ProductionCostMultiplier@upgrade:
+		Multiplier: 10000
+	RenderSprites:
+		Image: upgrade.airarmor2
+	WithProductionIconOverlay:
+		Types: UpgradeComplete
+		Prerequisites: upgrade.airarmor2
+
+# Aircraft speed 20%
+avali.airspeed:
+	Inherits: ^UpgradeBaseExt
+	Tooltip:
+		Name: actor-gdi-speed.name
+	Buildable:
+		Description: actor-gdi-speed.descavali
+		BuildPaletteOrder: 10201
+		Prerequisites: !avali.airspeed, ~structures.avalon, techcenter, ~techlevel.high, hero.tier1
+	ProvidesPrerequisite@upgradename:
+	ProductionCostMultiplier@upgrade:
+		Multiplier: 7500
+	RenderSprites:
+		Image: gdi.speed
+	WithProductionIconOverlay:
+		Types: UpgradeComplete
+		Prerequisites: avali.airspeed
+
 ## Improve carrier repair drone
 avalon.carrier:
 	Inherits: ^UpgradeBaseExt
@@ -5,7 +85,7 @@ avalon.carrier:
 		Name: actor-avalon-carrier.name
 	Buildable:
 		Description: actor-avalon-carrier.description
-		BuildPaletteOrder: 10200
+		BuildPaletteOrder: 10202
 		Prerequisites: !avalon.carrier, ~structures.avalon, advtechcenter, ~techlevel.unrestricted
 	ProvidesPrerequisite@upgradename:
 	ProductionCostMultiplier@upgrade:
@@ -21,7 +101,7 @@ avalon.terra:
 		Name: actor-avalon-terra.name
 	Buildable:
 		Description: actor-avalon-terra.description
-		BuildPaletteOrder: 10201
+		BuildPaletteOrder: 10203
 		Prerequisites: !avalon.terra, ~structures.avalon, advtechcenter, ~structures.snowgen, ~techlevel.unrestricted
 	ProvidesPrerequisite@upgradename:
 	ProductionCostMultiplier@upgrade:
@@ -29,3 +109,49 @@ avalon.terra:
 	WithProductionIconOverlay:
 		Types: UpgradeComplete
 		Prerequisites: avalon.terra
+
+# Infantry shields
+avalon.shields:
+	Inherits: ^UpgradeBaseExt
+	Tooltip:
+		Name: actor-avalon-shields.name
+	Buildable:
+		Description: actor-avalon-shields.description
+		BuildPaletteOrder: 10204
+		Prerequisites: ~structures.avalon, advtechcenter, ~techlevel.unrestricted, !avalon.shieldsvehicle, hero.tier3
+		Icon: protossshields
+	ProvidesPrerequisite@upgradename:
+	ProvidesPrerequisite@enableshieldupgrade:
+		Prerequisite: techlevel.shields
+	ProvidesPrerequisite@upgradename2:
+		Prerequisite: infantry.shields
+	ProductionCostMultiplier@upgrade:
+		Multiplier: 5000
+	RenderSprites:
+		Image: icon
+	WithProductionIconOverlay:
+		Types: UpgradeComplete
+		Prerequisites: avalon.shields
+
+# Vehicle shields
+avalon.shieldsvehicle:
+	Inherits: ^UpgradeBaseExt
+	Tooltip:
+		Name: actor-avalon-shields.name2
+	Buildable:
+		Description: actor-avalon-shields.desc2
+		BuildPaletteOrder: 10205
+		Prerequisites: ~structures.avalon, advtechcenter, ~techlevel.unrestricted, !avalon.shields, hero.tier3
+		Icon: protossshields2
+	ProvidesPrerequisite@upgradename:
+	ProvidesPrerequisite@enableshieldupgrade:
+		Prerequisite: techlevel.shields
+	ProvidesPrerequisite@upgradename2:
+		Prerequisite: vehicle.shields
+	ProductionCostMultiplier@upgrade:
+		Multiplier: 5000
+	RenderSprites:
+		Image: icon
+	WithProductionIconOverlay:
+		Types: UpgradeComplete
+		Prerequisites: avalon.shieldsvehicle
